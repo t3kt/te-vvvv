@@ -1,0 +1,8 @@
+hud|h|qw.hud.on
+quad1|1|qw.quad1.on
+quad2|2|qw.quad2.on
+quad3|3|qw.quad3.on
+quad4|4|qw.quad4.on
+echo|e|qw.echo.on
+perf|p|qw.perf.on
+mouse|m|qw.mouse.on

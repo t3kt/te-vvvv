@@ -1,0 +1,9 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\te\TE.VVVV.RSNodes\RSCountNode test.v4p" filename="C:\Users\thezer0ist\vvvv\te\TE.VVVV.RSNodes\RSCountNode test.v4p" systemname="RSCountNode test">
+   <BOUNDS height="6000" left="7545" top="4275" type="Window" width="9000">
+   </BOUNDS>
+   <NODE systemname="RSCount (Value Advanced)" filename="TE.VVVV.RSNodes.csproj" nodename="RSCount (Value Advanced)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1575" top="1080" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   </PATCH>

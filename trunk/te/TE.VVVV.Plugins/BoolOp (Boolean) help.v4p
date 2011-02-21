@@ -1,0 +1,107 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\te\TE.VVVV\TE.VVVV.Plugins\BoolOp (Boolean) help.v4p" systemname="BoolOp (Boolean) help" filename="C:\Users\thezer0ist\vvvv\te\TE.VVVV\TE.VVVV.Plugins\BoolOp (Boolean) help.v4p">
+   <BOUNDS type="Window" left="8100" top="4875" width="9000" height="6000">
+   </BOUNDS>
+   <NODE systemname="BoolOp (Boolean)" filename="bin\Debug\TE.VVVV.Plugins.dll" nodename="BoolOp (Boolean)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1020" top="2010" width="2145" height="270">
+   </BOUNDS>
+   <PIN pinname="Input1Values" visible="1">
+   </PIN>
+   <PIN pinname="Input2Values" visible="1">
+   </PIN>
+   <PIN pinname="Operations" visible="1">
+   </PIN>
+   <PIN pinname="OutputValues" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="1">
+   <BOUNDS type="Node" left="615" top="1140" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="615" top="1140" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input1Values">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input1Values">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="1650" top="1110" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1650" top="1110" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input2Values">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Input2Values">
+   </LINK>
+   <NODE systemname="IOBox (Enumerations)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="3105" top="1005" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3105" top="1005" width="375" height="630">
+   </BOUNDS>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Input Enum" slicecount="1" values="XOr">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Operations">
+   </PIN>
+   <PIN pinname="Style" slicecount="1" values="List">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="0" dstpinname="Operations">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="4">
+   <BOUNDS type="Node" left="615" top="2520" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="615" top="2520" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="OutputValues">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="OutputValues" dstnodeid="4" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>

@@ -1,0 +1,233 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\maxmsp\vvvv\Echo4Wrapper.v4p" systemname="Echo4Wrapper" filename="C:\Users\thezer0ist\maxmsp\vvvv\Echo4Wrapper.v4p">
+   <BOUNDS type="Window" left="3135" top="4005" width="9000" height="6000">
+   </BOUNDS>
+   <NODE systemname="IOBox (Node)" nodename="IOBox (Node)" componentmode="InABox" id="0">
+   <BOUNDS type="Node" left="2280" top="195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2280" top="195" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In - LiveStream|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="Echo\Echo4.fx" id="2" nodename="Echo8.fx" systemname="Echo4 (EX9.Effect)">
+   <BOUNDS height="270" left="900" top="3945" type="Node" width="3735">
+   </BOUNDS>
+   <PIN pinname="Mesh" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS left="900" top="3945" type="Box">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="LiveStream" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Background Image" visible="1">
+   </PIN>
+   <PIN pinname="Key Image" visible="1">
+   </PIN>
+   <PIN pinname="thresh" visible="1">
+   </PIN>
+   <PIN pinname="Texture Transform Key" visible="1">
+   </PIN>
+   <PIN pinname="Texture Transform" pintype="Input" slicecount="1" visible="-1" values="||">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <BOUNDS height="10275" left="8655" top="345" type="Window" width="14385">
+   </BOUNDS>
+   <PIN pinname="ValueEpsilon" visible="1">
+   </PIN>
+   <PIN pinname="HueEpsilon" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level2" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level3" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level4" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level5" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level6" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level7" visible="1">
+   </PIN>
+   <PIN pinname="Delayed Image level8" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
+   </PIN>
+   <PIN pinname="Technique Pass" pintype="Input" slicecount="1" visible="-1" values="-1">
+   </PIN>
+   <PIN pinname="Transform" pintype="Input" slicecount="1" visible="-1" values="||">
+   </PIN>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="Queue (EX9.Texture)" nodename="Queue (EX9.Texture)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2730" top="1185" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Frame Count" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="3" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="2" dstpinname="LiveStream">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
+   <BOUNDS type="Node" left="4485" top="315" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4485" top="315" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Offset 2|">
+   </PIN>
+   </NODE>
+   <NODE systemname="Max (Value)" nodename="Max (Value)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="5595" top="780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="Input 4" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Input 1">
+   </LINK>
+   <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="5415" top="315" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="5415" top="315" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Offset 3|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="6285" top="285" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="6285" top="285" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Offset 4|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Input 3">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="3" dstpinname="Frame Count">
+   </LINK>
+   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="4020" top="1665" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Texture Out" dstnodeid="12" dstpinname="Input Node">
+   </LINK>
+   <NODE componentmode="Hidden" id="14" nodename="GetSlice (Node)" systemname="GetSlice (Node)">
+   <BOUNDS height="100" left="4815" top="1665" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="13" nodename="GetSlice (Node)" systemname="GetSlice (Node)">
+   <BOUNDS height="100" left="5625" top="1665" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Texture Out" dstnodeid="14" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Texture Out" dstnodeid="13" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Index">
+   </LINK>
+   <NODE systemname="IOBox (Node)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="15">
+   <BOUNDS type="Node" left="285" top="1770" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="285" top="1770" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Render State|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output Node" dstnodeid="2" dstpinname="Render State">
+   </LINK>
+   <NODE systemname="IOBox (Node)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="16">
+   <BOUNDS type="Node" left="1305" top="1185" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1305" top="1185" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Mesh">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Output Node" dstnodeid="2" dstpinname="Mesh">
+   </LINK>
+   <NODE systemname="IOBox (Enumerations)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="17">
+   <BOUNDS type="Node" left="7305" top="630" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7305" top="630" width="1920" height="255">
+   </BOUNDS>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output Enum" dstnodeid="2" dstpinname="Technique">
+   </LINK>
+   <NODE systemname="IOBox (Node)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="18">
+   <BOUNDS type="Node" left="360" top="4455" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="360" top="4455" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Output Layer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Layer" dstnodeid="18" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="2" dstpinname="Delayed Image level2">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="2" dstpinname="Delayed Image level3">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="2" dstpinname="Delayed Image level4">
+   </LINK>
+   </PATCH>

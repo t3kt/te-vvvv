@@ -1,0 +1,143 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\te\TE.VVVV.Plugins\StrSplit (String) help.v4p" systemname="0.v4p ////" filename="0.v4p ////">
+   <BOUNDS type="Window" left="3000" top="3045" width="10350" height="8370">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="105" top="930" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="105" top="930" type="Box" width="1830">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="|a,b,c##x|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="450" top="3630" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="1845" left="450" top="3630" type="Box" width="2280">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="2295" top="930" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="1230" left="2295" top="930" type="Box" width="1905">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" slicecount="3" values="|,|,||||,#">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Separators">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="3" nodename="IOBox (Value Advanced)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="100" left="6045" top="870" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="300" left="6045" top="870" type="Box" width="2280">
+   </BOUNDS>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Input Enum" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="SplitOptions">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="255" left="150" top="105" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="345" left="150" top="105" type="Box" width="3420">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Split strings based on separators sub-strings|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="150" top="0" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="150" top="0" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|StrSplit (String)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="obj\Debug\TE.VVVV.Plugins.dll" id="0" nodename="StrSplit (String)" systemname="StrSplit (String)">
+   <BOUNDS height="100" left="2655" top="3015" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="SeparateLines" visible="1">
+   </PIN>
+   <PIN pinname="SplitOptions" visible="1">
+   </PIN>
+   <PIN pinname="Separators" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="7" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="4230" top="1515" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="4230" top="1515" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="SeparateLines" srcnodeid="7" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="SplitOptions" srcnodeid="3" srcpinname="Output Enum">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="Separators" srcnodeid="4" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="Input" srcnodeid="6" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="5" dstpinname="Input String" srcnodeid="0" srcpinname="Output 1">
+   </LINK>
+   </PATCH>

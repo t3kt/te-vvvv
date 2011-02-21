@@ -1,0 +1,13 @@
+hud|H|qw.hud.on
+quad1|1|qw.quad1.on
+quad2|2|qw.quad2.on
+quad3|3|qw.quad3.on
+quad4|4|qw.quad4.on
+echo|E|qw.echo.on
+blur|B|qw.blur.on
+inv|I|qw.invert.on
+levels|C|qw.levels.on
+perf|P|qw.perf.on
+mouse|M|qw.mouse.on
+lfo1|J|qw.lfo1.on
+lfo2|K|qw.lfo2.on

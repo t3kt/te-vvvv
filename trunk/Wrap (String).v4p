@@ -1,0 +1,93 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\Wrap (String).v4p" systemname="Wrap (String)" filename="C:\Users\thezer0ist\vvvv\Wrap (String).v4p">
+   <BOUNDS type="Window" left="3450" top="2445" width="3210" height="3210">
+   </BOUNDS>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="0">
+   <BOUNDS type="Node" left="315" top="240" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="315" top="240" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Prefix">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="1">
+   <BOUNDS type="Node" left="1170" top="240" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1170" top="240" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="2010" top="255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2010" top="255" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Suffix">
+   </PIN>
+   </NODE>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="915" top="945" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Intersperse String" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Intersperse" visible="-1" pintype="Input" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output String" dstnodeid="3" dstpinname="Input 1" linkstyle="Bezier">
+   <LINKPOINT x="375" y="698">
+   </LINKPOINT>
+   <LINKPOINT x="900" y="698">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="3" dstpinname="Input 2">
+   </LINK>
+   <NODE componentmode="Hidden" id="4" nodename="Add (String)" systemname="Add (String)">
+   <BOUNDS height="100" left="900" top="1410" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Intersperse String" pintype="Input" slicecount="1" visible="-1" values="||">
+   </PIN>
+   <PIN pinname="Intersperse" pintype="Input" slicecount="1" visible="-1" values="None">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="4" dstpinname="Input 2" linkstyle="Bezier">
+   <LINKPOINT x="1995" y="945">
+   </LINKPOINT>
+   <LINKPOINT x="1200" y="945">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="4" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="6">
+   <BOUNDS type="Node" left="180" top="1845" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="180" top="1845" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="6" dstpinname="Input String">
+   </LINK>
+   </PATCH>

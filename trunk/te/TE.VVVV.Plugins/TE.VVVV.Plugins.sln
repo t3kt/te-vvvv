@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TE.VVVV.Plugins", "TE.VVVV.Plugins.csproj", "{119A9F0F-5DCD-4332-AD7E-D8A5B2A6C2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegExprNodes", "..\..\..\code\vvvv\plugins\c#\String\RegExpr\trunk\RegExprNodes.csproj", "{1D81571F-BC6D-4596-9E91-76D732F2D5F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterleaveNodes", "..\..\..\code\vvvv\plugins\c#\Spreads\Interleave\trunk\InterleaveNodes.csproj", "{6AD3950F-A1E6-4FC4-846B-2676954DC66F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TE.VVVV.RSNodes", "..\TE.VVVV.RSNodes\TE.VVVV.RSNodes.csproj", "{A238FA30-9F30-4565-B5E0-6BA3C6D0AC6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{119A9F0F-5DCD-4332-AD7E-D8A5B2A6C2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119A9F0F-5DCD-4332-AD7E-D8A5B2A6C2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119A9F0F-5DCD-4332-AD7E-D8A5B2A6C2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119A9F0F-5DCD-4332-AD7E-D8A5B2A6C2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D81571F-BC6D-4596-9E91-76D732F2D5F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D81571F-BC6D-4596-9E91-76D732F2D5F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D81571F-BC6D-4596-9E91-76D732F2D5F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D81571F-BC6D-4596-9E91-76D732F2D5F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD3950F-A1E6-4FC4-846B-2676954DC66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD3950F-A1E6-4FC4-846B-2676954DC66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD3950F-A1E6-4FC4-846B-2676954DC66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD3950F-A1E6-4FC4-846B-2676954DC66F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A238FA30-9F30-4565-B5E0-6BA3C6D0AC6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A238FA30-9F30-4565-B5E0-6BA3C6D0AC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A238FA30-9F30-4565-B5E0-6BA3C6D0AC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A238FA30-9F30-4565-B5E0-6BA3C6D0AC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
