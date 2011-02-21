@@ -1,0 +1,107 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\te\TE.VVVV.Plugins\CharAsValue (String) help.v4p" systemname="CharAsValue (String) help" filename="C:\Users\thezer0ist\vvvv\te\TE.VVVV.Plugins\CharAsValue (String) help.v4p">
+   <BOUNDS type="Window" left="6225" top="2085" width="8340" height="6000">
+   </BOUNDS>
+   <NODE componentmode="Hidden" filename="..\te\TE.VVVV.Plugins\obj\Debug\TE.VVVV.Plugins.dll" id="0" nodename="CharAsValue (String)" systemname="CharAsValue (String)">
+   <BOUNDS height="100" left="1890" top="2490" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="1">
+   <BOUNDS type="Node" left="1875" top="480" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1875" top="480" width="1095" height="1350">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="3" values="a,q,z1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Input">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="1275" top="3360" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1275" top="3360" width="915" height="1320">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Digits" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Values">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Values" dstnodeid="2" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Keyboard (System Window)" nodename="Keyboard (System Window)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="4185" top="915" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="KeyCode" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="4">
+   <BOUNDS type="Node" left="5325" top="1740" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5325" top="1740" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="KeyCode" dstnodeid="4" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="IOBox (String)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
+   <BOUNDS type="Node" left="3630" top="2805" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3630" top="2805" width="1485" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Keyboard Output" dstnodeid="5" dstpinname="Input String">
+   </LINK>
+   <NODE componentmode="Hidden" filename="..\te\TE.VVVV.Plugins\obj\Debug\TE.VVVV.Plugins.dll" id="6" nodename="CharAsValue (String)" systemname="CharAsValue (String)">
+   <BOUNDS height="100" left="3645" top="3270" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Values" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="6" dstpinname="Input">
+   </LINK>
+   <NODE componentmode="InABox" id="7" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3660" top="3765" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="1320" left="3660" top="3765" type="Box" width="915">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Digits" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Values">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Values" dstnodeid="7" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>

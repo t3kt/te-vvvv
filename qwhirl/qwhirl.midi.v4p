@@ -1,0 +1,183 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.midi.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.ctl.midi.v4p" systemname="qwhirl.ctl.midi">
+   <BOUNDS height="6135" left="10860" top="2190" type="Window" width="8385">
+   </BOUNDS>
+   <NODE componentmode="Hidden" id="3" nodename="MidiController (Devices)" systemname="MidiController (Devices)">
+   <BOUNDS height="100" left="4560" top="1395" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Controller" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Channel" visible="1">
+   </PIN>
+   <PIN pinname="Midi Input Port" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="On Data" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="5" nodename="I (Spreads)" systemname="I (Spreads)">
+   <BOUNDS height="100" left="4815" top="960" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname=".. To [" slicecount="1" values="128">
+   </PIN>
+   <PIN pinname="Phase" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Controller" srcnodeid="5" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="4125" top="510" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="4125" top="510" type="Box" width="495">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Channel">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="15">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Channel" srcnodeid="6" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="7" nodename="IOBox (Value Advanced)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="100" left="5970" top="975" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="5970" top="975" type="Box" width="1845">
+   </BOUNDS>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Midi Input Port|">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Midi Input Port" linkstyle="Bezier" srcnodeid="7" srcpinname="Output Enum">
+   <LINKPOINT x="5985" y="1343">
+   </LINKPOINT>
+   <LINKPOINT x="5640" y="1268">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="360" top="2235" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="2700" left="360" top="2235" type="Box" width="3180">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Ctl Output|">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="16">
+   </PIN>
+   <PIN pinname="Digits" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="8" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="3" srcpinname="Output">
+   <LINKPOINT x="4560" y="1925">
+   </LINKPOINT>
+   <LINKPOINT x="3570" y="1945">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3735" top="2250" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="2700" left="3735" top="2250" type="Box" width="2670">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Ctl On Data|">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="16">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="9" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="3" srcpinname="On Data">
+   <LINKPOINT x="5145" y="1943">
+   </LINKPOINT>
+   <LINKPOINT x="6360" y="1943">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="10" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="4545" top="1950" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw.midi.ctl.val">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="10" dstpinname="Input" srcnodeid="3" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="11" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="5100" top="1965" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw.midi.ctl.ondata">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="11" dstpinname="Input" srcnodeid="3" srcpinname="On Data">
+   </LINK>
+   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="4950" top="120" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="4950" top="120" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|MIDI Ctl On|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="13" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="5520" top="930" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw.midi.ctl.on">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="13" dstpinname="Input" linkstyle="Bezier" srcnodeid="12" srcpinname="Y Output Value">
+   <LINKPOINT x="5425" y="773">
+   </LINKPOINT>
+   <LINKPOINT x="5510" y="758">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="3" dstpinname="Enabled" srcnodeid="12" srcpinname="Y Output Value">
+   </LINK>
+   </PATCH>

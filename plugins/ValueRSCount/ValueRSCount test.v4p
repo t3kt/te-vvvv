@@ -1,0 +1,69 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\plugins\ValueRSCount\ValueRSCount test.v4p" filename="C:\Users\thezer0ist\vvvv\plugins\ValueRSCount\ValueRSCount test.v4p" systemname="ValueRSCount test">
+   <BOUNDS height="6015" left="3780" top="3630" type="Window" width="9000">
+   </BOUNDS>
+   <NODE componentmode="Hidden" filename="%VVVV%\plugins\VVVV.ProjectExplorer.dll" id="3" nodename="ProjectExplorer (VVVV)" systemname="ProjectExplorer (VVVV)">
+   <PIN pinname="Build configuration" slicecount="1" values="Release">
+   </PIN>
+   <PIN pinname="Hide unused projects" slicecount="1" values="0">
+   </PIN>
+   <BOUNDS height="100" left="6450" top="1200" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="1500" left="6450" top="1200" type="Box" width="3000">
+   </BOUNDS>
+   <BOUNDS height="7500" left="16020" top="2070" type="Window" width="4500">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="5" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1575" top="1095" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="test.foo">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="ValueRSCount.csproj" id="6" nodename="ValueRSCount (Value)" systemname="ValueRSCount (Value)">
+   <BOUNDS height="100" left="2025" top="2400" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="On" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="7" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="900" top="1605" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="900" top="1605" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="On">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="On" srcnodeid="7" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="1710" top="3345" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="1710" top="3345" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Count">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="8" dstpinname="Y Input Value" srcnodeid="6" srcpinname="Count">
+   </LINK>
+   </PATCH>
