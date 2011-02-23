@@ -89,7 +89,7 @@
    </BOUNDS>
    <PIN pinname="Chooser Style" slicecount="1" values="HSVAField">
    </PIN>
-   <PIN pinname="Color Input" slicecount="1" values="|0.51182,0.64692,0.52307,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" values="|0.70645,0.87854,0.89287,1.00000|">
    </PIN>
    <PIN pinname="Color Output" visible="1">
    </PIN>
@@ -153,9 +153,9 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="12" dstpinname="Switch" linkstyle="Bezier" srcnodeid="13" srcpinname="Y Output Value">
@@ -1798,6 +1798,6 @@
    </LINK>
    <LINK dstnodeid="176" dstpinname="Center XYZ" srcnodeid="180" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Enabled">
+   <LINK dstnodeid="33" dstpinname="Enabled" srcnodeid="3" srcpinname="Y Output Value">
    </LINK>
    </PATCH>

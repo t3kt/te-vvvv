@@ -27,27 +27,19 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Node)">
-   <BOUNDS height="100" left="2340" top="8040" type="Node" width="100">
+   <BOUNDS height="100" left="2385" top="8595" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2340" top="8040" type="Box" width="795">
+   <BOUNDS height="240" left="2385" top="8595" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Input Node" visible="1">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Layer">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="4" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="5115" top="7290" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="lc.global.on">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
    <NODE componentmode="InABox" id="3" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="4500" top="7605" type="Node" width="100">
+   <BOUNDS height="100" left="4140" top="7200" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1095" left="4500" top="7605" type="Box" width="1080">
+   <BOUNDS height="420" left="4140" top="7200" type="Box" width="615">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -70,20 +62,6 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="2" nodename="AND (Boolean)" systemname="AND (Boolean)">
-   <BOUNDS height="100" left="4530" top="7290" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="2" dstpinname="Input 1" srcnodeid="3" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="2" dstpinname="Input 2" srcnodeid="4" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="2520" top="3165" type="Node" width="100">
    </BOUNDS>
@@ -365,7 +343,7 @@
    <LINK dstnodeid="21" dstpinname="Input 2" srcnodeid="26" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="33" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="270" left="1770" top="7380" type="Node" width="2565">
+   <BOUNDS height="270" left="1815" top="7935" type="Node" width="2565">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>
@@ -376,18 +354,16 @@
    <PIN pinname="Layer 2" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="33" dstpinname="Enabled" srcnodeid="2" srcpinname="Output">
-   </LINK>
    <LINK dstnodeid="33" dstpinname="Layer 1" linkstyle="Bezier" srcnodeid="0" srcpinname="Layer">
-   <LINKPOINT x="1500" y="5690">
+   <LINKPOINT x="1515" y="5875">
    </LINKPOINT>
-   <LINKPOINT x="1845" y="6400">
+   <LINKPOINT x="1875" y="6770">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="1" dstpinname="Input Node" linkstyle="Bezier" srcnodeid="33" srcpinname="Layer">
-   <LINKPOINT x="1830" y="7830">
+   <LINKPOINT x="1875" y="8385">
    </LINKPOINT>
-   <LINKPOINT x="2325" y="7830">
+   <LINKPOINT x="2370" y="8385">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="34" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
@@ -483,9 +459,9 @@
    <LINK dstnodeid="34" dstpinname="Width" srcnodeid="37" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="33" dstpinname="Layer 2" linkstyle="Bezier" srcnodeid="34" srcpinname="Layer">
-   <LINKPOINT x="3915" y="7148">
+   <LINKPOINT x="3930" y="7333">
    </LINKPOINT>
-   <LINKPOINT x="3075" y="7148">
+   <LINKPOINT x="3105" y="7518">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="38" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -1821,5 +1797,7 @@
    <LINK dstnodeid="180" dstpinname="Input 1" srcnodeid="177" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="176" dstpinname="Center XYZ" srcnodeid="180" srcpinname="Output">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Enabled">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
-   <BOUNDS height="5970" left="17250" top="9330" type="Window" width="7950">
+   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="Renderer (TTY)" systemname="Renderer (TTY)">
    <BOUNDS height="100" left="135" top="675" type="Node" width="100">
