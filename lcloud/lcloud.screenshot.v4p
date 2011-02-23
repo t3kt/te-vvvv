@@ -1,0 +1,143 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.screenshot.v4p" systemname="lcloud.screenshot" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.screenshot.v4p">
+   <BOUNDS type="Window" left="5010" top="3015" width="5205" height="3015">
+   </BOUNDS>
+   <NODE componentmode="Hidden" id="7" nodename="Writer (EX9.Texture)" systemname="Writer (EX9.Texture)">
+   <BOUNDS height="100" left="1035" top="1980" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   <PIN pinname="Save" visible="1">
+   </PIN>
+   <PIN pinname="FileName" visible="1">
+   </PIN>
+   <PIN pinname="File Format" pintype="Input" slicecount="1" visible="1" values="PNG">
+   </PIN>
+   <PIN pinname="Only Render On Save" pintype="Input" slicecount="1" visible="-1" values="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="6" nodename="DX9Texture (EX9.Texture)" systemname="DX9Texture (EX9.Texture)">
+   <BOUNDS height="100" left="180" top="1140" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="7" dstpinname="Texture" srcnodeid="6" srcpinname="Texture Out">
+   </LINK>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2475" top="510" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="2475" top="510" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Save">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="4" nodename="Add (String)" systemname="Add (String)">
+   <BOUNDS height="100" left="1215" top="1530" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Intersperse" pintype="Input" slicecount="1" visible="-1" values="Dot">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 3" pintype="Input" slicecount="1" visible="-1" values="png">
+   </PIN>
+   <PIN pinname="Intersperse String" pintype="Input" slicecount="1" visible="-1" values="||">
+   </PIN>
+   <PIN pinname="Input 1" pintype="Input" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\Date.dll" id="3" nodename="Date (Astronomy)" systemname="Date (Astronomy)">
+   <BOUNDS height="100" left="1560" top="990" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Current Date" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="4" dstpinname="Input 2" srcnodeid="3" srcpinname="Current Date">
+   </LINK>
+   <LINK dstnodeid="7" dstpinname="FileName" linkstyle="PolyLine" srcnodeid="4" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="2" nodename="Keyboard (System Window)" systemname="Keyboard (System Window)">
+   <BOUNDS height="100" left="3000" top="525" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Keyboard Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="1" nodename="KeyMatch (String)" systemname="KeyMatch (String)">
+   <BOUNDS height="100" left="3000" top="855" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Key Match" slicecount="1" values="&lt;f5&gt;">
+   </PIN>
+   <PIN pinname="&lt;F5&gt; Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Input" srcnodeid="2" srcpinname="Keyboard Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="0" nodename="OR (Boolean)" systemname="OR (Boolean)">
+   <BOUNDS height="100" left="2505" top="1320" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Input 1" srcnodeid="5" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="7" dstpinname="Save" srcnodeid="0" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="Input 2" srcnodeid="1" srcpinname="&lt;F5&gt; Output">
+   </LINK>
+   <NODE systemname="IOBox (Node)" nodename="IOBox (Node)" componentmode="InABox" id="9">
+   <BOUNDS type="Node" left="165" top="255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="165" top="255" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Source">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="6" dstpinname="Source">
+   </LINK>
+   <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="10">
+   <BOUNDS type="Node" left="1215" top="180" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1215" top="180" width="3525" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="C:\Users\thezer0ist\vvvv\lcloud\lcloud-capture">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Prefix">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="4" dstpinname="Input 1">
+   </LINK>
+   </PATCH>
