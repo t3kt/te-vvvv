@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E542FB50-1297-486B-8D89-A99FA6AC95DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VVVV</RootNamespace>
+    <AssemblyName>StructNodes</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VVVV.Core">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\VVVV.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Hosting">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.PluginInterfaces">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils3rdParty">
+      <HintPath>..\..\..\vvvv_45beta25.1\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lib\ColorStructPart.cs" />
+    <Compile Include="Lib\CountDictionary.cs" />
+    <Compile Include="Lib\Events.cs" />
+    <Compile Include="Lib\ISpread.cs" />
+    <Compile Include="Lib\IStructPart.cs" />
+    <Compile Include="Lib\SpreadWrapper.cs" />
+    <Compile Include="Lib\StringStructPart.cs" />
+    <Compile Include="Lib\StructData.cs" />
+    <Compile Include="Lib\StructPartType.cs" />
+    <Compile Include="Lib\StructTypeDefinition.cs" />
+    <Compile Include="Lib\StructTypeRegistry.cs" />
+    <Compile Include="Lib\Util.cs" />
+    <Compile Include="Lib\ValueStructPart.cs" />
+    <Compile Include="Nodes\DefaultStructNode.cs" />
+    <Compile Include="Nodes\EnsureStructTypeNodeV2.cs" />
+    <Compile Include="Nodes\GetStructTypesNode.cs" />
+    <Compile Include="Nodes\SingleConfiguredTypeStructNodeBaseV2.cs" />
+    <Compile Include="Nodes\StructInputTestNodeV2.cs" />
+    <Compile Include="Nodes\StructJoinNode.cs" />
+    <Compile Include="Nodes\StructNodeBaseV2.cs" />
+    <Compile Include="Nodes\StructOutputTestNodeV2.cs" />
+    <Compile Include="Nodes\StructSplitNodeV2.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
