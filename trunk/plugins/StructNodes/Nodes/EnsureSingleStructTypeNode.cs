@@ -11,10 +11,14 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 
-	#region EnsureStructTypeNodeV2
+	#region EnsureSingleStructTypeNode
 
-	[PluginInfo(Name = "EnsureType", Category = "Struct", Version = "Single V2")]
-	public sealed class EnsureStructTypeNodeV2 : StructNodeBaseV2
+	// this works
+	[PluginInfo(Name = Names.Nodes.EnsureType,
+		Category = Names.Category,
+		Version = Names.Versions.Single, 
+		Author = Names.Author)]
+	public sealed class EnsureSingleStructTypeNode : StructNodeBase
 	{
 
 		#region Static / Constant
@@ -57,7 +61,7 @@ namespace VVVV.Nodes
 		#region Constructors
 
 		[ImportingConstructor]
-		public EnsureStructTypeNodeV2(IPluginHost host, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypesConfig)
+		public EnsureSingleStructTypeNode(IPluginHost host, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypesConfig)
 			: base(host)
 		{
 			_PartTypesConfig = partTypesConfig;
@@ -66,7 +70,7 @@ namespace VVVV.Nodes
 		}
 
 		//[ImportingConstructor]
-		//public EnsureStructTypeNodeV2(IPluginHost host)
+		//public EnsureSingleStructTypeNode(IPluginHost host)
 		//    : base(host)
 		//{
 		//}

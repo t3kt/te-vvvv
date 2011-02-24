@@ -10,9 +10,9 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 
-	#region StructNodeBaseV2
+	#region StructNodeBase
 
-	public abstract class StructNodeBaseV2 : IPluginEvaluate, IDisposable
+	public abstract class StructNodeBase : IPluginEvaluate, IDisposable
 	{
 
 		#region Static / Constant
@@ -38,7 +38,7 @@ namespace VVVV.Nodes
 
 		#region Constructors
 
-		protected StructNodeBaseV2(IPluginHost host)
+		protected StructNodeBase(IPluginHost host)
 		{
 			_Host = host;
 			StructTypeRegistry.OfferHost(host);
@@ -61,8 +61,11 @@ namespace VVVV.Nodes
 			{
 				StructTypeRegistry.ReleaseTypeDefinition(_Type);
 				_Type = StructTypeRegistry.RequestTypeDefinition(partTypesKey);
+				OnTypeChanged();
 			}
 		}
+
+		protected virtual void OnTypeChanged() { }
 
 		#endregion
 

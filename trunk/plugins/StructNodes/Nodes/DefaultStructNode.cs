@@ -13,8 +13,11 @@ namespace VVVV.Nodes
 
 	#region DefaultStructNode
 
-	[PluginInfo(Name = "Default", Category = "Struct")]
-	public class DefaultStructNode : IPluginEvaluate, IDisposable
+	// this works
+	[PluginInfo(Name = Names.Nodes.Default,
+		Category = Names.Category,
+		Author = Names.Author)]
+	public sealed class DefaultStructNode : IPluginEvaluate, IDisposable
 	{
 
 		#region Static / Constant
@@ -23,22 +26,19 @@ namespace VVVV.Nodes
 
 		#region Fields
 
-		private readonly IPluginHost _Host;
 		private StructTypeDefinition _Type;
 
-		//[Config("PartTypes", IsSingle = true)]
 		private readonly IDiffSpread<string> _PartTypesConfig;
 
 		[Output("OutputStruct", IsSingle = true)]
-		protected ISpread<StructData> _StructOutput;
+		private ISpread<StructData> _StructOutput;
 
 		[Output("StructDisplayString", IsSingle = true)]
-		protected ISpread<string> _StructDisplayStringOutput;
+		private ISpread<string> _StructDisplayStringOutput;
 
 		[Output("ActualPartTypes", IsSingle = true)]
-		protected ISpread<string> _ActualPartTypesOutput;
+		private ISpread<string> _ActualPartTypesOutput;
 
-		private bool _NeedsUpdate;
 		private bool _Disposed;
 
 		#endregion
@@ -52,10 +52,8 @@ namespace VVVV.Nodes
 		[ImportingConstructor]
 		public DefaultStructNode(IPluginHost host, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypes)
 		{
-			_Host = host;
 			_PartTypesConfig = partTypes;
 			_PartTypesConfig.Changed += this.PartTypes_Changed;
-			_NeedsUpdate = true;
 			StructTypeRegistry.OfferHost(host);
 		}
 
@@ -84,9 +82,7 @@ namespace VVVV.Nodes
 		private void UpdateOutputs()
 		{
 			CheckDisposed();
-			_StructOutput.SliceCount = 1;
-			_StructDisplayStringOutput.SliceCount = 1;
-			_ActualPartTypesOutput.SliceCount = 1;
+			_StructOutput.SliceCount = _StructDisplayStringOutput.SliceCount = _ActualPartTypesOutput.SliceCount = 1;
 			if(_Type == null)
 			{
 				//_StructOutput.SliceCount = 0;
@@ -101,27 +97,26 @@ namespace VVVV.Nodes
 				_StructDisplayStringOutput[0] = data.ToString();
 				_ActualPartTypesOutput[0] = _Type.PartTypesKey;
 			}
-			_NeedsUpdate = false;
 		}
 
 		#endregion
 
 		#region IPluginEvaluate Members
 
-		public void Evaluate(int spreadMax)
+		void IPluginEvaluate.Evaluate(int spreadMax)
 		{
-			CheckDisposed();
-			if(_NeedsUpdate)
-			{
-				UpdateOutputs();
-			}
+			//CheckDisposed();
+			//if(_NeedsUpdate)
+			//{
+			//    UpdateOutputs();
+			//}
 		}
 
 		#endregion
 
 		#region IDisposable Members
 
-		public void Dispose()
+		void IDisposable.Dispose()
 		{
 			if(!_Disposed)
 			{
@@ -134,6 +129,7 @@ namespace VVVV.Nodes
 		}
 
 		#endregion
+
 	}
 
 	#endregion

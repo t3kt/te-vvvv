@@ -13,7 +13,10 @@ namespace VVVV.Nodes
 
 	#region GetStructTypesNode
 
-	[PluginInfo(Name = "GetTypes", Category = "Struct")]
+	// this works
+	[PluginInfo(Name = Names.Nodes.GetTypes,
+		Category = Names.Category,
+		Author = Names.Author)]
 	public sealed class GetStructTypesNode : IPluginEvaluate, IDisposable
 	{
 

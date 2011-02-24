@@ -75,7 +75,7 @@ namespace VVVV.Lib
 			{
 				var count = Math.Min(_Parts.Length, outputs.Count);
 				for(var i = 0; i < count; i++)
-					_Parts[i].WriteOutputValue(outputs[i], index % outputs[i].SliceCount);
+					_Parts[i].WriteOutputValue(outputs[i], index);
 			}
 		}
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VVVV.PluginInterfaces.V1;
 
 namespace VVVV.Lib
 {
@@ -26,6 +27,27 @@ namespace VVVV.Lib
 				throw new ArgumentNullException("dictionary");
 			TValue value;
 			return dictionary.TryGetValue(key, out value) ? value : defaultValue;
+		}
+
+		internal static void ClearPins<TPin>(this IPluginHost host, IList<TPin> pins)
+			where TPin : IPluginIO
+		{
+			if(pins != null)
+			{
+				foreach(var pin in pins)
+					host.DeletePin(pin);
+				pins.Clear();
+			}
+		}
+
+		internal static void SetSliceCounts<TPin>(this IEnumerable<TPin> pins, int sliceCount)
+			where TPin : class, IPluginOut
+		{
+			if(pins != null)
+			{
+				foreach(var pin in pins)
+					pin.SliceCount = sliceCount;
+			}
 		}
 
 	}
