@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using VVVV.PluginInterfaces.V1;
-using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Lib
 {
@@ -32,12 +31,6 @@ namespace VVVV.Lib
 			get { return StructPartType.String; }
 		}
 
-		public string Value
-		{
-			get { return _Value; }
-			set { _Value = value; }
-		}
-
 		#endregion
 
 		#region Constructors
@@ -53,8 +46,11 @@ namespace VVVV.Lib
 
 		public void ReadInputValue(IPluginIO input, int index)
 		{
-			Debug.Assert(input is IStringIn);
-			((IStringIn)input).GetString(index, out _Value);
+			Debug.Assert(input is IStringIn || input is IStringConfig);
+			if(input is IStringIn)
+				((IStringIn)input).GetString(index, out _Value);
+			else if(input is IStringConfig)
+				((IStringConfig)input).GetString(index, out _Value);
 		}
 
 		public void WriteOutputValue(IPluginIO output, int index)
@@ -63,57 +59,28 @@ namespace VVVV.Lib
 			((IStringOut)output).SetString(index, _Value);
 		}
 
+		public override string ToString()
+		{
+			return _Value;
+		}
+
 		#endregion
 
 		#region IStructPart Members
-
-		object IStructPart.Value
-		{
-			get { return _Value; }
-			set
-			{
-				Debug.Assert(value is string);
-				_Value = (string)value;
-			}
-		}
 
 		public void ResetValue()
 		{
 			_Value = default(string);
 		}
 
-		#endregion
-
-		#region IStructPart Members
-
-		void IStructPart.ReadSpreadInputValue(object spread, int index)
+		public void ReadInputValues(IPluginIO input, int sourceOffset, int count)
 		{
-			Debug.Assert(spread is ISpread<string>);
-			ReadSpreadInputValue((ISpread<string>)spread, index);
+			throw new NotImplementedException();
 		}
 
-		void IStructPart.WriteSpreadOutputValue(object spread, int index)
+		public void WriteOutputValues(IPluginIO output, int destOffset)
 		{
-			Debug.Assert(spread is ISpread<string>);
-			WriteSpreadOutputValue((ISpread<string>)spread, index);
-		}
-
-		#endregion
-
-		#region IStructPart<string> Members
-
-		public void ReadSpreadInputValue(ISpread<string> spread, int index)
-		{
-			if(spread == null)
-				ResetValue();
-			else
-				_Value = spread[index];
-		}
-
-		public void WriteSpreadOutputValue(ISpread<string> spread, int index)
-		{
-			if(spread != null)
-				spread[index] = _Value;
+			throw new NotImplementedException();
 		}
 
 		#endregion

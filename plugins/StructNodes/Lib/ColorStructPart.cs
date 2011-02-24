@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using VVVV.PluginInterfaces.V1;
 using VVVV.Utils.VColor;
-using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Lib
 {
@@ -33,12 +32,6 @@ namespace VVVV.Lib
 			get { return StructPartType.Color; }
 		}
 
-		public RGBAColor Value
-		{
-			get { return _Value; }
-			set { _Value = value; }
-		}
-
 		#endregion
 
 		#region Constructors
@@ -54,8 +47,11 @@ namespace VVVV.Lib
 
 		public void ReadInputValue(IPluginIO input, int index)
 		{
-			Debug.Assert(input is IColorIn);
-			((IColorIn)input).GetColor(index, out _Value);
+			Debug.Assert(input is IColorIn || input is IColorConfig);
+			if(input is IColorIn)
+				((IColorIn)input).GetColor(index, out _Value);
+			else if(input is IColorConfig)
+				((IColorConfig)input).GetColor(index, out _Value);
 		}
 
 		public void WriteOutputValue(IPluginIO output, int index)
@@ -64,57 +60,28 @@ namespace VVVV.Lib
 			((IColorOut)output).SetColor(index, _Value);
 		}
 
+		public override string ToString()
+		{
+			return _Value.ToString();
+		}
+
 		#endregion
 
 		#region IStructPart Members
-
-		object IStructPart.Value
-		{
-			get { return _Value; }
-			set
-			{
-				Debug.Assert(value is RGBAColor);
-				_Value = (RGBAColor)value;
-			}
-		}
 
 		public void ResetValue()
 		{
 			_Value = default(RGBAColor);
 		}
 
-		#endregion
-
-		#region IStructPart Members
-
-		void IStructPart.ReadSpreadInputValue(object spread, int index)
+		public void ReadInputValues(IPluginIO input, int sourceOffset, int count)
 		{
-			Debug.Assert(spread is ISpread<RGBAColor>);
-			ReadSpreadInputValue((ISpread<RGBAColor>)spread, index);
+			throw new NotImplementedException();
 		}
 
-		void IStructPart.WriteSpreadOutputValue(object spread, int index)
+		public void WriteOutputValues(IPluginIO output, int destOffset)
 		{
-			Debug.Assert(spread is ISpread<RGBAColor>);
-			WriteSpreadOutputValue((ISpread<RGBAColor>)spread, index);
-		}
-
-		#endregion
-
-		#region IStructPart<RGBAColor> Members
-
-		public void ReadSpreadInputValue(ISpread<RGBAColor> spread, int index)
-		{
-			if(spread == null)
-				ResetValue();
-			else
-				_Value = spread[index];
-		}
-
-		public void WriteSpreadOutputValue(ISpread<RGBAColor> spread, int index)
-		{
-			if(spread != null)
-				spread[index] = _Value;
+			throw new NotImplementedException();
 		}
 
 		#endregion
