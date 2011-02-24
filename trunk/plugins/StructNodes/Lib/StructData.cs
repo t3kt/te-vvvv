@@ -10,8 +10,7 @@ namespace VVVV.Lib
 
 	#region StructData
 
-	[Serializable]
-	public class StructData
+	public sealed class StructData
 	{
 
 		#region Static / Constant
@@ -20,10 +19,9 @@ namespace VVVV.Lib
 
 		#region Fields
 
-		[NonSerialized]
 		private readonly StructTypeDefinition _TypeDefinition;
 
-		protected readonly IStructPart[] _Parts;
+		private readonly IStructPart[] _Parts;
 
 		#endregion
 

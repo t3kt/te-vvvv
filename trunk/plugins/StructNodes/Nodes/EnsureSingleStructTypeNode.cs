@@ -130,6 +130,7 @@ namespace VVVV.Nodes
 				_PartTypesConfig.Changed -= this.PartTypes_Changed;
 			//if(_PartTypesInput != null)
 			//    _PartTypesInput.Changed -= this.PartTypes_Changed;
+			StructTypeRegistry.TypeUsageCountChanged -= this.TypeRegistry_CountChanged;
 			base.Dispose();
 		}
 

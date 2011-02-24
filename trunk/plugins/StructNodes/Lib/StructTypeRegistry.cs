@@ -84,6 +84,11 @@ namespace VVVV.Lib
 			return _TypeUsageCounts.GetCount(id);
 		}
 
+		internal static int GetTypeUsageCount(StructTypeDefinition type)
+		{
+			return type == null ? 0 : _TypeUsageCounts.GetCount(type.Id);
+		}
+
 		internal static StructTypeDefinition RequestTypeDefinition(string partTypesKey)
 		{
 			Log(TLogType.Debug, "Requesting type: {0}...", partTypesKey);
