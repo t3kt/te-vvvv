@@ -228,6 +228,24 @@ namespace VVVV.Lib
 			pin.SetSubType(new[] { _Id }, this.FriendlyTypeName);
 		}
 
+		public IList<IPluginIn> CreatePartInputPins(IPluginHost host)
+		{
+			var inputs = new List<IPluginIn>();
+			for(var i = 0; i < _PartTypes.Length; i++)
+				inputs.Add(CreatePartInputPin(host, _PartTypes[i],
+					String.Format("Input{0} ({1})", i, GetPartTypeAbbreviation(_PartTypes[i])), 1, TSliceMode.Dynamic, TPinVisibility.True));
+			return inputs;
+		}
+
+		public IList<IPluginOut> CreatePartOutputPins(IPluginHost host)
+		{
+			var outputs = new List<IPluginOut>();
+			for(var i = 0; i < _PartTypes.Length; i++)
+				outputs.Add(CreatePartOutputPin(host, _PartTypes[i],
+					String.Format("Output{0} ({1})", i, GetPartTypeAbbreviation(_PartTypes[i])), 1, TSliceMode.Dynamic, TPinVisibility.True));
+			return outputs;
+		}
+
 		#endregion
 
 	}

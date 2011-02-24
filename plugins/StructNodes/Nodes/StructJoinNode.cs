@@ -12,6 +12,7 @@ namespace VVVV.Nodes
 
 	#region StructJoinNode
 
+	// incomplete
 	internal class StructJoinNode : IPluginEvaluate, IDisposable
 	{
 
@@ -25,7 +26,7 @@ namespace VVVV.Nodes
 		private StructTypeDefinition _Type;
 		private IStringConfig _PartTypesConfig;
 		private bool _NeedsTypePropsOutput;
-		private bool _ForceEvaluate;
+		//private bool _ForceEvaluate;
 
 		private readonly List<IPluginIn> _PartInputs = new List<IPluginIn>();
 
@@ -86,7 +87,7 @@ namespace VVVV.Nodes
 					}
 				}
 				_NeedsTypePropsOutput = true;
-				_ForceEvaluate = true;
+				//_ForceEvaluate = true;
 			}
 		}
 

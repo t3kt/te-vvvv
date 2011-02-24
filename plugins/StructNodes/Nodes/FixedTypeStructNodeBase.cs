@@ -10,9 +10,9 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 
-	#region SingleConfiguredTypeStructNodeBaseV2
+	#region FixedTypeStructNodeBase
 
-	public abstract class SingleConfiguredTypeStructNodeBaseV2 : StructNodeBaseV2
+	public abstract class FixedTypeStructNodeBase : StructNodeBase
 	{
 
 		#region Static / Constant
@@ -32,7 +32,7 @@ namespace VVVV.Nodes
 
 		#region Constructors
 
-		protected SingleConfiguredTypeStructNodeBaseV2(IPluginHost host, IDiffSpread<string> partTypesConfig)
+		protected FixedTypeStructNodeBase(IPluginHost host, IDiffSpread<string> partTypesConfig)
 			: base(host)
 		{
 			_PartTypesConfig = partTypesConfig;
@@ -53,9 +53,7 @@ namespace VVVV.Nodes
 		protected override void Dispose()
 		{
 			if(_PartTypesConfig != null)
-			{
 				_PartTypesConfig.Changed -= this.PartTypes_Changed;
-			}
 			base.Dispose();
 		}
 
