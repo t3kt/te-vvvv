@@ -73,6 +73,7 @@
     <Compile Include="Lib\ValueStructPart.cs" />
     <Compile Include="Nodes\DefaultStructNode.cs" />
     <Compile Include="Nodes\EnsureSingleStructTypeNode.cs" />
+    <Compile Include="Nodes\EnsureStructTypeNode.cs" />
     <Compile Include="Nodes\FixedTypeStructJoinNode.cs" />
     <Compile Include="Nodes\FixedTypeStructSplitNode.cs" />
     <Compile Include="Nodes\GetStructTypesNode.cs" />

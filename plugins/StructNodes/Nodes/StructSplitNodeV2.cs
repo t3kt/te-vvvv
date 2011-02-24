@@ -14,7 +14,7 @@ namespace VVVV.Nodes
 
 	#region StructSplitNodeV2
 
-	[PluginInfo(Name = "Struct", Category = "Struct", Version = "Split V2")]
+	//[PluginInfo(Name = "Struct", Category = "Struct", Version = "Split V2")]
 	public class StructSplitNodeV2 : IPluginEvaluate
 	{
 

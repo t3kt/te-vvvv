@@ -11,7 +11,7 @@ namespace VVVV.Lib
 
 	#region StructTypeDefinition
 
-	public sealed class StructTypeDefinition
+	public sealed class StructTypeDefinition : IEquatable<StructTypeDefinition>
 	{
 
 		#region Static / Constant
@@ -187,11 +187,6 @@ namespace VVVV.Lib
 
 		#region Methods
 
-		public override string ToString()
-		{
-			return this.FriendlyTypeName;
-		}
-
 		private IStructPart[] CreateParts()
 		{
 			return _PartTypes.Select(CreatePart).ToArray();
@@ -244,6 +239,33 @@ namespace VVVV.Lib
 				outputs.Add(CreatePartOutputPin(host, _PartTypes[i],
 					String.Format("Output{0} ({1})", i, GetPartTypeAbbreviation(_PartTypes[i])), 1, TSliceMode.Dynamic, TPinVisibility.True));
 			return outputs;
+		}
+
+		public override string ToString()
+		{
+			return this.FriendlyTypeName;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if(obj is Guid)
+				return (Guid)obj == _Id;
+			return obj is StructTypeDefinition &&
+				((StructTypeDefinition)obj)._Id == _Id;
+		}
+
+		public override int GetHashCode()
+		{
+			return _Id.GetHashCode();
+		}
+
+		#endregion
+
+		#region IEquatable<StructTypeDefinition> Members
+
+		public bool Equals(StructTypeDefinition other)
+		{
+			return other != null && other._Id.Equals(this._Id);
 		}
 
 		#endregion

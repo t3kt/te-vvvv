@@ -12,11 +12,12 @@ namespace VVVV.Nodes
 
 	#region FixedTypeStructSplitNode
 
+	// this works
 	[PluginInfo(Name = Names.Nodes.Struct,
 		Category = Names.Category,
 		Version = Names.Versions.Split + Names.AND + Names.Versions.FixedType,
 		Author = Names.Author)]
-	public class FixedTypeStructSplitNode : FixedTypeStructNodeBase
+	public sealed class FixedTypeStructSplitNode : FixedTypeStructNodeBase
 	{
 
 		#region Static / Constant

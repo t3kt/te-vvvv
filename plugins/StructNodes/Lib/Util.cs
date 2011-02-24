@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VVVV.PluginInterfaces.V1;
+using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Lib
 {
@@ -48,6 +49,16 @@ namespace VVVV.Lib
 				foreach(var pin in pins)
 					pin.SliceCount = sliceCount;
 			}
+		}
+
+		internal static T[] ToArray<T>(this ISpread<T> spread)
+		{
+			if(spread == null)
+				throw new ArgumentNullException("spread");
+			var array = new T[spread.SliceCount];
+			for(var i = 0; i < array.Length; i++)
+				array[i] = spread[i];
+			return array;
 		}
 
 	}
