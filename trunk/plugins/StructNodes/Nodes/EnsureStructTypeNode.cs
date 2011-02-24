@@ -146,8 +146,9 @@ namespace VVVV.Nodes
 			{
 				_PartTypesInput.Changed += this.PartTypes_Changed;
 				_InputAttached = true;
+				PartTypes_Changed(_PartTypesInput);
 			}
-			if(_Invalidate || _InvalidateCount)
+			if(_Invalidate || _InvalidateCount || _PartTypesInput.IsChanged)
 			{
 				_ActualPartTypeKeyOutput.SliceCount =
 					_GuidOutput.SliceCount =

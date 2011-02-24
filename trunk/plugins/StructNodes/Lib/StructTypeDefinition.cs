@@ -98,7 +98,7 @@ namespace VVVV.Lib
 			}
 		}
 
-		public static IPluginIn CreatePartInputPin(IPluginHost host, StructPartType partType, string name, int dimension, TSliceMode sliceMode, TPinVisibility visibility)
+		internal static IPluginIn CreatePartInputPin(IPluginHost host, StructPartType partType, string name, int dimension, TSliceMode sliceMode, TPinVisibility visibility)
 		{
 			switch(partType)
 			{
@@ -119,7 +119,7 @@ namespace VVVV.Lib
 			}
 		}
 
-		public static IPluginOut CreatePartOutputPin(IPluginHost host, StructPartType partType, string name, int dimension, TSliceMode sliceMode, TPinVisibility visibility)
+		internal static IPluginOut CreatePartOutputPin(IPluginHost host, StructPartType partType, string name, int dimension, TSliceMode sliceMode, TPinVisibility visibility)
 		{
 			switch(partType)
 			{
@@ -138,6 +138,16 @@ namespace VVVV.Lib
 			default:
 				throw new ArgumentOutOfRangeException();
 			}
+		}
+
+		internal static string GetPartInputName(int index, StructPartType partType)
+		{
+			return String.Format("Input{0} ({1})", index, GetPartTypeAbbreviation(partType));
+		}
+
+		internal static string GetPartOutputName(int index, StructPartType partType)
+		{
+			return String.Format("Output{0} ({1})", index, GetPartTypeAbbreviation(partType));
 		}
 
 		#endregion
@@ -176,7 +186,7 @@ namespace VVVV.Lib
 
 		#region Constructors
 
-		public StructTypeDefinition(string partTypesKey)
+		internal StructTypeDefinition(string partTypesKey)
 		{
 			_Id = Guid.NewGuid();
 			_PartTypesKey = partTypesKey;
@@ -187,57 +197,24 @@ namespace VVVV.Lib
 
 		#region Methods
 
-		private IStructPart[] CreateParts()
-		{
-			return _PartTypes.Select(CreatePart).ToArray();
-		}
-
 		public StructData CreateInstance()
 		{
-			return new StructData(this, CreateParts());
+			return new StructData(this, _PartTypes.Select(CreatePart).ToArray());
 		}
 
-		public INodeIn CreateStructNodeInputPin(IPluginHost host, string name, TSliceMode sliceMode, TPinVisibility visibility)
-		{
-			INodeIn pin;
-			host.CreateNodeInput(name, sliceMode, visibility, out pin);
-			SetStructNodePinSubType(pin);
-			return pin;
-		}
-
-		public void SetStructNodePinSubType(INodeIn pin)
-		{
-			pin.SetSubType(new[] { _Id }, this.FriendlyTypeName);
-		}
-
-		public INodeOut CreateStructNodeOutputPin(IPluginHost host, string name, TSliceMode sliceMode, TPinVisibility visibility)
-		{
-			INodeOut pin;
-			host.CreateNodeOutput(name, sliceMode, visibility, out pin);
-			SetStructNodePinSubType(pin);
-			return pin;
-		}
-
-		public void SetStructNodePinSubType(INodeOut pin)
-		{
-			pin.SetSubType(new[] { _Id }, this.FriendlyTypeName);
-		}
-
-		public IList<IPluginIn> CreatePartInputPins(IPluginHost host)
+		internal IList<IPluginIn> CreatePartInputPins(IPluginHost host)
 		{
 			var inputs = new List<IPluginIn>();
 			for(var i = 0; i < _PartTypes.Length; i++)
-				inputs.Add(CreatePartInputPin(host, _PartTypes[i],
-					String.Format("Input{0} ({1})", i, GetPartTypeAbbreviation(_PartTypes[i])), 1, TSliceMode.Dynamic, TPinVisibility.True));
+				inputs.Add(CreatePartInputPin(host, _PartTypes[i], GetPartInputName(i, _PartTypes[i]), 1, TSliceMode.Dynamic, TPinVisibility.True));
 			return inputs;
 		}
 
-		public IList<IPluginOut> CreatePartOutputPins(IPluginHost host)
+		internal IList<IPluginOut> CreatePartOutputPins(IPluginHost host)
 		{
 			var outputs = new List<IPluginOut>();
 			for(var i = 0; i < _PartTypes.Length; i++)
-				outputs.Add(CreatePartOutputPin(host, _PartTypes[i],
-					String.Format("Output{0} ({1})", i, GetPartTypeAbbreviation(_PartTypes[i])), 1, TSliceMode.Dynamic, TPinVisibility.True));
+				outputs.Add(CreatePartOutputPin(host, _PartTypes[i], GetPartOutputName(i, _PartTypes[i]), 1, TSliceMode.Dynamic, TPinVisibility.True));
 			return outputs;
 		}
 

@@ -75,7 +75,7 @@ namespace VVVV.Nodes
 						}
 						if(_StructOutput == null)
 							_Host.CreateNodeOutput("Struct Output", TSliceMode.Dynamic, TPinVisibility.True, out _StructOutput);
-						_Type.SetStructNodePinSubType(_StructOutput);
+						_StructOutput.SetSubType(new[] { _Type.Id }, _Type.FriendlyTypeName);
 					}
 					else
 					{

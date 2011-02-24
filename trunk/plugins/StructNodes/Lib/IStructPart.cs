@@ -16,17 +16,15 @@ namespace VVVV.Lib
 
 		StructPartType PartType { get; }
 
-		object Value { get; set; }
-
 		void ResetValue();
 
 		void ReadInputValue(IPluginIO input, int index);
 
 		void WriteOutputValue(IPluginIO output, int index);
 
-		void ReadSpreadInputValue(object spread, int index);
+		void ReadInputValues(IPluginIO input, int sourceOffset, int count);
 
-		void WriteSpreadOutputValue(object spread, int index);
+		void WriteOutputValues(IPluginIO output, int destOffset);
 
 	}
 
@@ -36,12 +34,6 @@ namespace VVVV.Lib
 
 	internal interface IStructPart<T> : IStructPart
 	{
-
-		new T Value { get; set; }
-
-		void ReadSpreadInputValue(ISpread<T> spread, int index);
-
-		void WriteSpreadOutputValue(ISpread<T> spread, int index);
 
 	}
 

@@ -79,7 +79,7 @@ namespace VVVV.Lib
 
 		public override string ToString()
 		{
-			return String.Join(",", _Parts.Select(p => p.Value == null ? "(null)" : p.Value.ToString()).ToArray());
+			return String.Join(",", _Parts.Select(p => p == null ? "(null)" : p.ToString()).ToArray());
 		}
 
 		#endregion
