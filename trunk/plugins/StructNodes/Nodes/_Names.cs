@@ -23,10 +23,13 @@ namespace VVVV.Nodes
 			public const string AsString = "AsString";
 			public const string EnsureType = "EnsureType";
 			public const string GetTypes = "GetTypes";
+			public const string OfType = "OfType";
+			public const string Cons = "Cons";
 		}
 
 		public static class Versions
 		{
+			public const string Global = "Global";
 			public const string Join = "Join";
 			public const string Split = "Split";
 			public const string Single = "Single";

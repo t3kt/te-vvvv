@@ -73,16 +73,6 @@ namespace VVVV.Lib
 			_Value = default(string);
 		}
 
-		public void ReadInputValues(IPluginIO input, int sourceOffset, int count)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void WriteOutputValues(IPluginIO output, int destOffset)
-		{
-			throw new NotImplementedException();
-		}
-
 		#endregion
 
 	}

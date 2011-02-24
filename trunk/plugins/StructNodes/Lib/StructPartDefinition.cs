@@ -30,6 +30,9 @@ namespace VVVV.Lib
 			case 'S':
 			case 's':
 				return StructPartType.String;
+			case 'T':
+			case 't':
+				return StructPartType.Transform;
 			default:
 				return null;
 			}
@@ -108,22 +111,6 @@ namespace VVVV.Lib
 		internal IPluginOut CreateOutputPin(IPluginHost host)
 		{
 			return StructTypeDefinition.CreatePartOutputPin(host, _PartType, StructTypeDefinition.GetPartOutputName(_Index, _PartType), 1, _SliceMode, TPinVisibility.True);
-		}
-
-		internal IStructPart CreatePart()
-		{
-			switch(_PartType)
-			{
-			case StructPartType.Value:
-				break;
-			case StructPartType.Color:
-				break;
-			case StructPartType.String:
-				break;
-			default:
-				throw new NotSupportedException();
-			}
-			throw new NotImplementedException();
 		}
 
 		public override string ToString()

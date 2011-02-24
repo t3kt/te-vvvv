@@ -14,7 +14,8 @@ namespace VVVV.Lib
 
 		Value,
 		Color,
-		String
+		String,
+		Transform
 
 	}
 
