@@ -37,6 +37,10 @@ namespace VVVV.Lib
 				case 's':
 					types.Add(StructPartType.String);
 					break;
+				case 'T':
+				case 't':
+					types.Add(StructPartType.Transform);
+					break;
 				}
 			}
 			return types.ToArray();
@@ -63,6 +67,10 @@ namespace VVVV.Lib
 				case 's':
 					filtered.Append('S');
 					break;
+				case 'T':
+				case 't':
+					filtered.Append('T');
+					break;
 				}
 			}
 			return filtered.ToString();
@@ -78,6 +86,8 @@ namespace VVVV.Lib
 				return "C";
 			case StructPartType.String:
 				return "S";
+			case StructPartType.Transform:
+				return "T";
 			default:
 				throw new ArgumentOutOfRangeException();
 			}
@@ -93,6 +103,8 @@ namespace VVVV.Lib
 				return new ColorStructPart();
 			case StructPartType.String:
 				return new StringStructPart();
+			case StructPartType.Transform:
+				return new TransformStructPart();
 			default:
 				throw new ArgumentOutOfRangeException();
 			}
@@ -114,6 +126,10 @@ namespace VVVV.Lib
 				IStringIn stringPin;
 				host.CreateStringInput(name, sliceMode, visibility, out stringPin);
 				return stringPin;
+			case StructPartType.Transform:
+				ITransformIn transformPin;
+				host.CreateTransformInput(name, sliceMode, visibility, out transformPin);
+				return transformPin;
 			default:
 				throw new ArgumentOutOfRangeException();
 			}
@@ -135,6 +151,10 @@ namespace VVVV.Lib
 				IStringOut stringPin;
 				host.CreateStringOutput(name, sliceMode, visibility, out stringPin);
 				return stringPin;
+			case StructPartType.Transform:
+				ITransformOut transformPin;
+				host.CreateTransformOutput(name, sliceMode, visibility, out transformPin);
+				return transformPin;
 			default:
 				throw new ArgumentOutOfRangeException();
 			}

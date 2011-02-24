@@ -96,22 +96,21 @@
     <Compile Include="Lib\StructPartType.cs" />
     <Compile Include="Lib\StructTypeDefinition.cs" />
     <Compile Include="Lib\StructTypeRegistry.cs" />
+    <Compile Include="Lib\TransformStructPart.cs" />
     <Compile Include="Lib\Util.cs" />
     <Compile Include="Lib\ValueStructPart.cs" />
     <Compile Include="Nodes\DefaultStructNode.cs" />
-    <Compile Include="Nodes\EnsureSingleStructTypeNode.cs" />
     <Compile Include="Nodes\EnsureStructTypeNode.cs" />
+    <Compile Include="Nodes\FilterStructsOfTypeNode.cs" />
     <Compile Include="Nodes\FixedTypeStructJoinNode.cs" />
     <Compile Include="Nodes\FixedTypeStructSplitNode.cs" />
+    <Compile Include="Nodes\GetGlobalStructTypesNode.cs" />
     <Compile Include="Nodes\GetStructTypesNode.cs" />
     <Compile Include="Nodes\FixedTypeStructNodeBase.cs" />
+    <Compile Include="Nodes\StructConsNode.cs" />
     <Compile Include="Nodes\_Names.cs" />
     <Compile Include="Nodes\StructAsStringNode.cs" />
-    <Compile Include="Nodes\StructInputTestNodeV2.cs" />
-    <Compile Include="Nodes\StructJoinNode.cs" />
     <Compile Include="Nodes\StructNodeBase.cs" />
-    <Compile Include="Nodes\StructOutputTestNodeV2.cs" />
-    <Compile Include="Nodes\StructSplitNodeV2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

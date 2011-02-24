@@ -9,10 +9,12 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 
-	#region StructInputTestNodeV2
+	#region StructConsNode
 
-	[PluginInfo(Name = "InputTest", Category = "Struct", Version = "V2")]
-	public class StructInputTestNodeV2 : IPluginEvaluate
+	[PluginInfo(Name = Names.Nodes.Cons,
+		Category = Names.Category,
+		Author = Names.Author)]
+	public sealed class StructConsNode : IPluginEvaluate
 	{
 
 		#region Static / Constant
@@ -21,8 +23,11 @@ namespace VVVV.Nodes
 
 		#region Fields
 
-		[Input("Input Struct")]
-		protected IDiffSpread<StructData> _Input;
+		[Input("Input", IsPinGroup = true)]
+		private ISpread<ISpread<StructData>> _Input;
+
+		[Output("Output")]
+		private ISpread<ISpread<StructData>> _Output;
 
 		#endregion
 
@@ -42,9 +47,13 @@ namespace VVVV.Nodes
 
 		public void Evaluate(int spreadMax)
 		{
+			_Output.SliceCount = _Input.SliceCount;
+			for(var i = 0; i < _Input.SliceCount; i++)
+				_Output[i] = _Input[i];
 		}
 
 		#endregion
+
 	}
 
 	#endregion

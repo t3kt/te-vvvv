@@ -13,7 +13,6 @@ namespace VVVV.Nodes
 
 	#region GetStructTypesNode
 
-	// this works
 	[PluginInfo(Name = Names.Nodes.GetTypes,
 		Category = Names.Category,
 		Author = Names.Author)]
@@ -26,10 +25,8 @@ namespace VVVV.Nodes
 
 		#region Fields
 
-		private bool _Invalidate = true;
-
-		[Input("Refresh", IsSingle = true, IsBang = true)]
-		private IDiffSpread<double> _RefreshInput;
+		[Input("Input")]
+		private IDiffSpread<StructData> _StructInput;
 
 		[Output("PartTypeKeys")]
 		private ISpread<string> _PartTypeKeysOutput;
@@ -39,12 +36,6 @@ namespace VVVV.Nodes
 
 		[Output("FriendlyNames")]
 		private ISpread<string> _FriendlyNamesOutput;
-
-		[Output("UsageCounts")]
-		private ISpread<int> _UsageCounts;
-
-		[Output("Changed", IsBang = true, IsSingle = true)]
-		private ISpread<bool> _Changed;
 
 		#endregion
 
@@ -57,9 +48,6 @@ namespace VVVV.Nodes
 		[ImportingConstructor]
 		public GetStructTypesNode(IPluginHost host)
 		{
-			StructTypeRegistry.TypeRegistered += this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUnregistered += this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUsageCountChanged += this.TypeRegistry_CountChanged;
 			StructTypeRegistry.OfferHost(host);
 		}
 
@@ -67,40 +55,23 @@ namespace VVVV.Nodes
 
 		#region Methods
 
-		private void TypeRegistry_Changed(object sender, StructTypeEventArgs e)
-		{
-			_Invalidate = true;
-		}
-
-		private void TypeRegistry_CountChanged(object sender, CountChangedEventArgs<Guid> e)
-		{
-			_Invalidate = true;
-		}
-
 		#endregion
 
-		#region IPlugin Members
+		#region IPluginEvaluate Members
 
 		public void Evaluate(int spreadMax)
 		{
-			if(_Invalidate || _RefreshInput.IsChanged)
+			if(_StructInput.IsChanged)
 			{
-				var types = StructTypeRegistry.RegisteredTypes.OrderBy(t => t.PartTypesKey).ToArray();
-				_PartTypeKeysOutput.SliceCount = _GuidsOutput.SliceCount = _FriendlyNamesOutput.SliceCount = _UsageCounts.SliceCount = types.Length;
-				for(var i = 0; i < types.Length; i++)
+				var count = Math.Min(spreadMax, _StructInput.SliceCount);
+				_PartTypeKeysOutput.SliceCount = _GuidsOutput.SliceCount = _FriendlyNamesOutput.SliceCount = count;
+				for(var i = 0; i < count; i++)
 				{
-					var type = types[i];
-					_PartTypeKeysOutput[i] = type.PartTypesKey;
-					_GuidsOutput[i] = type.Id.ToString();
-					_FriendlyNamesOutput[i] = type.FriendlyTypeName;
-					_UsageCounts[i] = StructTypeRegistry.GetTypeUsageCount(type.Id);
+					var data = _StructInput[i];
+					_PartTypeKeysOutput[i] = data == null ? null : data.TypeDefinition.PartTypesKey;
+					_GuidsOutput[i] = data == null ? null : data.TypeDefinition.Id.ToString();
+					_FriendlyNamesOutput[i] = data == null ? null : data.TypeDefinition.FriendlyTypeName;
 				}
-				_Changed[0] = true;
-				_Invalidate = false;
-			}
-			else
-			{
-				_Changed[0] = false;
 			}
 		}
 
@@ -110,14 +81,10 @@ namespace VVVV.Nodes
 
 		public void Dispose()
 		{
-			StructTypeRegistry.TypeRegistered -= this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUnregistered -= this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUsageCountChanged -= this.TypeRegistry_CountChanged;
 			GC.SuppressFinalize(this);
 		}
 
 		#endregion
-
 	}
 
 	#endregion

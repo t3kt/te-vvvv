@@ -74,16 +74,6 @@ namespace VVVV.Lib
 			_Value = default(RGBAColor);
 		}
 
-		public void ReadInputValues(IPluginIO input, int sourceOffset, int count)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void WriteOutputValues(IPluginIO output, int destOffset)
-		{
-			throw new NotImplementedException();
-		}
-
 		#endregion
 
 	}

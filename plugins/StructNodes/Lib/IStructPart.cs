@@ -22,9 +22,9 @@ namespace VVVV.Lib
 
 		void WriteOutputValue(IPluginIO output, int index);
 
-		void ReadInputValues(IPluginIO input, int sourceOffset, int count);
+		//void ReadInputValues(IPluginIO input, int sourceOffset, int count);
 
-		void WriteOutputValues(IPluginIO output, int destOffset);
+		//void WriteOutputValues(IPluginIO output, int destOffset);
 
 	}
 
