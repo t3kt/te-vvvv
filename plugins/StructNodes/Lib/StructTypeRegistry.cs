@@ -1,3 +1,5 @@
+//#define USE_ALT_CORE
+#define USE_ALT2_CORE
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,146 +32,6 @@ namespace VVVV.Lib
 
 		#region Nested Types
 
-		#region TypeReg
-
-		private sealed class TypeReg : IStructTypeRegistration
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			public StructTypeDefinition TypeDefinition;
-			public int UsageCount;
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			public TypeReg(StructTypeDefinition typeDefinition)
-			{
-				this.TypeDefinition = typeDefinition;
-			}
-
-			#endregion
-
-			#region Methods
-
-			#endregion
-
-			#region IStructTypeRegistration Members
-
-			public Guid Id
-			{
-				get { return this.TypeDefinition.Id; }
-			}
-
-			public string PartTypesKey
-			{
-				get { return this.TypeDefinition.PartTypesKey; }
-			}
-
-			public IList<StructPartType> PartTypes
-			{
-				get { return this.TypeDefinition.PartTypes; }
-			}
-
-			public string FriendlyTypeName
-			{
-				get { return this.FriendlyTypeName; }
-			}
-
-			int IStructTypeRegistration.UsageCount
-			{
-				get { return this.UsageCount; }
-			}
-
-			#endregion
-
-		}
-
-		#endregion
-
-		#region TypeRegIdSet
-
-		private sealed class TypeRegIdSet : KeyedCollection<Guid, TypeReg>
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			#endregion
-
-			#region Methods
-
-			protected override Guid GetKeyForItem(TypeReg item)
-			{
-				return item.Id;
-			}
-
-			#endregion
-
-		}
-
-		#endregion
-
-		#region TypeRegKeySet
-
-		private sealed class TypeRegKeySet : KeyedCollection<string, TypeReg>
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			public TypeRegKeySet()
-				: base(StringComparer.OrdinalIgnoreCase)
-			{
-
-			}
-
-			#endregion
-
-			#region Methods
-
-			protected override string GetKeyForItem(TypeReg item)
-			{
-				return item.PartTypesKey;
-			}
-
-			#endregion
-
-		}
-
-		#endregion
-
 		#region RegistryCore
 
 		private abstract class RegistryCore
@@ -185,7 +47,9 @@ namespace VVVV.Lib
 
 			#region Properties
 
-			public abstract ICollection<StructTypeDefinition> RegisteredTypes { get; }
+			public abstract IEnumerable<StructTypeDefinition> RegisteredTypes { get; }
+
+			public abstract IEnumerable<IStructTypeRegistration> Registrations { get; }
 
 			#endregion
 
@@ -254,9 +118,18 @@ namespace VVVV.Lib
 
 			#region Properties
 
-			public override ICollection<StructTypeDefinition> RegisteredTypes
+			public override IEnumerable<StructTypeDefinition> RegisteredTypes
 			{
 				get { return _TypesByKey.Values; }
+			}
+
+			public override IEnumerable<IStructTypeRegistration> Registrations
+			{
+				get
+				{
+					return from entry in _TypesByKey
+						   select (IStructTypeRegistration)new TypeReg(entry.Value) { Usages = GetTypeUsageCount(entry.Value.Id) };
+				}
 			}
 
 			#endregion
@@ -329,18 +202,423 @@ namespace VVVV.Lib
 
 		#endregion
 
+		#region TypeReg
+
+		private sealed class TypeReg : IStructTypeRegistration
+		{
+
+			#region Fields
+
+			public readonly StructTypeDefinition TypeDef;
+			public int Usages;
+
+			#endregion
+
+			#region Constructors
+
+			public TypeReg(StructTypeDefinition typeDef)
+			{
+				this.TypeDef = typeDef;
+			}
+
+			#endregion
+
+			#region Methods
+
+			public bool Decrement()
+			{
+				this.Usages--;
+				return this.Usages <= 0;
+			}
+
+			#endregion
+
+			#region IStructTypeRegistration Members
+
+			Guid IStructTypeRegistration.Id
+			{
+				get { return this.TypeDef.Id; }
+			}
+
+			string IStructTypeRegistration.PartTypesKey
+			{
+				get { return this.TypeDef.PartTypesKey; }
+			}
+
+			IList<StructPartType> IStructTypeRegistration.PartTypes
+			{
+				get { return this.TypeDef.PartTypes; }
+			}
+
+			string IStructTypeRegistration.FriendlyTypeName
+			{
+				get { return this.TypeDef.FriendlyTypeName; }
+			}
+
+			int IStructTypeRegistration.UsageCount
+			{
+				get { return this.Usages; }
+			}
+
+			#endregion
+
+		}
+
 		#endregion
 
-		private static IPluginHost _Host;
-		private static RegistryCore _Core;
+		#region AltRegistryCore
 
-		private static readonly Dictionary<Guid, StructTypeDefinition> _TypesById = new Dictionary<Guid, StructTypeDefinition>();
-		private static readonly Dictionary<string, StructTypeDefinition> _TypesByKey = new Dictionary<string, StructTypeDefinition>();
-		private static readonly CountDictionary<Guid> _TypeUsageCounts = new CountDictionary<Guid>();
+		private sealed class AltRegistryCore : RegistryCore
+		{
+
+			#region Nested Types
+
+			#region TypeRegSet<TKey>
+
+			private abstract class TypeRegSet<TKey> : Collection<TypeReg>
+			{
+
+				#region Static/Constant
+
+				#endregion
+
+				#region Fields
+
+				private readonly Dictionary<TKey, TypeReg> _Dict;
+
+				#endregion
+
+				#region Properties
+
+				#endregion
+
+				#region Constructors
+
+				protected TypeRegSet(IEqualityComparer<TKey> comparer)
+				{
+					_Dict = new Dictionary<TKey, TypeReg>(comparer);
+				}
+
+				#endregion
+
+				#region Methods
+
+				protected abstract TKey GetKeyForItem(TypeReg reg);
+
+				protected override void ClearItems()
+				{
+					_Dict.Clear();
+					base.ClearItems();
+				}
+
+				protected override void InsertItem(int index, TypeReg item)
+				{
+					var key = GetKeyForItem(item);
+					_Dict.Add(key, item);
+					base.InsertItem(index, item);
+				}
+
+				protected override void RemoveItem(int index)
+				{
+					var key = GetKeyForItem(base[index]);
+					throw new NotImplementedException();
+					base.RemoveItem(index);
+				}
+
+				public bool TryGetValue(TKey key, out TypeReg reg)
+				{
+					return _Dict.TryGetValue(key, out reg);
+				}
+
+				#endregion
+
+			}
+
+			#endregion
+
+			#region TypeRegIdSet
+
+			private sealed class TypeRegIdSet : KeyedCollection<Guid, TypeReg>
+			{
+
+				public TypeRegIdSet()
+					: base(null, 0) { }
+
+				protected override Guid GetKeyForItem(TypeReg item)
+				{
+					return item.TypeDef.Id;
+				}
+
+				public bool TryGetValue(Guid key, out TypeReg value)
+				{
+					return this.Dictionary.TryGetValue(key, out value);
+				}
+
+			}
+
+			#endregion
+
+			#region TypeRegKeySet
+
+			private sealed class TypeRegKeySet : KeyedCollection<string, TypeReg>
+			{
+
+				public TypeRegKeySet()
+					: base(StringComparer.OrdinalIgnoreCase, 0) { }
+
+				protected override string GetKeyForItem(TypeReg item)
+				{
+					return item.TypeDef.PartTypesKey;
+				}
+
+				public bool TryGetValue(string key, out TypeReg value)
+				{
+					return this.Dictionary.TryGetValue(key, out value);
+				}
+
+			}
+
+			#endregion
+
+			#endregion
+
+			#region Static/Constant
+
+			#endregion
+
+			#region Fields
+
+			private readonly TypeRegIdSet _RegById = new TypeRegIdSet();
+			private readonly TypeRegKeySet _RegByKey = new TypeRegKeySet();
+
+			#endregion
+
+			#region Properties
+
+			public override IEnumerable<StructTypeDefinition> RegisteredTypes
+			{
+				get
+				{
+					return from reg in this._RegById
+						   select reg.TypeDef;
+				}
+			}
+
+			public override IEnumerable<IStructTypeRegistration> Registrations
+			{
+				get { return _RegByKey.Cast<IStructTypeRegistration>(); }
+			}
+
+			#endregion
+
+			#region Events
+
+			public override event EventHandler<CountChangedEventArgs<Guid>> TypeUsageCountChanged;
+
+			#endregion
+
+			#region Constructors
+
+			#endregion
+
+			#region Methods
+
+			private void OnTypeUsageCountChanged(Guid id, int count)
+			{
+				var handler = this.TypeUsageCountChanged;
+				if(handler != null)
+					handler(this, new CountChangedEventArgs<Guid>(id, count));
+			}
+
+			private void AddRegistration(TypeReg reg)
+			{
+				this._RegById.Add(reg);
+				this._RegByKey.Add(reg);
+				this.OnTypeRegistered(reg.TypeDef);
+			}
+
+			private void RemoveRegistration(TypeReg reg)
+			{
+				this._RegById.Remove(reg);
+				this._RegByKey.Remove(reg);
+				this.OnTypeUnregistered(reg.TypeDef);
+			}
+
+			public override StructTypeDefinition GetTypeDefinition(Guid id)
+			{
+				TypeReg reg;
+				return this._RegById.TryGetValue(id, out reg) ? reg.TypeDef : null;
+			}
+
+			public override int GetTypeUsageCount(Guid id)
+			{
+				TypeReg reg;
+				return this._RegById.TryGetValue(id, out reg) ? reg.Usages : 0;
+			}
+
+			public override StructTypeDefinition RequestTypeDefinition(string partTypesKey)
+			{
+				Log(TLogType.Debug, "Requesting type: {0}...", partTypesKey);
+				var filteredKey = StructTypeDefinition.FilterPartTypesKey(partTypesKey);
+				if(String.IsNullOrEmpty(filteredKey))
+					return null;
+				TypeReg reg;
+				if(!this._RegByKey.TryGetValue(filteredKey, out reg))
+				{
+					reg = new TypeReg(new StructTypeDefinition(filteredKey));
+					this.AddRegistration(reg);
+				}
+				reg.Usages++;
+				this.OnTypeUsageCountChanged(reg.TypeDef.Id, reg.Usages);
+				return reg.TypeDef;
+			}
+
+			public override bool ReleaseTypeDefinition(Guid id)
+			{
+				Log(TLogType.Debug, "Releasing type: {0}...", (object)this.GetTypeDefinition(id) ?? "(null/not found)");
+				TypeReg reg;
+				if(!this._RegById.TryGetValue(id, out reg) || !reg.Decrement())
+					return false;
+				this.RemoveRegistration(reg);
+				this.OnTypeUsageCountChanged(reg.TypeDef.Id, 0);
+				return true;
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
+		#region AltRegistryCore2
+
+		private sealed class AltRegistryCore2 : RegistryCore
+		{
+
+			#region Static/Constant
+
+			#endregion
+
+			#region Fields
+
+			private readonly Dictionary<Guid, TypeReg> _RegById = new Dictionary<Guid, TypeReg>();
+			private readonly Dictionary<string, TypeReg> _RegByKey = new Dictionary<string, TypeReg>(StringComparer.OrdinalIgnoreCase);
+
+			#endregion
+
+			#region Properties
+
+			public override IEnumerable<StructTypeDefinition> RegisteredTypes
+			{
+				get
+				{
+					return from reg in this._RegByKey
+						   select reg.Value.TypeDef;
+				}
+			}
+
+			public override IEnumerable<IStructTypeRegistration> Registrations
+			{
+				get { return _RegByKey.Values.Cast<IStructTypeRegistration>(); }
+			}
+
+			#endregion
+
+			#region Events
+
+			public override event EventHandler<CountChangedEventArgs<Guid>> TypeUsageCountChanged;
+
+			#endregion
+
+			#region Constructors
+
+			#endregion
+
+			#region Methods
+
+			private void OnTypeUsageCountChanged(Guid id, int count)
+			{
+				var handler = this.TypeUsageCountChanged;
+				if(handler != null)
+					handler(this, new CountChangedEventArgs<Guid>(id, count));
+			}
+
+			private void AddRegistration(TypeReg reg)
+			{
+				this._RegById.Add(reg.TypeDef.Id, reg);
+				this._RegByKey.Add(reg.TypeDef.PartTypesKey, reg);
+				this.OnTypeRegistered(reg.TypeDef);
+			}
+
+			private void RemoveRegistration(TypeReg reg)
+			{
+				this._RegById.Remove(reg.TypeDef.Id);
+				this._RegByKey.Remove(reg.TypeDef.PartTypesKey);
+				this.OnTypeUnregistered(reg.TypeDef);
+			}
+
+			public override StructTypeDefinition GetTypeDefinition(Guid id)
+			{
+				TypeReg reg;
+				return this._RegById.TryGetValue(id, out reg) ? reg.TypeDef : null;
+			}
+
+			public override int GetTypeUsageCount(Guid id)
+			{
+				TypeReg reg;
+				return this._RegById.TryGetValue(id, out reg) ? reg.Usages : 0;
+			}
+
+			public override StructTypeDefinition RequestTypeDefinition(string partTypesKey)
+			{
+				Log(TLogType.Debug, "Requesting type: {0}...", partTypesKey);
+				var filteredKey = StructTypeDefinition.FilterPartTypesKey(partTypesKey);
+				if(String.IsNullOrEmpty(filteredKey))
+					return null;
+				TypeReg reg;
+				if(!this._RegByKey.TryGetValue(filteredKey, out reg))
+				{
+					reg = new TypeReg(new StructTypeDefinition(filteredKey));
+					this.AddRegistration(reg);
+				}
+				reg.Usages++;
+				this.OnTypeUsageCountChanged(reg.TypeDef.Id, reg.Usages);
+				return reg.TypeDef;
+			}
+
+			public override bool ReleaseTypeDefinition(Guid id)
+			{
+				Log(TLogType.Debug, "Releasing type: {0}...", (object)this.GetTypeDefinition(id) ?? "(null/not found)");
+				TypeReg reg;
+				if(!this._RegById.TryGetValue(id, out reg) || !reg.Decrement())
+					return false;
+				this.RemoveRegistration(reg);
+				this.OnTypeUsageCountChanged(reg.TypeDef.Id, 0);
+				return true;
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
+		#endregion
+
+		#region Static/Constant
+
+		private static IPluginHost _Host;
+		private static readonly RegistryCore _Core;
 
 		static StructTypeRegistry()
 		{
+#if USE_ALT_CORE
+			_Core = new AltRegistryCore();
+#elif USE_ALT2_CORE
+			_Core = new AltRegistryCore2();
+#else
 			_Core = new OldRegistryCore();
+#endif
 		}
 
 		[Conditional("DEBUG")]
@@ -356,6 +634,7 @@ namespace VVVV.Lib
 
 		internal static void OfferHost(IPluginHost host)
 		{
+			Debug.Assert(host != null);
 			if(_Host == null)
 				_Host = host;
 		}
@@ -378,9 +657,14 @@ namespace VVVV.Lib
 			remove { _Core.TypeUsageCountChanged -= value; }
 		}
 
-		internal static ICollection<StructTypeDefinition> RegisteredTypes
+		internal static IEnumerable<StructTypeDefinition> RegisteredTypes
 		{
 			get { return _Core.RegisteredTypes; }
+		}
+
+		internal static IEnumerable<IStructTypeRegistration> Registrations
+		{
+			get { return _Core.Registrations; }
 		}
 
 		internal static StructTypeDefinition GetTypeDefinition(Guid id)
@@ -412,6 +696,8 @@ namespace VVVV.Lib
 		{
 			return type != null && ReleaseTypeDefinition(type.Id);
 		}
+
+		#endregion
 
 	}
 

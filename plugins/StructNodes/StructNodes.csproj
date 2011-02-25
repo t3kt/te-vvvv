@@ -91,6 +91,7 @@
     <Compile Include="Lib\Events.cs" />
     <Compile Include="Lib\IInputPinWrapper.cs" />
     <Compile Include="Lib\IStructPart.cs" />
+    <Compile Include="Lib\RefTracker.cs" />
     <Compile Include="Lib\StringStructPart.cs" />
     <Compile Include="Lib\StructData.cs" />
     <Compile Include="Lib\StructPart.cs" />
