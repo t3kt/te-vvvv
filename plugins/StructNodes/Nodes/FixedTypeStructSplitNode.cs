@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using VVVV.Core.Logging;
 using VVVV.Lib;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
@@ -40,8 +41,8 @@ namespace VVVV.Nodes
 		#region Constructors
 
 		[ImportingConstructor]
-		public FixedTypeStructSplitNode(IPluginHost host, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypesConfig)
-			: base(host, partTypesConfig)
+		public FixedTypeStructSplitNode(IPluginHost host, [Import] ILogger logger, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypesConfig)
+			: base(host, logger, partTypesConfig)
 		{
 		}
 

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Drawing;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -90,9 +87,6 @@ namespace VVVV.UI
 		[Input("RefreshTypes", IsSingle = true, IsBang = true)]
 		private IDiffSpread<bool> _RefreshTypesInput;
 
-		//[Import]
-		//private ILogger _Log;
-
 		#endregion
 
 		#region Properties
@@ -102,9 +96,14 @@ namespace VVVV.UI
 		#region Constructors
 
 		[ImportingConstructor]
-		public GlobalStructTypesPanel(IPluginHost host)
+		public GlobalStructTypesPanel(IPluginHost host, ILogger logger)
 		{
 			InitializeComponent();
+			this._TypesDataGridView.DefaultCellStyle.NullValue = null;
+			StructTypeRegistry.OfferLogger(logger);
+			StructTypeRegistry.TypeRegistered += this.TypeRegistry_Changed;
+			StructTypeRegistry.TypeUnregistered += this.TypeRegistry_Changed;
+			StructTypeRegistry.TypeUsageCountChanged += this.TypeRegistry_CountChanged;
 		}
 
 		#endregion
@@ -118,8 +117,34 @@ namespace VVVV.UI
 			_TypesDataGridView.DataSource = typeRecords;
 		}
 
-		#endregion
+		private void TypeRegistry_Changed(object sender, StructTypeEventArgs e)
+		{
+			RefreshTypes();
+		}
 
+		private void TypeRegistry_CountChanged(object sender, CountChangedEventArgs<Guid> e)
+		{
+			RefreshTypes();
+		}
+
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if(disposing && (components != null))
+			{
+				components.Dispose();
+				StructTypeRegistry.RescindLogger();
+				StructTypeRegistry.TypeRegistered -= this.TypeRegistry_Changed;
+				StructTypeRegistry.TypeUnregistered -= this.TypeRegistry_Changed;
+				StructTypeRegistry.TypeUsageCountChanged -= this.TypeRegistry_CountChanged;
+			}
+			base.Dispose(disposing);
+		}
+
+		#endregion
 
 		#region IPluginEvaluate Members
 

@@ -9,6 +9,7 @@ namespace VVVV.Lib
 	#region RefTracker<T>
 
 	internal sealed class RefTracker<T>
+		where T : class
 	{
 
 		#region Static / Constant

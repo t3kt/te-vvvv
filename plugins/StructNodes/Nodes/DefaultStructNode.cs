@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using VVVV.Lib;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
@@ -40,6 +41,7 @@ namespace VVVV.Nodes
 		private ISpread<string> _ActualPartTypesOutput;
 
 		private bool _Disposed;
+		private readonly bool _ProvidedLogger;
 
 		#endregion
 
@@ -50,11 +52,11 @@ namespace VVVV.Nodes
 		#region Constructors
 
 		[ImportingConstructor]
-		public DefaultStructNode(IPluginHost host, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypes)
+		public DefaultStructNode(IPluginHost host, [Import] ILogger logger, [Config("PartTypes", IsSingle = true)]IDiffSpread<string> partTypes)
 		{
 			_PartTypesConfig = partTypes;
 			_PartTypesConfig.Changed += this.PartTypes_Changed;
-			StructTypeRegistry.OfferHost(host);
+			_ProvidedLogger = StructTypeRegistry.OfferLogger(logger);
 		}
 
 		#endregion
@@ -123,6 +125,8 @@ namespace VVVV.Nodes
 				if(_PartTypesConfig != null)
 					_PartTypesConfig.Changed -= this.PartTypes_Changed;
 				StructTypeRegistry.ReleaseTypeDefinition(_Type);
+				if(_ProvidedLogger)
+					StructTypeRegistry.RescindLogger();
 				_Disposed = true;
 			}
 			GC.SuppressFinalize(this);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using VVVV.Lib;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
@@ -24,6 +25,7 @@ namespace VVVV.Nodes
 		protected readonly IPluginHost _Host;
 		private StructTypeDefinition _Type;
 		private bool _Disposed;
+		private readonly bool _ProvidedLogger;
 
 		#endregion
 
@@ -38,10 +40,10 @@ namespace VVVV.Nodes
 
 		#region Constructors
 
-		protected StructNodeBase(IPluginHost host)
+		protected StructNodeBase(IPluginHost host, ILogger logger)
 		{
 			_Host = host;
-			StructTypeRegistry.OfferHost(host);
+			_ProvidedLogger = StructTypeRegistry.OfferLogger(logger);
 		}
 
 		#endregion
@@ -87,6 +89,8 @@ namespace VVVV.Nodes
 			if(!_Disposed)
 			{
 				Dispose();
+				if(_ProvidedLogger)
+					StructTypeRegistry.RescindLogger();
 				_Disposed = true;
 			}
 			GC.SuppressFinalize(this);

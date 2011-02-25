@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using VVVV.Lib;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
@@ -28,6 +29,8 @@ namespace VVVV.Nodes
 		#region Fields
 
 		private bool _Invalidate = true;
+		private readonly bool _ProvidedLogger;
+		private bool _Disposed;
 
 		[Input("Refresh", IsSingle = true, IsBang = true)]
 		private IDiffSpread<double> _RefreshInput;
@@ -56,12 +59,12 @@ namespace VVVV.Nodes
 		#region Constructors
 
 		[ImportingConstructor]
-		public GetGlobalStructTypesNode(IPluginHost host)
+		public GetGlobalStructTypesNode(IPluginHost host, [Import] ILogger logger)
 		{
 			StructTypeRegistry.TypeRegistered += this.TypeRegistry_Changed;
 			StructTypeRegistry.TypeUnregistered += this.TypeRegistry_Changed;
 			StructTypeRegistry.TypeUsageCountChanged += this.TypeRegistry_CountChanged;
-			StructTypeRegistry.OfferHost(host);
+			_ProvidedLogger = StructTypeRegistry.OfferLogger(logger);
 		}
 
 		#endregion
@@ -111,9 +114,15 @@ namespace VVVV.Nodes
 
 		public void Dispose()
 		{
-			StructTypeRegistry.TypeRegistered -= this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUnregistered -= this.TypeRegistry_Changed;
-			StructTypeRegistry.TypeUsageCountChanged -= this.TypeRegistry_CountChanged;
+			if(!_Disposed)
+			{
+				StructTypeRegistry.TypeRegistered -= this.TypeRegistry_Changed;
+				StructTypeRegistry.TypeUnregistered -= this.TypeRegistry_Changed;
+				StructTypeRegistry.TypeUsageCountChanged -= this.TypeRegistry_CountChanged;
+				if(_ProvidedLogger)
+					StructTypeRegistry.RescindLogger();
+				_Disposed = true;
+			}
 			GC.SuppressFinalize(this);
 		}
 
