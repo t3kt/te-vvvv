@@ -1,0 +1,105 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+   <PATCH nodename="G:\vvvv\te_vvvv\plugins\DebugNodes\debug node tests.v4p" filename="G:\vvvv\te_vvvv\plugins\DebugNodes\debug node tests.v4p" systemname="debug node tests">
+   <BOUNDS height="11895" left="1800" top="945" type="Window" width="14550">
+   </BOUNDS>
+   <NODE componentmode="Hidden" filename="obj\Debug\Decl\DebugNodes.dll" id="0" nodename="Assemblies (Debug)" systemname="Assemblies (Debug)">
+   <BOUNDS height="100" left="7035" top="570" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="FullNames" visible="1">
+   </PIN>
+   <PIN pinname="CodeBases" visible="1">
+   </PIN>
+   <PIN pinname="Refresh" visible="1">
+   </PIN>
+   <PIN pinname="Locations" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="240" top="2115" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="3030" left="240" top="2115" type="Box" width="3420">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="FullNames">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Input String" srcnodeid="0" srcpinname="FullNames">
+   </LINK>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="8175" top="2115" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="3030" left="8175" top="2115" type="Box" width="3420">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="CodeBases">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="2" dstpinname="Input String" srcnodeid="0" srcpinname="CodeBases">
+   </LINK>
+   <NODE componentmode="InABox" id="3" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="6375" top="375" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="6375" top="375" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Refresh">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Refresh" srcnodeid="3" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="3810" top="2280" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="2910" left="3810" top="2280" type="Box" width="3480">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Locations">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="4" dstpinname="Input String" srcnodeid="0" srcpinname="Locations">
+   </LINK>
+   <NODE componentmode="InABox" filename="obj\Debug\DebugNodes.dll" id="5" nodename="BasicUITestPanel (GUI)" systemname="BasicUITestPanel (GUI)">
+   <BOUNDS height="100" left="15285" top="34155" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="2340" left="1770" top="5955" type="Box" width="2400">
+   </BOUNDS>
+   </NODE>
+   </PATCH>
