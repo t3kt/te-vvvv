@@ -47,4 +47,52 @@ namespace VVVV.Lib
 
 	#endregion
 
+	#region CountChangedEventArgs<TKey>
+
+	internal sealed class CountChangedEventArgs<TKey> : EventArgs
+	{
+
+		#region Static / Constant
+
+		#endregion
+
+		#region Fields
+
+		private readonly TKey _Key;
+		private readonly int _Count;
+
+		#endregion
+
+		#region Properties
+
+		public TKey Key
+		{
+			get { return _Key; }
+		}
+
+		public int Count
+		{
+			get { return _Count; }
+		}
+
+		#endregion
+
+		#region Constructors
+
+		public CountChangedEventArgs(TKey key, int count)
+		{
+			_Key = key;
+			_Count = count;
+		}
+
+		#endregion
+
+		#region Methods
+
+		#endregion
+
+	}
+
+	#endregion
+
 }

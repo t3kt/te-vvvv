@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\ColorStructPart.cs" />
-    <Compile Include="Lib\CountDictionary.cs" />
     <Compile Include="Lib\Events.cs" />
     <Compile Include="Lib\IInputPinWrapper.cs" />
     <Compile Include="Lib\IStructPart.cs" />

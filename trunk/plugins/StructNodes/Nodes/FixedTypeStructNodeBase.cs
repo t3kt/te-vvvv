@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using VVVV.Lib;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
@@ -32,8 +33,8 @@ namespace VVVV.Nodes
 
 		#region Constructors
 
-		protected FixedTypeStructNodeBase(IPluginHost host, IDiffSpread<string> partTypesConfig)
-			: base(host)
+		protected FixedTypeStructNodeBase(IPluginHost host, ILogger logger, IDiffSpread<string> partTypesConfig)
+			: base(host, logger)
 		{
 			_PartTypesConfig = partTypesConfig;
 			_PartTypesConfig.Changed += this.PartTypes_Changed;
