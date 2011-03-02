@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.invert.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.invert.v4p" locked="0" systemname="qwhirl.invert">
    <BOUNDS height="7905" left="13605" top="2130" type="Window" width="6960">
    </BOUNDS>
@@ -106,8 +106,6 @@
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK dstnodeid="0" dstpinname="Invert" hiddenwhenlocked="1" srcnodeid="6" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="InABox" hiddenwhenlocked="1" id="10" nodename="IOBox (Value Advanced)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="4065" top="1170" type="Node" width="100">
    </BOUNDS>
@@ -272,6 +270,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="9" dstpinname="Enabled">
+   <LINK dstnodeid="9" dstpinname="Enabled" srcnodeid="17" srcpinname="Output">
    </LINK>
    </PATCH>

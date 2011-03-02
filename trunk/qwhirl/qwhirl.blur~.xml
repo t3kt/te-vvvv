@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.blur.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.blur.v4p" locked="0" systemname="qwhirl.blur">
-   <BOUNDS height="9300" left="4095" top="1380" type="Window" width="7605">
+   <BOUNDS height="9300" left="9165" top="1095" type="Window" width="7605">
    </BOUNDS>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="9" nodename="Grid (EX9.Geometry)" systemname="Grid (EX9.Geometry)">
    <BOUNDS height="100" left="4500" top="1515" type="Node" width="100">
@@ -137,7 +137,7 @@
    </PIN>
    <PIN pinname="EX9 Out" visible="1">
    </PIN>
-   <PIN pinname="Enabled" pintype="Input" slicecount="1" visible="1" values="1">
+   <PIN pinname="Enabled" pintype="Input" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="..\effects\SimpleBlur2.fx" hiddenwhenlocked="1" id="25" nodename="SimpleBlur2 (EX9.Effect)" systemname="SimpleBlur2 (EX9.Effect)">
@@ -425,5 +425,17 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="22" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="23" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="48" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2625" top="4590" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Receive String" slicecount="1" values="qw.render.on">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="24" dstpinname="Enabled">
    </LINK>
    </PATCH>

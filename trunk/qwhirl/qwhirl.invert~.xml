@@ -143,7 +143,7 @@
    </PIN>
    <PIN pinname="Fullscreen" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
+   <PIN pinname="Enabled" pintype="Input" visible="1">
    </PIN>
    <PIN pinname="Projection Transform" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
@@ -261,5 +261,17 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Mesh" hiddenwhenlocked="1" srcnodeid="16" srcpinname="Mesh">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="17" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="4515" top="2775" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Receive String" slicecount="1" values="qw.render.on">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="9" dstpinname="Enabled">
    </LINK>
    </PATCH>
