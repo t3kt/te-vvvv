@@ -16,8 +16,10 @@ namespace VVVV.Nodes
 	// this works
 	[PluginInfo(Name = Names.Nodes.Struct,
 		Category = Names.Category,
-		Version = Names.Versions.Split + Names.AND + Names.Versions.FixedType,
-		Author = Names.Author)]
+		Version = TEShared.Names.Versions.Split +
+			TEShared.Names.AND +
+			Names.Versions.FixedType,
+		Author = TEShared.Names.Author)]
 	public sealed class FixedTypeStructSplitNode : FixedTypeStructNodeBase
 	{
 

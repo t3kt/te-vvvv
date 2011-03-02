@@ -17,7 +17,7 @@ namespace VVVV.Nodes
 	// THIS WORKS
 	[PluginInfo(Name = Names.Nodes.EnsureType,
 		Category = Names.Category,
-		Author = Names.Author)]
+		Author = TEShared.Names.Author)]
 	public sealed class EnsureStructTypeNode : IPluginEvaluate, IDisposable
 	{
 

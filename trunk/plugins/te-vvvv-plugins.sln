@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusNodes", "BusNodes\BusNod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUITemplate", "TemplateGUI\GUITemplate.csproj", "{6A0AFB1F-8219-4A08-85F7-B7F19B66AC16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiNodes", "GuiNodes\GuiNodes.csproj", "{383DC583-E208-4164-8E45-802C3A2B2C60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlNodes", "XamlNodes\XamlNodes.csproj", "{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{6A0AFB1F-8219-4A08-85F7-B7F19B66AC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A0AFB1F-8219-4A08-85F7-B7F19B66AC16}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A0AFB1F-8219-4A08-85F7-B7F19B66AC16}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{383DC583-E208-4164-8E45-802C3A2B2C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383DC583-E208-4164-8E45-802C3A2B2C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383DC583-E208-4164-8E45-802C3A2B2C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383DC583-E208-4164-8E45-802C3A2B2C60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

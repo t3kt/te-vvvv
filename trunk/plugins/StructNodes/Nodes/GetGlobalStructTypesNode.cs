@@ -17,8 +17,8 @@ namespace VVVV.Nodes
 	// this works
 	[PluginInfo(Name = Names.Nodes.GetTypes,
 		Category = Names.Category,
-		Version = Names.Versions.Global,
-		Author = Names.Author)]
+		Version = TEShared.Names.Versions.Global,
+		Author = TEShared.Names.Author)]
 	public sealed class GetGlobalStructTypesNode : IPluginEvaluate, IDisposable
 	{
 

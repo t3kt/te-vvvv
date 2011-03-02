@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using VVVV.PluginInterfaces.V2;
@@ -19,6 +20,9 @@ namespace VVVV.Nodes
 		#endregion
 
 		#region Fields
+
+		[Import]
+		private IPinFactory _PinFactory;
 
 		#endregion
 

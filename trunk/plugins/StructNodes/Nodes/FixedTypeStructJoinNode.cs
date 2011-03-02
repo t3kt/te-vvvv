@@ -16,8 +16,10 @@ namespace VVVV.Nodes
 	// THIS WORKS
 	[PluginInfo(Name = Names.Nodes.Struct,
 		Category = Names.Category,
-		Version = Names.Versions.Join + Names.AND + Names.Versions.FixedType,
-		Author = Names.Author)]
+		Version = TEShared.Names.Versions.Join +
+			TEShared.Names.AND +
+			Names.Versions.FixedType,
+		Author = TEShared.Names.Author)]
 	public sealed class FixedTypeStructJoinNode : FixedTypeStructNodeBase
 	{
 

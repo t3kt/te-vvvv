@@ -1,0 +1,22 @@
+﻿<xn:XamlNodeBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:xn="http://te-vvvv/plugins/xaml/core"
+			 xmlns:xnp="http://te-vvvv/plugins/xaml/core/pins" xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d"
+			 d:DesignHeight="300" d:DesignWidth="300">
+	<xn:XamlNodeBase.InputPins>
+		<xnp:XamlNodeInputPin x:Name="ValAInput" PinName="Val A" DataType="String" />
+		<xnp:XamlNodeInputPin x:Name="ValBInput" PinName="Val B" CustomDataType="{x:Type System:UInt32}"/>
+	</xn:XamlNodeBase.InputPins>
+	<xn:XamlNodeBase.ConfigPins>
+		<xnp:XamlNodeConfigPin x:Name="ValCConfig" PinName="Val C" DataType="Value" DefaultValue="4.2"/>
+	</xn:XamlNodeBase.ConfigPins>
+	<xn:XamlNodeBase.OutputPins>
+		<xnp:XamlNodeOutputPin x:Name="ValDOutput" PinName="Val D" DataType="String" Value="{Binding Path=Text, ElementName=ValDTextBox, Mode=OneWay, NotifyOnSourceUpdated=True}" />
+	</xn:XamlNodeBase.OutputPins>
+	<Grid>
+		<Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="44,32,0,0" VerticalAlignment="Top" Width="75" />
+		<TextBox x:Name="ValDTextBox" Height="23" HorizontalAlignment="Left" Margin="82,136,0,0" VerticalAlignment="Top" Width="120" />
+	</Grid>
+</xn:XamlNodeBase>

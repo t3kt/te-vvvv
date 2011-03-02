@@ -13,7 +13,7 @@ namespace VVVV.Nodes
 	// this works
 	[PluginInfo(Name = Names.Nodes.AsString,
 		Category = Names.Category,
-		Author = Names.Author)]
+		Author = TEShared.Names.Author)]
 	public sealed class StructAsStringNode : IPluginEvaluate
 	{
 

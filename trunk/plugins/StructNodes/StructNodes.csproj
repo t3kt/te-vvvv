@@ -109,9 +109,6 @@
     <Compile Include="Nodes\GetGlobalStructTypesNode.cs" />
     <Compile Include="Nodes\GetStructTypesNode.cs" />
     <Compile Include="Nodes\FixedTypeStructNodeBase.cs" />
-    <Compile Include="Nodes\GlobalStructTypesDisplayNode.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Nodes\StructConsNode.cs" />
     <Compile Include="Nodes\_Names.cs" />
     <Compile Include="Nodes\StructAsStringNode.cs" />
@@ -125,15 +122,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="struct nodes tests.v4p">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="struct nodes tests.v4p" />
+  </ItemGroup>
+  <ItemGroup Label="__SHARED">
+    <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\GlobalStructTypesPanel.resx">
       <DependentUpon>GlobalStructTypesPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuiNodes\GuiNodes.csproj">
+      <Project>{383DC583-E208-4164-8E45-802C3A2B2C60}</Project>
+      <Name>GuiNodes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
