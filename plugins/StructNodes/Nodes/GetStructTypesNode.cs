@@ -16,7 +16,7 @@ namespace VVVV.Nodes
 
 	[PluginInfo(Name = Names.Nodes.GetTypes,
 		Category = Names.Category,
-		Author = Names.Author)]
+		Author = TEShared.Names.Author)]
 	public sealed class GetStructTypesNode : IPluginEvaluate, IDisposable
 	{
 

@@ -17,7 +17,7 @@ namespace VVVV.Nodes
 	// this works
 	[PluginInfo(Name = Names.Nodes.Default,
 		Category = Names.Category,
-		Author = Names.Author)]
+		Author = TEShared.Names.Author)]
 	public sealed class DefaultStructNode : IPluginEvaluate, IDisposable
 	{
 

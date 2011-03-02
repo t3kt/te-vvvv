@@ -13,7 +13,7 @@ namespace VVVV.Nodes
 
 	[PluginInfo(Name = Names.Nodes.Cons,
 		Category = Names.Category,
-		Author = Names.Author)]
+		Author = TEShared.Names.Author)]
 	public sealed class StructConsNode : IPluginEvaluate
 	{
 
