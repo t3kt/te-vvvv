@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.levels.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.levels.v4p" locked="0" systemname="qwhirl.levels">
    <BOUNDS height="8610" left="10035" top="2475" type="Window" width="9000">
    </BOUNDS>
@@ -328,6 +328,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="7" dstpinname="Enabled">
+   <LINK dstnodeid="7" dstpinname="Enabled" srcnodeid="21" srcpinname="Output">
    </LINK>
    </PATCH>

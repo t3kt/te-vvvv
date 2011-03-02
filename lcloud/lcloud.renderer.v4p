@@ -1,13 +1,13 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.renderer.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.renderer.v4p" systemname="lcloud.renderer">
-   <BOUNDS height="4305" left="5310" top="5355" type="Window" width="4755">
+   <BOUNDS height="5610" left="1515" top="1965" type="Window" width="5010">
    </BOUNDS>
    <NODE componentmode="InAWindow" id="26" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
-   <BOUNDS height="100" left="825" top="2760" type="Node" width="100">
+   <BOUNDS height="100" left="1065" top="3825" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1800" left="825" top="2760" type="Box" width="2400">
+   <BOUNDS height="1800" left="1065" top="3825" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="5610" left="0" top="9480" type="Window" width="5340">
+   <BOUNDS height="7080" left="0" top="8010" type="Window" width="6750">
    </BOUNDS>
    <PIN pinname="Layers" slicecount="1" visible="1" values="||">
    </PIN>
@@ -131,41 +131,29 @@
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" filename="lcloud.screenshot.v4p" id="21" nodename="lcloud.screenshot.v4p" systemname="lcloud.screenshot" path="C:\Users\thezer0ist\vvvv\lcloud\">
-   <BOUNDS height="100" left="1770" top="3210" type="Node" width="100">
+   <BOUNDS height="100" left="2010" top="4275" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="21" dstpinname="Source" linkstyle="Bezier" srcnodeid="26" srcpinname="EX9 Out">
-   <LINKPOINT x="1785" y="3120">
+   <LINKPOINT x="2025" y="4185">
    </LINKPOINT>
-   <LINKPOINT x="1785" y="3120">
+   <LINKPOINT x="2025" y="4185">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" id="20" nodename="Keyboard (System Window)" systemname="Keyboard (System Window)">
-   <BOUNDS height="100" left="1995" top="1290" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Keyboard Output" visible="1">
-   </PIN>
-   <PIN pinname="KeyCode" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
    <NODE componentmode="Hidden" id="19" nodename="KeyMatch (String)" systemname="KeyMatch (String)">
-   <BOUNDS height="100" left="1995" top="1665" type="Node" width="100">
+   <BOUNDS height="100" left="2055" top="1275" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <PIN pinname="Key Match" slicecount="1" values="&lt;ESCAPE&gt;">
+   <PIN pinname="Key Match" slicecount="1" values="&lt;ESCAPE&gt;&lt;SHIFT&gt;">
    </PIN>
    <PIN pinname="&lt;ESCAPE&gt; Output" visible="1">
    </PIN>
+   <PIN pinname="&lt;SHIFT&gt; Output" visible="1">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="19" dstpinname="Input" linkstyle="Bezier" srcnodeid="20" srcpinname="Keyboard Output">
-   <LINKPOINT x="2025" y="1613">
-   </LINKPOINT>
-   <LINKPOINT x="2025" y="1613">
-   </LINKPOINT>
-   </LINK>
    <NODE componentmode="Hidden" filename="..\TapToggle.v4p" id="18" nodename="..\TapToggle.v4p" systemname="TapToggle" path="C:\Users\thezer0ist\vvvv\">
    <BOUNDS height="100" left="1995" top="2010" type="Node" width="100">
    </BOUNDS>
@@ -176,16 +164,10 @@
    <PIN pinname="Reset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
-   <LINK dstnodeid="18" dstpinname="Input" linkstyle="Bezier" srcnodeid="19" srcpinname="&lt;ESCAPE&gt; Output">
-   <LINKPOINT x="2025" y="1973">
-   </LINKPOINT>
-   <LINKPOINT x="2025" y="1973">
-   </LINKPOINT>
-   </LINK>
    <LINK dstnodeid="26" dstpinname="Fullscreen" linkstyle="Bezier" srcnodeid="18" srcpinname="Output">
-   <LINKPOINT x="1995" y="2505">
+   <LINKPOINT x="2075" y="2860">
    </LINKPOINT>
-   <LINKPOINT x="1065" y="2505">
+   <LINKPOINT x="1225" y="3215">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="28" nodename="IOBox (Node)" systemname="IOBox (Node)">
@@ -221,15 +203,15 @@
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="26" dstpinname="Layers" linkstyle="Bezier" srcnodeid="31" srcpinname="Layer">
-   <LINKPOINT x="435" y="2595">
+   <LINKPOINT x="515" y="2950">
    </LINKPOINT>
-   <LINKPOINT x="810" y="2595">
+   <LINKPOINT x="970" y="3305">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="32">
-   <BOUNDS type="Node" left="3405" top="1755" width="100" height="100">
+   <NODE componentmode="InABox" id="32" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3405" top="1755" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3405" top="1755" width="480" height="480">
+   <BOUNDS height="480" left="3405" top="1755" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -246,10 +228,66 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
    </NODE>
-   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="26" dstpinname="Enabled" linkstyle="Bezier">
-   <LINKPOINT x="3825" y="2483">
+   <LINK dstnodeid="26" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="32" srcpinname="Y Output Value">
+   <LINKPOINT x="3905" y="2838">
    </LINKPOINT>
-   <LINKPOINT x="1260" y="2483">
+   <LINKPOINT x="1420" y="3193">
    </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="33" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2295" top="150" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="2295" top="150" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="34" nodename="AND (Boolean)" systemname="AND (Boolean)">
+   <BOUNDS height="100" left="2055" top="1665" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="20" nodename="Keyboard (System Global)" systemname="Keyboard (System Global)">
+   <BOUNDS height="100" left="2085" top="840" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Keyboard Output" visible="1">
+   </PIN>
+   <PIN pinname="KeyCode" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="19" dstpinname="Input" linkstyle="Bezier" srcnodeid="20" srcpinname="Keyboard Output">
+   <LINKPOINT x="2105" y="1183">
+   </LINKPOINT>
+   <LINKPOINT x="2095" y="1203">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="20" dstpinname="Enabled" srcnodeid="33" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="34" dstpinname="Input 1" srcnodeid="19" srcpinname="&lt;ESCAPE&gt; Output">
+   </LINK>
+   <LINK dstnodeid="34" dstpinname="Input 2" srcnodeid="19" srcpinname="&lt;SHIFT&gt; Output">
+   </LINK>
+   <LINK dstnodeid="18" dstpinname="Input" srcnodeid="34" srcpinname="Output">
    </LINK>
    </PATCH>

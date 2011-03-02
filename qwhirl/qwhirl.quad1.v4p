@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.quad1.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.quad1.v4p" locked="0" systemname="qwhirl.quad1">
    <BOUNDS height="12255" left="5475" top="570" type="Window" width="12525">
    </BOUNDS>
@@ -312,22 +312,22 @@
    </NODE>
    <LINK dstnodeid="39" dstpinname="Render State" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="24" srcpinname="Render State Out">
    </LINK>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="23" nodename="R (Value)" systemname="R (Value)">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="23" nodename="R (VALUE)" systemname="R (Value)">
    <BOUNDS height="100" left="5625" top="3915" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input Value" visible="1">
    </PIN>
-   <PIN pinname="ReceiveString" slicecount="1" values="qw.mouse.x">
+   <PIN pinname="Receive String" slicecount="1" values="qw.mouse.x">
    </PIN>
    </NODE>
    <LINK dstnodeid="36" dstpinname="X2" hiddenwhenlocked="1" srcnodeid="23" srcpinname="Input Value">
    </LINK>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="22" nodename="R (Value)" systemname="R (Value)">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="22" nodename="R (VALUE)" systemname="R (Value)">
    <BOUNDS height="100" left="5970" top="3915" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="ReceiveString" slicecount="1" values="qw.mouse.y">
+   <PIN pinname="Receive String" slicecount="1" values="qw.mouse.y">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
@@ -356,20 +356,20 @@
    <PIN pinname="Y" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="20" nodename="R (Value)" systemname="R (Value)">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="20" nodename="R (VALUE)" systemname="R (Value)">
    <BOUNDS height="100" left="7920" top="1080" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input Value" visible="1">
    </PIN>
-   <PIN pinname="ReceiveString" slicecount="1" values="qw.mouse.x">
+   <PIN pinname="Receive String" slicecount="1" values="qw.mouse.x">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="19" nodename="R (Value)" systemname="R (Value)">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="19" nodename="R (VALUE)" systemname="R (Value)">
    <BOUNDS height="100" left="8280" top="1080" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="ReceiveString" slicecount="1" values="qw.mouse.y">
+   <PIN pinname="Receive String" slicecount="1" values="qw.mouse.y">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
@@ -996,14 +996,12 @@
    </LINK>
    <LINK dstnodeid="70" dstpinname="Background Kalle" hiddenwhenlocked="1" srcnodeid="67" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="66" nodename="R (Value)" systemname="R (Value Advanced)">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="66" nodename="R (VALUE)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="7290" top="8055" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="ReceiveString">
+   <PIN pinname="Receive String" slicecount="1" values="qw.quad1.on">
    </PIN>
    <PIN pinname="Input Value" visible="1">
-   </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.quad1.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -1034,7 +1032,7 @@
    <LINKPOINT x="6000" y="9780">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="38" dstpinname="Pitch" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="38" dstpinname="Pitch" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="33" srcpinname="Output">
    <LINKPOINT x="5545" y="4040">
    </LINKPOINT>
    <LINKPOINT x="3065" y="4165">

@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.blur.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.blur.v4p" locked="0" systemname="qwhirl.blur">
    <BOUNDS height="9300" left="9165" top="1095" type="Window" width="7605">
    </BOUNDS>
@@ -412,14 +412,12 @@
    </LINK>
    <LINK dstnodeid="47" dstpinname="Background Kalle" hiddenwhenlocked="0" srcnodeid="44" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="23" nodename="R (Value)" systemname="R (Value Advanced)">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="23" nodename="R (VALUE)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="390" top="2445" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="ReceiveString">
+   <PIN pinname="Receive String" slicecount="1" values="qw.blur.on">
    </PIN>
    <PIN pinname="Input Value" visible="1">
-   </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.blur.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -436,6 +434,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="48" srcpinname="Output" dstnodeid="24" dstpinname="Enabled">
+   <LINK dstnodeid="24" dstpinname="Enabled" srcnodeid="48" srcpinname="Output">
    </LINK>
    </PATCH>

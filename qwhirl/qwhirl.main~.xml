@@ -240,7 +240,7 @@
    </NODE>
    <LINK dstnodeid="24" dstpinname="Input Value" hiddenwhenlocked="0" srcnodeid="23" srcpinname="Color Output">
    </LINK>
-   <NODE componentmode="Hidden" id="26" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
+   <NODE componentmode="InAWindow" id="26" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
    <BOUNDS height="100" left="3015" top="11415" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="1800" left="3015" top="11415" type="Box" width="2400">

@@ -51,7 +51,7 @@
    <NODE componentmode="InAWindow" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="1050" top="1605" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="8895" left="6165" top="570" type="Window" width="11385">
+   <BOUNDS height="11670" left="6390" top="1020" type="Window" width="12840">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -65,7 +65,7 @@
    </PIN>
    <PIN pinname="Var Len Deviation" pintype="Input" slicecount="1" visible="-1" values="0.4">
    </PIN>
-   <PIN pinname="Fixed Length" pintype="Input" slicecount="1" visible="-1" values="7.96">
+   <PIN pinname="Fixed Length" pintype="Input" slicecount="1" visible="-1" values="20">
    </PIN>
    <PIN pinname="Transform In" pintype="Input" slicecount="1" visible="1" values="||">
    </PIN>
@@ -79,13 +79,13 @@
    </PIN>
    <PIN pinname="Translate Var Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Line Width" pintype="Input" slicecount="1" visible="-1" values="2.49">
+   <PIN pinname="Line Width" pintype="Input" slicecount="1" visible="-1" values="1.25">
    </PIN>
    <PIN pinname="Translate Deviation" pintype="Input" slicecount="1" visible="-1" values="0.19">
    </PIN>
    <PIN pinname="Translate FilterTime" pintype="Input" slicecount="1" visible="-1" values="7.32000000000001">
    </PIN>
-   <PIN pinname="Vertical Spread" pintype="Input" slicecount="1" visible="-1" values="1.91">
+   <PIN pinname="Vertical Spread" pintype="Input" slicecount="1" visible="-1" values="1.37">
    </PIN>
    <PIN pinname="Rotate Var Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
@@ -265,7 +265,7 @@
    </PIN>
    <PIN pinname="Grid" visible="1">
    </PIN>
-   <BOUNDS height="4305" left="5310" top="5355" type="Window" width="4755">
+   <BOUNDS height="5610" left="1515" top="1965" type="Window" width="5010">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>

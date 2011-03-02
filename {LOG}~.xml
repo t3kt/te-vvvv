@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
-   <BOUNDS height="5970" left="17250" top="9330" type="Window" width="7950">
+   <PATCH nodename="G:\vvvv\te_vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
+   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="Renderer (TTY)" systemname="Renderer (TTY)">
    <BOUNDS height="100" left="135" top="675" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="4725" left="135" top="675" type="Box" width="7515">
+   <BOUNDS height="4725" left="135" top="675" type="Box" width="13380">
    </BOUNDS>
    <BOUNDS height="5010" left="3225" top="6195" type="Window" width="6240">
    </BOUNDS>
@@ -87,7 +87,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="9" nodename="Stallone (Spreads)" systemname="Stallone (Spreads)">
-   <BOUNDS height="100" left="4125" top="300" type="Node" width="100">
+   <BOUNDS height="100" left="2775" top="255" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Output Count" slicecount="1" values="3">
    </PIN>
@@ -138,8 +138,8 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Show TimeStamp" hiddenwhenlocked="1" srcnodeid="9" srcpinname="Output 3">
    </LINK>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="15" nodename="WritePage (TTY)" systemname="WritePage (TTY)">
-   <BOUNDS height="100" left="5955" top="330" type="Node" width="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="15" nodename="WRITEPAGE (TTY)" systemname="WritePage (TTY)">
+   <BOUNDS height="100" left="4605" top="285" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="DoWrite" visible="1">
    </PIN>
@@ -185,7 +185,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="19" nodename="Group (TTY)" systemname="Group (TTY)">
-   <BOUNDS height="100" left="5220" top="375" type="Node" width="100">
+   <BOUNDS height="100" left="3870" top="330" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>

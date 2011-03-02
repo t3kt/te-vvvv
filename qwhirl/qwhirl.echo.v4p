@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.echo.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.echo.v4p" locked="0" systemname="qwhirl.echo">
    <BOUNDS height="12300" left="5640" top="1890" type="Window" width="13905">
    </BOUNDS>
@@ -640,14 +640,12 @@
    </LINK>
    <LINK dstnodeid="47" dstpinname="Background Kalle" hiddenwhenlocked="0" srcnodeid="44" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="43" nodename="R (Value)" systemname="R (Value Advanced)">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="43" nodename="R (VALUE)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="1455" top="2760" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="ReceiveString">
+   <PIN pinname="Receive String" slicecount="1" values="qw.echo.on">
    </PIN>
    <PIN pinname="Input Value" visible="1">
-   </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.echo.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>

@@ -378,12 +378,6 @@
    </NODE>
    <LINK dstnodeid="21" dstpinname="Y2" hiddenwhenlocked="1" srcnodeid="19" srcpinname="Input Value">
    </LINK>
-   <LINK dstnodeid="38" dstpinname="Pitch" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="33" srcpinname="Output">
-   <LINKPOINT x="5545" y="4040">
-   </LINKPOINT>
-   <LINKPOINT x="3065" y="4165">
-   </LINKPOINT>
-   </LINK>
    <LINK dstnodeid="28" dstpinname="TranslateY" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="25" srcpinname="Position Out">
    <LINKPOINT x="3890" y="6708">
    </LINKPOINT>
@@ -1038,6 +1032,12 @@
    <LINKPOINT x="7275" y="9780">
    </LINKPOINT>
    <LINKPOINT x="6000" y="9780">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="38" dstpinname="Pitch" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINKPOINT x="5545" y="4040">
+   </LINKPOINT>
+   <LINKPOINT x="3065" y="4165">
    </LINKPOINT>
    </LINK>
    </PATCH>
