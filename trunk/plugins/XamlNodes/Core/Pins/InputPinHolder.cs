@@ -74,11 +74,16 @@ namespace XamlNodes.Core.Pins
 
 			#region Methods
 
-			private void Pin_Changed(IDiffSpread<T> spread)
+			public override void NotifyChanged()
 			{
 				var handler = this.Changed;
 				if(handler != null)
 					handler(this, EventArgs.Empty);
+			}
+
+			private void Pin_Changed(IDiffSpread<T> spread)
+			{
+				NotifyChanged();
 			}
 
 			public override object GetValue()
@@ -158,6 +163,8 @@ namespace XamlNodes.Core.Pins
 		#endregion
 
 		#region Methods
+
+		public abstract void NotifyChanged();
 
 		public abstract object GetValue();
 

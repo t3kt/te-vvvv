@@ -1,27 +1,59 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="G:\vvvv\te_vvvv\plugins\XamlNodes\xaml_nodes_test.v4p" filename="G:\vvvv\te_vvvv\plugins\XamlNodes\xaml_nodes_test.v4p" systemname="xaml_nodes_test">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\plugins\XamlNodes\xaml_nodes_test.v4p" filename="C:\Users\thezer0ist\vvvv\plugins\XamlNodes\xaml_nodes_test.v4p" systemname="xaml_nodes_test">
    <BOUNDS height="6000" left="9915" top="5325" type="Window" width="9000">
    </BOUNDS>
-   <NODE componentmode="InABox" filename="obj\Debug\Decl\XamlNodes.dll" id="0" nodename="Host (Xaml)" systemname="Host (Xaml)">
-   <BOUNDS height="100" left="4320" top="3525" type="Node" width="100">
+   <NODE componentmode="InABox" filename="bin\Debug\XamlNodes.dll" id="0" nodename="Host (Xaml)" systemname="Host (Xaml)">
+   <BOUNDS height="100" left="4290" top="3375" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="3495" left="2025" top="1245" type="Box" width="5640">
+   <BOUNDS height="3495" left="1995" top="1095" type="Box" width="5640">
    </BOUNDS>
-   <PIN pinname="XamlPath" slicecount="1" values="G:\vvvv\te_vvvv\plugins\XamlNodes\_etc\Example3.xaml">
+   <PIN pinname="XamlPath" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Val C" slicecount="1" values="0.55">
+   <PIN pinname="Val C" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Val D" visible="1">
    </PIN>
-   </NODE>
-   <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="1">
-   <BOUNDS type="Node" left="795" top="4845" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="795" top="4845" width="1560" height="480">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="1">
+   <PIN pinname="XamlSource" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="XamlControlType" slicecount="1" values="|XamlNodes._etc.Example5, XamlNodes|">
+   </PIN>
+   <PIN pinname="Val E" visible="1">
+   </PIN>
+   <PIN pinname="Val A" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Val D" dstnodeid="1" dstpinname="Input String">
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="795" top="4845" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="330" left="795" top="4845" type="Box" width="1425">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Val D|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="4785" top="4755" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="375" left="4785" top="4755" type="Box" width="1170">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Val E|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="480" top="255" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="480" top="255" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Val A|">
+   </PIN>
+   <PIN pinname="Input String" slicecount="1" values="asdffff">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="0" dstpinname="Val A">
    </LINK>
    </PATCH>

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using VVVV.Hosting.Pins;
+using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 
 namespace XamlNodes.Core.Pins
@@ -55,7 +57,7 @@ namespace XamlNodes.Core.Pins
 
 		internal override PinAttribute CreatePinAttribute()
 		{
-			return new OutputAttribute(this.PinName);
+			return InitPinAttribute(new OutputAttribute(this.ActualPinName));
 		}
 
 		internal override void AttachHost(IXamlNodeHost host)
@@ -70,6 +72,45 @@ namespace XamlNodes.Core.Pins
 				_PinHolder.Dispose();
 				_PinHolder = null;
 			}
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
+	#region XamlNodeOutputPin<T>
+
+	public sealed class XamlNodeOutputPin<T> : XamlNodePin<T>
+	{
+
+		#region Static/Constant
+
+		#endregion
+
+		#region Fields
+
+		#endregion
+
+		#region Properties
+
+		#endregion
+
+		#region Constructors
+
+		#endregion
+
+		#region Methods
+
+		internal override PinAttribute CreatePinAttribute()
+		{
+			return InitPinAttribute(new OutputAttribute(this.ActualPinName));
+		}
+
+		protected override Pin<T> CreatePin(IPluginHost host)
+		{
+			return PinFactory.CreatePin<T>(host, CreatePinAttribute());
 		}
 
 		#endregion

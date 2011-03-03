@@ -51,7 +51,7 @@ namespace XamlNodes.Core.Pins
 
 		internal override PinAttribute CreatePinAttribute()
 		{
-			return new ConfigAttribute(this.PinName);
+			return InitPinAttribute(new ConfigAttribute(this.ActualPinName));
 		}
 
 		internal override void AttachHost(IXamlNodeHost host)

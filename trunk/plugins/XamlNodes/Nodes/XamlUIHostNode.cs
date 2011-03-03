@@ -28,7 +28,7 @@ namespace XamlNodes.Nodes
 		InitialWindowWidth = 100,
 		InitialWindowHeight = 100,
 		InitialComponentMode = TComponentMode.InABox)]
-	public partial class XamlUIHostNode : UserControl, IXamlNodeHost, IPartImportsSatisfiedNotification
+	public partial class XamlUIHostNode : UserControl, IXamlNodeHost, IPartImportsSatisfiedNotification, IPluginEvaluate
 	{
 
 		#region Static/Constant
@@ -43,14 +43,23 @@ namespace XamlNodes.Nodes
 			return new NamespaceMapEntry(parts[0], parts[1], parts[3]);
 		}
 
-		private static string[] GetSharedAssemblies()
+		private static readonly string[] _SharedAssemblies = new[] { "WindowsBase", "PresentationCore", "PresentationFramework", XamlNodesShared.Names.Assembly };
+
+		private static IEnumerable<string> GetSharedAssemblies()
 		{
-			return new[] { "WindowsBase", "PresentationCore", "PresentationFramework", "XamlNodes" };
+			return _SharedAssemblies;
 		}
 
-		private static NamespaceMapEntry[] GetSharedNamespaceMapEntries()
+		private static readonly NamespaceMapEntry[] _SharedNamespaceMapEntries =
+			new[]
+			{
+				new NamespaceMapEntry(XamlNodesShared.Names.XmlCore, XamlNodesShared.Names.AssemblyFull, XamlNodesShared.Names.ClrCore),
+				new NamespaceMapEntry(XamlNodesShared.Names.XmlCorePins, XamlNodesShared.Names.AssemblyFull, XamlNodesShared.Names.ClrCorePins)
+			};
+
+		private static IEnumerable<NamespaceMapEntry> GetSharedNamespaceMapEntries()
 		{
-			return new NamespaceMapEntry[0];
+			return _SharedNamespaceMapEntries;
 		}
 
 		#endregion
@@ -60,11 +69,17 @@ namespace XamlNodes.Nodes
 		[Import]
 		private IPluginHost _PluginHost;
 
+		[Config("LoadNode", IsSingle = true, IsBang = true)]
+		private IDiffSpread<bool> _LoadNodeConfig;
+
 		[Config("XamlPath", IsSingle = true, StringType = StringType.Filename, FileMask = "XAML files (*.xaml)|*.xaml|All files (*.*)|*.*")]
 		private IDiffSpread<string> _XamlPathConfig;
 
 		[Config("XamlSource", IsSingle = true)]
 		private IDiffSpread<string> _XamlSourceConfig;
+
+		[Config("XamlControlType", IsSingle = true)]
+		private IDiffSpread<string> _XamlControlTypeConfig;
 
 		[Config("ParserBaseUri", IsSingle = true)]
 		private ISpread<string> _ParserBaseUri;
@@ -76,6 +91,8 @@ namespace XamlNodes.Nodes
 		private ISpread<string> _ParserAssemblies;
 
 		private IXamlNode _Node;
+
+		private bool _Invalidate = true;
 
 		#endregion
 
@@ -96,7 +113,8 @@ namespace XamlNodes.Nodes
 
 		private void Xaml_Changed(IDiffSpread<string> spread)
 		{
-			ReloadXaml();
+			//ReloadXaml();
+			_Invalidate = true;
 		}
 
 		private NamespaceMapEntry[] GetNamespaceMapEntries()
@@ -132,8 +150,15 @@ namespace XamlNodes.Nodes
 			var xamlSource = _XamlSourceConfig[0];
 			if(!String.IsNullOrEmpty(xamlSource))
 				return XamlReader.Parse(xamlSource, PrepareParserContext());
+			var ctlTypeName = _XamlControlTypeConfig[0];
+			if(!String.IsNullOrEmpty(ctlTypeName))
+			{
+				var ctlType = Type.GetType(ctlTypeName, false, true);
+				if(ctlType != null)
+					return Activator.CreateInstance(ctlType, true);
+			}
 			var xamlPath = _XamlPathConfig[0];
-			if(!String.IsNullOrEmpty(xamlPath) || !File.Exists(xamlPath))
+			if(!String.IsNullOrEmpty(xamlPath) && File.Exists(xamlPath))
 			{
 				using(var stream = File.OpenRead(xamlPath))
 					return XamlReader.Load(stream, PrepareParserContext());
@@ -159,6 +184,7 @@ namespace XamlNodes.Nodes
 			UnloadXamlNode();
 			var nodeObj = this.LoadXamlNode();
 			AttachXamlNode(nodeObj);
+			_Invalidate = false;
 		}
 
 		private void UnloadXamlNode()
@@ -179,6 +205,7 @@ namespace XamlNodes.Nodes
 		{
 			_XamlPathConfig.Changed += this.Xaml_Changed;
 			_XamlSourceConfig.Changed += this.Xaml_Changed;
+			_XamlControlTypeConfig.Changed += this.Xaml_Changed;
 		}
 
 		#endregion
@@ -193,6 +220,18 @@ namespace XamlNodes.Nodes
 		public IXamlNode Node
 		{
 			get { return _Node; }
+		}
+
+		#endregion
+
+		#region IPluginEvaluate Members
+
+		public void Evaluate(int spreadMax)
+		{
+			if(_Invalidate || _LoadNodeConfig.IsChanged)
+			{
+				ReloadXaml();
+			}
 		}
 
 		#endregion

@@ -3,7 +3,6 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Markup;
 
 [assembly: AssemblyTitle("XamlNodes")]
 [assembly: AssemblyDescription("XAML Nodes for VVVV")]
@@ -17,7 +16,7 @@ using System.Windows.Markup;
 //the line below to match the UICulture setting in the project file.
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: NeutralResourcesLanguageAttribute("")]
 
 
 [assembly: ThemeInfo(
@@ -31,6 +30,3 @@ using System.Windows.Markup;
 
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: XmlnsDefinition("http://te-vvvv/plugins/xaml/core", "XamlNodes.Core")]
-[assembly: XmlnsDefinition("http://te-vvvv/plugins/xaml/core/pins", "XamlNodes.Core.Pins")]
