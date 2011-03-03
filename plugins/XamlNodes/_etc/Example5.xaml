@@ -1,0 +1,17 @@
+﻿<XamlNodeBase x:Class="XamlNodes._etc.Example5"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns="clr-namespace:XamlNodes.Core"
+			 xmlns:xnp="clr-namespace:XamlNodes.Core.Pins"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300">
+	<XamlNodeBase.InputPins>
+		<xnp:XamlNodeInputPin x:Name="ValAInput" PinName="Val A" DataType="String"/>
+	</XamlNodeBase.InputPins>
+	<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+		<GroupBox Canvas.Left="36" Canvas.Top="92" Header="Val A (in)" Height="59" Width="134">
+			<TextBox x:Name="ValATextBox" Height="23" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Width="120" Text="{Binding ElementName=ValAInput, Path=Value, Mode=OneWay}" />
+		</GroupBox>
+	</Canvas>
+</XamlNodeBase>

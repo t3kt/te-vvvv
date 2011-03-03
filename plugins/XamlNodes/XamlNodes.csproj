@@ -14,7 +14,6 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <UICulture>en-us</UICulture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,14 +74,17 @@
     <Compile Include="Core\IXamlNode.cs" />
     <Compile Include="Core\Pins\InputPinHolder.cs" />
     <Compile Include="Core\Pins\OutputPinHolder.cs" />
+    <Compile Include="Core\Pins\PinType.cs" />
     <Compile Include="Core\Pins\XamlNodeConfigPin.cs" />
     <Compile Include="Core\Pins\XamlNodeInputPin.cs" />
     <Compile Include="Core\Pins\XamlNodeOutputPin.cs" />
     <Compile Include="Core\Pins\XamlNodePin.cs" />
     <Compile Include="Core\Pins\XamlNodePinCollection.cs" />
     <Compile Include="Core\Pins\XamlNodePinDataType.cs" />
+    <Compile Include="Core\Pins\_Events.cs" />
     <Compile Include="Core\Util.cs" />
     <Compile Include="Core\XamlNodeBase.cs" />
+    <Compile Include="Names.cs" />
     <Compile Include="Nodes\XamlUIHostNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +106,12 @@
     </Compile>
     <Compile Include="_etc\Example2.xaml.cs">
       <DependentUpon>Example2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_etc\Example4.xaml.cs">
+      <DependentUpon>Example4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_etc\Example5.xaml.cs">
+      <DependentUpon>Example5.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Nodes\XamlUIHostNode.resx">
       <DependentUpon>XamlUIHostNode.cs</DependentUpon>
@@ -138,7 +146,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <Page Include="_etc\Example4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="_etc\Example5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

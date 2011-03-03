@@ -13,7 +13,7 @@
 		<xnp:XamlNodeConfigPin x:Name="ValCConfig" PinName="Val C" DataType="Value" DefaultValue="4.2"/>
 	</xn:XamlNodeBase.ConfigPins>
 	<xn:XamlNodeBase.OutputPins>
-		<xnp:XamlNodeOutputPin x:Name="ValDOutput" PinName="Val D" DataType="String" Value="{Binding Path=Text, ElementName=ValDTextBox, Mode=OneWay, NotifyOnSourceUpdated=True}" />
+		<xnp:XamlNodeOutputPin x:Name="ValDOutput" PinName="Val D" DataType="String" Value="{Binding Path=Text, ElementName=ValDTextBox, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
 	</xn:XamlNodeBase.OutputPins>
 	<Grid>
 		<Button Content="Button" Height="23" HorizontalAlignment="Left" Margin="44,32,0,0" VerticalAlignment="Top" Width="75" />

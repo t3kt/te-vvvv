@@ -64,7 +64,7 @@ namespace XamlNodes.Core.Pins
 		internal void AttachHost(IXamlNodeHost host)
 		{
 			AssertNotFrozen();
-			_PinsByName = this.ToDictionary(p => p.PinName);
+			_PinsByName = this.ToDictionary(p => p.ActualPinName);
 			foreach(var pin in this)
 				pin.AttachHost(host);
 			_IsFrozen = true;
