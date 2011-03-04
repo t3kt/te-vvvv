@@ -55,7 +55,7 @@ namespace XamlNodes.Core.Pins
 
 		#region Methods
 
-		internal override PinAttribute CreatePinAttribute()
+		private PinAttribute CreatePinAttribute()
 		{
 			return InitPinAttribute(new OutputAttribute(this.ActualPinName));
 		}

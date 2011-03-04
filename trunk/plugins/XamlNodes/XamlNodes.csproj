@@ -73,8 +73,13 @@
     <Compile Include="Core\IXamlNodeHost.cs" />
     <Compile Include="Core\IXamlNode.cs" />
     <Compile Include="Core\Pins\InputPinHolder.cs" />
+    <Compile Include="Core\Pins\NodeInputPin.cs" />
+    <Compile Include="Core\Pins\NodeOutputPin.cs" />
+    <Compile Include="Core\Pins\NodePin.cs" />
+    <Compile Include="Core\Pins\NodePinCollection.cs" />
     <Compile Include="Core\Pins\OutputPinHolder.cs" />
     <Compile Include="Core\Pins\PinType.cs" />
+    <Compile Include="Core\Pins\PinWrapper.cs" />
     <Compile Include="Core\Pins\XamlNodeConfigPin.cs" />
     <Compile Include="Core\Pins\XamlNodeInputPin.cs" />
     <Compile Include="Core\Pins\XamlNodeOutputPin.cs" />
@@ -85,6 +90,12 @@
     <Compile Include="Core\Util.cs" />
     <Compile Include="Core\XamlNodeBase.cs" />
     <Compile Include="Names.cs" />
+    <Compile Include="Nodes\XamlDebugUIHostNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Nodes\XamlDebugUIHostNode.Designer.cs">
+      <DependentUpon>XamlDebugUIHostNode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nodes\XamlUIHostNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +115,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Test\BindingTest.xaml.cs">
+      <DependentUpon>BindingTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestDataObject.cs" />
     <Compile Include="_etc\Example2.xaml.cs">
       <DependentUpon>Example2.xaml</DependentUpon>
     </Compile>
@@ -112,6 +127,9 @@
     </Compile>
     <Compile Include="_etc\Example5.xaml.cs">
       <DependentUpon>Example5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_etc\Example6.xaml.cs">
+      <DependentUpon>Example6.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Nodes\XamlUIHostNode.resx">
       <DependentUpon>XamlUIHostNode.cs</DependentUpon>
@@ -138,6 +156,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Test\BindingTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="_etc\Example2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="_etc\Example5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="_etc\Example6.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

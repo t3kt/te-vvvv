@@ -17,6 +17,6 @@
 		<xnp:XamlNodeOutputPin x:Name="ValDOutput" PinName="Val D" DataType="Color" />
 	</xn:XamlNodeBase.OutputPins>
 	<Grid>
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="90,170,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" Text="{Binding ElementName=ValCConfig, Path=Value}" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="90,170,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" Text="{Binding ElementName=ValCConfig, Path=Value, Mode=OneWay}" />
 	</Grid>
 </xn:XamlNodeBase>

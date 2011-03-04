@@ -1,0 +1,21 @@
+<xn:XamlNodeBase x:Class="XamlNodes._etc.Example6"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:xn="clr-namespace:XamlNodes.Core"
+			 xmlns:xnp="clr-namespace:XamlNodes.Core.Pins"
+			 mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+	<xn:XamlNodeBase.Pins>
+		<xnp:StringNodeInputPin x:Name="ValAInput" PinName="Val A" />
+		<xnp:StringNodeOutputPin x:Name="ValBOutput" PinName="Val B"/>
+	</xn:XamlNodeBase.Pins>
+	<StackPanel>
+		<GroupBox Header="Val A (Input)">
+			<StackPanel>
+				<TextBox Name="ValAInputTextBox" Text="{Binding ElementName=ValAInput, Path=Value, Mode=OneWay}" />
+			</StackPanel>
+		</GroupBox>
+	</StackPanel>
+</xn:XamlNodeBase>
+	
