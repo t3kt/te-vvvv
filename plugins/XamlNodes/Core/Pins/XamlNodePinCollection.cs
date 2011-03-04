@@ -21,7 +21,6 @@ namespace XamlNodes.Core.Pins
 		#region Fields
 
 		private bool _IsFrozen;
-		private Dictionary<string, TPin> _PinsByName;
 
 		#endregion
 
@@ -64,16 +63,10 @@ namespace XamlNodes.Core.Pins
 		internal void AttachHost(IXamlNodeHost host)
 		{
 			AssertNotFrozen();
-			_PinsByName = this.ToDictionary(p => p.ActualPinName);
+			this.ToDictionary(p => p.ActualPinName);
 			foreach(var pin in this)
 				pin.AttachHost(host);
 			_IsFrozen = true;
-		}
-
-		internal TPin GetPinByName(string name)
-		{
-			AssertFrozen();
-			return _PinsByName[name];
 		}
 
 		#endregion
@@ -88,7 +81,6 @@ namespace XamlNodes.Core.Pins
 				foreach(var pin in this)
 					pin.Dispose();
 				Clear();
-				_PinsByName = null;
 				_IsFrozen = false;
 			}
 			GC.SuppressFinalize(this);

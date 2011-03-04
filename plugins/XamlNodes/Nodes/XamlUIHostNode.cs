@@ -28,7 +28,7 @@ namespace XamlNodes.Nodes
 		InitialWindowWidth = 100,
 		InitialWindowHeight = 100,
 		InitialComponentMode = TComponentMode.InABox)]
-	public partial class XamlUIHostNode : UserControl, IXamlNodeHost, IPartImportsSatisfiedNotification, IPluginEvaluate
+	public partial class XamlUIHostNode : UserControl, IXamlNodeHost, IPartImportsSatisfiedNotification
 	{
 
 		#region Static/Constant
@@ -70,30 +70,32 @@ namespace XamlNodes.Nodes
 		private IPluginHost _PluginHost;
 
 		[Config("LoadNode", IsSingle = true, IsBang = true)]
-		private IDiffSpread<bool> _LoadNodeConfig;
+		private IDiffSpread<bool> _LoadNodePin;
 
 		[Config("XamlPath", IsSingle = true, StringType = StringType.Filename, FileMask = "XAML files (*.xaml)|*.xaml|All files (*.*)|*.*")]
-		private IDiffSpread<string> _XamlPathConfig;
+		private IDiffSpread<string> _XamlPathPin;
 
 		[Config("XamlSource", IsSingle = true)]
-		private IDiffSpread<string> _XamlSourceConfig;
+		private IDiffSpread<string> _XamlSourcePin;
 
 		[Config("XamlControlType", IsSingle = true)]
-		private IDiffSpread<string> _XamlControlTypeConfig;
+		private IDiffSpread<string> _XamlControlTypePin;
 
 		[Config("ParserBaseUri", IsSingle = true)]
-		private ISpread<string> _ParserBaseUri;
+		private ISpread<string> _ParserBaseUriConfig;
 
 		[Config("ParserNamespaces")]
-		private ISpread<string> _ParserNamespaceEntries;
+		private ISpread<string> _ParserNamespaceEntriesConfig;
 
 		[Config("ParserAssemblies")]
-		private ISpread<string> _ParserAssemblies;
+		private ISpread<string> _ParserAssembliesConfig;
 
 		private IXamlNode _Node;
 
-		private bool _Invalidate = true;
-
+		private string _XamlPath;
+		private string _XamlSource;
+		private string _XamlControlTypeName;
+		private bool _FirstLoad = true;
 		#endregion
 
 		#region Properties
@@ -111,16 +113,30 @@ namespace XamlNodes.Nodes
 
 		#region Methods
 
+		internal void Log(string message, params object[] args)
+		{
+			Log(TLogType.Debug, message, args);
+		}
+
+		internal void Log(TLogType logType, string message, params object[] args)
+		{
+			_PluginHost.Log(logType, String.Format(message, args));
+		}
+
 		private void Xaml_Changed(IDiffSpread<string> spread)
 		{
-			//ReloadXaml();
-			_Invalidate = true;
+			ReloadXaml(false);
+		}
+
+		private void Load_Changed(IDiffSpread<bool> spread)
+		{
+			ReloadXaml(true);
 		}
 
 		private NamespaceMapEntry[] GetNamespaceMapEntries()
 		{
 			var entries = new List<NamespaceMapEntry>(GetSharedNamespaceMapEntries());
-			entries.AddRange(_ParserNamespaceEntries.Select(ParseNamespaceMapEntry).Where(e => e != null));
+			entries.AddRange(_ParserNamespaceEntriesConfig.Select(ParseNamespaceMapEntry).Where(e => e != null));
 			if(entries.Count == 0)
 				return null;
 			return entries.ToArray();
@@ -129,15 +145,15 @@ namespace XamlNodes.Nodes
 		private string[] GetAssemblies()
 		{
 			var assemblies = new List<string>(GetSharedAssemblies());
-			assemblies.AddRange(_ParserAssemblies.Where(a => !String.IsNullOrEmpty(a)));
+			assemblies.AddRange(_ParserAssembliesConfig.Where(a => !String.IsNullOrEmpty(a)));
 			return assemblies.ToArray();
 		}
 
 		private ParserContext PrepareParserContext()
 		{
 			var ctx = new ParserContext();
-			if(!String.IsNullOrEmpty(_ParserBaseUri[0]))
-				ctx.BaseUri = new Uri(_ParserBaseUri[0]);
+			if(!String.IsNullOrEmpty(_ParserBaseUriConfig[0]))
+				ctx.BaseUri = new Uri(_ParserBaseUriConfig[0]);
 			var nsEntries = GetNamespaceMapEntries();
 			var assemblies = GetAssemblies();
 			if(nsEntries != null)
@@ -147,20 +163,17 @@ namespace XamlNodes.Nodes
 
 		private object LoadXamlNode()
 		{
-			var xamlSource = _XamlSourceConfig[0];
-			if(!String.IsNullOrEmpty(xamlSource))
-				return XamlReader.Parse(xamlSource, PrepareParserContext());
-			var ctlTypeName = _XamlControlTypeConfig[0];
-			if(!String.IsNullOrEmpty(ctlTypeName))
+			if(!String.IsNullOrEmpty(_XamlSource))
+				return XamlReader.Parse(_XamlSource, PrepareParserContext());
+			if(!String.IsNullOrEmpty(_XamlControlTypeName))
 			{
-				var ctlType = Type.GetType(ctlTypeName, false, true);
+				var ctlType = Type.GetType(_XamlControlTypeName, false, true);
 				if(ctlType != null)
 					return Activator.CreateInstance(ctlType, true);
 			}
-			var xamlPath = _XamlPathConfig[0];
-			if(!String.IsNullOrEmpty(xamlPath) && File.Exists(xamlPath))
+			if(!String.IsNullOrEmpty(_XamlPath) && File.Exists(_XamlPath))
 			{
-				using(var stream = File.OpenRead(xamlPath))
+				using(var stream = File.OpenRead(_XamlPath))
 					return XamlReader.Load(stream, PrepareParserContext());
 			}
 			return null;
@@ -176,15 +189,29 @@ namespace XamlNodes.Nodes
 				var ctl = (UIElement)nodeObj;
 				node.SetHost(this);
 				_ElementHost.Child = ctl;
+				this.Refresh();
 			}
 		}
 
-		private void ReloadXaml()
+		private void ReloadXaml(bool force)
 		{
-			UnloadXamlNode();
-			var nodeObj = this.LoadXamlNode();
-			AttachXamlNode(nodeObj);
-			_Invalidate = false;
+			Log("Reload XAML (force: {0})", force);
+			var xamlPath = _XamlPathPin[0].OrNullIfEmpty();
+			var xamlSource = _XamlSourcePin[0].OrNullIfEmpty();
+			var xamlControlTypeName = _XamlControlTypePin[0].OrNullIfEmpty();
+			if(force ||
+				xamlPath != _XamlPath ||
+				xamlSource != _XamlSource ||
+				xamlControlTypeName != _XamlControlTypeName)
+			{
+				_XamlPath = xamlPath;
+				_XamlSource = xamlSource;
+				_XamlControlTypeName = xamlControlTypeName;
+				UnloadXamlNode();
+				var nodeObj = this.LoadXamlNode();
+				AttachXamlNode(nodeObj);
+				_FirstLoad = false;
+			}
 		}
 
 		private void UnloadXamlNode()
@@ -203,9 +230,10 @@ namespace XamlNodes.Nodes
 
 		public void OnImportsSatisfied()
 		{
-			_XamlPathConfig.Changed += this.Xaml_Changed;
-			_XamlSourceConfig.Changed += this.Xaml_Changed;
-			_XamlControlTypeConfig.Changed += this.Xaml_Changed;
+			_XamlPathPin.Changed += this.Xaml_Changed;
+			_XamlSourcePin.Changed += this.Xaml_Changed;
+			_XamlControlTypePin.Changed += this.Xaml_Changed;
+			_LoadNodePin.Changed += this.Load_Changed;
 		}
 
 		#endregion
@@ -228,10 +256,12 @@ namespace XamlNodes.Nodes
 
 		public void Evaluate(int spreadMax)
 		{
-			if(_Invalidate || _LoadNodeConfig.IsChanged)
+			if(_FirstLoad)
 			{
-				ReloadXaml();
+				ReloadXaml(true);
 			}
+			if(_Node != null)
+				_Node.Evaluate(spreadMax);
 		}
 
 		#endregion

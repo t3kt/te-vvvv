@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Markup;
-using VVVV.Hosting.Pins;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
@@ -160,8 +159,6 @@ namespace XamlNodes.Core.Pins
 			}
 		}
 
-		internal IPluginIO InternalIO { get; set; }
-
 		#endregion
 
 		#region Constructors
@@ -185,8 +182,6 @@ namespace XamlNodes.Core.Pins
 
 		#region Methods
 
-		internal abstract PinAttribute CreatePinAttribute();
-
 		protected PinAttribute InitPinAttribute(PinAttribute attr)
 		{
 			attr.AsInt = this.AsInt;
@@ -208,11 +203,6 @@ namespace XamlNodes.Core.Pins
 			attr.StringType = this.StringType;
 			attr.Visibility = this.Visibility;
 			return attr;
-		}
-
-		internal object CreatePin(IPluginHost host)
-		{
-			return PinFactory.CreatePin(host, this.CreatePinAttribute(), this.ActualDataType);
 		}
 
 		internal abstract void AttachHost(IXamlNodeHost host);

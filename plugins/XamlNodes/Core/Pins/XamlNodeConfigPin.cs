@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,7 +12,7 @@ namespace XamlNodes.Core.Pins
 
 	#region XamlNodeConfigPin
 
-	public sealed class XamlNodeConfigPin : XamlNodePin
+	public sealed class XamlNodeConfigPin : XamlNodePin, INotifyPropertyChanged
 	{
 
 		#region Static / Constant
@@ -49,7 +50,7 @@ namespace XamlNodes.Core.Pins
 
 		#region Methods
 
-		internal override PinAttribute CreatePinAttribute()
+		private PinAttribute CreatePinAttribute()
 		{
 			return InitPinAttribute(new ConfigAttribute(this.ActualPinName));
 		}
@@ -64,6 +65,7 @@ namespace XamlNodes.Core.Pins
 		{
 			if(_PinHolder != null)
 				this.Value = _PinHolder.GetValue();
+			OnPropertyChanged("Value");
 		}
 
 		protected override void Dispose(bool disposing)
@@ -74,6 +76,19 @@ namespace XamlNodes.Core.Pins
 				_PinHolder.Dispose();
 				_PinHolder = null;
 			}
+		}
+
+		#endregion
+
+		#region INotifyPropertyChanged Members
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChanged(string name)
+		{
+			var handler = PropertyChanged;
+			if(handler != null)
+				handler(this, new PropertyChangedEventArgs(name));
 		}
 
 		#endregion

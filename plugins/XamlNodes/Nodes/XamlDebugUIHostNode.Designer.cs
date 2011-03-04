@@ -1,6 +1,6 @@
 ﻿namespace XamlNodes.Nodes
 {
-	partial class XamlUIHostNode
+	partial class XamlDebugUIHostNode
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -28,29 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this._ElementHost = new System.Windows.Forms.Integration.ElementHost();
-			this.SuspendLayout();
-			// 
-			// _ElementHost
-			// 
-			this._ElementHost.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._ElementHost.Location = new System.Drawing.Point(0, 0);
-			this._ElementHost.Name = "_ElementHost";
-			this._ElementHost.Size = new System.Drawing.Size(150, 150);
-			this._ElementHost.TabIndex = 0;
-			this._ElementHost.Child = null;
-			// 
-			// XamlUIHostNode
-			// 
-			this.Controls.Add(this._ElementHost);
-			this.DoubleBuffered = true;
-			this.Name = "XamlUIHostNode";
-			this.ResumeLayout(false);
-
+			components = new System.ComponentModel.Container();
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Integration.ElementHost _ElementHost;
 	}
 }

@@ -22,6 +22,11 @@ namespace XamlNodes.Core
 			return source == null ? null : source.ToList();
 		}
 
+		public static string OrNullIfEmpty(this string str)
+		{
+			return String.IsNullOrEmpty(str) ? null : str;
+		}
+
 	}
 
 	#endregion
