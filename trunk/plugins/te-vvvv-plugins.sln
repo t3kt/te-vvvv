@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiNodes", "GuiNodes\GuiNod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlNodes", "XamlNodes\XamlNodes.csproj", "{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiscNodes", "MiscNodes\MiscNodes.csproj", "{898F87BA-FB40-4D78-880F-C31FFB622EC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD4DA727-EBBD-428E-9B2C-019FA05F58DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898F87BA-FB40-4D78-880F-C31FFB622EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898F87BA-FB40-4D78-880F-C31FFB622EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898F87BA-FB40-4D78-880F-C31FFB622EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898F87BA-FB40-4D78-880F-C31FFB622EC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

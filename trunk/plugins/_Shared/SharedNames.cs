@@ -21,6 +21,9 @@ namespace TEShared
 			public const string GUI = "GUI";
 			public const string Debug = "Debug";
 			public const string Xaml = "Xaml";
+			public const string Value = "Value";
+			public const string String = "String";
+			public const string Color = "Color";
 		}
 
 		public static class Versions
