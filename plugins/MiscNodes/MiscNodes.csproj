@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{898F87BA-FB40-4D78-880F-C31FFB622EC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VVVV</RootNamespace>
+    <AssemblyName>MiscNodes</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0649</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0649</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VVVV.Core">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Hosting">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.PluginInterfaces">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="VVVV.Utils3rdParty">
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Label="__SHARED">
+    <Compile Include="..\_Shared\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Names.cs" />
+    <Compile Include="Nodes\LastChangedColorNode.cs" />
+    <Compile Include="Nodes\LastChangedNode.cs" />
+    <Compile Include="Nodes\LastChangedStringNode.cs" />
+    <Compile Include="Nodes\LastChangedValueNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="misc_nodes_test.v4p" />
+    <None Include="misc_nodes_test_root.v4p" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
