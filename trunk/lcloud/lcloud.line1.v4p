@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.v4p" locked="0" systemname="lcloud.line1">
-   <BOUNDS height="12480" left="3630" top="600" type="Window" width="13665">
+   <BOUNDS height="12480" left="4185" top="900" type="Window" width="13665">
    </BOUNDS>
    <NODE componentmode="Hidden" id="34" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
    <BOUNDS height="270" left="930" top="10485" type="Node" width="2475">
@@ -63,9 +63,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="22" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="4785" top="165" type="Node" width="100">
+   <BOUNDS height="100" left="4800" top="165" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="4785" top="165" type="Box" width="795">
+   <BOUNDS height="240" left="4800" top="165" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -383,7 +383,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="9285" top="7905" width="6090" height="5715">
+   <BOUNDS height="5715" left="9285" top="7905" type="Window" width="6090">
    </BOUNDS>
    <PIN pinname="Scale" visible="1">
    </PIN>
@@ -436,8 +436,8 @@
    <LINKPOINT x="880" y="10093">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.seeder.v4p" id="72" nodename="lcloud.seeder.v4p" systemname="lcloud.seeder" path="C:\Users\thezer0ist\vvvv\lcloud\" debug="0">
-   <BOUNDS height="270" left="4275" top="870" type="Node" width="1245">
+   <NODE componentmode="Hidden" debug="0" filename="lcloud.seeder.v4p" id="72" nodename="lcloud.seeder.v4p" systemname="lcloud.seeder" path="C:\Users\thezer0ist\vvvv\lcloud\">
+   <BOUNDS height="270" left="4290" top="870" type="Node" width="1245">
    </BOUNDS>
    <PIN pinname="Period" visible="1">
    </PIN>
@@ -453,15 +453,15 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="72" dstpinname="Period" linkstyle="Bezier" srcnodeid="22" srcpinname="Y Output Value">
-   <LINKPOINT x="5560" y="638">
+   <LINKPOINT x="5575" y="638">
    </LINKPOINT>
-   <LINKPOINT x="5465" y="638">
+   <LINKPOINT x="5480" y="638">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="73" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="4260" top="150" type="Node" width="100">
+   <BOUNDS height="100" left="4275" top="150" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="480" left="4260" top="150" type="Box" width="480">
+   <BOUNDS height="480" left="4275" top="150" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -485,9 +485,9 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="72" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="73" srcpinname="Y Output Value">
-   <LINKPOINT x="4295" y="790">
+   <LINKPOINT x="4310" y="790">
    </LINKPOINT>
-   <LINKPOINT x="4300" y="710">
+   <LINKPOINT x="4315" y="710">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" debug="0" filename="lcloud.line1.transform.v4p" id="75" nodename="lcloud.line1.transform.v4p" systemname="lcloud.line1.transform" path="C:\Users\thezer0ist\vvvv\lcloud\">
@@ -1157,7 +1157,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Scale" visible="-1" pintype="Input" slicecount="1" values="1">
+   <PIN pinname="Scale" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="155" dstpinname="Default Value" srcnodeid="131" srcpinname="Y Output Value">
@@ -1356,7 +1356,7 @@
    </NODE>
    <LINK dstnodeid="179" dstpinname="Translate XYZ" srcnodeid="180" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="75" dstpinname="Transform In" srcnodeid="179" srcpinname="Transform Out" linkstyle="PolyLine">
+   <LINK dstnodeid="75" dstpinname="Transform In" linkstyle="PolyLine" srcnodeid="179" srcpinname="Transform Out">
    </LINK>
    <LINK dstnodeid="40" dstpinname="Input Node" srcnodeid="34" srcpinname="Layer">
    </LINK>
@@ -1377,7 +1377,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="184" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="3885" top="735" type="Node" width="100">
+   <BOUNDS height="100" left="3900" top="735" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" values="lc.ln1.seed">
    </PIN>
@@ -1410,7 +1410,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="75" dstpinname="Spread Count" srcnodeid="187" srcpinname="Output" linkstyle="PolyLine">
+   <LINK dstnodeid="75" dstpinname="Spread Count" linkstyle="PolyLine" srcnodeid="187" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="188" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="1605" top="2805" type="Node" width="100">
@@ -1422,7 +1422,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="68" dstpinname="Spread Count" srcnodeid="188" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="68" dstpinname="Spread Count" linkstyle="Bezier" srcnodeid="188" srcpinname="Output">
    <LINKPOINT x="1620" y="3203">
    </LINKPOINT>
    <LINKPOINT x="1620" y="3203">
@@ -1454,7 +1454,7 @@
    </LINK>
    <LINK dstnodeid="184" dstpinname="Input" srcnodeid="72" srcpinname="Seed">
    </LINK>
-   <LINK dstnodeid="68" dstpinname="Random Seed" srcnodeid="185" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="68" dstpinname="Random Seed" linkstyle="Bezier" srcnodeid="185" srcpinname="Output">
    <LINKPOINT x="1245" y="3195">
    </LINKPOINT>
    <LINKPOINT x="1155" y="3195">
@@ -1476,7 +1476,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="75" dstpinname="Seed" srcnodeid="192" srcpinname="Output" linkstyle="PolyLine">
+   <LINK dstnodeid="75" dstpinname="Seed" linkstyle="PolyLine" srcnodeid="192" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="lcloud.line1.cmd.v4p" id="193" nodename="lcloud.line1.cmd.v4p" systemname="lcloud.line1.cmd" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="270" left="1905" top="120" type="Node" width="1380">
@@ -1505,7 +1505,7 @@
    <LINK dstnodeid="205" dstpinname="Input" srcnodeid="193" srcpinname="S Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="206" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="3900" top="435" type="Node" width="100">
+   <BOUNDS height="100" left="3915" top="435" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="lc.ln1.seed.on">
    </PIN>
@@ -1533,7 +1533,7 @@
    </PIN>
    <PIN pinname="Digits" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="209" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -1577,8 +1577,6 @@
    <LINK dstnodeid="210" dstpinname="Input 2" srcnodeid="207" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="210" dstpinname="Switch" srcnodeid="209" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="75" dstpinname="Translate X Scale" srcnodeid="210" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="212" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
    <BOUNDS height="270" left="7095" top="2535" type="Node" width="615">
@@ -1848,17 +1846,15 @@
    </LINK>
    <LINK dstnodeid="186" dstpinname="Input" srcnodeid="228" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="75" dstpinname="Translate Z Scale" srcnodeid="210" srcpinname="Output">
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="Y Output Value" dstnodeid="68" dstpinname="Scale" linkstyle="Bezier">
+   <LINK dstnodeid="68" dstpinname="Scale" linkstyle="Bezier" srcnodeid="48" srcpinname="Y Output Value">
    <LINKPOINT x="2220" y="3248">
    </LINKPOINT>
    <LINKPOINT x="2130" y="3248">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="68" srcpinname="Output" dstnodeid="1" dstpinname="Input">
+   <LINK dstnodeid="1" dstpinname="Input" srcnodeid="68" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="210" srcpinname="Output" dstnodeid="75" dstpinname="Translate XZ Scale" linkstyle="PolyLine">
+   <LINK dstnodeid="75" dstpinname="Translate XZ Scale" linkstyle="PolyLine" srcnodeid="210" srcpinname="Output">
    </LINK>
    <NODE componentmode="InABox" id="235" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="10275" top="3195" type="Node" width="100">
@@ -1881,7 +1877,7 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="-0.19">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="234" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -1924,8 +1920,8 @@
    </NODE>
    <LINK dstnodeid="233" dstpinname="Switch" srcnodeid="234" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="235" srcpinname="Y Output Value" dstnodeid="233" dstpinname="Input 2">
+   <LINK dstnodeid="233" dstpinname="Input 2" srcnodeid="235" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="233" srcpinname="Output" dstnodeid="75" dstpinname="Rotation Scale">
+   <LINK dstnodeid="75" dstpinname="Rotation Scale" srcnodeid="233" srcpinname="Output">
    </LINK>
    </PATCH>

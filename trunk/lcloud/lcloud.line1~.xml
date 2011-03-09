@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="10710" top="5625" type="Box" width="720">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1.92">
+   <PIN pinname="Y Input Value" slicecount="1" values="2.21">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -1519,7 +1519,7 @@
    </BOUNDS>
    <BOUNDS height="1140" left="6750" top="3555" type="Box" width="705">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1.07">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.84">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -1865,7 +1865,7 @@
    </BOUNDS>
    <BOUNDS height="1140" left="10275" top="3195" type="Box" width="705">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1.71">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.95">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
