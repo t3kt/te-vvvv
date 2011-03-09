@@ -14,7 +14,7 @@ namespace VVVV.Nodes
 	#region LastChangedColorNode
 
 	[PluginInfo(
-		Name = MiscNodesShared.Names.Nodes.LastChanged,
+		Name = TEShared.Names.Nodes.LastChanged,
 		Category = TEShared.Names.Categories.Color,
 		Author = TEShared.Names.Author)]
 	public sealed class LastChangedColorNode : LastChangedNode<RGBAColor>

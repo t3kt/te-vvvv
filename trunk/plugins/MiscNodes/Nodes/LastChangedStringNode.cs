@@ -13,7 +13,7 @@ namespace VVVV.Nodes
 	#region LastChangedStringNode
 
 	[PluginInfo(
-		Name = MiscNodesShared.Names.Nodes.LastChanged,
+		Name = TEShared.Names.Nodes.LastChanged,
 		Category = TEShared.Names.Categories.String,
 		Author = TEShared.Names.Author)]
 	public sealed class LastChangedStringNode : LastChangedNode<string>

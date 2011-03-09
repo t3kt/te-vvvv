@@ -15,8 +15,8 @@ namespace VVVV.Nodes
 	#region FilterStructsOfTypeNode
 
 	// THIS WORKS
-	[PluginInfo(Name = Names.Nodes.OfType,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.OfType,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class FilterStructsOfTypeNode : IPluginEvaluate, IDisposable
 	{

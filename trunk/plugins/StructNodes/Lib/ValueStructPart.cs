@@ -15,6 +15,14 @@ namespace VVVV.Lib
 
 		#region Static / Constant
 
+		public static ValueStructPart Parse(string str)
+		{
+			double value;
+			if(!Double.TryParse(str, out value))
+				throw new FormatException(String.Format("Can't parse string as value: '{0}'", str));
+			return new ValueStructPart(value);
+		}
+
 		#endregion
 
 		#region Fields

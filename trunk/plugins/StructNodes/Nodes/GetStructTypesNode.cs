@@ -14,8 +14,8 @@ namespace VVVV.Nodes
 
 	#region GetStructTypesNode
 
-	[PluginInfo(Name = Names.Nodes.GetTypes,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.GetTypes,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class GetStructTypesNode : IPluginEvaluate, IDisposable
 	{

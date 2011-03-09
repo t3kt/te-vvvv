@@ -15,8 +15,8 @@ namespace VVVV.Nodes
 	#region EnsureStructTypeNode
 
 	// THIS WORKS
-	[PluginInfo(Name = Names.Nodes.EnsureType,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.EnsureType,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class EnsureStructTypeNode : IPluginEvaluate, IDisposable
 	{

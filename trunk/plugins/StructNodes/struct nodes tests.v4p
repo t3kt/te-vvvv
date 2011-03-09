@@ -1198,4 +1198,104 @@
    <PIN pinname="OutputStruct" pintype="Output" visible="0">
    </PIN>
    </NODE>
+   <NODE systemname="Parse (Struct String)" filename="bin\StructNodes.dll" nodename="Parse (Struct String)" componentmode="Hidden" id="203">
+   <BOUNDS type="Node" left="12000" top="9870" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="PartCount" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Separator String" slicecount="1" values="||||">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Struct (Struct Split FixedType)" filename="bin\StructNodes.dll" nodename="Struct (Struct Split FixedType)" componentmode="Hidden" id="204">
+   <BOUNDS type="Node" left="11985" top="10305" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="PartTypes" slicecount="1" values="SSS">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output2 (S)" visible="1">
+   </PIN>
+   <PIN pinname="Output1 (S)" visible="1">
+   </PIN>
+   <PIN pinname="Output0 (S)" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="203" srcpinname="Output" dstnodeid="204" dstpinname="Input">
+   </LINK>
+   <NODE componentmode="InABox" debug="0" id="205" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="11700" top="11610" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="510" left="11700" top="11610" type="Box" width="510">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" debug="0" id="206" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="13095" top="11640" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="510" left="13095" top="11640" type="Box" width="510">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" debug="0" id="207" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="12000" top="9045" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="570" left="12000" top="9045" type="Box" width="660">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" slicecount="2" values="|A||B||C|,|D||E||F|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" debug="0" id="208" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="14235" top="11670" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="510" left="14235" top="11670" type="Box" width="510">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="204" srcpinname="Output2 (S)" dstnodeid="208" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="204" srcpinname="Output1 (S)" dstnodeid="206" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="204" srcpinname="Output0 (S)" dstnodeid="205" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="207" srcpinname="Output String" dstnodeid="203" dstpinname="Input String">
+   </LINK>
    </PATCH>

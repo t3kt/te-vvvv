@@ -15,8 +15,8 @@ namespace VVVV.Nodes
 	#region DefaultStructNode
 
 	// this works
-	[PluginInfo(Name = Names.Nodes.Default,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.Default,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class DefaultStructNode : IPluginEvaluate, IDisposable
 	{

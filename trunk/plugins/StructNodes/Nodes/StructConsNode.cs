@@ -11,8 +11,8 @@ namespace VVVV.Nodes
 
 	#region StructConsNode
 
-	[PluginInfo(Name = Names.Nodes.Cons,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.Cons,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class StructConsNode : IPluginEvaluate
 	{
