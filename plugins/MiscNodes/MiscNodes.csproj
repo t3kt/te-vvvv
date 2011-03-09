@@ -73,7 +73,6 @@
     <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Names.cs" />
     <Compile Include="Nodes\LastChangedColorNode.cs" />
     <Compile Include="Nodes\LastChangedNode.cs" />
     <Compile Include="Nodes\LastChangedStringNode.cs" />

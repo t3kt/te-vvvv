@@ -12,9 +12,9 @@ using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.UI
 {
-	[PluginInfo(Name = Names.Nodes.GetTypes,
-		Category = Names.Category,
-		Version = "test",
+	[PluginInfo(Name = TEShared.Names.Nodes.GetTypes,
+		Category = TEShared.Names.Categories.Struct,
+		Version = TEShared.Names.Versions.Test,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		InitialComponentMode = TComponentMode.InABox,

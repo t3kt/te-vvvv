@@ -14,11 +14,11 @@ namespace VVVV.Nodes
 	#region FixedTypeStructSplitNode
 
 	// this works
-	[PluginInfo(Name = Names.Nodes.Struct,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.Struct,
+		Category = TEShared.Names.Categories.Struct,
 		Version = TEShared.Names.Versions.Split +
 			TEShared.Names.AND +
-			Names.Versions.FixedType,
+			TEShared.Names.Versions.FixedType,
 		Author = TEShared.Names.Author)]
 	public sealed class FixedTypeStructSplitNode : FixedTypeStructNodeBase
 	{

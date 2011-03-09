@@ -15,8 +15,8 @@ namespace VVVV.Nodes
 	#region GetGlobalStructTypesNode
 
 	// this works
-	[PluginInfo(Name = Names.Nodes.GetTypes,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.GetTypes,
+		Category = TEShared.Names.Categories.Struct,
 		Version = TEShared.Names.Versions.Global,
 		Author = TEShared.Names.Author)]
 	public sealed class GetGlobalStructTypesNode : IPluginEvaluate, IDisposable

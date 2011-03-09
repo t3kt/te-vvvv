@@ -170,6 +170,23 @@ namespace VVVV.Lib
 			return String.Format("Output{0} ({1})", index, GetPartTypeAbbreviation(partType));
 		}
 
+		private static IStructPart ParsePart(StructPartType partType, string str)
+		{
+			switch(partType)
+			{
+			case StructPartType.Value:
+				return ValueStructPart.Parse(str);
+			case StructPartType.Color:
+				return ColorStructPart.Parse(str);
+			case StructPartType.String:
+				return new StringStructPart(str);
+			case StructPartType.Transform:
+				return TransformStructPart.Parse(str);
+			default:
+				throw new ArgumentOutOfRangeException();
+			}
+		}
+
 		#endregion
 
 		#region Fields
@@ -220,6 +237,18 @@ namespace VVVV.Lib
 		public StructData CreateInstance()
 		{
 			return new StructData(this, _PartTypes.Select(CreatePart).ToArray());
+		}
+
+		public StructData ParseInstance(string[] strParts)
+		{
+			if(strParts == null || strParts.Length == 0)
+				return null;
+			if(strParts.Length != _PartTypes.Length)
+				throw new FormatException(String.Format("Incorrect number of parts for parsing struct of type '{0}': {1}", _PartTypesKey, strParts.Length));
+			var parts = new IStructPart[_PartTypes.Length];
+			for(var i = 0; i < _PartTypes.Length; i++)
+				parts[i] = ParsePart(_PartTypes[i], strParts[i]);
+			return new StructData(this, parts);
 		}
 
 		internal IList<IPluginIn> CreatePartInputPins(IPluginHost host)

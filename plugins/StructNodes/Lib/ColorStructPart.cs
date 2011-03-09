@@ -17,6 +17,13 @@ namespace VVVV.Lib
 
 		#region Static / Constant
 
+		public static ColorStructPart Parse(string str)
+		{
+			if(String.IsNullOrEmpty(str))
+				throw new ArgumentNullException("str");
+			throw new NotSupportedException();
+		}
+
 		#endregion
 
 		#region Fields

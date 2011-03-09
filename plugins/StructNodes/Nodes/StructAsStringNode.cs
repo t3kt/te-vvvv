@@ -11,8 +11,8 @@ namespace VVVV.Nodes
 	#region StructAsStringNode
 
 	// this works
-	[PluginInfo(Name = Names.Nodes.AsString,
-		Category = Names.Category,
+	[PluginInfo(Name = TEShared.Names.Nodes.AsString,
+		Category = TEShared.Names.Categories.Struct,
 		Author = TEShared.Names.Author)]
 	public sealed class StructAsStringNode : IPluginEvaluate
 	{

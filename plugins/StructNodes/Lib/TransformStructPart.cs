@@ -17,6 +17,17 @@ namespace VVVV.Lib
 
 		#region Static / Constant
 
+		public static TransformStructPart Parse(string str)
+		{
+			//if(String.IsNullOrEmpty(str))
+			//    throw new ArgumentNullException("str");
+			//var parts = str.Split(',');
+			//if(parts.Length != 16)
+			//    throw new FormatException(String.Format("Cannot parse string as Transform value: '{0}'", str));
+			//var value = new Matrix4x4();
+			throw new NotSupportedException();
+		}
+
 		#endregion
 
 		#region Fields
@@ -67,6 +78,7 @@ namespace VVVV.Lib
 		}
 
 		#endregion
+
 	}
 
 	#endregion
