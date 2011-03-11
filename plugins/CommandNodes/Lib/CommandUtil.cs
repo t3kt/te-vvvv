@@ -138,16 +138,21 @@ namespace CommandNodes
 
 		#region Key Code Names
 
-		private static Dictionary<string, int> _KeyCodesByName;
+		private static Dictionary<string, int> _KeyCodesByKeyName;
+		private static Dictionary<int, string> _KeyNamesByKeyCode;
 
 		private static void AddKeyCode(Keys key)
 		{
-			_KeyCodesByName.Add(String.Format("<{0}>", key), (int)key);
+			var name = String.Format("<{0}>", key);
+			_KeyCodesByKeyName.Add(name, (int)key);
+			_KeyNamesByKeyCode.Add((int)key, name);
 		}
 
 		private static void AddNumericKeyCode(Keys key)
 		{
-			_KeyCodesByName.Add(String.Format("<KEY{0:D}>", key), (int)key);
+			var name = String.Format("<KEY{0:D}>", key);
+			_KeyCodesByKeyName.Add(name, (int)key);
+			_KeyNamesByKeyCode.Add((int)key, name);
 		}
 
 		private static void AddKeyCodes(params Keys[] keys)
@@ -164,12 +169,14 @@ namespace CommandNodes
 
 		private static void AddKeyCode(string name, Keys key)
 		{
-			_KeyCodesByName.Add(name, (int)key);
+			_KeyCodesByKeyName.Add(name, (int)key);
+			_KeyNamesByKeyCode.Add((int)key, name);
 		}
 
 		private static void InitKeyCodeNames()
 		{
-			_KeyCodesByName = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+			_KeyCodesByKeyName = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+			_KeyNamesByKeyCode = new Dictionary<int, string>();
 			AddKeyCode("<SHIFT>", Keys.ShiftKey);
 			AddKeyCode("<CONTROL>", Keys.ControlKey);
 			AddKeyCode("<ALT>", Keys.Menu);
@@ -189,6 +196,16 @@ namespace CommandNodes
 			AddNumericKeyCodes(Keys.Oemtilde, Keys.OemOpenBrackets, Keys.OemCloseBrackets, Keys.OemPipe, Keys.OemQuotes, Keys.OemMinus, Keys.Oemplus, Keys.OemSemicolon, Keys.Oemcomma, Keys.OemPeriod, Keys.OemQuestion);
 		}
 
+		internal static bool TryGetKeyNameByKeyCode(int keyCode, out string name)
+		{
+			return _KeyNamesByKeyCode.TryGetValue(keyCode, out name);
+		}
+
+		internal static bool TryGetKeyCodeByKeyName(string name, out int keyCode)
+		{
+			return _KeyCodesByKeyName.TryGetValue(name, out keyCode);
+		}
+
 		#endregion
 
 		private static bool TryParseKeyCode(string str, out int keyCode)
@@ -197,7 +214,7 @@ namespace CommandNodes
 			{
 				if(Int32.TryParse(str, out keyCode))
 					return true;
-				if(_KeyCodesByName.TryGetValue(str, out keyCode))
+				if(_KeyCodesByKeyName.TryGetValue(str, out keyCode))
 					return true;
 			}
 			keyCode = InvalidKeyCode;

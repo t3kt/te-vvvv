@@ -135,7 +135,7 @@
    <NODE componentmode="InAWindow" filename="..\..\{LOG}.v4p" id="48" nodename="G:\vvvv\te_vvvv\{LOG}.v4p" systemname="{LOG}" path="G:\vvvv\te_vvvv\">
    <BOUNDS height="100" left="90" top="285" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
+   <BOUNDS height="6795" left="17100" top="8490" type="Window" width="11055">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" id="50" nodename="SetPatchMode (VVVV)" systemname="SetPatchMode (VVVV)">
