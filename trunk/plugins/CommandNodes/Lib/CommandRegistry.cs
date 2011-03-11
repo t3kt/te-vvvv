@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 
 namespace CommandNodes
 {
@@ -49,15 +50,28 @@ namespace CommandNodes
 
 		public static void AddMapping(CommandMapping mapping)
 		{
+			AddMapping(mapping, null);
+		}
+
+		public static void AddMapping(CommandMapping mapping, ILogger logger)
+		{
 			if(mapping == null)
 				return;
 			switch(mapping.TriggerType)
 			{
 			case CommandTriggerType.Keyboard:
-				_KeyMappings.Add(mapping.Code, mapping.CommandId);
+				if(_KeyMappings.Add(mapping.Code, mapping.CommandId))
+				{
+					if(logger != null)
+						logger.Log(LogType.Message, String.Format("Added mapping: {0}", mapping));
+				}
 				break;
 			case CommandTriggerType.Mouse:
-				_MouseMappings.Add(mapping.Code, mapping.CommandId);
+				if(_MouseMappings.Add(mapping.Code, mapping.CommandId))
+				{
+					if(logger != null)
+						logger.Log(LogType.Message, String.Format("Added mapping: {0}", mapping));
+				}
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();

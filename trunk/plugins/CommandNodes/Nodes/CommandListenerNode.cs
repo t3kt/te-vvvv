@@ -12,7 +12,8 @@ namespace CommandNodes.Nodes
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Listener,
 		Category = TEShared.Names.Categories.Command,
-		Author = TEShared.Names.Author)]
+		Author = TEShared.Names.Author,
+		Help = "Listen for specific commands")]
 	public sealed class CommandListenerNode : IPluginEvaluate, IDisposable
 	{
 

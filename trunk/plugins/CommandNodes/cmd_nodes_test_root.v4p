@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="C:\users\thezer0ist\vvvv\plugins\CommandNodes\cmd_nodes_test_root.v4p" componentmode="Hidden" filename="C:\Users\thezer0ist\vvvv\plugins\CommandNodes\cmd_nodes_test_root.v4p" systemname="cmd_nodes_test_root">
+   <PATCH nodename="G:\vvvv\te_vvvv\plugins\CommandNodes\cmd_nodes_test_root.v4p" componentmode="Hidden" filename="C:\Users\thezer0ist\vvvv\plugins\CommandNodes\cmd_nodes_test_root.v4p" systemname="cmd_nodes_test_root">
    <BOUNDS height="5250" left="3000" top="3000" type="Window" width="7500">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\plugins\NodeCollector.dll" id="0" nodename="NodeList (VVVV)||plugins\NodeCollector.dll" systemname="NodeList (VVVV)">
@@ -132,10 +132,10 @@
    <BOUNDS height="100" left="1020" top="345" type="Node" width="100">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="InAWindow" filename="..\..\{LOG}.v4p" id="48" nodename="G:\vvvv\te_vvvv\{LOG}.v4p" systemname="{LOG}" path="C:\users\thezer0ist\vvvv\">
+   <NODE componentmode="InAWindow" filename="..\..\{LOG}.v4p" id="48" nodename="G:\vvvv\te_vvvv\{LOG}.v4p" systemname="{LOG}" path="G:\vvvv\te_vvvv\">
    <BOUNDS height="100" left="90" top="285" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
+   <BOUNDS height="6780" left="17100" top="8490" type="Window" width="11070">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" id="50" nodename="SetPatchMode (VVVV)" systemname="SetPatchMode (VVVV)">
