@@ -80,7 +80,6 @@
     <Compile Include="Lib\CommandModifiers.cs" />
     <Compile Include="Lib\MouseButtons.cs" />
     <Compile Include="Lib\Hooks\NativeMethods.cs" />
-    <Compile Include="Lib\TriggerStateSet.cs" />
     <Compile Include="Lib\TriggerStateTracker.cs" />
     <Compile Include="Nodes\AddMappingsNode.cs" />
     <Compile Include="Nodes\CommandListenerNode.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="Nodes\KeyCodesToModifiersNode.cs" />
     <Compile Include="Nodes\JoinModifiersNode.cs" />
     <Compile Include="Nodes\SplitKeyEventNode.cs" />
+    <Compile Include="Nodes\TriggerAdvancedMouseCommandNode.cs" />
     <Compile Include="Nodes\TriggerCommandNode.cs" />
     <Compile Include="Nodes\TriggerKeyboardCommandNode.cs" />
     <Compile Include="Nodes\TriggerMouseCommandNode.cs" />

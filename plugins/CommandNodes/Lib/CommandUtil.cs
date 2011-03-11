@@ -50,19 +50,22 @@ namespace CommandNodes
 		public static CommandModifiers GetKeyCodeModifiers(IEnumerable<int> keyCodes)
 		{
 			var mods = CommandModifiers.None;
-			foreach(var keyCode in keyCodes)
+			if(keyCodes != null)
 			{
-				switch(keyCode)
+				foreach(var keyCode in keyCodes)
 				{
-				case AltKeyCode:
-					mods |= CommandModifiers.Alt;
-					break;
-				case ControlKeyCode:
-					mods |= CommandModifiers.Control;
-					break;
-				case ShiftKeyCode:
-					mods |= CommandModifiers.Shift;
-					break;
+					switch(keyCode)
+					{
+					case AltKeyCode:
+						mods |= CommandModifiers.Alt;
+						break;
+					case ControlKeyCode:
+						mods |= CommandModifiers.Control;
+						break;
+					case ShiftKeyCode:
+						mods |= CommandModifiers.Shift;
+						break;
+					}
 				}
 			}
 			return mods;
@@ -72,22 +75,25 @@ namespace CommandNodes
 		{
 			var keys = new List<int>();
 			modifiers = CommandModifiers.None;
-			foreach(var keyCode in keyCodes)
+			if(keyCodes != null)
 			{
-				switch(keyCode)
+				foreach(var keyCode in keyCodes)
 				{
-				case AltKeyCode:
-					modifiers |= CommandModifiers.Alt;
-					break;
-				case ControlKeyCode:
-					modifiers |= CommandModifiers.Control;
-					break;
-				case ShiftKeyCode:
-					modifiers |= CommandModifiers.Shift;
-					break;
-				default:
-					keys.Add(keyCode);
-					break;
+					switch(keyCode)
+					{
+					case AltKeyCode:
+						modifiers |= CommandModifiers.Alt;
+						break;
+					case ControlKeyCode:
+						modifiers |= CommandModifiers.Control;
+						break;
+					case ShiftKeyCode:
+						modifiers |= CommandModifiers.Shift;
+						break;
+					default:
+						keys.Add(keyCode);
+						break;
+					}
 				}
 			}
 			return keys.ToArray();
@@ -260,7 +266,7 @@ namespace CommandNodes
 						{
 							modifiers |= cm;
 						}
-						else if(TryParseKeyCode(str, out kc))
+						else if(TryParseKeyCode(part, out kc))
 						{
 							keyCode |= kc;
 						}

@@ -48,15 +48,15 @@ namespace CommandNodes.Nodes
 
 		public void Evaluate(int spreadMax)
 		{
-			if(_CommandIdInput.IsChanged || _StateTracker.States.IsChanged)
+			if(_CommandIdInput.IsChanged || _StateTracker.IsChanged)
 			{
 				var count = _TriggerOutput.SliceCount = _CommandIdInput.SliceCount;
 				for(var i = 0; i < count; i++)
 				{
-					_TriggerOutput[i] = _StateTracker.States[_CommandIdInput[i]];
+					_TriggerOutput[i] = _StateTracker[_CommandIdInput[i]];
 				}
 			}
-			_StateTracker.States.Reset();
+			_StateTracker.Reset();
 		}
 
 		#endregion

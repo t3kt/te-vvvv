@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V2;
 
 namespace CommandNodes.Nodes
@@ -14,7 +16,7 @@ namespace CommandNodes.Nodes
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.Global,
 		Author = TEShared.Names.Author)]
-	public sealed class GlobalCommandListenerNode : IPluginEvaluate, IDisposable
+	public sealed class GlobalCommandListenerNode : IPluginEvaluate, IDisposable, IPartImportsSatisfiedNotification
 	{
 
 		#region Static / Constant
@@ -23,10 +25,13 @@ namespace CommandNodes.Nodes
 
 		#region Fields
 
-		[Output("TriggeredCommands", IsBang = true)]
+		[Import]
+		private ILogger _Logger;
+
+		[Output("TriggeredCommands")]
 		private ISpread<string> _TriggeredCommandsOutput;
 
-		private readonly TriggerStateTracker _StateTracker = new TriggerStateTracker();
+		private TriggerStateTracker _StateTracker;
 
 		#endregion
 
@@ -40,18 +45,32 @@ namespace CommandNodes.Nodes
 
 		#region Methods
 
+		private void CommandRegistry_CommandTriggered(object sender, CommandEventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region IPartImportsSatisfiedNotification Members
+
+		public void OnImportsSatisfied()
+		{
+			_StateTracker = new TriggerStateTracker { Logger = _Logger };
+		}
+
 		#endregion
 
 		#region IPluginEvaluate Members
 
 		public void Evaluate(int spreadMax)
 		{
-			if(_StateTracker.States.IsChanged)
+			if(_StateTracker.IsChanged)
 			{
-				var commandIds = _StateTracker.States.GetAllSet();
+				var commandIds = _StateTracker.GetAllSet();
 				_TriggeredCommandsOutput.AssignFrom(commandIds);
 			}
-			_StateTracker.States.Reset();
+			_StateTracker.Reset();
 		}
 
 		#endregion
