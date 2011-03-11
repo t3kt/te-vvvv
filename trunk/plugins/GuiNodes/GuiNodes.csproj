@@ -32,9 +32,9 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
-	<PropertyGroup>
-		<RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-	</PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -176,9 +176,9 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-	<PropertyGroup>
-		<PostBuildEvent>sh.exe $(SolutionDir)_Shared\CleanUp.sh $(ProjectDir) $(TargetName)</PostBuildEvent>
-	</PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)_Shared\CleanBuildOutput\bin\CleanBuildOutput.exe $(ProjectDir) $(TargetName)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
