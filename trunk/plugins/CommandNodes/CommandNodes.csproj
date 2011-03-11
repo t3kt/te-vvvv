@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{898F87BA-FB40-4D78-880F-C31FFB622EC7}</ProjectGuid>
+    <ProjectGuid>{2F33D4BF-CCA6-4564-B04C-E5433F4B086F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VVVV</RootNamespace>
-    <AssemblyName>MiscNodes</AssemblyName>
+    <RootNamespace>CommandNodes</RootNamespace>
+    <AssemblyName>CommandNodes</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,10 +36,8 @@
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
@@ -50,48 +48,57 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Core.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <Private>True</Private>
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
     </Reference>
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup Label="__SHARED">
     <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib\KeysUtil.cs" />
-    <Compile Include="Nodes\JoinKeyGestureNode.cs" />
-    <Compile Include="Nodes\KeyCodeToKeyNode.cs" />
-    <Compile Include="Nodes\KeyGestureToStringNode.cs" />
-    <Compile Include="Nodes\KeyToStringNode.cs" />
-    <Compile Include="Nodes\KeyToValueNode.cs" />
-    <Compile Include="Nodes\LastChangedColorNode.cs" />
-    <Compile Include="Nodes\LastChangedNode.cs" />
-    <Compile Include="Nodes\LastChangedStringNode.cs" />
-    <Compile Include="Nodes\LastChangedValueNode.cs" />
-    <Compile Include="Nodes\SplitKeyGestureNode.cs" />
+    <Compile Include="Lib\CommandEventArgs.cs" />
+    <Compile Include="Lib\CommandMapping.cs" />
+    <Compile Include="Lib\CommandMappingCollection.cs" />
+    <Compile Include="Lib\CommandMappingSet.cs" />
+    <Compile Include="Lib\CommandRegistry.cs" />
+    <Compile Include="Lib\CommandUtil.cs" />
+    <Compile Include="Lib\Hooks\HookManager.cs" />
+    <Compile Include="Lib\Hooks\InputEventArgs.cs" />
+    <Compile Include="Lib\KeyEventInfo.cs" />
+    <Compile Include="Lib\Hooks\KeyInputEventArgs.cs" />
+    <Compile Include="Lib\CommandModifiers.cs" />
+    <Compile Include="Lib\MouseButtons.cs" />
+    <Compile Include="Lib\Hooks\NativeMethods.cs" />
+    <Compile Include="Lib\TriggerStateSet.cs" />
+    <Compile Include="Lib\TriggerStateTracker.cs" />
+    <Compile Include="Nodes\AddMappingsNode.cs" />
+    <Compile Include="Nodes\CommandListenerNode.cs" />
+    <Compile Include="Nodes\GetMappingsCountNode.cs" />
+    <Compile Include="Nodes\GlobalCommandListenerNode.cs" />
+    <Compile Include="Nodes\JoinKeyEventNode.cs" />
+    <Compile Include="Nodes\KeyCodesToModifiersNode.cs" />
+    <Compile Include="Nodes\JoinModifiersNode.cs" />
+    <Compile Include="Nodes\SplitKeyEventNode.cs" />
+    <Compile Include="Nodes\TriggerCommandNode.cs" />
+    <Compile Include="Nodes\TriggerKeyboardCommandNode.cs" />
+    <Compile Include="Nodes\TriggerMouseCommandNode.cs" />
+    <Compile Include="Nodes\SplitModifiersNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="misc_nodes_test.v4p" />
-    <None Include="misc_nodes_test_root.v4p" />
+    <None Include="cmd_nodes_test.v4p" />
+    <None Include="cmd_nodes_test_root.v4p" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
