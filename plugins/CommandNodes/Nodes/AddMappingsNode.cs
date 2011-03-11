@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 
@@ -15,7 +16,8 @@ namespace CommandNodes.Nodes
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.Add,
 		Author = TEShared.Names.Author,
-		AutoEvaluate = true)]
+		AutoEvaluate = true,
+		Help = "Add Command Mappings parsed from encoded mapping strings")]
 	public sealed class AddMappingsNode : IPluginBase, IDisposable, IPartImportsSatisfiedNotification
 	{
 
@@ -24,6 +26,9 @@ namespace CommandNodes.Nodes
 		#endregion
 
 		#region Fields
+
+		[Import]
+		private ILogger _Logger;
 
 		[Config("Clear On Update", IsSingle = true, DefaultValue = 1)]
 		private ISpread<bool> _ClearOnUpdateConfig;
@@ -56,8 +61,8 @@ namespace CommandNodes.Nodes
 			{
 				if(mappingParts.SliceCount == 3)
 				{
-					var mapping = CommandUtil.ParseMapping(mappingParts[0], mappingParts[1], mappingParts[2]);
-					CommandRegistry.AddMapping(mapping);
+					var mapping = CommandUtil.ParseMapping(mappingParts[0], mappingParts[1], mappingParts[2], _Logger);
+					CommandRegistry.AddMapping(mapping, _Logger);
 				}
 			}
 		}

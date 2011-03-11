@@ -67,6 +67,7 @@ namespace TEShared
 			public const string String = "String";
 			public const string Add = "Add";
 			public const string Advanced = "Advanced";
+			public const string File = "File";
 		}
 
 		public static class Warnings

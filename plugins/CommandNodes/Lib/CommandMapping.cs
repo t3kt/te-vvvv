@@ -106,11 +106,11 @@ namespace CommandNodes
 			_Code = CommandUtil.EncodeMouseCommand(mouseButtons, modifiers);
 		}
 
-		internal CommandMapping(CommandTriggerType triggerType, int code)
-		{
-			_TriggerType = triggerType;
-			_Code = code;
-		}
+		//internal CommandMapping(CommandTriggerType triggerType, int code)
+		//{
+		//    _TriggerType = triggerType;
+		//    _Code = code;
+		//}
 
 		#endregion
 
@@ -120,6 +120,19 @@ namespace CommandNodes
 		{
 			//return _Code | (int)_TriggerType;
 			return _Code;
+		}
+
+		public override string ToString()
+		{
+			switch(_TriggerType)
+			{
+			case CommandTriggerType.Keyboard:
+				return String.Format("KeyboardMapping{{ KeyCode: {0}, Modifiers: {1}, Code: {2}, CommandId: {3}}}", _KeyCode, _Modifiers, _Code, _CommandId);
+			case CommandTriggerType.Mouse:
+				return String.Format("MouseMapping{{ Buttons: {0}, Modifiers: {1}, Code: {2}, CommandId: {3}}}", _MouseButtons, _Modifiers, _Code, _CommandId);
+			default:
+				return base.ToString();
+			}
 		}
 
 		#endregion

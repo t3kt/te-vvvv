@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VVVV.Core.Logging;
 using Keys = System.Windows.Forms.Keys;
 
 namespace CommandNodes
@@ -368,6 +369,13 @@ namespace CommandNodes
 			}
 		}
 
+		internal static CommandMapping ParseMapping(string triggerTypeStr, string triggerStr, string commandId, ILogger logger)
+		{
+			var mapping = ParseMapping(triggerTypeStr, triggerStr, commandId);
+			if(logger != null && mapping == null)
+				logger.Log(new FormatException(String.Format("Cannot parse command mapping triggerType: '{0}' trigger: '{1}' commandId: '{2}'", triggerTypeStr, triggerStr, commandId)));
+			return mapping;
+		}
 	}
 
 	#endregion

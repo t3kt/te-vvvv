@@ -15,7 +15,8 @@ namespace CommandNodes.Nodes
 	[PluginInfo(Name = TEShared.Names.Nodes.Listener,
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.Global,
-		Author = TEShared.Names.Author)]
+		Author = TEShared.Names.Author,
+		Help = "Listen for all commands")]
 	public sealed class GlobalCommandListenerNode : IPluginEvaluate, IDisposable, IPartImportsSatisfiedNotification
 	{
 

@@ -10,10 +10,6 @@ namespace CleanBuildOutput
 	{
 		static int Main(string[] args)
 		{
-			//Console.Error.WriteLine("args length: {0}", args.Length);
-			//for(var i = 0; i < args.Length; i++)
-			//    Console.Error.WriteLine("arg {0}: '{1}'", i, args[i]);
-			//return 1;
 			if(args.Length != 2)
 				return Usage();
 			var projectDir = args[0];
@@ -24,15 +20,12 @@ namespace CleanBuildOutput
 				projectDir = projectDir + Path.DirectorySeparatorChar;
 			Console.WriteLine("ProjectDir: '{0}' ProjectName: '{1}'", projectDir, projectName);
 			var files = Directory.GetFiles(projectDir + "bin", "*.*", SearchOption.AllDirectories)
-				//.Where(f => !f.ToLower().Contains(projectName + ".dll") && !f.ToLower().Contains(projectName + ".pdb"))
 				.Where(f => !f.EndsWith(projectName + ".dll", StringComparison.OrdinalIgnoreCase) &&
 							!f.EndsWith(projectName + ".pdb", StringComparison.OrdinalIgnoreCase) &&
 							!f.EndsWith(projectName + ".xml", StringComparison.OrdinalIgnoreCase))
 				.ToList();
-			//foreach(var file in files)
-			//    Console.Error.WriteLine("file: '{0}'", file);
-			//return 1;
-			files.AddRange(Directory.GetFiles(projectDir + "obj", "*.*", SearchOption.AllDirectories));
+			files.AddRange(Directory.GetFiles(projectDir + "obj", "*.dll", SearchOption.AllDirectories));
+			files.AddRange(Directory.GetFiles(projectDir + "obj", "*.pdb", SearchOption.AllDirectories));
 			foreach(var file in files)
 			{
 				Console.WriteLine("Deleting file '{0}'...", file);

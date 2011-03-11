@@ -88,6 +88,7 @@
     <Compile Include="Nodes\JoinKeyEventNode.cs" />
     <Compile Include="Nodes\KeyCodesToModifiersNode.cs" />
     <Compile Include="Nodes\JoinModifiersNode.cs" />
+    <Compile Include="Nodes\LoadCommandMappingsFileNode.cs" />
     <Compile Include="Nodes\SplitKeyEventNode.cs" />
     <Compile Include="Nodes\TriggerAdvancedMouseCommandNode.cs" />
     <Compile Include="Nodes\TriggerCommandNode.cs" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <None Include="cmd_nodes_test.v4p" />
     <None Include="cmd_nodes_test_root.v4p" />
+    <None Include="_Test\test_commands.dat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

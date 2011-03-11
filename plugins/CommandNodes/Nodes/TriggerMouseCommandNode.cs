@@ -14,7 +14,8 @@ namespace CommandNodes.Nodes
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.Mouse,
 		Author = TEShared.Names.Author,
-		AutoEvaluate = true)]
+		AutoEvaluate = true,
+		Help = "Trigger commands from mouse data")]
 	public sealed class TriggerMouseCommandNode : IPluginEvaluate
 	{
 
