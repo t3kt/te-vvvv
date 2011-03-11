@@ -27,6 +27,16 @@ namespace TEShared
 			public const string Cons = "Cons";
 			public const string Parse = "Parse";
 			public const string LastChanged = "LastChanged";
+			public const string AsValue = "AsValue";
+			public const string AsKey = "AsKey";
+			public const string KeyGesture = "KeyGesture";
+			public const string KeyEvent = "KeyEvent";
+			public const string Command = "Command";
+			public const string Modifiers = "Modifiers";
+			public const string Listener = "Listener";
+			public const string Trigger = "Trigger";
+			public const string Mappings = "Mappings";
+			public const string Count = "Count";
 		}
 
 		public static class Categories
@@ -38,6 +48,9 @@ namespace TEShared
 			public const string String = "String";
 			public const string Color = "Color";
 			public const string Struct = "Struct";
+			public const string Keys = "Keys";
+			public const string KeyGesture = "KeyGesture";
+			public const string Command = "Command";
 		}
 
 		public static class Versions
@@ -48,6 +61,17 @@ namespace TEShared
 			public const string Single = "Single";
 			public const string FixedType = "FixedType";
 			public const string Test = "Test";
+			public const string Manual = "Manual";
+			public const string KeyCode = "KeyCode";
+			public const string Mouse = "Mouse";
+			public const string String = "String";
+			public const string Add = "Add";
+		}
+
+		public static class Warnings
+		{
+			public const string Obsolete = "This is obsolete and may be removed soon.";
+			public const string Incomplete = "This is incomplete";
 		}
 
 	}
