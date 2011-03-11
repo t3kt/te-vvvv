@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 
 namespace CommandNodes.Nodes
@@ -13,8 +14,9 @@ namespace CommandNodes.Nodes
 	[PluginInfo(Name = TEShared.Names.Nodes.Mappings,
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.Add,
-		Author = TEShared.Names.Author)]
-	public sealed class AddMappingsNode : IPluginEvaluate, IDisposable, IPartImportsSatisfiedNotification
+		Author = TEShared.Names.Author,
+		AutoEvaluate = true)]
+	public sealed class AddMappingsNode : IPluginBase, IDisposable, IPartImportsSatisfiedNotification
 	{
 
 		#region Static / Constant
@@ -46,8 +48,8 @@ namespace CommandNodes.Nodes
 
 		private void DoUpdateInput_Changed(IDiffSpread<bool> doUpdateInput)
 		{
-			if(!doUpdateInput[0])
-				return;
+			//if(!doUpdateInput[0])
+			//    return;
 			if(_ClearOnUpdateConfig[0])
 				CommandRegistry.ClearMappings();
 			foreach(var mappingParts in _MappingPartsInput)
@@ -67,27 +69,6 @@ namespace CommandNodes.Nodes
 		public void OnImportsSatisfied()
 		{
 			_DoUpdateInput.Changed += this.DoUpdateInput_Changed;
-		}
-
-		#endregion
-
-		#region IPluginEvaluate Members
-
-		public void Evaluate(int spreadMax)
-		{
-			//if(_DoUpdateInput.IsChanged)
-			//{
-			//    if(_ClearOnUpdateConfig[0])
-			//        CommandRegistry.ClearMappings();
-			//    foreach(var mappingParts in _MappingPartsInput)
-			//    {
-			//        if(mappingParts.SliceCount == 3)
-			//        {
-			//            var mapping = CommandUtil.ParseMapping(mappingParts[0], mappingParts[1], mappingParts[2]);
-			//            CommandRegistry.AddMapping(mapping);
-			//        }
-			//    }
-			//}
 		}
 
 		#endregion

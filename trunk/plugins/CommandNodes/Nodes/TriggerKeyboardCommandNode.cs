@@ -13,7 +13,8 @@ namespace CommandNodes.Nodes
 	[PluginInfo(Name = TEShared.Names.Nodes.Trigger,
 		Category = TEShared.Names.Categories.Command,
 		Version = TEShared.Names.Versions.KeyCode,
-		Author = TEShared.Names.Author)]
+		Author = TEShared.Names.Author,
+		AutoEvaluate = true)]
 	public sealed class TriggerKeyboardCommandNode : IPluginEvaluate
 	{
 
@@ -25,6 +26,9 @@ namespace CommandNodes.Nodes
 
 		[Input("KeyCode")]
 		private IDiffSpread<int> _KeyCodeInput;
+
+		//[Output("Dummy")]
+		//private ISpread<double> _DummyOutput;
 
 		#endregion
 
