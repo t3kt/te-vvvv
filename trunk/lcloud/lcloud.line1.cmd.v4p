@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.cmd.v4p" systemname="lcloud.line1.cmd" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.cmd.v4p">
-   <BOUNDS type="Window" left="14700" top="5370" width="5430" height="4560">
+   <PATCH nodename="G:\vvvv\te_vvvv\lcloud\lcloud.line1.cmd.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.cmd.v4p" systemname="lcloud.line1.cmd">
+   <BOUNDS height="4560" left="14700" top="5370" type="Window" width="5430">
    </BOUNDS>
    <NODE componentmode="Hidden" id="4" nodename="Keyboard (System Window)" systemname="Keyboard (System Window)">
    <BOUNDS height="100" left="1080" top="120" type="Node" width="100">
@@ -106,7 +106,7 @@
    </LINK>
    <LINK dstnodeid="2" dstpinname="Input 1" srcnodeid="3" srcpinname="S Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="..\TapToggle.v4p" id="0" nodename="..\TapToggle.v4p" systemname="TapToggle">
+   <NODE componentmode="Hidden" filename="..\TapToggle.v4p" id="0" nodename="..\TapToggle.v4p" systemname="TapToggle" path="G:\vvvv\te_vvvv\">
    <PIN pinname="Input" visible="1">
    </PIN>
    <BOUNDS height="100" left="1065" top="1365" type="Node" width="100">
@@ -120,10 +120,10 @@
    </LINK>
    <LINK dstnodeid="2" dstpinname="Input 6" srcnodeid="3" srcpinname="E Output">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="5">
-   <BOUNDS type="Node" left="195" top="2580" width="100" height="100">
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="195" top="2580" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="195" top="2580" width="480" height="480">
+   <BOUNDS height="480" left="195" top="2580" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -139,14 +139,14 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|S Output|">
    </PIN>
-   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Input Value" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 1" dstnodeid="5" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 1">
    <LINKPOINT x="1065" y="2280">
    </LINKPOINT>
    <LINKPOINT x="255" y="2280">
@@ -178,7 +178,7 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 2" dstnodeid="6" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 2">
    <LINKPOINT x="1230" y="2333">
    </LINKPOINT>
    <LINKPOINT x="1020" y="2333">
@@ -210,7 +210,7 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 3" dstnodeid="7" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="7" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 3">
    <LINKPOINT x="1455" y="2303">
    </LINKPOINT>
    <LINKPOINT x="1785" y="2303">
@@ -242,7 +242,7 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 4" dstnodeid="8" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="8" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 4">
    <LINKPOINT x="1635" y="2295">
    </LINKPOINT>
    <LINKPOINT x="2625" y="2295">
@@ -274,7 +274,7 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 5" dstnodeid="9" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 5">
    <LINKPOINT x="1800" y="2303">
    </LINKPOINT>
    <LINKPOINT x="3405" y="2303">
@@ -306,10 +306,22 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Output 6" dstnodeid="10" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINK dstnodeid="10" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="1" srcpinname="Output 6">
    <LINKPOINT x="1965" y="2310">
    </LINKPOINT>
    <LINKPOINT x="4125" y="2310">
    </LINKPOINT>
    </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="11" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3075" top="585" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3075" top="585" width="900" height="345">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="OBSOLETE">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
    </PATCH>

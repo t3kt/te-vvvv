@@ -1,2 +1,7 @@
-sys[`]|<KEY192>|lc.sys.on
+sys[`]|`|lc.sys.on
 hud[H]|H|lc.hud.on
+gRot[G]|G|lc.ln1.grot.on
+seed[S]|S|lc.ln1.seed.on
+rot[R]|R|lc.ln1.rot.on
+trans[T]|T|lc.ln1.translate.on
+alpha[A]|A|lc.ln1.alpha.on
