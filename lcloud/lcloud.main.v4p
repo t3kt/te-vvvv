@@ -51,7 +51,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="630" top="2955" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="12480" left="4185" top="900" type="Window" width="13665">
+   <BOUNDS height="12480" left="5655" top="1395" type="Window" width="18465">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -93,7 +93,7 @@
    </PIN>
    <PIN pinname="Rotate FilterTime" pintype="Input" slicecount="1" visible="-1" values="4.29">
    </PIN>
-   <PIN pinname="Color" pintype="Input" slicecount="1" visible="-1" values="|0.57219,0.64518,0.72314,1.00000|">
+   <PIN pinname="Color" pintype="Input" slicecount="2" visible="-1" values="|0.57219,0.64518,0.72314,1.00000|,|0.51200,0.73193,0.74355,1.00000|">
    </PIN>
    <PIN pinname="Cycles" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
@@ -220,11 +220,13 @@
    <PIN pinname="Time Mode" slicecount="1" values="Filtered">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" filename="lcloud.cmd.master.v4p" id="264" nodename="lcloud.cmd.master.v4p" systemname="lcloud.cmd.master" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.master.v4p" id="264" nodename="lcloud.cmd.master.v4p" systemname="lcloud.cmd.master" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="1965" top="360" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="9570" left="12600" top="4080" type="Window" width="9405">
    </BOUNDS>
+   <PIN pinname="Use Global Keys" visible="1">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="270" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="315" top="315" type="Node" width="100">
@@ -243,9 +245,9 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
@@ -273,5 +275,27 @@
    <LINK dstnodeid="221" dstpinname="Input 2" srcnodeid="220" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="221" dstpinname="Input 1" srcnodeid="77" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="271" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2400" top="1305" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="2400" top="1305" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use Global Keys|">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="264" dstpinname="Use Global Keys" srcnodeid="271" srcpinname="Y Output Value">
    </LINK>
    </PATCH>

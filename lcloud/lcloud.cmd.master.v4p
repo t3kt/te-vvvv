@@ -302,19 +302,19 @@
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="40" dstpinname="Enabled" srcnodeid="46" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="40" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="46" srcpinname="Output">
    <LINKPOINT x="3465" y="1620">
    </LINKPOINT>
    <LINKPOINT x="3465" y="1620">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="46" dstpinname="Input" srcnodeid="43" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="46" dstpinname="Input" linkstyle="Bezier" srcnodeid="43" srcpinname="Y Output Value">
    <LINKPOINT x="3210" y="1020">
    </LINKPOINT>
    <LINKPOINT x="3450" y="1020">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="42" dstpinname="Enabled" srcnodeid="43" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="42" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="43" srcpinname="Y Output Value">
    <LINKPOINT x="3225" y="1200">
    </LINKPOINT>
    <LINKPOINT x="4245" y="1020">
@@ -382,19 +382,19 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="83" dstpinname="Switch" srcnodeid="43" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="83" dstpinname="Switch" linkstyle="Bezier" srcnodeid="43" srcpinname="Y Output Value">
    <LINKPOINT x="3195" y="1448">
    </LINKPOINT>
    <LINKPOINT x="3195" y="1448">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="83" dstpinname="Input 1" srcnodeid="40" srcpinname="Keyboard Output" linkstyle="Bezier">
+   <LINK dstnodeid="83" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="40" srcpinname="Keyboard Output">
    <LINKPOINT x="3465" y="2048">
    </LINKPOINT>
    <LINKPOINT x="3465" y="2048">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="83" dstpinname="Input 2" srcnodeid="42" srcpinname="Keyboard Output" linkstyle="Bezier">
+   <LINK dstnodeid="83" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="42" srcpinname="Keyboard Output">
    <LINKPOINT x="4275" y="2033">
    </LINKPOINT>
    <LINKPOINT x="3780" y="2033">
@@ -408,7 +408,7 @@
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="85" dstpinname="Input" srcnodeid="83" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="85" dstpinname="Input" linkstyle="Bezier" srcnodeid="83" srcpinname="Output">
    <LINKPOINT x="3195" y="2483">
    </LINKPOINT>
    <LINKPOINT x="3195" y="2483">
@@ -424,6 +424,8 @@
    <PIN pinname="State" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="Display Text" visible="1">
+   </PIN>
+   <PIN pinname="Settings" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="114" nodename="R (String Advanced)" systemname="R (String Advanced)">
@@ -466,8 +468,6 @@
    </NODE>
    <LINK dstnodeid="118" dstpinname="Input 1" srcnodeid="114" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="112" dstpinname="SettingsStr" srcnodeid="118" srcpinname="Output 1">
-   </LINK>
    <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="119" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="5640" top="2925" type="Node" width="100">
    </BOUNDS>
@@ -477,9 +477,9 @@
    </PIN>
    <PIN pinname="Display Text" visible="1">
    </PIN>
+   <PIN pinname="Settings" visible="1">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="119" dstpinname="SettingsStr" srcnodeid="118" srcpinname="Output 2">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\plugins\SpreadOperations.dll" id="127" nodename="Cons (String)" systemname="Cons (String)">
    <BOUNDS height="270" left="5490" top="5385" type="Node" width="705">
    </BOUNDS>
@@ -522,44 +522,44 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Display Text|">
    </PIN>
    </NODE>
-   <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="129">
-   <BOUNDS type="Node" left="360" top="4110" width="100" height="100">
+   <NODE componentmode="InABox" id="129" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="360" top="4110" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="360" top="4110" width="795" height="240">
+   <BOUNDS height="240" left="360" top="4110" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|File Path|">
    </PIN>
    <PIN pinname="Input String" visible="1">
    </PIN>
-   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Output String" visible="1" pintype="Output">
+   <PIN pinname="Output String" pintype="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="129" dstpinname="Input String">
+   <LINK dstnodeid="129" dstpinname="Input String" srcnodeid="58" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="129" srcpinname="Output String" dstnodeid="7" dstpinname="Filename">
+   <LINK dstnodeid="7" dstpinname="Filename" srcnodeid="129" srcpinname="Output String">
    </LINK>
-   <NODE systemname="ShellExecute (Windows)" nodename="ShellExecute (Windows)" componentmode="Hidden" id="130">
-   <BOUNDS type="Node" left="2625" top="4860" width="100" height="100">
+   <NODE componentmode="Hidden" id="130" nodename="ShellExecute (Windows)" systemname="ShellExecute (Windows)">
+   <BOUNDS height="100" left="2625" top="4860" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Show Window" slicecount="1" values="1" visible="-1" pintype="Input">
+   <PIN pinname="Show Window" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="File" visible="1" slicecount="1" values="|C:\Program Files (x86)\TextPad 5\TextPad.exe|">
+   <PIN pinname="File" slicecount="1" visible="1" values="|C:\Program Files (x86)\TextPad 5\TextPad.exe|">
    </PIN>
    <PIN pinname="Commandline Arguments" visible="1">
    </PIN>
    <PIN pinname="Do Execute" visible="1">
    </PIN>
-   <PIN pinname="Block until finished" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Block until finished" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="129" srcpinname="Output String" dstnodeid="130" dstpinname="Commandline Arguments">
+   <LINK dstnodeid="130" dstpinname="Commandline Arguments" srcnodeid="129" srcpinname="Output String">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="131">
-   <BOUNDS type="Node" left="3090" top="3210" width="100" height="100">
+   <NODE componentmode="InABox" id="131" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3090" top="3210" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3090" top="3210" width="480" height="480">
+   <BOUNDS height="480" left="3090" top="3210" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -580,9 +580,9 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="131" srcpinname="Y Output Value" dstnodeid="130" dstpinname="Do Execute">
+   <LINK dstnodeid="130" dstpinname="Do Execute" srcnodeid="131" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="132" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="132" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="5820" top="3330" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="SettingsStr" visible="1">
@@ -591,14 +591,14 @@
    </PIN>
    <PIN pinname="Display Text" visible="1">
    </PIN>
+   <PIN pinname="Settings" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="132" srcpinname="Display Text" dstnodeid="127" dstpinname="Input 3">
+   <LINK dstnodeid="127" dstpinname="Input 3" srcnodeid="132" srcpinname="Display Text">
    </LINK>
-   <LINK srcnodeid="118" srcpinname="Output 3" dstnodeid="132" dstpinname="SettingsStr">
+   <LINK dstnodeid="128" dstpinname="Input String" srcnodeid="127" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="128" dstpinname="Input String">
-   </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="133" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="133" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="5970" top="3690" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="SettingsStr" visible="1">
@@ -609,12 +609,12 @@
    </PIN>
    <PIN pinname="Settings" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="6015" top="4155" width="4365" height="7605">
+   <BOUNDS height="7605" left="6015" top="4155" type="Window" width="4365">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="118" srcpinname="Output 4" dstnodeid="133" dstpinname="Settings">
+   <LINK dstnodeid="133" dstpinname="Settings" srcnodeid="118" srcpinname="Output 4">
    </LINK>
-   <LINK srcnodeid="133" srcpinname="Display Text" dstnodeid="127" dstpinname="Input 4">
+   <LINK dstnodeid="127" dstpinname="Input 4" srcnodeid="133" srcpinname="Display Text">
    </LINK>
    <NODE componentmode="Hidden" id="134" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
    <BOUNDS height="100" left="4125" top="2265" type="Node" width="100">
@@ -628,23 +628,23 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Y Output Value" dstnodeid="134" dstpinname="Switch">
+   <LINK dstnodeid="134" dstpinname="Switch" srcnodeid="43" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="40" srcpinname="KeyCode" dstnodeid="134" dstpinname="Input 1">
+   <LINK dstnodeid="134" dstpinname="Input 1" srcnodeid="40" srcpinname="KeyCode">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="KeyCode" dstnodeid="134" dstpinname="Input 2">
+   <LINK dstnodeid="134" dstpinname="Input 2" srcnodeid="42" srcpinname="KeyCode">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="135">
-   <BOUNDS type="Node" left="4125" top="2610" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="135" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="4125" top="2610" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" values="lc.key.code">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="134" srcpinname="Output" dstnodeid="135" dstpinname="Input">
+   <LINK dstnodeid="135" dstpinname="Input" srcnodeid="134" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="136" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="136" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="6135" top="4125" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="SettingsStr" visible="1">
@@ -658,11 +658,11 @@
    <BOUNDS height="7605" left="6015" top="4155" type="Window" width="4365">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="118" srcpinname="Output 5" dstnodeid="136" dstpinname="Settings">
+   <LINK dstnodeid="136" dstpinname="Settings" srcnodeid="118" srcpinname="Output 5">
    </LINK>
-   <LINK srcnodeid="136" srcpinname="Display Text" dstnodeid="127" dstpinname="Input 5">
+   <LINK dstnodeid="127" dstpinname="Input 5" srcnodeid="136" srcpinname="Display Text">
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="137" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="137" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="6300" top="4455" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="SettingsStr" visible="1">
@@ -676,11 +676,11 @@
    <BOUNDS height="7605" left="6015" top="4155" type="Window" width="4365">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="137" srcpinname="Display Text" dstnodeid="127" dstpinname="Input 6">
+   <LINK dstnodeid="127" dstpinname="Input 6" srcnodeid="137" srcpinname="Display Text">
    </LINK>
-   <LINK srcnodeid="118" srcpinname="Output 6" dstnodeid="137" dstpinname="Settings">
+   <LINK dstnodeid="137" dstpinname="Settings" srcnodeid="118" srcpinname="Output 6">
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="138" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.toggle.v4p" id="138" nodename="lcloud.cmd.toggle.v4p" systemname="lcloud.cmd.toggle" path="G:\vvvv\te_vvvv\lcloud\">
    <BOUNDS height="100" left="6465" top="4860" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="SettingsStr" visible="1">
@@ -694,8 +694,14 @@
    <BOUNDS height="7605" left="6015" top="4155" type="Window" width="4365">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="138" srcpinname="Display Text" dstnodeid="127" dstpinname="Input 7">
+   <LINK dstnodeid="127" dstpinname="Input 7" srcnodeid="138" srcpinname="Display Text">
    </LINK>
-   <LINK srcnodeid="118" srcpinname="Output 7" dstnodeid="138" dstpinname="Settings">
+   <LINK dstnodeid="138" dstpinname="Settings" srcnodeid="118" srcpinname="Output 7">
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Output 1" dstnodeid="112" dstpinname="Settings">
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Output 2" dstnodeid="119" dstpinname="Settings">
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Output 3" dstnodeid="132" dstpinname="Settings">
    </LINK>
    </PATCH>
