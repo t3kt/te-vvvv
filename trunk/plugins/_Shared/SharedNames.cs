@@ -37,6 +37,8 @@ namespace TEShared
 			public const string Trigger = "Trigger";
 			public const string Mappings = "Mappings";
 			public const string Count = "Count";
+			public const string Gate = "Gate";
+			public const string DetectInput = "DetectInput";
 		}
 
 		public static class Categories

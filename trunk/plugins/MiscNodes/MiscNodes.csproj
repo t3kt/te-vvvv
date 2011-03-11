@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\KeysUtil.cs" />
+    <Compile Include="Nodes\DetectInputNode.cs" />
+    <Compile Include="Nodes\GateNode.cs" />
     <Compile Include="Nodes\JoinKeyGestureNode.cs" />
     <Compile Include="Nodes\KeyCodeToKeyNode.cs" />
     <Compile Include="Nodes\KeyGestureToStringNode.cs" />
