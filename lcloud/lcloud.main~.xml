@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="G:\vvvv\te_vvvv\lcloud\lcloud.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" locked="0" systemname="lcloud.main">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" locked="0" systemname="lcloud.main">
    <BOUNDS height="5730" left="0" top="0" type="Window" width="4290">
    </BOUNDS>
    <NODE componentmode="Hidden" id="6" nodename="Group (EX9)" systemname="Group (EX9)">
@@ -48,10 +48,10 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="630" top="2955" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="12480" left="5655" top="1395" type="Window" width="18465">
+   <BOUNDS height="12480" left="4140" top="2040" type="Window" width="18465">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -93,7 +93,7 @@
    </PIN>
    <PIN pinname="Rotate FilterTime" pintype="Input" slicecount="1" visible="-1" values="4.29">
    </PIN>
-   <PIN pinname="Color" pintype="Input" slicecount="1" visible="-1" values="|0.57219,0.64518,0.72314,1.00000|">
+   <PIN pinname="Color" pintype="Input" slicecount="2" visible="-1" values="|0.57219,0.64518,0.72314,1.00000|,|0.51200,0.73193,0.74355,1.00000|">
    </PIN>
    <PIN pinname="Cycles" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
@@ -168,7 +168,7 @@
    </NODE>
    <LINK dstnodeid="225" dstpinname="Input 1" srcnodeid="221" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.renderer.v4p" id="262" nodename="lcloud.renderer.v4p" systemname="lcloud.renderer" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.renderer.v4p" id="262" nodename="lcloud.renderer.v4p" systemname="lcloud.renderer" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="180" top="4170" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
@@ -220,7 +220,7 @@
    <PIN pinname="Time Mode" slicecount="1" values="Filtered">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="lcloud.cmd.master.v4p" id="264" nodename="lcloud.cmd.master.v4p" systemname="lcloud.cmd.master" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.cmd.master.v4p" id="264" nodename="lcloud.cmd.master.v4p" systemname="lcloud.cmd.master" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="1965" top="360" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="9570" left="12600" top="4080" type="Window" width="9405">
