@@ -47,7 +47,7 @@
    </PIN>
    <PIN pinname="Reverse" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Reset" visible="1" slicecount="1" values="0">
+   <PIN pinname="Reset" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="8" nodename="Multiply (Value)" systemname="Multiply (Value)">
