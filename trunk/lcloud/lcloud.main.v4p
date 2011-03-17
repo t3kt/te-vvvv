@@ -1,31 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" locked="0" systemname="lcloud.main">
-   <BOUNDS height="5730" left="0" top="0" type="Window" width="4290">
+   <BOUNDS height="4320" left="1170" top="1050" type="Window" width="2295">
    </BOUNDS>
-   <NODE componentmode="Hidden" id="6" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="270" left="585" top="3645" type="Node" width="600">
-   </BOUNDS>
-   <PIN pinname="Layer 1" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
-   </PIN>
-   <PIN pinname="Layer 2" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Layer Template Count" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Layer 3" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Layer 4" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Layer 5" visible="1">
-   </PIN>
-   </NODE>
    <NODE componentmode="InABox" id="77" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="315" top="600" type="Node" width="100">
+   <BOUNDS height="100" left="180" top="510" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="525" left="315" top="600" type="Box" width="1290">
+   <BOUNDS height="510" left="180" top="510" type="Box" width="1020">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -45,17 +25,17 @@
    </PIN>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   <PIN pinname="X Output Value" pintype="Output" visible="0">
    </PIN>
    </NODE>
    <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
-   <BOUNDS height="100" left="630" top="2955" type="Node" width="100">
+   <BOUNDS height="100" left="405" top="2190" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="12480" left="4140" top="2040" type="Window" width="18465">
+   <BOUNDS height="13350" left="5595" top="930" type="Window" width="13725">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="Enabled" visible="1">
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Line Enabled" visible="1">
    </PIN>
@@ -103,73 +83,39 @@
    </PIN>
    <PIN pinname="Ambient Color" pintype="Input" slicecount="1" visible="-1" values="|0.20519,0.19736,0.31038,0.39657|">
    </PIN>
-   <PIN pinname="Length" pintype="Input" slicecount="1" visible="-1" values="0.58">
+   <PIN pinname="Length" pintype="Input" slicecount="1" visible="-1" values="20">
    </PIN>
    <PIN pinname="Render State" slicecount="1" visible="1" values="||">
    </PIN>
-   </NODE>
-   <NODE componentmode="InABox" id="220" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1770" top="1335" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="495" left="1770" top="1335" type="Box" width="555">
-   </BOUNDS>
-   <PIN pinname="Show Value" slicecount="1" values="0">
+   <PIN pinname="Rotation Scale" pintype="Input" slicecount="1" visible="-1" values="0.62">
    </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
+   <PIN pinname="XZ Scale" pintype="Input" slicecount="1" visible="-1" values="0.47">
    </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0">
+   <PIN pinname="RotX?" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="1">
+   <PIN pinname="Scale" pintype="Input" slicecount="1" visible="-1" values="11">
    </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   <PIN pinname="Fixed Len" pintype="Input" slicecount="1" visible="-1" values="20">
    </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   <PIN pinname="Double" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="1">
+   <PIN pinname="Period" pintype="Input" slicecount="1" visible="-1" values="3.79">
    </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
+   <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.04">
    </PIN>
-   <PIN pinname="Y Output Value" visible="1">
+   <PIN pinname="Run" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="1">
+   <PIN pinname="Fixed Seed" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Min" pintype="Input" slicecount="1" visible="-1" values="0.38">
    </PIN>
-   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   <PIN pinname="Spread Count" pintype="Input" slicecount="1" visible="-1" values="600">
    </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   <PIN pinname="Max" pintype="Input" slicecount="1" visible="-1" values="0.82">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="221" nodename="AND (Boolean)" systemname="AND (Boolean)">
-   <BOUNDS height="100" left="1305" top="1995" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" id="225" nodename="Stallone (Spreads)" systemname="Stallone (Spreads)">
-   <BOUNDS height="100" left="1050" top="2400" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Output Count" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output 1" visible="1">
-   </PIN>
-   <PIN pinname="Output 2" visible="1">
-   </PIN>
-   <PIN pinname="Output 3" visible="1">
-   </PIN>
-   <PIN pinname="Output 4" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="225" dstpinname="Input 1" srcnodeid="221" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" filename="lcloud.renderer.v4p" id="262" nodename="lcloud.renderer.v4p" systemname="lcloud.renderer" path="C:\Users\thezer0ist\vvvv\lcloud\">
-   <BOUNDS height="100" left="180" top="4170" type="Node" width="100">
+   <BOUNDS height="100" left="270" top="2685" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -180,12 +126,10 @@
    <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="262" dstpinname="Layers" srcnodeid="6" srcpinname="Layer">
-   </LINK>
    <NODE componentmode="InABox" id="263" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="135" top="2205" type="Node" width="100">
+   <BOUNDS height="100" left="255" top="1395" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="480" left="135" top="2205" type="Box" width="480">
+   <BOUNDS height="480" left="255" top="1395" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -205,33 +149,43 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="262" dstpinname="Grid" srcnodeid="263" srcpinname="Y Output Value">
+   <LINK dstnodeid="262" dstpinname="Grid" linkstyle="Bezier" srcnodeid="263" srcpinname="Y Output Value">
+   <LINKPOINT x="285" y="2280">
+   </LINKPOINT>
+   <LINKPOINT x="285" y="2280">
+   </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="262" dstpinname="Enabled" srcnodeid="77" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="6" dstpinname="Layer 1" srcnodeid="191" srcpinname="Layer">
-   </LINK>
-   <LINK dstnodeid="191" dstpinname="Enabled" srcnodeid="225" srcpinname="Output 1">
+   <LINK dstnodeid="262" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="77" srcpinname="Y Output Value">
+   <LINKPOINT x="1170" y="1853">
+   </LINKPOINT>
+   <LINKPOINT x="1560" y="1853">
+   </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="-7" nodename="MainLoop (VVVV)" systemname="MainLoop (VVVV)">
-   <BOUNDS height="100" left="420" top="4650" type="Node" width="100">
+   <BOUNDS height="100" left="270" top="3000" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Time Mode" slicecount="1" values="Filtered">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="lcloud.cmd.master.v4p" id="264" nodename="lcloud.cmd.master.v4p" systemname="lcloud.cmd.master" path="C:\Users\thezer0ist\vvvv\lcloud\">
-   <BOUNDS height="100" left="1965" top="360" type="Node" width="100">
+   <BOUNDS height="100" left="255" top="3330" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="9570" left="12600" top="4080" type="Window" width="9405">
+   <BOUNDS height="9570" left="15945" top="3915" type="Window" width="9405">
    </BOUNDS>
-   <PIN pinname="Use Global Keys" visible="1">
+   <PIN pinname="Use Global Keys" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Edit" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Filename" pintype="Input" slicecount="1" visible="-1" values="lcloud.cmd.settings.dat">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="270" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="315" top="315" type="Node" width="100">
+   <BOUNDS height="100" left="165" top="210" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="300" left="315" top="315" type="Box" width="480">
+   <BOUNDS height="300" left="165" top="210" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -245,57 +199,45 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="269" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="840" top="315" type="Node" width="100">
+   <BOUNDS height="100" left="705" top="225" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" visible="1" values="lc.sys.on.ctl">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="269" dstpinname="Input" srcnodeid="270" srcpinname="Y Output Value">
+   <LINK dstnodeid="269" dstpinname="Input" linkstyle="Bezier" srcnodeid="270" srcpinname="Y Output Value">
+   <LINKPOINT x="630" y="368">
+   </LINKPOINT>
+   <LINKPOINT x="705" y="368">
+   </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="266" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1275" top="315" type="Node" width="100">
+   <BOUNDS height="100" left="1050" top="225" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" visible="1" values="lc.sys.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="77" dstpinname="Y Input Value" srcnodeid="266" srcpinname="Output">
+   <LINK dstnodeid="77" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="266" srcpinname="Output">
+   <LINKPOINT x="1110" y="488">
+   </LINKPOINT>
+   <LINKPOINT x="1125" y="488">
+   </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="221" dstpinname="Input 2" srcnodeid="220" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="221" dstpinname="Input 1" srcnodeid="77" srcpinname="Y Output Value">
-   </LINK>
-   <NODE componentmode="InABox" id="271" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2400" top="1305" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="480" left="2400" top="1305" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Use Global Keys|">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="264" dstpinname="Use Global Keys" srcnodeid="271" srcpinname="Y Output Value">
+   <LINK dstnodeid="262" dstpinname="Layers" linkstyle="Bezier" srcnodeid="191" srcpinname="Layer">
+   <LINKPOINT x="465" y="2558">
+   </LINKPOINT>
+   <LINKPOINT x="915" y="2558">
+   </LINKPOINT>
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="G:\vvvv\te_vvvv\lcloud\lcloud.line1.transform.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.core.v4p" systemname="lcloud.line1.core">
-   <BOUNDS height="7890" left="9075" top="5475" type="Window" width="12570">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.transform.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.core.v4p" systemname="lcloud.line1.core">
+   <BOUNDS height="7890" left="9900" top="6750" type="Window" width="12570">
    </BOUNDS>
    <NODE componentmode="InABox" id="45" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="6330" top="1125" type="Node" width="100">
@@ -326,7 +326,7 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="lcloud.gaussmod.pair.v4p" id="26" nodename="lcloud.gaussmod.pair.v4p" systemname="lcloud.gaussmod.pair" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.gaussmod.pair.v4p" id="26" nodename="lcloud.gaussmod.pair.v4p" systemname="lcloud.gaussmod.pair" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="270" left="1455" top="2970" type="Node" width="1740">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
@@ -374,7 +374,7 @@
    <LINKPOINT x="4630" y="1875">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="lcloud.gaussmod.pair.v4p" id="25" nodename="lcloud.gaussmod.pair.v4p" systemname="lcloud.gaussmod.pair" path="G:\vvvv\te_vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.gaussmod.pair.v4p" id="25" nodename="lcloud.gaussmod.pair.v4p" systemname="lcloud.gaussmod.pair" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="6015" top="3780" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
@@ -539,7 +539,7 @@
    <LINK dstnodeid="58" dstpinname="Y" srcnodeid="44" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="60" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
-   <BOUNDS height="100" left="5850" top="4905" type="Node" width="100">
+   <BOUNDS height="100" left="5790" top="5220" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Y" visible="1">
    </PIN>
@@ -582,46 +582,8 @@
    </NODE>
    <LINK dstnodeid="25" dstpinname="Scale" srcnodeid="61" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="4410" top="4890" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="-1" pintype="Input" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Switch" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="63">
-   <BOUNDS type="Node" left="4605" top="3840" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="4605" top="3840" width="480" height="480">
-   </BOUNDS>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Rotate X Enabled|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="63" srcpinname="Y Output Value" dstnodeid="62" dstpinname="Switch">
-   </LINK>
-   <NODE systemname="lcloud.gaussmod" filename="lcloud.gaussmod.v4p" nodename="lcloud.gaussmod.v4p" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="7860" top="4635" width="100" height="100">
+   <NODE componentmode="Hidden" filename="lcloud.gaussmod.v4p" id="64" nodename="lcloud.gaussmod.v4p" systemname="lcloud.gaussmod" path="C:\Users\thezer0ist\vvvv\lcloud\">
+   <BOUNDS height="100" left="7860" top="4635" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>
@@ -633,27 +595,25 @@
    </PIN>
    <PIN pinname="Spread Count" visible="1">
    </PIN>
-   <PIN pinname="Default Value" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Default Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    <PIN pinname="Scale" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="55" srcpinname="Output" dstnodeid="64" dstpinname="Enabled">
+   <LINK dstnodeid="64" dstpinname="Enabled" srcnodeid="55" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Deviation">
+   <LINK dstnodeid="64" dstpinname="Deviation" srcnodeid="39" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="41" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Random Seed">
+   <LINK dstnodeid="64" dstpinname="Random Seed" srcnodeid="41" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="37" srcpinname="Y Output Value" dstnodeid="64" dstpinname="FilterTime">
+   <LINK dstnodeid="64" dstpinname="FilterTime" srcnodeid="37" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Spread Count">
+   <LINK dstnodeid="64" dstpinname="Spread Count" srcnodeid="42" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Scale">
+   <LINK dstnodeid="64" dstpinname="Scale" srcnodeid="61" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="64" srcpinname="Output" dstnodeid="62" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Output" dstnodeid="60" dstpinname="X">
+   <LINK dstnodeid="60" dstpinname="X" srcnodeid="64" srcpinname="Output">
    </LINK>
    </PATCH>
