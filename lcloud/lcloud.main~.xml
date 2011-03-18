@@ -31,7 +31,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="405" top="2190" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="13350" left="5595" top="930" type="Window" width="13725">
+   <BOUNDS height="9555" left="3405" top="1245" type="Window" width="14445">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>

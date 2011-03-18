@@ -1,0 +1,285 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" systemname="lcloud.line1.timeline">
+   <BOUNDS height="6525" left="6345" top="7590" type="Window" width="4905">
+   </BOUNDS>
+   <NODE componentmode="InAWindow" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
+   <PIN pinname="Pin Settings" slicecount="4" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;142&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;180&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|">
+   </PIN>
+   <BOUNDS height="100" left="1185" top="3915" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="8625" left="1185" top="3915" type="Box" width="10290">
+   </BOUNDS>
+   <BOUNDS height="8400" left="6135" top="6225" type="Window" width="17850">
+   </BOUNDS>
+   <PIN pinname="Translate" slicecount="1" values="2.8767786026001">
+   </PIN>
+   <PIN pinname="Scale" slicecount="1" values="22.910820033567">
+   </PIN>
+   <PIN pinname="Translate Scale-Time0" slicecount="15" values="0.11808166346589,2.73999982833862,3.37999970436096,4.27057349977414,5.35999942779541,8.13272666079939,9.7160283574191,18.7513679434287,19.9331734676819,31.79871202241,34.3545334270193,35.5,36.5369107438688,38.6864111934462,39.9825512026977">
+   </PIN>
+   <PIN pinname="Translate Scale-Value0" slicecount="15" values="0.599999961853028,0.12,1.62000000953674,0.23239437333295,0.220000004768371,1.76140845368446,0.600000033378601,1.45774646040419,0.6,1.52112678826695,1.88028164816574,2,2.64084504187947,1.64788733065968,0.6">
+   </PIN>
+   <PIN pinname="Translate Scale-InType0" slicecount="15" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   </PIN>
+   <PIN pinname="Translate Scale-OutType0" slicecount="15" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   </PIN>
+   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;60&quot; /&gt;&lt;/GUI&gt;|">
+   </PIN>
+   <PIN pinname="Automata0-Time0" slicecount="4" values="0,20.0161075592041,40,1.7E308">
+   </PIN>
+   <PIN pinname="Automata0-Name0" slicecount="4" values="-INF,x,x,+INF">
+   </PIN>
+   <PIN pinname="Automata0-Events0" slicecount="4" values="|OnEnd next;|,|OnEnd loop;|,|OnEnd loop;|,|OnEnd pause;|">
+   </PIN>
+   <PIN pinname="Translate Scale" visible="1">
+   </PIN>
+   <PIN pinname="Play" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Automata0" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Rotate Scale-Time0" slicecount="18" values="0.252392347588026,2.90693759918213,4.0342101676405,4.4342102255703,5.01602804365237,5.54330079575216,6.25239167725745,8.61602827024854,9.68875512012766,13.9619398559432,16.5536212031236,20.1306787498615,30.9063835144043,32.5061369166333,35.5944020394403,36.6568474349351,39.0773948218335,39.7809429168643">
+   </PIN>
+   <PIN pinname="Rotate Scale-Value0" slicecount="18" values="0.8,0.916666686534882,1.31666663885117,1.16666666741172,1.50000000049671,0.933333341942893,1.69444444974264,1.76666662693024,0.8,2.34999999602636,2.23333333333333,0.866666666666667,1.83333337306976,2.18333335717519,2.70003333333333,2.88333335717519,2.21666669050852,0.8">
+   </PIN>
+   <PIN pinname="Rotate Scale-InType0" slicecount="18" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   </PIN>
+   <PIN pinname="Rotate Scale-OutType0" slicecount="18" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   </PIN>
+   <PIN pinname="Rotate Scale" visible="1">
+   </PIN>
+   <PIN pinname="Time In" visible="1">
+   </PIN>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <PIN pinname="Set Time" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="1440" top="4725" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="1440" top="4725" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Translate Scale|">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Translate Scale">
+   </LINK>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2580" top="4740" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="2580" top="4740" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Rotate Scale|">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="4" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Rotate Scale">
+   </LINK>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2310" top="3165" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="2310" top="3165" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="lcloud.transport.v4p" id="6" nodename="lcloud.transport.v4p" systemname="lcloud.transport" path="C:\Users\thezer0ist\vvvv\lcloud\">
+   <BOUNDS height="100" left="1815" top="2415" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Loop Start" visible="1">
+   </PIN>
+   <PIN pinname="Loop End" visible="1">
+   </PIN>
+   <PIN pinname="Loop" visible="1">
+   </PIN>
+   <PIN pinname="Reverse" pintype="Input" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Rate" visible="1">
+   </PIN>
+   <PIN pinname="Stop" visible="1">
+   </PIN>
+   <PIN pinname="Play/Pause" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3495" top="390" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="3495" top="390" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Loop Start|">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Loop Start" srcnodeid="8" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3495" top="855" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="3495" top="855" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="40">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Loop End|">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Loop End" srcnodeid="9" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="10" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2955" top="825" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="285" left="2955" top="825" type="Box" width="450">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Loop">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Loop" srcnodeid="10" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2250" top="375" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="2250" top="375" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Rate">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Rate" srcnodeid="11" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="1530" top="870" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="1530" top="870" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Stop">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Stop" srcnodeid="12" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="13" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="885" top="1320" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="885" top="1320" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Play/Pause">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Play/Pause" srcnodeid="13" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="945" top="5310" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="945" top="5310" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Time">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="14" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Time">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Set Time">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="0" dstpinname="Time In">
+   </LINK>
+   </PATCH>
