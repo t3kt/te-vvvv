@@ -3,13 +3,13 @@
    <BOUNDS height="6525" left="6345" top="7590" type="Window" width="4905">
    </BOUNDS>
    <NODE componentmode="InAWindow" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
-   <PIN pinname="Pin Settings" slicecount="4" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;142&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;180&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|">
+   <PIN pinname="Pin Settings" slicecount="4" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;True&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;142&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;158&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|">
    </PIN>
    <BOUNDS height="100" left="1185" top="3915" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="8625" left="1185" top="3915" type="Box" width="10290">
    </BOUNDS>
-   <BOUNDS height="8400" left="6135" top="6225" type="Window" width="17850">
+   <BOUNDS height="8400" left="6780" top="6540" type="Window" width="17850">
    </BOUNDS>
    <PIN pinname="Translate" slicecount="1" values="2.8767786026001">
    </PIN>
@@ -23,7 +23,7 @@
    </PIN>
    <PIN pinname="Translate Scale-OutType0" slicecount="15" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
    </PIN>
-   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;60&quot; /&gt;&lt;/GUI&gt;|">
+   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;43&quot; /&gt;&lt;/GUI&gt;|">
    </PIN>
    <PIN pinname="Automata0-Time0" slicecount="4" values="0,20.0161075592041,40,1.7E308">
    </PIN>
@@ -52,6 +52,14 @@
    <PIN pinname="Time" visible="1">
    </PIN>
    <PIN pinname="Set Time" visible="1">
+   </PIN>
+   <PIN pinname="Value0-Time0">
+   </PIN>
+   <PIN pinname="Value0-Value0">
+   </PIN>
+   <PIN pinname="Value0-InType0">
+   </PIN>
+   <PIN pinname="Value0-OutType0">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -131,6 +139,14 @@
    </PIN>
    <PIN pinname="Play/Pause" visible="1">
    </PIN>
+   <BOUNDS type="Window" left="13575" top="465" width="4755" height="6765">
+   </BOUNDS>
+   <PIN pinname="PlayPause" visible="1">
+   </PIN>
+   <PIN pinname="Play" visible="1">
+   </PIN>
+   <PIN pinname="Pause" visible="1">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="3495" top="390" type="Node" width="100">
@@ -185,15 +201,15 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Loop">
    </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="0">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
    <LINK dstnodeid="6" dstpinname="Loop" srcnodeid="10" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2250" top="375" type="Node" width="100">
+   <BOUNDS height="100" left="750" top="405" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2250" top="375" type="Box" width="795">
+   <BOUNDS height="240" left="750" top="405" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -206,60 +222,6 @@
    </NODE>
    <LINK dstnodeid="6" dstpinname="Rate" srcnodeid="11" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1530" top="870" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="480" left="1530" top="870" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Stop">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="6" dstpinname="Stop" srcnodeid="12" srcpinname="Y Output Value">
-   </LINK>
-   <NODE componentmode="InABox" id="13" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="885" top="1320" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="480" left="885" top="1320" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Play/Pause">
-   </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <LINK dstnodeid="6" dstpinname="Play/Pause" srcnodeid="13" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -281,5 +243,91 @@
    <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Set Time">
    </LINK>
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="0" dstpinname="Time In">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="6" dstpinname="PlayPause">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="18">
+   <BOUNDS type="Node" left="1365" top="240" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1365" top="240" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Play">
+   </PIN>
+   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Play">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="19">
+   <BOUNDS type="Node" left="1755" top="60" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1755" top="60" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Pause">
+   </PIN>
+   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Pause">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
+   <BOUNDS type="Node" left="2310" top="255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2310" top="255" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Stop">
+   </PIN>
+   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Stop">
    </LINK>
    </PATCH>

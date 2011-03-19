@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" locked="0" systemname="lcloud.main">
-   <BOUNDS height="4320" left="1170" top="1050" type="Window" width="2295">
+   <BOUNDS height="4320" left="0" top="0" type="Window" width="2295">
    </BOUNDS>
    <NODE componentmode="InABox" id="77" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="180" top="510" type="Node" width="100">
@@ -31,7 +31,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="405" top="2190" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="9555" left="2730" top="0" type="Window" width="14445">
+   <BOUNDS height="7650" left="2385" top="0" type="Window" width="14445">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -101,7 +101,7 @@
    </PIN>
    <PIN pinname="Period" pintype="Input" slicecount="1" visible="-1" values="3.79">
    </PIN>
-   <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.04">
+   <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.03">
    </PIN>
    <PIN pinname="Run" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
