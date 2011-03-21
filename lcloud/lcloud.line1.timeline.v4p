@@ -1,49 +1,49 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" systemname="lcloud.line1.timeline">
-   <BOUNDS height="6525" left="6345" top="7590" type="Window" width="4905">
+   <BOUNDS height="6525" left="15675" top="555" type="Window" width="5370">
    </BOUNDS>
    <NODE componentmode="InAWindow" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
-   <PIN pinname="Pin Settings" slicecount="4" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;True&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;142&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;158&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|">
+   <PIN pinname="Pin Settings" slicecount="6" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;137&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;145&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Period&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;141&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Linear&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;30.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Pause&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;110&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Step&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;1.0000&quot; /&gt;|">
    </PIN>
-   <BOUNDS height="100" left="1185" top="3915" type="Node" width="100">
+   <BOUNDS height="100" left="930" top="3960" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="8625" left="1185" top="3915" type="Box" width="10290">
+   <BOUNDS height="8625" left="930" top="3960" type="Box" width="10290">
    </BOUNDS>
-   <BOUNDS height="8400" left="6780" top="6540" type="Window" width="17850">
+   <BOUNDS height="10575" left="1305" top="2400" type="Window" width="22695">
    </BOUNDS>
-   <PIN pinname="Translate" slicecount="1" values="2.8767786026001">
+   <PIN pinname="Translate" slicecount="1" values="18.7074756622314">
    </PIN>
-   <PIN pinname="Scale" slicecount="1" values="22.910820033567">
+   <PIN pinname="Scale" slicecount="1" values="10.1844356726616">
    </PIN>
-   <PIN pinname="Translate Scale-Time0" slicecount="15" values="0.11808166346589,2.73999982833862,3.37999970436096,4.27057349977414,5.35999942779541,8.13272666079939,9.7160283574191,18.7513679434287,19.9331734676819,31.79871202241,34.3545334270193,35.5,36.5369107438688,38.6864111934462,39.9825512026977">
+   <PIN pinname="Translate Scale-Time0" slicecount="92" values="0.11808166346589,2.73999982833862,3.37999970436096,4.27057349977414,5.35999942779541,8.13272666079939,9.7160283574191,17.8121336791282,19.0132529388679,19.9331734676819,23.2680721282959,24.4029064178467,24.6647924415448,25.4504470825195,31.79871202241,34.3545334270193,35.5,36.5369107438688,38.6864111934462,39.9825512026977,40.7573686239712,40.7574686239712,41.1832057232843,41.4268787608849,41.7915413676497,42.2173773064655,42.2782096862793,42.4377274877635,42.4378274877635,44.0413278848093,44.0414278848093,44.0902938842773,44.1043141415594,44.1358528137207,44.1499705698832,44.1848053493405,44.2024370523723,44.2304725646973,44.2514991760254,44.2804555813165,44.2970593388418,44.4080898225039,44.5195828927326,44.6153335736231,44.7108823312092,44.8157145105906,44.8437486978801,44.9021833724395,45.1891359923892,45.7198600769043,45.7584088376043,45.8845672607422,45.8880728873247,45.9020918883181,45.9441452026367,45.947647071811,46.031756132821,46.0527826868602,46.0668004086493,46.2034720801622,46.3369445800781,46.3471551194182,46.5258788260454,46.7711906433105,46.8789666440548,46.9008570108258,46.9113680330684,46.9253870340618,46.9359016303879,46.9534225463867,46.9674415588379,46.9849624633789,47.0024833679199,47.0971031188965,47.1111231699382,47.8832977998413,48.042715056676,48.2818412780762,48.5687942504883,48.855747062625,49.5781239202566,49.7321510314941,49.9024100291543,50.4669627496228,51.7093252609946,51.9444309941635,67.4438433216246,69.1275484345347,70.5463594372395,74.6702957616224,77.5177803271003,80">
    </PIN>
-   <PIN pinname="Translate Scale-Value0" slicecount="15" values="0.599999961853028,0.12,1.62000000953674,0.23239437333295,0.220000004768371,1.76140845368446,0.600000033378601,1.45774646040419,0.6,1.52112678826695,1.88028164816574,2,2.64084504187947,1.64788733065968,0.6">
+   <PIN pinname="Translate Scale-Value0" slicecount="92" values="0.599999961853028,0.12,1.62000000953674,0.23239437333295,0.220000004768371,1.76140845368446,0.600000033378601,1.03521122898854,1.54225350265771,0.6,0.823943674564362,0.823943674564362,0.73943663231084,0.845070421695709,1.52112678826695,1.88028164816574,2,2.64084504187947,1.64788733065968,0.6,2.80985915492958,0,1.14084512750867,0.0422535731758871,1.83802817237209,0,2.02816898889945,2.47183098591549,0,2.61971830818015,0.380281606190641,2.68309855461121,0.464788734912872,2.68309855461121,0.211267605633803,2.34507044268326,0.612676103350143,2.38732385635376,0.464788734912872,1.98591548624173,1.07746483742351,0.633802778284315,2.49295769442975,0.485915563475918,2.19718318589976,2.57746480888044,1.14084515437274,0.232394413209297,1.81690145210481,1.33098590373993,0,1.33098594235702,2.30281688965542,0.29577460087521,1.79577469825745,0,1.83802821938421,2.87323940639765,0,0.316901386623651,1.28873239100819,0,1.85915487584933,2.13380289077759,0.443661985263019,2.3028169009887,0.338028175730101,2.3450703755231,0.190140784626275,2.32394361495972,0.52816901534376,2.32394361495972,0.549295783042908,2.42957735061646,0.992957801886007,2.87323941227416,0.232394366197183,2.7676055431366,2.19718313217163,1.09859156608582,0.380281683424829,1.66901409626007,0,0.591549277305603,2.0915493176017,0.46478863501213,2.17605635985522,0.6,1.53284672228959,1.05109490182278,0.722627748973178,0.6">
    </PIN>
-   <PIN pinname="Translate Scale-InType0" slicecount="15" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   <PIN pinname="Translate Scale-InType0" slicecount="92" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,2,2,2,2,2,2,2,2,2">
    </PIN>
-   <PIN pinname="Translate Scale-OutType0" slicecount="15" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   <PIN pinname="Translate Scale-OutType0" slicecount="92" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,2,2,2,2,2,2,2,2,2">
    </PIN>
-   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;43&quot; /&gt;&lt;/GUI&gt;|">
+   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;88&quot; /&gt;&lt;/GUI&gt;|">
    </PIN>
-   <PIN pinname="Automata0-Time0" slicecount="4" values="0,20.0161075592041,40,1.7E308">
+   <PIN pinname="Automata0-Time0" slicecount="6" values="0,20.0161075592041,40,60,80,1.7E308">
    </PIN>
-   <PIN pinname="Automata0-Name0" slicecount="4" values="-INF,x,x,+INF">
+   <PIN pinname="Automata0-Name0" slicecount="6" values="-INF,x,x,x,x,+INF">
    </PIN>
-   <PIN pinname="Automata0-Events0" slicecount="4" values="|OnEnd next;|,|OnEnd loop;|,|OnEnd loop;|,|OnEnd pause;|">
+   <PIN pinname="Automata0-Events0" slicecount="6" values="|OnEnd next;|,|OnEnd loop;|,|OnEnd loop;|,|OnEnd loop;|,|OnEnd loop;|,|OnEnd pause;|">
    </PIN>
    <PIN pinname="Translate Scale" visible="1">
    </PIN>
-   <PIN pinname="Play" visible="1" slicecount="1" values="0">
+   <PIN pinname="Play" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Automata0" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Rotate Scale-Time0" slicecount="18" values="0.252392347588026,2.90693759918213,4.0342101676405,4.4342102255703,5.01602804365237,5.54330079575216,6.25239167725745,8.61602827024854,9.68875512012766,13.9619398559432,16.5536212031236,20.1306787498615,30.9063835144043,32.5061369166333,35.5944020394403,36.6568474349351,39.0773948218335,39.7809429168643">
+   <PIN pinname="Rotate Scale-Time0" slicecount="69" values="0.252392347588026,2.90693759918213,4.0342101676405,4.4342102255703,5.01602804365237,5.54330079575216,6.25239167725745,8.61602827024854,9.68875512012766,13.9619398559432,15.3314912244071,16.808241879527,20.1306787498615,29.8151957036046,30.9063835144043,32.5061369166333,35.5944020394403,36.6568474349351,39.0773948218335,39.7809429168643,42.6862765721937,44.2432571304377,45.0960699546585,45.404461830995,45.5201072692871,45.5411351369039,45.5551503346578,45.5726724954875,45.5972061157227,45.6182327041352,45.6462669143403,45.6602859038758,45.7373822835652,45.7479956006871,45.9055950481544,45.9197128043169,45.9371363245555,45.9442452026367,46.0352592124528,46.0493769686153,46.0738067397797,46.3331375007492,46.4172439346039,46.4943402913777,46.5258799448406,46.5329888229218,46.5504124462805,46.5679332935326,46.7011031989914,46.7354787923305,46.8739740837568,48.0474582353421,48.0952504225224,48.1370663007908,48.2356389048137,48.325250276979,48.3419915827747,48.3973850390902,48.5081795020085,49.9024132412299,50.0905956587009,50.3325459154323,50.816448400952,52.0799679468943,66.9141637629211,68.092532288119,69.6828812116927,77.7141611737865,80.070697807569">
    </PIN>
-   <PIN pinname="Rotate Scale-Value0" slicecount="18" values="0.8,0.916666686534882,1.31666663885117,1.16666666741172,1.50000000049671,0.933333341942893,1.69444444974264,1.76666662693024,0.8,2.34999999602636,2.23333333333333,0.866666666666667,1.83333337306976,2.18333335717519,2.70003333333333,2.88333335717519,2.21666669050852,0.8">
+   <PIN pinname="Rotate Scale-Value0" slicecount="69" values="0.8,0.916666686534882,1.31666663885117,1.16666666741172,1.50000000049671,0.933333341942893,1.69444444974264,1.76666662693024,0.8,2.34999999602636,1.8915611814346,1.21518984625611,0.866666666666667,0.778481063963492,1.83333337306976,2.18333335717519,2.70003333333333,2.88333335717519,2.21666669050852,0.8,2.50632911392405,2.12658224830145,0.607594936708861,1.87974682186223,2.43037962913513,1.6518987628478,2.31645577768736,0.0569620947294597,2.1265823841095,1.44303791885134,2.03164561639858,1.00632912901383,2.29746836197527,0,1.34810122658935,0.056962061531936,2.44936707049985,0,2.88607591616957,0,2.25949366334118,0,0.303797470617898,1.21518988850751,2.94303799279129,0.493670886075949,1.97468352695055,0.360759493670886,1.95569620743583,0,2.63924052443685,1.40506328812128,0.0759493670886076,0.607594921996322,0.246835435870328,0.379746820730499,2.39240511912334,0.037974577915819,2.62025320982631,0,0.265822784810127,1.78481012582779,2.41139235979394,1.3101266366017,2.29746835443038,0.0949367088607595,0.8,1.11724140602967,0.8">
    </PIN>
-   <PIN pinname="Rotate Scale-InType0" slicecount="18" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   <PIN pinname="Rotate Scale-InType0" slicecount="69" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,2,0,2,2,2,0,0,0,2,0,2,2,2,2,2,2,2,2">
    </PIN>
-   <PIN pinname="Rotate Scale-OutType0" slicecount="18" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2">
+   <PIN pinname="Rotate Scale-OutType0" slicecount="69" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,2,0,2,2,2,0,0,0,2,0,2,2,2,2,2,2,2,2">
    </PIN>
    <PIN pinname="Rotate Scale" visible="1">
    </PIN>
@@ -53,19 +53,31 @@
    </PIN>
    <PIN pinname="Set Time" visible="1">
    </PIN>
-   <PIN pinname="Value0-Time0">
+   <PIN pinname="GRotate Period-Time0" slicecount="24" values="-0.0712995861901934,12.8793700710833,25.4429676287317,34.3249769777322,35.0593306569935,35.4766484864797,37.1574859619141,37.9442942024325,45.1149443831231,45.6665805513476,46.222278645609,46.2499063752014,46.5067972076993,46.8718906583621,48.0308744650463,48.5067583666343,49.4011532643297,50.7321665652236,51.5467722624835,52.3795665173313,65.7551124989408,68.6062443505605,70.4936585411864,77.7141584609236">
    </PIN>
-   <PIN pinname="Value0-Value0">
+   <PIN pinname="GRotate Period-Value0" slicecount="24" values="30,15.6000007629395,29.7999992370605,23.8,9.79999961853027,6,2.79999995231628,30,30,0.599999904632568,3.99999923706055,28.5999996185303,0.599999999999998,26.2,0.399999618530279,30,1.26382978723404,30,11.0000007629395,2.03829787234043,1.8,12.1999996185303,30,24.46808547162">
    </PIN>
-   <PIN pinname="Value0-InType0">
+   <PIN pinname="GRotate Period-InType0" slicecount="24" values="2,2,0,1,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,1,1,2,1">
    </PIN>
-   <PIN pinname="Value0-OutType0">
+   <PIN pinname="GRotate Period-OutType0" slicecount="24" values="2,2,0,1,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,1,1,2,1">
+   </PIN>
+   <PIN pinname="GRotate Period" visible="1">
+   </PIN>
+   <PIN pinname="GRotate Pause-Time0" slicecount="18" values="0,0.0001,1.32308862162875,7.50899728296639,12.4184483880346,14.4804198024335,16.1496325557882,37.7512220364112,39.8131902981888,54.7379251961584,55.8180045618639,57.290840172071,57.683596231411,59.450998903482,61.3165893786139,70.9391122373668,72.8047090780425,77.9105351920252">
+   </PIN>
+   <PIN pinname="GRotate Pause-Value0" slicecount="18" values="0,0.927272727272727,0,0.918181818181818,0,0.909090909090909,0,0.918181818181819,0,0.927272727272728,0,0.945454545454546,0,0.927272727272727,0,0.954545454545455,0.0181818268515849,0.954545454545455">
+   </PIN>
+   <PIN pinname="GRotate Pause-InType0" slicecount="18" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+   </PIN>
+   <PIN pinname="GRotate Pause-OutType0" slicecount="18" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+   </PIN>
+   <PIN pinname="GRotate Pause" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1440" top="4725" type="Node" width="100">
+   <BOUNDS height="100" left="1185" top="4770" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="1440" top="4725" type="Box" width="795">
+   <BOUNDS height="240" left="1185" top="4770" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -79,9 +91,9 @@
    <LINK dstnodeid="1" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Translate Scale">
    </LINK>
    <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2580" top="4740" type="Node" width="100">
+   <BOUNDS height="100" left="2325" top="4785" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2580" top="4740" type="Box" width="795">
+   <BOUNDS height="240" left="2325" top="4785" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -95,9 +107,9 @@
    <LINK dstnodeid="4" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Rotate Scale">
    </LINK>
    <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2310" top="3165" type="Node" width="100">
+   <BOUNDS height="100" left="2055" top="3210" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="480" left="2310" top="3165" type="Box" width="480">
+   <BOUNDS height="480" left="2055" top="3210" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -121,7 +133,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="lcloud.transport.v4p" id="6" nodename="lcloud.transport.v4p" systemname="lcloud.transport" path="C:\Users\thezer0ist\vvvv\lcloud\">
-   <BOUNDS height="100" left="1815" top="2415" type="Node" width="100">
+   <BOUNDS height="100" left="1560" top="2460" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -139,7 +151,7 @@
    </PIN>
    <PIN pinname="Play/Pause" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="13575" top="465" width="4755" height="6765">
+   <BOUNDS height="6765" left="13575" top="465" type="Window" width="4755">
    </BOUNDS>
    <PIN pinname="PlayPause" visible="1">
    </PIN>
@@ -149,9 +161,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="3495" top="390" type="Node" width="100">
+   <BOUNDS height="100" left="3105" top="435" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="3495" top="390" type="Box" width="795">
+   <BOUNDS height="240" left="3105" top="435" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -165,11 +177,11 @@
    <LINK dstnodeid="6" dstpinname="Loop Start" srcnodeid="8" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="3495" top="855" type="Node" width="100">
+   <BOUNDS height="100" left="3240" top="900" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="3495" top="855" type="Box" width="795">
+   <BOUNDS height="240" left="3240" top="900" type="Box" width="795">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="40">
+   <PIN pinname="Y Input Value" slicecount="1" values="50">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -181,9 +193,9 @@
    <LINK dstnodeid="6" dstpinname="Loop End" srcnodeid="9" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="10" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2955" top="825" type="Node" width="100">
+   <BOUNDS height="100" left="2700" top="870" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="285" left="2955" top="825" type="Box" width="450">
+   <BOUNDS height="285" left="2700" top="870" type="Box" width="450">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -207,9 +219,9 @@
    <LINK dstnodeid="6" dstpinname="Loop" srcnodeid="10" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="750" top="405" type="Node" width="100">
+   <BOUNDS height="100" left="210" top="390" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="750" top="405" type="Box" width="795">
+   <BOUNDS height="240" left="210" top="390" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -222,12 +234,10 @@
    </NODE>
    <LINK dstnodeid="6" dstpinname="Rate" srcnodeid="11" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="6" dstpinname="Play/Pause" srcnodeid="13" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="945" top="5310" type="Node" width="100">
+   <BOUNDS height="100" left="690" top="5355" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="945" top="5310" type="Box" width="795">
+   <BOUNDS height="240" left="690" top="5355" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -240,16 +250,14 @@
    </NODE>
    <LINK dstnodeid="14" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Time">
    </LINK>
-   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Set Time">
+   <LINK dstnodeid="0" dstpinname="Set Time" srcnodeid="5" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="0" dstpinname="Time In">
+   <LINK dstnodeid="0" dstpinname="Time In" srcnodeid="6" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="6" dstpinname="PlayPause">
-   </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="18">
-   <BOUNDS type="Node" left="1365" top="240" width="100" height="100">
+   <NODE componentmode="InABox" id="18" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="1110" top="285" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1365" top="240" width="480" height="480">
+   <BOUNDS height="480" left="1110" top="285" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -267,17 +275,17 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Play">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Play">
+   <LINK dstnodeid="6" dstpinname="Play" srcnodeid="18" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="19">
-   <BOUNDS type="Node" left="1755" top="60" width="100" height="100">
+   <NODE componentmode="InABox" id="19" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="1620" top="210" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1755" top="60" width="480" height="480">
+   <BOUNDS height="480" left="1620" top="210" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -295,17 +303,17 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Pause">
+   <LINK dstnodeid="6" dstpinname="Pause" srcnodeid="19" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
-   <BOUNDS type="Node" left="2310" top="255" width="100" height="100">
+   <NODE componentmode="InABox" id="20" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2235" top="180" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2310" top="255" width="480" height="480">
+   <BOUNDS height="480" left="2235" top="180" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -323,11 +331,53 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Stop">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Stop">
+   <LINK dstnodeid="6" dstpinname="Stop" srcnodeid="20" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="21" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="3315" top="4800" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="3315" top="4800" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|GRotate Period|">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="21" dstpinname="Y Input Value" srcnodeid="0" srcpinname="GRotate Period">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="22">
+   <BOUNDS type="Node" left="4425" top="4650" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4425" top="4650" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|GRotate Pause|">
+   </PIN>
+   <PIN pinname="X Input Value" visible="-1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="GRotate Pause" dstnodeid="22" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
