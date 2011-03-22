@@ -614,6 +614,6 @@
    </LINK>
    <LINK dstnodeid="64" dstpinname="Scale" srcnodeid="61" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="64" srcpinname="Output" dstnodeid="60" dstpinname="X">
+   <LINK dstnodeid="60" dstpinname="X" srcnodeid="64" srcpinname="Output">
    </LINK>
    </PATCH>

@@ -2,7 +2,7 @@
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.timeline.v4p" systemname="lcloud.line1.timeline">
    <BOUNDS height="6525" left="15675" top="555" type="Window" width="5370">
    </BOUNDS>
-   <NODE componentmode="InAWindow" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
+   <NODE componentmode="Hidden" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
    <PIN pinname="Pin Settings" slicecount="6" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;137&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;145&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Period&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;141&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Linear&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;30.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Pause&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;110&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Step&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;1.0000&quot; /&gt;|">
    </PIN>
    <BOUNDS height="100" left="930" top="3960" type="Node" width="100">
@@ -63,13 +63,13 @@
    </PIN>
    <PIN pinname="GRotate Period" visible="1">
    </PIN>
-   <PIN pinname="GRotate Pause-Time0" slicecount="18" values="0,0.0001,1.32308862162875,7.50899728296639,12.4184483880346,14.4804198024335,16.1496325557882,37.7512220364112,39.8131902981888,54.7379251961584,55.8180045618639,57.290840172071,57.683596231411,59.450998903482,61.3165893786139,70.9391122373668,72.8047090780425,77.9105351920252">
+   <PIN pinname="GRotate Pause-Time0" slicecount="17" values="-1.17816852519791,1.32308862162875,7.50899728296639,12.4184483880346,14.4804198024335,16.1496325557882,37.7512220364112,39.8131902981888,54.7379251961584,55.8180045618639,57.290840172071,57.683596231411,59.450998903482,61.3165893786139,70.9391122373668,72.8047090780425,77.9105351920252">
    </PIN>
-   <PIN pinname="GRotate Pause-Value0" slicecount="18" values="0,0.927272727272727,0,0.918181818181818,0,0.909090909090909,0,0.918181818181819,0,0.927272727272728,0,0.945454545454546,0,0.927272727272727,0,0.954545454545455,0.0181818268515849,0.954545454545455">
+   <PIN pinname="GRotate Pause-Value0" slicecount="17" values="0.909090909090909,0,0.918181818181818,0,0.909090909090909,0,0.918181818181819,0,0.927272727272728,0,0.945454545454546,0,0.927272727272727,0,0.954545454545455,0.0181818268515849,0.954545454545455">
    </PIN>
-   <PIN pinname="GRotate Pause-InType0" slicecount="18" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+   <PIN pinname="GRotate Pause-InType0" slicecount="17" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
    </PIN>
-   <PIN pinname="GRotate Pause-OutType0" slicecount="18" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+   <PIN pinname="GRotate Pause-OutType0" slicecount="17" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
    </PIN>
    <PIN pinname="GRotate Pause" visible="1">
    </PIN>

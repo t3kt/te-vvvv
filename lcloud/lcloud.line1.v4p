@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.v4p" locked="0" systemname="lcloud.line1">
-   <BOUNDS height="7650" left="2520" top="0" type="Window" width="14445">
+   <BOUNDS height="7890" left="2520" top="0" type="Window" width="14445">
    </BOUNDS>
    <NODE componentmode="InABox" id="30" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="7845" top="1845" type="Node" width="100">
@@ -851,7 +851,7 @@
    <NODE componentmode="Hidden" filename="lcloud.line1.core.v4p" hiddenwhenlocked="1" id="286" nodename="lcloud.line1.core.v4p" systemname="lcloud.line1.core" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="4320" top="5880" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="10200" left="1185" top="3735" type="Window" width="21210">
+   <BOUNDS height="10200" left="3240" top="645" type="Window" width="21210">
    </BOUNDS>
    <PIN pinname="Alpha Scale" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
@@ -1050,7 +1050,7 @@
    <PIN pinname="Show Characters [#0..#32,#127]" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" filename="lcloud.line1.timeline.v4p" id="292" nodename="lcloud.line1.timeline.v4p" systemname="lcloud.line1.timeline" path="C:\Users\thezer0ist\vvvv\lcloud\">
+   <NODE componentmode="Hidden" filename="lcloud.line1.timeline.v4p" id="292" nodename="lcloud.line1.timeline.v4p" systemname="lcloud.line1.timeline" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="11085" top="4440" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="6525" left="15675" top="555" type="Window" width="5370">
