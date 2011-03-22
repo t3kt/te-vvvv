@@ -851,7 +851,7 @@
    <NODE componentmode="Hidden" filename="lcloud.line1.core.v4p" hiddenwhenlocked="1" id="286" nodename="lcloud.line1.core.v4p" systemname="lcloud.line1.core" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="4320" top="5880" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="10200" left="1185" top="3735" type="Window" width="21210">
+   <BOUNDS height="10200" left="3240" top="645" type="Window" width="21210">
    </BOUNDS>
    <PIN pinname="Alpha Scale" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>

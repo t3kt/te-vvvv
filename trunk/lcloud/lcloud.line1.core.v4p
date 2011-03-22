@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.line1.core.v4p" filename="G:\vvvv\te_vvvv\lcloud\lcloud.line1.core.v4p" systemname="lcloud.line1.core">
-   <BOUNDS height="10200" left="1185" top="3735" type="Window" width="21210">
+   <BOUNDS height="10200" left="3240" top="645" type="Window" width="21210">
    </BOUNDS>
    <NODE componentmode="Hidden" id="112" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
    <BOUNDS height="270" left="1035" top="8385" type="Node" width="2475">
@@ -928,12 +928,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="112" dstpinname="Color" linkstyle="Bezier" srcnodeid="79" srcpinname="Output">
-   <LINKPOINT x="14175" y="5985">
-   </LINKPOINT>
-   <LINKPOINT x="2550" y="5985">
-   </LINKPOINT>
-   </LINK>
    <NODE componentmode="InABox" id="78" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="2085" top="8745" type="Node" width="100">
    </BOUNDS>
@@ -1934,16 +1928,22 @@
    <PIN pinname="Y Input Value" slicecount="1" values="0.39">
    </PIN>
    </NODE>
-   <LINK dstnodeid="93" dstpinname="Translate XZ Scale" linkstyle="Bezier" srcnodeid="116" srcpinname="Y Output Value">
+   <LINK dstnodeid="82" dstpinname="OSC On" linkstyle="Bezier" srcnodeid="85" srcpinname="Y Output Value">
+   <LINKPOINT x="2265" y="1365">
+   </LINKPOINT>
+   <LINKPOINT x="2535" y="1365">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="116" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Translate XZ Scale" linkstyle="Bezier">
    <LINKPOINT x="6405" y="3990">
    </LINKPOINT>
    <LINKPOINT x="4065" y="3990">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="82" dstpinname="OSC On" linkstyle="Bezier" srcnodeid="85" srcpinname="Y Output Value">
-   <LINKPOINT x="2265" y="1365">
+   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="112" dstpinname="Color" linkstyle="Bezier">
+   <LINKPOINT x="14175" y="5985">
    </LINKPOINT>
-   <LINKPOINT x="2535" y="1365">
+   <LINKPOINT x="2550" y="5985">
    </LINKPOINT>
    </LINK>
    </PATCH>
