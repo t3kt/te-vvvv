@@ -104,6 +104,8 @@ namespace VVVV.Nodes
 				{
 					_Output.AssignFrom(input.ToList());
 					_LastIndexOutput[0] = index;
+					_LastIndexOutput[0] = _Inputs.Count - index - 1;
+					//_LastIndexOutput[0] = input.PluginIO.Order;
 					break;
 				}
 				index++;
