@@ -9,13 +9,19 @@ namespace Animator.Core.Model
 
 	#region IDocumentItem
 
-	public interface IDocumentItem : IGuidId, INamed
+	public interface IDocumentItem : IGuidId, INamed, IXElementWritable
 	{
 
 		IDocumentItem Parent { get; }
 
 		[NotNull]
 		IDocument Document { get; }
+
+		[NotNull]
+		IEnumerable<IDocumentItem> Children { get; }
+
+		[CanBeNull]
+		IDocumentItem GetItem(Guid id);
 
 	}
 

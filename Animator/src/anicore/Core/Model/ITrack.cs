@@ -11,6 +11,8 @@ namespace Animator.Core.Model
 	public interface ITrack : IDocumentItem, IClipContainer
 	{
 
+		Guid? OutputId { get; set; }
+
 		IOutput Output { get; set; }
 
 	}

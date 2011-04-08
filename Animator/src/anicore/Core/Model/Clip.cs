@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using Animator.Core.Transport;
 
 namespace Animator.Core.Model
@@ -11,46 +12,119 @@ namespace Animator.Core.Model
 
 	#region Clip
 
-	public abstract class Clip : DocumentItem, IClip
+	public class Clip : DocumentItem, IClip
 	{
 
 		#region Static / Constant
-
-		internal static IClip ReadClipXElement(IDocument document, IDocumentItem parent, XElement element)
-		{
-			throw new NotImplementedException();
-		}
 
 		#endregion
 
 		#region Fields
 
+		private string _ClipType;
+		private Dictionary<string, string> _Parameters;
+		private Time _Duration;
+		private int _TriggerAlignment;
+
 		#endregion
 
 		#region Properties
+
+		public string ClipType
+		{
+			get { return _ClipType; }
+			internal set
+			{
+				if(value != _ClipType)
+				{
+					_ClipType = value;
+					OnClipTypeChanged();
+				}
+			}
+		}
+
+		public Dictionary<string, string> Parameters
+		{
+			get { return _Parameters ?? (_Parameters = new Dictionary<string, string>()); }
+			protected set { _Parameters = value; }
+		}
+
+		public Time Duration
+		{
+			get { return _Duration; }
+			set
+			{
+				if(value != _Duration)
+				{
+					_Duration = value;
+					OnPropertyChanged("Duration");
+				}
+			}
+		}
+
+		public int TriggerAlignment
+		{
+			get { return _TriggerAlignment; }
+			set
+			{
+				if(value != _TriggerAlignment)
+				{
+					_TriggerAlignment = value;
+					OnPropertyChanged("TriggerAlignment");
+				}
+			}
+		}
 
 		#endregion
 
 		#region Constructors
 
-		#endregion
-
-		#region Methods
-
-		protected override void ReadXElement(XElement element)
+		public Clip(IDocumentItem parent, Guid id)
 		{
-			base.ReadXElement(element);
-			this.Duration = (float)element.Attribute(Schema.clip_dur);
-			this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Model.Document.NoAlignment;
+			this.Parent = parent;
+			this.Id = id;
+		}
+
+		public Clip(IDocumentItem parent, XElement element)
+		{
+			this.Parent = parent;
+			ReadXElement(element);
 		}
 
 		#endregion
 
-		#region IClip Members
+		#region Methods
 
-		public virtual Time Duration { get; set; }
+		protected virtual void OnClipTypeChanged()
+		{
+			OnPropertyChanged("ClipType");
+		}
 
-		public virtual int TriggerAlignment { get; set; }
+		protected void ReadXElement(XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			SuspendNotify();
+			try
+			{
+				this.Id = (Guid)element.Attribute(Schema.clip_id);
+				this.Name = (string)element.Attribute(Schema.clip_name);
+				this.Duration = (float)element.Attribute(Schema.clip_dur);
+				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Model.Document.NoAlignment;
+				this.ClipType = (string)element.Attribute(Schema.clip_type);
+				_Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.clip_params));
+				//.. other misc attributes?
+			}
+			finally
+			{
+				ResumeNotify();
+			}
+		}
+
+		public override XElement WriteXElement(XName name)
+		{
+			//return new XElement(name??Schema.clip,
+			throw new NotImplementedException();
+		}
 
 		#endregion
 

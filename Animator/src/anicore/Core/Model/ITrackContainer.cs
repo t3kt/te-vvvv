@@ -9,7 +9,7 @@ namespace Animator.Core.Model
 
 	#region ITrackContainer
 
-	public interface ITrackContainer : IDocumentItemContainer
+	public interface ITrackContainer : IDocumentItem
 	{
 
 		IEnumerable<ITrack> Tracks { get; }

@@ -9,7 +9,7 @@ namespace Animator.Core.Model
 
 	#region IOutputContainer
 
-	public interface IOutputContainer : IDocumentItemContainer
+	public interface IOutputContainer : IDocumentItem
 	{
 
 		IEnumerable<IOutput> Outputs { get; }

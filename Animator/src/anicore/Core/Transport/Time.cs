@@ -9,7 +9,7 @@ namespace Animator.Core.Transport
 
 	#region Time
 
-	public struct Time
+	public struct Time : IEquatable<Time>
 	{
 
 		#region Static / Constant
@@ -22,6 +22,21 @@ namespace Animator.Core.Transport
 		public static implicit operator Time(float beats)
 		{
 			return new Time(beats);
+		}
+
+		public static explicit operator float(Time time)
+		{
+			return time._Beats;
+		}
+
+		public static bool operator ==(Time x, Time y)
+		{
+			return x._Beats == y._Beats;
+		}
+
+		public static bool operator !=(Time x, Time y)
+		{
+			return x._Beats != y._Beats;
 		}
 
 		public static readonly Time Infinite = new Time(Single.PositiveInfinity);
@@ -68,6 +83,32 @@ namespace Animator.Core.Transport
 		{
 			Require.ArgNotNull(transport, "transport");
 			return TimeSpan.FromTicks(BeatsToTicks(_Beats, transport.BeatsPerMinute));
+		}
+
+		public override string ToString()
+		{
+			if(this == Infinite)
+				return "Infinite";
+			return _Beats.ToString();
+		}
+
+		public override bool Equals(object obj)
+		{
+			return obj is Time && Equals((Time)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return _Beats.GetHashCode();
+		}
+
+		#endregion
+
+		#region IEquatable<Time> Members
+
+		public bool Equals(Time other)
+		{
+			return this._Beats == other._Beats;
 		}
 
 		#endregion
