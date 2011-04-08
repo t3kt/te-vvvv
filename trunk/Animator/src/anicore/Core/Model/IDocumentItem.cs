@@ -21,4 +21,13 @@ namespace Animator.Core.Model
 
 	#endregion
 
+	#region IInternalDocumentItem
+
+	internal interface IInternalDocumentItem
+	{
+		void SetParent(IDocumentItem parent);
+	}
+
+	#endregion
+
 }

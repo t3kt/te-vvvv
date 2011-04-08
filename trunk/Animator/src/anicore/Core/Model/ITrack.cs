@@ -8,12 +8,8 @@ namespace Animator.Core.Model
 
 	#region ITrack
 
-	public interface ITrack : IDocumentItem, IDocumentItemContainer
+	public interface ITrack : IDocumentItem, IClipContainer
 	{
-
-		ICollection<IClip> Clips { get; set; }
-
-		IClip GetClip(Guid id);
 
 		IOutput Output { get; set; }
 
