@@ -11,6 +11,8 @@ namespace Animator.Core.Model
 	public interface IOutput : IDocumentItem
 	{
 
+		string OutputType { get; }
+
 	}
 
 	#endregion

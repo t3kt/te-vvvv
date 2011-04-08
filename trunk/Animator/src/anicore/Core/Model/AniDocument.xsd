@@ -17,11 +17,11 @@
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element name="param">
 					<xs:complexType>
-						<xs:sequence minOccurs="0">
-							<xs:any namespace="##any"/>
-						</xs:sequence>
-						<xs:attribute name="key" type="xs:string"/>
-						<xs:anyAttribute namespace="##any"/>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="key" type="xs:string" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
@@ -83,6 +83,9 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="DocumentItemType">
+					<xs:sequence minOccurs="0">
+						<xs:any namespace="##other"/>
+					</xs:sequence>
 					<xs:attribute name="type" type="xs:string"/>
 					<xs:attribute name="dur" use="required">
 						<xs:simpleType>
@@ -92,6 +95,7 @@
 						</xs:simpleType>
 					</xs:attribute>
 					<xs:attribute name="align" type="xs:nonNegativeInteger"/>
+					<xs:anyAttribute namespace="##other"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>

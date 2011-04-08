@@ -9,7 +9,7 @@ namespace Animator.Core.Model
 
 	#region IClipContainer
 
-	public interface IClipContainer : IDocumentItemContainer
+	public interface IClipContainer : IDocumentItem
 	{
 
 		IEnumerable<IClip> Clips { get; }

@@ -44,7 +44,8 @@ namespace Animator.Core.Model
 		public static readonly XName clip_params = "params";
 
 		public static readonly XName @params = "params";
-		public static readonly XName param = "param";
+		public static readonly XName params_param = "param";
+		public static readonly XName params_param_key = "key";
 
 	}
 

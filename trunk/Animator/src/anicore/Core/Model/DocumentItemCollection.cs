@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Animator.Common.Diagnostics;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
@@ -68,6 +69,7 @@ namespace Animator.Core.Model
 			return _Lookup.TryGetValue(id, out value);
 		}
 
+		[CanBeNull]
 		public T GetItem(Guid id)
 		{
 			T item;
@@ -80,14 +82,14 @@ namespace Animator.Core.Model
 			return TryGetItem(id, out item) && this.Remove(item);
 		}
 
-		public void AddRange(IEnumerable<T> items)
+		public void AddRange([NotNull] IEnumerable<T> items)
 		{
 			Require.ArgNotNull(items, "items");
 			foreach(var item in items)
 				Add(item);
 		}
 
-		internal void ReplaceAll(IEnumerable<T> items)
+		internal void ReplaceAll([NotNull] IEnumerable<T> items)
 		{
 			Require.ArgNotNull(items, "items");
 			Clear();

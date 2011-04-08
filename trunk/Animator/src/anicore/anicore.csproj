@@ -39,7 +39,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ActionScope.cs" />
+    <Compile Include="Common\CommonUtil.cs" />
     <Compile Include="Common\Diagnostics\Require.cs" />
+    <Compile Include="Common\ISuspendableNotify.cs" />
+    <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
     <Compile Include="Core\Model\DocumentItem.cs" />
@@ -48,7 +52,6 @@
     <Compile Include="Core\Model\IClipContainer.cs" />
     <Compile Include="Core\Model\IDocument.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
-    <Compile Include="Core\Model\IDocumentItemContainer.cs" />
     <Compile Include="Core\Model\INamed.cs" />
     <Compile Include="Core\Model\IOutput.cs" />
     <Compile Include="Core\Model\IOutputContainer.cs" />
