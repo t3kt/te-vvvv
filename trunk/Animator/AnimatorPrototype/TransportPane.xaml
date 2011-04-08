@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+	x:Class="AnimatorPrototype.TransportPane"
+	x:Name="UserControl" mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style x:Key="TransportButtonStyle" TargetType="{x:Type ButtonBase}">
+			<Setter Property="Width" Value="20"/>
+			<Setter Property="Height" Value="20"/>
+			<Setter Property="Margin" Value="2"/>
+			<Setter Property="Padding" Value="4"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ButtonBase}">
+						<!--<Microsoft_Windows_Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding Button.IsDefaulted}" SnapsToDevicePixels="True">
+							<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Microsoft_Windows_Themes:ButtonChrome>-->
+						<Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0">
+							<ContentPresenter Content="{TemplateBinding Content}" Margin="4" RecognizesAccessKey="True" SnapsToDevicePixels="True"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Border Background="{DynamicResource PaneBackgroundBrush}" BorderBrush="{DynamicResource ForegroundBrush}" BorderThickness="2" CornerRadius="4">
+		<StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
+			<Button Background="{DynamicResource PreviousButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+			<Button Background="{DynamicResource StopButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+			<Button Background="{DynamicResource PlayButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+			<Button Background="{DynamicResource PauseButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+			<Button Background="{DynamicResource NextButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+		</StackPanel>
+	</Border>
+</UserControl>

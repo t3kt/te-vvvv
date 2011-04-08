@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Animator.Core.Model.IClip">
+    <Position X="8.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Model\IClip.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Animator.Core.Model.IDocument">
+    <Position X="3" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="GetOutput" Hidden="true" />
+      <Method Name="GetTrack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAIAAACEACQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Model\IDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+      <Property Name="Outputs" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="Animator.Core.Model.ITrack">
+    <Position X="6" Y="3.5" Width="1.75" />
+    <Members>
+      <Method Name="GetClip" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Model\ITrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Output" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Clips" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="Animator.Core.Model.IOutput">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Model\IOutput.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

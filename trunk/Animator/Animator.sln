@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prototype", "AnimatorPrototype\prototype.csproj", "{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anicore", "src\anicore\anicore.csproj", "{178A8297-5804-43DE-A57C-CED633602BD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{178A8297-5804-43DE-A57C-CED633602BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178A8297-5804-43DE-A57C-CED633602BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178A8297-5804-43DE-A57C-CED633602BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178A8297-5804-43DE-A57C-CED633602BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
