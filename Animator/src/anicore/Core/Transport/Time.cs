@@ -19,6 +19,13 @@ namespace Animator.Core.Transport
 			return (long)(beats * beatsPerMinute * TimeSpan.TicksPerMinute);
 		}
 
+		public static implicit operator Time(float beats)
+		{
+			return new Time(beats);
+		}
+
+		public static readonly Time Infinite = new Time(Single.PositiveInfinity);
+
 		#endregion
 
 		#region Fields

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" id="AniDocument">
+	<xs:simpleType name="Guid">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\{?[a-fA-F0-9]{8}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{4}-?[a-fA-F0-9]{12}\}?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DocumentItemType">
+		<xs:sequence>
+			<xs:element ref="params" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="Guid" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="params">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="param">
+					<xs:complexType>
+						<xs:sequence minOccurs="0">
+							<xs:any namespace="##any"/>
+						</xs:sequence>
+						<xs:attribute name="key" type="xs:string"/>
+						<xs:anyAttribute namespace="##any"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="paramKeyUnique">
+			<xs:selector xpath="param"/>
+			<xs:field xpath="@key"/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="anidoc">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentItemType">
+					<xs:choice>
+						<xs:element ref="output" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="track" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:choice>
+					<xs:attribute name="bpm" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minExclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="dur">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minExclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="align" type="xs:nonNegativeInteger"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="output">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentItemType">
+					<xs:attribute name="type" type="xs:string"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="track">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentItemType">
+					<xs:sequence>
+						<xs:element ref="clip" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="output" type="Guid"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="clip">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentItemType">
+					<xs:attribute name="type" type="xs:string"/>
+					<xs:attribute name="dur" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minExclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="align" type="xs:nonNegativeInteger"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

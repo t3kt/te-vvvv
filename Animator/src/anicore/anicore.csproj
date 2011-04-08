@@ -36,19 +36,34 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Diagnostics\Require.cs" />
+    <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
+    <Compile Include="Core\Model\DocumentItem.cs" />
     <Compile Include="Core\Model\DocumentItemCollection.cs" />
     <Compile Include="Core\Model\IClip.cs" />
+    <Compile Include="Core\Model\IClipContainer.cs" />
     <Compile Include="Core\Model\IDocument.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
     <Compile Include="Core\Model\IDocumentItemContainer.cs" />
     <Compile Include="Core\Model\INamed.cs" />
     <Compile Include="Core\Model\IOutput.cs" />
+    <Compile Include="Core\Model\IOutputContainer.cs" />
     <Compile Include="Core\Model\ITrack.cs" />
     <Compile Include="Core\Model\IGuidId.cs" />
+    <Compile Include="Core\Model\ITrackContainer.cs" />
+    <Compile Include="Core\Model\ModelUtil.cs" />
+    <Compile Include="Core\Model\Output.cs" />
+    <Compile Include="Core\Model\Schema.cs" />
+    <Compile Include="Core\Model\Track.cs" />
+    <Compile Include="Core\Runtime\RuntimeClip.cs" />
+    <Compile Include="Core\Runtime\RuntimeClipCollection.cs" />
+    <Compile Include="Core\Runtime\RuntimeDocument.cs" />
+    <Compile Include="Core\Runtime\RuntimeOutput.cs" />
+    <Compile Include="Core\Runtime\RuntimeTrack.cs" />
     <Compile Include="Core\Transport\ClipState.cs" />
     <Compile Include="Core\Transport\IPlayable.cs" />
     <Compile Include="Core\Transport\TriggerBehavior.cs" />
@@ -60,8 +75,12 @@
     <Compile Include="..\shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Core\Model\AniDocument.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Core\Model\_ModelClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

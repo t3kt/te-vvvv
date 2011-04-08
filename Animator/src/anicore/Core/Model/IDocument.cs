@@ -9,7 +9,7 @@ namespace Animator.Core.Model
 
 	#region IDocument
 
-	public interface IDocument : IDocumentItem, IDocumentItemContainer
+	public interface IDocument : IDocumentItem, IClipContainer, IOutputContainer, ITrackContainer
 	{
 
 		Time Duration { get; set; }
@@ -17,14 +17,6 @@ namespace Animator.Core.Model
 		float BeatsPerMinute { get; set; }
 
 		int TriggerAlignment { get; set; }
-
-		ICollection<ITrack> Tracks { get; set; }
-
-		ITrack GetTrack(Guid id);
-
-		ICollection<IOutput> Outputs { get; set; }
-
-		IOutput GetOutput(Guid id);
 
 	}
 
