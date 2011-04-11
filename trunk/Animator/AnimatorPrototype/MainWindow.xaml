@@ -5,11 +5,12 @@
 	x:Class="AnimatorPrototype.MainWindow"
 	x:Name="Window"
 	Title="MainWindow"
-	Width="788" Height="558">
+	Width="1030" Height="624">
 
 	<Canvas x:Name="LayoutRoot">
-		<local:TimelineGroup Height="478" VerticalAlignment="Top" Canvas.Left="80" Canvas.Top="82"/>
+		<local:TimelineGroup Height="402" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="79" Width="444" />
 		<local:Transport VerticalAlignment="Top" Canvas.Left="100" Canvas.Top="30"/>
 		<local:TransportPane Canvas.Left="310" Canvas.Top="30"/>
+		<local:DocumentPropertiesPane Canvas.Left="526" Canvas.Top="170" x:Name="documentPropertiesPane1" Height="207" Width="297" />
 	</Canvas>
 </Window>

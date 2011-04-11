@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
+using System.Windows.Data;
 using Animator.Common.Diagnostics;
 
 namespace Animator.Core.Transport
@@ -9,6 +12,7 @@ namespace Animator.Core.Transport
 
 	#region Time
 
+	[TypeConverter(typeof(TimeConverter))]
 	public struct Time : IEquatable<Time>, IComparable<Time>, IComparable
 	{
 
@@ -84,6 +88,35 @@ namespace Animator.Core.Transport
 		internal static long BeatsToTicks(float beats, float beatsPerMinute)
 		{
 			return (long)(beats * beatsPerMinute * TimeSpan.TicksPerMinute);
+		}
+
+		public static bool TryParse(string value, out Time time)
+		{
+			if(!String.IsNullOrEmpty(value))
+			{
+				if(String.Equals(value.Trim(), "inf", StringComparison.OrdinalIgnoreCase) ||
+					String.Equals(value.Trim(), "infinite", StringComparison.OrdinalIgnoreCase))
+				{
+					time = Infinite;
+					return true;
+				}
+				float f;
+				if(Single.TryParse(value, out f))
+				{
+					time = new Time(f);
+					return true;
+				}
+			}
+			time = default(Time);
+			return false;
+		}
+
+		public static Time Parse(string value)
+		{
+			Time time;
+			if(!TryParse(value, out time))
+				throw new ArgumentException(String.Format("Cannot parse string as Time: '{0}", value), "value");
+			return time;
 		}
 
 		#endregion
@@ -176,6 +209,128 @@ namespace Animator.Core.Transport
 			if(obj is Time)
 				return CompareTo((Time)obj);
 			return this._Beats.CompareTo(obj);
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
+	//#region TimeValueConverter
+
+	//[ValueConversion(typeof(Time), typeof(string))]
+	//internal class TimeValueConverter : IValueConverter
+	//{
+
+	//    #region Static/Constant
+
+	//    #endregion
+
+	//    #region Fields
+
+	//    #endregion
+
+	//    #region Properties
+
+	//    #endregion
+
+	//    #region Constructors
+
+	//    #endregion
+
+	//    #region Methods
+
+	//    #endregion
+
+	//    #region IValueConverter Members
+
+	//    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+	//    {
+	//        var time = (Time)value;
+	//        return time.ToString();
+	//    }
+
+	//    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+	//    {
+	//        if(value == null)
+	//            return null;
+	//        var str = value.ToString();
+	//        float f;
+	//        if(Single.TryParse(str, out f))
+	//            return new Time(f);
+	//        return value;
+	//    }
+
+	//    #endregion
+	//}
+
+	//#endregion
+
+	#region TimeConverter
+
+	internal class TimeConverter : TypeConverter
+	{
+
+		#region Static/Constant
+
+		#endregion
+
+		#region Fields
+
+		#endregion
+
+		#region Properties
+
+		#endregion
+
+		#region Constructors
+
+		#endregion
+
+		#region Methods
+
+		public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+		{
+			return sourceType == typeof(string) || sourceType == typeof(float);
+		}
+
+		//public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+		//{
+		//    return destinationType == typeof(InstanceDescriptor) || base.CanConvertFrom(context, destinationType);
+		//}
+
+		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+		{
+			return destinationType == typeof(string) || destinationType == typeof(float) ||
+				base.CanConvertTo(context, destinationType);
+		}
+
+		public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+		{
+			if(value == null)
+				throw this.GetConvertFromException(value);
+			if(value is string)
+			{
+				return Time.Parse((string)value);
+			}
+			if(value is float)
+			{
+				return new Time((float)value);
+			}
+			throw new ArgumentException("Cannot parse value as Time", "value");
+		}
+
+		public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+		{
+			if(value is Time)
+			{
+				if(destinationType == typeof(string))
+					return value.ToString();
+				if(destinationType == typeof(float))
+					return (float)((Time)value);
+			}
+			return base.ConvertTo(context, culture, value, destinationType);
 		}
 
 		#endregion

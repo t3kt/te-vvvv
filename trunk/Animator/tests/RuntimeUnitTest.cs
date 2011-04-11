@@ -117,6 +117,7 @@ namespace Animator.Tests
 			doc.AddTrack(track);
 			var clipA = doc.CreateStepClip(track, Guid.NewGuid());
 			clipA.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
+			clipA.TargetKey = ".subA";
 			track.AddClip(clipA);
 
 

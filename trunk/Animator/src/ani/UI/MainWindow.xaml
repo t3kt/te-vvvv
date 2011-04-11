@@ -1,0 +1,15 @@
+<Window x:Class="Animator.UI.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Animator" Height="409" Width="804">
+	<DockPanel LastChildFill="False">
+		<Menu Name="menu1" DockPanel.Dock="Top">
+			<MenuItem Header="_File">
+				<MenuItem Header="_Exit" />
+			</MenuItem>
+			<MenuItem Header="_Debug">
+				<MenuItem x:Name="ShowTestWindowMenuItem" Header="Show _Test Window" Click="ShowTestWindowMenuItem_Click" />
+			</MenuItem>
+		</Menu>
+	</DockPanel>
+</Window>
