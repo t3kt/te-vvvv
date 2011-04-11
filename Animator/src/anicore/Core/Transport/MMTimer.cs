@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Animator.Common.Diagnostics;
 
 namespace Animator.Core.Transport
@@ -14,11 +17,47 @@ namespace Animator.Core.Transport
 
 		#region Static / Constant
 
+		//private static readonly ConcurrentDictionary<uint, int> _ResolutionUsageCounts = new ConcurrentDictionary<uint, int>();
+
+		//private static void IncrementCount(uint resolution)
+		//{
+		//    _ResolutionUsageCounts.AddOrUpdate(resolution,
+		//                                       r =>
+		//                                       {
+		//                                           NativeMethods.timeBeginPeriod(r);
+		//                                           return 1;
+		//                                       },
+		//                                       (r, c) =>
+		//                                       {
+		//                                           if(c <= 0)
+		//                                           {
+		//                                               c = 0;
+		//                                               NativeMethods.timeBeginPeriod(r);
+		//                                           }
+		//                                           return c + 1;
+		//                                       });
+		//}
+
+		//private static void DecrementCount(uin)
+
+		private static Func<bool> WrapCallback(Action callback)
+		{
+			Require.ArgNotNull(callback, "callback");
+			return () =>
+					{
+						callback();
+						return true;
+					};
+		}
+
 		#endregion
 
 		#region Fields
 
 		private readonly Func<bool> _Callback;
+		private readonly uint _Delay;
+		private readonly uint _Resolution;
+		private readonly NativeMethods.fuEvent _Flags;
 		private uint _Id;
 		private bool _Disposed;
 
@@ -30,20 +69,18 @@ namespace Animator.Core.Transport
 
 		#region Constructors
 
-		public MMTimer(Func<bool> callback)
+		public MMTimer(Func<bool> callback, uint msDelay, uint msResolution = 0u, bool repeat = true)
 		{
 			Require.ArgNotNull(callback, "callback");
 			this._Callback = callback;
+			this._Delay = msDelay;
+			this._Resolution = msResolution;
+			this._Flags = NativeMethods.fuEvent.TIME_CALLBACK_FUNCTION | (repeat ? NativeMethods.fuEvent.TIME_PERIODIC : NativeMethods.fuEvent.TIME_ONESHOT);
 		}
 
-		public MMTimer(Action callback)
+		public MMTimer(Action callback, uint msDelay, uint msResolution = 0u, bool repeat = true)
+			: this(WrapCallback(callback), msDelay, msResolution, repeat)
 		{
-			Require.ArgNotNull(callback, "callback");
-			this._Callback = () =>
-							 {
-								 callback();
-								 return true;
-							 };
 		}
 
 		~MMTimer()
@@ -55,15 +92,17 @@ namespace Animator.Core.Transport
 
 		#region Methods
 
-		public void Start(uint ms, bool repeat)
+		public void Start()
 		{
 			this.Stop();
-			var flags = NativeMethods.fuEvent.TIME_CALLBACK_FUNCTION | (repeat ? NativeMethods.fuEvent.TIME_PERIODIC : NativeMethods.fuEvent.TIME_ONESHOT);
 			lock(this)
 			{
-				this._Id = NativeMethods.timeSetEvent(ms, 0, this.EventCallback, UIntPtr.Zero, flags);
+				this._Id = NativeMethods.timeSetEvent(this._Delay, this._Resolution, this.EventCallback, UIntPtr.Zero, this._Flags);
 				if(this._Id == 0)
-					throw new NotImplementedException();
+				{
+					var error = Marshal.GetLastWin32Error();
+					throw new Win32Exception(error);
+				}
 			}
 		}
 

@@ -67,7 +67,7 @@ namespace Animator.Osc
 
 		#region Methods
 
-		protected override void InitializeInternal(Output outputModel)
+		public override void Initialize(Output outputModel)
 		{
 			Debug.Assert(outputModel != null);
 			var parms = GetConnectionParams(outputModel);
@@ -77,7 +77,7 @@ namespace Animator.Osc
 				_Connection.Open(parms.Item1, parms.Item2);
 		}
 
-		protected override bool PostMessage(OutputMessage message)
+		protected override bool PostMessageInternal(OutputMessage message)
 		{
 			Debug.Assert(message != null);
 			if(!_Connection.IsConnected)

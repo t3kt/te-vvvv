@@ -87,11 +87,11 @@ namespace Animator.Core.Model
 				Add(item);
 		}
 
-		internal void ReplaceAll([NotNull] IEnumerable<T> items)
+		internal void ReplaceAll([CanBeNull] IEnumerable<T> items)
 		{
-			Require.ArgNotNull(items, "items");
 			Clear();
-			AddRange(items);
+			if(items != null)
+				AddRange(items);
 		}
 
 		protected override void InsertItem(int index, T item)
@@ -119,7 +119,7 @@ namespace Animator.Core.Model
 		{
 			Require.ArgNotNull(item, "item");
 			var oldId = this.Items[index].Id;
-#warning not sure about this...
+			//#warning not sure about this...
 			if(oldId == item.Id)
 			{
 				_Lookup[item.Id] = item;
@@ -143,6 +143,21 @@ namespace Animator.Core.Model
 		{
 			if(!_NotifySuspended)
 				base.OnPropertyChanged(e);
+		}
+
+		internal bool ItemsEqual(DocumentItemCollection<T> other)
+		{
+			if(other == null || other.Count == 0)
+				return this.Count == 0;
+			if(other.Count != this.Count)
+				return false;
+			foreach(var entry in this._Lookup)
+			{
+				T otherValue;
+				if(!other._Lookup.TryGetValue(entry.Key, out otherValue) || !entry.Value.Equals(otherValue))
+					return false;
+			}
+			return true;
 		}
 
 		#endregion

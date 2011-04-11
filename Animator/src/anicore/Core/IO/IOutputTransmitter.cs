@@ -9,7 +9,7 @@ namespace Animator.Core.IO
 
 	#region IOutputTransmitter
 
-	public interface IOutputTransmitter : IGuidId, IDisposable
+	public interface IOutputTransmitter : IDisposable
 	{
 
 		void Initialize(Output output);

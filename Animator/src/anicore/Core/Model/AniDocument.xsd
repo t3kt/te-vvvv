@@ -36,10 +36,22 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="DocumentItemType">
-					<xs:choice>
-						<xs:element ref="output" minOccurs="0" maxOccurs="unbounded"/>
-						<xs:element ref="track" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:choice>
+					<xs:sequence>
+						<xs:element name="outputs" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="output" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="tracks" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="track" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
 					<xs:attribute name="bpm" use="required">
 						<xs:simpleType>
 							<xs:restriction base="xs:float">
@@ -58,6 +70,10 @@
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
+		<xs:key name="itemIdKey">
+			<xs:selector xpath="*"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
 	</xs:element>
 	<xs:element name="output">
 		<xs:complexType>
@@ -73,30 +89,55 @@
 			<xs:complexContent>
 				<xs:extension base="DocumentItemType">
 					<xs:sequence>
-						<xs:element ref="clip" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="clips" minOccurs="0">
+							<xs:complexType>
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
+									<xs:any namespace="##local"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
 					</xs:sequence>
 					<xs:attribute name="output" type="Guid"/>
+					<xs:attribute name="target" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:complexType name="ClipType">
+		<xs:complexContent>
+			<xs:extension base="DocumentItemType">
+				<xs:attribute name="type" type="xs:string"/>
+				<xs:attribute name="dur" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:float">
+							<xs:minExclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="align" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="target" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:element name="clip">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension base="DocumentItemType">
+				<xs:extension base="ClipType">
 					<xs:sequence minOccurs="0">
 						<xs:any namespace="##other"/>
 					</xs:sequence>
-					<xs:attribute name="type" type="xs:string"/>
-					<xs:attribute name="dur" use="required">
-						<xs:simpleType>
-							<xs:restriction base="xs:float">
-								<xs:minExclusive value="0"/>
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-					<xs:attribute name="align" type="xs:nonNegativeInteger"/>
 					<xs:anyAttribute namespace="##other"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stepclip">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ClipType">
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="step" type="xs:float"/>
+					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>

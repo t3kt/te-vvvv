@@ -15,7 +15,7 @@ namespace Animator.Core.Model
 	{
 
 		[NotNull]
-		XElement WriteXElement([CanBeNull] XName name);
+		XElement WriteXElement([CanBeNull] XName name = null);
 
 	}
 

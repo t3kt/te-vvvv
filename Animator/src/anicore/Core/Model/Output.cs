@@ -11,15 +11,10 @@ namespace Animator.Core.Model
 
 	#region Output
 
-	public class Output : DocumentItem
+	public class Output : DocumentItem, IEquatable<Output>
 	{
 
 		#region Static / Constant
-
-		internal static Output ReadOutputXElement(IDocument document, IDocumentItem parent, XElement element)
-		{
-			throw new NotImplementedException();
-		}
 
 		#endregion
 
@@ -71,6 +66,14 @@ namespace Animator.Core.Model
 
 		#region Methods
 
+		internal string GetParameter(string key)
+		{
+			if(this._Parameters == null)
+				return null;
+			string value;
+			return this._Parameters.TryGetValue(key, out value) ? value : null;
+		}
+
 		internal void NotifyParametersChanged()
 		{
 			OnPropertyChanged("Parameters");
@@ -99,13 +102,32 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public override XElement WriteXElement(XName name)
+		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.output,
 				new XAttribute(Schema.output_id, this.Id),
 				ModelUtil.WriteOptionalAttribute(Schema.output_name, this.Name),
 				ModelUtil.WriteOptionalAttribute(Schema.output_type, this.OutputType),
 				ModelUtil.WriteParametersXElement(Schema.output_params, this._Parameters));
+		}
+
+#pragma warning disable 659
+		public override bool Equals(object obj)
+#pragma warning restore 659
+		{
+			return Equals(obj as Output);
+		}
+
+		#endregion
+
+		#region IEquatable<Output> Members
+
+		public bool Equals(Output other)
+		{
+			if(!base.Equals(other))
+				return false;
+			return other._OutputType == this._OutputType &&
+				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters);
 		}
 
 		#endregion

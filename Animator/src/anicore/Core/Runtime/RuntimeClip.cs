@@ -19,7 +19,7 @@ namespace Animator.Core.Runtime
 
 		internal static RuntimeClip CreateClip(RuntimeDocument runtimeDocument, Clip clip)
 		{
-			throw new NotImplementedException();
+			return new RuntimeClip(runtimeDocument, clip);
 		}
 
 		#endregion
@@ -27,6 +27,8 @@ namespace Animator.Core.Runtime
 		#region Fields
 
 		private readonly Clip _Clip;
+		private bool _IsPlaying;
+		private Time _StartTime;
 
 		#endregion
 
@@ -58,6 +60,28 @@ namespace Animator.Core.Runtime
 
 		#region Methods
 
+		public virtual Time? GetPosition(ITransport transport)
+		{
+			if(!transport.IsPlaying || !this._IsPlaying)
+				return null;
+			var globalPos = transport.Position;
+			return (globalPos - this._StartTime) % this._Clip.Duration;
+		}
+
+		protected virtual object GetValue(Time position)
+		{
+			return this._Clip.GetValue(position);
+		}
+
+		public virtual object GetValue(ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			var time = GetPosition(transport);
+			if(time == null)
+				return null;
+			return GetValue(time.Value);
+		}
+
 		#endregion
 
 		#region IPlayable Members
@@ -74,22 +98,13 @@ namespace Animator.Core.Runtime
 
 		public void Start(ITransport transport)
 		{
-			throw new NotImplementedException();
+			this._StartTime = transport.Position;
+			this._IsPlaying = true;
 		}
 
 		public void Stop(ITransport transport)
 		{
-			throw new NotImplementedException();
-		}
-
-		public void EnqueueStart(ITransport transport)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void EnqueueStop(ITransport transport)
-		{
-			throw new NotImplementedException();
+			this._IsPlaying = false;
 		}
 
 		#endregion

@@ -15,7 +15,7 @@ namespace Animator.Core.Model
 		IDocumentItem Parent { get; }
 
 		[NotNull]
-		IDocument Document { get; }
+		Document Document { get; }
 
 		[NotNull]
 		IEnumerable<IDocumentItem> Children { get; }

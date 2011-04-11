@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
@@ -14,7 +13,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public class Document : IDocument, INotifyPropertyChanged, ISuspendableNotify
+	public sealed class Document : IDocumentItem, ISuspendableNotify, INotifyPropertyChanged
 	{
 
 		#region Static / Constant
@@ -42,7 +41,7 @@ namespace Animator.Core.Model
 		public Guid Id
 		{
 			get { return _Id; }
-			protected set
+			private set
 			{
 				if(value != _Id)
 				{
@@ -104,9 +103,19 @@ namespace Animator.Core.Model
 			}
 		}
 
-		protected bool NotifySuspended
+		public DocumentItemCollection<Output> Outputs
 		{
-			get { return _NotifySuspended; }
+			get { return _Outputs; }
+		}
+
+		public DocumentItemCollection<Track> Tracks
+		{
+			get { return _Tracks; }
+		}
+
+		public IEnumerable<Clip> Clips
+		{
+			get { return this.Tracks.SelectMany(t => t.Clips); }
 		}
 
 		#endregion
@@ -114,10 +123,15 @@ namespace Animator.Core.Model
 		#region Constructors
 
 		public Document()
+			: this(Guid.NewGuid())
 		{
-			_Outputs = new DocumentItemCollection<Output>(this);
-			_Tracks = new DocumentItemCollection<Track>(this);
-			this.Id = Guid.NewGuid();
+		}
+
+		public Document(Guid id)
+		{
+			this._Outputs = new DocumentItemCollection<Output>(this);
+			this._Tracks = new DocumentItemCollection<Track>(this);
+			this.Id = id;
 		}
 
 		public Document(XElement element)
@@ -130,7 +144,7 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		protected void ReadXElement(XElement element)
+		private void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			SuspendNotify();
@@ -141,8 +155,10 @@ namespace Animator.Core.Model
 				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
 				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
 				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
-				this.Outputs.ReplaceAll(element.Elements(Schema.output).Select(this.CreateOutput));
-				this.Tracks.ReplaceAll(element.Elements(Schema.track).Select(this.CreateTrack));
+				var outputsElement = element.Element(Schema.anidoc_outputs);
+				this.Outputs.ReplaceAll(outputsElement == null ? null : outputsElement.Elements().Select(this.CreateOutput));
+				var tracksElement = element.Element(Schema.anidoc_tracks);
+				this.Tracks.ReplaceAll(tracksElement == null ? null : tracksElement.Elements().Select(this.CreateTrack));
 			}
 			finally
 			{
@@ -161,6 +177,41 @@ namespace Animator.Core.Model
 			_NotifySuspended = false;
 		}
 
+		public Output GetOutput(Guid id)
+		{
+			return this.Outputs.GetItem(id);
+		}
+
+		public void AddOutput(Output output)
+		{
+			this.Outputs.Add(output);
+		}
+
+		public void RemoveOutput(Guid id)
+		{
+			this.Outputs.Remove(id);
+		}
+
+		public Track GetTrack(Guid id)
+		{
+			return this.Tracks.GetItem(id);
+		}
+
+		public void AddTrack(Track track)
+		{
+			this.Tracks.Add(track);
+		}
+
+		public void RemoveTrack(Guid id)
+		{
+			this.Tracks.Remove(id);
+		}
+
+		public Clip GetClip(Guid id)
+		{
+			return this.Clips.FindById(id);
+		}
+
 		#endregion
 
 		#region Item Instantiation
@@ -175,6 +226,9 @@ namespace Animator.Core.Model
 
 		private void OnItemInstantiated(IDocumentItem parent, DocumentItem item)
 		{
+			var existingItem = this.GetItem(item.Id);
+			if(existingItem != null)
+				throw new ArgumentException(String.Format("Id '{0}' already exists in document", item.Id), "item");
 			var handler = this.ItemInstantiated;
 			if(handler != null)
 				handler(this, new ItemInstantiationEventArgs(this, parent, item));
@@ -241,7 +295,14 @@ namespace Animator.Core.Model
 
 		internal Clip CreateClip(Track track, XElement element)
 		{
-			var clip = new Clip(track, element);
+			var clip = Clip.ReadClipXElement(track, element);
+			this.OnClipInstantiated(track, clip);
+			return clip;
+		}
+
+		internal StepClip CreateStepClip(Track track, Guid id)
+		{
+			var clip = new StepClip(track, id);
 			this.OnClipInstantiated(track, clip);
 			return clip;
 		}
@@ -255,7 +316,7 @@ namespace Animator.Core.Model
 			get { return null; }
 		}
 
-		IDocument IDocumentItem.Document
+		Document IDocumentItem.Document
 		{
 			get { return this; }
 		}
@@ -264,8 +325,7 @@ namespace Animator.Core.Model
 		{
 			get
 			{
-				return this.Outputs.Cast<IDocumentItem>()
-					.Concat(this.Tracks.Cast<IDocumentItem>());
+				return this.Outputs.Concat(this.Tracks.Cast<IDocumentItem>());
 			}
 		}
 
@@ -285,106 +345,24 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region IClipContainer Members
-
-		public IEnumerable<Clip> Clips
-		{
-			get { return this.Tracks.SelectMany(t => t.Clips); }
-		}
-
-		public Clip GetClip(Guid id)
-		{
-			return this.Clips.FindById(id);
-		}
-
-		void IClipContainer.AddClip(Clip clip)
-		{
-			throw new NotSupportedException();
-		}
-
-		void IClipContainer.RemoveClip(Guid id)
-		{
-			throw new NotSupportedException();
-		}
-
-		#endregion
-
-		#region IOutputContainer Members
-
-		internal DocumentItemCollection<Output> Outputs
-		{
-			get { return _Outputs; }
-		}
-
-		IEnumerable<Output> IOutputContainer.Outputs
-		{
-			get { return this.Outputs; }
-		}
-
-		public Output GetOutput(Guid id)
-		{
-			return this.Outputs.GetItem(id);
-		}
-
-		public void AddOutput(Output output)
-		{
-			this.Outputs.Add(output);
-		}
-
-		public void RemoveOutput(Guid id)
-		{
-			this.Outputs.Remove(id);
-		}
-
-		#endregion
-
-		#region ITrackContainer Members
-
-		internal DocumentItemCollection<Track> Tracks
-		{
-			get { return _Tracks; }
-		}
-
-		IEnumerable<Track> ITrackContainer.Tracks
-		{
-			get { return this.Tracks; }
-		}
-
-		public Track GetTrack(Guid id)
-		{
-			return this.Tracks.GetItem(id);
-		}
-
-		public void AddTrack(Track track)
-		{
-			this.Tracks.Add(track);
-		}
-
-		public void RemoveTrack(Guid id)
-		{
-			this.Tracks.Remove(id);
-		}
-
-		#endregion
-
 		#region IXElementWritable Members
 
-		public virtual XElement WriteXElement(XName name)
+		public XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.anidoc,
 								new XAttribute(Schema.anidoc_id, this.Id),
 								ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
 								this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
 								this.TriggerAlignment == NoAlignment ? null : new XAttribute(Schema.anidoc_align, this.TriggerAlignment),
-								this.Outputs.WriteXElements(null),
-								this.Tracks.WriteXElements(null));
+								this.Outputs.Count == 0 ? null : new XElement(Schema.anidoc_outputs, this.Outputs.WriteXElements(null)),
+								this.Tracks.Count == 0 ? null : new XElement(Schema.anidoc_tracks, this.Tracks.WriteXElements(null)));
 		}
 
 		#endregion
 
 		#region INotifyPropertyChanged Members
 
-		protected virtual void OnPropertyChanged(string name)
+		private void OnPropertyChanged(string name)
 		{
 			if(!_NotifySuspended)
 			{
