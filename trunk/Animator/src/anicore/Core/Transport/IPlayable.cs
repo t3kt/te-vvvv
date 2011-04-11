@@ -11,9 +11,9 @@ namespace Animator.Core.Transport
 	public interface IPlayable
 	{
 
-		Time Duration { get; set; }
+		Time Duration { get; }
 
-		int TriggerAlignment { get; set; }
+		int TriggerAlignment { get; }
 
 		void Start(ITransport transport);
 

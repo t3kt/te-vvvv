@@ -75,6 +75,18 @@ namespace Animator.Core.Model
 				.ToDictionary(e => (string)e.Attribute(Schema.params_param_key), e => e.Value);
 		}
 
+		[CanBeNull]
+		internal static XElement WriteParametersXElement(XName name, [CanBeNull] Dictionary<string, string> parameters)
+		{
+			if(parameters == null || parameters.Count == 0)
+				return null;
+			return new XElement(name ?? Schema.@params,
+				from entry in parameters
+				select new XElement(Schema.params_param,
+					new XAttribute(Schema.params_param_key, entry.Key),
+					entry.Value));
+		}
+
 		internal static T FindById<T>(this IEnumerable<T> source, Guid id)
 			where T : class, IGuidId
 		{
@@ -93,6 +105,29 @@ namespace Animator.Core.Model
 		internal static XAttribute WriteOptionalAttribute(XName name, string value)
 		{
 			return String.IsNullOrEmpty(value) ? null : new XAttribute(name, value);
+		}
+
+		internal static XAttribute WriteOptionalValueAttribute<T>(XName name, T? value)
+			where T : struct
+		{
+			return value == null ? null : new XAttribute(name, value);
+		}
+
+		internal static bool ParametersEqual(Dictionary<string, string> x, Dictionary<string, string> y)
+		{
+			if(x == null || x.Count == 0)
+				return y == null || y.Count == 0;
+			if(y == null || y.Count == 0)
+				return false;
+			if(x.Count != y.Count)
+				return false;
+			foreach(var xEntry in x)
+			{
+				string yValue;
+				if(!y.TryGetValue(xEntry.Key, out yValue) || yValue != xEntry.Value)
+					return false;
+			}
+			return true;
 		}
 
 	}

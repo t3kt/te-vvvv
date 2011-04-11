@@ -13,7 +13,8 @@ namespace Animator.Core.Model
 
 	#region DocumentItem
 
-	public abstract class DocumentItem : IDocumentItem, IInternalDocumentItem, INotifyPropertyChanged, ISuspendableNotify
+	public abstract class DocumentItem : IDocumentItem, INotifyPropertyChanged, ISuspendableNotify,
+		IEquatable<IDocumentItem>
 	{
 
 		#region Static / Constant
@@ -22,7 +23,6 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private Guid _Id;
 		private IDocumentItem _Parent;
 		private string _Name;
 		private bool _NotifySuspended;
@@ -31,18 +31,7 @@ namespace Animator.Core.Model
 
 		#region Properties
 
-		public Guid Id
-		{
-			get { return _Id; }
-			protected set
-			{
-				if(value != _Id)
-				{
-					_Id = value;
-					OnPropertyChanged("Id");
-				}
-			}
-		}
+		public Guid Id { get; protected set; }
 
 		public string Name
 		{
@@ -66,6 +55,11 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		//~DocumentItem()
+		//{
+		//    this.Dispose(false);
+		//}
+
 		#endregion
 
 		#region Methods
@@ -86,6 +80,30 @@ namespace Animator.Core.Model
 		internal void ResumeNotify()
 		{
 			_NotifySuspended = false;
+		}
+
+		public override bool Equals(object obj)
+		{
+			return Equals(obj as IDocumentItem);
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				return ((this._Name != null ? this._Name.GetHashCode() : 0) * 397) ^ this.Id.GetHashCode();
+			}
+		}
+
+		#endregion
+
+		#region IEquatable<DocumentItem> Members
+
+		public bool Equals(IDocumentItem other)
+		{
+			return other != null &&
+				   other.Id == this.Id &&
+				   other.Name == this.Name;
 		}
 
 		#endregion
@@ -131,15 +149,6 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region IInternalDocumentItem Members
-
-		void IInternalDocumentItem.SetParent(IDocumentItem parent)
-		{
-			this.Parent = parent;
-		}
-
-		#endregion
-
 		#region INotifyPropertyChanged Members
 
 		protected virtual void OnPropertyChanged(string name)
@@ -179,6 +188,23 @@ namespace Animator.Core.Model
 
 		#endregion
 
+		#region IDisposable Members
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if(disposing)
+			{
+				this.PropertyChanged = null;
+			}
+		}
+
+		public void Dispose()
+		{
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion
 	}
 
 	#endregion

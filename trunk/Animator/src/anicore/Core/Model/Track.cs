@@ -11,7 +11,7 @@ namespace Animator.Core.Model
 
 	#region Track
 
-	public class Track : DocumentItem, ITrack
+	public class Track : DocumentItem, IClipContainer
 	{
 
 		#region Static / Constant
@@ -21,8 +21,7 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private Guid? _OutputId;
-		private IOutput _Output;
-		private readonly DocumentItemCollection<IClip> _Clips;
+		private readonly DocumentItemCollection<Clip> _Clips;
 
 		#endregion
 
@@ -33,24 +32,10 @@ namespace Animator.Core.Model
 			get { return _OutputId; }
 			set
 			{
-				//if(value != _OutputId)
+				if(value != _OutputId)
 				{
 					_OutputId = value;
-					this.Output = value == null ? null : this.Document.GetOutput(value.Value);
-				}
-			}
-		}
-
-		public IOutput Output
-		{
-			get { return _Output; }
-			set
-			{
-				if(value != _Output)
-				{
-					_Output = value;
-					_OutputId = value == null ? (Guid?)null : value.Id;
-					OnOutputChanged();
+					this.OnPropertyChanged("OutputId");
 				}
 			}
 		}
@@ -62,7 +47,7 @@ namespace Animator.Core.Model
 		protected Track(IDocumentItem parent)
 		{
 			this.Parent = parent;
-			_Clips = new DocumentItemCollection<IClip>(this);
+			_Clips = new DocumentItemCollection<Clip>(this);
 		}
 
 		public Track(IDocumentItem parent, Guid id)
@@ -71,32 +56,36 @@ namespace Animator.Core.Model
 			this.Id = id;
 		}
 
-		public Track(IDocumentItem parent, XElement element)
-			: this(parent)
+		public Track(Document document, XElement element)
+			: this(document)
 		{
-			ReadXElement(element);
+			ReadXElement(document, element);
 		}
 
 		#endregion
 
 		#region Methods
 
-		protected virtual void OnOutputChanged()
+		protected void ReadXElement(Document document, XElement element)
 		{
-			OnPropertyChanged("Output");
-		}
-
-		protected void ReadXElement(XElement element)
-		{
+			Require.ArgNotNull(document, "document");
 			Require.ArgNotNull(element, "element");
-			this.Id = (Guid)element.Attribute(Schema.track_id);
-			this.Name = (string)element.Attribute(Schema.track_name);
-			_OutputId = (Guid?)element.Attribute(Schema.track_output);
-			this.Output = _OutputId == null ? null : this.Document.GetOutput(_OutputId.Value);
-			this.Clips.ReplaceAll(element.Elements(Schema.clip).Select(this.ReadClipXElement));
+			try
+			{
+				SuspendNotify();
+				this.Id = (Guid)element.Attribute(Schema.track_id);
+				this.Name = (string)element.Attribute(Schema.track_name);
+				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
+				this.Clips.ReplaceAll(element.Elements(Schema.clip).Select(e => document.CreateClip(this, e)));
+			}
+			finally
+			{
+				ResumeNotify();
+				OnPropertyChanged(null);
+			}
 		}
 
-		protected virtual IClip ReadClipXElement(XElement element)
+		protected virtual Clip ReadClipXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			return new Clip(this, element);
@@ -104,29 +93,42 @@ namespace Animator.Core.Model
 
 		public override XElement WriteXElement(XName name)
 		{
-			throw new NotImplementedException();
+			return new XElement(name ?? Schema.track,
+				new XAttribute(Schema.track_id, this.Id),
+				ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
+				ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
+				this.Clips.WriteXElements(null));
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			if(disposing)
+			{
+				_Clips.Dispose();
+			}
 		}
 
 		#endregion
 
 		#region IClipContainer Members
 
-		internal DocumentItemCollection<IClip> Clips
+		internal DocumentItemCollection<Clip> Clips
 		{
 			get { return _Clips; }
 		}
 
-		IEnumerable<IClip> IClipContainer.Clips
+		IEnumerable<Clip> IClipContainer.Clips
 		{
 			get { return this.Clips; }
 		}
 
-		public IClip GetClip(Guid id)
+		public Clip GetClip(Guid id)
 		{
 			return this.Clips.GetItem(id);
 		}
 
-		public void AddClip(IClip clip)
+		public void AddClip(Clip clip)
 		{
 			this.Clips.Add(clip);
 		}

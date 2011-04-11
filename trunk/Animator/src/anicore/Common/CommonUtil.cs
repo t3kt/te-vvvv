@@ -29,6 +29,13 @@ namespace Animator.Common
 				collection.Add(item);
 		}
 
+		internal static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+		{
+			Require.ArgNotNull(dictionary, "dictionary");
+			TValue value;
+			return dictionary.TryGetValue(key, out value) ? value : default(TValue);
+		}
+
 	}
 
 	#endregion

@@ -9,7 +9,7 @@ namespace Animator.Core.Model
 
 	#region IDocumentItem
 
-	public interface IDocumentItem : IGuidId, INamed, IXElementWritable
+	public interface IDocumentItem : IGuidId, INamed, IXElementWritable, IDisposable
 	{
 
 		IDocumentItem Parent { get; }
@@ -23,15 +23,6 @@ namespace Animator.Core.Model
 		[CanBeNull]
 		IDocumentItem GetItem(Guid id);
 
-	}
-
-	#endregion
-
-	#region IInternalDocumentItem
-
-	internal interface IInternalDocumentItem
-	{
-		void SetParent(IDocumentItem parent);
 	}
 
 	#endregion

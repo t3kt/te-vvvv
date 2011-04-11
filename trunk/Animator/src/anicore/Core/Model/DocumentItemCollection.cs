@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
@@ -11,8 +14,8 @@ namespace Animator.Core.Model
 
 	#region DocumentItemCollection<T>
 
-	internal class DocumentItemCollection<T> : ObservableCollection<T>
-		where T : class, IDocumentItem
+	public class DocumentItemCollection<T> : ObservableCollection<T>, IDisposable, ISuspendableNotify
+		where T : DocumentItem
 	{
 
 		#region Static / Constant
@@ -23,6 +26,7 @@ namespace Animator.Core.Model
 
 		private readonly IDocumentItem _Parent;
 		private readonly Dictionary<Guid, T> _Lookup;
+		private bool _NotifySuspended;
 
 		#endregion
 
@@ -52,12 +56,6 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Methods
-
-		protected virtual void Attach(IInternalDocumentItem item)
-		{
-			if(item != null)
-				item.SetParent(_Parent);
-		}
 
 		public bool Contains(Guid id)
 		{
@@ -100,7 +98,7 @@ namespace Animator.Core.Model
 		{
 			Require.ArgNotNull(item, "item");
 			_Lookup.Add(item.Id, item);
-			Attach(item as IInternalDocumentItem);
+			item.Parent = _Parent;
 			base.InsertItem(index, item);
 		}
 
@@ -131,8 +129,50 @@ namespace Animator.Core.Model
 				_Lookup.Remove(oldId);
 				_Lookup.Add(item.Id, item);
 			}
-			Attach(item as IInternalDocumentItem);
+			item.Parent = _Parent;
 			base.SetItem(index, item);
+		}
+
+		protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+		{
+			if(!_NotifySuspended)
+				base.OnCollectionChanged(e);
+		}
+
+		protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+		{
+			if(!_NotifySuspended)
+				base.OnPropertyChanged(e);
+		}
+
+		#endregion
+
+		#region IDisposable Members
+
+		public void Dispose()
+		{
+			this.SuspendNotify();
+			foreach(var item in this)
+			{
+				if(item != null)
+					item.Dispose();
+			}
+			Clear();
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion
+
+		#region ISuspendableNotify Members
+
+		public void SuspendNotify()
+		{
+			_NotifySuspended = true;
+		}
+
+		public void ResumeNotify()
+		{
+			_NotifySuspended = false;
 		}
 
 		#endregion

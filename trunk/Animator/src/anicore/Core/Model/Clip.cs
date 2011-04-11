@@ -12,7 +12,7 @@ namespace Animator.Core.Model
 
 	#region Clip
 
-	public class Clip : DocumentItem, IClip
+	public class Clip : DocumentItem, IEquatable<Clip>
 	{
 
 		#region Static / Constant
@@ -117,13 +117,32 @@ namespace Animator.Core.Model
 			finally
 			{
 				ResumeNotify();
+				OnPropertyChanged(null);
 			}
 		}
 
 		public override XElement WriteXElement(XName name)
 		{
-			//return new XElement(name??Schema.clip,
-			throw new NotImplementedException();
+			return new XElement(name ?? Schema.clip,
+				new XAttribute(Schema.clip_id, this.Id),
+				ModelUtil.WriteOptionalAttribute(Schema.clip_name, this.Name),
+				new XAttribute(Schema.clip_dur, this.Duration.Beats),
+				this.TriggerAlignment == Model.Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
+				ModelUtil.WriteOptionalAttribute(Schema.clip_type, this.ClipType),
+				ModelUtil.WriteParametersXElement(Schema.clip_params, this._Parameters));
+		}
+
+		#endregion
+
+		#region IEquatable<Clip> Members
+
+		public bool Equals(Clip other)
+		{
+			return base.Equals(other) &&
+				   other._Duration == this._Duration &&
+				   other._TriggerAlignment == this._TriggerAlignment &&
+				   other._ClipType == this._ClipType &&
+				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters);
 		}
 
 		#endregion
