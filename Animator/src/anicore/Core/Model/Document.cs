@@ -19,20 +19,21 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		internal const int NoAlignment = -1;
+		internal const int NoAlignment = 0;
+		internal const float DefaultBeatsPerMinute = 80.0f;
 
 		#endregion
 
 		#region Fields
 
-		private readonly DocumentItemCollection<IOutput> _Outputs;
-		private readonly DocumentItemCollection<ITrack> _Tracks;
+		private readonly DocumentItemCollection<Output> _Outputs;
+		private readonly DocumentItemCollection<Track> _Tracks;
 		private bool _NotifySuspended;
 		private Guid _Id;
 		private string _Name;
-		private Time _Duration;
-		private float _BeatsPerMinute;
-		private int _TriggerAlignment;
+		private Time _Duration = Time.Infinite;
+		private float _BeatsPerMinute = DefaultBeatsPerMinute;
+		private int _TriggerAlignment = NoAlignment;
 
 		#endregion
 
@@ -114,8 +115,8 @@ namespace Animator.Core.Model
 
 		public Document()
 		{
-			_Outputs = new DocumentItemCollection<IOutput>(this);
-			_Tracks = new DocumentItemCollection<ITrack>(this);
+			_Outputs = new DocumentItemCollection<Output>(this);
+			_Tracks = new DocumentItemCollection<Track>(this);
 			this.Id = Guid.NewGuid();
 		}
 
@@ -138,28 +139,16 @@ namespace Animator.Core.Model
 				this.Id = (Guid)element.Attribute(Schema.anidoc_id);
 				this.Name = (string)element.Attribute(Schema.anidoc_name);
 				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
-				this.BeatsPerMinute = (float)element.Attribute(Schema.anidoc_bpm);
-				Debug.Assert(this.BeatsPerMinute > 0);
+				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
 				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
-				this.Outputs.ReplaceAll(element.Elements(Schema.output).Select(this.ReadOutputXElement));
-				this.Tracks.ReplaceAll(element.Elements(Schema.track).Select(this.ReadTrackXElement));
+				this.Outputs.ReplaceAll(element.Elements(Schema.output).Select(this.CreateOutput));
+				this.Tracks.ReplaceAll(element.Elements(Schema.track).Select(this.CreateTrack));
 			}
 			finally
 			{
 				ResumeNotify();
+				OnPropertyChanged(null);
 			}
-		}
-
-		protected virtual IOutput ReadOutputXElement(XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			return new Output(this, element);
-		}
-
-		protected virtual ITrack ReadTrackXElement(XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			return new Track(this, element);
 		}
 
 		internal void SuspendNotify()
@@ -170,6 +159,91 @@ namespace Animator.Core.Model
 		internal void ResumeNotify()
 		{
 			_NotifySuspended = false;
+		}
+
+		#endregion
+
+		#region Item Instantiation
+
+		internal event EventHandler<ItemInstantiationEventArgs> ItemInstantiated;
+
+		internal event EventHandler<ItemInstantiationEventArgs<Output>> OutputInstantiated;
+
+		internal event EventHandler<ItemInstantiationEventArgs<Track>> TrackInstantiated;
+
+		internal event EventHandler<ItemInstantiationEventArgs<Clip>> ClipInstantiated;
+
+		private void OnItemInstantiated(IDocumentItem parent, DocumentItem item)
+		{
+			var handler = this.ItemInstantiated;
+			if(handler != null)
+				handler(this, new ItemInstantiationEventArgs(this, parent, item));
+		}
+
+		private void OnOutputInstantiated(Output output)
+		{
+			var handler = this.OutputInstantiated;
+			if(handler != null)
+				handler(this, new ItemInstantiationEventArgs<Output>(this, this, output));
+			this.OnItemInstantiated(this, output);
+		}
+
+		private void OnTrackInstantiated(Track track)
+		{
+			var handler = this.TrackInstantiated;
+			if(handler != null)
+				handler(this, new ItemInstantiationEventArgs<Track>(this, this, track));
+			this.OnItemInstantiated(this, track);
+		}
+
+		private void OnClipInstantiated(Track track, Clip clip)
+		{
+			var handler = this.ClipInstantiated;
+			if(handler != null)
+				handler(this, new ItemInstantiationEventArgs<Clip>(this, track, clip));
+			this.OnItemInstantiated(track, clip);
+		}
+
+		internal Output CreateOutput(Guid id)
+		{
+			var output = new Output(this, id);
+			this.OnOutputInstantiated(output);
+			return output;
+		}
+
+		internal Output CreateOutput(XElement element)
+		{
+			var output = new Output(this, element);
+			this.OnOutputInstantiated(output);
+			return output;
+		}
+
+		internal Track CreateTrack(Guid id)
+		{
+			var track = new Track(this, id);
+			this.OnTrackInstantiated(track);
+			return track;
+		}
+
+		internal Track CreateTrack(XElement element)
+		{
+			var track = new Track(this, element);
+			this.OnTrackInstantiated(track);
+			return track;
+		}
+
+		internal Clip CreateClip(Track track, Guid id)
+		{
+			var clip = new Clip(track, id);
+			this.OnClipInstantiated(track, clip);
+			return clip;
+		}
+
+		internal Clip CreateClip(Track track, XElement element)
+		{
+			var clip = new Clip(track, element);
+			this.OnClipInstantiated(track, clip);
+			return clip;
 		}
 
 		#endregion
@@ -213,17 +287,17 @@ namespace Animator.Core.Model
 
 		#region IClipContainer Members
 
-		public IEnumerable<IClip> Clips
+		public IEnumerable<Clip> Clips
 		{
 			get { return this.Tracks.SelectMany(t => t.Clips); }
 		}
 
-		public IClip GetClip(Guid id)
+		public Clip GetClip(Guid id)
 		{
 			return this.Clips.FindById(id);
 		}
 
-		void IClipContainer.AddClip(IClip clip)
+		void IClipContainer.AddClip(Clip clip)
 		{
 			throw new NotSupportedException();
 		}
@@ -237,22 +311,22 @@ namespace Animator.Core.Model
 
 		#region IOutputContainer Members
 
-		internal DocumentItemCollection<IOutput> Outputs
+		internal DocumentItemCollection<Output> Outputs
 		{
 			get { return _Outputs; }
 		}
 
-		IEnumerable<IOutput> IOutputContainer.Outputs
+		IEnumerable<Output> IOutputContainer.Outputs
 		{
 			get { return this.Outputs; }
 		}
 
-		public IOutput GetOutput(Guid id)
+		public Output GetOutput(Guid id)
 		{
 			return this.Outputs.GetItem(id);
 		}
 
-		public void AddOutput(IOutput output)
+		public void AddOutput(Output output)
 		{
 			this.Outputs.Add(output);
 		}
@@ -266,22 +340,22 @@ namespace Animator.Core.Model
 
 		#region ITrackContainer Members
 
-		internal DocumentItemCollection<ITrack> Tracks
+		internal DocumentItemCollection<Track> Tracks
 		{
 			get { return _Tracks; }
 		}
 
-		IEnumerable<ITrack> ITrackContainer.Tracks
+		IEnumerable<Track> ITrackContainer.Tracks
 		{
 			get { return this.Tracks; }
 		}
 
-		public ITrack GetTrack(Guid id)
+		public Track GetTrack(Guid id)
 		{
 			return this.Tracks.GetItem(id);
 		}
 
-		public void AddTrack(ITrack track)
+		public void AddTrack(Track track)
 		{
 			this.Tracks.Add(track);
 		}
@@ -334,6 +408,19 @@ namespace Animator.Core.Model
 		void ISuspendableNotify.ResumeNotify()
 		{
 			ResumeNotify();
+		}
+
+		#endregion
+
+		#region IDisposable Members
+
+		public void Dispose()
+		{
+			this.SuspendNotify();
+			this.PropertyChanged = null;
+			_Tracks.Dispose();
+			_Outputs.Dispose();
+			GC.SuppressFinalize(this);
 		}
 
 		#endregion

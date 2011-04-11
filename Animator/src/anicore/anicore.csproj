@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Animator</RootNamespace>
     <AssemblyName>anicore</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,32 +45,35 @@
     <Compile Include="Common\CommonUtil.cs" />
     <Compile Include="Common\Diagnostics\Require.cs" />
     <Compile Include="Common\ISuspendableNotify.cs" />
+    <Compile Include="Core\Model\ContainerInterfaces.cs" />
+    <Compile Include="Core\Model\ItemInstantiationEvent.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
     <Compile Include="Core\Model\DocumentItem.cs" />
     <Compile Include="Core\Model\DocumentItemCollection.cs" />
-    <Compile Include="Core\Model\IClip.cs" />
-    <Compile Include="Core\Model\IClipContainer.cs" />
     <Compile Include="Core\Model\IDocument.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
     <Compile Include="Core\Model\INamed.cs" />
-    <Compile Include="Core\Model\IOutput.cs" />
-    <Compile Include="Core\Model\IOutputContainer.cs" />
-    <Compile Include="Core\Model\ITrack.cs" />
     <Compile Include="Core\Model\IGuidId.cs" />
-    <Compile Include="Core\Model\ITrackContainer.cs" />
     <Compile Include="Core\Model\ModelUtil.cs" />
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />
     <Compile Include="Core\Model\Track.cs" />
+    <Compile Include="Core\IO\IOutputTransmitter.cs" />
+    <Compile Include="Core\IO\OutputTransmitter.cs" />
+    <Compile Include="Core\IO\OutputMessage.cs" />
+    <Compile Include="Core\NativeMethods.cs" />
+    <Compile Include="Core\Runtime\ImplementationRegistry.cs" />
     <Compile Include="Core\Runtime\RuntimeClip.cs" />
-    <Compile Include="Core\Runtime\RuntimeClipCollection.cs" />
     <Compile Include="Core\Runtime\RuntimeDocument.cs" />
+    <Compile Include="Core\Runtime\RuntimeDocumentItem.cs" />
     <Compile Include="Core\Runtime\RuntimeOutput.cs" />
     <Compile Include="Core\Runtime\RuntimeTrack.cs" />
     <Compile Include="Core\Transport\ClipState.cs" />
     <Compile Include="Core\Transport\IPlayable.cs" />
+    <Compile Include="Core\Runtime\RuntimeTransport.cs" />
+    <Compile Include="Core\Transport\MMTimer.cs" />
     <Compile Include="Core\Transport\TriggerBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Transport\ITransport.cs" />
@@ -78,9 +83,9 @@
     <Compile Include="..\shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\Model\AniDocument.xsd">
+    <EmbeddedResource Include="Core\Model\AniDocument.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <None Include="Core\Model\_ModelClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup />

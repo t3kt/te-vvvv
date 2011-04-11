@@ -11,12 +11,12 @@ namespace Animator.Core.Model
 
 	#region Output
 
-	public class Output : DocumentItem, IOutput
+	public class Output : DocumentItem
 	{
 
 		#region Static / Constant
 
-		internal static IOutput ReadOutputXElement(IDocument document, IDocumentItem parent, XElement element)
+		internal static Output ReadOutputXElement(IDocument document, IDocumentItem parent, XElement element)
 		{
 			throw new NotImplementedException();
 		}
@@ -45,10 +45,10 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public Dictionary<string, string> Parameters
+		public IDictionary<string, string> Parameters
 		{
 			get { return _Parameters ?? (_Parameters = new Dictionary<string, string>()); }
-			protected set { _Parameters = value; }
+			set { _Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value); }
 		}
 
 		#endregion
@@ -95,7 +95,17 @@ namespace Animator.Core.Model
 			finally
 			{
 				ResumeNotify();
+				OnPropertyChanged(null);
 			}
+		}
+
+		public override XElement WriteXElement(XName name)
+		{
+			return new XElement(name ?? Schema.output,
+				new XAttribute(Schema.output_id, this.Id),
+				ModelUtil.WriteOptionalAttribute(Schema.output_name, this.Name),
+				ModelUtil.WriteOptionalAttribute(Schema.output_type, this.OutputType),
+				ModelUtil.WriteParametersXElement(Schema.output_params, this._Parameters));
 		}
 
 		#endregion
