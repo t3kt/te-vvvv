@@ -17,6 +17,13 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
+		internal static Clip ReadClipXElement(Track track, XElement element)
+		{
+			if(element.Name == Schema.stepclip)
+				return new StepClip(track, element);
+			return new Clip(track, element);
+		}
+
 		#endregion
 
 		#region Fields
@@ -25,6 +32,7 @@ namespace Animator.Core.Model
 		private Dictionary<string, string> _Parameters;
 		private Time _Duration;
 		private int _TriggerAlignment;
+		private string _TargetKey;
 
 		#endregion
 
@@ -39,6 +47,20 @@ namespace Animator.Core.Model
 				{
 					_ClipType = value;
 					OnClipTypeChanged();
+				}
+			}
+		}
+
+		public string TargetKey
+		{
+			get { return this._TargetKey; }
+			set
+			{
+				value = value.OrNullIfEmpty();
+				if(value != this._TargetKey)
+				{
+					this._TargetKey = value;
+					OnPropertyChanged("TargetKey");
 				}
 			}
 		}
@@ -79,6 +101,11 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		protected Clip(IDocumentItem parent)
+		{
+			this.Parent = parent;
+		}
+
 		public Clip(IDocumentItem parent, Guid id)
 		{
 			this.Parent = parent;
@@ -95,6 +122,11 @@ namespace Animator.Core.Model
 
 		#region Methods
 
+		internal virtual object GetValue(Time position)
+		{
+			return null;
+		}
+
 		protected virtual void OnClipTypeChanged()
 		{
 			OnPropertyChanged("ClipType");
@@ -109,8 +141,9 @@ namespace Animator.Core.Model
 				this.Id = (Guid)element.Attribute(Schema.clip_id);
 				this.Name = (string)element.Attribute(Schema.clip_name);
 				this.Duration = (float)element.Attribute(Schema.clip_dur);
-				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Model.Document.NoAlignment;
+				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
 				this.ClipType = (string)element.Attribute(Schema.clip_type);
+				this.TargetKey = (string)element.Attribute(Schema.clip_target);
 				_Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.clip_params));
 				//.. other misc attributes?
 			}
@@ -121,27 +154,36 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public override XElement WriteXElement(XName name)
+		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.clip,
 				new XAttribute(Schema.clip_id, this.Id),
 				ModelUtil.WriteOptionalAttribute(Schema.clip_name, this.Name),
 				new XAttribute(Schema.clip_dur, this.Duration.Beats),
-				this.TriggerAlignment == Model.Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
+				this.TriggerAlignment == Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
 				ModelUtil.WriteOptionalAttribute(Schema.clip_type, this.ClipType),
+				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey),
 				ModelUtil.WriteParametersXElement(Schema.clip_params, this._Parameters));
+		}
+
+#pragma warning disable 659
+		public override bool Equals(object obj)
+#pragma warning restore 659
+		{
+			return Equals(obj as Clip);
 		}
 
 		#endregion
 
 		#region IEquatable<Clip> Members
 
-		public bool Equals(Clip other)
+		public virtual bool Equals(Clip other)
 		{
 			return base.Equals(other) &&
 				   other._Duration == this._Duration &&
 				   other._TriggerAlignment == this._TriggerAlignment &&
 				   other._ClipType == this._ClipType &&
+				   other._TargetKey == this._TargetKey &&
 				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters);
 		}
 

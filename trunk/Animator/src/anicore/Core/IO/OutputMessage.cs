@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Animator.Core.IO
 {
@@ -54,6 +55,15 @@ namespace Animator.Core.IO
 
 		#region Static / Constant
 
+		internal static string FormatTrace(OutputMessage message)
+		{
+			if(message == null)
+				return null;
+			return String.Format("TargetKey: '{0}' Data: {1}",
+								 message.TargetKey ?? "(null)",
+								 message._Data == null || message._Data.Length == 0 ? "(no data)" : String.Join(",", message._Data));
+		}
+
 		#endregion
 
 		#region Fields
@@ -83,6 +93,12 @@ namespace Animator.Core.IO
 		{
 			this._TargetKey = targetKey;
 			this._Data = data;
+		}
+
+		public OutputMessage(object targetKey, object data)
+		{
+			this._TargetKey = targetKey;
+			this._Data = data == null ? null : new[] { data };
 		}
 
 		#endregion

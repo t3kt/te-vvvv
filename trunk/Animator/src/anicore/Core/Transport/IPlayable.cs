@@ -19,10 +19,6 @@ namespace Animator.Core.Transport
 
 		void Stop(ITransport transport);
 
-		void EnqueueStart(ITransport transport);
-
-		void EnqueueStop(ITransport transport);
-
 	}
 
 	#endregion

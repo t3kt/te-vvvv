@@ -11,7 +11,7 @@ namespace Animator.Core.Model
 
 	#region Track
 
-	public class Track : DocumentItem, IClipContainer
+	public sealed class Track : DocumentItem, IEquatable<Track>
 	{
 
 		#region Static / Constant
@@ -22,6 +22,7 @@ namespace Animator.Core.Model
 
 		private Guid? _OutputId;
 		private readonly DocumentItemCollection<Clip> _Clips;
+		private string _TargetKey;
 
 		#endregion
 
@@ -36,6 +37,25 @@ namespace Animator.Core.Model
 				{
 					_OutputId = value;
 					this.OnPropertyChanged("OutputId");
+				}
+			}
+		}
+
+		public DocumentItemCollection<Clip> Clips
+		{
+			get { return _Clips; }
+		}
+
+		public string TargetKey
+		{
+			get { return this._TargetKey; }
+			set
+			{
+				value = value.OrNullIfEmpty();
+				if(value != this._TargetKey)
+				{
+					this._TargetKey = value;
+					OnPropertyChanged("TargetKey");
 				}
 			}
 		}
@@ -66,7 +86,7 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		protected void ReadXElement(Document document, XElement element)
+		private void ReadXElement(Document document, XElement element)
 		{
 			Require.ArgNotNull(document, "document");
 			Require.ArgNotNull(element, "element");
@@ -76,7 +96,9 @@ namespace Animator.Core.Model
 				this.Id = (Guid)element.Attribute(Schema.track_id);
 				this.Name = (string)element.Attribute(Schema.track_name);
 				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
-				this.Clips.ReplaceAll(element.Elements(Schema.clip).Select(e => document.CreateClip(this, e)));
+				this.TargetKey = (string)element.Attribute(Schema.track_target);
+				var clipsElement = element.Element(Schema.track_clips);
+				this.Clips.ReplaceAll(clipsElement == null ? null : clipsElement.Elements().Select(e => document.CreateClip(this, e)));
 			}
 			finally
 			{
@@ -85,42 +107,14 @@ namespace Animator.Core.Model
 			}
 		}
 
-		protected virtual Clip ReadClipXElement(XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			return new Clip(this, element);
-		}
-
-		public override XElement WriteXElement(XName name)
+		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.track,
-				new XAttribute(Schema.track_id, this.Id),
-				ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
-				ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
-				this.Clips.WriteXElements(null));
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			base.Dispose(disposing);
-			if(disposing)
-			{
-				_Clips.Dispose();
-			}
-		}
-
-		#endregion
-
-		#region IClipContainer Members
-
-		internal DocumentItemCollection<Clip> Clips
-		{
-			get { return _Clips; }
-		}
-
-		IEnumerable<Clip> IClipContainer.Clips
-		{
-			get { return this.Clips; }
+								new XAttribute(Schema.track_id, this.Id),
+								ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
+								ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
+								ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
+								this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.WriteXElements(null)));
 		}
 
 		public Clip GetClip(Guid id)
@@ -136,6 +130,35 @@ namespace Animator.Core.Model
 		public void RemoveClip(Guid id)
 		{
 			this.Clips.Remove(id);
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			if(disposing)
+			{
+				_Clips.Dispose();
+			}
+		}
+
+#pragma warning disable 659
+		public override bool Equals(object obj)
+#pragma warning restore 659
+		{
+			return Equals(obj as Track);
+		}
+
+		#endregion
+
+		#region IEquatable<Track> Members
+
+		public bool Equals(Track other)
+		{
+			if(!base.Equals(other))
+				return false;
+			return other._OutputId == this._OutputId &&
+				   other._TargetKey == this._TargetKey &&
+				   other._Clips.ItemsEqual(this._Clips);
 		}
 
 		#endregion

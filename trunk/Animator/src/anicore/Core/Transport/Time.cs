@@ -9,15 +9,10 @@ namespace Animator.Core.Transport
 
 	#region Time
 
-	public struct Time : IEquatable<Time>
+	public struct Time : IEquatable<Time>, IComparable<Time>, IComparable
 	{
 
 		#region Static / Constant
-
-		internal static long BeatsToTicks(float beats, float beatsPerMinute)
-		{
-			return (long)(beats * beatsPerMinute * TimeSpan.TicksPerMinute);
-		}
 
 		public static implicit operator Time(float beats)
 		{
@@ -39,7 +34,57 @@ namespace Animator.Core.Transport
 			return x._Beats != y._Beats;
 		}
 
+		public static Time operator +(Time x, Time y)
+		{
+			return new Time(x._Beats + y._Beats);
+		}
+
+		public static Time operator -(Time x, Time y)
+		{
+			return new Time(x._Beats - y._Beats);
+		}
+
+		public static bool operator <(Time x, Time y)
+		{
+			return x._Beats < y._Beats;
+		}
+
+		public static bool operator >(Time x, Time y)
+		{
+			return x._Beats > y._Beats;
+		}
+
+		public static Time operator %(Time x, Time y)
+		{
+			return x._Beats % y._Beats;
+		}
+
+		public static Time operator /(Time x, float y)
+		{
+			return new Time(x._Beats / y);
+		}
+
+		public static Time operator *(Time x, float y)
+		{
+			return new Time(x._Beats * y);
+		}
+
+		public static Time operator /(Time x, Time y)
+		{
+			return new Time(x._Beats / y._Beats);
+		}
+
+		public static Time operator *(Time x, Time y)
+		{
+			return new Time(x._Beats * y._Beats);
+		}
+
 		public static readonly Time Infinite = new Time(Single.PositiveInfinity);
+
+		internal static long BeatsToTicks(float beats, float beatsPerMinute)
+		{
+			return (long)(beats * beatsPerMinute * TimeSpan.TicksPerMinute);
+		}
 
 		#endregion
 
@@ -109,6 +154,28 @@ namespace Animator.Core.Transport
 		public bool Equals(Time other)
 		{
 			return this._Beats == other._Beats;
+		}
+
+		#endregion
+
+		#region IComparable<Time> Members
+
+		public int CompareTo(Time other)
+		{
+			return this._Beats.CompareTo(other._Beats);
+		}
+
+		#endregion
+
+		#region IComparable Members
+
+		public int CompareTo(object obj)
+		{
+			if(obj == null)
+				return 1;
+			if(obj is Time)
+				return CompareTo((Time)obj);
+			return this._Beats.CompareTo(obj);
 		}
 
 		#endregion

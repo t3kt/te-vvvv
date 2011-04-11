@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Animator.Common.Diagnostics;
@@ -9,6 +10,8 @@ using Animator.Core.Model;
 using Animator.Core.Runtime;
 
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), typeof(OutputTransmitter.NullTransmitter))]
+[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "null", typeof(OutputTransmitter.NullTransmitter))]
+[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "trace", typeof(OutputTransmitter.TraceTransmitter))]
 
 namespace Animator.Core.IO
 {
@@ -41,9 +44,60 @@ namespace Animator.Core.IO
 
 			#region Methods
 
-			protected override bool PostMessage(OutputMessage message)
+			protected override bool PostMessageInternal(OutputMessage message)
 			{
 				return false;
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
+		#region TraceTransmitter
+
+		internal sealed class TraceTransmitter : OutputTransmitter
+		{
+
+			#region Static / Constant
+
+			private const string DefaultCategory = "OUTPUT";
+			private const string DefaultPrefix = "[msg] ";
+
+			#endregion
+
+			#region Fields
+
+			private string _Category = DefaultCategory;
+			private string _Prefix = DefaultPrefix;
+
+			#endregion
+
+			#region Properties
+
+			#endregion
+
+			#region Constructors
+
+			#endregion
+
+			#region Methods
+
+			public override void Initialize(Output outputModel)
+			{
+				Require.ArgNotNull(outputModel, "outputModel");
+				this._Category = outputModel.GetParameter("TraceCategory") ?? DefaultCategory;
+				this._Prefix = outputModel.GetParameter("TracePrefix") ?? DefaultPrefix;
+			}
+
+			protected override bool PostMessageInternal(OutputMessage message)
+			{
+				var str = OutputMessage.FormatTrace(message);
+				if(!String.IsNullOrWhiteSpace(this._Prefix))
+					str = this._Prefix + " " + str;
+				Trace.WriteLine(str, this._Category);
+				return true;
 			}
 
 			#endregion
@@ -57,6 +111,7 @@ namespace Animator.Core.IO
 		static OutputTransmitter()
 		{
 			ImplementationRegistry<IOutputTransmitter>.SetDefault(typeof(NullTransmitter));
+			RegisterTypes(typeof (OutputTransmitter).Assembly);
 			//RegisterType(String.Empty, typeof(NullTransmitter));
 			//RegisterType("null", typeof(NullTransmitter));
 		}
@@ -85,31 +140,24 @@ namespace Animator.Core.IO
 
 		#region Fields
 
-		private Guid _Id;
-
 		#endregion
 
 		#region Properties
-
-		public Guid Id
-		{
-			get { return this._Id; }
-		}
 
 		#endregion
 
 		#region Constructors
 
+		~OutputTransmitter()
+		{
+			Dispose(false);
+		}
+
 		#endregion
 
 		#region Methods
 
-		protected virtual void InitializeInternal(Output outputModel)
-		{
-
-		}
-
-		protected abstract bool PostMessage(OutputMessage message);
+		protected abstract bool PostMessageInternal(OutputMessage message);
 
 		protected virtual void OnMessageDropped(OutputMessage message)
 		{
@@ -124,18 +172,16 @@ namespace Animator.Core.IO
 
 		#region IOutputTransmitter Members
 
-		public void Initialize(Output outputModel)
+		public virtual void Initialize(Output outputModel)
 		{
 			Require.ArgNotNull(outputModel, "outputModel");
-			_Id = outputModel.Id;
-			this.InitializeInternal(outputModel);
 		}
 
-		void IOutputTransmitter.PostMessage(OutputMessage message)
+		public void PostMessage(OutputMessage message)
 		{
 			if(message != null)
 			{
-				if(!this.PostMessage(message))
+				if(!this.PostMessageInternal(message))
 					this.OnMessageDropped(message);
 			}
 		}

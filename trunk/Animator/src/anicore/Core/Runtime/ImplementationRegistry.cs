@@ -11,7 +11,7 @@ namespace Animator.Core.Runtime
 
 	#region RegisteredImplementationAttribute
 
-	[AttributeUsage(AttributeTargets.Assembly)]
+	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
 	public sealed class RegisteredImplementationAttribute : Attribute
 	{
 

@@ -16,12 +16,12 @@ namespace Animator.Core.Model
 	internal static class ModelUtil
 	{
 
-		public static IDocument GetDocument(IDocumentItem item)
+		public static Document GetDocument(IDocumentItem item)
 		{
 			while(item != null)
 			{
-				if(item is IDocument)
-					return (IDocument)item;
+				if(item is Document)
+					return (Document)item;
 				item = item.Parent;
 			}
 			return null;
@@ -128,6 +128,18 @@ namespace Animator.Core.Model
 					return false;
 			}
 			return true;
+		}
+
+		internal static XElement WithContent(this XElement element, params object[] content)
+		{
+			Require.ArgNotNull(element, "element");
+			element.Add(content);
+			return element;
+		}
+
+		internal static string OrNullIfEmpty(this string str)
+		{
+			return String.IsNullOrWhiteSpace(str) ? null : str;
 		}
 
 	}

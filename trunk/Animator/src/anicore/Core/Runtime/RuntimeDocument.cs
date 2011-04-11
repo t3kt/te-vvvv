@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Model;
+using Animator.Core.Transport;
 
 namespace Animator.Core.Runtime
 {
@@ -64,6 +67,7 @@ namespace Animator.Core.Runtime
 				foreach(var clip in track.Clips)
 					this.AttachClip(clip);
 			}
+			this._Transport.BeatsPerMinute = this._Document.BeatsPerMinute;
 		}
 
 		#endregion
@@ -75,6 +79,7 @@ namespace Animator.Core.Runtime
 			this._Document.OutputInstantiated += this.Document_OutputInstantiated;
 			this._Document.TrackInstantiated += this.Document_TrackInstantiated;
 			this._Document.ClipInstantiated += this.Document_ClipInstantiated;
+			this._Document.PropertyChanged += this.Document_PropertyChanged;
 		}
 
 		private void DetachHandlers()
@@ -82,21 +87,40 @@ namespace Animator.Core.Runtime
 			this._Document.OutputInstantiated -= this.Document_OutputInstantiated;
 			this._Document.TrackInstantiated -= this.Document_TrackInstantiated;
 			this._Document.ClipInstantiated -= this.Document_ClipInstantiated;
+			this._Document.PropertyChanged -= this.Document_PropertyChanged;
+		}
+
+		private void OnDocumentPropertyChanged(string name)
+		{
+			switch(name)
+			{
+			case "BeatsPerMinute":
+				this._Transport.BeatsPerMinute = this._Document.BeatsPerMinute;
+				break;
+			}
+		}
+
+		private void Document_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			OnDocumentPropertyChanged(e.PropertyName);
 		}
 
 		public RuntimeOutput GetOutput(Guid id)
 		{
-			return this._Outputs[id];
+			//return this._Outputs[id];
+			return this._Outputs.GetOrDefault(id);
 		}
 
 		public RuntimeTrack GetTrack(Guid id)
 		{
-			return this._Tracks[id];
+			//return this._Tracks[id];
+			return this._Tracks.GetOrDefault(id);
 		}
 
 		public RuntimeClip GetClip(Guid id)
 		{
-			return this._Clips[id];
+			//return this._Clips[id];
+			return this._Clips.GetOrDefault(id);
 		}
 
 		public void AttachOutput(Output output)
@@ -159,6 +183,12 @@ namespace Animator.Core.Runtime
 			this.AttachClip(e.Item);
 		}
 
+		internal void PostTrackMessages()
+		{
+			foreach(var track in this._Tracks.Values)
+				track.PostOutput(this._Transport);
+		}
+
 		#endregion
 
 		#region IDisposable Members
@@ -180,6 +210,7 @@ namespace Animator.Core.Runtime
 		}
 
 		#endregion
+
 	}
 
 	#endregion

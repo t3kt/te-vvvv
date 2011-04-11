@@ -89,10 +89,11 @@ namespace Animator.Core.Model
 
 		public override int GetHashCode()
 		{
-			unchecked
-			{
-				return ((this._Name != null ? this._Name.GetHashCode() : 0) * 397) ^ this.Id.GetHashCode();
-			}
+			//unchecked
+			//{
+			//    return ((this._Name != null ? this._Name.GetHashCode() : 0) * 397) ^ this.Id.GetHashCode();
+			//}
+			return this.Id.GetHashCode();
 		}
 
 		#endregion
@@ -125,7 +126,7 @@ namespace Animator.Core.Model
 		{
 		}
 
-		public IDocument Document
+		public Document Document
 		{
 			get
 			{
@@ -181,10 +182,7 @@ namespace Animator.Core.Model
 
 		#region IXElementWritable Members
 
-		public virtual XElement WriteXElement(XName name)
-		{
-			throw new NotSupportedException();
-		}
+		public abstract XElement WriteXElement(XName name = null);
 
 		#endregion
 

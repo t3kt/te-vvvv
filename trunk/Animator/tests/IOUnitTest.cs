@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,21 @@ namespace Animator.Tests
 	public class IOUnitTest
 	{
 
+		[TestMethod]
+		[TestCategory("IO")]
+		public void CreateNullTransmitter()
+		{
+			var outputModel = new Output(null, Guid.Empty) { OutputType = null };
+			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
+		}
+
 		#region TestTransmitter
 
 		internal class TestTransmitter : OutputTransmitter
 		{
 
-			protected override bool PostMessage(OutputMessage message)
+			protected override bool PostMessageInternal(OutputMessage message)
 			{
 				return false;
 			}
@@ -30,54 +40,80 @@ namespace Animator.Tests
 
 		#endregion
 
-
-		public IOUnitTest()
-		{
-		}
-
-		/// <summary>
-		///Gets or sets the test context which provides
-		///information about and functionality for the current test run.
-		///</summary>
-		public TestContext TestContext { get; set; }
-
-		#region Additional test attributes
-		//
-		// You can use the following additional attributes as you write your tests:
-		//
-		// Use ClassInitialize to run code before running the first test in the class
-		// [ClassInitialize()]
-		// public static void MyClassInitialize(TestContext testContext) { }
-		//
-		// Use ClassCleanup to run code after all tests in a class have run
-		// [ClassCleanup()]
-		// public static void MyClassCleanup() { }
-		//
-		// Use TestInitialize to run code before running each test 
-		// [TestInitialize()]
-		// public void MyTestInitialize() { }
-		//
-		// Use TestCleanup to run code after each test has run
-		// [TestCleanup()]
-		// public void MyTestCleanup() { }
-		//
-		#endregion
-
 		[TestMethod]
-		public void TestTransmitterCreateNullImplementation()
-		{
-			var outputModel = new Output(null, Guid.Empty) { OutputType = null };
-			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
-			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
-		}
-
-		[TestMethod]
-		public void TestTransmitterRegistration()
+		[TestCategory("IO")]
+		public void RegisterTransmitter()
 		{
 			OutputTransmitter.RegisterTypes(this.GetType().Assembly);
 			var outputModel = new Output(null, Guid.Empty) { OutputType = "test" };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));
+		}
+
+		[TestMethod]
+		[TestCategory("IO")]
+		public void CreateTraceTransmitter()
+		{
+			var outputModel = new Output(null, Guid.Empty) { OutputType = "trace" };
+			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.TraceTransmitter));
+		}
+
+		#region CallbackTraceListener
+
+		internal class CallbackTraceListener : TraceListener
+		{
+
+			private readonly Action<string> _Write;
+			private readonly Action<string> _WriteLine;
+
+			public CallbackTraceListener(Action<string> write, Action<string> writeLine)
+			{
+				this._Write = write;
+				this._WriteLine = writeLine;
+			}
+
+			public CallbackTraceListener(Action<string> write)
+			{
+				this._Write = write;
+				this._WriteLine = write;
+			}
+
+			public override void Write(string message)
+			{
+				this._Write(message);
+			}
+
+			public override void WriteLine(string message)
+			{
+				this._WriteLine(message);
+			}
+		}
+
+		#endregion
+
+		[TestMethod]
+		[TestCategory("IO")]
+		public void TraceTransmitterOutput()
+		{
+			var outputModel = new Output(null, Guid.Empty) { OutputType = "trace" };
+			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			int writeCount = 0;
+			var listener = new CallbackTraceListener(msg =>
+														{
+															writeCount++;
+														});
+			Trace.Listeners.Add(listener);
+			try
+			{
+				transmitter.PostMessage(new OutputMessage("key1", 5));
+				transmitter.PostMessage(new OutputMessage("key2", new object[] { "x", 5 }));
+				Assert.AreEqual(2, writeCount);
+			}
+			finally
+			{
+				Trace.Listeners.Remove(listener);
+			}
 		}
 
 	}

@@ -53,7 +53,7 @@ namespace Animator.Core.Runtime
 			item.PropertyChanged += this.Item_PropertyChanged;
 		}
 
-		protected virtual void OnItemPropertyChanged(string name)
+		protected virtual void OnPropertyChanged(string name)
 		{
 			var handler = this.PropertyChanged;
 			if(handler != null)
@@ -62,7 +62,7 @@ namespace Animator.Core.Runtime
 
 		private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			this.OnItemPropertyChanged(e.PropertyName);
+			this.OnPropertyChanged(String.IsNullOrEmpty(e.PropertyName) ? String.Empty : "Item." + e.PropertyName);
 		}
 
 		#endregion

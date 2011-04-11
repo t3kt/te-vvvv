@@ -16,6 +16,7 @@ namespace Animator.Tests
 		public TestContext TestContext { get; set; }
 
 		[TestMethod]
+		[TestCategory("OSC")]
 		public void CreateTransmitter()
 		{
 			OutputTransmitter.RegisterTypes(typeof(OscTransmitter).Assembly);

@@ -12,8 +12,10 @@ namespace Animator.Core.Model
 
 	internal static class Schema
 	{
-		public static readonly XName id = "id";
-		public static readonly XName name = "name";
+
+		public static readonly XName @params = "params";
+		public static readonly XName params_param = "param";
+		public static readonly XName params_param_key = "key";
 
 		public static readonly XName anidoc = "anidoc";
 		public static readonly XName anidoc_id = "id";
@@ -22,6 +24,8 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_dur = "dur";
 		public static readonly XName anidoc_align = "align";
 		public static readonly XName anidoc_params = "params";
+		public static readonly XName anidoc_outputs = "outputs";
+		public static readonly XName anidoc_tracks = "tracks";
 
 		public static readonly XName output = "output";
 		public static readonly XName output_id = "id";
@@ -33,7 +37,9 @@ namespace Animator.Core.Model
 		public static readonly XName track_id = "id";
 		public static readonly XName track_name = "name";
 		public static readonly XName track_output = "output";
+		public static readonly XName track_target = "target";
 		public static readonly XName track_params = "params";
+		public static readonly XName track_clips = "clips";
 
 		public static readonly XName clip = "clip";
 		public static readonly XName clip_id = "id";
@@ -41,11 +47,17 @@ namespace Animator.Core.Model
 		public static readonly XName clip_dur = "dur";
 		public static readonly XName clip_align = "align";
 		public static readonly XName clip_type = "type";
+		public static readonly XName clip_target = "target";
 		public static readonly XName clip_params = "params";
 
-		public static readonly XName @params = "params";
-		public static readonly XName params_param = "param";
-		public static readonly XName params_param_key = "key";
+		public static readonly XName stepclip = "stepclip";
+		public static readonly XName stepclip_id = "id";
+		public static readonly XName stepclip_name = "name";
+		public static readonly XName stepclip_dur = "dur";
+		public static readonly XName stepclip_align = "align";
+		public static readonly XName stepclip_type = "type";
+		public static readonly XName stepclip_params = "params";
+		public static readonly XName stepclip_step = "step";
 
 	}
 

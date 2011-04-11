@@ -74,11 +74,11 @@ namespace Animator.Core.Runtime
 			this._Transmitter = OutputTransmitter.CreateTransmitter(this._Output);
 		}
 
-		protected override void OnItemPropertyChanged(string name)
+		protected override void OnPropertyChanged(string name)
 		{
-			if(name == "OutputType")
+			if(name == "Item.OutputType")
 				this.InitializeTransmitter();
-			base.OnItemPropertyChanged(name);
+			base.OnPropertyChanged(name);
 		}
 
 		#endregion
