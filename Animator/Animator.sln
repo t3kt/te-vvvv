@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prototype", "AnimatorProtot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anicore", "src\anicore\anicore.csproj", "{178A8297-5804-43DE-A57C-CED633602BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animator.Tests", "Animator.Tests\Animator.Tests.csproj", "{ADDFCA88-187A-4C32-9876-9089E5A0A648}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animator.Tests", "tests\Animator.Tests.csproj", "{ADDFCA88-187A-4C32-9876-9089E5A0A648}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D7B10F4-56DD-4A3B-B0D4-A634370CBCDF}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aniosc", "aniosc\aniosc.csproj", "{56CE73A3-B6E0-4E9A-8D7A-756862B509ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aniosc", "src\aniosc\aniosc.csproj", "{56CE73A3-B6E0-4E9A-8D7A-756862B509ED}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
