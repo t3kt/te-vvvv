@@ -64,7 +64,7 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Track(IDocumentItem parent)
+		private Track(IDocumentItem parent)
 		{
 			this.Parent = parent;
 			_Clips = new DocumentItemCollection<Clip>(this);
@@ -141,9 +141,12 @@ namespace Animator.Core.Model
 			}
 		}
 
-#pragma warning disable 659
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
+
 		public override bool Equals(object obj)
-#pragma warning restore 659
 		{
 			return Equals(obj as Track);
 		}

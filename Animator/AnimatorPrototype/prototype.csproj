@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ee38e808-87e3-449a-a99f-1de0a2c4aa4b}</ProjectGuid>
+    <ProjectGuid>{EE38E808-87E3-449A-A99F-1DE0A2C4AA4B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <DefaultClrNameSpace>AnimatorPrototype</DefaultClrNameSpace>
@@ -52,6 +52,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DocumentPropertiesPane.xaml.cs">
+      <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimelineGroup.xaml.cs">
       <DependentUpon>TimelineGroup.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,10 @@
     <Page Include="AppSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DocumentPropertiesPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

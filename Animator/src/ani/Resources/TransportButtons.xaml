@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="AppSkin.xaml"/>
-	</ResourceDictionary.MergedDictionaries>
 	<DrawingBrush x:Key="StopButtonDrawing" Stretch="Uniform">
 		<DrawingBrush.Drawing>
 			<DrawingGroup>
@@ -35,12 +32,12 @@
 				<DrawingGroup.Children>
 					<GeometryDrawing Brush="{StaticResource ForegroundBrush}" Geometry="F1 M 42,30L 78,30C 79.1046,30 80,30.8955 80,32.0001L 80,168C 80,169.105 79.1046,170 78,170L 42,170C 40.8954,170 40,169.105 40,168L 40,32.0001C 40,30.8955 40.8954,30 42,30 Z ">
 						<GeometryDrawing.Pen>
-							<Pen LineJoin="Round" Brush="#FF797A7C"/>
+							<Pen LineJoin="Round" Brush="{StaticResource ForegroundBrush}"/>
 						</GeometryDrawing.Pen>
 					</GeometryDrawing>
 					<GeometryDrawing Brush="{StaticResource ForegroundBrush}" Geometry="F1 M 122,30.0001L 158,30.0001C 159.105,30.0001 160,30.8955 160,32.0001L 160,168C 160,169.105 159.105,170 158,170L 122,170C 120.895,170 120,169.105 120,168L 120,32.0001C 120,30.8955 120.895,30.0001 122,30.0001 Z ">
 						<GeometryDrawing.Pen>
-							<Pen LineJoin="Round" Brush="#FF797A7C"/>
+							<Pen LineJoin="Round" Brush="{StaticResource ForegroundBrush}"/>
 						</GeometryDrawing.Pen>
 					</GeometryDrawing>
 				</DrawingGroup.Children>

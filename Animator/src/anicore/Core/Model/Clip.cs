@@ -166,9 +166,12 @@ namespace Animator.Core.Model
 				ModelUtil.WriteParametersXElement(Schema.clip_params, this._Parameters));
 		}
 
-#pragma warning disable 659
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
+
 		public override bool Equals(object obj)
-#pragma warning restore 659
 		{
 			return Equals(obj as Clip);
 		}

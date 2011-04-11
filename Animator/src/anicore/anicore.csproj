@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Sanford.Collections">
       <HintPath>..\..\lib\Sanford.Collections.dll</HintPath>
     </Reference>
