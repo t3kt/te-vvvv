@@ -85,7 +85,6 @@
     <Compile Include="Core\Runtime\RuntimeDocumentItem.cs" />
     <Compile Include="Core\Runtime\RuntimeOutput.cs" />
     <Compile Include="Core\Runtime\RuntimeTrack.cs" />
-    <Compile Include="Core\Transport\ClipState.cs" />
     <Compile Include="Core\Transport\IPlayable.cs" />
     <Compile Include="Core\Transport\RuntimeTransport.cs" />
     <Compile Include="Core\Transport\MMTimer.cs" />

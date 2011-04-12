@@ -1,9 +1,9 @@
-﻿<Panes:AniPane x:Class="Animator.UI.Panes.OutputPropertiesPane"
+﻿<Panes:AniPane x:Class="Animator.UI.Panes.TrackPropertiesPane"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" mc:Ignorable="d" 
-             d:DesignWidth="300" Style="{StaticResource ResourceKey=HeaderedPaneUserControlStyle}" PaneHeader="Output Properties">
+             d:DesignWidth="300" Style="{StaticResource ResourceKey=HeaderedPaneUserControlStyle}" PaneHeader="Track Properties">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
@@ -13,12 +13,23 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Id:" />
 		<TextBox Grid.Column="1" Name="idTextBox" IsReadOnly="True" IsEnabled="False" Text="{Binding Path=Id, Mode=OneWay}" />
 		<Label Grid.Row="1" Content="Name:" />
 		<TextBox Grid.Row="1" Grid.Column="1" Name="nameTextBox" Text="{Binding Path=Name}"/>
-		<Label Grid.Row="2" Content="Type:" />
-		<TextBox Grid.Row="2" Grid.Column="1" Name="outputTypeTextBox" Text="{Binding Path=OutputType}"/>
+		<Label Grid.Row="2" Content="Output"/>
+		<ComboBox Grid.Row="2" Grid.Column="1" SelectedValue="{Binding Path=OutputId}"/>
+		<Label Grid.Row="3" Content="Target:" />
+		<TextBox Grid.Row="3" Grid.Column="1" Name="targetKeyTextBox" Text="{Binding Path=TargetKey}"/>
+		<Label Grid.Row="4" Content="Align:" />
+		<ComboBox Grid.Row="4" Grid.Column="1" Name="alignmentComboBox" IsEditable="True" SelectedValue="{Binding Path=TriggerAlignment}">
+			<!--<ComboBoxItem Content="1" />
+				<ComboBoxItem Content="2" />
+				<ComboBoxItem Content="4" />
+				<ComboBoxItem Content="8" />-->
+		</ComboBox>
 	</Grid>
 </Panes:AniPane>
