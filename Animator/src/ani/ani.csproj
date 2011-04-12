@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,10 +57,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppCore\AppAction.cs" />
+    <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="AppCore\Common\LinkedStack.cs" />
+    <Compile Include="AppCore\Constants.cs" />
+    <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Editors\StepListEditor.xaml.cs">
+      <DependentUpon>StepListEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -93,6 +102,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Test\TestWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Editors\StepListEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

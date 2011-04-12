@@ -16,11 +16,14 @@ namespace Animator.UI.Panes
 		#region Static / Constant
 
 		public static readonly DependencyProperty PaneHeaderProperty;
+		public static readonly DependencyProperty PaneHeaderVisibleProperty;
 
 		static AniPane()
 		{
 			PaneHeaderProperty = DependencyProperty.Register("PaneHeader", typeof(string), typeof(AniPane),
-				new FrameworkPropertyMetadata(null));
+															 new FrameworkPropertyMetadata(null));
+			PaneHeaderVisibleProperty = DependencyProperty.Register("PaneHeaderVisible", typeof(bool), typeof(AniPane),
+																	new FrameworkPropertyMetadata(true));
 		}
 
 		#endregion
@@ -35,6 +38,12 @@ namespace Animator.UI.Panes
 		{
 			get { return (string)this.GetValue(PaneHeaderProperty); }
 			set { this.SetValue(PaneHeaderProperty, value); }
+		}
+
+		public bool PaneHeaderVisible
+		{
+			get { return (bool)this.GetValue(PaneHeaderVisibleProperty); }
+			set { this.SetValue(PaneHeaderVisibleProperty, value); }
 		}
 
 		#endregion

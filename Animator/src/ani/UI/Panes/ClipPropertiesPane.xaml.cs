@@ -17,7 +17,7 @@ namespace Animator.UI.Panes
 	/// <summary>
 	/// Interaction logic for ClipPropertiesPane.xaml
 	/// </summary>
-	public partial class ClipPropertiesPane : AniPane
+	public partial class ClipPropertiesPane
 	{
 		public ClipPropertiesPane()
 		{
