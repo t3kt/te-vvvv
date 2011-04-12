@@ -1,15 +1,83 @@
-<Window x:Class="Animator.UI.MainWindow"
+﻿<Window x:Class="Animator.UI.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		Title="Animator" Height="409" Width="804">
-	<DockPanel LastChildFill="False">
-		<Menu Name="menu1" DockPanel.Dock="Top">
+		Title="Animator" Height="409" Width="804" Style="{StaticResource MainWindowStyle}" xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:AppCore="clr-namespace:Animator.AppCore" xmlns:Test="clr-namespace:Animator.Test" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore">
+	<Window.CommandBindings>
+		<CommandBinding Command="AppCore:AniAppCommands.Exit" Executed="ExitCommand_Executed" />
+		<CommandBinding Command="Test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
+		<CommandBinding Command="Test:TestCommands.LoadTestDocument" Executed="LoadTestDocumentCommand_Executed" />
+	</Window.CommandBindings>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto" MinWidth="200" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Menu Style="{DynamicResource MainMenuStyle}" Grid.ColumnSpan="3">
 			<MenuItem Header="_File">
-				<MenuItem Header="_Exit" />
+				<MenuItem Command="ApplicationCommands.New" Style="{StaticResource MainMenuItemStyle}" />
+				<MenuItem Command="ApplicationCommands.Open" Style="{StaticResource MainMenuItemStyle}" />
+				<MenuItem Command="ApplicationCommands.Save" Style="{StaticResource MainMenuItemStyle}" />
+				<MenuItem Command="ApplicationCommands.Close" Style="{StaticResource MainMenuItemStyle}" />
+				<Separator Background="{StaticResource PaneBackgroundBrush}" />
+				<MenuItem Command="AppCore:AniAppCommands.Exit" Style="{StaticResource MainMenuItemStyle}" />
 			</MenuItem>
 			<MenuItem Header="_Debug">
-				<MenuItem x:Name="ShowTestWindowMenuItem" Header="Show _Test Window" Click="ShowTestWindowMenuItem_Click" />
+				<MenuItem Command="Test:TestCommands.ShowTestWindow" Style="{StaticResource MainMenuItemStyle}" />
+				<MenuItem Command="Test:TestCommands.LoadTestDocument" Style="{StaticResource MainMenuItemStyle}" />
 			</MenuItem>
 		</Menu>
-	</DockPanel>
+		<UserControl Grid.Row="1" Style="{StaticResource PaneUserControlStyle}">
+			<TabControl>
+				<TabItem Header="_Tracks">
+					<ListBox Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}">
+						<ListBox.Template>
+							<ControlTemplate TargetType="{x:Type ListBox}">
+								<Border>
+									<StackPanel IsItemsHost="True" />
+								</Border>
+							</ControlTemplate>
+						</ListBox.Template>
+						<ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type Model:Track}">
+								<Expander Header="{Binding Path=Name}">
+									<panes:TrackPropertiesPane DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Grid.Row="1" />
+								</Expander>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+				<TabItem Header="_Outputs">
+					<ListBox Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}">
+						<ListBox.Template>
+							<ControlTemplate TargetType="{x:Type ListBox}">
+								<Border>
+									<StackPanel IsItemsHost="True" />
+								</Border>
+							</ControlTemplate>
+						</ListBox.Template>
+						<ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type Model:Output}">
+								<ListBoxItem Width="Auto" HorizontalAlignment="Stretch">
+									<Expander Header="{Binding Path=Name}">
+										<panes:OutputPropertiesPane DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Grid.Row="1" />
+									</Expander>
+								</ListBoxItem>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+			</TabControl>
+		</UserControl>
+		<GridSplitter Grid.Row="1" Grid.Column="1" Width="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane1" Grid.Column="2" Margin="1" Grid.Row="1" />
+		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="Collapsed">
+			<StatusBarItem Content="" />
+		</StatusBar>
+	</Grid>
 </Window>

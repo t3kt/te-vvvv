@@ -5,14 +5,41 @@
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
 	<SolidColorBrush x:Key="PaneBackgroundBrush" Color="#C0C0C0"/>
 	<SolidColorBrush x:Key="PaneHeaderBackgroundBrush" Color="#D0D0D0"/>
+	<SolidColorBrush x:Key="WindowBackgroundBrush" Color="#F0F0F0"/>
 	<SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#92A2B4"/>
 	<SolidColorBrush x:Key="ButtonHighlightedBackgroundBrush" Color="#63768B"/>
+	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Window}">
+					<Border Background="{TemplateBinding Background}">
+						<ContentPresenter Margin="4" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 	<Style x:Key="PaneUserControlStyle" TargetType="{x:Type UserControl}">
+		<Setter Property="Control.Margin" Value="1"/>
 		<Setter Property="Control.Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type UserControl}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="{TemplateBinding Margin}">
 						<ContentPresenter Margin="{TemplateBinding Padding}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Padding" Value="2"/>
+	</Style>
+	<Style x:Key="PaneHeaderStyle" TargetType="{x:Type Control}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Control}">
+					<Border Background="{StaticResource PaneHeaderBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="0,0,0,1" CornerRadius="2">
+						<ContentPresenter Margin="6,2"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
@@ -22,7 +49,7 @@
 		<Setter Property="Control.Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Panes:AniPane}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="1">
 						<HeaderedContentControl Header="{TemplateBinding Panes:AniPane.PaneHeader}" Padding="4">
 							<HeaderedContentControl.Style>
 								<Style TargetType="{x:Type HeaderedContentControl}">
@@ -48,4 +75,52 @@
 		</Setter>
 	</Style>
 	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+	<Style x:Key="MainMenuStyle" TargetType="{x:Type Menu}">
+		<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
+		<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"/>
+		<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"/>
+		<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}"/>
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Menu}">
+					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" SnapsToDevicePixels="True">
+						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="MainMenuItemStyle" TargetType="{x:Type MenuItem}">
+		<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
+	</Style>
+	<Style x:Key="MainMenuSeparatorStyle" TargetType="{x:Type Separator}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Separator}">
+					<Grid SnapsToDevicePixels="true" Background="{StaticResource PaneBackgroundBrush}">
+						<Rectangle Fill="{StaticResource WindowBackgroundBrush}" Height="2" Margin="10,2,10,2"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
+	</Style>
+	<Style x:Key="MainStatusBarStyle" TargetType="{x:Type StatusBar}">
+		<Setter Property="Background" Value="#FFF1EDED"/>
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.StatusFontFamilyKey}}"/>
+		<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.StatusFontSizeKey}}"/>
+		<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.StatusFontStyleKey}}"/>
+		<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.StatusFontWeightKey}}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type StatusBar}">
+					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" SnapsToDevicePixels="True">
+						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
 </ResourceDictionary>

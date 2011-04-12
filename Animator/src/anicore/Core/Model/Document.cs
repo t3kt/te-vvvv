@@ -258,7 +258,7 @@ namespace Animator.Core.Model
 			this.OnItemInstantiated(track, clip);
 		}
 
-		internal Output CreateOutput(Guid id)
+		public Output CreateOutput(Guid id)
 		{
 			var output = new Output(this, id);
 			this.OnOutputInstantiated(output);
@@ -272,7 +272,7 @@ namespace Animator.Core.Model
 			return output;
 		}
 
-		internal Track CreateTrack(Guid id)
+		public Track CreateTrack(Guid id)
 		{
 			var track = new Track(this, id);
 			this.OnTrackInstantiated(track);
@@ -286,7 +286,7 @@ namespace Animator.Core.Model
 			return track;
 		}
 
-		internal Clip CreateClip(Track track, Guid id)
+		public Clip CreateClip(Track track, Guid id)
 		{
 			var clip = new Clip(track, id);
 			this.OnClipInstantiated(track, clip);
@@ -300,7 +300,7 @@ namespace Animator.Core.Model
 			return clip;
 		}
 
-		internal StepClip CreateStepClip(Track track, Guid id)
+		public StepClip CreateStepClip(Track track, Guid id)
 		{
 			var clip = new StepClip(track, id);
 			this.OnClipInstantiated(track, clip);

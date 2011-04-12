@@ -56,6 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
@@ -67,11 +69,17 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Panes\AniPane.cs" />
+    <Compile Include="UI\Panes\ClipPropertiesPane.xaml.cs">
+      <DependentUpon>ClipPropertiesPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Panes\OutputPropertiesPane.xaml.cs">
       <DependentUpon>OutputPropertiesPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Panes\TrackPropertiesPane.xaml.cs">
+      <DependentUpon>TrackPropertiesPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Panes\TransportPane.xaml.cs">
       <DependentUpon>TransportPane.xaml</DependentUpon>
@@ -92,11 +100,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Panes\ClipPropertiesPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Panes\DocumentPropertiesPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Panes\OutputPropertiesPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Panes\TrackPropertiesPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Animator.Core.Model;
 using Animator.Test;
 
 namespace Animator.UI
@@ -46,11 +47,34 @@ namespace Animator.UI
 
 		#endregion
 
-		private void ShowTestWindowMenuItem_Click(object sender, RoutedEventArgs e)
+		private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void ShowTestWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			if(_TestWindow == null)
 				_TestWindow = new TestWindow1 { Owner = this };
 			_TestWindow.Show();
+		}
+
+		private void LoadTestDocumentCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var doc = new Document()
+					  {
+						  Name = "Test Document"
+					  };
+			var outputA = doc.CreateOutput(Guid.NewGuid());
+			outputA.Name = "out A";
+			doc.AddOutput(outputA);
+			var outputB = doc.CreateOutput(Guid.NewGuid());
+			outputB.Name = "out B";
+			doc.AddOutput(outputB);
+			var trackA = doc.CreateTrack(Guid.NewGuid());
+			trackA.Name = "track A";
+			doc.AddTrack(trackA);
+			this.DataContext = doc;
 		}
 
 		#region Methods

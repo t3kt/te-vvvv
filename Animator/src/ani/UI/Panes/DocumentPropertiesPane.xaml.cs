@@ -22,9 +22,7 @@ namespace Animator.UI.Panes
 
 		static DocumentPropertiesPane()
 		{
-			ShowCountsProperty = DependencyProperty.Register("ShowCounts", typeof(bool), typeof(DocumentPropertiesPane),
-															 new PropertyMetadata(true));
-			//new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsArrange| Fra));
+			ShowCountsProperty = DependencyProperty.Register("ShowCounts", typeof(bool), typeof(DocumentPropertiesPane), new PropertyMetadata(false));
 		}
 
 		#endregion
