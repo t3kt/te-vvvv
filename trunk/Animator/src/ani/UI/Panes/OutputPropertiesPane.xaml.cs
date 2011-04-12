@@ -17,7 +17,7 @@ namespace Animator.UI.Panes
 	/// <summary>
 	/// Interaction logic for OutputPropertiesPane.xaml
 	/// </summary>
-	public partial class OutputPropertiesPane : AniPane
+	public partial class OutputPropertiesPane
 	{
 		public OutputPropertiesPane()
 		{

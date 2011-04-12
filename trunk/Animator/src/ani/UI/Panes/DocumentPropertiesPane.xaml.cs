@@ -13,7 +13,7 @@ namespace Animator.UI.Panes
 	/// <summary>
 	/// Interaction logic for DocumentPropertiesPane.xaml
 	/// </summary>
-	public partial class DocumentPropertiesPane : AniPane
+	public partial class DocumentPropertiesPane
 	{
 
 		#region Static / Constant

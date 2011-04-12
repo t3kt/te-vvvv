@@ -17,7 +17,7 @@ namespace Animator.UI.Panes
 	/// <summary>
 	/// Interaction logic for TrackPropertiesPane.xaml
 	/// </summary>
-	public partial class TrackPropertiesPane : AniPane
+	public partial class TrackPropertiesPane
 	{
 		public TrackPropertiesPane()
 		{
