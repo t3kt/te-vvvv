@@ -59,7 +59,7 @@ namespace Animator.AppCore.Common
 			return value;
 		}
 
-		public void PushRange(IEnumerable<T> values)
+		public virtual void PushRange(IEnumerable<T> values)
 		{
 			Require.ArgNotNull(values, "values");
 			foreach(var value in values)

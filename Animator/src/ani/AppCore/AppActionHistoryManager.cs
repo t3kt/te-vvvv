@@ -82,8 +82,7 @@ namespace Animator.AppCore
 		{
 			get
 			{
-				return this._UndoRecords.Count != 0 &&
-					   this._UndoRecords.Peek().Action.SupportsUndo;
+				return this._UndoRecords.Count != 0;
 			}
 		}
 
@@ -122,11 +121,14 @@ namespace Animator.AppCore
 		{
 			if(action == null)
 				return;
-			var oldState = action.Perform(target, newState);
-			PushUndoRecord(action, target, oldState);
+			object oldState;
+			bool canUndo;
+			action.Perform(target, newState, out oldState, out canUndo);
+			if(canUndo)
+				PushUndoRecord(action, target, oldState);
 		}
 
-		public void PushUndoRecord(IAppAction action, object target, object oldState)
+		private void PushUndoRecord(IAppAction action, object target, object oldState)
 		{
 			if(action == null)
 				return;
@@ -139,7 +141,7 @@ namespace Animator.AppCore
 
 		private bool TryPopUndoRecord(out Record record)
 		{
-			if(this._UndoRecords.Count > 0 && this._UndoRecords.Peek().Action.SupportsUndo)
+			if(this._UndoRecords.Count > 0)
 			{
 				record = this._UndoRecords.Pop();
 				return true;

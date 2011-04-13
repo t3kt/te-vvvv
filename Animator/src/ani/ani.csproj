@@ -57,14 +57,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppCore\AniAppActions.cs" />
     <Compile Include="AppCore\AppAction.cs" />
     <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
     <Compile Include="AppCore\Common\DoubleLinkedStack.cs" />
+    <Compile Include="AppCore\Common\LimitedStack.cs" />
     <Compile Include="AppCore\Common\LinkedStack.cs" />
     <Compile Include="AppCore\Common\StackBase.cs" />
     <Compile Include="AppCore\Constants.cs" />
+    <Compile Include="AppCore\DependencyPropertyChangeAppAction.cs" />
     <Compile Include="AppCore\IAppAction.cs" />
+    <Compile Include="AppCore\PropertyChangeAppAction.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>

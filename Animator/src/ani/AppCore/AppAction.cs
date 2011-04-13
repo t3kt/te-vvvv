@@ -12,7 +12,58 @@ namespace Animator.AppCore
 	internal abstract class AppAction : IAppAction
 	{
 
+		#region NullAppAction
+
+		private sealed class NullAppAction : AppAction
+		{
+
+			#region Static/Constant
+
+			#endregion
+
+			#region Fields
+
+			private readonly bool _SupportsUndo;
+
+			#endregion
+
+			#region Properties
+
+			#endregion
+
+			#region Constructors
+
+			public NullAppAction(bool supportsUndo)
+			{
+				this._SupportsUndo = supportsUndo;
+			}
+
+			#endregion
+
+			#region Methods
+
+			public override void Perform(object target, object newState, out object oldState, out bool canUndo)
+			{
+				oldState = null;
+				canUndo = this._SupportsUndo;
+			}
+
+			public override void Undo(object target, object oldState)
+			{
+
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
 		#region Static / Constant
+
+		internal static readonly AppAction Null = new NullAppAction(false);
+
+		internal static readonly AppAction NullWithUndo = new NullAppAction(true);
 
 		#endregion
 
@@ -21,11 +72,6 @@ namespace Animator.AppCore
 		#endregion
 
 		#region Properties
-
-		public virtual bool SupportsUndo
-		{
-			get { return false; }
-		}
 
 		public virtual string Name
 		{
@@ -40,7 +86,7 @@ namespace Animator.AppCore
 
 		#region Methods
 
-		public abstract object Perform(object target, object newState);
+		public abstract void Perform(object target, object newState, out object oldState, out bool canUndo);
 
 		public virtual void Undo(object target, object oldState)
 		{
