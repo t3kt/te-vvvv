@@ -15,11 +15,11 @@ namespace Animator.Tests.AniApp
 
 
 	/// <summary>
-	///This is a test class for LinkedStackTest and is intended
-	///to contain all LinkedStackTest Unit Tests
+	///This is a test class for DoubleLinkedStackTest and is intended
+	///to contain all DoubleLinkedStackTest Unit Tests
 	///</summary>
 	[TestClass]
-	public class LinkedStackTest
+	public class DoubleLinkedStackTest
 	{
 
 		private readonly ReadOnlyCollection<int> _TestValues = new ReadOnlyCollection<int>(new List<int> { 10, 20, 30, 40 });
@@ -32,16 +32,16 @@ namespace Animator.Tests.AniApp
 			return values;
 		}
 
-		private LinkedStack<int> CreateWithTestValues()
+		private DoubleLinkedStack<int> CreateWithTestValues()
 		{
-			LinkedStack<int> target = new LinkedStack<int>();
+			DoubleLinkedStack<int> target = new DoubleLinkedStack<int>();
 			this.AddTestValues(target);
 			Assert.AreEqual(_TestValues.Count, target.Count);
 			CollectionAssert.AreEqual(_TestValues, target);
 			return target;
 		}
 
-		private void AddTestValues(LinkedStack<int> stack)
+		private void AddTestValues(DoubleLinkedStack<int> stack)
 		{
 			Debug.Assert(stack != null);
 			IEnumerable<int> values = this.GetTestValuesForPush();
@@ -49,19 +49,19 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
-		public void LinkedStackConstructorWithValuesTest()
+		[TestCategory("DoubleLinkedStack")]
+		public void DoubleLinkedStackConstructorWithValuesTest()
 		{
 			var stack = CreateWithTestValues();
 			CollectionAssert.AreEqual(_TestValues, stack);
 		}
 
 		/// <summary>
-		///A test for LinkedStack`1 Constructor
+		///A test for DoubleLinkedStack`1 Constructor
 		///</summary>
-		public LinkedStack<T> CreateEmpty<T>()
+		public DoubleLinkedStack<T> CreateEmpty<T>()
 		{
-			LinkedStack<T> target = new LinkedStack<T>();
+			DoubleLinkedStack<T> target = new DoubleLinkedStack<T>();
 			Assert.AreEqual(0, target.Count);
 			Assert.AreEqual(0, target.Count());
 			Assert.IsFalse(target.Any());
@@ -69,8 +69,8 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
-		public void LinkedStackConstructorTest1()
+		[TestCategory("DoubleLinkedStack")]
+		public void DoubleLinkedStackConstructorTest1()
 		{
 			this.CreateEmpty<GenericParameterHelper>();
 		}
@@ -80,7 +80,7 @@ namespace Animator.Tests.AniApp
 		///</summary>
 		public void ClearTestHelper<T>()
 		{
-			LinkedStack<T> target = new LinkedStack<T>();
+			DoubleLinkedStack<T> target = new DoubleLinkedStack<T>();
 			target.Push(default(T));
 			target.Push(default(T));
 			target.Push(default(T));
@@ -90,17 +90,17 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void ClearTest()
 		{
 			ClearTestHelper<GenericParameterHelper>();
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void PeekTest()
 		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
+			DoubleLinkedStack<int> target = this.CreateEmpty<int>();
 			TestUtil.AssertThrowsException<InvalidOperationException>(() =>
 																	  {
 																		  var z = target.Peek();
@@ -114,10 +114,10 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void PopTest()
 		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
+			DoubleLinkedStack<int> target = this.CreateEmpty<int>();
 			TestUtil.AssertThrowsException<InvalidOperationException>(() =>
 																	  {
 																		  var z = target.Pop();
@@ -131,10 +131,10 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void PushTest()
 		{
-			LinkedStack<int> target = this.CreateWithTestValues();
+			DoubleLinkedStack<int> target = this.CreateWithTestValues();
 			var origCount = target.Count;
 			int value = 999;
 			target.Push(value);
@@ -145,10 +145,10 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void PushRangeTest()
 		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
+			DoubleLinkedStack<int> target = this.CreateEmpty<int>();
 			var testValuesForPush = this.GetTestValuesForPush();
 			target.PushRange(testValuesForPush);
 			CollectionAssert.AreEqual(_TestValues, target);
@@ -157,30 +157,12 @@ namespace Animator.Tests.AniApp
 			CollectionAssert.AreEqual(_TestValues.Concat(_TestValues).ToArray(), target);
 		}
 
-		//[TestMethod]
-		//[TestCategory("LinkedStack")]
-		//[DeploymentItem("ani.exe")]
-		//public void GetInternalEnumeratorNonEmptyTest()
-		//{
-		//    LinkedStack<int> target = this.CreateWithTestValues();
-		//    IEnumerator<int> internalEnumerator = target.GetEnumeratorInternal();
-		//    var iterator = target.GetEnumeratorIterator();
-		//    for(; ; )
-		//    {
-		//        if(!iterator.MoveNext())
-		//            break;
-		//        if(!internalEnumerator.MoveNext())
-		//            break;
-		//        Assert.AreEqual(iterator.Current, internalEnumerator.Current);
-		//    }
-		//}
-
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		[DeploymentItem("ani.exe")]
 		public void GetEnumeratorNonEmptyTest()
 		{
-			LinkedStack<int> target = this.CreateWithTestValues();
+			DoubleLinkedStack<int> target = this.CreateWithTestValues();
 			IEnumerator<int> enumerator = target.GetEnumerator();
 			TestUtil.AssertThrowsException<InvalidOperationException>(() =>
 																	  {
@@ -200,27 +182,10 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
-		public void GetEnumeratorEmpty()
-		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
-			IEnumerator<int> enumerator = target.GetEnumerator();
-			TestUtil.AssertThrowsException<InvalidOperationException>(() =>
-																	  {
-																		  var z = enumerator.Current;
-																	  }, "Current allowed on non-started enumerator");
-			Assert.IsFalse(enumerator.MoveNext());
-			TestUtil.AssertThrowsException<InvalidOperationException>(() =>
-			                                                          {
-			                                                          	var z = enumerator.Current;
-			                                                          }, "Current allowed on empty enumerator");
-		}
-
-		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void TryPeekTest()
 		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
+			DoubleLinkedStack<int> target = this.CreateEmpty<int>();
 			int value;
 			Assert.IsFalse(target.TryPeek(out value));
 			this.AddTestValues(target);
@@ -232,10 +197,10 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory("DoubleLinkedStack")]
 		public void TryPopTest()
 		{
-			LinkedStack<int> target = this.CreateEmpty<int>();
+			DoubleLinkedStack<int> target = this.CreateEmpty<int>();
 			int value;
 			Assert.IsFalse(target.TryPop(out value));
 			this.AddTestValues(target);
