@@ -1,23 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using Animator.Common.Diagnostics;
 
 namespace Animator.AppCore.Common
 {
 
 	#region LinkedStack<T>
 
-	public class LinkedStack<T> : IEnumerable<T>, ICollection
+	public class LinkedStack<T> : StackBase<T>
 	{
 
 		#region Node
 
-		protected sealed class Node
+		private sealed class Node
 		{
 
 			#region Static / Constant
@@ -47,6 +44,7 @@ namespace Animator.AppCore.Common
 			#region Methods
 
 			#endregion
+
 		}
 
 		#endregion
@@ -91,7 +89,7 @@ namespace Animator.AppCore.Common
 			{
 				get
 				{
-					if(this._HasStarted || this._Node == null)
+					if(!this._HasStarted || this._Node == null)
 						throw new InvalidOperationException();
 					return this._Node.Value;
 				}
@@ -146,40 +144,32 @@ namespace Animator.AppCore.Common
 		#region Fields
 
 		private Node _TopNode;
-		private object _SyncRoot;
+		private int _Count;
 
 		#endregion
 
 		#region Properties
 
-		public bool IsEmpty
+		public override int Count
 		{
-			get { return this._TopNode != null; }
+			get { return _Count; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public LinkedStack()
-		{
-		}
-
-		public LinkedStack(IEnumerable<T> values)
-		{
-			this.PushRange(values);
-		}
-
 		#endregion
 
 		#region Methods
 
-		public virtual void Clear()
+		public override void Clear()
 		{
 			this._TopNode = null;
+			this._Count = 0;
 		}
 
-		public virtual bool TryPeek(out T value)
+		public override bool TryPeek(out T value)
 		{
 			if(this._TopNode == null)
 			{
@@ -190,89 +180,44 @@ namespace Animator.AppCore.Common
 			return true;
 		}
 
-		public T Peek()
-		{
-			T value;
-			if(!this.TryPeek(out value))
-				throw new InvalidOperationException();
-			return value;
-		}
-
-		public virtual bool TryPop(out T value)
+		public override bool TryPop(out T value)
 		{
 			if(!this.TryPeek(out value))
 				return false;
 			this._TopNode = this._TopNode.Next;
+			this._Count--;
 			return true;
 		}
 
-		public T Pop()
+		public override void Push(T value)
 		{
-			T value;
-			if(!this.TryPop(out value))
-				throw new InvalidOperationException();
-			return value;
-		}
-
-		public virtual void Push(T value)
-		{
-			var node = new Node(value);
-			node.Next = this._TopNode;
+			var node = new Node(value) { Next = this._TopNode };
 			this._TopNode = node;
-		}
-
-		public void PushRange(IEnumerable<T> values)
-		{
-			Require.ArgNotNull(values, "values");
-			foreach(var value in values)
-				this.Push(value);
+			this._Count++;
 		}
 
 		#endregion
 
 		#region IEnumerable<T> Members
 
-		public IEnumerator<T> GetEnumerator()
+		//internal IEnumerator<T> GetEnumeratorInternal()
+		//{
+		//    return new Enumerator(this._TopNode);
+		//}
+
+		//internal IEnumerator<T> GetEnumeratorIterator()
+		//{
+		//    var node = this._TopNode;
+		//    while(node != null)
+		//    {
+		//        yield return node.Value;
+		//        node = node.Next;
+		//    }
+		//}
+
+		public override IEnumerator<T> GetEnumerator()
 		{
 			return new Enumerator(this._TopNode);
-		}
-
-		#endregion
-
-		#region IEnumerable Members
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
-
-		#endregion
-
-		#region ICollection Members
-
-		void ICollection.CopyTo(Array array, int index)
-		{
-			this.ToArray().CopyTo(array, index);
-		}
-
-		int ICollection.Count
-		{
-			get { return this.Count(); }
-		}
-
-		bool ICollection.IsSynchronized
-		{
-			get { return false; }
-		}
-
-		object ICollection.SyncRoot
-		{
-			get
-			{
-				if(this._SyncRoot == null)
-					Interlocked.CompareExchange(ref this._SyncRoot, new object(), null);
-				return this._SyncRoot;
-			}
 		}
 
 		#endregion

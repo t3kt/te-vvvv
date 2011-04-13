@@ -60,7 +60,9 @@
     <Compile Include="AppCore\AppAction.cs" />
     <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="AppCore\Common\DoubleLinkedStack.cs" />
     <Compile Include="AppCore\Common\LinkedStack.cs" />
+    <Compile Include="AppCore\Common\StackBase.cs" />
     <Compile Include="AppCore\Constants.cs" />
     <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="Test\TestCommands.cs" />
