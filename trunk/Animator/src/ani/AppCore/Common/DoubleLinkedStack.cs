@@ -228,7 +228,7 @@ namespace Animator.AppCore.Common
 
 		#region ReverseEnumerable
 
-		private sealed class ReverseEnumerable : IEnumerable<T>
+		private struct ReverseEnumerable : IEnumerable<T>
 		{
 
 			#region Static/Constant
@@ -346,7 +346,7 @@ namespace Animator.AppCore.Common
 			this._Count++;
 		}
 
-		public bool TryPeekEnd(out T value)
+		public virtual bool TryPeekEnd(out T value)
 		{
 			if(this._Tail == null)
 			{
@@ -357,7 +357,7 @@ namespace Animator.AppCore.Common
 			return true;
 		}
 
-		public bool TryPopEnd(out T value)
+		public virtual bool TryPopEnd(out T value)
 		{
 			if(!this.TryPeekEnd(out value))
 				return false;
@@ -368,7 +368,7 @@ namespace Animator.AppCore.Common
 			return true;
 		}
 
-		public void PushEnd(T value)
+		public virtual void PushEnd(T value)
 		{
 			var node = new Node(value) { Prev = this._Tail };
 			if(this._Tail != null)
@@ -395,7 +395,7 @@ namespace Animator.AppCore.Common
 			return value;
 		}
 
-		public void PushRangeEnd(IEnumerable<T> values)
+		public virtual void PushRangeEnd(IEnumerable<T> values)
 		{
 			Require.ArgNotNull(values, "values");
 			foreach(var value in values)

@@ -12,11 +12,9 @@ namespace Animator.AppCore
 	internal interface IAppAction
 	{
 
-		bool SupportsUndo { get; }
-
 		string Name { get; }
 
-		object Perform(object target, object newState);
+		void Perform(object target, object newState, out object oldState, out bool canUndo);
 
 		void Undo(object target, object oldState);
 
