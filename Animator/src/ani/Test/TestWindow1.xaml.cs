@@ -46,18 +46,7 @@ namespace Animator.Test
 
 		#region Methods
 
-		public void AttachNewDocument()
-		{
-			var doc = new Document();
-			this.documentPropertiesPane1.DataContext = doc;
-		}
-
 		#endregion
-
-		private void button1_Click(object sender, RoutedEventArgs e)
-		{
-			this.AttachNewDocument();
-		}
 
 	}
 
