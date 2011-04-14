@@ -8,9 +8,10 @@
 	Width="1030" Height="624">
 
 	<Canvas x:Name="LayoutRoot">
-		<local:TimelineGroup Height="402" VerticalAlignment="Top" Canvas.Left="27" Canvas.Top="79" Width="444" />
+		<local:TimelineGroup Height="402" VerticalAlignment="Top" Canvas.Left="116" Canvas.Top="178" Width="444" />
 		<local:Transport VerticalAlignment="Top" Canvas.Left="100" Canvas.Top="30"/>
 		<local:TransportPane Canvas.Left="310" Canvas.Top="30"/>
-		<local:DocumentPropertiesPane Canvas.Left="526" Canvas.Top="170" x:Name="documentPropertiesPane1" Height="207" Width="297" />
+		<local:DocumentPropertiesPane Canvas.Left="670" Canvas.Top="400" x:Name="documentPropertiesPane1" Height="100" Width="280" />
+		<local:ValueEditorControl Canvas.Left="30.46" Canvas.Top="60" Height="170"/>
 	</Canvas>
 </Window>
