@@ -13,6 +13,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
 {
+	// ReSharper disable SuggestUseVarKeywordEvident
+	// ReSharper disable SuggestUseVarKeywordEverywhere
+	// ReSharper disable ConvertToConstant.Local
+	// ReSharper disable MemberCanBeMadeStatic.Local
+	// ReSharper disable ConvertToLambdaExpression
+
 	[TestClass]
 	public class IOUnitTest
 	{
@@ -117,4 +123,10 @@ namespace Animator.Tests
 		}
 
 	}
+
+	// ReSharper restore ConvertToLambdaExpression
+	// ReSharper restore MemberCanBeMadeStatic.Local
+	// ReSharper restore ConvertToConstant.Local
+	// ReSharper restore SuggestUseVarKeywordEverywhere
+	// ReSharper restore SuggestUseVarKeywordEvident
 }

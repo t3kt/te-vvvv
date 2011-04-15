@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Transport;
 
@@ -90,10 +88,10 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		public StepClip() { }
+
 		public StepClip(Guid id)
-		{
-			this.Id = id;
-		}
+			: base(id) { }
 
 		public StepClip(XElement element)
 			: base(element)
@@ -123,11 +121,6 @@ namespace Animator.Core.Model
 			this.StepCount = steps.Count;
 			for(var i = 0; i < steps.Count; i++)
 				this.Steps[i] = steps[i];
-		}
-
-		public void SetSteps(params float[] steps)
-		{
-			SetSteps((IList<float>)steps);
 		}
 
 		private int GetStep(Time position)

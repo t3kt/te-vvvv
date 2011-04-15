@@ -64,6 +64,9 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		public Track()
+			: this(Guid.NewGuid()) { }
+
 		public Track(Guid id)
 		{
 			this.Id = id;

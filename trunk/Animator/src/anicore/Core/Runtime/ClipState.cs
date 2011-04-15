@@ -10,6 +10,47 @@ using TESharedAnnotations;
 namespace Animator.Core.Runtime
 {
 
+	#region ClipStateEventArgs
+
+	internal sealed class ClipStateEventArgs : EventArgs
+	{
+
+		#region Static/Constant
+
+		#endregion
+
+		#region Fields
+
+		private readonly ClipState _ClipState;
+
+		#endregion
+
+		#region Properties
+
+		public ClipState ClipState
+		{
+			get { return this._ClipState; }
+		}
+
+		#endregion
+
+		#region Constructors
+
+		public ClipStateEventArgs(ClipState clipState)
+		{
+			this._ClipState = clipState;
+		}
+
+		#endregion
+
+		#region Methods
+
+		#endregion
+
+	}
+
+	#endregion
+
 	#region ClipState
 
 	public sealed class ClipState
@@ -35,6 +76,11 @@ namespace Animator.Core.Runtime
 			get { return this._Clip; }
 		}
 
+		internal bool WouldBePlaying
+		{
+			get { return this._IsPlaying; }
+		}
+
 		public bool IsPlaying
 		{
 			get { return this._IsPlaying && this._Transport.IsPlaying; }
@@ -49,6 +95,14 @@ namespace Animator.Core.Runtime
 				return (this._Transport.Position - this._StartTime) % this._Clip.Duration;
 			}
 		}
+
+		#endregion
+
+		#region Events
+
+		internal event EventHandler<ClipStateEventArgs> Started;
+
+		internal event EventHandler<ClipStateEventArgs> Stopped;
 
 		#endregion
 
@@ -70,11 +124,17 @@ namespace Animator.Core.Runtime
 		{
 			this._IsPlaying = true;
 			this._StartTime = this._Transport.Position;
+			var handler = this.Started;
+			if(handler != null)
+				handler(this, new ClipStateEventArgs(this));
 		}
 
 		public void Stop()
 		{
 			this._IsPlaying = false;
+			var handler = this.Stopped;
+			if(handler != null)
+				handler(this, new ClipStateEventArgs(this));
 		}
 
 		public object GetValue()

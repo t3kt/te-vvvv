@@ -50,6 +50,9 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		public Output()
+			: this(Guid.NewGuid()) { }
+
 		public Output(Guid id)
 		{
 			this.Id = id;

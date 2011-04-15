@@ -61,7 +61,7 @@ namespace Animator.Core.IO
 				return null;
 			return String.Format("TargetKey: '{0}' Data: {1}",
 								 message.TargetKey ?? "(null)",
-								 message._Data == null || message._Data.Length == 0 ? "(no data)" : String.Join(",", message._Data));
+								 message.Data == null || message.Data.Length == 0 ? "(no data)" : String.Join(",", message.Data));
 		}
 
 		#endregion
