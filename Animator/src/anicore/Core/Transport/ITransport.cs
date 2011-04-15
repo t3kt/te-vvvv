@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +21,6 @@ namespace Animator.Core.Transport
 		void Stop();
 
 		void Pause();
-
-		void EnqueueAction(Action action, int triggerAlignment);
 
 	}
 

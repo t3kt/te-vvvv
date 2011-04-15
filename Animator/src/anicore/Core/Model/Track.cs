@@ -64,31 +64,24 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		private Track(IDocumentItem parent)
-		{
-			this.Parent = parent;
-			_Clips = new DocumentItemCollection<Clip>(this);
-		}
-
-		public Track(IDocumentItem parent, Guid id)
-			: this(parent)
+		public Track(Guid id)
 		{
 			this.Id = id;
+			this._Clips = new DocumentItemCollection<Clip>();
 		}
 
-		public Track(Document document, XElement element)
-			: this(document)
+		public Track(XElement element)
 		{
-			ReadXElement(document, element);
+			this._Clips = new DocumentItemCollection<Clip>();
+			ReadXElement(element);
 		}
 
 		#endregion
 
 		#region Methods
 
-		private void ReadXElement(Document document, XElement element)
+		private void ReadXElement(XElement element)
 		{
-			Require.ArgNotNull(document, "document");
 			Require.ArgNotNull(element, "element");
 			try
 			{
@@ -98,7 +91,7 @@ namespace Animator.Core.Model
 				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
 				this.TargetKey = (string)element.Attribute(Schema.track_target);
 				var clipsElement = element.Element(Schema.track_clips);
-				this.Clips.ReplaceAll(clipsElement == null ? null : clipsElement.Elements().Select(e => document.CreateClip(this, e)));
+				this.Clips.ReplaceAll(clipsElement == null ? null : clipsElement.Elements().Select(Clip.ReadClipXElement));
 			}
 			finally
 			{
@@ -115,21 +108,6 @@ namespace Animator.Core.Model
 								ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
 								ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
 								this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.WriteXElements(null)));
-		}
-
-		public Clip GetClip(Guid id)
-		{
-			return this.Clips.GetItem(id);
-		}
-
-		public void AddClip(Clip clip)
-		{
-			this.Clips.Add(clip);
-		}
-
-		public void RemoveClip(Guid id)
-		{
-			this.Clips.Remove(id);
 		}
 
 		protected override void Dispose(bool disposing)
@@ -162,15 +140,6 @@ namespace Animator.Core.Model
 			return other._OutputId == this._OutputId &&
 				   other._TargetKey == this._TargetKey &&
 				   other._Clips.ItemsEqual(this._Clips);
-		}
-
-		#endregion
-
-		#region IDocumentItemContainer Members
-
-		public override IDocumentItem GetItem(Guid id)
-		{
-			return base.GetItem(id) ?? this.GetClip(id);
 		}
 
 		#endregion

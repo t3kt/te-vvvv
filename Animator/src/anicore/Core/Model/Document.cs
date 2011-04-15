@@ -129,8 +129,8 @@ namespace Animator.Core.Model
 
 		public Document(Guid id)
 		{
-			this._Outputs = new DocumentItemCollection<Output>(this);
-			this._Tracks = new DocumentItemCollection<Track>(this);
+			this._Outputs = new DocumentItemCollection<Output>();
+			this._Tracks = new DocumentItemCollection<Track>();
 			this.Id = id;
 		}
 
@@ -156,9 +156,9 @@ namespace Animator.Core.Model
 				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
 				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
 				var outputsElement = element.Element(Schema.anidoc_outputs);
-				this.Outputs.ReplaceAll(outputsElement == null ? null : outputsElement.Elements().Select(this.CreateOutput));
+				this.Outputs.ReplaceAll(outputsElement == null ? null : outputsElement.Elements().Select(e => new Output(e)));
 				var tracksElement = element.Element(Schema.anidoc_tracks);
-				this.Tracks.ReplaceAll(tracksElement == null ? null : tracksElement.Elements().Select(this.CreateTrack));
+				this.Tracks.ReplaceAll(tracksElement == null ? null : tracksElement.Elements().Select(e => new Track(e)));
 			}
 			finally
 			{
@@ -214,120 +214,7 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region Item Instantiation
-
-		internal event EventHandler<ItemInstantiationEventArgs> ItemInstantiated;
-
-		internal event EventHandler<ItemInstantiationEventArgs<Output>> OutputInstantiated;
-
-		internal event EventHandler<ItemInstantiationEventArgs<Track>> TrackInstantiated;
-
-		internal event EventHandler<ItemInstantiationEventArgs<Clip>> ClipInstantiated;
-
-		private void OnItemInstantiated(IDocumentItem parent, DocumentItem item)
-		{
-			var existingItem = this.GetItem(item.Id);
-			if(existingItem != null)
-				throw new ArgumentException(String.Format("Id '{0}' already exists in document", item.Id), "item");
-			var handler = this.ItemInstantiated;
-			if(handler != null)
-				handler(this, new ItemInstantiationEventArgs(this, parent, item));
-		}
-
-		private void OnOutputInstantiated(Output output)
-		{
-			var handler = this.OutputInstantiated;
-			if(handler != null)
-				handler(this, new ItemInstantiationEventArgs<Output>(this, this, output));
-			this.OnItemInstantiated(this, output);
-		}
-
-		private void OnTrackInstantiated(Track track)
-		{
-			var handler = this.TrackInstantiated;
-			if(handler != null)
-				handler(this, new ItemInstantiationEventArgs<Track>(this, this, track));
-			this.OnItemInstantiated(this, track);
-		}
-
-		private void OnClipInstantiated(Track track, Clip clip)
-		{
-			var handler = this.ClipInstantiated;
-			if(handler != null)
-				handler(this, new ItemInstantiationEventArgs<Clip>(this, track, clip));
-			this.OnItemInstantiated(track, clip);
-		}
-
-		public Output CreateOutput(Guid id)
-		{
-			var output = new Output(this, id);
-			this.OnOutputInstantiated(output);
-			return output;
-		}
-
-		internal Output CreateOutput(XElement element)
-		{
-			var output = new Output(this, element);
-			this.OnOutputInstantiated(output);
-			return output;
-		}
-
-		public Track CreateTrack(Guid id)
-		{
-			var track = new Track(this, id);
-			this.OnTrackInstantiated(track);
-			return track;
-		}
-
-		internal Track CreateTrack(XElement element)
-		{
-			var track = new Track(this, element);
-			this.OnTrackInstantiated(track);
-			return track;
-		}
-
-		public Clip CreateClip(Track track, Guid id)
-		{
-			var clip = new Clip(track, id);
-			this.OnClipInstantiated(track, clip);
-			return clip;
-		}
-
-		internal Clip CreateClip(Track track, XElement element)
-		{
-			var clip = Clip.ReadClipXElement(track, element);
-			this.OnClipInstantiated(track, clip);
-			return clip;
-		}
-
-		public StepClip CreateStepClip(Track track, Guid id)
-		{
-			var clip = new StepClip(track, id);
-			this.OnClipInstantiated(track, clip);
-			return clip;
-		}
-
-		#endregion
-
 		#region IDocumentItem Members
-
-		IDocumentItem IDocumentItem.Parent
-		{
-			get { return null; }
-		}
-
-		Document IDocumentItem.Document
-		{
-			get { return this; }
-		}
-
-		public IEnumerable<IDocumentItem> Children
-		{
-			get
-			{
-				return this.Outputs.Concat(this.Tracks.Cast<IDocumentItem>());
-			}
-		}
 
 		public IDocumentItem GetItem(Guid id)
 		{

@@ -38,7 +38,7 @@ namespace Animator.Tests
 		[ClassInitialize]
 		public static void RegOutputTypes(TestContext testContext)
 		{
-			OutputTransmitter.RegisterTypes(typeof (RuntimeUnitTest).Assembly);
+			OutputTransmitter.RegisterTypes(typeof(RuntimeUnitTest).Assembly);
 		}
 
 		[TestMethod]
@@ -46,14 +46,14 @@ namespace Animator.Tests
 		public void BuildRTDocWithTransmitter()
 		{
 			var doc = new Document();
-			var output = doc.CreateOutput(Guid.NewGuid());
+			var output = new Output(Guid.NewGuid());
 			output.OutputType = "test.callback";
 			doc.AddOutput(output);
-			var track = doc.CreateTrack(Guid.NewGuid());
+			var track = new Track(Guid.NewGuid());
 			track.TargetKey = "out1";
 			track.OutputId = output.Id;
 			doc.AddTrack(track);
-			var clipA = doc.CreateStepClip(track, Guid.NewGuid());
+			var clipA = new StepClip(Guid.NewGuid());
 			clipA.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
 
 
@@ -68,16 +68,16 @@ namespace Animator.Tests
 		public void SetRTTrackActiveClip()
 		{
 			var doc = new Document();
-			var output = doc.CreateOutput(Guid.NewGuid());
+			var output = new Output(Guid.NewGuid());
 			output.OutputType = "test.callback";
 			doc.AddOutput(output);
-			var track = doc.CreateTrack(Guid.NewGuid());
+			var track = new Track(Guid.NewGuid());
 			track.TargetKey = "out1";
 			track.OutputId = output.Id;
 			doc.AddTrack(track);
-			var clipA = doc.CreateStepClip(track, Guid.NewGuid());
+			var clipA = new StepClip(Guid.NewGuid());
 			clipA.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
-			track.AddClip(clipA);
+			track.Clips.Add(clipA);
 
 
 			var transport = new RuntimeTransport();
@@ -108,17 +108,17 @@ namespace Animator.Tests
 		public void PostTrackOutput()
 		{
 			var doc = new Document();
-			var output = doc.CreateOutput(Guid.NewGuid());
+			var output = new Output(Guid.NewGuid());
 			output.OutputType = "test.callback";
 			doc.AddOutput(output);
-			var track = doc.CreateTrack(Guid.NewGuid());
+			var track = new Track(Guid.NewGuid());
 			track.TargetKey = "out1";
 			track.OutputId = output.Id;
 			doc.AddTrack(track);
-			var clipA = doc.CreateStepClip(track, Guid.NewGuid());
+			var clipA = new StepClip(Guid.NewGuid());
 			clipA.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
 			clipA.TargetKey = ".subA";
-			track.AddClip(clipA);
+			track.Clips.Add(clipA);
 
 
 			var transport = new RuntimeTransport();

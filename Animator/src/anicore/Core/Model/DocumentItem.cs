@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common;
@@ -23,7 +20,6 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private IDocumentItem _Parent;
 		private string _Name;
 		private bool _NotifySuspended;
 
@@ -44,11 +40,6 @@ namespace Animator.Core.Model
 					OnPropertyChanged("Name");
 				}
 			}
-		}
-
-		protected bool NotifySuspended
-		{
-			get { return _NotifySuspended; }
 		}
 
 		#endregion
@@ -105,47 +96,6 @@ namespace Animator.Core.Model
 			return other != null &&
 				   other.Id == this.Id &&
 				   other.Name == this.Name;
-		}
-
-		#endregion
-
-		#region IDocumentItem Members
-
-		public IDocumentItem Parent
-		{
-			get { return _Parent; }
-			internal set
-			{
-				if(value != _Parent)
-					OnParentChanging(value);
-				_Parent = value;
-			}
-		}
-
-		protected virtual void OnParentChanging(IDocumentItem parent)
-		{
-		}
-
-		public Document Document
-		{
-			get
-			{
-				var doc = ModelUtil.GetDocument(this);
-				Debug.Assert(doc != null);
-				return doc;
-			}
-		}
-
-		public virtual IEnumerable<IDocumentItem> Children
-		{
-			get { return Enumerable.Empty<IDocumentItem>(); }
-		}
-
-		public virtual IDocumentItem GetItem(Guid id)
-		{
-			if(id == this.Id)
-				return this;
-			return null;
 		}
 
 		#endregion

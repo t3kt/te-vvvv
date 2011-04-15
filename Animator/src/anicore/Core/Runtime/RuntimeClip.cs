@@ -12,15 +12,10 @@ namespace Animator.Core.Runtime
 
 	#region RuntimeClip
 
-	internal class RuntimeClip : RuntimeDocumentItem, IPlayable
+	internal sealed class RuntimeClip : RuntimeDocumentItem, IPlayable
 	{
 
 		#region Static / Constant
-
-		internal static RuntimeClip CreateClip(RuntimeDocument runtimeDocument, Clip clip)
-		{
-			return new RuntimeClip(runtimeDocument, clip);
-		}
 
 		#endregion
 
@@ -60,7 +55,7 @@ namespace Animator.Core.Runtime
 
 		#region Methods
 
-		public virtual Time? GetPosition(ITransport transport)
+		public Time? GetPosition(ITransport transport)
 		{
 			if(!transport.IsPlaying || !this._IsPlaying)
 				return null;
@@ -68,12 +63,12 @@ namespace Animator.Core.Runtime
 			return (globalPos - this._StartTime) % this._Clip.Duration;
 		}
 
-		protected virtual object GetValue(Time position)
+		private object GetValue(Time position)
 		{
 			return this._Clip.GetValue(position);
 		}
 
-		public virtual object GetValue(ITransport transport)
+		public object GetValue(ITransport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			var time = GetPosition(transport);
@@ -85,16 +80,6 @@ namespace Animator.Core.Runtime
 		#endregion
 
 		#region IPlayable Members
-
-		public Time Duration
-		{
-			get { return this._Clip.Duration; }
-		}
-
-		public int TriggerAlignment
-		{
-			get { return this._Clip.TriggerAlignment; }
-		}
 
 		public void Start(ITransport transport)
 		{

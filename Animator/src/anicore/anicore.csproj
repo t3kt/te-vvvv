@@ -61,7 +61,6 @@
     <Compile Include="Common\CommonUtil.cs" />
     <Compile Include="Common\Diagnostics\Require.cs" />
     <Compile Include="Common\ISuspendableNotify.cs" />
-    <Compile Include="Core\Model\ItemInstantiationEvent.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
@@ -79,7 +78,10 @@
     <Compile Include="Core\IO\OutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\NativeMethods.cs" />
+    <Compile Include="Core\Runtime\ClipState.cs" />
+    <Compile Include="Core\Runtime\DocumentRuntimeContext.cs" />
     <Compile Include="Core\Runtime\ImplementationRegistry.cs" />
+    <Compile Include="Core\Runtime\IRuntimeContext.cs" />
     <Compile Include="Core\Runtime\RuntimeClip.cs" />
     <Compile Include="Core\Runtime\RuntimeDocument.cs" />
     <Compile Include="Core\Runtime\RuntimeDocumentItem.cs" />
@@ -87,7 +89,6 @@
     <Compile Include="Core\Runtime\RuntimeTrack.cs" />
     <Compile Include="Core\Transport\IPlayable.cs" />
     <Compile Include="Core\Transport\RuntimeTransport.cs" />
-    <Compile Include="Core\Transport\MMTimer.cs" />
     <Compile Include="Core\Transport\TriggerBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Transport\ITransport.cs" />

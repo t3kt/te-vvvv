@@ -12,15 +12,10 @@ namespace Animator.Core.Runtime
 
 	#region RuntimeOutput
 
-	internal class RuntimeOutput : RuntimeDocumentItem
+	internal sealed class RuntimeOutput : RuntimeDocumentItem
 	{
 
 		#region Static / Constant
-
-		internal static RuntimeOutput CreateOutput(RuntimeDocument runtimeDocument, Output output)
-		{
-			return new RuntimeOutput(runtimeDocument, output);
-		}
 
 		#endregion
 

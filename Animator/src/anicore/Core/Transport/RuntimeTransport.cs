@@ -58,12 +58,18 @@ namespace Animator.Core.Transport
 
 		public RuntimeTransport()
 		{
-			_Timer = new Timer { Mode = TimerMode.Periodic };
+			this._Timer = new Timer { Mode = TimerMode.Periodic };
+			this._Timer.Tick += this.Timer_Tick;
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void Timer_Tick(object sender, EventArgs e)
+		{
+			throw new NotImplementedException();
+		}
 
 		public void Play()
 		{
@@ -118,6 +124,7 @@ namespace Animator.Core.Transport
 			this._Position = 0;
 			throw new NotImplementedException();
 		}
+
 		internal void Update()
 		{
 			lock(this._StateLock)
@@ -127,11 +134,6 @@ namespace Animator.Core.Transport
 		}
 
 		private void UpdateNoLock()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void EnqueueAction(Action action, int triggerAlignment)
 		{
 			throw new NotImplementedException();
 		}

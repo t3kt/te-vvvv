@@ -21,7 +21,7 @@ namespace Animator.Tests
 		{
 			OutputTransmitter.RegisterTypes(typeof(OscTransmitter).Assembly);
 			var model =
-				new Output(null, Guid.NewGuid())
+				new Output(Guid.NewGuid())
 				{
 					OutputType = "osc",
 					Parameters =
