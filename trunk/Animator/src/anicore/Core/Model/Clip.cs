@@ -17,11 +17,11 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		internal static Clip ReadClipXElement(Track track, XElement element)
+		internal static Clip ReadClipXElement(XElement element)
 		{
 			if(element.Name == Schema.stepclip)
-				return new StepClip(track, element);
-			return new Clip(track, element);
+				return new StepClip(element);
+			return new Clip(element);
 		}
 
 		#endregion
@@ -101,20 +101,18 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Clip(IDocumentItem parent)
+		protected Clip()
 		{
-			this.Parent = parent;
+
 		}
 
-		public Clip(IDocumentItem parent, Guid id)
+		public Clip(Guid id)
 		{
-			this.Parent = parent;
 			this.Id = id;
 		}
 
-		public Clip(IDocumentItem parent, XElement element)
+		public Clip(XElement element)
 		{
-			this.Parent = parent;
 			ReadXElement(element);
 		}
 

@@ -11,7 +11,7 @@ namespace Animator.Core.Model
 
 	#region Output
 
-	public class Output : DocumentItem, IEquatable<Output>
+	public sealed class Output : DocumentItem, IEquatable<Output>
 	{
 
 		#region Static / Constant
@@ -50,15 +50,13 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public Output(IDocumentItem parent, Guid id)
+		public Output(Guid id)
 		{
-			this.Parent = parent;
 			this.Id = id;
 		}
 
-		public Output(IDocumentItem parent, XElement element)
+		public Output(XElement element)
 		{
-			this.Parent = parent;
 			ReadXElement(element);
 		}
 
@@ -74,17 +72,12 @@ namespace Animator.Core.Model
 			return this._Parameters.TryGetValue(key, out value) ? value : null;
 		}
 
-		internal void NotifyParametersChanged()
-		{
-			OnPropertyChanged("Parameters");
-		}
-
-		protected virtual void OnOutputTypeChanged()
+		private void OnOutputTypeChanged()
 		{
 			OnPropertyChanged("OutputType");
 		}
 
-		protected void ReadXElement(XElement element)
+		private void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			try

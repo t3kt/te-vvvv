@@ -21,7 +21,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void CreateNullTransmitter()
 		{
-			var outputModel = new Output(null, Guid.Empty) { OutputType = null };
+			var outputModel = new Output(Guid.Empty) { OutputType = null };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
 		}
@@ -45,7 +45,7 @@ namespace Animator.Tests
 		public void RegisterTransmitter()
 		{
 			OutputTransmitter.RegisterTypes(this.GetType().Assembly);
-			var outputModel = new Output(null, Guid.Empty) { OutputType = "test" };
+			var outputModel = new Output(Guid.Empty) { OutputType = "test" };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));
 		}
@@ -54,7 +54,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void CreateTraceTransmitter()
 		{
-			var outputModel = new Output(null, Guid.Empty) { OutputType = "trace" };
+			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.TraceTransmitter));
 		}
@@ -96,7 +96,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void TraceTransmitterOutput()
 		{
-			var outputModel = new Output(null, Guid.Empty) { OutputType = "trace" };
+			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			int writeCount = 0;
 			var listener = new CallbackTraceListener(msg =>

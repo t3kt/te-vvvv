@@ -57,8 +57,6 @@ namespace Animator.Core.Runtime
 			this._Tracks = new Dictionary<Guid, RuntimeTrack>();
 			this._Clips = new Dictionary<Guid, RuntimeClip>();
 			this.AttachHandlers();
-			//foreach(var item in document.Descendents())
-			//    this.AttachItem((DocumentItem)item);
 			foreach(var output in document.Outputs)
 				this.AttachOutput(output);
 			foreach(var track in document.Tracks)
@@ -76,17 +74,11 @@ namespace Animator.Core.Runtime
 
 		private void AttachHandlers()
 		{
-			this._Document.OutputInstantiated += this.Document_OutputInstantiated;
-			this._Document.TrackInstantiated += this.Document_TrackInstantiated;
-			this._Document.ClipInstantiated += this.Document_ClipInstantiated;
 			this._Document.PropertyChanged += this.Document_PropertyChanged;
 		}
 
 		private void DetachHandlers()
 		{
-			this._Document.OutputInstantiated -= this.Document_OutputInstantiated;
-			this._Document.TrackInstantiated -= this.Document_TrackInstantiated;
-			this._Document.ClipInstantiated -= this.Document_ClipInstantiated;
 			this._Document.PropertyChanged -= this.Document_PropertyChanged;
 		}
 
@@ -126,61 +118,19 @@ namespace Animator.Core.Runtime
 		public void AttachOutput(Output output)
 		{
 			Require.ArgNotNull(output, "output");
-			this._Outputs.Add(output.Id, RuntimeOutput.CreateOutput(this, output));
+			this._Outputs.Add(output.Id, new RuntimeOutput(this, output));
 		}
 
 		public void AttachTrack(Track track)
 		{
 			Require.ArgNotNull(track, "track");
-			this._Tracks.Add(track.Id, RuntimeTrack.CreateTrack(this, track));
+			this._Tracks.Add(track.Id, new RuntimeTrack(this, track));
 		}
 
 		public void AttachClip(Clip clip)
 		{
 			Require.ArgNotNull(clip, "clip");
-			this._Clips.Add(clip.Id, RuntimeClip.CreateClip(this, clip));
-		}
-
-		public void AttachItem(DocumentItem item)
-		{
-			Require.ArgNotNull(item, "item");
-			if(item is Output)
-				this.AttachOutput((Output)item);
-			else if(item is Track)
-				this.AttachTrack((Track)item);
-			else if(item is Clip)
-				this.AttachClip((Clip)item);
-			else
-				throw new NotSupportedException();
-		}
-
-		public RuntimeDocumentItem GetItem(Guid id)
-		{
-			RuntimeOutput output;
-			if(this._Outputs.TryGetValue(id, out output))
-				return output;
-			RuntimeTrack track;
-			if(this._Tracks.TryGetValue(id, out track))
-				return track;
-			RuntimeClip clip;
-			if(this._Clips.TryGetValue(id, out clip))
-				return clip;
-			throw new KeyNotFoundException();
-		}
-
-		private void Document_OutputInstantiated(object sender, ItemInstantiationEventArgs<Output> e)
-		{
-			this.AttachOutput(e.Item);
-		}
-
-		private void Document_TrackInstantiated(object sender, ItemInstantiationEventArgs<Track> e)
-		{
-			this.AttachTrack(e.Item);
-		}
-
-		private void Document_ClipInstantiated(object sender, ItemInstantiationEventArgs<Clip> e)
-		{
-			this.AttachClip(e.Item);
+			this._Clips.Add(clip.Id, new RuntimeClip(this, clip));
 		}
 
 		internal void PostTrackMessages()

@@ -11,10 +11,6 @@ namespace Animator.Core.Transport
 	public interface IPlayable
 	{
 
-		Time Duration { get; }
-
-		int TriggerAlignment { get; }
-
 		void Start(ITransport transport);
 
 		void Stop(ITransport transport);

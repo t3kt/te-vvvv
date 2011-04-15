@@ -38,9 +38,9 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void ClipReadWriteXElement()
 		{
-			var clipA = new Clip(null, Guid.NewGuid()) { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
+			var clipA = new Clip(Guid.NewGuid()) { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
 			var xmlA = clipA.WriteXElement();
-			var clipB = new Clip(null, xmlA);
+			var clipB = new Clip(xmlA);
 			var xmlB = clipB.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(clipA, clipB);
@@ -51,18 +51,18 @@ namespace Animator.Tests
 		public void TrackReadWriteXElement()
 		{
 			var docA = new Document();
-			var trackA = docA.CreateTrack(Guid.NewGuid());
+			var trackA = new Track(Guid.NewGuid());
 			docA.AddTrack(trackA);
-			var clipA = new Clip(trackA, Guid.NewGuid()) { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
-			trackA.AddClip(clipA);
-			var clipB = docA.CreateStepClip(trackA, Guid.NewGuid());
+			var clipA = new Clip(Guid.NewGuid()) { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
+			trackA.Clips.Add(clipA);
+			var clipB = new StepClip(Guid.NewGuid());
 			clipB.Name = "foosteps";
 			clipB.SetSteps(5.0f, -2.3f, 3.73e+4f);
-			trackA.AddClip(clipB);
+			trackA.Clips.Add(clipB);
 			var xmlA = trackA.WriteXElement();
 
 			var docB = new Document();
-			var trackB = new Track(docB, xmlA);
+			var trackB = new Track(xmlA);
 			var xmlB = trackB.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(trackA, trackB);
@@ -73,10 +73,11 @@ namespace Animator.Tests
 		public void NoDuplicateIds()
 		{
 			var doc = new Document();
-			var output = doc.CreateOutput(Guid.NewGuid());
+			var output = new Output(Guid.NewGuid());
+			var track = new Track(output.Id);
 			TestUtil.AssertThrowsException(() =>
 											{
-												var track = doc.CreateTrack(output.Id);
+												doc.AddTrack(track);
 											}, "Add duplicate id allowed");
 		}
 
@@ -85,10 +86,10 @@ namespace Animator.Tests
 		public void StepClipGetValue()
 		{
 			var doc = new Document();
-			var track = doc.CreateTrack(Guid.NewGuid());
+			var track = new Track(Guid.NewGuid());
 			doc.AddTrack(track);
-			var clip = doc.CreateStepClip(track, Guid.NewGuid());
-			track.AddClip(clip);
+			var clip = new StepClip(Guid.NewGuid());
+			track.Clips.Add(clip);
 			clip.Duration = new Time(4);
 			clip.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.0f)));

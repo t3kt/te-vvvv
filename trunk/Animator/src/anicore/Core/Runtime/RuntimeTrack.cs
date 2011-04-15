@@ -19,11 +19,6 @@ namespace Animator.Core.Runtime
 
 		#region Static / Constant
 
-		internal static RuntimeTrack CreateTrack(RuntimeDocument runtimeDocument, Track track)
-		{
-			return new RuntimeTrack(runtimeDocument, track);
-		}
-
 		#endregion
 
 		#region Fields
@@ -44,12 +39,6 @@ namespace Animator.Core.Runtime
 		public Track Track
 		{
 			get { return this._Track; }
-		}
-
-		[CanBeNull]
-		public RuntimeOutput Output
-		{
-			get { return this._Output; }
 		}
 
 		[CanBeNull]

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -15,56 +14,6 @@ namespace Animator.Core.Model
 
 	internal static class ModelUtil
 	{
-
-		public static Document GetDocument(IDocumentItem item)
-		{
-			while(item != null)
-			{
-				if(item is Document)
-					return (Document)item;
-				item = item.Parent;
-			}
-			return null;
-		}
-
-		public static IEnumerable<IDocumentItem> DescendentsAndSelf(this IDocumentItem item)
-		{
-			Require.ArgNotNull(item, "item");
-			return new[] { item }.Concat(item.Descendents());
-		}
-
-		public static IEnumerable<IDocumentItem> Descendents(this IDocumentItem item)
-		{
-			Require.ArgNotNull(item, "item");
-			return item.Children.SelectMany(DescendentsAndSelf);
-		}
-
-		public static IDocumentItem FindItem(this IDocumentItem root, Guid id)
-		{
-			if(root == null)
-				return null;
-			if(id == root.Id)
-				return root;
-			foreach(var child in root.Children)
-			{
-				var item = child.FindItem(id);
-				if(item != null)
-					return item;
-			}
-			return null;
-		}
-
-		public static T FindItem<T>(this IDocumentItem root, Guid id)
-			where T : class, IDocumentItem
-		{
-			var item = root.FindItem(id);
-			if(item == null)
-				return null;
-			//if(!(item is T))
-			//    throw new InvalidOperationException(String.Format("Incorrect document item type for id '{0}': {1}", id, item.GetType()));
-			Debug.Assert(item is T);
-			return (T)item;
-		}
 
 		[CanBeNull]
 		internal static Dictionary<string, string> ReadParametersXElement([CanBeNull] XElement element)

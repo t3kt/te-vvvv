@@ -14,7 +14,7 @@ namespace Animator.Core.Model
 
 	#region DocumentItemCollection<T>
 
-	public class DocumentItemCollection<T> : ObservableCollection<T>, IDisposable, ISuspendableNotify
+	public sealed class DocumentItemCollection<T> : ObservableCollection<T>, IDisposable, ISuspendableNotify
 		where T : DocumentItem
 	{
 
@@ -24,7 +24,6 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly IDocumentItem _Parent;
 		private readonly Dictionary<Guid, T> _Lookup;
 		private bool _NotifySuspended;
 
@@ -32,24 +31,12 @@ namespace Animator.Core.Model
 
 		#region Properties
 
-		public IDocumentItem Parent
-		{
-			get { return _Parent; }
-		}
-
-		//public T this[Guid id]
-		//{
-		//    get { return _Lookup[id]; }
-		//}
-
 		#endregion
 
 		#region Constructors
 
-		public DocumentItemCollection(IDocumentItem parent)
+		public DocumentItemCollection()
 		{
-			Require.ArgNotNull(parent, "parent");
-			_Parent = parent;
 			_Lookup = new Dictionary<Guid, T>();
 		}
 
@@ -98,7 +85,6 @@ namespace Animator.Core.Model
 		{
 			Require.ArgNotNull(item, "item");
 			_Lookup.Add(item.Id, item);
-			item.Parent = _Parent;
 			base.InsertItem(index, item);
 		}
 
@@ -129,7 +115,6 @@ namespace Animator.Core.Model
 				_Lookup.Remove(oldId);
 				_Lookup.Add(item.Id, item);
 			}
-			item.Parent = _Parent;
 			base.SetItem(index, item);
 		}
 
