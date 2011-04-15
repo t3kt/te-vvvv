@@ -28,12 +28,12 @@ namespace Animator.Core.Runtime
 		Output GetOutput(Guid id);
 
 		[CanBeNull]
-		IOutputTransmitter GetOutputTransmitter(Guid id);
+		IOutputTransmitter GetTransmitter(Guid id);
 
 		[NotNull]
 		ITransport Transport { get; }
 
-		IEnumerable<Clip> ActiveClips { get; }
+		IEnumerable<ClipState> ActiveClips { get; }
 
 		[CanBeNull]
 		ClipState GetClipState(Guid id);

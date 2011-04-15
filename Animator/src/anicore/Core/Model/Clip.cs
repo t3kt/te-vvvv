@@ -101,10 +101,8 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Clip()
-		{
-
-		}
+		public Clip()
+			: this(Guid.NewGuid()) { }
 
 		public Clip(Guid id)
 		{

@@ -8,6 +8,7 @@ using Animator.Common.Diagnostics;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
+using TESharedAnnotations;
 
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), typeof(OutputTransmitter.NullTransmitter))]
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), "null", typeof(OutputTransmitter.NullTransmitter))]
@@ -111,7 +112,7 @@ namespace Animator.Core.IO
 		static OutputTransmitter()
 		{
 			ImplementationRegistry<IOutputTransmitter>.SetDefault(typeof(NullTransmitter));
-			RegisterTypes(typeof (OutputTransmitter).Assembly);
+			RegisterTypes(typeof(OutputTransmitter).Assembly);
 			//RegisterType(String.Empty, typeof(NullTransmitter));
 			//RegisterType("null", typeof(NullTransmitter));
 		}
@@ -128,12 +129,18 @@ namespace Animator.Core.IO
 			ImplementationRegistry<IOutputTransmitter>.RegisterTypes(assembly);
 		}
 
-		internal static IOutputTransmitter CreateTransmitter(Output outputModel)
+		[NotNull]
+		internal static IOutputTransmitter CreateTransmitter([NotNull] Output outputModel)
 		{
 			Require.ArgNotNull(outputModel, "outputModel");
 			var transmitter = ImplementationRegistry<IOutputTransmitter>.CreateImplementation(outputModel.OutputType) ?? new NullTransmitter();
 			transmitter.Initialize(outputModel);
 			return transmitter;
+		}
+
+		public static bool IsNullTransmitter([CanBeNull]IOutputTransmitter transmitter)
+		{
+			return transmitter == null || transmitter is NullTransmitter;
 		}
 
 		#endregion

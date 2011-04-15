@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
 {
+	// ReSharper disable SuggestUseVarKeywordEvident
+	// ReSharper disable SuggestUseVarKeywordEverywhere
+	// ReSharper disable ConvertToConstant.Local
+	// ReSharper disable MemberCanBeMadeStatic.Local
+	// ReSharper disable ConvertToLambdaExpression
+
 	[TestClass]
 	public class ModelUnitTest
 	{
@@ -55,9 +62,11 @@ namespace Animator.Tests
 			docA.AddTrack(trackA);
 			var clipA = new Clip(Guid.NewGuid()) { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
 			trackA.Clips.Add(clipA);
-			var clipB = new StepClip(Guid.NewGuid());
-			clipB.Name = "foosteps";
-			clipB.SetSteps(5.0f, -2.3f, 3.73e+4f);
+			var clipB = new StepClip(Guid.NewGuid())
+			{
+				Name = "foosteps",
+				Steps = new ObservableCollection<float> { 5.0f, -2.3f, 3.73e+4f }
+			};
 			trackA.Clips.Add(clipB);
 			var xmlA = trackA.WriteXElement();
 
@@ -88,10 +97,12 @@ namespace Animator.Tests
 			var doc = new Document();
 			var track = new Track(Guid.NewGuid());
 			doc.AddTrack(track);
-			var clip = new StepClip(Guid.NewGuid());
+			var clip = new StepClip(Guid.NewGuid())
+			{
+				Duration = new Time(4),
+				Steps = new ObservableCollection<float> { 0.0f, 1.0f, 2.0f, 3.0f }
+			};
 			track.Clips.Add(clip);
-			clip.Duration = new Time(4);
-			clip.SetSteps(0.0f, 1.0f, 2.0f, 3.0f);
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.0f)));
 			Assert.AreEqual(1.0f, clip.GetValue(new Time(1.0f)));
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.4f)));
@@ -101,4 +112,10 @@ namespace Animator.Tests
 		}
 
 	}
+
+	// ReSharper restore ConvertToLambdaExpression
+	// ReSharper restore MemberCanBeMadeStatic.Local
+	// ReSharper restore ConvertToConstant.Local
+	// ReSharper restore SuggestUseVarKeywordEverywhere
+	// ReSharper restore SuggestUseVarKeywordEvident
 }

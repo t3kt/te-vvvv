@@ -212,10 +212,6 @@ namespace Animator.Core.Model
 			return this.Clips.FindById(id);
 		}
 
-		#endregion
-
-		#region IDocumentItem Members
-
 		public IDocumentItem GetItem(Guid id)
 		{
 			if(id == this.Id)
@@ -227,7 +223,7 @@ namespace Animator.Core.Model
 			//if(this.Tracks.TryGetItem(id, out track))
 			//    return track;
 			//return this.GetClip(id);
-			return this.GetOutput(id) ?? this.GetTrack(id) ?? (IDocumentItem)this.GetClip(id);
+			return this.GetOutput(id) ?? this.GetTrack(id) ?? (DocumentItem)this.GetClip(id);
 		}
 
 		#endregion

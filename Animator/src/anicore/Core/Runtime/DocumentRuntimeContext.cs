@@ -24,6 +24,8 @@ namespace Animator.Core.Runtime
 
 		private readonly Document _Document;
 		private readonly ITransport _Transport;
+		private readonly Dictionary<Guid, ClipState> _ClipStates;
+		private readonly Dictionary<Guid, IOutputTransmitter> _Transmitters;
 
 		#endregion
 
@@ -39,9 +41,14 @@ namespace Animator.Core.Runtime
 			get { return this._Transport; }
 		}
 
-		public IEnumerable<Clip> ActiveClips
+		public IEnumerable<ClipState> ActiveClips
 		{
-			get { throw new NotImplementedException(); }
+			get
+			{
+				return from state in this._ClipStates.Values
+					   where state.WouldBePlaying
+					   select state;
+			}
 		}
 
 		#endregion
@@ -54,6 +61,8 @@ namespace Animator.Core.Runtime
 			Require.ArgNotNull(transport, "transport");
 			this._Document = document;
 			this._Transport = transport;
+			this._ClipStates = new Dictionary<Guid, ClipState>();
+			this._Transmitters = new Dictionary<Guid, IOutputTransmitter>();
 		}
 
 		#endregion
@@ -62,27 +71,63 @@ namespace Animator.Core.Runtime
 
 		public Clip GetClip(Guid id)
 		{
-			throw new NotImplementedException();
+			return this._Document.GetClip(id);
 		}
 
 		public Track GetTrack(Guid id)
 		{
-			throw new NotImplementedException();
+			return this._Document.GetTrack(id);
 		}
 
 		public Output GetOutput(Guid id)
 		{
-			throw new NotImplementedException();
+			return this._Document.GetOutput(id);
 		}
 
-		public IOutputTransmitter GetOutputTransmitter(Guid id)
+		private IOutputTransmitter GetTransmitter(Guid id, bool create)
 		{
-			throw new NotImplementedException();
+			IOutputTransmitter transmitter;
+			if(this._Transmitters.TryGetValue(id, out transmitter))
+				return transmitter;
+			if(create)
+			{
+				var output = this.GetOutput(id);
+				if(output != null)
+				{
+					transmitter = OutputTransmitter.CreateTransmitter(output);
+					this._Transmitters.Add(id, transmitter);
+					return transmitter;
+				}
+			}
+			return null;
+		}
+
+		public IOutputTransmitter GetTransmitter(Guid id)
+		{
+			return this.GetTransmitter(id, true);
+		}
+
+		private ClipState GetClipState(Guid id, bool create)
+		{
+			ClipState state;
+			if(this._ClipStates.TryGetValue(id, out state))
+				return state;
+			if(create)
+			{
+				var clip = this.GetClip(id);
+				if(clip != null)
+				{
+					state = new ClipState(this._Transport, clip);
+					this._ClipStates.Add(id, state);
+					return state;
+				}
+			}
+			return null;
 		}
 
 		public ClipState GetClipState(Guid id)
 		{
-			throw new NotImplementedException();
+			return this.GetClipState(id, true);
 		}
 
 		public ClipState GetTrackActiveClipState(Guid id)
