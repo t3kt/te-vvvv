@@ -1,16 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml.Linq;
 using Animator.AppCore;
 using Animator.Core.Model;
@@ -51,11 +45,14 @@ namespace Animator.UI
 			var window = (MainWindow)d;
 			window.SetValue(HasActiveDocumentPropertyKey, e.NewValue != null);
 			window.OnActiveDocumentChanged((Document)e.OldValue, (Document)e.NewValue);
-			((App)Application.Current).ActiveDocument = (Document)e.NewValue;
+			((AniApplication)Application.Current).ActiveDocument = (Document)e.NewValue;
 		}
 
 		private static void OnActiveDocumentDirtyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
+			var window = d as MainWindow;
+			if(window != null)
+				window.UpdateWindowTitle();
 			CommandManager.InvalidateRequerySuggested();
 		}
 
@@ -100,22 +97,55 @@ namespace Animator.UI
 
 		#region Methods
 
+		private void UpdateWindowTitle()
+		{
+			var sb = new StringBuilder();
+			var doc = this.ActiveDocument;
+			if(doc != null)
+			{
+				string name;
+				if(!String.IsNullOrEmpty(this._ActiveDocumentPath))
+					name = System.IO.Path.GetFileName(this._ActiveDocumentPath);
+				else
+					name = "[Untitled]";
+				sb.AppendFormat("{0}{1} - ", name, this.ActiveDocumentDirty ? "*" : null);
+			}
+			sb.Append("Animator");
+			this.Title = sb.ToString();
+		}
+
 		private void OnActiveDocumentChanged(Document oldDocument, Document newDocument)
 		{
+			this.DetachDocument(oldDocument);
+			this.AttachDocument(newDocument);
 			this.DataContext = newDocument;
 			CommandManager.InvalidateRequerySuggested();
+			this.UpdateWindowTitle();
+		}
+
+		private void AttachDocument(Document document)
+		{
+			if(document != null)
+				document.PropertyChanged += this.ActiveDocument_PropertyChanged;
+		}
+
+		private void DetachDocument(Document document)
+		{
+			if(document != null)
+				document.PropertyChanged -= this.ActiveDocument_PropertyChanged;
 		}
 
 		internal void OnFileNew()
 		{
-			if(!this.TryCloseFile())
+			if(!this.PromptSaveForClose())
 				return;
-			this.ActiveDocument = new Document();
+			this.ActiveDocument = new Document { Name = "Untitled" };
+			this.ActiveDocumentDirty = true;
 		}
 
 		internal void OnFileOpen()
 		{
-			if(!this.TryCloseFile())
+			if(!this.PromptSaveForClose())
 				return;
 			var dlg = new OpenFileDialog
 						{
@@ -133,14 +163,13 @@ namespace Animator.UI
 		{
 			if(String.IsNullOrEmpty(path))
 				return;
-			if(!this.TryCloseFile())
-				return;
 			try
 			{
 				var xdoc = XDocument.Load(path);
 				var doc = new Document(xdoc.Root);
-				this.ActiveDocument = doc;
 				this._ActiveDocumentPath = path;
+				this.ActiveDocument = doc;
+				this.ActiveDocumentDirty = false;
 			}
 			catch(Exception ex)
 			{
@@ -164,7 +193,7 @@ namespace Animator.UI
 								AddExtension = true,
 								DefaultExt = Constants.FileExtension,
 								Filter = Constants.FileDialogFilter,
-								FileName = String.IsNullOrEmpty(this._ActiveDocumentPath) ? null : this._ActiveDocumentPath
+								FileName = this._ActiveDocumentPath ?? (this.ActiveDocument.Name + "." + Constants.FileExtension)
 							};
 				if(dlg.ShowDialog(this) == true)
 				{
@@ -185,6 +214,7 @@ namespace Animator.UI
 			{
 				var doc = new XDocument(this.ActiveDocument.WriteXElement());
 				doc.Save(path);
+				this.ActiveDocumentDirty = false;
 			}
 			catch(Exception ex)
 			{
@@ -197,7 +227,7 @@ namespace Animator.UI
 			MessageBox.Show(this, String.Format("An error occurred when saving file '{0}':\n\t{1}", path, ex.Message), "An error occurred when saving file", MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
-		private bool TryCloseFile()
+		private bool PromptSaveForClose()
 		{
 			if(!this.ActiveDocumentDirty)
 				return true;
@@ -205,7 +235,7 @@ namespace Animator.UI
 			switch(result)
 			{
 			case MessageBoxResult.Yes:
-				OnFileSave();
+				this.OnFileSave();
 				return !this.ActiveDocumentDirty;
 			case MessageBoxResult.No:
 				return true;
@@ -216,16 +246,33 @@ namespace Animator.UI
 			}
 		}
 
+		private void CloseFile()
+		{
+			this.ActiveDocument = null;
+			this.ActiveDocumentDirty = false;
+		}
+
 		internal void OnFileClose()
 		{
-			if(!this.HasActiveDocument)
-				return;
-			TryCloseFile();
+			if(this.PromptSaveForClose())
+				this.CloseFile();
+		}
+
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if(!this.PromptSaveForClose())
+				e.Cancel = true;
+			base.OnClosing(e);
 		}
 
 		#endregion
 
 		#region Event Handlers
+
+		private void ActiveDocument_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			this.ActiveDocumentDirty = true;
+		}
 
 		private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
@@ -257,17 +304,14 @@ namespace Animator.UI
 		private void LoadTestDocumentCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			var doc = new Document
-			{
-				Name = "Test Document"
-			};
-			var outputA = new Output(Guid.NewGuid());
-			outputA.Name = "out A";
+					  {
+						  Name = "Test Document"
+					  };
+			var outputA = new Output(Guid.NewGuid()) { Name = "out A" };
 			doc.AddOutput(outputA);
-			var outputB = new Output(Guid.NewGuid());
-			outputB.Name = "out B";
+			var outputB = new Output(Guid.NewGuid()) { Name = "out B" };
 			doc.AddOutput(outputB);
-			var trackA = new Track(Guid.NewGuid());
-			trackA.Name = "track A";
+			var trackA = new Track(Guid.NewGuid()) { Name = "track A" };
 			doc.AddTrack(trackA);
 			this.ActiveDocument = doc;
 		}
@@ -295,6 +339,12 @@ namespace Animator.UI
 		private void CloseCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			OnFileClose();
+		}
+
+		private void DebuggerBreakCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			//if(System.Diagnostics.Debugger.IsAttached)
+			System.Diagnostics.Debugger.Break();
 		}
 
 		#endregion

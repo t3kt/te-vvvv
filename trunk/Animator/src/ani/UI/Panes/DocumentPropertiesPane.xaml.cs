@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Animator.Core.Model;
 
 namespace Animator.UI.Panes
 {
@@ -18,13 +20,6 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty ShowCountsProperty;
-
-		static DocumentPropertiesPane()
-		{
-			ShowCountsProperty = DependencyProperty.Register("ShowCounts", typeof(bool), typeof(DocumentPropertiesPane), new PropertyMetadata(false));
-		}
-
 		#endregion
 
 		#region Fields
@@ -33,10 +28,15 @@ namespace Animator.UI.Panes
 
 		#region Properties
 
-		public bool ShowCounts
+		public Document Document
 		{
-			get { return (bool)this.GetValue(ShowCountsProperty); }
-			set { this.SetValue(ShowCountsProperty, value); }
+			get { return (Document)this.DataContext; }
+			set { this.DataContext = value; }
+		}
+
+		protected override bool CanShowEditDetail
+		{
+			get { return this.Document != null; }
 		}
 
 		#endregion
@@ -52,8 +52,12 @@ namespace Animator.UI.Panes
 
 		#region Methods
 
-		#endregion
+		protected override void OnShowEditDetailCommand(ExecutedRoutedEventArgs e)
+		{
+			MessageBox.Show("TODO: document edit detail...");
+		}
 
+		#endregion
 	}
 
 	#endregion

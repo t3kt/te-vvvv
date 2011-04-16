@@ -93,6 +93,7 @@
     <Compile Include="UI\Panes\ClipPropertiesPane.xaml.cs">
       <DependentUpon>ClipPropertiesPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
     </Compile>
@@ -188,7 +189,9 @@
   <ItemGroup Label="SHARED">
     <Compile Include="..\shared\*.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\ani_icon_main.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

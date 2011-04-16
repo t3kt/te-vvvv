@@ -16,6 +16,8 @@ namespace Animator.Test
 
 		public static readonly RoutedUICommand LoadTestDocument = new RoutedUICommand("Load Test Document", "LoadTestDocument", typeof(TestCommands));
 
+		public static readonly RoutedUICommand DebuggerBreak = new RoutedUICommand("Debugger Break", "DebuggerBreak", typeof(TestCommands));
+
 	}
 
 	#endregion

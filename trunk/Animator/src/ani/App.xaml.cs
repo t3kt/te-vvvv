@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -13,10 +11,19 @@ namespace Animator
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class AniApplication
 	{
 
 		#region Static / Constant
+
+		internal static Document CurrentActiveDocument
+		{
+			get
+			{
+				var app = Application.Current as AniApplication;
+				return app == null ? null : app.ActiveDocument;
+			}
+		}
 
 		#endregion
 
@@ -39,7 +46,7 @@ namespace Animator
 
 		#region Constructors
 
-		public App()
+		public AniApplication()
 		{
 			InitializeComponent();
 			_ActionHistoryManager = new AppActionHistoryManager();

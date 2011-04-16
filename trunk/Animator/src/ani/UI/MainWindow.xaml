@@ -3,11 +3,12 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		Title="Animator" Height="409" Width="804" Style="{StaticResource MainWindowStyle}"
 		x:Name="mainWindow"
-		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:AppCore="clr-namespace:Animator.AppCore" xmlns:Test="clr-namespace:Animator.Test" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore">
+		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:AppCore="clr-namespace:Animator.AppCore" xmlns:Test="clr-namespace:Animator.Test" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore" xmlns:my="clr-namespace:Animator.UI" Icon="/ani;component/Resources/ani_icon_main.ico">
 	<Window.CommandBindings>
 		<CommandBinding Command="AppCore:AniAppCommands.Exit" Executed="ExitCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.LoadTestDocument" Executed="LoadTestDocumentCommand_Executed" />
+		<CommandBinding Command="Test:TestCommands.DebuggerBreak" Executed="DebuggerBreakCommand_Executed"/>
 		<CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="SaveCommand_CanExecute" />
@@ -41,12 +42,13 @@
 			<MenuItem Header="_Debug">
 				<MenuItem Command="Test:TestCommands.ShowTestWindow" />
 				<MenuItem Command="Test:TestCommands.LoadTestDocument" />
+				<MenuItem Command="Test:TestCommands.DebuggerBreak" />
 			</MenuItem>
 		</Menu>
 		<UserControl Grid.Row="1" Style="{StaticResource PaneUserControlStyle}">
 			<TabControl IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
 				<TabItem Header="_Tracks">
-					<ListBox Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}">
+					<ListBox x:Name="tracksListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch">
 						<ListBox.Template>
 							<ControlTemplate TargetType="{x:Type ListBox}">
 								<Border>
@@ -56,29 +58,16 @@
 						</ListBox.Template>
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="{x:Type Model:Track}">
-								<Expander Header="{Binding Path=Name}">
-									<panes:TrackPropertiesPane DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Grid.Row="1" />
-								</Expander>
+								<panes:TrackPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" AvailableOutputs="{Binding ElementName=mainWindow, Path=ActiveDocument.Outputs}" />
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
 				</TabItem>
 				<TabItem Header="_Outputs">
-					<ListBox Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}">
-						<ListBox.Template>
-							<ControlTemplate TargetType="{x:Type ListBox}">
-								<Border>
-									<StackPanel IsItemsHost="True" />
-								</Border>
-							</ControlTemplate>
-						</ListBox.Template>
+					<ListBox x:Name="outputsListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="{x:Type Model:Output}">
-								<ListBoxItem Width="Auto" HorizontalAlignment="Stretch">
-									<Expander Header="{Binding Path=Name}">
-										<panes:OutputPropertiesPane DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Grid.Row="1" />
-									</Expander>
-								</ListBoxItem>
+								<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
@@ -86,9 +75,9 @@
 			</TabControl>
 		</UserControl>
 		<GridSplitter Grid.Row="1" Grid.Column="1" Width="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane1" Grid.Column="2" Margin="1" Grid.Row="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" />
-		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="Collapsed">
-			<StatusBarItem Content="" />
+		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane1" Grid.Column="2" Margin="1" Grid.Row="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" DetailButtonVisibility="Visible" />
+		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2">
+			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow}}" />
 		</StatusBar>
 	</Grid>
 </Window>
