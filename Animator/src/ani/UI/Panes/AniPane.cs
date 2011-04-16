@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,14 +17,14 @@ namespace Animator.UI.Panes
 		#region Static / Constant
 
 		public static readonly DependencyProperty PaneHeaderProperty;
-		public static readonly DependencyProperty PaneHeaderVisibleProperty;
+		public static readonly DependencyProperty PaneHeaderVisibilityProperty;
 
 		static AniPane()
 		{
-			PaneHeaderProperty = DependencyProperty.Register("PaneHeader", typeof(string), typeof(AniPane),
+			PaneHeaderProperty = DependencyProperty.Register("PaneHeader", typeof(object), typeof(AniPane),
 															 new FrameworkPropertyMetadata(null));
-			PaneHeaderVisibleProperty = DependencyProperty.Register("PaneHeaderVisible", typeof(bool), typeof(AniPane),
-																	new FrameworkPropertyMetadata(true));
+			PaneHeaderVisibilityProperty = DependencyProperty.Register("PaneHeaderVisibility", typeof(Visibility),
+				typeof(AniPane), new PropertyMetadata(Visibility.Visible));
 		}
 
 		#endregion
@@ -34,16 +35,18 @@ namespace Animator.UI.Panes
 
 		#region Properties
 
-		public string PaneHeader
+		[Category("Common")]
+		public object PaneHeader
 		{
-			get { return (string)this.GetValue(PaneHeaderProperty); }
+			get { return this.GetValue(PaneHeaderProperty); }
 			set { this.SetValue(PaneHeaderProperty, value); }
 		}
 
-		public bool PaneHeaderVisible
+		[Category("Visibility")]
+		public Visibility PaneHeaderVisibility
 		{
-			get { return (bool)this.GetValue(PaneHeaderVisibleProperty); }
-			set { this.SetValue(PaneHeaderVisibleProperty, value); }
+			get { return (Visibility)this.GetValue(PaneHeaderVisibilityProperty); }
+			set { this.SetValue(PaneHeaderVisibilityProperty, value); }
 		}
 
 		#endregion

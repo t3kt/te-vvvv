@@ -30,12 +30,12 @@ namespace Animator.Core.Model
 		public string OutputType
 		{
 			get { return _OutputType; }
-			internal set
+			set
 			{
 				if(value != _OutputType)
 				{
 					_OutputType = value;
-					OnOutputTypeChanged();
+					OnPropertyChanged("OutputType");
 				}
 			}
 		}
@@ -73,11 +73,6 @@ namespace Animator.Core.Model
 				return null;
 			string value;
 			return this._Parameters.TryGetValue(key, out value) ? value : null;
-		}
-
-		private void OnOutputTypeChanged()
-		{
-			OnPropertyChanged("OutputType");
 		}
 
 		private void ReadXElement(XElement element)

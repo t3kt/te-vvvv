@@ -15,6 +15,8 @@ namespace Animator.AppCore
 		public static readonly RoutedUICommand Exit = new RoutedUICommand("_Exit", "Exit", typeof(AniAppCommands),
 			new InputGestureCollection { new KeyGesture(Key.F4, ModifierKeys.Alt) });
 
+		public static readonly RoutedUICommand EditDetail = new RoutedUICommand("Edit", "EditDetail", typeof(AniAppCommands));
+
 	}
 
 	#endregion
