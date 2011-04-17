@@ -1,9 +1,13 @@
 ﻿<Window x:Class="Animator.UI.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		Title="Animator" Height="409" Width="804" Style="{StaticResource MainWindowStyle}"
-		x:Name="mainWindow"
-		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:AppCore="clr-namespace:Animator.AppCore" xmlns:Test="clr-namespace:Animator.Test" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore" xmlns:my="clr-namespace:Animator.UI" Icon="/ani;component/Resources/ani_icon_main.ico">
+		Title="Animator" Height="600" Width="1000" x:Name="mainWindow" Style="{StaticResource MainWindowStyle}"
+		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:AppCore="clr-namespace:Animator.AppCore" xmlns:Test="clr-namespace:Animator.Test" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore" xmlns:my="clr-namespace:Animator.UI">
+	<Window.Resources>
+		<Style TargetType="{x:Type GridSplitter}">
+			<Setter Property="DragIncrement" Value="20"/>
+		</Style>
+	</Window.Resources>
 	<Window.CommandBindings>
 		<CommandBinding Command="AppCore:AniAppCommands.Exit" Executed="ExitCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
@@ -17,9 +21,9 @@
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto" MinWidth="200" />
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -30,6 +34,11 @@
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MainMenuItemStyle}" />
 			</Menu.Resources>
+			<MenuItem Padding="2,2,2,3" IsEnabled="False">
+				<MenuItem.Header>
+					<Image Source="/ani;component/Resources/ani_icon_main.ico" Stretch="Fill" Width="16" Height="16" />
+				</MenuItem.Header>
+			</MenuItem>
 			<MenuItem Header="_File">
 				<MenuItem Command="ApplicationCommands.New" />
 				<MenuItem Command="ApplicationCommands.Open" />
@@ -39,44 +48,64 @@
 				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
 				<MenuItem Command="AppCore:AniAppCommands.Exit" />
 			</MenuItem>
+			<MenuItem Header="_View">
+				<MenuItem x:Name="docPropsVisibleMenuItem" Header="_Document Properties" IsCheckable="True" IsChecked="True"/>
+				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
+				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
+			</MenuItem>
 			<MenuItem Header="_Debug">
 				<MenuItem Command="Test:TestCommands.ShowTestWindow" />
 				<MenuItem Command="Test:TestCommands.LoadTestDocument" />
 				<MenuItem Command="Test:TestCommands.DebuggerBreak" />
 			</MenuItem>
+			<!--<StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+				<Button Width="16" Background="{StaticResource CloseButtonImage}">
+				</Button>
+			</StackPanel>-->
 		</Menu>
-		<UserControl Grid.Row="1" Style="{StaticResource PaneUserControlStyle}">
-			<TabControl IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
-				<TabItem Header="_Tracks">
-					<ListBox x:Name="tracksListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch">
-						<ListBox.Template>
-							<ControlTemplate TargetType="{x:Type ListBox}">
-								<Border>
-									<StackPanel IsItemsHost="True" />
-								</Border>
-							</ControlTemplate>
-						</ListBox.Template>
-						<ListBox.ItemTemplate>
-							<DataTemplate DataType="{x:Type Model:Track}">
-								<panes:TrackPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" AvailableOutputs="{Binding ElementName=mainWindow, Path=ActiveDocument.Outputs}" />
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</TabItem>
-				<TabItem Header="_Outputs">
-					<ListBox x:Name="outputsListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
-						<ListBox.ItemTemplate>
-							<DataTemplate DataType="{x:Type Model:Output}">
-								<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</TabItem>
-			</TabControl>
-		</UserControl>
-		<GridSplitter Grid.Row="1" Grid.Column="1" Width="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane1" Grid.Column="2" Margin="1" Grid.Row="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" DetailButtonVisibility="Visible" />
-		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2">
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" DetailButtonVisibility="Visible" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+			<panes:AniPane Grid.Row="1" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Outputs" Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+				<ListBox x:Name="outputsListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type Model:Output}">
+							<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</panes:AniPane>
+		</Grid>
+		<GridSplitter Grid.Row="1" Grid.Column="1" Width="2" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+		<Grid Grid.Row="1" Grid.Column="2">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="200" MinHeight="148"/>
+			</Grid.RowDefinitions>
+			<panes:AniPane Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Tracks" PaneHeaderVisibility="Collapsed">
+				<ListBox x:Name="tracksListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" panes:TrackOverviewPane.ClipSelected="trackPane_ClipSelected" SelectionChanged="tracksListBox_SelectionChanged">
+					<ListBox.Template>
+						<ControlTemplate TargetType="{x:Type ListBox}">
+							<Border>
+								<StackPanel Orientation="Horizontal" IsItemsHost="True" />
+							</Border>
+						</ControlTemplate>
+					</ListBox.Template>
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type Model:Track}">
+							<panes:TrackOverviewPane x:Name="trackOverviewPane" Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</panes:AniPane>
+			<GridSplitter Grid.Row="1" Height="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane1" />
+		</Grid>
+		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow}}" />
 		</StatusBar>
 	</Grid>

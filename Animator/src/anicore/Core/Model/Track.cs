@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -21,7 +23,7 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private Guid? _OutputId;
-		private readonly DocumentItemCollection<Clip> _Clips;
+		private ObservableCollection<Clip> _Clips;
 		private string _TargetKey;
 
 		#endregion
@@ -41,9 +43,27 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public DocumentItemCollection<Clip> Clips
+		public ObservableCollection<Clip> Clips
 		{
-			get { return _Clips; }
+			get
+			{
+				if(this._Clips == null)
+				{
+					this._Clips = new ObservableCollection<Clip>();
+					this.AttachClips(this._Clips);
+				}
+				return this._Clips;
+			}
+			set
+			{
+				if(value != this._Clips)
+				{
+					this.DetachClips(this._Clips);
+					this._Clips = value;
+					this.AttachClips(value);
+					this.OnPropertyChanged("Clips");
+				}
+			}
 		}
 
 		public string TargetKey
@@ -70,18 +90,35 @@ namespace Animator.Core.Model
 		public Track(Guid id)
 		{
 			this.Id = id;
-			this._Clips = new DocumentItemCollection<Clip>();
+			this._Clips = new ObservableCollection<Clip>();
 		}
 
 		public Track(XElement element)
 		{
-			this._Clips = new DocumentItemCollection<Clip>();
+			this._Clips = new ObservableCollection<Clip>();
 			ReadXElement(element);
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void AttachClips(ObservableCollection<Clip> clips)
+		{
+			if(clips != null)
+				clips.CollectionChanged += this.Clips_CollectionChanged;
+		}
+
+		private void DetachClips(ObservableCollection<Clip> clips)
+		{
+			if(clips != null)
+				clips.CollectionChanged -= this.Clips_CollectionChanged;
+		}
+
+		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			this.OnPropertyChanged("Clips");
+		}
 
 		private void ReadXElement(XElement element)
 		{
@@ -94,7 +131,7 @@ namespace Animator.Core.Model
 				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
 				this.TargetKey = (string)element.Attribute(Schema.track_target);
 				var clipsElement = element.Element(Schema.track_clips);
-				this.Clips.ReplaceAll(clipsElement == null ? null : clipsElement.Elements().Select(Clip.ReadClipXElement));
+				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(Clip.ReadClipXElement));
 			}
 			finally
 			{
@@ -106,11 +143,11 @@ namespace Animator.Core.Model
 		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.track,
-								new XAttribute(Schema.track_id, this.Id),
-								ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
-								ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
-								ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
-								this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.WriteXElements(null)));
+				new XAttribute(Schema.track_id, this.Id),
+				ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
+				ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
+				ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
+				this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.Select(Clip.WriteClipXElement)));
 		}
 
 		protected override void Dispose(bool disposing)
@@ -118,7 +155,13 @@ namespace Animator.Core.Model
 			base.Dispose(disposing);
 			if(disposing)
 			{
-				_Clips.Dispose();
+				if(this._Clips != null)
+				{
+					foreach(var clip in this._Clips)
+						clip.Dispose();
+				}
+				this.DetachClips(this._Clips);
+				this._Clips = null;
 			}
 		}
 
@@ -142,7 +185,7 @@ namespace Animator.Core.Model
 				return false;
 			return other._OutputId == this._OutputId &&
 				   other._TargetKey == this._TargetKey &&
-				   other._Clips.ItemsEqual(this._Clips);
+				   other.Clips.SequenceEqual(this.Clips);
 		}
 
 		#endregion

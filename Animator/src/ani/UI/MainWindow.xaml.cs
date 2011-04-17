@@ -4,11 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Xml.Linq;
 using Animator.AppCore;
 using Animator.Core.Model;
 using Animator.Test;
+using Animator.UI.Panes;
 using Microsoft.Win32;
 
 namespace Animator.UI
@@ -345,6 +349,41 @@ namespace Animator.UI
 		{
 			//if(System.Diagnostics.Debugger.IsAttached)
 			System.Diagnostics.Debugger.Break();
+		}
+
+		private void trackPane_ClipSelected(object sender, RoutedEventArgs e)
+		{
+			var selectedTrackPane = e.OriginalSource as TrackOverviewPane;
+			BindingOperations.ClearBinding(this.activeClipEditorPane1, FrameworkElement.DataContextProperty);
+			this.tracksListBox.SelectedItem = selectedTrackPane == null ? null : selectedTrackPane.Track;
+			if(selectedTrackPane != null)
+			{
+				var binding = new Binding
+				{
+					Source = selectedTrackPane,
+					Path = new PropertyPath("SelectedClip"),
+					Mode = BindingMode.OneWay
+				};
+				this.activeClipEditorPane1.SetBinding(FrameworkElement.DataContextProperty, binding);
+			}
+		}
+
+		private void tracksListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			for(var i = 0; i < this.tracksListBox.Items.Count; i++)
+			{
+				if(i != this.tracksListBox.SelectedIndex)
+				{
+					var listItem = this.tracksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
+					if(listItem != null)
+					{
+						//var trackPane = listItem.FindName("trackOverviewPane") as TrackOverviewPane;
+						var trackPane = listItem.Template.FindName("trackOverviewPane", listItem) as TrackOverviewPane;
+						if(trackPane != null)
+							trackPane.SelectedClip = null;
+					}
+				}
+			}
 		}
 
 		#endregion

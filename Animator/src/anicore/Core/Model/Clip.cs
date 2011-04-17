@@ -1,27 +1,63 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Model;
+using Animator.Core.Runtime;
 using Animator.Core.Transport;
+using TESharedAnnotations;
+
+[assembly: RegisteredImplementation(typeof(Clip), typeof(Clip))]
+[assembly: RegisteredImplementation(typeof(Clip), "clip", typeof(Clip))]
 
 namespace Animator.Core.Model
 {
 
 	#region Clip
 
+	[Description("Generic Clip")]
 	public class Clip : DocumentItem, IEquatable<Clip>
 	{
 
 		#region Static / Constant
 
-		internal static Clip ReadClipXElement(XElement element)
+		static Clip()
 		{
-			if(element.Name == Schema.stepclip)
-				return new StepClip(element);
-			return new Clip(element);
+			ImplementationRegistry<Clip>.SetDefault(typeof(Clip));
+			ImplementationRegistry<Clip>.RegisterTypes(typeof(Clip).Assembly);
+		}
+
+		public static void RegisterType(string elementName, Type type)
+		{
+			Require.ArgNotNull(elementName, "elementName");
+			Require.ArgNotNull(type, "type");
+			ImplementationRegistry<Clip>.RegisterType(elementName, type);
+		}
+
+		public static void RegisterTypes(Assembly assembly)
+		{
+			ImplementationRegistry<Clip>.RegisterTypes(assembly);
+		}
+
+		[CanBeNull]
+		internal static Clip ReadClipXElement([NotNull] XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			if(element.Name == Schema.@null)
+				return null;
+			return ImplementationRegistry<Clip>.CreateImplementation(element.Name.ToString(), element);
+		}
+
+		[NotNull]
+		internal static XElement WriteClipXElement([CanBeNull]Clip clip)
+		{
+			if(clip == null)
+				return new XElement(Schema.@null);
+			return clip.WriteXElement();
 		}
 
 		#endregion
@@ -29,7 +65,6 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private string _ClipType;
-		private Dictionary<string, string> _Parameters;
 		private Time _Duration;
 		private int _TriggerAlignment;
 		private string _TargetKey;
@@ -63,12 +98,6 @@ namespace Animator.Core.Model
 					OnPropertyChanged("TargetKey");
 				}
 			}
-		}
-
-		public Dictionary<string, string> Parameters
-		{
-			get { return _Parameters ?? (_Parameters = new Dictionary<string, string>()); }
-			protected set { _Parameters = value; }
 		}
 
 		public Time Duration
@@ -140,8 +169,6 @@ namespace Animator.Core.Model
 				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
 				this.ClipType = (string)element.Attribute(Schema.clip_type);
 				this.TargetKey = (string)element.Attribute(Schema.clip_target);
-				_Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.clip_params));
-				//.. other misc attributes?
 			}
 			finally
 			{
@@ -158,8 +185,7 @@ namespace Animator.Core.Model
 				new XAttribute(Schema.clip_dur, this.Duration.Beats),
 				this.TriggerAlignment == Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
 				ModelUtil.WriteOptionalAttribute(Schema.clip_type, this.ClipType),
-				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey),
-				ModelUtil.WriteParametersXElement(Schema.clip_params, this._Parameters));
+				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey));
 		}
 
 		public override int GetHashCode()
@@ -182,8 +208,7 @@ namespace Animator.Core.Model
 				   other._Duration == this._Duration &&
 				   other._TriggerAlignment == this._TriggerAlignment &&
 				   other._ClipType == this._ClipType &&
-				   other._TargetKey == this._TargetKey &&
-				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters);
+				   other._TargetKey == this._TargetKey;
 		}
 
 		#endregion

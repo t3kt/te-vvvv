@@ -59,6 +59,8 @@ namespace Animator.Core.Model
 		public static readonly XName stepclip_params = "params";
 		public static readonly XName stepclip_step = "step";
 
+		public static readonly XName @null = "null";
+
 	}
 
 	#endregion

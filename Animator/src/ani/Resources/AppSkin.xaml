@@ -12,6 +12,7 @@
 	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
 		<Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
 		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Icon" Value="/ani;component/Resources/ani_icon_main.ico"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Window}">
@@ -22,11 +23,11 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<Style x:Key="PaneUserControlStyle" TargetType="{x:Type UserControl}">
+	<Style x:Key="PaneUserControlStyle" TargetType="{x:Type ContentControl}">
 		<Setter Property="Margin" Value="1"/>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type UserControl}">
+				<ControlTemplate TargetType="{x:Type ContentControl}">
 					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="{TemplateBinding Margin}">
 						<ContentPresenter Margin="{TemplateBinding Padding}"/>
 					</Border>
@@ -100,8 +101,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Menu}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" SnapsToDevicePixels="True">
-						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+						<!--<ItemsPresenter SnapsToDevicePixels="True"/>-->
+						<DockPanel IsItemsHost="True" />
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>

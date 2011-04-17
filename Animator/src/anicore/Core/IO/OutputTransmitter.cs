@@ -113,8 +113,6 @@ namespace Animator.Core.IO
 		{
 			ImplementationRegistry<IOutputTransmitter>.SetDefault(typeof(NullTransmitter));
 			RegisterTypes(typeof(OutputTransmitter).Assembly);
-			//RegisterType(String.Empty, typeof(NullTransmitter));
-			//RegisterType("null", typeof(NullTransmitter));
 		}
 
 		public static void RegisterType(string key, Type type)

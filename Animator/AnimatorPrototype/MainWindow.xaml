@@ -13,5 +13,6 @@
 		<local:TransportPane Canvas.Left="310" Canvas.Top="30"/>
 		<local:DocumentPropertiesPane Canvas.Left="670" Canvas.Top="400" x:Name="documentPropertiesPane1" Height="100" Width="280" />
 		<local:ValueEditorControl Canvas.Left="30.46" Canvas.Top="60" Height="170"/>
+		<Button Content="show custom" Canvas.Left="730" Canvas.Top="178" Width="75" Click="Button_Click" />
 	</Canvas>
 </Window>

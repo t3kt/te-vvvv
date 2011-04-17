@@ -2,38 +2,20 @@
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d"
-			 d:DesignHeight="300" d:DesignWidth="800">
-	<UserControl.Resources>
-		<Collections:ArrayList x:Key="dbgdata">
-			<System:Single>50</System:Single>
-			<System:Single>100</System:Single>
-			<System:Single>0</System:Single>
-			<System:Single>10</System:Single>
-		</Collections:ArrayList>
-	</UserControl.Resources>
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+			 d:DesignHeight="200" d:DesignWidth="400" xmlns:my="clr-namespace:Animator.UI.Editors">
 	<DockPanel>
-		<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-			<Button Content="Foo"/>
-		</StackPanel>
-		<Grid Width="50">
-			<Slider x:Name="ValueSlider" Orientation="Vertical"/>
-		</Grid>
-		<ListBox x:Name="stepsListBox">
-			<ListBox.ItemsSource>
-				<StaticResource ResourceKey="dbgdata"/>
-			</ListBox.ItemsSource>
+		<ListBox x:Name="stepsListBox" VerticalContentAlignment="Stretch" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=my:StepListEditor}, Path=DataContext}" Margin="4">
 			<ListBox.Template>
 				<ControlTemplate TargetType="{x:Type ListBox}">
-					<UniformGrid Rows="1" IsItemsHost="True"/>
+					<StackPanel Orientation="Horizontal" IsItemsHost="True"/>
 				</ControlTemplate>
 			</ListBox.Template>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<DockPanel Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=ActualHeight}">
-						<TextBox Text="{Binding ElementName=zValueSlider, Path=Value}" DockPanel.Dock="Bottom"/>
-						<Slider x:Name="zValueSlider" Value="{Binding Path=.}" Orientation="Vertical" Maximum="100">
-						</Slider>
+					<DockPanel>
+						<Slider x:Name="ValueSlider" Value="{Binding Path=.}" Orientation="Vertical" Maximum="100" Width="24" Margin="10,4,8,4" />
+						<TextBox Text="{Binding ElementName=ValueSlider, Path=Value}" DockPanel.Dock="Bottom" HorizontalContentAlignment="Center" />
 					</DockPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>

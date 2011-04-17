@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomWindow.xaml.cs">
+      <DependentUpon>CustomWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
       <DependentUpon>ValueTimeline.xaml</DependentUpon>
     </Compile>
     <Page Include="AppSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

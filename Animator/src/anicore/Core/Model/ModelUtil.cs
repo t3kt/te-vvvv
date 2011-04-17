@@ -91,6 +91,13 @@ namespace Animator.Core.Model
 			return String.IsNullOrWhiteSpace(str) ? null : str;
 		}
 
+		internal static bool ItemsEqual(this IEnumerable<IDocumentItem> itemsA, IEnumerable<IDocumentItem> itemsB)
+		{
+			itemsA = itemsA == null ? Enumerable.Empty<IDocumentItem>() : itemsA.OrderBy(x => x.Id);
+			itemsB = itemsB == null ? Enumerable.Empty<IDocumentItem>() : itemsB.OrderBy(x => x.Id);
+			return itemsA.OrderBy(x => x.Id).SequenceEqual(itemsB.OrderBy(x => x.Id));
+		}
+
 	}
 
 	#endregion

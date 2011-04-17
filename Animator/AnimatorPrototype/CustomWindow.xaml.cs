@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,21 +13,15 @@ using System.Windows.Shapes;
 namespace AnimatorPrototype
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for CustomWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class CustomWindow : Window
 	{
-		public MainWindow()
+		public CustomWindow()
 		{
 			this.InitializeComponent();
-
+			
 			// Insert code required on object creation below this point.
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			var window = new CustomWindow { Owner = this };
-			window.Show();
 		}
 	}
 }

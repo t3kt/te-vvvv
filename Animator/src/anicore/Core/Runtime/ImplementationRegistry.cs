@@ -12,7 +12,7 @@ namespace Animator.Core.Runtime
 	#region RegisteredImplementationAttribute
 
 	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-	public sealed class RegisteredImplementationAttribute : Attribute
+	public class RegisteredImplementationAttribute : Attribute
 	{
 
 		#region Static/Constant
@@ -130,24 +130,6 @@ namespace Animator.Core.Runtime
 			_Types.Add(key ?? String.Empty, type);
 		}
 
-		[CanBeNull]
-		internal static Type GetType([CanBeNull] string key)
-		{
-			Type type;
-			if(_Types.TryGetValue(key ?? String.Empty, out type))
-				return type;
-			return _Default;
-		}
-
-		[CanBeNull]
-		internal static TBase CreateImplementation([CanBeNull] string key)
-		{
-			var type = GetType(key);
-			if(type == null)
-				return default(TBase);
-			return (TBase)Activator.CreateInstance(type);
-		}
-
 		internal static void RegisterTypes([NotNull] Assembly assembly)
 		{
 			Require.ArgNotNull(assembly, "assembly");
@@ -169,6 +151,38 @@ namespace Animator.Core.Runtime
 				}
 			}
 			_RegisteredAssemblies.Add(assembly.FullName);
+		}
+
+		[CanBeNull]
+		internal static Type GetType([CanBeNull] string key)
+		{
+			Type type;
+			if(_Types.TryGetValue(key ?? String.Empty, out type))
+				return type;
+			return _Default;
+		}
+
+		[CanBeNull]
+		internal static TBase CreateImplementation([CanBeNull] string key)
+		{
+			var type = GetType(key);
+			if(type == null)
+				return default(TBase);
+			return (TBase)Activator.CreateInstance(type);
+		}
+
+		[CanBeNull]
+		internal static TBase CreateImplementation([CanBeNull]string key, params object[] args)
+		{
+			var type = GetType(key);
+			if(type == null)
+				return default(TBase);
+			return (TBase)Activator.CreateInstance(type, args);
+		}
+
+		internal static IEnumerable<KeyValuePair<string, Type>> GetRegisteredTypes()
+		{
+			return _Types.ToArray();
 		}
 
 	}

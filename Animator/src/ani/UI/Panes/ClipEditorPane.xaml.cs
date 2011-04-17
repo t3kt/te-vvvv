@@ -9,26 +9,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AnimatorPrototype
+namespace Animator.UI.Panes
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for ClipEditorPane.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class ClipEditorPane : AniPane
 	{
-		public MainWindow()
+		public ClipEditorPane()
 		{
-			this.InitializeComponent();
-
-			// Insert code required on object creation below this point.
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			var window = new CustomWindow { Owner = this };
-			window.Show();
+			InitializeComponent();
 		}
 	}
 }
