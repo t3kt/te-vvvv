@@ -7,9 +7,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="DocumentItemType">
-		<xs:sequence>
-			<xs:element ref="params" minOccurs="0"/>
-		</xs:sequence>
 		<xs:attribute name="id" type="Guid" use="required"/>
 		<xs:attribute name="name" type="xs:string"/>
 	</xs:complexType>
@@ -71,14 +68,25 @@
 			</xs:complexContent>
 		</xs:complexType>
 		<xs:key name="itemIdKey">
-			<xs:selector xpath="*"/>
+			<xs:selector xpath="*/*"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
+		<xs:key name="outputIdKey">
+			<xs:selector xpath="outputs/output"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
+		<xs:keyref name="itemIdKeyRef" refer="outputIdKey">
+			<xs:selector xpath="tracks/track"/>
+			<xs:field xpath="@output"/>
+		</xs:keyref>
 	</xs:element>
 	<xs:element name="output">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="DocumentItemType">
+					<xs:sequence>
+						<xs:element ref="params" minOccurs="0"/>
+					</xs:sequence>
 					<xs:attribute name="type" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
@@ -92,7 +100,10 @@
 						<xs:element name="clips" minOccurs="0">
 							<xs:complexType>
 								<xs:choice minOccurs="0" maxOccurs="unbounded">
-									<xs:any namespace="##local"/>
+									<xs:any namespace="##other"/>
+									<xs:element ref="clip"/>
+									<xs:element ref="stepclip"/>
+									<xs:element ref="null"/>
 								</xs:choice>
 							</xs:complexType>
 						</xs:element>
@@ -142,4 +153,5 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="null"/>
 </xs:schema>

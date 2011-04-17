@@ -39,6 +39,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ani_icon_main.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
@@ -90,6 +93,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Panes\AniPane.cs" />
+    <Compile Include="UI\Panes\ClipEditorPane.xaml.cs">
+      <DependentUpon>ClipEditorPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\ClipPropertiesPane.xaml.cs">
       <DependentUpon>ClipPropertiesPane.xaml</DependentUpon>
     </Compile>
@@ -99,6 +105,9 @@
     </Compile>
     <Compile Include="UI\Panes\OutputPropertiesPane.xaml.cs">
       <DependentUpon>OutputPropertiesPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Panes\TrackOverviewPane.xaml.cs">
+      <DependentUpon>TrackOverviewPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Panes\TrackPropertiesPane.xaml.cs">
       <DependentUpon>TrackPropertiesPane.xaml</DependentUpon>
@@ -111,6 +120,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\TransportButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\WindowButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -130,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Panes\ClipEditorPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Panes\ClipPropertiesPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Panes\OutputPropertiesPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Panes\TrackOverviewPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

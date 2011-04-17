@@ -236,6 +236,7 @@ namespace Animator.Core.Model
 								new XAttribute(Schema.anidoc_id, this.Id),
 								ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
 								this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
+								new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
 								this.TriggerAlignment == NoAlignment ? null : new XAttribute(Schema.anidoc_align, this.TriggerAlignment),
 								this.Outputs.Count == 0 ? null : new XElement(Schema.anidoc_outputs, this.Outputs.WriteXElements(null)),
 								this.Tracks.Count == 0 ? null : new XElement(Schema.anidoc_tracks, this.Tracks.WriteXElements(null)));

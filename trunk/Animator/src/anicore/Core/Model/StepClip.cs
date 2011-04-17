@@ -3,17 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Model;
+using Animator.Core.Runtime;
 using Animator.Core.Transport;
+
+[assembly: RegisteredImplementation(typeof(Clip), "stepclip", typeof(StepClip))]
 
 namespace Animator.Core.Model
 {
 
 	#region StepClip
 
+	[Description("Step Sequence Clip")]
 	public sealed class StepClip : Clip
 	{
 
@@ -149,7 +155,6 @@ namespace Animator.Core.Model
 				this.Duration = (float)element.Attribute(Schema.clip_dur);
 				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
 				this.ClipType = (string)element.Attribute(Schema.clip_type);
-				this.Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.clip_params));
 				this.Steps = new ObservableCollection<float>(element.Elements(Schema.stepclip_step).Select(e => (float)e));
 			}
 			finally
@@ -178,7 +183,7 @@ namespace Animator.Core.Model
 			var stepClip = other as StepClip;
 			if(stepClip == null)
 				return false;
-			return stepClip._Steps.Count != this._Steps.Count &&
+			return stepClip._Steps.Count == this._Steps.Count &&
 				   stepClip._Steps.SequenceEqual(this._Steps);
 		}
 
