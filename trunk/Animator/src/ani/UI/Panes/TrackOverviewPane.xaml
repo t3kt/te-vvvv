@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="140" Style="{StaticResource DocumentItemPropertiesPaneStyle}" DetailButtonVisibility="Visible" PaneHeader="{Binding Path=Name}">
+	<Panes:DocumentItemPropertiesPane.CommandBindings>
+		<CommandBinding Command="Panes:DocumentItemPropertiesPane.ShowEditDetailCommand" Executed="ShowEditDetailCommand_Executed" />
+	</Panes:DocumentItemPropertiesPane.CommandBindings>
 	<StackPanel>
 		<ListBox ItemsSource="{Binding Path=Clips}" HorizontalContentAlignment="Stretch" Background="{x:Null}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:TrackOverviewPane}, Path=SelectedClip}">
 			<ListBox.ItemTemplate>

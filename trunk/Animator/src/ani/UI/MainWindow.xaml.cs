@@ -354,7 +354,7 @@ namespace Animator.UI
 		private void trackPane_ClipSelected(object sender, RoutedEventArgs e)
 		{
 			var selectedTrackPane = e.OriginalSource as TrackOverviewPane;
-			BindingOperations.ClearBinding(this.activeClipEditorPane1, FrameworkElement.DataContextProperty);
+			BindingOperations.ClearBinding(this.activeClipEditorPane, FrameworkElement.DataContextProperty);
 			this.tracksListBox.SelectedItem = selectedTrackPane == null ? null : selectedTrackPane.Track;
 			if(selectedTrackPane != null)
 			{
@@ -364,7 +364,7 @@ namespace Animator.UI
 					Path = new PropertyPath("SelectedClip"),
 					Mode = BindingMode.OneWay
 				};
-				this.activeClipEditorPane1.SetBinding(FrameworkElement.DataContextProperty, binding);
+				this.activeClipEditorPane.SetBinding(FrameworkElement.DataContextProperty, binding);
 			}
 		}
 
