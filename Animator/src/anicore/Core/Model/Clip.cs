@@ -47,44 +47,23 @@ namespace Animator.Core.Model
 		internal static Clip ReadClipXElement([NotNull] XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			if(element.Name == Schema.@null)
-				return null;
 			return ImplementationRegistry<Clip>.CreateImplementation(element.Name.ToString(), element);
-		}
-
-		[NotNull]
-		internal static XElement WriteClipXElement([CanBeNull]Clip clip)
-		{
-			if(clip == null)
-				return new XElement(Schema.@null);
-			return clip.WriteXElement();
 		}
 
 		#endregion
 
 		#region Fields
 
-		private string _ClipType;
 		private Time _Duration;
 		private int _TriggerAlignment;
 		private string _TargetKey;
+		private Guid? _OutputId;
+		private int? _UIRow;
+		private int? _UIColumn;
 
 		#endregion
 
 		#region Properties
-
-		public string ClipType
-		{
-			get { return _ClipType; }
-			internal set
-			{
-				if(value != _ClipType)
-				{
-					_ClipType = value;
-					OnClipTypeChanged();
-				}
-			}
-		}
 
 		public string TargetKey
 		{
@@ -95,33 +74,72 @@ namespace Animator.Core.Model
 				if(value != this._TargetKey)
 				{
 					this._TargetKey = value;
-					OnPropertyChanged("TargetKey");
+					this.OnPropertyChanged("TargetKey");
 				}
 			}
 		}
 
 		public Time Duration
 		{
-			get { return _Duration; }
+			get { return this._Duration; }
 			set
 			{
-				if(value != _Duration)
+				if(value != this._Duration)
 				{
-					_Duration = value;
-					OnPropertyChanged("Duration");
+					this._Duration = value;
+					this.OnPropertyChanged("Duration");
 				}
 			}
 		}
 
 		public int TriggerAlignment
 		{
-			get { return _TriggerAlignment; }
+			get { return this._TriggerAlignment; }
 			set
 			{
-				if(value != _TriggerAlignment)
+				if(value != this._TriggerAlignment)
 				{
-					_TriggerAlignment = value;
-					OnPropertyChanged("TriggerAlignment");
+					this._TriggerAlignment = value;
+					this.OnPropertyChanged("TriggerAlignment");
+				}
+			}
+		}
+
+		public Guid? OutputId
+		{
+			get { return this._OutputId; }
+			set
+			{
+				if(value != this._OutputId)
+				{
+					this._OutputId = value;
+					this.OnPropertyChanged("OutputId");
+				}
+			}
+		}
+
+		public int? UIRow
+		{
+			get { return this._UIRow; }
+			set
+			{
+				if(value != this._UIRow)
+				{
+					this._UIRow = value;
+					this.OnPropertyChanged("UIRow");
+				}
+			}
+		}
+
+		public int? UIColumn
+		{
+			get { return this._UIColumn; }
+			set
+			{
+				if(value != this._UIColumn)
+				{
+					this._UIColumn = value;
+					this.OnPropertyChanged("UIColumn");
 				}
 			}
 		}
@@ -152,12 +170,7 @@ namespace Animator.Core.Model
 			return null;
 		}
 
-		protected virtual void OnClipTypeChanged()
-		{
-			OnPropertyChanged("ClipType");
-		}
-
-		protected void ReadXElement(XElement element)
+		private void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			SuspendNotify();
@@ -167,13 +180,15 @@ namespace Animator.Core.Model
 				this.Name = (string)element.Attribute(Schema.clip_name);
 				this.Duration = (float)element.Attribute(Schema.clip_dur);
 				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
-				this.ClipType = (string)element.Attribute(Schema.clip_type);
 				this.TargetKey = (string)element.Attribute(Schema.clip_target);
+				this.OutputId = (Guid?)element.Attribute(Schema.clip_output);
+				this.UIRow = (int?)element.Attribute(Schema.clip_ui_row);
+				this.UIColumn = (int?)element.Attribute(Schema.clip_ui_col);
 			}
 			finally
 			{
-				ResumeNotify();
-				OnPropertyChanged(null);
+				this.ResumeNotify();
+				this.OnPropertyChanged(null);
 			}
 		}
 
@@ -184,8 +199,10 @@ namespace Animator.Core.Model
 				ModelUtil.WriteOptionalAttribute(Schema.clip_name, this.Name),
 				new XAttribute(Schema.clip_dur, this.Duration.Beats),
 				this.TriggerAlignment == Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
-				ModelUtil.WriteOptionalAttribute(Schema.clip_type, this.ClipType),
-				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey));
+				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey),
+				ModelUtil.WriteOptionalValueAttribute(Schema.clip_output, this.OutputId),
+				ModelUtil.WriteOptionalValueAttribute(Schema.clip_ui_row, this.UIRow),
+				ModelUtil.WriteOptionalValueAttribute(Schema.clip_ui_col, this.UIColumn));
 		}
 
 		public override int GetHashCode()
@@ -207,8 +224,8 @@ namespace Animator.Core.Model
 			return base.Equals(other) &&
 				   other._Duration == this._Duration &&
 				   other._TriggerAlignment == this._TriggerAlignment &&
-				   other._ClipType == this._ClipType &&
-				   other._TargetKey == this._TargetKey;
+				   other._TargetKey == this._TargetKey &&
+				   other._OutputId == this._OutputId;
 		}
 
 		#endregion

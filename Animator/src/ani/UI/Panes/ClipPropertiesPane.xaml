@@ -15,14 +15,11 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Id:" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentItemPropertiesPane}, Path=ItemIdVisibility}" />
 		<TextBox Grid.Column="1" Name="idTextBox" IsReadOnly="True" IsEnabled="False" Text="{Binding Path=Id, Mode=OneWay}" Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentItemPropertiesPane}, Path=ItemIdVisibility}" />
 		<Label Grid.Row="1" Content="Name:" />
 		<TextBox Grid.Row="1" Grid.Column="1" Name="nameTextBox" Text="{Binding Path=Name}"/>
-		<Label Grid.Row="2" Content="Type:" />
-		<TextBox Grid.Row="2" Grid.Column="1" Name="clipTypeTextBox" Text="{Binding Path=ClipType}"/>
 		<Label Grid.Row="3" Content="Target:" />
 		<TextBox Grid.Row="3" Grid.Column="1" Name="targetKeyTextBox" Text="{Binding Path=TargetKey}"/>
 		<Label Grid.Row="4" Content="Duration:" />
