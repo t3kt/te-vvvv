@@ -56,9 +56,9 @@ namespace Animator.Tests
 		{
 			var doc = new Document();
 			var output = new Output(Guid.NewGuid()) { OutputType = "test.callback" };
-			doc.AddOutput(output);
+			doc.Outputs.Add(output);
 			var track = new Track(Guid.NewGuid()) { TargetKey = "out1", OutputId = output.Id };
-			doc.AddTrack(track);
+			doc.Tracks.Add(track);
 			var clipA = new StepClip(Guid.NewGuid())
 						{
 							Steps = new ObservableCollection<float> { 0.0f, 1.0f, 2.0f, 3.0f }
@@ -95,9 +95,9 @@ namespace Animator.Tests
 		{
 			var doc = new Document();
 			var output = new Output(Guid.NewGuid()) { OutputType = "test.callback" };
-			doc.AddOutput(output);
+			doc.Outputs.Add(output);
 			var track = new Track(Guid.NewGuid()) { TargetKey = "out1", OutputId = output.Id };
-			doc.AddTrack(track);
+			doc.Tracks.Add(track);
 			var clipA = new StepClip(Guid.NewGuid())
 						{
 							Steps = new ObservableCollection<float> { 0.0f, 1.0f, 2.0f, 3.0f },
@@ -176,12 +176,10 @@ namespace Animator.Tests
 		public void RTContextGetClip()
 		{
 			var doc = new Document();
-			var track = new Track();
-			doc.AddTrack(track);
 			var clipA = new Clip();
 			var clipB = new Clip();
-			track.Clips.Add(clipA);
-			track.Clips.Add(clipB);
+			doc.Clips.Add(clipA);
+			doc.Clips.Add(clipB);
 
 			var transport = new DummyTransport();
 			var rctx = new DocumentRuntimeContext(doc, transport);
@@ -193,7 +191,7 @@ namespace Animator.Tests
 
 			var clipC = new Clip();
 			Assert.IsNull(rctx.GetClip(clipC.Id));
-			track.Clips.Add(clipC);
+			doc.Clips.Add(clipC);
 			Assert.AreSame(clipC, rctx.GetClip(clipC.Id));
 		}
 
@@ -202,12 +200,10 @@ namespace Animator.Tests
 		public void RTContextGetClipState()
 		{
 			var doc = new Document();
-			var track = new Track();
-			doc.AddTrack(track);
 			var clipA = new Clip();
 			var clipB = new Clip();
-			track.Clips.Add(clipA);
-			track.Clips.Add(clipB);
+			doc.Clips.Add(clipA);
+			doc.Clips.Add(clipB);
 
 			var transport = new DummyTransport();
 			var rctx = new DocumentRuntimeContext(doc, transport);
@@ -225,7 +221,7 @@ namespace Animator.Tests
 			var clipC = new Clip();
 			var stateC = rctx.GetClipState(clipC.Id);
 			Assert.IsNull(stateC);
-			track.Clips.Add(clipC);
+			doc.Clips.Add(clipC);
 			stateC = rctx.GetClipState(clipC.Id);
 			Assert.IsNotNull(stateC);
 			Assert.AreSame(clipC, stateC.Clip);
@@ -237,7 +233,7 @@ namespace Animator.Tests
 		{
 			var doc = new Document();
 			var outputA = new Output();
-			doc.AddOutput(outputA);
+			doc.Outputs.Add(outputA);
 
 			var transport = new DummyTransport();
 			var rctx = new DocumentRuntimeContext(doc, transport);
@@ -245,7 +241,7 @@ namespace Animator.Tests
 
 			var outputB = new Output();
 			Assert.IsNull(rctx.GetOutput(outputB.Id));
-			doc.AddOutput(outputB);
+			doc.Outputs.Add(outputB);
 			Assert.AreSame(outputB, rctx.GetOutput(outputB.Id));
 		}
 
@@ -279,7 +275,7 @@ namespace Animator.Tests
 						  {
 							  OutputType = "test.mtracker"
 						  };
-			doc.AddOutput(outputA);
+			doc.Outputs.Add(outputA);
 
 			var transport = new DummyTransport();
 			var rctx = new DocumentRuntimeContext(doc, transport);
@@ -297,12 +293,10 @@ namespace Animator.Tests
 		public void RTContextActiveClips()
 		{
 			var doc = new Document();
-			var track = new Track();
-			doc.AddTrack(track);
 			var clipA = new Clip();
 			var clipB = new Clip();
-			track.Clips.Add(clipA);
-			track.Clips.Add(clipB);
+			doc.Clips.Add(clipA);
+			doc.Clips.Add(clipB);
 
 			var transport = new DummyTransport();
 			var rctx = new DocumentRuntimeContext(doc, transport);

@@ -312,11 +312,11 @@ namespace Animator.UI
 						  Name = "Test Document"
 					  };
 			var outputA = new Output(Guid.NewGuid()) { Name = "out A" };
-			doc.AddOutput(outputA);
+			doc.Outputs.Add(outputA);
 			var outputB = new Output(Guid.NewGuid()) { Name = "out B" };
-			doc.AddOutput(outputB);
+			doc.Outputs.Add(outputB);
 			var trackA = new Track(Guid.NewGuid()) { Name = "track A" };
-			doc.AddTrack(trackA);
+			doc.Tracks.Add(trackA);
 			this.ActiveDocument = doc;
 		}
 

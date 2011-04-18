@@ -102,6 +102,9 @@
     <Compile Include="UI\Panes\ClipPropertiesPane.xaml.cs">
       <DependentUpon>ClipPropertiesPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Panes\DocumentClipGridPane.xaml.cs">
+      <DependentUpon>DocumentClipGridPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Panes\ClipPropertiesPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Panes\DocumentClipGridPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -53,7 +53,7 @@ namespace Animator.Core.Model
 					this.DetachSteps(this._Steps);
 					this._Steps = value;
 					this.AttachSteps(value);
-					OnPropertyChanged("Steps");
+					this.OnPropertyChanged("Steps");
 				}
 			}
 		}
@@ -144,36 +144,34 @@ namespace Animator.Core.Model
 			return this._Steps[step];
 		}
 
-		private new void ReadXElement(XElement element)
+		private void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			SuspendNotify();
+			this.SuspendNotify();
 			try
 			{
 				this.Id = (Guid)element.Attribute(Schema.clip_id);
 				this.Name = (string)element.Attribute(Schema.clip_name);
 				this.Duration = (float)element.Attribute(Schema.clip_dur);
 				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
-				this.ClipType = (string)element.Attribute(Schema.clip_type);
 				this.Steps = new ObservableCollection<float>(element.Elements(Schema.stepclip_step).Select(e => (float)e));
 			}
 			finally
 			{
-				ResumeNotify();
-				OnPropertyChanged(null);
+				this.ResumeNotify();
+				this.OnPropertyChanged(null);
 			}
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
 			return base.WriteXElement(name ?? Schema.stepclip)
-				.WithContent(from step in _Steps
-							 select new XElement(Schema.stepclip_step, step));
+				.WithContent(this._Steps == null ? null : this._Steps.Select(step => new XElement(Schema.stepclip_step, step)));
 		}
 
 		private void Steps_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			OnPropertyChanged("Steps");
+			this.OnPropertyChanged("Steps");
 		}
 
 		public override bool Equals(Clip other)

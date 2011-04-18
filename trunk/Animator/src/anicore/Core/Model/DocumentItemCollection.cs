@@ -14,6 +14,7 @@ namespace Animator.Core.Model
 
 	#region DocumentItemCollection<T>
 
+	[Obsolete]
 	public sealed class DocumentItemCollection<T> : ObservableCollection<T>, IDisposable, ISuspendableNotify
 		where T : DocumentItem
 	{

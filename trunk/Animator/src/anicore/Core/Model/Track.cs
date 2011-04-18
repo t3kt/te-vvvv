@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
@@ -17,6 +18,23 @@ namespace Animator.Core.Model
 	{
 
 		#region Static / Constant
+
+		[CanBeNull]
+		private static Clip ReadClipXElementOrNull([NotNull] XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			if(element.Name == Schema.track_clips_null)
+				return null;
+			return Clip.ReadClipXElement(element);
+		}
+
+		[NotNull]
+		private static XElement WriteClipXElement([CanBeNull]Clip clip)
+		{
+			if(clip == null)
+				return new XElement(Schema.track_clips_null);
+			return clip.WriteXElement();
+		}
 
 		#endregion
 
@@ -131,7 +149,7 @@ namespace Animator.Core.Model
 				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
 				this.TargetKey = (string)element.Attribute(Schema.track_target);
 				var clipsElement = element.Element(Schema.track_clips);
-				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(Clip.ReadClipXElement));
+				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(ReadClipXElementOrNull));
 			}
 			finally
 			{
@@ -147,7 +165,7 @@ namespace Animator.Core.Model
 				ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
 				ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
 				ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
-				this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.Select(Clip.WriteClipXElement)));
+				this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, (object) this.Clips.Select(WriteClipXElement)));
 		}
 
 		protected override void Dispose(bool disposing)

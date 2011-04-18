@@ -44,7 +44,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void ClipReadWriteXElement()
 		{
-			var clipA = new Clip { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
+			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid() };
 			var xmlA = clipA.WriteXElement();
 			var clipB = new Clip(xmlA);
 			var xmlB = clipB.WriteXElement();
@@ -59,16 +59,16 @@ namespace Animator.Tests
 			var clipA = new Clip(Guid.NewGuid())
 						{
 							Duration = 3.0f,
-							ClipType = "misc",
 							Name = "fooClip",
-							TargetKey = "tgt"
+							TargetKey = "tgt",
+							OutputId = Guid.NewGuid()
 						};
 			var clipB = new Clip(clipA.Id)
 						{
 							Duration = clipA.Duration,
-							ClipType = clipA.ClipType,
 							Name = clipA.Name,
-							TargetKey = clipA.TargetKey
+							TargetKey = clipA.TargetKey,
+							OutputId = clipA.OutputId
 						};
 			Assert.AreEqual(clipA, clipB);
 			clipB.Duration = -999.33f;
@@ -77,19 +77,19 @@ namespace Animator.Tests
 			var stepClipA = new StepClip(Guid.NewGuid())
 							{
 								Duration = 9.0f,
-								ClipType = "step",
 								Name = "stepssss",
 								TargetKey = "tttgtt",
-								Steps = new ObservableCollection<float> { 3.5f, 12.0f }
+								Steps = new ObservableCollection<float> { 3.5f, 12.0f },
+								OutputId = Guid.NewGuid()
 							};
 			Assert.AreNotEqual(clipA, stepClipA);
 			var stepClipB = new StepClip(stepClipA.Id)
 							{
 								Duration = stepClipA.Duration,
-								ClipType = stepClipA.ClipType,
 								Name = stepClipA.Name,
 								TargetKey = stepClipA.TargetKey,
-								Steps = new ObservableCollection<float>(stepClipA.Steps.ToArray())
+								Steps = new ObservableCollection<float>(stepClipA.Steps.ToArray()),
+								OutputId = stepClipA.OutputId
 							};
 			Assert.AreEqual(stepClipA, stepClipB);
 			stepClipB.Steps.Add(-234.77f);
@@ -107,8 +107,8 @@ namespace Animator.Tests
 		{
 			var docA = new Document();
 			var trackA = new Track();
-			docA.AddTrack(trackA);
-			var clipA = new Clip { ClipType = "FooClipType", Name = "helloclip", TriggerAlignment = 4 };
+			docA.Tracks.Add(trackA);
+			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid() };
 			trackA.Clips.Add(clipA);
 			trackA.Clips.Add(null);
 			var clipB = new StepClip
@@ -133,9 +133,9 @@ namespace Animator.Tests
 			var output = new Output();
 			var track = new Track(output.Id);
 			TestUtil.AssertThrowsException(() =>
-											{
-												doc.AddTrack(track);
-											}, "Add duplicate id allowed");
+			                               {
+			                               	doc.Tracks.Add(track);
+			                               }, "Add duplicate id allowed");
 		}
 
 		[TestMethod]
@@ -144,7 +144,7 @@ namespace Animator.Tests
 		{
 			var doc = new Document();
 			var track = new Track();
-			doc.AddTrack(track);
+			doc.Tracks.Add(track);
 			var clip = new StepClip
 			{
 				Duration = new Time(4),
