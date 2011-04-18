@@ -52,6 +52,7 @@
 				<MenuItem x:Name="docPropsVisibleMenuItem" Header="_Document Properties" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
+				<MenuItem x:Name="clipEditMenuItem" Header="_Clip Editor" IsCheckable="True" IsChecked="True"/>
 			</MenuItem>
 			<MenuItem Header="_Debug">
 				<MenuItem Command="Test:TestCommands.ShowTestWindow" />
@@ -70,7 +71,7 @@
 			</Grid.RowDefinitions>
 			<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" DetailButtonVisibility="Visible" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 			<panes:AniPane Grid.Row="1" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Outputs" Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-				<ListBox x:Name="outputsListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
+				<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type Model:Output}">
 							<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
@@ -84,7 +85,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition />
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="200" MinHeight="148"/>
+				<RowDefinition Height="200"/>
 			</Grid.RowDefinitions>
 			<panes:AniPane Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Tracks" PaneHeaderVisibility="Collapsed">
 				<ListBox x:Name="tracksListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" panes:TrackOverviewPane.ClipSelected="trackPane_ClipSelected" SelectionChanged="tracksListBox_SelectionChanged">
@@ -103,7 +104,7 @@
 				</ListBox>
 			</panes:AniPane>
 			<GridSplitter Grid.Row="1" Height="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane1" />
+			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 		</Grid>
 		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow}}" />

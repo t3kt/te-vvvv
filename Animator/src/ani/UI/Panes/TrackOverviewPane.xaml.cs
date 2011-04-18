@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Animator.Core.Model;
+using Animator.UI.Dialogs;
 
 namespace Animator.UI.Panes
 {
@@ -80,6 +81,15 @@ namespace Animator.UI.Panes
 		#endregion
 
 		#region Methods
+
+		private void ShowEditDetailCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+		{
+			var window = new TrackPropertiesWindow
+						 {
+							 DataContext = this.Track
+						 };
+			window.ShowDialog();
+		}
 
 		#endregion
 
