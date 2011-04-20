@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Animator.Common.Diagnostics;
+using TESharedAnnotations;
 
 namespace Animator.Common
 {
 
 	#region CommonUtil
 
-	internal static class CommonUtil
+	public static class CommonUtil
 	{
 
 		internal static IDisposable SuspendNotifyScope(this ISuspendableNotify target)
@@ -34,6 +35,68 @@ namespace Animator.Common
 			Require.ArgNotNull(dictionary, "dictionary");
 			TValue value;
 			return dictionary.TryGetValue(key, out value) ? value : default(TValue);
+		}
+
+		public static int MaxOrZero<T>([NotNull] this IEnumerable<T> source, [NotNull] Func<T, int> selector)
+		{
+			Require.ArgNotNull(source, "source");
+			Require.ArgNotNull(selector, "selector");
+			return source.Select(selector).MaxOrZero();
+		}
+
+		public static int MaxOrZero([NotNull] this IEnumerable<int> source)
+		{
+			Require.ArgNotNull(source, "source");
+			int? max = null;
+			foreach(var value in source)
+			{
+				max = max == null ? value : Math.Max(max.Value, value);
+			}
+			return max ?? 0;
+		}
+
+		public static int MaxOrZero<T>([NotNull] this IEnumerable<T> source, [NotNull] Func<T, int?> selector)
+		{
+			Require.ArgNotNull(source, "source");
+			Require.ArgNotNull(selector, "selector");
+			return source.Select(selector).MaxOrZero();
+		}
+
+		public static int MaxOrZero([NotNull] this IEnumerable<int?> source)
+		{
+			Require.ArgNotNull(source, "source");
+			int? max = null;
+			foreach(var value in source)
+			{
+				if(value != null)
+					max = max == null ? value : Math.Max(max.Value, value.Value);
+			}
+			return max ?? 0;
+		}
+
+		public static void ResizeCollection<T>([NotNull] IList<T> collection, int requestedCount, [NotNull] Func<int, T> factory)
+		{
+			Require.ArgNotNull(collection, "collection");
+			Require.ArgNotNegative(requestedCount, "requestedCount");
+			Require.ArgNotNull(factory, "factory");
+			if(requestedCount == 0)
+			{
+				collection.Clear();
+			}
+			else if(collection.Count > requestedCount)
+			{
+				while(collection.Count > requestedCount)
+				{
+					collection.RemoveAt(collection.Count - 1);
+				}
+			}
+			else if(collection.Count < requestedCount)
+			{
+				while(collection.Count < requestedCount)
+				{
+					collection.Add(factory(collection.Count));
+				}
+			}
 		}
 
 	}

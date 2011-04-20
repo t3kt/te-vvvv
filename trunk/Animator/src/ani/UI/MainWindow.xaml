@@ -87,22 +87,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="200"/>
 			</Grid.RowDefinitions>
-			<panes:AniPane Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Tracks" PaneHeaderVisibility="Collapsed">
-				<ListBox x:Name="tracksListBox" Background="{StaticResource WindowBackgroundBrush}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" panes:TrackOverviewPane.ClipSelected="trackPane_ClipSelected" SelectionChanged="tracksListBox_SelectionChanged">
-					<ListBox.Template>
-						<ControlTemplate TargetType="{x:Type ListBox}">
-							<Border>
-								<StackPanel Orientation="Horizontal" IsItemsHost="True" />
-							</Border>
-						</ControlTemplate>
-					</ListBox.Template>
-					<ListBox.ItemTemplate>
-						<DataTemplate DataType="{x:Type Model:Track}">
-							<panes:TrackOverviewPane x:Name="trackOverviewPane" Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</panes:AniPane>
+			<panes:DocumentClipGridPane x:Name="documentClipGrid" Document="{Binding ElementName=mainWindow, Path=ActiveDocument}" />
 			<GridSplitter Grid.Row="1" Height="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 		</Grid>

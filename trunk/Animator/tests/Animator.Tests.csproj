@@ -71,6 +71,7 @@
     <Compile Include="AniApp\DoubleLinkedStackTest.cs" />
     <Compile Include="AniApp\LimitedStackTest.cs" />
     <Compile Include="AniApp\LinkedStackTest.cs" />
+    <Compile Include="CommonUtilUnitTest.cs" />
     <Compile Include="ModelUnitTest.cs" />
     <Compile Include="OscUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

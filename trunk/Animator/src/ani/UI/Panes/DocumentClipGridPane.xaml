@@ -2,9 +2,38 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" xmlns:Controls="clr-namespace:Animator.UI.Controls" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Clips">
-	<Grid>
-
-	</Grid>
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+			<Label Content="Rows:"/>
+			<TextBox IsReadOnly="True" Width="30" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentClipGridPane}, Path=Rows, Mode=OneWay}" />
+			<Label Content="Cols:"/>
+			<TextBox IsReadOnly="True" Width="30" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentClipGridPane}, Path=Columns, Mode=OneWay}" />
+		</StackPanel>
+		<ListBox x:Name="clipsListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentClipGridPane, AncestorLevel=1}, Path=Document.Clips}">
+			<ListBox.Template>
+				<ControlTemplate TargetType="{x:Type ListBox}">
+					<Controls:CustomUniformGrid x:Name="clipGrid" Rows="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentClipGridPane}, Path=Rows, Mode=OneWay}"
+				 Columns="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Panes:DocumentClipGridPane}, Path=Columns, Mode=OneWay}" ShowGridLines="True" IsItemsHost="True">
+					</Controls:CustomUniformGrid>
+				</ControlTemplate>
+			</ListBox.Template>
+			<ListBox.ItemTemplate>
+				<DataTemplate DataType="{x:Type Model:Clip}">
+					<Border BorderBrush="Black" BorderThickness="1" Background="Beige">
+						<TextBlock Text="{Binding Path=Name}" TextAlignment="Center" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+			<ListBox.ItemContainerStyle>
+				<Style TargetType="{x:Type ListBoxItem}">
+					<Setter Property="Grid.Column" Value="{Binding Path=UIColumn}"/>
+					<Setter Property="Grid.Row" Value="{Binding Path=UIRow}"/>
+					<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+					<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+				</Style>
+			</ListBox.ItemContainerStyle>
+		</ListBox>
+	</DockPanel>
 </Panes:AniPane>

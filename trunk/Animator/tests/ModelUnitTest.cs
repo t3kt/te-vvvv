@@ -44,12 +44,13 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void ClipReadWriteXElement()
 		{
-			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid() };
+			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
 			var xmlA = clipA.WriteXElement();
 			var clipB = new Clip(xmlA);
 			var xmlB = clipB.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(clipA, clipB);
+			Assert.AreEqual(clipA.UIRow, clipB.UIRow);
 		}
 
 		[TestMethod]
@@ -133,9 +134,9 @@ namespace Animator.Tests
 			var output = new Output();
 			var track = new Track(output.Id);
 			TestUtil.AssertThrowsException(() =>
-			                               {
-			                               	doc.Tracks.Add(track);
-			                               }, "Add duplicate id allowed");
+										   {
+											   doc.Tracks.Add(track);
+										   }, "Add duplicate id allowed");
 		}
 
 		[TestMethod]
