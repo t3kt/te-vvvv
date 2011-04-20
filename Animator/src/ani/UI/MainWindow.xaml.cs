@@ -29,8 +29,8 @@ namespace Animator.UI
 		#region Static / Constant
 
 		public static readonly DependencyProperty ActiveDocumentProperty;
-		public static readonly DependencyPropertyKey HasActiveDocumentPropertyKey;
-		private static readonly DependencyProperty HasActiveDocumentProperty;
+		private static readonly DependencyPropertyKey HasActiveDocumentPropertyKey;
+		public static readonly DependencyProperty HasActiveDocumentProperty;
 		public static readonly DependencyProperty ActiveDocumentDirtyProperty;
 
 		static MainWindow()
@@ -49,7 +49,9 @@ namespace Animator.UI
 			var window = (MainWindow)d;
 			window.SetValue(HasActiveDocumentPropertyKey, e.NewValue != null);
 			window.OnActiveDocumentChanged((Document)e.OldValue, (Document)e.NewValue);
-			((AniApplication)Application.Current).ActiveDocument = (Document)e.NewValue;
+			var app = Application.Current as AniApplication;
+			if(app != null)
+				app.ActiveDocument = (Document)e.NewValue;
 		}
 
 		private static void OnActiveDocumentDirtyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -349,41 +351,6 @@ namespace Animator.UI
 		{
 			//if(System.Diagnostics.Debugger.IsAttached)
 			System.Diagnostics.Debugger.Break();
-		}
-
-		private void trackPane_ClipSelected(object sender, RoutedEventArgs e)
-		{
-			var selectedTrackPane = e.OriginalSource as TrackOverviewPane;
-			BindingOperations.ClearBinding(this.activeClipEditorPane, FrameworkElement.DataContextProperty);
-			this.tracksListBox.SelectedItem = selectedTrackPane == null ? null : selectedTrackPane.Track;
-			if(selectedTrackPane != null)
-			{
-				var binding = new Binding
-				{
-					Source = selectedTrackPane,
-					Path = new PropertyPath("SelectedClip"),
-					Mode = BindingMode.OneWay
-				};
-				this.activeClipEditorPane.SetBinding(FrameworkElement.DataContextProperty, binding);
-			}
-		}
-
-		private void tracksListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			for(var i = 0; i < this.tracksListBox.Items.Count; i++)
-			{
-				if(i != this.tracksListBox.SelectedIndex)
-				{
-					var listItem = this.tracksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
-					if(listItem != null)
-					{
-						//var trackPane = listItem.FindName("trackOverviewPane") as TrackOverviewPane;
-						var trackPane = listItem.Template.FindName("trackOverviewPane", listItem) as TrackOverviewPane;
-						if(trackPane != null)
-							trackPane.SelectedClip = null;
-					}
-				}
-			}
 		}
 
 		#endregion
