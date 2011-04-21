@@ -81,12 +81,10 @@ namespace Animator.Core.Runtime
 			get { return this._IsPlaying; }
 		}
 
-		public Time? Position
+		public Time Position
 		{
 			get
 			{
-				if(!this._IsPlaying)
-					return null;
 				return (this._Transport.Position - this._StartTime) % this._Clip.Duration;
 			}
 		}
@@ -134,8 +132,9 @@ namespace Animator.Core.Runtime
 
 		public object GetValue()
 		{
-			var position = this.Position;
-			return position == null ? null : this._Clip.GetValue(position.Value);
+			if(!this._IsPlaying)
+				return null;
+			return this._Clip.GetValue(this.Position);
 		}
 
 		#endregion
