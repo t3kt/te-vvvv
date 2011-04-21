@@ -7,7 +7,7 @@ using System.Windows;
 using Animator.AppCore;
 using Animator.Core.Model;
 
-namespace Animator.UI.Panes
+namespace Animator.UI.Session
 {
 
 	#region DocumentClipGridPane

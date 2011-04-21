@@ -104,9 +104,6 @@
     <Compile Include="UI\Panes\ClipPropertiesPane.xaml.cs">
       <DependentUpon>ClipPropertiesPane.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Panes\DocumentClipGridPane.xaml.cs">
-      <DependentUpon>DocumentClipGridPane.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
@@ -123,7 +120,17 @@
     <Compile Include="UI\Panes\TransportPane.xaml.cs">
       <DependentUpon>TransportPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Session\ClipCell.xaml.cs">
+      <DependentUpon>ClipCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Session\DocumentClipGridPane.xaml.cs">
+      <DependentUpon>DocumentClipGridPane.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\AppSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\SessionButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -163,10 +170,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Panes\DocumentClipGridPane.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\Panes\DocumentPropertiesPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +189,14 @@
     <Page Include="UI\Panes\TransportPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Session\ClipCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Session\DocumentClipGridPane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

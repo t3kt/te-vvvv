@@ -4,15 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Xml.Linq;
 using Animator.AppCore;
 using Animator.Core.Model;
 using Animator.Test;
-using Animator.UI.Panes;
 using Microsoft.Win32;
 
 namespace Animator.UI

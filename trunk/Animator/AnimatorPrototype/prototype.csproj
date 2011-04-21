@@ -61,6 +61,9 @@
     <Compile Include="DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SessionCell.xaml.cs">
+      <DependentUpon>SessionCell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimelineGroup.xaml.cs">
       <DependentUpon>TimelineGroup.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SessionButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Link>SessionButtons.xaml</Link>
+    </Page>
+    <Page Include="SessionCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="TimelineGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

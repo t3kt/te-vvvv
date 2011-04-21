@@ -46,7 +46,7 @@ namespace Animator.Core.Runtime
 			get
 			{
 				return from state in this._ClipStates.Values
-					   where state.WouldBePlaying
+					   where state.IsPlaying
 					   select state;
 			}
 		}
@@ -68,6 +68,12 @@ namespace Animator.Core.Runtime
 		#endregion
 
 		#region Methods
+
+		public void EnsureAllClipStates()
+		{
+			foreach(var clip in this._Document.Clips)
+				this.GetClipState(clip.Id, true);
+		}
 
 		public Clip GetClip(Guid id)
 		{

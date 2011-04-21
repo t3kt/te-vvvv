@@ -8,6 +8,7 @@
 				<ResourceDictionary Source="Resources/AppSkin.xaml"/>
 				<ResourceDictionary Source="Resources/TransportButtons.xaml"/>
 				<ResourceDictionary Source="Resources/WindowButtons.xaml"/>
+				<ResourceDictionary Source="Resources/SessionButtons.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
