@@ -38,8 +38,7 @@ namespace Animator.Core.Runtime
 		[CanBeNull]
 		ClipState GetClipState(Guid id);
 
-		[CanBeNull]
-		ClipState GetTrackActiveClipState(Guid id);
+		void PostActiveClipOutputs();
 
 	}
 

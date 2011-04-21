@@ -103,7 +103,6 @@ namespace Animator.Core.Transport
 			throw new NotImplementedException();
 		}
 
-
 		private void PauseNoLock()
 		{
 			if(!this.IsPlaying)

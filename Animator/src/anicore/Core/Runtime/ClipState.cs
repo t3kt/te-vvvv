@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Transport;
 using TESharedAnnotations;
@@ -79,6 +80,13 @@ namespace Animator.Core.Runtime
 		public bool IsPlaying
 		{
 			get { return this._IsPlaying; }
+			set
+			{
+				if(value)
+					this.Start();
+				else
+					this.Stop();
+			}
 		}
 
 		public Time Position
@@ -135,6 +143,11 @@ namespace Animator.Core.Runtime
 			if(!this._IsPlaying)
 				return null;
 			return this._Clip.GetValue(this.Position);
+		}
+
+		internal OutputMessage BuildOutputMessage()
+		{
+			return new OutputMessage(this._Clip.TargetKey, this.GetValue());
 		}
 
 		#endregion

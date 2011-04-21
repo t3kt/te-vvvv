@@ -98,7 +98,12 @@ namespace Animator.Core.IO
 		public OutputMessage(object targetKey, object data)
 		{
 			this._TargetKey = targetKey;
-			this._Data = data == null ? null : new[] { data };
+			if(data == null)
+				this._Data = null;
+			else if(data is object[])
+				this._Data = (object[])data;
+			else
+				this._Data = new[] { data };
 		}
 
 		#endregion
