@@ -18,6 +18,8 @@ namespace Animator.Test
 
 		public static readonly RoutedUICommand DebuggerBreak = new RoutedUICommand("Debugger Break", "DebuggerBreak", typeof(TestCommands));
 
+		public static readonly RoutedUICommand ShowRecentFilesInfo = new RoutedUICommand("Recent Files Info", "ShowRecentFilesInfo", typeof(TestCommands));
+
 	}
 
 	#endregion

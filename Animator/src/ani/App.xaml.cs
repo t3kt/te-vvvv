@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using Animator.AppCore;
 using Animator.Core.Model;
+using Animator.Properties;
 
 namespace Animator
 {
@@ -30,6 +31,7 @@ namespace Animator
 		#region Fields
 
 		private readonly AppActionHistoryManager _ActionHistoryManager;
+		private readonly RecentFileManager _RecentFileManager;
 
 		#endregion
 
@@ -39,7 +41,12 @@ namespace Animator
 
 		internal AppActionHistoryManager ActionHistoryManager
 		{
-			get { return _ActionHistoryManager; }
+			get { return this._ActionHistoryManager; }
+		}
+
+		internal RecentFileManager RecentFileManager
+		{
+			get { return _RecentFileManager; }
 		}
 
 		#endregion
@@ -48,8 +55,9 @@ namespace Animator
 
 		public AniApplication()
 		{
-			InitializeComponent();
-			_ActionHistoryManager = new AppActionHistoryManager();
+			this.InitializeComponent();
+			this._ActionHistoryManager = new AppActionHistoryManager();
+			this._RecentFileManager = new RecentFileManager();
 		}
 
 		#endregion
@@ -60,6 +68,13 @@ namespace Animator
 		{
 			base.OnStartup(e);
 			ApplicationCommands.Close.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control));
+		}
+
+		protected override void OnExit(ExitEventArgs e)
+		{
+			this._RecentFileManager.SaveToSettings();
+			Settings.Default.Save();
+			base.OnExit(e);
 		}
 
 		#endregion

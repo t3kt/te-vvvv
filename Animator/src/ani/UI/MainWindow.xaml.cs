@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Xml.Linq;
 using Animator.AppCore;
@@ -67,6 +71,10 @@ namespace Animator.UI
 
 		#endregion
 
+		#region Events
+
+		#endregion
+
 		#region Properties
 
 		public Document ActiveDocument
@@ -84,6 +92,11 @@ namespace Animator.UI
 		{
 			get { return (bool)this.GetValue(ActiveDocumentDirtyProperty); }
 			set { this.SetValue(ActiveDocumentDirtyProperty, value); }
+		}
+
+		internal ObservableCollection<string> RecentFiles
+		{
+			get { return ((AniApplication)Application.Current).RecentFileManager.Files; }
 		}
 
 		#endregion
@@ -172,6 +185,7 @@ namespace Animator.UI
 				this._ActiveDocumentPath = path;
 				this.ActiveDocument = doc;
 				this.ActiveDocumentDirty = false;
+				((AniApplication)Application.Current).RecentFileManager.AddFile(path);
 			}
 			catch(Exception ex)
 			{
@@ -217,6 +231,7 @@ namespace Animator.UI
 				var doc = new XDocument(this.ActiveDocument.WriteXElement());
 				doc.Save(path);
 				this.ActiveDocumentDirty = false;
+				((AniApplication)Application.Current).RecentFileManager.AddFile(path);
 			}
 			catch(Exception ex)
 			{
@@ -347,6 +362,18 @@ namespace Animator.UI
 		{
 			//if(System.Diagnostics.Debugger.IsAttached)
 			System.Diagnostics.Debugger.Break();
+		}
+
+		private void ShowRecentFilesInfoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var sb = new StringBuilder();
+			sb.AppendFormat("Config path: '{0}'", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath).AppendLine();
+			sb.AppendFormat("Capacity: {0}", ((AniApplication)Application.Current).RecentFileManager.Capacity).AppendLine();
+			sb.AppendLine("Files:");
+			var files = this.RecentFiles;
+			foreach(var file in files)
+				sb.AppendLine(file);
+			MessageBox.Show(this, sb.ToString(), "Recent Files Info", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		#endregion

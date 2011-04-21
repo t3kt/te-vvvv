@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -32,6 +33,11 @@ namespace Animator.Test
 		#endregion
 
 		#region Properties
+
+		internal ObservableCollection<string> RecentFiles
+		{
+			get { return ((AniApplication)Application.Current).RecentFileManager.Files; }
+		}
 
 		#endregion
 

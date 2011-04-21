@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using Animator.AppCore;
 using Animator.Core.Model;
 
@@ -22,6 +23,8 @@ namespace Animator.UI.Session
 
 		public static readonly DependencyProperty DocumentProperty;
 
+		public static readonly DependencyProperty SelectedClipProperty;
+
 		private static readonly DependencyPropertyKey RowsPropertyKey;
 		public static readonly DependencyProperty RowsProperty;
 		private static readonly DependencyPropertyKey ColumnsPropertyKey;
@@ -31,6 +34,7 @@ namespace Animator.UI.Session
 		{
 			DocumentProperty = DependencyProperty.Register("Document", typeof(Document), typeof(DocumentClipGridPane),
 				new PropertyMetadata(null, OnDocumentChanged));
+			SelectedClipProperty = DependencyProperty.Register("SelectedClip", typeof(Clip), typeof(DocumentClipGridPane));
 
 			RowsPropertyKey = DependencyProperty.RegisterReadOnly("Rows", typeof(int), typeof(DocumentClipGridPane),
 				new PropertyMetadata(0), ValidateDimension);
@@ -69,6 +73,12 @@ namespace Animator.UI.Session
 		{
 			get { return (Document)this.GetValue(DocumentProperty); }
 			set { this.SetValue(DocumentProperty, value); }
+		}
+
+		public Clip SelectedClip
+		{
+			get { return (Clip)this.GetValue(SelectedClipProperty); }
+			set { this.SetValue(SelectedClipProperty, value); }
 		}
 
 		public int Rows
