@@ -55,36 +55,32 @@ namespace Animator.Tests
 		internal sealed class DummyTransport : ITransport
 		{
 
-			#region ITransport Members
+			public float BeatsPerMinute { get; set; }
 
-			public float BeatsPerMinute
-			{
-				get { return Document.DefaultBeatsPerMinute; }
-			}
+			public bool IsPlaying { get; set; }
 
-			public bool IsPlaying
-			{
-				get { return false; }
-			}
-
-			public Time Position
-			{
-				get { return 0; }
-			}
+			public Time Position { get; set; }
 
 			public void Play()
 			{
+				this.IsPlaying = true;
 			}
 
 			public void Stop()
 			{
+				this.IsPlaying = false;
+				this.Position = 0;
 			}
 
 			public void Pause()
 			{
+				this.IsPlaying = false;
 			}
 
-			#endregion
+			public DummyTransport()
+			{
+				this.BeatsPerMinute = Document.DefaultBeatsPerMinute;
+			}
 
 		}
 
@@ -237,6 +233,94 @@ namespace Animator.Tests
 			Assert.AreEqual(1, rctx.ActiveClips.Count());
 			stateB.Start();
 			CollectionAssert.AreEqual(new[] { stateA, stateB }, rctx.ActiveClips.ToList());
+		}
+
+		[TestMethod]
+		[TestCategory("Runtime")]
+		public void RTContextGetStepClipValue()
+		{
+			var doc = new Document();
+			var output = new Output
+							{
+								Name = "collector_output",
+								OutputType = "test.collector"
+							};
+			doc.Outputs.Add(output);
+			var clip = new StepClip
+						{
+							TargetKey = "myoutput",
+							Duration = 4,
+							OutputId = output.Id,
+							Steps = new ObservableCollection<float> { 1f, 2f, 3f, 4f }
+						};
+			doc.Clips.Add(clip);
+
+			var transport = new DummyTransport();
+			var rctx = new DocumentRuntimeContext(doc, transport);
+
+			var clipState = rctx.GetClipState(clip.Id);
+			Assert.IsNotNull(clipState);
+
+			Assert.IsNull(clipState.GetValue());
+			clipState.Start();
+			Assert.AreEqual(1f, clipState.GetValue());
+			transport.IsPlaying = true;
+			transport.Position = 1;
+			Assert.AreEqual(2f, clipState.GetValue());
+			clipState.Stop();
+			Assert.IsNull(clipState.GetValue());
+		}
+
+		[TestMethod]
+		[TestCategory("Runtime")]
+		public void RTContextPostStepClipValue()
+		{
+			var doc = new Document();
+			var output = new Output
+			{
+				Name = "collector_output",
+				OutputType = "test.collector"
+			};
+			doc.Outputs.Add(output);
+			var clip = new StepClip
+			{
+				TargetKey = "myoutput",
+				Duration = 4,
+				OutputId = output.Id,
+				Steps = new ObservableCollection<float> { 1f, 2f, 3f, 4f }
+			};
+			doc.Clips.Add(clip);
+
+			var transport = new DummyTransport();
+			var rctx = new DocumentRuntimeContext(doc, transport);
+			var transmitter = rctx.GetTransmitter(output.Id);
+			Assert.IsInstanceOfType(transmitter, typeof(CollectorTransmitter));
+			var collector = (CollectorTransmitter)transmitter;
+			Assert.IsNotNull(collector);
+
+			var clipState = rctx.GetClipState(clip.Id);
+			Assert.IsNotNull(clipState);
+
+			rctx.PostActiveClipOutputs();
+			Assert.AreEqual(0, collector.Messages.Count);
+			rctx.PostClipOutput(clipState);
+			Assert.AreEqual(0, collector.Messages.Count);
+
+			transport.Play();
+			rctx.PostActiveClipOutputs();
+			Assert.AreEqual(0, collector.Messages.Count);
+
+			clipState.Start();
+			rctx.PostActiveClipOutputs();
+			Assert.AreEqual(1, collector.Messages.Count);
+			CollectionAssert.AreEqual(new[] {new OutputMessage(clip.TargetKey, 1f)}, collector.Messages, IOUnitTest.OutputMessageComparer.Instance);
+			collector.Messages.Clear();
+
+			transport.Position = 3;
+
+			rctx.PostActiveClipOutputs();
+			Assert.AreEqual(1, collector.Messages.Count);
+			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, IOUnitTest.OutputMessageComparer.Instance);
 		}
 
 		#region CollectorTransmitter

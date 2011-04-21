@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using Animator.Common.Diagnostics;
 using Animator.Core.IO;
 using Animator.Core.Model;
@@ -15,6 +16,91 @@ namespace Animator.Core.Runtime
 
 	internal sealed class DocumentRuntimeContext : IRuntimeContext
 	{
+
+		#region Nested Types
+
+		#region DocTransport
+
+		private sealed class DocTransport : ITransport
+		{
+
+			#region Static / Constant
+
+			private static double TimerInterval
+			{
+				get { throw new NotImplementedException(); }
+			}
+
+			#endregion
+
+			#region Fields
+
+			private readonly DocumentRuntimeContext _Ctx;
+			private bool _IsPlaying;
+			private uint _StartTicks;
+			private Time _Position;
+			private Timer _Timer;
+
+			#endregion
+
+			#region Properties
+
+			public float BeatsPerMinute
+			{
+				get { return this._Ctx.Document.BeatsPerMinute; }
+			}
+
+			public bool IsPlaying
+			{
+				get { return this._IsPlaying; }
+			}
+
+			public Time Position
+			{
+				get { return this._Position; }
+			}
+
+			#endregion
+
+			#region Constructors
+
+			public DocTransport(DocumentRuntimeContext ctx)
+			{
+				this._Ctx = ctx;
+				this._Timer = new Timer(TimerInterval);
+			}
+
+			#endregion
+
+			#region Methods
+
+			private void TimerCallback(object state)
+			{
+				throw new NotImplementedException();
+			}
+
+			public void Play()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void Stop()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void Pause()
+			{
+				throw new NotImplementedException();
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
+		#endregion
 
 		#region Static / Constant
 
@@ -61,6 +147,15 @@ namespace Animator.Core.Runtime
 			Require.ArgNotNull(transport, "transport");
 			this._Document = document;
 			this._Transport = transport;
+			this._ClipStates = new Dictionary<Guid, ClipState>();
+			this._Transmitters = new Dictionary<Guid, IOutputTransmitter>();
+		}
+
+		internal DocumentRuntimeContext([NotNull] Document document)
+		{
+			Require.ArgNotNull(document, "document");
+			this._Document = document;
+			this._Transport = new DocTransport(this);
 			this._ClipStates = new Dictionary<Guid, ClipState>();
 			this._Transmitters = new Dictionary<Guid, IOutputTransmitter>();
 		}
@@ -136,9 +231,21 @@ namespace Animator.Core.Runtime
 			return this.GetClipState(id, true);
 		}
 
-		public ClipState GetTrackActiveClipState(Guid id)
+		internal void PostClipOutput(ClipState state)
 		{
-			throw new NotImplementedException();
+			if(state == null || !state.IsPlaying || state.Clip.OutputId == null)
+				return;
+			var transmitter = this.GetTransmitter(state.Clip.OutputId.Value);
+			if(transmitter == null)
+				return;
+			var message = state.BuildOutputMessage();
+			transmitter.PostMessage(message);
+		}
+
+		public void PostActiveClipOutputs()
+		{
+			foreach(var clipState in this.ActiveClips.ToArray())
+				this.PostClipOutput(clipState);
 		}
 
 		#endregion
