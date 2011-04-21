@@ -99,6 +99,21 @@ namespace Animator.Common
 			}
 		}
 
+		public static void CropList<T>([NotNull]IList<T> list, int size)
+		{
+			Require.ArgNotNull(list, "list");
+			Require.ArgNotNegative(size, "size");
+			if(size == 0)
+			{
+				list.Clear();
+			}
+			else
+			{
+				while(list.Count > size)
+					list.RemoveAt(list.Count - 1);
+			}
+		}
+
 	}
 
 	#endregion

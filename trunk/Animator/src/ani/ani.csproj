@@ -45,6 +45,7 @@
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +77,7 @@
     <Compile Include="AppCore\DependencyPropertyChangeAppAction.cs" />
     <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="AppCore\PropertyChangeAppAction.cs" />
+    <Compile Include="AppCore\RecentFileManager.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>

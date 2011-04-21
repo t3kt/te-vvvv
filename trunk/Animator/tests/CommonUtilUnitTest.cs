@@ -99,6 +99,25 @@ namespace Animator.Tests
 			CollectionAssert.AreEqual(new[] { 0, 1 }, listA);
 		}
 
+		[TestMethod]
+		[TestCategory("CommonUtil")]
+		public void CropListTest()
+		{
+			List<int> list;
+
+			list = new List<int> { 0, 1, 2, 3, 4 };
+			CommonUtil.CropList(list, 10);
+			CollectionAssert.AreEqual(list, new[] { 0, 1, 2, 3, 4 });
+
+			list = new List<int> { 0, 1, 2, 3, 4 };
+			CommonUtil.CropList(list, 3);
+			CollectionAssert.AreEqual(list, new[] { 0, 1, 2 });
+
+			list = new List<int> { 0, 1, 2, 3, 4 };
+			CommonUtil.CropList(list, 0);
+			CollectionAssert.AreEqual(list, new int[0]);
+		}
+
 	}
 
 	// ReSharper restore JoinDeclarationAndInitializer

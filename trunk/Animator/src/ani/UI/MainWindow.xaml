@@ -13,6 +13,7 @@
 		<CommandBinding Command="Test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.LoadTestDocument" Executed="LoadTestDocumentCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.DebuggerBreak" Executed="DebuggerBreakCommand_Executed"/>
+		<CommandBinding Command="Test:TestCommands.ShowRecentFilesInfo" Executed="ShowRecentFilesInfoCommand_Executed"/>
 		<CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="SaveCommand_CanExecute" />
@@ -46,6 +47,12 @@
 				<MenuItem Command="ApplicationCommands.SaveAs" />
 				<MenuItem Command="ApplicationCommands.Close" />
 				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<MenuItem x:Name="RecentFilesMenu" Header="_Recent Files" ItemsSource="{Binding ElementName=mainWindow, Path=RecentFiles}">
+					<!--<MenuItem.ItemTemplate>
+						<DataTemplate></DataTemplate>
+					</MenuItem.ItemTemplate>-->
+				</MenuItem>
+				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
 				<MenuItem Command="AppCore:AniAppCommands.Exit" />
 			</MenuItem>
 			<MenuItem Header="_View">
@@ -58,6 +65,7 @@
 				<MenuItem Command="Test:TestCommands.ShowTestWindow" />
 				<MenuItem Command="Test:TestCommands.LoadTestDocument" />
 				<MenuItem Command="Test:TestCommands.DebuggerBreak" />
+				<MenuItem Command="Test:TestCommands.ShowRecentFilesInfo" />
 			</MenuItem>
 			<!--<StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
 				<Button Width="16" Background="{StaticResource CloseButtonImage}">
@@ -89,7 +97,7 @@
 			</Grid.RowDefinitions>
 			<Session:DocumentClipGridPane x:Name="documentClipGrid" Document="{Binding ElementName=mainWindow, Path=ActiveDocument}" />
 			<GridSplitter Grid.Row="1" Height="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" DataContext="{Binding ElementName=documentClipGrid, Path=SelectedClip}" />
 		</Grid>
 		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow}}" />
