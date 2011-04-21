@@ -106,7 +106,6 @@
     <Page Include="SessionButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <Link>SessionButtons.xaml</Link>
     </Page>
     <Page Include="SessionCell.xaml">
       <Generator>MSBuild:Compile</Generator>
