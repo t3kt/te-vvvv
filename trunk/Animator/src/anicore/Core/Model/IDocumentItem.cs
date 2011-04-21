@@ -7,8 +7,10 @@ namespace Animator.Core.Model
 
 	#region IDocumentItem
 
-	public interface IDocumentItem : IGuidId, IXElementWritable, IDisposable
+	public interface IDocumentItem : IXElementWritable, IDisposable
 	{
+
+		Guid Id { get; }
 
 		string Name { get; }
 

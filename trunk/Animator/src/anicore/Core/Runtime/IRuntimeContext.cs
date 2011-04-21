@@ -33,10 +33,7 @@ namespace Animator.Core.Runtime
 		[NotNull]
 		ITransport Transport { get; }
 
-		IEnumerable<ClipState> ActiveClips { get; }
-
-		[CanBeNull]
-		ClipState GetClipState(Guid id);
+		IEnumerable<Clip> ActiveClips { get; }
 
 		void PostActiveClipOutputs();
 

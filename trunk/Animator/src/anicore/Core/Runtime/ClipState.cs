@@ -11,49 +11,9 @@ using TESharedAnnotations;
 namespace Animator.Core.Runtime
 {
 
-	#region ClipStateEventArgs
-
-	internal sealed class ClipStateEventArgs : EventArgs
-	{
-
-		#region Static/Constant
-
-		#endregion
-
-		#region Fields
-
-		private readonly ClipState _ClipState;
-
-		#endregion
-
-		#region Properties
-
-		public ClipState ClipState
-		{
-			get { return this._ClipState; }
-		}
-
-		#endregion
-
-		#region Constructors
-
-		public ClipStateEventArgs(ClipState clipState)
-		{
-			this._ClipState = clipState;
-		}
-
-		#endregion
-
-		#region Methods
-
-		#endregion
-
-	}
-
-	#endregion
-
 	#region ClipState
 
+	[Obsolete]
 	public sealed class ClipState
 	{
 
@@ -63,7 +23,6 @@ namespace Animator.Core.Runtime
 
 		#region Fields
 
-		private readonly ITransport _Transport;
 		private readonly Clip _Clip;
 		private bool _IsPlaying;
 		private Time _StartTime;
@@ -80,54 +39,38 @@ namespace Animator.Core.Runtime
 		public bool IsPlaying
 		{
 			get { return this._IsPlaying; }
-			set
-			{
-				if(value)
-					this.Start();
-				else
-					this.Stop();
-			}
-		}
-
-		public Time Position
-		{
-			get
-			{
-				return (this._Transport.Position - this._StartTime) % this._Clip.Duration;
-			}
 		}
 
 		#endregion
 
 		#region Events
 
-		internal event EventHandler<ClipStateEventArgs> Started;
+		internal event EventHandler Started;
 
-		internal event EventHandler<ClipStateEventArgs> Stopped;
+		internal event EventHandler Stopped;
 
 		#endregion
 
 		#region Constructors
 
-		internal ClipState([NotNull] ITransport transport, [NotNull] Clip clip)
+		internal ClipState([NotNull] Clip clip)
 		{
-			Require.ArgNotNull(transport, "transport");
 			Require.ArgNotNull(clip, "clip");
 			this._Clip = clip;
-			this._Transport = transport;
 		}
 
 		#endregion
 
 		#region Methods
 
-		public void Start()
+		public void Start(ITransport transport)
 		{
+			Require.ArgNotNull(transport, "transport");
 			this._IsPlaying = true;
-			this._StartTime = this._Transport.Position;
+			this._StartTime = transport.Position;
 			var handler = this.Started;
 			if(handler != null)
-				handler(this, new ClipStateEventArgs(this));
+				handler(this, EventArgs.Empty);
 		}
 
 		public void Stop()
@@ -135,19 +78,27 @@ namespace Animator.Core.Runtime
 			this._IsPlaying = false;
 			var handler = this.Stopped;
 			if(handler != null)
-				handler(this, new ClipStateEventArgs(this));
+				handler(this, EventArgs.Empty);
 		}
 
-		public object GetValue()
+		public Time GetPosition(ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			if(!this._IsPlaying)
+				return 0;
+			return (transport.Position - this._StartTime) % this._Clip.Duration;
+		}
+
+		public object GetValue(ITransport transport)
 		{
 			if(!this._IsPlaying)
 				return null;
-			return this._Clip.GetValue(this.Position);
+			return this._Clip.GetValue(this.GetPosition(transport));
 		}
 
-		internal OutputMessage BuildOutputMessage()
+		internal OutputMessage BuildOutputMessage(ITransport transport)
 		{
-			return new OutputMessage(this._Clip.TargetKey, this.GetValue());
+			return new OutputMessage(this._Clip.TargetKey, this.GetValue(transport));
 		}
 
 		#endregion

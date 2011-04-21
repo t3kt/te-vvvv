@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
+using Animator.Core.IO;
 using Animator.Core.Transport;
 
 namespace Animator.Core.Model
@@ -38,6 +39,8 @@ namespace Animator.Core.Model
 		private int _TriggerAlignment = NoAlignment;
 		private int? _UIRows;
 		private int? _UIColumns;
+
+		private Dictionary<Guid, IOutputTransmitter> _Transmitters;
 
 		#endregion
 
@@ -203,6 +206,11 @@ namespace Animator.Core.Model
 			}
 		}
 
+		public IEnumerable<Clip> ActiveClips
+		{
+			get { return this._Clips == null ? Enumerable.Empty<Clip>() : this._Clips.Where(c => c.IsPlaying); }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -218,7 +226,6 @@ namespace Animator.Core.Model
 		}
 
 		public Document(XElement element)
-			: this()
 		{
 			ReadXElement(element);
 		}
@@ -226,6 +233,28 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Methods
+
+		private void RemoveUnusedTransmitters()
+		{
+			if(this._Transmitters != null)
+			{
+				if(this._Outputs == null)
+				{
+					foreach(var t in this._Transmitters.Values)
+						t.Dispose();
+					this._Transmitters.Clear();
+				}
+				else
+				{
+					var unused = this._Transmitters.Where(t => !this._Outputs.Any(o => o.Id == t.Key)).ToList();
+					foreach(var t in unused)
+					{
+						t.Value.Dispose();
+						this._Transmitters.Remove(t.Key);
+					}
+				}
+			}
+		}
 
 		private void AttachOutputs(ObservableCollection<Output> outputs)
 		{
@@ -242,6 +271,7 @@ namespace Animator.Core.Model
 		private void Outputs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.OnPropertyChanged("Outputs");
+			this.RemoveUnusedTransmitters();
 		}
 
 		private void AttachTracks(ObservableCollection<Track> tracks)
@@ -308,6 +338,42 @@ namespace Animator.Core.Model
 			if(id == this.Id)
 				return this;
 			return this.GetOutput(id) ?? this.GetTrack(id) ?? (DocumentItem)this.GetClip(id);
+		}
+
+		public IOutputTransmitter GetTransmitter(Guid id)
+		{
+			IOutputTransmitter transmitter;
+			if(this._Transmitters == null)
+				this._Transmitters = new Dictionary<Guid, IOutputTransmitter>();
+			if(this._Transmitters.TryGetValue(id, out transmitter))
+				return transmitter;
+			var output = this.GetOutput(id);
+			if(output != null)
+			{
+				transmitter = OutputTransmitter.CreateTransmitter(output);
+				this._Transmitters.Add(id, transmitter);
+				return transmitter;
+			}
+			return null;
+		}
+
+		internal void PostClipOutput(Clip clip, ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			if(clip == null || !clip.IsPlaying || clip.OutputId == null)
+				return;
+			var transmitter = this.GetTransmitter(clip.OutputId.Value);
+			if(transmitter == null)
+				return;
+			var message = clip.BuildOutputMessage(transport);
+			transmitter.PostMessage(message);
+		}
+
+		public void PostActiveClipOutputs(ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			foreach(var clip in this.ActiveClips.ToArray())
+				this.PostClipOutput(clip, transport);
 		}
 
 		private void ReadXElement(XElement element)
@@ -407,6 +473,12 @@ namespace Animator.Core.Model
 					output.Dispose();
 				this.DetachOutputs(this._Outputs);
 				this._Outputs = null;
+			}
+			if(this._Transmitters != null)
+			{
+				foreach(var t in this._Transmitters.Values)
+					t.Dispose();
+				this._Transmitters = null;
 			}
 			GC.SuppressFinalize(this);
 		}
