@@ -10,8 +10,6 @@ namespace Animator.Core.Transport
 	public interface ITransport
 	{
 
-		float BeatsPerMinute { get; }
-
 		bool IsPlaying { get; }
 
 		Time Position { get; }

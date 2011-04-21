@@ -157,10 +157,9 @@ namespace Animator.Core.Transport
 
 		#region Methods
 
-		public TimeSpan ToTimeSpan(ITransport transport)
+		public TimeSpan ToTimeSpan(float beatsPerMinute)
 		{
-			Require.ArgNotNull(transport, "transport");
-			return TimeSpan.FromTicks(BeatsToTicks(_Beats, transport.BeatsPerMinute));
+			return TimeSpan.FromTicks(BeatsToTicks(_Beats, beatsPerMinute));
 		}
 
 		public override string ToString()

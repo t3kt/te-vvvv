@@ -67,7 +67,6 @@
     <Compile Include="Core\Model\DocumentItem.cs" />
     <Compile Include="Core\Model\DocumentItemCollection.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
-    <Compile Include="Core\Model\IGuidId.cs" />
     <Compile Include="Core\Model\ModelUtil.cs" />
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />

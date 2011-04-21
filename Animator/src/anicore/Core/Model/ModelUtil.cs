@@ -37,7 +37,7 @@ namespace Animator.Core.Model
 		}
 
 		internal static T FindById<T>(this IEnumerable<T> source, Guid id)
-			where T : class, IGuidId
+			where T : class, IDocumentItem
 		{
 			return source == null ? null : source.FirstOrDefault(x => x != null && x.Id == id);
 		}

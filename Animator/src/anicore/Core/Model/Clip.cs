@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
@@ -60,6 +61,9 @@ namespace Animator.Core.Model
 		private Guid? _OutputId;
 		private int? _UIRow;
 		private int? _UIColumn;
+
+		private bool _IsPlaying;
+		private Time _StartTime;
 
 		#endregion
 
@@ -144,6 +148,11 @@ namespace Animator.Core.Model
 			}
 		}
 
+		public bool IsPlaying
+		{
+			get { return this._IsPlaying; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -168,6 +177,40 @@ namespace Animator.Core.Model
 		internal virtual object GetValue(Time position)
 		{
 			return null;
+		}
+
+		public void Start(ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			this._IsPlaying = true;
+			this._StartTime = transport.Position;
+			this.OnPropertyChanged("IsPlaying");
+		}
+
+		public void Stop()
+		{
+			this._IsPlaying = false;
+			this.OnPropertyChanged("IsPlaying");
+		}
+
+		public Time GetPosition(ITransport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			if(!this._IsPlaying)
+				return 0;
+			return (transport.Position - this._StartTime) % this.Duration;
+		}
+
+		public object GetValue(ITransport transport)
+		{
+			if(!this._IsPlaying)
+				return null;
+			return this.GetValue(this.GetPosition(transport));
+		}
+
+		internal OutputMessage BuildOutputMessage(ITransport transport)
+		{
+			return new OutputMessage(this.TargetKey, this.GetValue(transport));
 		}
 
 		private void ReadXElement(XElement element)
