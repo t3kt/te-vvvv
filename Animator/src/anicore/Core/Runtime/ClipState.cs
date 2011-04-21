@@ -71,26 +71,21 @@ namespace Animator.Core.Runtime
 
 		#region Properties
 
-		internal Clip Clip
+		public Clip Clip
 		{
 			get { return this._Clip; }
 		}
 
-		internal bool WouldBePlaying
-		{
-			get { return this._IsPlaying; }
-		}
-
 		public bool IsPlaying
 		{
-			get { return this._IsPlaying && this._Transport.IsPlaying; }
+			get { return this._IsPlaying; }
 		}
 
 		public Time? Position
 		{
 			get
 			{
-				if(!this.IsPlaying)
+				if(!this._IsPlaying)
 					return null;
 				return (this._Transport.Position - this._StartTime) % this._Clip.Duration;
 			}

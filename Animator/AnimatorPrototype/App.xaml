@@ -9,6 +9,8 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="TransportButtons.xaml"/>
 				<ResourceDictionary Source="AppSkin.xaml"/>
+				<ResourceDictionary Source="SessionButtons.xaml"/>
+				<ResourceDictionary Source="Simple Styles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>
