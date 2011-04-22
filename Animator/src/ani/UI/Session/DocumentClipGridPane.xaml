@@ -17,7 +17,7 @@
 				<!--<Border BorderBrush="Black" BorderThickness="1" Background="Beige">
 						<TextBlock Text="{Binding Path=Name}" TextAlignment="Center" />
 					</Border>-->
-				<Session:ClipCell BorderBrush="Green" BorderThickness="1"/>
+				<Session:ClipCell BorderBrush="{StaticResource CellBorderBrush}" BorderThickness="1"/>
 			</DataTemplate>
 		</ListBox.ItemTemplate>
 		<ListBox.ItemContainerStyle>

@@ -2,26 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Animator.UI.Session
 {
+
+	#region ClipCell
 	/// <summary>
 	/// Interaction logic for ClipCell.xaml
 	/// </summary>
-	public partial class ClipCell : UserControl
+	public partial class ClipCell
 	{
+
+		#region Static / Constant
+
+		#endregion
+
+		#region Fields
+
+		#endregion
+
+		#region Properties
+
+		#endregion
+
+		#region Constructors
+
 		public ClipCell()
 		{
 			InitializeComponent();
 		}
+
+		#endregion
+
+		#region Methods
+
+		#endregion
 	}
+
+	#endregion
+
 }

@@ -185,6 +185,11 @@ namespace Animator.Core.Runtime
 			return _Types.ToArray();
 		}
 
+		internal static Type GetDefaultType()
+		{
+			return _Default;
+		}
+
 	}
 
 	#endregion

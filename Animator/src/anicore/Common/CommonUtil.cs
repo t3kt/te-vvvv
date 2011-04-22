@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
@@ -112,6 +114,16 @@ namespace Animator.Common
 				while(list.Count > size)
 					list.RemoveAt(list.Count - 1);
 			}
+		}
+
+		[CanBeNull]
+		internal static string GetDescription([NotNull]this ICustomAttributeProvider target)
+		{
+			Require.ArgNotNull(target, "target");
+			var attrs = (DescriptionAttribute[])target.GetCustomAttributes(typeof(DescriptionAttribute), false);
+			if(attrs.Length == 0)
+				return null;
+			return attrs[0].Description;
 		}
 
 	}

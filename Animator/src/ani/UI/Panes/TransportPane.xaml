@@ -7,15 +7,16 @@
 		<Style x:Key="TransportButtonStyle" TargetType="{x:Type ButtonBase}">
 			<Setter Property="Width" Value="20"/>
 			<Setter Property="Height" Value="20"/>
-			<Setter Property="Margin" Value="2"/>
-			<Setter Property="Padding" Value="4"/>
+			<Setter Property="Margin" Value="1"/>
+			<Setter Property="Padding" Value="1"/>
+			<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type ButtonBase}">
 						<!--<Microsoft_Windows_Themes:ButtonChrome x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderDefaulted="{TemplateBinding Button.IsDefaulted}" SnapsToDevicePixels="True">
 							<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Microsoft_Windows_Themes:ButtonChrome>-->
-						<Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="2" Padding="0" Margin="0">
+						<Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="1" CornerRadius="2" Padding="{TemplateBinding Padding}" Margin="0">
 							<ContentPresenter Content="{TemplateBinding Content}" Margin="0" RecognizesAccessKey="True" SnapsToDevicePixels="True"/>
 						</Border>
 					</ControlTemplate>
@@ -24,10 +25,40 @@
 		</Style>
 	</UserControl.Resources>
 	<StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
-		<Button Background="{DynamicResource PreviousButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
-		<Button Background="{DynamicResource StopButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
-		<Button Background="{DynamicResource PlayButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
-		<Button Background="{DynamicResource PauseButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
-		<Button Background="{DynamicResource NextButtonDrawing}" Style="{StaticResource TransportButtonStyle}"/>
+		<Button Style="{StaticResource TransportButtonStyle}">
+			<Image>
+				<Image.Source>
+					<DrawingImage Drawing="{StaticResource PreviousButtonDrawing}"></DrawingImage>
+				</Image.Source>
+			</Image>
+		</Button>
+		<Button Style="{StaticResource TransportButtonStyle}">
+			<Image>
+				<Image.Source>
+					<DrawingImage Drawing="{StaticResource StopButtonDrawing}"></DrawingImage>
+				</Image.Source>
+			</Image>
+		</Button>
+		<Button Style="{StaticResource TransportButtonStyle}">
+			<Image>
+				<Image.Source>
+					<DrawingImage Drawing="{StaticResource PlayButtonDrawing}"></DrawingImage>
+				</Image.Source>
+			</Image>
+		</Button>
+		<Button Style="{StaticResource TransportButtonStyle}">
+			<Image>
+				<Image.Source>
+					<DrawingImage Drawing="{StaticResource PauseButtonDrawing}"></DrawingImage>
+				</Image.Source>
+			</Image>
+		</Button>
+		<Button Style="{StaticResource TransportButtonStyle}">
+			<Image>
+				<Image.Source>
+					<DrawingImage Drawing="{StaticResource NextButtonDrawing}"></DrawingImage>
+				</Image.Source>
+			</Image>
+		</Button>
 	</StackPanel>
 </Panes:AniPane>

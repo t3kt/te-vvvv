@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.IO;
 using Animator.Core.Model;
@@ -42,6 +44,17 @@ namespace Animator.Core.Model
 		public static void RegisterTypes(Assembly assembly)
 		{
 			ImplementationRegistry<Clip>.RegisterTypes(assembly);
+		}
+
+		public static IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
+		{
+			var def = ImplementationRegistry<Clip>.GetDefaultType();
+			if(def != null)
+				yield return new KeyValuePair<Type, string>(def, def.GetDescription() ?? def.Name);
+			foreach(var t in from entry in ImplementationRegistry<Clip>.GetRegisteredTypes()
+							 where entry.Value != def
+							 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
+				yield return t;
 		}
 
 		[CanBeNull]
