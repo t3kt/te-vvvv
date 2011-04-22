@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +12,6 @@ using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), typeof(OutputTransmitter.NullTransmitter))]
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "null", typeof(OutputTransmitter.NullTransmitter))]
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), "trace", typeof(OutputTransmitter.TraceTransmitter))]
 
 namespace Animator.Core.IO
@@ -24,6 +24,7 @@ namespace Animator.Core.IO
 
 		#region NullTransmitter
 
+		[Description("No Transmitter")]
 		internal sealed class NullTransmitter : OutputTransmitter
 		{
 
@@ -58,6 +59,7 @@ namespace Animator.Core.IO
 
 		#region TraceTransmitter
 
+		[Description("Debug Trace Transmitter")]
 		internal sealed class TraceTransmitter : OutputTransmitter
 		{
 
@@ -109,9 +111,12 @@ namespace Animator.Core.IO
 
 		#region Static / Constant
 
+		private static readonly ImplementationRegistry<IOutputTransmitter> _TypeRegistry;
+
 		static OutputTransmitter()
 		{
-			ImplementationRegistry<IOutputTransmitter>.SetDefault(typeof(NullTransmitter));
+			_TypeRegistry = new ImplementationRegistry<IOutputTransmitter>();
+			_TypeRegistry.SetDefault(typeof(NullTransmitter));
 			RegisterTypes(typeof(OutputTransmitter).Assembly);
 		}
 
@@ -119,19 +124,30 @@ namespace Animator.Core.IO
 		{
 			Require.ArgNotNull(key, "key");
 			Require.ArgNotNull(type, "type");
-			ImplementationRegistry<IOutputTransmitter>.RegisterType(key, type);
+			_TypeRegistry.RegisterType(key, type);
 		}
 
 		public static void RegisterTypes(Assembly assembly)
 		{
-			ImplementationRegistry<IOutputTransmitter>.RegisterTypes(assembly);
+			_TypeRegistry.RegisterTypes(assembly);
+		}
+
+		public static IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
+		{
+			return _TypeRegistry.GetRegisteredTypeDescriptions();
+		}
+
+		public static IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey()
+		{
+			return from entry in _TypeRegistry.GetRegisteredTypeDescriptions()
+				   select new KeyValuePair<string, string>(_TypeRegistry.GetTypeKey(entry.Key), entry.Value);
 		}
 
 		[NotNull]
 		internal static IOutputTransmitter CreateTransmitter([NotNull] Output outputModel)
 		{
 			Require.ArgNotNull(outputModel, "outputModel");
-			var transmitter = ImplementationRegistry<IOutputTransmitter>.CreateImplementation(outputModel.OutputType) ?? new NullTransmitter();
+			var transmitter = _TypeRegistry.CreateImplementation(outputModel.OutputType) ?? new NullTransmitter();
 			transmitter.Initialize(outputModel);
 			return transmitter;
 		}

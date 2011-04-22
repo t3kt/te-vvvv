@@ -28,40 +28,37 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
+		private static readonly ImplementationRegistry<Clip> _TypeRegistry;
+
 		static Clip()
 		{
-			ImplementationRegistry<Clip>.SetDefault(typeof(Clip));
-			ImplementationRegistry<Clip>.RegisterTypes(typeof(Clip).Assembly);
+			_TypeRegistry = new ImplementationRegistry<Clip>();
+			_TypeRegistry.SetDefault(typeof(Clip));
+			_TypeRegistry.RegisterTypes(typeof(Clip).Assembly);
 		}
 
 		public static void RegisterType(string elementName, Type type)
 		{
 			Require.ArgNotNull(elementName, "elementName");
 			Require.ArgNotNull(type, "type");
-			ImplementationRegistry<Clip>.RegisterType(elementName, type);
+			_TypeRegistry.RegisterType(elementName, type);
 		}
 
 		public static void RegisterTypes(Assembly assembly)
 		{
-			ImplementationRegistry<Clip>.RegisterTypes(assembly);
+			_TypeRegistry.RegisterTypes(assembly);
 		}
 
 		public static IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
 		{
-			var def = ImplementationRegistry<Clip>.GetDefaultType();
-			if(def != null)
-				yield return new KeyValuePair<Type, string>(def, def.GetDescription() ?? def.Name);
-			foreach(var t in from entry in ImplementationRegistry<Clip>.GetRegisteredTypes()
-							 where entry.Value != def
-							 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
-				yield return t;
+			return _TypeRegistry.GetRegisteredTypeDescriptions();
 		}
 
 		[CanBeNull]
 		internal static Clip ReadClipXElement([NotNull] XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			return ImplementationRegistry<Clip>.CreateImplementation(element.Name.ToString(), element);
+			return _TypeRegistry.CreateImplementation(element.Name.ToString(), element);
 		}
 
 		#endregion

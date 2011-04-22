@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
@@ -102,19 +103,18 @@ namespace Animator.Core.Runtime
 
 	#region ImplementationRegistry<TBase>
 
-	internal static class ImplementationRegistry<TBase>
+	internal sealed class ImplementationRegistry<TBase>
 	{
 
-		private static readonly Type _BaseType = typeof(TBase);
-		private static readonly Dictionary<string, Type> _Types = new Dictionary<string, Type>();
-		private static readonly HashSet<string> _RegisteredAssemblies = new HashSet<string>();
-		private static Type _Default;
+		#region Static / Constant
 
-		internal static void SetDefault([CanBeNull] Type defaultType)
+		private static readonly Type _BaseType = typeof(TBase);
+
+		private static ImplementationRegistry<TBase> _DefaultRegistry;
+
+		internal static ImplementationRegistry<TBase> DefaultRegistry
 		{
-			if(defaultType != null)
-				AssertValid(defaultType);
-			_Default = defaultType;
+			get { return _DefaultRegistry ?? (_DefaultRegistry = new ImplementationRegistry<TBase>()); }
 		}
 
 		private static void AssertValid(Type type)
@@ -123,14 +123,41 @@ namespace Animator.Core.Runtime
 				throw new NotSupportedException(String.Format("Type does not implement {0}: '{1}'", _BaseType, type));
 		}
 
-		internal static void RegisterType([CanBeNull] string key, [NotNull] Type type)
+		#endregion
+
+		#region Fields
+
+		private readonly Dictionary<string, Type> _Types = new Dictionary<string, Type>();
+		private readonly HashSet<string> _RegisteredAssemblies = new HashSet<string>();
+		private Type _DefaultType;
+
+		#endregion
+
+		#region Properties
+
+		#endregion
+
+		#region Constructors
+
+		#endregion
+
+		#region Methods
+
+		internal void SetDefault([CanBeNull] Type defaultType)
+		{
+			if(defaultType != null)
+				AssertValid(defaultType);
+			this._DefaultType = defaultType;
+		}
+
+		internal void RegisterType([CanBeNull] string key, [NotNull] Type type)
 		{
 			Require.ArgNotNull(type, "type");
 			AssertValid(type);
 			_Types.Add(key ?? String.Empty, type);
 		}
 
-		internal static void RegisterTypes([NotNull] Assembly assembly)
+		internal void RegisterTypes([NotNull] Assembly assembly)
 		{
 			Require.ArgNotNull(assembly, "assembly");
 			if(_RegisteredAssemblies.Contains(assembly.FullName))
@@ -154,16 +181,16 @@ namespace Animator.Core.Runtime
 		}
 
 		[CanBeNull]
-		internal static Type GetType([CanBeNull] string key)
+		internal Type GetType([CanBeNull] string key)
 		{
 			Type type;
 			if(_Types.TryGetValue(key ?? String.Empty, out type))
 				return type;
-			return _Default;
+			return this._DefaultType;
 		}
 
 		[CanBeNull]
-		internal static TBase CreateImplementation([CanBeNull] string key)
+		internal TBase CreateImplementation([CanBeNull] string key)
 		{
 			var type = GetType(key);
 			if(type == null)
@@ -172,7 +199,7 @@ namespace Animator.Core.Runtime
 		}
 
 		[CanBeNull]
-		internal static TBase CreateImplementation([CanBeNull]string key, params object[] args)
+		internal TBase CreateImplementation([CanBeNull]string key, params object[] args)
 		{
 			var type = GetType(key);
 			if(type == null)
@@ -180,15 +207,38 @@ namespace Animator.Core.Runtime
 			return (TBase)Activator.CreateInstance(type, args);
 		}
 
-		internal static IEnumerable<KeyValuePair<string, Type>> GetRegisteredTypes()
+		internal IEnumerable<KeyValuePair<string, Type>> GetRegisteredTypes()
 		{
 			return _Types.ToArray();
 		}
 
-		internal static Type GetDefaultType()
+		internal IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
 		{
-			return _Default;
+			if(this._DefaultType != null)
+				yield return new KeyValuePair<Type, string>(this._DefaultType, this._DefaultType.GetDescription() ?? this._DefaultType.Name);
+			foreach(var t in from entry in this.GetRegisteredTypes()
+							 where entry.Value != this._DefaultType
+							 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
+				yield return t;
 		}
+
+		[CanBeNull]
+		internal string GetTypeKey([NotNull]Type type)
+		{
+			foreach(var entry in this._Types)
+			{
+				if(entry.Value == type)
+					return entry.Key;
+			}
+			return null;
+		}
+
+		internal Type GetDefaultType()
+		{
+			return this._DefaultType;
+		}
+
+		#endregion
 
 	}
 

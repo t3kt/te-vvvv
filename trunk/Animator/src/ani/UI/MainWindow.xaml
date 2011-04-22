@@ -11,14 +11,15 @@
 	<Window.CommandBindings>
 		<CommandBinding Command="AppCore:AniAppCommands.Exit" Executed="ExitCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
-		<CommandBinding Command="Test:TestCommands.LoadTestDocument" Executed="LoadTestDocumentCommand_Executed" />
 		<CommandBinding Command="Test:TestCommands.DebuggerBreak" Executed="DebuggerBreakCommand_Executed"/>
 		<CommandBinding Command="Test:TestCommands.ShowRecentFilesInfo" Executed="ShowRecentFilesInfoCommand_Executed"/>
 		<CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
-		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="SaveCommand_CanExecute" />
-		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="SaveAsCommand_CanExecute" />
-		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="CloseCommand_CanExecute" />
+		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
+		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
+		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
+		<CommandBinding Command="AppCore:AniAppCommands.AddClip" Executed="AddClipCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
+		<CommandBinding Command="AppCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -35,11 +36,11 @@
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MainMenuItemStyle}" />
 			</Menu.Resources>
-			<MenuItem Padding="2,2,2,3" IsEnabled="False">
+			<!--<MenuItem Padding="2,2,2,3" IsEnabled="False">
 				<MenuItem.Header>
 					<Image Source="/ani;component/Resources/ani_icon_main.ico" Stretch="Fill" Width="16" Height="16" />
 				</MenuItem.Header>
-			</MenuItem>
+			</MenuItem>-->
 			<MenuItem Header="_File">
 				<MenuItem Command="ApplicationCommands.New" />
 				<MenuItem Command="ApplicationCommands.Open" />
@@ -48,12 +49,28 @@
 				<MenuItem Command="ApplicationCommands.Close" />
 				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
 				<MenuItem x:Name="RecentFilesMenu" Header="_Recent Files" ItemsSource="{Binding ElementName=mainWindow, Path=RecentFiles}">
-					<!--<MenuItem.ItemTemplate>
-						<DataTemplate></DataTemplate>
-					</MenuItem.ItemTemplate>-->
+					<MenuItem.ItemContainerStyle>
+						<Style TargetType="{x:Type MenuItem}">
+							<Setter Property="Command" Value="ApplicationCommands.Open" />
+							<Setter Property="CommandParameter" Value="{Binding}"/>
+						</Style>
+					</MenuItem.ItemContainerStyle>
 				</MenuItem>
 				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
 				<MenuItem Command="AppCore:AniAppCommands.Exit" />
+			</MenuItem>
+			<MenuItem Header="_Edit">
+				<MenuItem Command="ApplicationCommands.Undo"/>
+				<MenuItem Command="ApplicationCommands.Redo"/>
+				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<MenuItem Command="ApplicationCommands.Cut"/>
+				<MenuItem Command="ApplicationCommands.Copy"/>
+				<MenuItem Command="ApplicationCommands.Paste"/>
+				<MenuItem Command="ApplicationCommands.Delete"/>
+			</MenuItem>
+			<MenuItem Header="_Add" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
+				<MenuItem Command="AppCore:AniAppCommands.AddClip" Header="_Clip" />
+				<MenuItem Command="AppCore:AniAppCommands.AddOutput" Header="_Output" />
 			</MenuItem>
 			<MenuItem Header="_View">
 				<MenuItem x:Name="docPropsVisibleMenuItem" Header="_Document Properties" IsCheckable="True" IsChecked="True"/>
@@ -63,7 +80,6 @@
 			</MenuItem>
 			<MenuItem Header="_Debug">
 				<MenuItem Command="Test:TestCommands.ShowTestWindow" />
-				<MenuItem Command="Test:TestCommands.LoadTestDocument" />
 				<MenuItem Command="Test:TestCommands.DebuggerBreak" />
 				<MenuItem Command="Test:TestCommands.ShowRecentFilesInfo" />
 			</MenuItem>
@@ -77,12 +93,21 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition />
 			</Grid.RowDefinitions>
-			<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" DetailButtonVisibility="Visible" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+			<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 			<panes:AniPane Grid.Row="1" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Outputs" Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 				<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
+					<ListBox.CommandBindings>
+						<CommandBinding Command="ApplicationCommands.Delete" Executed="OutputList_DeleteCommand_Executed" />
+					</ListBox.CommandBindings>
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type Model:Output}">
-							<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" DetailButtonVisibility="Visible" />
+							<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}">
+								<panes:OutputPropertiesPane.ContextMenu>
+									<ContextMenu>
+										<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
+									</ContextMenu>
+								</panes:OutputPropertiesPane.ContextMenu>
+							</panes:OutputPropertiesPane>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
