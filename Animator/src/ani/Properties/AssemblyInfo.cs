@@ -4,8 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("ani")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Animator")]
+[assembly: AssemblyDescription("Animator Application")]
 
 //In order to begin building localizable applications, set 
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file

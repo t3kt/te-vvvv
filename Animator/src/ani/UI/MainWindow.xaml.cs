@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Animator.AppCore;
 using Animator.Core.Model;
 using Animator.Test;
+using Animator.UI.Dialogs;
 using Microsoft.Win32;
 
 namespace Animator.UI
@@ -94,7 +95,7 @@ namespace Animator.UI
 			set { this.SetValue(ActiveDocumentDirtyProperty, value); }
 		}
 
-		internal ObservableCollection<string> RecentFiles
+		public ObservableCollection<string> RecentFiles
 		{
 			get { return ((AniApplication)Application.Current).RecentFileManager.Files; }
 		}
@@ -158,19 +159,26 @@ namespace Animator.UI
 			this.ActiveDocumentDirty = true;
 		}
 
-		internal void OnFileOpen()
+		internal void OnFileOpen(string path)
 		{
 			if(!this.PromptSaveForClose())
 				return;
-			var dlg = new OpenFileDialog
-						{
-							AddExtension = true,
-							DefaultExt = Constants.FileExtension,
-							Filter = Constants.FileDialogFilter
-						};
-			if(dlg.ShowDialog(this) == true)
+			if(!String.IsNullOrEmpty(path))
 			{
-				OpenFile(dlg.FileName);
+				this.OpenFile(path);
+			}
+			else
+			{
+				var dlg = new OpenFileDialog
+						  {
+							  AddExtension = true,
+							  DefaultExt = Constants.FileExtension,
+							  Filter = Constants.FileDialogFilter
+						  };
+				if(dlg.ShowDialog(this) == true)
+				{
+					this.OpenFile(dlg.FileName);
+				}
 			}
 		}
 
@@ -282,6 +290,29 @@ namespace Animator.UI
 			base.OnClosing(e);
 		}
 
+		internal void ShowAddClip()
+		{
+			if(!this.HasActiveDocument)
+				return;
+			var clip = AddClipDialog.ShowDialogForNewClip(this);
+			if(clip != null)
+			{
+				//...
+				this.ActiveDocument.Clips.Add(clip);
+			}
+		}
+
+		internal void ShowAddOutput()
+		{
+			if(!this.HasActiveDocument)
+				return;
+			var output = AddOutputDialog.ShowDialogForNewOutput(this);
+			if(output != null)
+			{
+				this.ActiveDocument.Outputs.Add(output);
+			}
+		}
+
 		#endregion
 
 		#region Event Handlers
@@ -291,17 +322,12 @@ namespace Animator.UI
 			this.ActiveDocumentDirty = true;
 		}
 
-		private void SaveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		private void Command_CanExecuteWhenActiveDocumentDirty(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = this.ActiveDocumentDirty;
 		}
 
-		private void SaveAsCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			e.CanExecute = this.ActiveDocumentDirty;
-		}
-
-		private void CloseCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		private void Command_CanExecuteWhenHasActiveDocument(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = this.HasActiveDocument;
 		}
@@ -313,24 +339,7 @@ namespace Animator.UI
 
 		private void ShowTestWindowCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			if(_TestWindow == null)
-				_TestWindow = new TestWindow1 { Owner = this };
-			_TestWindow.Show();
-		}
-
-		private void LoadTestDocumentCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-		{
-			var doc = new Document
-					  {
-						  Name = "Test Document"
-					  };
-			var outputA = new Output(Guid.NewGuid()) { Name = "out A" };
-			doc.Outputs.Add(outputA);
-			var outputB = new Output(Guid.NewGuid()) { Name = "out B" };
-			doc.Outputs.Add(outputB);
-			var trackA = new Track(Guid.NewGuid()) { Name = "track A" };
-			doc.Tracks.Add(trackA);
-			this.ActiveDocument = doc;
+			TestCommands.DoShowTestWindow(this);
 		}
 
 		private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -340,7 +349,7 @@ namespace Animator.UI
 
 		private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			OnFileOpen();
+			OnFileOpen(e.Parameter as string);
 		}
 
 		private void SaveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -360,20 +369,34 @@ namespace Animator.UI
 
 		private void DebuggerBreakCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			//if(System.Diagnostics.Debugger.IsAttached)
-			System.Diagnostics.Debugger.Break();
+			TestCommands.DoDebugBreak();
 		}
 
 		private void ShowRecentFilesInfoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			var sb = new StringBuilder();
-			sb.AppendFormat("Config path: '{0}'", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath).AppendLine();
-			sb.AppendFormat("Capacity: {0}", ((AniApplication)Application.Current).RecentFileManager.Capacity).AppendLine();
-			sb.AppendLine("Files:");
-			var files = this.RecentFiles;
-			foreach(var file in files)
-				sb.AppendLine(file);
-			MessageBox.Show(this, sb.ToString(), "Recent Files Info", MessageBoxButton.OK, MessageBoxImage.Information);
+			TestCommands.DoShowRecentFilesInfo(this);
+		}
+
+		private void AddClipCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.ShowAddClip();
+		}
+
+		private void AddOutputCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.ShowAddOutput();
+		}
+
+		private void OutputList_DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			if(this.ActiveDocument == null)
+				return;
+			var output = e.Parameter as Output;
+			if(output != null)
+			{
+				this.ActiveDocument.Outputs.Remove(output);
+				output.Dispose();
+			}
 		}
 
 		#endregion
