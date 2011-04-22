@@ -44,14 +44,13 @@
 				<Button Content="1,2" Grid.Column="1" Grid.Row="2"/>
 			</my3:CustomUniformGrid>
 		</Border>
-		<Border BorderBrush="Green" BorderThickness="2" Canvas.Left="266" Canvas.Top="451">
-			<my4:ClipCell x:Name="clipCell1" Width="100" />
-		</Border>
+		<my4:ClipCell x:Name="clipCell1" Width="100" Canvas.Left="266" Canvas.Top="451"/>
 		<Menu Canvas.Left="503" Canvas.Top="281" Height="23" Name="menu1" Width="200">
 			<MenuItem Header="File">
 				<MenuItem Header="Recent Files" ItemsSource="{Binding ElementName=testWindow, Path=RecentFiles}" />
 			</MenuItem>
 		</Menu>
 		<ListBox Canvas.Left="492" Canvas.Top="378" Height="100" Name="listBox1" Width="339" ItemsSource="{Binding ElementName=testWindow, Path=RecentFiles}" />
+		<Button Canvas.Left="360" Canvas.Top="316" Content="Show Add Clip" Name="showAddClipButton" Click="showAddClipButton_Click" />
 	</Canvas>
 </Window>

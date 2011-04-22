@@ -1,29 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<DrawingBrush x:Key="InactiveClipTrigger" Stretch="Uniform">
-		<DrawingBrush.Drawing>
-			<DrawingGroup>
-				<DrawingGroup.Children>
-					<GeometryDrawing Brush="#FF9BBADE" Geometry="F1 M 13,8L 4,2L 4,14L 13,8 Z ">
-						<GeometryDrawing.Pen>
-							<Pen LineJoin="Round" Brush="#FFA4B5C6"/>
-						</GeometryDrawing.Pen>
-					</GeometryDrawing>
-				</DrawingGroup.Children>
-			</DrawingGroup>
-		</DrawingBrush.Drawing>
-	</DrawingBrush>
-	<DrawingBrush x:Key="ActiveClipTrigger" Stretch="Uniform">
-		<DrawingBrush.Drawing>
-			<DrawingGroup>
+	<DrawingGroup x:Key="InactiveClipTriggerDrawing">
+		<DrawingGroup.Children>
+			<GeometryDrawing Brush="#FF9BBADE" Geometry="F1 M 13,8L 4,2L 4,14L 13,8 Z ">
+				<GeometryDrawing.Pen>
+					<Pen LineJoin="Round" Brush="#FF9BBADE"/>
+				</GeometryDrawing.Pen>
+			</GeometryDrawing>
+		</DrawingGroup.Children>
+	</DrawingGroup>
+			<DrawingGroup x:Key="ActiveClipTriggerDrawing">
 				<DrawingGroup.Children>
 					<GeometryDrawing Brush="#FF4B698C" Geometry="F1 M 13,8L 4,2L 4,14L 13,8 Z ">
 						<GeometryDrawing.Pen>
-							<Pen LineJoin="Round" Brush="#FF4B5662"/>
+							<Pen LineJoin="Round" Brush="#FF4B698C"/>
 						</GeometryDrawing.Pen>
 					</GeometryDrawing>
 				</DrawingGroup.Children>
 			</DrawingGroup>
-		</DrawingBrush.Drawing>
-	</DrawingBrush>
+	<DrawingBrush x:Key="InactiveClipTriggerDrawingBrush" Stretch="Uniform" Drawing="{StaticResource InactiveClipTriggerDrawing}" />
+	<DrawingBrush x:Key="ActiveClipTriggerDrawingBrush" Stretch="Uniform" Drawing="{StaticResource ActiveClipTriggerDrawing}" />
 </ResourceDictionary>

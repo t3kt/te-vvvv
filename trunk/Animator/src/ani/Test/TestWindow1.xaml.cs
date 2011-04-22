@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Animator.Core.Model;
+using Animator.UI.Dialogs;
 
 namespace Animator.Test
 {
@@ -49,6 +50,12 @@ namespace Animator.Test
 		}
 
 		#endregion
+
+		private void showAddClipButton_Click(object sender, RoutedEventArgs e)
+		{
+			var dlg = new AddClipDialog { Owner = this };
+			dlg.ShowDialog();
+		}
 
 		#region Methods
 
