@@ -76,6 +76,7 @@
     <Compile Include="Core\IO\OutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\NativeMethods.cs" />
+    <Compile Include="Core\Runtime\ClipDataEditor.cs" />
     <Compile Include="Core\Runtime\ClipState.cs" />
     <Compile Include="Core\Runtime\DocumentRuntimeContext.cs" />
     <Compile Include="Core\Runtime\ImplementationRegistry.cs" />
