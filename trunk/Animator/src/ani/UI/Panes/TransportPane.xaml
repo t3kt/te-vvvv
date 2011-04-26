@@ -32,27 +32,27 @@
 				</Image.Source>
 			</Image>
 		</Button>
-		<Button Style="{StaticResource TransportButtonStyle}">
+		<ToggleButton Style="{StaticResource TransportButtonStyle}">
 			<Image>
 				<Image.Source>
 					<DrawingImage Drawing="{StaticResource StopButtonDrawing}"></DrawingImage>
 				</Image.Source>
 			</Image>
-		</Button>
-		<Button Style="{StaticResource TransportButtonStyle}">
+		</ToggleButton>
+		<ToggleButton Style="{StaticResource TransportButtonStyle}">
 			<Image>
 				<Image.Source>
 					<DrawingImage Drawing="{StaticResource PlayButtonDrawing}"></DrawingImage>
 				</Image.Source>
 			</Image>
-		</Button>
-		<Button Style="{StaticResource TransportButtonStyle}">
+		</ToggleButton>
+		<ToggleButton Style="{StaticResource TransportButtonStyle}">
 			<Image>
 				<Image.Source>
 					<DrawingImage Drawing="{StaticResource PauseButtonDrawing}"></DrawingImage>
 				</Image.Source>
 			</Image>
-		</Button>
+		</ToggleButton>
 		<Button Style="{StaticResource TransportButtonStyle}">
 			<Image>
 				<Image.Source>

@@ -2,12 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Xml.Linq;
 using Animator.AppCore;
@@ -67,7 +64,6 @@ namespace Animator.UI
 
 		#region Fields
 
-		private TestWindow1 _TestWindow;
 		private string _ActiveDocumentPath;
 
 		#endregion

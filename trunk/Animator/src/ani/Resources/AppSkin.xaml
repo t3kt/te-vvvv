@@ -126,7 +126,6 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Menu}">
 					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
-						<!--<ItemsPresenter SnapsToDevicePixels="True"/>-->
 						<DockPanel IsItemsHost="True" LastChildFill="False" />
 					</Border>
 				</ControlTemplate>
