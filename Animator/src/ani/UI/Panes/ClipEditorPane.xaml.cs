@@ -34,7 +34,7 @@ namespace Animator.UI.Panes
 			ActiveClipProperty = DependencyProperty.Register("ActiveClip", typeof(Clip), typeof(ClipEditorPane),
 				new FrameworkPropertyMetadata(OnActiveClipChanged));
 			DataEditorPropertyKey = DependencyProperty.RegisterReadOnly("DataEditor", typeof(UIElement), typeof(ClipEditorPane),
-				new FrameworkPropertyMetadata(OnDataEditorChanged));
+				new FrameworkPropertyMetadata());
 			DataEditorProperty = DataEditorPropertyKey.DependencyProperty;
 		}
 
@@ -71,10 +71,6 @@ namespace Animator.UI.Panes
 					}
 				}
 			}
-		}
-
-		private static void OnDataEditorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
 		}
 
 		#endregion

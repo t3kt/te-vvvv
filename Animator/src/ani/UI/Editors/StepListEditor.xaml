@@ -3,9 +3,9 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
-			 d:DesignHeight="200" d:DesignWidth="400" xmlns:my="clr-namespace:Animator.UI.Editors">
+			 d:DesignHeight="200" d:DesignWidth="400">
 	<DockPanel>
-		<ListBox x:Name="stepsListBox" VerticalContentAlignment="Stretch" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=my:StepListEditor}, Path=DataContext}" Margin="4">
+		<ListBox x:Name="stepsListBox" VerticalContentAlignment="Stretch" ItemsSource="{Binding Steps}" Margin="4">
 			<ListBox.Template>
 				<ControlTemplate TargetType="{x:Type ListBox}">
 					<StackPanel Orientation="Horizontal" IsItemsHost="True"/>

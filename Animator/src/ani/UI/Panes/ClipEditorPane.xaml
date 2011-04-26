@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" PaneHeader="Clip"
-             d:DesignHeight="200" d:DesignWidth="800" xmlns:Panes="clr-namespace:Animator.UI.Panes" xmlns:Editors="clr-namespace:Animator.UI.Editors">
+             d:DesignHeight="200" d:DesignWidth="800" xmlns:Panes="clr-namespace:Animator.UI.Panes">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="200" MinWidth="120" />
@@ -15,7 +15,7 @@
 		<GridSplitter Grid.Column="1" Width="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 		<!--<Border Grid.Column="2" Style="{StaticResource PaneBorderStyle}" Margin="1">
 		</Border>-->
-		<UserControl Grid.Column="2" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Panes:ClipEditorPane}, Path=DataEditor}" />
+		<ContentControl Grid.Column="2" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Panes:ClipEditorPane}, Path=DataEditor}" Style="{StaticResource PaneUserControlStyle}" />
 		<!--<Editors:StepListEditor Grid.Column="2" DataContext="{Binding Path=Steps}" />-->
 	</Grid>
 </Panes:AniPane>
