@@ -13,6 +13,9 @@
 		</Grid.ColumnDefinitions>
 		<Panes:ClipPropertiesPane />
 		<GridSplitter Grid.Column="1" Width="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-		<Editors:StepListEditor Grid.Column="2" Background="{StaticResource WindowBackgroundBrush}" Style="{StaticResource PaneUserControlStyle}" DataContext="{Binding Path=Steps}" />
+		<!--<Border Grid.Column="2" Style="{StaticResource PaneBorderStyle}" Margin="1">
+		</Border>-->
+		<UserControl Grid.Column="2" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Panes:ClipEditorPane}, Path=DataEditor}" />
+		<!--<Editors:StepListEditor Grid.Column="2" DataContext="{Binding Path=Steps}" />-->
 	</Grid>
 </Panes:AniPane>

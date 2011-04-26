@@ -36,6 +36,8 @@ namespace Animator.Core.Runtime
 			get { return this._EditorTypeName; }
 		}
 
+		public bool IsReusable { get; set; }
+
 		#endregion
 
 		#region Constructors
@@ -43,11 +45,13 @@ namespace Animator.Core.Runtime
 		public ClipDataEditorAttribute(Type editorType)
 		{
 			this._EditorType = editorType;
+			this.IsReusable = true;
 		}
 
 		public ClipDataEditorAttribute(string editorTypeName)
 		{
 			this._EditorTypeName = editorTypeName;
+			this.IsReusable = true;
 		}
 
 		#endregion
