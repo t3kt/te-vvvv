@@ -69,6 +69,7 @@
     <Compile Include="AppCore\AppAction.cs" />
     <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="AppCore\ClipDataEditors.cs" />
     <Compile Include="AppCore\Common\DoubleLinkedStack.cs" />
     <Compile Include="AppCore\Common\LimitedStack.cs" />
     <Compile Include="AppCore\Common\LinkedStack.cs" />

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Animator.Core.Runtime;
 
 namespace Animator.UI.Editors
 {
@@ -11,7 +12,7 @@ namespace Animator.UI.Editors
 	/// <summary>
 	/// Interaction logic for StepListEditor.xaml
 	/// </summary>
-	public partial class StepListEditor
+	public partial class StepListEditor : IClipDataEditor
 	{
 
 		#region Static / Constant
@@ -36,6 +37,16 @@ namespace Animator.UI.Editors
 		#endregion
 
 		#region Methods
+
+		#endregion
+
+		#region IClipDataEditor Members
+
+		public new Core.Model.Clip Clip
+		{
+			get { return this.DataContext as Core.Model.Clip; }
+			set { this.DataContext = value; }
+		}
 
 		#endregion
 

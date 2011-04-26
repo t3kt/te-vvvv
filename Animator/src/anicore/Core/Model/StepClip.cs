@@ -20,6 +20,7 @@ namespace Animator.Core.Model
 	#region StepClip
 
 	[Description("Step Sequence Clip")]
+	[ClipDataEditor("Animator.UI.Editors.StepListEditor, " + TEShared.AssemblyRef.ani)]
 	public sealed class StepClip : Clip
 	{
 

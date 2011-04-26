@@ -8,9 +8,11 @@
 	<SolidColorBrush x:Key="PaneBackgroundBrush" Color="#C0C0C0"/>
 	<SolidColorBrush x:Key="PaneHeaderBackgroundBrush" Color="#D0D0D0"/>
 	<SolidColorBrush x:Key="WindowBackgroundBrush" Color="#F0F0F0"/>
+	<SolidColorBrush x:Key="MainWindowBackgroundBrush" Color="#4B5662"/>
+	<SolidColorBrush x:Key="MainMenuSeparatorBrush" Color="#F0F0F0"/>
 	<SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#92A2B4"/>
 	<SolidColorBrush x:Key="ButtonHighlightedBackgroundBrush" Color="#63768B"/>
-	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+	<Style x:Key="SubWindowStyle" TargetType="{x:Type Window}">
 		<Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
 		<Setter Property="Padding" Value="4"/>
 		<Setter Property="Icon" Value="/ani;component/Resources/ani_icon_main.ico"/>
@@ -24,12 +26,33 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<Style x:Key="MainWindowStyle" TargetType="{x:Type Window}">
+		<Setter Property="Background" Value="{StaticResource MainWindowBackgroundBrush}"/>
+		<Setter Property="Padding" Value="4"/>
+		<Setter Property="Icon" Value="/ani;component/Resources/ani_icon_main.ico"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Window}">
+					<Border Background="{TemplateBinding Background}">
+						<ContentPresenter Margin="4" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="PaneBorderStyle" TargetType="{x:Type Border}">
+		<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource PaneBorderBrush}"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="4"/>
+		<Setter Property="Padding" Value="4"/>
+	</Style>
 	<Style x:Key="PaneUserControlStyle" TargetType="{x:Type ContentControl}">
 		<Setter Property="Margin" Value="1"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ContentControl}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="{TemplateBinding Margin}">
+					<Border Style="{StaticResource PaneBorderStyle}" Margin="{TemplateBinding Margin}">
 						<ContentPresenter Margin="{TemplateBinding Padding}"/>
 					</Border>
 				</ControlTemplate>
@@ -118,7 +141,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Separator}">
 					<Grid SnapsToDevicePixels="true" Background="{StaticResource PaneBackgroundBrush}">
-						<Rectangle Fill="{StaticResource WindowBackgroundBrush}" Height="2" Margin="10,2,10,2"/>
+						<Rectangle Fill="{StaticResource MainMenuSeparatorBrush}" Height="2" Margin="10,2,10,2"/>
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
