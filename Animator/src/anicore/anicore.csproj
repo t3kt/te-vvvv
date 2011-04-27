@@ -62,6 +62,7 @@
     <Compile Include="Common\Diagnostics\Require.cs" />
     <Compile Include="Common\ISuspendableNotify.cs" />
     <Compile Include="Common\Threading\LockUtil.cs" />
+    <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />

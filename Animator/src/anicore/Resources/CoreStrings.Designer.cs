@@ -61,6 +61,33 @@ namespace Animator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read scope not allowed for non-recursive lock that holds lock.
+        /// </summary>
+        internal static string LockReadScope_NonRecursiveWithLockNotAllowed {
+            get {
+                return ResourceManager.GetString("LockReadScope_NonRecursiveWithLockNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgradeable read scope not allowed for non-recursive lock that holds lock.
+        /// </summary>
+        internal static string LockUpgradeableReadScope_NonRecursiveWithLockNotAllowed {
+            get {
+                return ResourceManager.GetString("LockUpgradeableReadScope_NonRecursiveWithLockNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write scope not allowed for non-recursive lock that holds writable lock.
+        /// </summary>
+        internal static string LockWriteScope_NonRecursiveWithWriteLockNotAllowed {
+            get {
+                return ResourceManager.GetString("LockWriteScope_NonRecursiveWithWriteLockNotAllowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arg must be of type {0}.
         /// </summary>
         internal static string Require_ArgMustBeOfType {

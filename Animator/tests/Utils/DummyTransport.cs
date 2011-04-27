@@ -2,29 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Transport;
 
-namespace Animator.Core.Transport
+namespace Animator.Tests.Utils
 {
 
-	#region TransportBase
+	#region DummyTransport
 
-	public abstract class TransportBase : ITransport, IDisposable
+	internal sealed class DummyTransport : ITransport
 	{
 
-		#region Static / Constant
-
-		#endregion
-
-		#region Fields
+		public bool IsPlaying { get; set; }
 
 		private Time _Position;
-		private TransportState _State;
-
-		#endregion
-
-		#region Properties
-
-		public virtual Time Position
+		public Time Position
 		{
 			get { return this._Position; }
 			set
@@ -32,27 +23,24 @@ namespace Animator.Core.Transport
 				if(value != this._Position)
 				{
 					this._Position = value;
-					this.OnPositionChanged();
+					this.FirePositionChangedEvent();
 				}
 			}
 		}
 
-		public virtual TransportState State
+		private TransportState _State;
+		public TransportState State
 		{
 			get { return this._State; }
-			protected set
+			set
 			{
 				if(value != this._State)
 				{
 					this._State = value;
-					this.OnStateChanged();
+					this.FireStateChangedEvent();
 				}
 			}
 		}
-
-		#endregion
-
-		#region Events
 
 		public event EventHandler Tick;
 
@@ -60,78 +48,43 @@ namespace Animator.Core.Transport
 
 		public event EventHandler PositionChanged;
 
-		protected virtual void OnTick()
+		public void FireTickEvent()
 		{
 			var handler = this.Tick;
 			if(handler != null)
 				handler(this, EventArgs.Empty);
 		}
 
-		protected virtual void OnStateChanged()
+		public void FireStateChangedEvent()
 		{
 			var handler = this.StateChanged;
 			if(handler != null)
 				handler(this, EventArgs.Empty);
 		}
 
-		protected virtual void OnPositionChanged()
+		public void FirePositionChangedEvent()
 		{
 			var handler = this.PositionChanged;
 			if(handler != null)
 				handler(this, EventArgs.Empty);
 		}
 
-		#endregion
-
-		#region Constructors
-
-		protected TransportBase()
-		{
-
-		}
-
-		~TransportBase()
-		{
-			this.Dispose(false);
-		}
-
-		#endregion
-
-		#region Methods
-
-		public virtual void Play()
+		public void Play()
 		{
 			this.State = TransportState.Playing;
 		}
 
-		public virtual void Stop()
+		public void Stop()
 		{
 			this.State = TransportState.Stopped;
 			this.Position = 0;
 		}
 
-		public virtual void Pause()
+		public void Pause()
 		{
 			//this.State = TransportState.Paused;
 			this.State = TransportState.Stopped;
 		}
-
-		#endregion
-
-		#region IDisposable Members
-
-		protected virtual void Dispose(bool disposing)
-		{
-
-		}
-
-		public void Dispose()
-		{
-			this.Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		#endregion
 
 	}
 

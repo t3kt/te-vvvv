@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Model;
 using Animator.Core.Transport;
+using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests

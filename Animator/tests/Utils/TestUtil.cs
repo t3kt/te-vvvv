@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Animator.Tests
+namespace Animator.Tests.Utils
 {
 
 	#region TestUtil
