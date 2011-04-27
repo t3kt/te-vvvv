@@ -6,6 +6,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Windows.Data;
 using Animator.Common.Diagnostics;
+using Animator.Resources;
 
 namespace Animator.Core.Transport
 {
@@ -85,9 +86,21 @@ namespace Animator.Core.Transport
 
 		public static readonly Time Infinite = new Time(Single.PositiveInfinity);
 
-		internal static long BeatsToTicks(float beats, float beatsPerMinute)
+		/*	beats * bpm * ticksPerMin = ticks
+			beats * bpm = ticks / ticksPerMin
+			beats = ticks / (bpm * ticksPerMin)
+		*/
+
+		internal static long BeatsToTicks(float beats, float bpm)
 		{
-			return (long)(beats * beatsPerMinute * TimeSpan.TicksPerMinute);
+			return (long)(beats * bpm * TimeSpan.TicksPerMinute);
+		}
+
+		internal static float TicksToBeats(long ticks, float bpm)
+		{
+			Require.ArgNotZero(ticks, "ticks");
+			Require.ArgNotZero(bpm, "bpm");
+			return ticks / (bpm * TimeSpan.TicksPerMinute);
 		}
 
 		public static bool TryParse(string value, out Time time)
@@ -115,8 +128,13 @@ namespace Animator.Core.Transport
 		{
 			Time time;
 			if(!TryParse(value, out time))
-				throw new ArgumentException(String.Format("Cannot parse string as Time: '{0}", value), "value");
+				throw new ArgumentException(String.Format(CoreStrings.Time_CannotParseString, value), "value");
 			return time;
+		}
+
+		public static Time FromTicks(long ticks, float bpm)
+		{
+			return new Time(TicksToBeats(ticks, bpm));
 		}
 
 		#endregion
@@ -157,9 +175,9 @@ namespace Animator.Core.Transport
 
 		#region Methods
 
-		public TimeSpan ToTimeSpan(float beatsPerMinute)
+		public TimeSpan ToTimeSpan(float bpm)
 		{
-			return TimeSpan.FromTicks(BeatsToTicks(_Beats, beatsPerMinute));
+			return TimeSpan.FromTicks(BeatsToTicks(_Beats, bpm));
 		}
 
 		public override string ToString()

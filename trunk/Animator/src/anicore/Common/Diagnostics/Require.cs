@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Resources;
 using TESharedAnnotations;
 
 namespace Animator.Common.Diagnostics
@@ -25,7 +26,7 @@ namespace Animator.Common.Diagnostics
 			if(value == null)
 				throw new ArgumentNullException(name);
 			if(value.Length == 0)
-				throw new ArgumentException("Argument cannot be empty", name);
+				throw new ArgumentException(CoreStrings.Require_ArgNotNullOrEmpty, name);
 		}
 
 		public static void ArgNotNegative(int value, [InvokerParameterName]string name)
@@ -40,10 +41,28 @@ namespace Animator.Common.Diagnostics
 				throw new ArgumentOutOfRangeException(name);
 		}
 
+		public static void ArgPositive(float value, [InvokerParameterName]string name)
+		{
+			if(value <= 0)
+				throw new ArgumentOutOfRangeException(name);
+		}
+
 		public static void ArgTypeIs<TExpected>([AssertionCondition(AssertionConditionType.IS_NOT_NULL)]object value, [InvokerParameterName]string name)
 		{
 			if(!(value is TExpected))
-				throw new ArgumentException(String.Format("Arg must be of type {0}", typeof(TExpected)), name);
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgMustBeOfType, typeof(TExpected)), name);
+		}
+
+		public static void ArgNotZero(float value, [InvokerParameterName]string name)
+		{
+			if(value==0)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
+		}
+
+		public static void ArgNotZero(long value, [InvokerParameterName]string name)
+		{
+			if(value==0)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
 		}
 
 	}

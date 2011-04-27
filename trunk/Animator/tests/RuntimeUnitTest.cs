@@ -59,22 +59,75 @@ namespace Animator.Tests
 
 			public bool IsPlaying { get; set; }
 
-			public Time Position { get; set; }
+			private Time _Position;
+			public Time Position
+			{
+				get { return this._Position; }
+				set
+				{
+					if(value != this._Position)
+					{
+						this._Position = value;
+						this.FirePositionChangedEvent();
+					}
+				}
+			}
+
+			private TransportState _State;
+			public TransportState State
+			{
+				get { return this._State; }
+				set
+				{
+					if(value != this._State)
+					{
+						this._State = value;
+						this.FireStateChangedEvent();
+					}
+				}
+			}
+
+			public event EventHandler Tick;
+
+			public event EventHandler StateChanged;
+
+			public event EventHandler PositionChanged;
+
+			public void FireTickEvent()
+			{
+				var handler = this.Tick;
+				if(handler != null)
+					handler(this, EventArgs.Empty);
+			}
+
+			public void FireStateChangedEvent()
+			{
+				var handler = this.StateChanged;
+				if(handler != null)
+					handler(this, EventArgs.Empty);
+			}
+
+			public void FirePositionChangedEvent()
+			{
+				var handler = this.PositionChanged;
+				if(handler != null)
+					handler(this, EventArgs.Empty);
+			}
 
 			public void Play()
 			{
-				this.IsPlaying = true;
+				this.State = TransportState.Playing;
 			}
 
 			public void Stop()
 			{
-				this.IsPlaying = false;
+				this.State = TransportState.Stopped;
 				this.Position = 0;
 			}
 
 			public void Pause()
 			{
-				this.IsPlaying = false;
+				this.State = TransportState.Paused;
 			}
 
 		}

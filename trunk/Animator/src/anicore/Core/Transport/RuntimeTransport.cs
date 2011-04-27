@@ -23,7 +23,6 @@ namespace Animator.Core.Transport
 		#region Fields
 
 		private readonly object _StateLock = new object();
-		private float _BeatsPerMinute = Model.Document.DefaultBeatsPerMinute;
 		private uint _StartTime;
 		private Time _Position;
 		private readonly Timer _Timer;
@@ -32,15 +31,21 @@ namespace Animator.Core.Transport
 
 		#region Properties
 
-		public float BeatsPerMinute
-		{
-			get { return this._BeatsPerMinute; }
-			internal set { this._BeatsPerMinute = value; }
-		}
-
 		public bool IsPlaying
 		{
 			get { return this._Timer.IsRunning; }
+		}
+
+		public TransportState State
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 		public Time Position
@@ -50,6 +55,32 @@ namespace Animator.Core.Transport
 				lock(this._StateLock)
 					return this._Position;
 			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		#endregion
+
+		#region Events
+
+		public event EventHandler Tick
+		{
+			add { throw new NotImplementedException(); }
+			remove { throw new NotImplementedException(); }
+		}
+
+		public event EventHandler PositionChanged
+		{
+			add { throw new NotImplementedException(); }
+			remove { throw new NotImplementedException(); }
+		}
+
+		public event EventHandler StateChanged
+		{
+			add { throw new NotImplementedException(); }
+			remove { throw new NotImplementedException(); }
 		}
 
 		#endregion
