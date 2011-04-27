@@ -110,4 +110,13 @@
 	<data name="Require_ArgNotZero">
 		<value><![CDATA[Argument '{0}' cannot be zero]]></value>
 	</data>
+	<data name="LockWriteScope_NonRecursiveWithWriteLockNotAllowed">
+		<value xml:space="preserve">Write scope not allowed for non-recursive lock that holds writable lock</value>
+	</data>
+	<data name="LockUpgradeableReadScope_NonRecursiveWithLockNotAllowed">
+		<value xml:space="preserve">Upgradeable read scope not allowed for non-recursive lock that holds lock</value>
+	</data>
+	<data name="LockReadScope_NonRecursiveWithLockNotAllowed">
+		<value xml:space="preserve">Read scope not allowed for non-recursive lock that holds lock</value>
+	</data>
 </root>

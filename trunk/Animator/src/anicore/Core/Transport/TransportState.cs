@@ -12,7 +12,7 @@ namespace Animator.Core.Transport
 	{
 		Stopped,
 		Playing,
-		Paused
+		//Paused
 	}
 
 	#endregion

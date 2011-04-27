@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Animator.AppCore.Common;
+using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

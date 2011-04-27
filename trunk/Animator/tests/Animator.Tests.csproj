@@ -78,7 +78,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IOUnitTest.cs" />
     <Compile Include="RuntimeUnitTest.cs" />
-    <Compile Include="TestUtil.cs" />
+    <Compile Include="Utils\CallbackTraceListener.cs" />
+    <Compile Include="Utils\CallbackTransmitter.cs" />
+    <Compile Include="Utils\CollectorTransmitter.cs" />
+    <Compile Include="Utils\DummyTransport.cs" />
+    <Compile Include="Utils\EventCounter.cs" />
+    <Compile Include="Utils\OutputMessageComparer.cs" />
+    <Compile Include="Utils\TestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\aniosc\aniosc.csproj">
@@ -100,6 +106,7 @@
   <ItemGroup>
     <Shadow Include="Test References\ani.accessor" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

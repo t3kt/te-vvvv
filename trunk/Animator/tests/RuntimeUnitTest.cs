@@ -3,16 +3,18 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using Animator.Tests;
+using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.callback", typeof(RuntimeUnitTest.CallbackTransmitter))]
+[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.callback", typeof(CallbackTransmitter))]
 [assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.mtracker", typeof(RuntimeUnitTest.ModelTrackerTransmitter))]
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.collector", typeof(RuntimeUnitTest.CollectorTransmitter))]
+[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.collector", typeof(CollectorTransmitter))]
 
 namespace Animator.Tests
 {
@@ -26,113 +28,11 @@ namespace Animator.Tests
 	public class RuntimeUnitTest
 	{
 
-		#region CallbackTransmitter
-
-		internal sealed class CallbackTransmitter : OutputTransmitter
-		{
-
-#pragma warning disable 649
-			public Func<OutputMessage, bool> PostMessageCallback;
-#pragma warning restore 649
-
-			protected override bool PostMessageInternal(OutputMessage message)
-			{
-				if(this.PostMessageCallback == null)
-					return false;
-				return this.PostMessageCallback(message);
-			}
-
-		}
-
-		#endregion
-
 		[ClassInitialize]
 		public static void RegOutputTypes(TestContext testContext)
 		{
 			OutputTransmitter.RegisterTypes(typeof(RuntimeUnitTest).Assembly);
 		}
-
-		#region DummyTransport
-
-		internal sealed class DummyTransport : ITransport
-		{
-
-			public bool IsPlaying { get; set; }
-
-			private Time _Position;
-			public Time Position
-			{
-				get { return this._Position; }
-				set
-				{
-					if(value != this._Position)
-					{
-						this._Position = value;
-						this.FirePositionChangedEvent();
-					}
-				}
-			}
-
-			private TransportState _State;
-			public TransportState State
-			{
-				get { return this._State; }
-				set
-				{
-					if(value != this._State)
-					{
-						this._State = value;
-						this.FireStateChangedEvent();
-					}
-				}
-			}
-
-			public event EventHandler Tick;
-
-			public event EventHandler StateChanged;
-
-			public event EventHandler PositionChanged;
-
-			public void FireTickEvent()
-			{
-				var handler = this.Tick;
-				if(handler != null)
-					handler(this, EventArgs.Empty);
-			}
-
-			public void FireStateChangedEvent()
-			{
-				var handler = this.StateChanged;
-				if(handler != null)
-					handler(this, EventArgs.Empty);
-			}
-
-			public void FirePositionChangedEvent()
-			{
-				var handler = this.PositionChanged;
-				if(handler != null)
-					handler(this, EventArgs.Empty);
-			}
-
-			public void Play()
-			{
-				this.State = TransportState.Playing;
-			}
-
-			public void Stop()
-			{
-				this.State = TransportState.Stopped;
-				this.Position = 0;
-			}
-
-			public void Pause()
-			{
-				this.State = TransportState.Paused;
-			}
-
-		}
-
-		#endregion
 
 		#region ModelTrackerTransmitter
 
@@ -156,7 +56,7 @@ namespace Animator.Tests
 		#endregion
 
 		[TestMethod]
-		[TestCategory("Runtime")]
+		[TestCategory("Runtime.Document")]
 		public void RTDocumentGetTransmitter()
 		{
 			var doc = new Document();
@@ -175,7 +75,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime")]
+		[TestCategory("Runtime.Document")]
 		public void RTDocumentActiveClips()
 		{
 			var doc = new Document();
@@ -204,7 +104,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime")]
+		[TestCategory("Runtime.Document")]
 		public void RTGetStepClipValue()
 		{
 			var doc = new Document();
@@ -238,7 +138,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime")]
+		[TestCategory("Runtime.Document")]
 		public void RTDocumentPostStepClipValue()
 		{
 			var doc = new Document();
@@ -277,53 +177,61 @@ namespace Animator.Tests
 			clip.Start(transport);
 			doc.PostActiveClipOutputs(transport);
 			Assert.AreEqual(1, collector.Messages.Count);
-			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 1f) }, collector.Messages, IOUnitTest.OutputMessageComparer.Instance);
+			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 1f) }, collector.Messages, OutputMessageComparer.Instance);
 			collector.Messages.Clear();
 
 			transport.Position = 3;
 
 			doc.PostActiveClipOutputs(transport);
 			Assert.AreEqual(1, collector.Messages.Count);
-			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, IOUnitTest.OutputMessageComparer.Instance);
+			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, OutputMessageComparer.Instance);
 		}
 
-		#region CollectorTransmitter
-
-		internal class CollectorTransmitter : OutputTransmitter
+		[TestMethod]
+		[TestCategory("Runtime.Transport")]
+		public void MediaTransportBasicStateChangeTest()
 		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			public readonly List<OutputMessage> Messages = new List<OutputMessage>();
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			#endregion
-
-			#region Methods
-
-			protected override bool PostMessageInternal(OutputMessage message)
+			using(var transport = new MediaTransport())
 			{
-				if(message != null)
-					this.Messages.Add(message);
-				return true;
+				var mainThreadId = Thread.CurrentThread.ManagedThreadId;
+				Action assertInMainThread = () => Assert.AreEqual(mainThreadId, Thread.CurrentThread.ManagedThreadId);
+
+				var stateChangeCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
+				//var posChangeCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
+				//var tickCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
+
+				transport.StateChanged += stateChangeCounter.Handler;
+				//transport.PositionChanged += posChangeCounter.Handler;
+				//transport.Tick += tickCounter.Handler;
+
+				Assert.AreEqual(TransportState.Stopped, transport.State);
+				Assert.AreEqual(0, stateChangeCounter.Count);
+
+				transport.Play();
+				Assert.AreEqual(TransportState.Playing, transport.State);
+				Assert.AreEqual(1, stateChangeCounter.Count);
+
+				transport.Pause();
+				Assert.AreEqual(TransportState.Stopped, transport.State);
+				Assert.AreEqual(2, stateChangeCounter.Count);
+
+				transport.Pause();
+				Assert.AreEqual(TransportState.Stopped, transport.State);
+				Assert.AreEqual(2, stateChangeCounter.Count);
+
+				transport.Stop();
+				Assert.AreEqual(TransportState.Stopped, transport.State);
+				Assert.AreEqual(2, stateChangeCounter.Count);
+
+				transport.Play();
+				Assert.AreEqual(TransportState.Playing, transport.State);
+				Assert.AreEqual(3, stateChangeCounter.Count);
+
+				transport.Stop();
+				Assert.AreEqual(TransportState.Stopped, transport.State);
+				Assert.AreEqual(4, stateChangeCounter.Count);
 			}
-
-			#endregion
-
 		}
-
-		#endregion
 
 	}
 
