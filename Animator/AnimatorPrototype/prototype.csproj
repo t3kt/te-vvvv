@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnimationTestWindow.xaml.cs">
+      <DependentUpon>AnimationTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
     <Compile Include="ValueTimeline.xaml.cs">
       <DependentUpon>ValueTimeline.xaml</DependentUpon>
     </Compile>
+    <Page Include="AnimationTestWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="AppSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

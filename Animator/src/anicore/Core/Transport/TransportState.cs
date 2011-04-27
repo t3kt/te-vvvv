@@ -6,15 +6,13 @@ using System.Linq;
 namespace Animator.Core.Transport
 {
 
-	#region IPlayable
+	#region TransportState
 
-	public interface IPlayable
+	public enum TransportState
 	{
-
-		void Start(ITransport transport);
-
-		void Stop(ITransport transport);
-
+		Stopped,
+		Playing,
+		Paused
 	}
 
 	#endregion

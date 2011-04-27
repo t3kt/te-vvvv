@@ -12,6 +12,7 @@ namespace Animator.Core.Runtime
 
 	#region IRuntimeContext
 
+	[Obsolete]
 	public interface IRuntimeContext
 	{
 
