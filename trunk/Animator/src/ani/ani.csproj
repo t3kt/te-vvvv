@@ -74,7 +74,6 @@
     <Compile Include="AppCore\Common\LimitedStack.cs" />
     <Compile Include="AppCore\Common\LinkedStack.cs" />
     <Compile Include="AppCore\Common\StackBase.cs" />
-    <Compile Include="AppCore\Constants.cs" />
     <Compile Include="AppCore\DependencyPropertyChangeAppAction.cs" />
     <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="AppCore\PropertyChangeAppAction.cs" />
@@ -92,6 +91,9 @@
     </Compile>
     <Compile Include="UI\Dialogs\TrackPropertiesWindow.xaml.cs">
       <DependentUpon>TrackPropertiesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\TransportPropertiesDialog.xaml.cs">
+      <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Editors\StepListEditor.xaml.cs">
       <DependentUpon>StepListEditor.xaml</DependentUpon>
@@ -164,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\TrackPropertiesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\TransportPropertiesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

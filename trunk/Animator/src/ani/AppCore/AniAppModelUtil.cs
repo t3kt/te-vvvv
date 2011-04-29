@@ -13,36 +13,6 @@ namespace Animator.AppCore
 	internal static class AniAppModelUtil
 	{
 
-		internal static int GetDocumentMinRows(this Document document)
-		{
-			if(document == null)
-				return 0;
-			if(document.Clips.Count == 0)
-				return 0;
-			var last = -1;
-			foreach(var clip in document.Clips)
-			{
-				if(clip != null && clip.UIRow != null && clip.UIRow > last)
-					last = clip.UIRow.Value;
-			}
-			return last + 1;
-		}
-
-		internal static int GetDocumentMinColumns(this Document document)
-		{
-			if(document == null)
-				return 0;
-			if(document.Clips.Count == 0)
-				return 0;
-			var last = -1;
-			foreach(var clip in document.Clips)
-			{
-				if(clip != null && clip.UIColumn != null && clip.UIColumn > last)
-					last = clip.UIColumn.Value;
-			}
-			return last + 1;
-		}
-
 		internal static int CalculateRows(Document document)
 		{
 			if(document == null)

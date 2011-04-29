@@ -51,7 +51,7 @@ namespace Animator.UI.Dialogs
 		// ReSharper disable MemberCanBeMadeStatic.Local
 		public IEnumerable<KeyValuePair<string, string>> OutputTypeDescriptions
 		{
-			get { return OutputTransmitter.TypeRegistry.GetRegisteredTypeDescriptionsByKey().ToArray(); }
+			get { return OutputTransmitter.TypeRegistry.RegisteredTypeDescriptionsByKey; }
 		}
 		// ReSharper restore MemberCanBeMadeStatic.Local
 

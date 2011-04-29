@@ -107,8 +107,8 @@ namespace Animator.Core.Runtime
 	{
 		void RegisterType([CanBeNull] string key, [NotNull] Type type);
 		void RegisterTypes([NotNull] Assembly assembly);
-		IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions();
-		IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey();
+		IEnumerable<KeyValuePair<Type, string>> RegisteredTypeDescriptions { get; }
+		IEnumerable<KeyValuePair<string, string>> RegisteredTypeDescriptionsByKey { get; }
 	}
 
 	#endregion
@@ -139,6 +139,28 @@ namespace Animator.Core.Runtime
 		#endregion
 
 		#region Properties
+
+		public IEnumerable<KeyValuePair<Type, string>> RegisteredTypeDescriptions
+		{
+			get
+			{
+				if(this._DefaultType != null)
+					yield return new KeyValuePair<Type, string>(this._DefaultType, this._DefaultType.GetDescription() ?? this._DefaultType.Name);
+				foreach(var t in from entry in this.GetRegisteredTypes()
+								 where entry.Value != this._DefaultType
+								 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
+					yield return t;
+			}
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> RegisteredTypeDescriptionsByKey
+		{
+			get
+			{
+				return from entry in this.RegisteredTypeDescriptions
+					   select new KeyValuePair<string, string>(this.GetTypeKey(entry.Key), entry.Value);
+			}
+		}
 
 		#endregion
 
@@ -227,22 +249,6 @@ namespace Animator.Core.Runtime
 		internal IEnumerable<KeyValuePair<string, Type>> GetRegisteredTypes()
 		{
 			return _Types.ToArray();
-		}
-
-		public IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
-		{
-			if(this._DefaultType != null)
-				yield return new KeyValuePair<Type, string>(this._DefaultType, this._DefaultType.GetDescription() ?? this._DefaultType.Name);
-			foreach(var t in from entry in this.GetRegisteredTypes()
-							 where entry.Value != this._DefaultType
-							 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
-				yield return t;
-		}
-
-		public IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey()
-		{
-			return from entry in this.GetRegisteredTypeDescriptions()
-				   select new KeyValuePair<string, string>(this.GetTypeKey(entry.Key), entry.Value);
 		}
 
 		[CanBeNull]
