@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Transport;
 using Animator.Resources;
 using TESharedAnnotations;
 
@@ -30,6 +31,12 @@ namespace Animator.Common.Diagnostics
 		}
 
 		public static void ArgNotNegative(int value, [InvokerParameterName]string name)
+		{
+			if(value < 0)
+				throw new ArgumentOutOfRangeException(name);
+		}
+
+		public static void ArgNotNegative(Time value, [InvokerParameterName]string name)
 		{
 			if(value < 0)
 				throw new ArgumentOutOfRangeException(name);

@@ -30,6 +30,7 @@
 		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="AppCore:AniAppCommands.AddClip" Executed="AddClipCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="AppCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
+		<CommandBinding Command="AppCore:AniAppCommands.EditTransport" Executed="EditTransportCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -77,6 +78,8 @@
 				<MenuItem Command="ApplicationCommands.Copy"/>
 				<MenuItem Command="ApplicationCommands.Paste"/>
 				<MenuItem Command="ApplicationCommands.Delete"/>
+				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<MenuItem Command="AppCore:AniAppCommands.EditTransport" Header="Document _Transport" />
 			</MenuItem>
 			<MenuItem Header="_Add" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
 				<MenuItem Command="AppCore:AniAppCommands.AddClip" Header="_Clip" />

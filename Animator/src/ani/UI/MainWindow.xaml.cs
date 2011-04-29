@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Animator.AppCore;
 using Animator.Core.Model;
+using Animator.Properties;
 using Animator.Test;
 using Animator.UI.Dialogs;
 using Microsoft.Win32;
@@ -168,8 +169,8 @@ namespace Animator.UI
 				var dlg = new OpenFileDialog
 						  {
 							  AddExtension = true,
-							  DefaultExt = Constants.FileExtension,
-							  Filter = Constants.FileDialogFilter
+							  DefaultExt = Settings.Default.DefaultFileExtension,
+							  Filter = Settings.Default.FileDialogFilter
 						  };
 				if(dlg.ShowDialog(this) == true)
 				{
@@ -191,6 +192,11 @@ namespace Animator.UI
 				this.ActiveDocumentDirty = false;
 				((AniApplication)Application.Current).RecentFileManager.AddFile(path);
 			}
+			catch(System.IO.FileNotFoundException ex)
+			{
+				((AniApplication)Application.Current).RecentFileManager.RemoveFile(path);
+				ShowFileOpenError(path, ex);
+			}
 			catch(Exception ex)
 			{
 				ShowFileOpenError(path, ex);
@@ -211,10 +217,10 @@ namespace Animator.UI
 				var dlg = new SaveFileDialog
 							{
 								AddExtension = true,
-								DefaultExt = Constants.FileExtension,
-								Filter = Constants.FileDialogFilter,
-								FileName = this._ActiveDocumentPath ?? (this.ActiveDocument.Name + "." + Constants.FileExtension),
-								CheckFileExists = true
+								DefaultExt = Settings.Default.DefaultFileExtension,
+								Filter = Settings.Default.FileDialogFilter,
+								FileName = this._ActiveDocumentPath ?? (this.ActiveDocument.Name + "." + Settings.Default.DefaultFileExtension),
+								//CheckFileExists = asNewFile
 							};
 				if(dlg.ShowDialog(this) == true)
 				{
@@ -312,6 +318,13 @@ namespace Animator.UI
 			}
 		}
 
+		internal void ShowEditTransport()
+		{
+			if(!this.HasActiveDocument)
+				return;
+			TransportPropertiesDialog.ShowDialogForDocument(this.ActiveDocument, this);
+		}
+
 		#endregion
 
 		#region Event Handlers
@@ -396,6 +409,11 @@ namespace Animator.UI
 				this.ActiveDocument.Outputs.Remove(output);
 				output.Dispose();
 			}
+		}
+
+		private void EditTransportCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.ShowEditTransport();
 		}
 
 		#endregion

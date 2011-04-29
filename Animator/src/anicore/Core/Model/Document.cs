@@ -45,6 +45,7 @@ namespace Animator.Core.Model
 				get { return this._Duration; }
 				set
 				{
+					Require.ArgNotNegative(value, "value");
 					if(value != this._Duration)
 					{
 						this._Duration = value;
@@ -58,6 +59,7 @@ namespace Animator.Core.Model
 				get { return this._BeatsPerMinute; }
 				set
 				{
+					Require.ArgPositive(value, "value");
 					if(value != this._BeatsPerMinute)
 					{
 						this._BeatsPerMinute = value;
@@ -150,7 +152,7 @@ namespace Animator.Core.Model
 		#region Static / Constant
 
 		internal const int NoAlignment = 0;
-		internal const float DefaultBeatsPerMinute = 80.0f;
+		public const float DefaultBeatsPerMinute = 80.0f;
 
 		private static readonly ITransport _DefaultTransport = new Transport.Transport.NullTransport();
 
