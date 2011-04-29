@@ -101,21 +101,26 @@ namespace Animator.Core.Runtime
 
 	#endregion
 
+	#region IImplementationRegistry
+
+	public interface IImplementationRegistry
+	{
+		void RegisterType([CanBeNull] string key, [NotNull] Type type);
+		void RegisterTypes([NotNull] Assembly assembly);
+		IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions();
+		IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey();
+	}
+
+	#endregion
+
 	#region ImplementationRegistry<TBase>
 
-	internal sealed class ImplementationRegistry<TBase>
+	internal sealed class ImplementationRegistry<TBase> : IImplementationRegistry
 	{
 
 		#region Static / Constant
 
 		private static readonly Type _BaseType = typeof(TBase);
-
-		private static ImplementationRegistry<TBase> _DefaultRegistry;
-
-		internal static ImplementationRegistry<TBase> DefaultRegistry
-		{
-			get { return _DefaultRegistry ?? (_DefaultRegistry = new ImplementationRegistry<TBase>()); }
-		}
 
 		private static void AssertValid(Type type)
 		{
@@ -127,8 +132,8 @@ namespace Animator.Core.Runtime
 
 		#region Fields
 
-		private readonly Dictionary<string, Type> _Types = new Dictionary<string, Type>();
-		private readonly HashSet<string> _RegisteredAssemblies = new HashSet<string>();
+		private readonly Dictionary<string, Type> _Types;
+		private readonly HashSet<string> _RegisteredAssemblies;
 		private Type _DefaultType;
 
 		#endregion
@@ -138,6 +143,12 @@ namespace Animator.Core.Runtime
 		#endregion
 
 		#region Constructors
+
+		internal ImplementationRegistry()
+		{
+			this._Types = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+			this._RegisteredAssemblies = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+		}
 
 		#endregion
 
@@ -150,14 +161,14 @@ namespace Animator.Core.Runtime
 			this._DefaultType = defaultType;
 		}
 
-		internal void RegisterType([CanBeNull] string key, [NotNull] Type type)
+		public void RegisterType([CanBeNull] string key, [NotNull] Type type)
 		{
 			Require.ArgNotNull(type, "type");
 			AssertValid(type);
 			_Types.Add(key ?? String.Empty, type);
 		}
 
-		internal void RegisterTypes([NotNull] Assembly assembly)
+		public void RegisterTypes([NotNull] Assembly assembly)
 		{
 			Require.ArgNotNull(assembly, "assembly");
 			if(_RegisteredAssemblies.Contains(assembly.FullName))
@@ -186,6 +197,12 @@ namespace Animator.Core.Runtime
 			Type type;
 			if(_Types.TryGetValue(key ?? String.Empty, out type))
 				return type;
+			if(!String.IsNullOrEmpty(key))
+			{
+				type = Type.GetType(key, false, true);
+				if(type != null)
+					return type;
+			}
 			return this._DefaultType;
 		}
 
@@ -212,7 +229,7 @@ namespace Animator.Core.Runtime
 			return _Types.ToArray();
 		}
 
-		internal IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
+		public IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
 		{
 			if(this._DefaultType != null)
 				yield return new KeyValuePair<Type, string>(this._DefaultType, this._DefaultType.GetDescription() ?? this._DefaultType.Name);
@@ -220,6 +237,12 @@ namespace Animator.Core.Runtime
 							 where entry.Value != this._DefaultType
 							 select new KeyValuePair<Type, string>(entry.Value, entry.Value.GetDescription() ?? entry.Value.Name))
 				yield return t;
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey()
+		{
+			return from entry in this.GetRegisteredTypeDescriptions()
+				   select new KeyValuePair<string, string>(this.GetTypeKey(entry.Key), entry.Value);
 		}
 
 		[CanBeNull]

@@ -15,6 +15,8 @@ namespace Animator.Core.Transport
 	public interface ITransport
 	{
 
+		void SetParameters(IDictionary<string, string> parameters);
+
 		Time Position { get; set; }
 
 		TransportState State { get; }
@@ -31,6 +33,15 @@ namespace Animator.Core.Transport
 
 		event EventHandler Tick;
 
+	}
+
+	#endregion
+
+	#region IInternalTransport
+
+	internal interface IInternalTransport : ITransport
+	{
+		float BeatsPerMinute { get; set; }
 	}
 
 	#endregion

@@ -25,6 +25,12 @@ namespace Animator.Tests
 	public class IOUnitTest
 	{
 
+		[ClassInitialize]
+		public static void RegOutputTypes(TestContext testContext)
+		{
+			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(IOUnitTest).Assembly);
+		}
+
 		[TestMethod]
 		[TestCategory("IO")]
 		public void CreateNullTransmitter()
@@ -52,7 +58,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void RegisterTransmitter()
 		{
-			OutputTransmitter.RegisterTypes(this.GetType().Assembly);
+			OutputTransmitter.TypeRegistry.RegisterTypes(this.GetType().Assembly);
 			var outputModel = new Output(Guid.Empty) { OutputType = "test" };
 			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));

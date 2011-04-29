@@ -19,10 +19,140 @@ namespace Animator.Core.Model
 	public sealed class Document : IDocumentItem, ISuspendableNotify, INotifyPropertyChanged
 	{
 
+		#region TransportData
+
+		private sealed class TransportData : IXElementWritable, INotifyPropertyChanged
+		{
+
+			#region Static/Constant
+
+			#endregion
+
+			#region Fields
+
+			private Time _Duration = Time.Infinite;
+			private float _BeatsPerMinute = DefaultBeatsPerMinute;
+			private int _TriggerAlignment = NoAlignment;
+			private string _TransportType;
+			private Dictionary<string, string> _Parameters;
+
+			#endregion
+
+			#region Properties
+
+			public Time Duration
+			{
+				get { return this._Duration; }
+				set
+				{
+					if(value != this._Duration)
+					{
+						this._Duration = value;
+						this.OnPropertyChanged("Duration");
+					}
+				}
+			}
+
+			public float BeatsPerMinute
+			{
+				get { return this._BeatsPerMinute; }
+				set
+				{
+					if(value != this._BeatsPerMinute)
+					{
+						this._BeatsPerMinute = value;
+						this.OnPropertyChanged("BeatsPerMinute");
+					}
+				}
+			}
+
+			public int TriggerAlignment
+			{
+				get { return this._TriggerAlignment; }
+				set
+				{
+					if(value != this._TriggerAlignment)
+					{
+						this._TriggerAlignment = value;
+						this.OnPropertyChanged("TriggerAlignment");
+					}
+				}
+			}
+
+			public string TransportType
+			{
+				get { return this._TransportType; }
+				set
+				{
+					if(value != this._TransportType)
+					{
+						this._TransportType = value;
+						this.OnPropertyChanged("TransportType");
+					}
+				}
+			}
+
+			public IDictionary<string, string> Parameters
+			{
+				get { return this._Parameters ?? (this._Parameters = new Dictionary<string, string>()); }
+				set { this._Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value); }
+			}
+
+			#endregion
+
+			#region Constructors
+
+			public TransportData() { }
+
+			#endregion
+
+			#region Methods
+
+			public void ReadXElement(XElement element)
+			{
+				Require.ArgNotNull(element, "element");
+				this._Duration = (float?)element.Attribute(Schema.transport_dur) ?? Time.Infinite;
+				this._BeatsPerMinute = (float?)element.Attribute(Schema.transport_bpm) ?? DefaultBeatsPerMinute;
+				this._TriggerAlignment = (int?)element.Attribute(Schema.transport_align) ?? NoAlignment;
+				this._TransportType = (string)element.Attribute(Schema.transport_type);
+				this._Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.transport_params));
+			}
+
+			public XElement WriteXElement(XName name = null)
+			{
+				return new XElement(name ?? Schema.transport,
+					this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
+					new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
+					this.TriggerAlignment == NoAlignment ? null : new XAttribute(Schema.anidoc_align, this.TriggerAlignment),
+					ModelUtil.WriteOptionalAttribute(Schema.transport_type, this.TransportType),
+					ModelUtil.WriteParametersXElement(Schema.transport_params, this._Parameters));
+			}
+
+			#endregion
+
+			#region INotifyPropertyChanged Members
+
+			public event PropertyChangedEventHandler PropertyChanged;
+
+			private void OnPropertyChanged(string name)
+			{
+				var handler = this.PropertyChanged;
+				if(handler != null)
+					handler(this, new PropertyChangedEventArgs(name));
+			}
+
+			#endregion
+
+		}
+
+		#endregion
+
 		#region Static / Constant
 
 		internal const int NoAlignment = 0;
 		internal const float DefaultBeatsPerMinute = 80.0f;
+
+		private static readonly ITransport _DefaultTransport = new Transport.Transport.NullTransport();
 
 		#endregion
 
@@ -34,11 +164,10 @@ namespace Animator.Core.Model
 		private bool _NotifySuspended;
 		private Guid _Id;
 		private string _Name;
-		private Time _Duration = Time.Infinite;
-		private float _BeatsPerMinute = DefaultBeatsPerMinute;
-		private int _TriggerAlignment = NoAlignment;
 		private int? _UIRows;
 		private int? _UIColumns;
+		private readonly TransportData _TransportData;
+		private ITransport _Transport;
 
 		private Dictionary<Guid, IOutputTransmitter> _Transmitters;
 
@@ -74,41 +203,32 @@ namespace Animator.Core.Model
 
 		public Time Duration
 		{
-			get { return _Duration; }
-			set
-			{
-				if(value != _Duration)
-				{
-					_Duration = value;
-					OnPropertyChanged("Duration");
-				}
-			}
+			get { return this._TransportData.Duration; }
+			set { this._TransportData.Duration = value; }
 		}
 
 		public float BeatsPerMinute
 		{
-			get { return _BeatsPerMinute; }
-			set
-			{
-				if(value != _BeatsPerMinute)
-				{
-					_BeatsPerMinute = value;
-					OnPropertyChanged("BeatsPerMinute");
-				}
-			}
+			get { return this._TransportData.BeatsPerMinute; }
+			set { this._TransportData.BeatsPerMinute = value; }
 		}
 
 		public int TriggerAlignment
 		{
-			get { return _TriggerAlignment; }
-			set
-			{
-				if(value != _TriggerAlignment)
-				{
-					_TriggerAlignment = value;
-					OnPropertyChanged("TriggerAlignment");
-				}
-			}
+			get { return this._TransportData.TriggerAlignment; }
+			set { this._TransportData.TriggerAlignment = value; }
+		}
+
+		public string TransportType
+		{
+			get { return this._TransportData.TransportType; }
+			set { this._TransportData.TransportType = value; }
+		}
+
+		public IDictionary<string, string> TransportParameters
+		{
+			get { return this._TransportData.Parameters; }
+			set { this._TransportData.Parameters = value; }
 		}
 
 		public ObservableCollection<Output> Outputs
@@ -211,6 +331,11 @@ namespace Animator.Core.Model
 			get { return this._Clips == null ? Enumerable.Empty<Clip>() : this._Clips.Where(c => c.IsPlaying); }
 		}
 
+		public ITransport Transport
+		{
+			get { return this._Transport ?? _DefaultTransport; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -222,17 +347,47 @@ namespace Animator.Core.Model
 
 		public Document(Guid id)
 		{
-			this.Id = id;
+			this._Id = id;
+			this._TransportData = new TransportData();
+			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 		}
 
 		public Document(XElement element)
 		{
+			this._TransportData = new TransportData();
 			ReadXElement(element);
+			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
+			this.RebuildTransport();
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void RebuildTransport()
+		{
+			var d = this._Transport as IDisposable;
+			if(d != null)
+				d.Dispose();
+			this._Transport = Core.Transport.Transport.CreateTransport(this._TransportData.TransportType, this._TransportData.Parameters);
+		}
+
+		private void TransportData_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			this.OnPropertyChanged(e.PropertyName);
+			switch(e.PropertyName)
+			{
+			case "BeatsPerMinute":
+				var t = this._Transport as IInternalTransport;
+				if(t != null)
+					t.BeatsPerMinute = this._TransportData.BeatsPerMinute;
+				break;
+			case "TransportType":
+				this.RebuildTransport();
+				break;
+			}
+			this.OnPropertyChanged("Transport");
+		}
 
 		private void RemoveUnusedTransmitters()
 		{
@@ -384,9 +539,19 @@ namespace Animator.Core.Model
 			{
 				this.Id = (Guid)element.Attribute(Schema.anidoc_id);
 				this.Name = (string)element.Attribute(Schema.anidoc_name);
-				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
-				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
-				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
+
+				var transportElement = element.Element(Schema.transport);
+				if(transportElement != null)
+				{
+					this._TransportData.ReadXElement(transportElement);
+				}
+				else
+				{
+					this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
+					this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
+					this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
+				}
+
 				var outputsElement = element.Element(Schema.anidoc_outputs);
 				this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
 				var tracksElement = element.Element(Schema.anidoc_tracks);
@@ -412,9 +577,7 @@ namespace Animator.Core.Model
 			return new XElement(name ?? Schema.anidoc,
 				new XAttribute(Schema.anidoc_id, this.Id),
 				ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
-				this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
-				new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
-				this.TriggerAlignment == NoAlignment ? null : new XAttribute(Schema.anidoc_align, this.TriggerAlignment),
+				this._TransportData.WriteXElement(),
 				(this._Outputs == null || this._Outputs.Count == 0) ? null : new XElement(Schema.anidoc_outputs, this._Outputs.WriteXElements(null)),
 				(this._Tracks == null || this._Tracks.Count == 0) ? null : new XElement(Schema.anidoc_tracks, this._Tracks.WriteXElements(null)),
 				(this._Clips == null || this._Clips.Count == 0) ? null : new XElement(Schema.anidoc_clips, this._Clips.WriteXElements(null)),
@@ -460,6 +623,10 @@ namespace Animator.Core.Model
 		{
 			this.SuspendNotify();
 			this.PropertyChanged = null;
+			var transport = this._Transport as IDisposable;
+			if(transport != null)
+				transport.Dispose();
+			this._Transport = null;
 			if(this._Tracks != null)
 			{
 				foreach(var output in this._Tracks)

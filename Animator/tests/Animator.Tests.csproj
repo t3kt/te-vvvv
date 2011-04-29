@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IOUnitTest.cs" />
     <Compile Include="RuntimeUnitTest.cs" />
+    <Compile Include="TransportUnitTest.cs" />
     <Compile Include="Utils\CallbackTraceListener.cs" />
     <Compile Include="Utils\CallbackTransmitter.cs" />
     <Compile Include="Utils\CollectorTransmitter.cs" />

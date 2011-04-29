@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Animator.Tests
 		[ClassInitialize]
 		public static void RegOutputTypes(TestContext testContext)
 		{
-			OutputTransmitter.RegisterTypes(typeof(RuntimeUnitTest).Assembly);
+			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(RuntimeUnitTest).Assembly);
 		}
 
 		#region ModelTrackerTransmitter
@@ -56,7 +57,7 @@ namespace Animator.Tests
 		#endregion
 
 		[TestMethod]
-		[TestCategory("Runtime.Document")]
+		[TestCategory("Runtime.Model")]
 		public void RTDocumentGetTransmitter()
 		{
 			var doc = new Document();
@@ -75,7 +76,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime.Document")]
+		[TestCategory("Runtime.Model")]
 		public void RTDocumentActiveClips()
 		{
 			var doc = new Document();
@@ -104,7 +105,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime.Document")]
+		[TestCategory("Runtime.Model")]
 		public void RTGetStepClipValue()
 		{
 			var doc = new Document();
@@ -138,7 +139,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime.Document")]
+		[TestCategory("Runtime.Model")]
 		public void RTDocumentPostStepClipValue()
 		{
 			var doc = new Document();
@@ -185,52 +186,6 @@ namespace Animator.Tests
 			doc.PostActiveClipOutputs(transport);
 			Assert.AreEqual(1, collector.Messages.Count);
 			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, OutputMessageComparer.Instance);
-		}
-
-		[TestMethod]
-		[TestCategory("Runtime.Transport")]
-		public void MediaTransportBasicStateChangeTest()
-		{
-			using(var transport = new MediaTransport())
-			{
-				var mainThreadId = Thread.CurrentThread.ManagedThreadId;
-				Action assertInMainThread = () => Assert.AreEqual(mainThreadId, Thread.CurrentThread.ManagedThreadId);
-
-				var stateChangeCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
-				//var posChangeCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
-				//var tickCounter = new LockingEventCounter { ExtraAction = assertInMainThread };
-
-				transport.StateChanged += stateChangeCounter.Handler;
-				//transport.PositionChanged += posChangeCounter.Handler;
-				//transport.Tick += tickCounter.Handler;
-
-				Assert.AreEqual(TransportState.Stopped, transport.State);
-				Assert.AreEqual(0, stateChangeCounter.Count);
-
-				transport.Play();
-				Assert.AreEqual(TransportState.Playing, transport.State);
-				Assert.AreEqual(1, stateChangeCounter.Count);
-
-				transport.Pause();
-				Assert.AreEqual(TransportState.Stopped, transport.State);
-				Assert.AreEqual(2, stateChangeCounter.Count);
-
-				transport.Pause();
-				Assert.AreEqual(TransportState.Stopped, transport.State);
-				Assert.AreEqual(2, stateChangeCounter.Count);
-
-				transport.Stop();
-				Assert.AreEqual(TransportState.Stopped, transport.State);
-				Assert.AreEqual(2, stateChangeCounter.Count);
-
-				transport.Play();
-				Assert.AreEqual(TransportState.Playing, transport.State);
-				Assert.AreEqual(3, stateChangeCounter.Count);
-
-				transport.Stop();
-				Assert.AreEqual(TransportState.Stopped, transport.State);
-				Assert.AreEqual(4, stateChangeCounter.Count);
-			}
 		}
 
 	}

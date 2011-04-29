@@ -19,7 +19,9 @@ namespace Animator.Tests.Utils
 			get { return this._Count; }
 		}
 
+#pragma warning disable 649
 		public Action ExtraAction;
+#pragma warning restore 649
 
 		public readonly EventHandler Handler;
 

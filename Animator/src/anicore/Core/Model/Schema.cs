@@ -30,6 +30,13 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_ui_rows = "ui-rows";
 		public static readonly XName anidoc_ui_cols = "ui-cols";
 
+		public static readonly XName transport = "transport";
+		public static readonly XName transport_type = "type";
+		public static readonly XName transport_bpm = "bpm";
+		public static readonly XName transport_dur = "dur";
+		public static readonly XName transport_align = "align";
+		public static readonly XName transport_params = "params";
+
 		public static readonly XName output = "output";
 		public static readonly XName output_id = "id";
 		public static readonly XName output_name = "name";

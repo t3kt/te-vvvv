@@ -6,17 +6,31 @@ using System.Linq;
 using System.Threading;
 using Animator.Common.Diagnostics;
 using Animator.Common.Threading;
+using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
+
+[assembly: RegisteredImplementation(typeof(ITransport), "media", typeof(MediaTransport))]
 
 namespace Animator.Core.Transport
 {
 
 	#region MediaTransport
 
-	public sealed class MediaTransport : ITransport, IDisposable
+	public sealed class MediaTransport : IInternalTransport, IDisposable
 	{
 
 		#region Static / Constant
+
+		private static int DefaultPeriod
+		{
+			get { return Sanford.Multimedia.Timers.Timer.Capabilities.periodMin; }
+		}
+
+		private static int DefaultResolution
+		{
+			get { return 1; }
+		}
 
 		#endregion
 
@@ -172,6 +186,29 @@ namespace Animator.Core.Transport
 		#endregion
 
 		#region Methods
+
+		public void SetParameters(IDictionary<string, string> parameters)
+		{
+			if(parameters != null)
+			{
+				string str;
+				int i;
+				if(parameters.TryGetValue("Period", out str))
+				{
+					if(String.IsNullOrEmpty(str))
+						this.Period = DefaultPeriod;
+					else if(Int32.TryParse(str, out i))
+						this.Period = i;
+				}
+				if(parameters.TryGetValue("Resolution", out str))
+				{
+					if(String.IsNullOrEmpty(str))
+						this.Period = DefaultResolution;
+					else if(Int32.TryParse(str, out i))
+						this.Resolution = i;
+				}
+			}
+		}
 
 		private void Timer_Tick(object sender, EventArgs e)
 		{
