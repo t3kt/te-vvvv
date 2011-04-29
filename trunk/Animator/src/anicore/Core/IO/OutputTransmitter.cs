@@ -113,34 +113,16 @@ namespace Animator.Core.IO
 
 		private static readonly ImplementationRegistry<IOutputTransmitter> _TypeRegistry;
 
+		public static IImplementationRegistry TypeRegistry
+		{
+			get { return _TypeRegistry; }
+		}
+
 		static OutputTransmitter()
 		{
 			_TypeRegistry = new ImplementationRegistry<IOutputTransmitter>();
 			_TypeRegistry.SetDefault(typeof(NullTransmitter));
-			RegisterTypes(typeof(OutputTransmitter).Assembly);
-		}
-
-		public static void RegisterType(string key, Type type)
-		{
-			Require.ArgNotNull(key, "key");
-			Require.ArgNotNull(type, "type");
-			_TypeRegistry.RegisterType(key, type);
-		}
-
-		public static void RegisterTypes(Assembly assembly)
-		{
-			_TypeRegistry.RegisterTypes(assembly);
-		}
-
-		public static IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
-		{
-			return _TypeRegistry.GetRegisteredTypeDescriptions();
-		}
-
-		public static IEnumerable<KeyValuePair<string, string>> GetRegisteredTypeDescriptionsByKey()
-		{
-			return from entry in _TypeRegistry.GetRegisteredTypeDescriptions()
-				   select new KeyValuePair<string, string>(_TypeRegistry.GetTypeKey(entry.Key), entry.Value);
+			TypeRegistry.RegisterTypes(typeof(OutputTransmitter).Assembly);
 		}
 
 		[NotNull]
@@ -152,7 +134,7 @@ namespace Animator.Core.IO
 			return transmitter;
 		}
 
-		public static bool IsNullTransmitter([CanBeNull]IOutputTransmitter transmitter)
+		internal static bool IsNullTransmitter([CanBeNull]IOutputTransmitter transmitter)
 		{
 			return transmitter == null || transmitter is NullTransmitter;
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Animator.Tests
 		[TestCategory("OSC")]
 		public void CreateTransmitter()
 		{
-			OutputTransmitter.RegisterTypes(typeof(OscTransmitter).Assembly);
+			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(OscTransmitter).Assembly);
 			var model =
 				new Output(Guid.NewGuid())
 				{

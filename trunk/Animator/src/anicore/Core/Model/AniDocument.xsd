@@ -41,6 +41,7 @@
 			<xs:complexContent>
 				<xs:extension base="DocumentItemType">
 					<xs:sequence>
+						<xs:element ref="transport" minOccurs="0"/>
 						<xs:element name="outputs" minOccurs="0">
 							<xs:complexType>
 								<xs:sequence>
@@ -169,6 +170,29 @@
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transport">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="params" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="bpm">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="dur">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="align" type="xs:nonNegativeInteger"/>
+			<xs:attribute name="type" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

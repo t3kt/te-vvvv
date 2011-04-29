@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Runtime;
 using Animator.Core.Transport;
+using Animator.Tests.Utils;
+
+[assembly: RegisteredImplementation(typeof(ITransport), "dummy", typeof(DummyTransport))]
 
 namespace Animator.Tests.Utils
 {
@@ -15,6 +19,7 @@ namespace Animator.Tests.Utils
 		public bool IsPlaying { get; set; }
 
 		private Time _Position;
+
 		public Time Position
 		{
 			get { return this._Position; }
@@ -67,6 +72,10 @@ namespace Animator.Tests.Utils
 			var handler = this.PositionChanged;
 			if(handler != null)
 				handler(this, EventArgs.Empty);
+		}
+
+		public void SetParameters(IDictionary<string, string> parameters)
+		{
 		}
 
 		public void Play()

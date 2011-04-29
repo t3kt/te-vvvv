@@ -213,7 +213,8 @@ namespace Animator.UI
 								AddExtension = true,
 								DefaultExt = Constants.FileExtension,
 								Filter = Constants.FileDialogFilter,
-								FileName = this._ActiveDocumentPath ?? (this.ActiveDocument.Name + "." + Constants.FileExtension)
+								FileName = this._ActiveDocumentPath ?? (this.ActiveDocument.Name + "." + Constants.FileExtension),
+								CheckFileExists = true
 							};
 				if(dlg.ShowDialog(this) == true)
 				{
@@ -236,6 +237,8 @@ namespace Animator.UI
 				doc.Save(path);
 				this.ActiveDocumentDirty = false;
 				((AniApplication)Application.Current).RecentFileManager.AddFile(path);
+				this._ActiveDocumentPath = path;
+				this.UpdateWindowTitle();
 			}
 			catch(Exception ex)
 			{

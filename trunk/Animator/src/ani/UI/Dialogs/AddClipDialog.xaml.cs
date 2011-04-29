@@ -62,7 +62,7 @@ namespace Animator.UI.Dialogs
 		// ReSharper disable MemberCanBeMadeStatic.Local
 		public IEnumerable<KeyValuePair<Type, string>> ClipTypeDescriptions
 		{
-			get { return Animator.Core.Model.Clip.GetRegisteredTypeDescriptions().ToArray(); }
+			get { return Animator.Core.Model.Clip.TypeRegistry.GetRegisteredTypeDescriptions().ToArray(); }
 		}
 		// ReSharper restore MemberCanBeMadeStatic.Local
 

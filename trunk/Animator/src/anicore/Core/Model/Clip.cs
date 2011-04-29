@@ -31,6 +31,11 @@ namespace Animator.Core.Model
 
 		private static readonly ImplementationRegistry<Clip> _TypeRegistry;
 
+		public static IImplementationRegistry TypeRegistry
+		{
+			get { return _TypeRegistry; }
+		}
+
 		static Clip()
 		{
 			_TypeRegistry = new ImplementationRegistry<Clip>();
@@ -38,25 +43,8 @@ namespace Animator.Core.Model
 			_TypeRegistry.RegisterTypes(typeof(Clip).Assembly);
 		}
 
-		public static void RegisterType(string elementName, Type type)
-		{
-			Require.ArgNotNull(elementName, "elementName");
-			Require.ArgNotNull(type, "type");
-			_TypeRegistry.RegisterType(elementName, type);
-		}
-
-		public static void RegisterTypes(Assembly assembly)
-		{
-			_TypeRegistry.RegisterTypes(assembly);
-		}
-
-		public static IEnumerable<KeyValuePair<Type, string>> GetRegisteredTypeDescriptions()
-		{
-			return _TypeRegistry.GetRegisteredTypeDescriptions();
-		}
-
 		[CanBeNull]
-		internal static Clip ReadClipXElement([NotNull] XElement element)
+		public static Clip ReadClipXElement([NotNull] XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			return _TypeRegistry.CreateImplementation(element.Name.ToString(), element);

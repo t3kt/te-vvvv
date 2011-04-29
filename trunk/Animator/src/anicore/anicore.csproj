@@ -78,12 +78,10 @@
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
-    <Compile Include="Core\Runtime\DocumentRuntimeContext.cs" />
     <Compile Include="Core\Runtime\ImplementationRegistry.cs" />
-    <Compile Include="Core\Runtime\IRuntimeContext.cs" />
+    <Compile Include="Core\Transport\ManualTransport.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
-    <Compile Include="Core\Transport\RuntimeTransport.cs" />
-    <Compile Include="Core\Transport\TransportBase.cs" />
+    <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />
     <Compile Include="Core\Transport\TriggerBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

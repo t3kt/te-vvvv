@@ -26,7 +26,7 @@
 		<CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
-		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
+		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="AppCore:AniAppCommands.AddClip" Executed="AddClipCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="AppCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
