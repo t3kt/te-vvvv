@@ -1,10 +1,7 @@
 #summary Tasks for Animator
 #labels Phase-Requirements
 
-= Introduction =
-These are tasks relating to Animator.
-
-= Tasks =
+= Animator Tasks =
   * Rework session view grid
   * Control validation
   * Plugin registry of some sort
