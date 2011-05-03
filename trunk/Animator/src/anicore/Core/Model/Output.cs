@@ -80,7 +80,6 @@ namespace Animator.Core.Model
 			Require.ArgNotNull(element, "element");
 			try
 			{
-				SuspendNotify();
 				this.Id = (Guid)element.Attribute(Schema.output_id);
 				this.Name = (string)element.Attribute(Schema.output_name);
 				this.OutputType = (string)element.Attribute(Schema.output_type);
@@ -88,7 +87,6 @@ namespace Animator.Core.Model
 			}
 			finally
 			{
-				ResumeNotify();
 				OnPropertyChanged(null);
 			}
 		}

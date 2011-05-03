@@ -143,7 +143,6 @@ namespace Animator.Core.Model
 			Require.ArgNotNull(element, "element");
 			try
 			{
-				SuspendNotify();
 				this.Id = (Guid)element.Attribute(Schema.track_id);
 				this.Name = (string)element.Attribute(Schema.track_name);
 				this.OutputId = (Guid?)element.Attribute(Schema.track_output);
@@ -153,7 +152,6 @@ namespace Animator.Core.Model
 			}
 			finally
 			{
-				ResumeNotify();
 				OnPropertyChanged(null);
 			}
 		}

@@ -47,7 +47,10 @@ namespace Animator.Core.Model
 		public static Clip ReadClipXElement([NotNull] XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			return _TypeRegistry.CreateImplementation(element.Name.ToString(), element);
+			var clip = _TypeRegistry.CreateImplementation(element.Name.ToString());
+			if(clip != null)
+				clip.ReadXElement(element);
+			return clip;
 		}
 
 		#endregion
@@ -164,11 +167,6 @@ namespace Animator.Core.Model
 			this.Id = id;
 		}
 
-		public Clip(XElement element)
-		{
-			ReadXElement(element);
-		}
-
 		#endregion
 
 		#region Methods
@@ -212,26 +210,17 @@ namespace Animator.Core.Model
 			return new OutputMessage(this.TargetKey, this.GetValue(transport));
 		}
 
-		private void ReadXElement(XElement element)
+		public virtual void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			SuspendNotify();
-			try
-			{
-				this.Id = (Guid)element.Attribute(Schema.clip_id);
-				this.Name = (string)element.Attribute(Schema.clip_name);
-				this.Duration = (float)element.Attribute(Schema.clip_dur);
-				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
-				this.TargetKey = (string)element.Attribute(Schema.clip_target);
-				this.OutputId = (Guid?)element.Attribute(Schema.clip_output);
-				this.UIRow = (int?)element.Attribute(Schema.clip_ui_row);
-				this.UIColumn = (int?)element.Attribute(Schema.clip_ui_col);
-			}
-			finally
-			{
-				this.ResumeNotify();
-				this.OnPropertyChanged(null);
-			}
+			this.Id = (Guid)element.Attribute(Schema.clip_id);
+			this.Name = (string)element.Attribute(Schema.clip_name);
+			this.Duration = (float)element.Attribute(Schema.clip_dur);
+			this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
+			this.TargetKey = (string)element.Attribute(Schema.clip_target);
+			this.OutputId = (Guid?)element.Attribute(Schema.clip_output);
+			this.UIRow = (int?)element.Attribute(Schema.clip_ui_row);
+			this.UIColumn = (int?)element.Attribute(Schema.clip_ui_col);
 		}
 
 		public override XElement WriteXElement(XName name = null)

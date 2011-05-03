@@ -10,7 +10,7 @@ namespace Animator.Core.Model
 
 	#region DocumentItem
 
-	public abstract class DocumentItem : IDocumentItem, INotifyPropertyChanged, ISuspendableNotify,
+	public abstract class DocumentItem : IDocumentItem, INotifyPropertyChanged,
 		IEquatable<IDocumentItem>
 	{
 
@@ -21,7 +21,6 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private string _Name;
-		private bool _NotifySuspended;
 
 		#endregion
 
@@ -55,24 +54,6 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		internal IDisposable SuspendNotifyScope()
-		{
-			if(_NotifySuspended)
-				return ActionScope.Null;
-			_NotifySuspended = true;
-			return new ActionScope(() => _NotifySuspended = false);
-		}
-
-		internal void SuspendNotify()
-		{
-			_NotifySuspended = true;
-		}
-
-		internal void ResumeNotify()
-		{
-			_NotifySuspended = false;
-		}
-
 		public override bool Equals(object obj)
 		{
 			return Equals(obj as IDocumentItem);
@@ -104,29 +85,12 @@ namespace Animator.Core.Model
 
 		protected virtual void OnPropertyChanged(string name)
 		{
-			if(!_NotifySuspended)
-			{
-				var handler = this.PropertyChanged;
-				if(handler != null)
-					handler(this, new PropertyChangedEventArgs(name));
-			}
+			var handler = this.PropertyChanged;
+			if(handler != null)
+				handler(this, new PropertyChangedEventArgs(name));
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
-
-		#endregion
-
-		#region ISuspendableNotify Members
-
-		void ISuspendableNotify.SuspendNotify()
-		{
-			SuspendNotify();
-		}
-
-		void ISuspendableNotify.ResumeNotify()
-		{
-			ResumeNotify();
-		}
 
 		#endregion
 

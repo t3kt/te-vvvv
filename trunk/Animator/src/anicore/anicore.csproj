@@ -50,6 +50,7 @@
       <HintPath>..\..\lib\Sanford.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
@@ -63,6 +64,7 @@
     <Compile Include="Common\ISuspendableNotify.cs" />
     <Compile Include="Common\Threading\LockUtil.cs" />
     <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
+    <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />

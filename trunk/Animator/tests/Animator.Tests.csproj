@@ -52,6 +52,7 @@
       <HintPath>..\lib\Sanford.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -73,6 +74,7 @@
     <Compile Include="AniApp\LimitedStackTest.cs" />
     <Compile Include="AniApp\LinkedStackTest.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
+    <Compile Include="HostingUnitTest.cs" />
     <Compile Include="ModelUnitTest.cs" />
     <Compile Include="OscUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

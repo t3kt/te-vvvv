@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using Animator.Core.Runtime;
@@ -12,6 +13,7 @@ namespace Animator.UI.Editors
 	/// <summary>
 	/// Interaction logic for StepListEditor.xaml
 	/// </summary>
+	[Export(typeof(IClipDataEditor))]
 	public partial class StepListEditor : IClipDataEditor
 	{
 
