@@ -4,7 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Animator.AppCore;
+using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Transport;
+using Animator.Osc;
 using Animator.Properties;
 
 namespace Animator
@@ -23,6 +26,19 @@ namespace Animator
 			{
 				var app = Application.Current as AniApplication;
 				return app == null ? null : app.ActiveDocument;
+			}
+		}
+
+		public static void RegisterLoadedAssemblies()
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
+#warning TODO: find a better way of ensuring that the aniosc assembly is loaded...
+			assemblies.Add(typeof(OscTransmitter).Assembly);
+			foreach(var assembly in assemblies)
+			{
+				Clip.TypeRegistry.RegisterTypes(assembly);
+				OutputTransmitter.TypeRegistry.RegisterTypes(assembly);
+				Transport.TypeRegistry.RegisterTypes(assembly);
 			}
 		}
 
@@ -68,6 +84,7 @@ namespace Animator
 		{
 			base.OnStartup(e);
 			ApplicationCommands.Close.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control));
+			RegisterLoadedAssemblies();
 		}
 
 		protected override void OnExit(ExitEventArgs e)

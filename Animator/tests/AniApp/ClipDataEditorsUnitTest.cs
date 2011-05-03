@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace Animator.Tests.AniApp
 
 		#region DummyClipDataEditor
 
+		[Export(typeof(IClipDataEditor))]
 		internal class DummyClipDataEditor : IClipDataEditor
 		{
 

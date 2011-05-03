@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -21,6 +22,7 @@ namespace Animator.Core.Model
 
 	[Description("Step Sequence Clip")]
 	[ClipDataEditor("Animator.UI.Editors.StepListEditor, " + TEShared.AssemblyRef.ani)]
+	[Export(typeof(Clip))]
 	public sealed class StepClip : Clip
 	{
 
@@ -71,21 +73,15 @@ namespace Animator.Core.Model
 				}
 				else if(value < this._Steps.Count)
 				{
-					using(this.SuspendNotifyScope())
-					{
-						while(this._Steps.Count > value)
-							this._Steps.RemoveAt(this._Steps.Count - 1);
-					}
+					while(this._Steps.Count > value)
+						this._Steps.RemoveAt(this._Steps.Count - 1);
 					this.OnPropertyChanged("Steps");
 				}
 				else if(value > this._Steps.Count)
 				{
-					using(this.SuspendNotifyScope())
-					{
-						var endVal = this._Steps.LastOrDefault();
-						while(this._Steps.Count < value)
-							this._Steps.Add(endVal);
-					}
+					var endVal = this._Steps.LastOrDefault();
+					while(this._Steps.Count < value)
+						this._Steps.Add(endVal);
 					this.OnPropertyChanged("Steps");
 				}
 			}
@@ -101,7 +97,6 @@ namespace Animator.Core.Model
 			: base(id) { }
 
 		public StepClip(XElement element)
-			: base(element)
 		{
 			this.ReadXElement(element);
 		}
@@ -145,10 +140,9 @@ namespace Animator.Core.Model
 			return this._Steps[step];
 		}
 
-		private void ReadXElement(XElement element)
+		public override void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			this.SuspendNotify();
 			try
 			{
 				this.Id = (Guid)element.Attribute(Schema.clip_id);
@@ -159,7 +153,6 @@ namespace Animator.Core.Model
 			}
 			finally
 			{
-				this.ResumeNotify();
 				this.OnPropertyChanged(null);
 			}
 		}

@@ -47,7 +47,8 @@ namespace Animator.Tests
 		{
 			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
 			var xmlA = clipA.WriteXElement();
-			var clipB = new Clip(xmlA);
+			var clipB = new Clip();
+			clipB.ReadXElement(xmlA);
 			var xmlB = clipB.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(clipA, clipB);
