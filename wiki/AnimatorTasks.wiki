@@ -10,3 +10,4 @@
   * More transport unit tests
   * Generalized add/edit item dialog base class (with a mechanism for canceling changes)
   * Specialized output transmitter parameter editors (like clip data editors)
+  * Undo/redo/command manager
