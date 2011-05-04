@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 
 namespace Animator.Tests.Utils
@@ -9,6 +10,7 @@ namespace Animator.Tests.Utils
 
 	#region CallbackTransmitter
 
+	[OutputTransmitter(Key = "callback")]
 	internal sealed class CallbackTransmitter : OutputTransmitter
 	{
 

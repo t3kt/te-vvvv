@@ -8,8 +8,10 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Transport;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
@@ -354,10 +356,10 @@ namespace Animator.Core.Model
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 		}
 
-		public Document(XElement element)
+		public Document([NotNull] XElement element, [CanBeNull] AniHost host = null)
 		{
 			this._TransportData = new TransportData();
-			ReadXElement(element);
+			this.ReadXElement(element, host);
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 			this.RebuildTransport();
 		}
@@ -533,9 +535,11 @@ namespace Animator.Core.Model
 				this.PostClipOutput(clip, transport);
 		}
 
-		private void ReadXElement(XElement element)
+		private void ReadXElement(XElement element, AniHost host)
 		{
 			Require.ArgNotNull(element, "element");
+			if(host == null)
+				host = AniHost.Current;
 			this.SuspendNotify();
 			try
 			{
@@ -557,9 +561,9 @@ namespace Animator.Core.Model
 				var outputsElement = element.Element(Schema.anidoc_outputs);
 				this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
 				var tracksElement = element.Element(Schema.anidoc_tracks);
-				this.Tracks = tracksElement == null ? null : new ObservableCollection<Track>(tracksElement.Elements().Select(e => new Track(e)));
+				this.Tracks = tracksElement == null ? null : new ObservableCollection<Track>(tracksElement.Elements().Select(e => new Track(e, host)));
 				var clipsElement = element.Element(Schema.anidoc_clips);
-				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(Clip.ReadClipXElement));
+				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(host.ReadClipXElement));
 				this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
 				this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
 			}

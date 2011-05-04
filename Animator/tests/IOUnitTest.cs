@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
@@ -42,6 +43,7 @@ namespace Animator.Tests
 
 		#region TestTransmitter
 
+		[OutputTransmitter(Key = "test")]
 		internal class TestTransmitter : OutputTransmitter
 		{
 

@@ -15,6 +15,7 @@ namespace Animator.Tests
 	// ReSharper disable ConvertToConstant.Local
 	// ReSharper disable MemberCanBeMadeStatic.Local
 	// ReSharper disable ConvertToLambdaExpression
+	// ReSharper disable RedundantArgumentName
 
 	[TestClass]
 	public class ModelUnitTest
@@ -45,14 +46,95 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void ClipReadWriteXElement()
 		{
+			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
 			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
 			var xmlA = clipA.WriteXElement();
 			var clipB = new Clip();
 			clipB.ReadXElement(xmlA);
 			var xmlB = clipB.WriteXElement();
+			var clipC = host.ReadClipXElement(xmlA);
+			var xmlC = clipC.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(clipA, clipB);
 			Assert.AreEqual(clipA.UIRow, clipB.UIRow);
+			Assert.AreEqual(clipA.UIColumn, clipB.UIColumn);
+			Assert.AreEqual(xmlA.ToString(), xmlC.ToString());
+			Assert.AreEqual(clipA, clipC);
+			Assert.AreEqual(clipA.UIRow, clipC.UIRow);
+			Assert.AreEqual(clipA.UIColumn, clipC.UIColumn);
+		}
+
+		[TestMethod]
+		[TestCategory("Model")]
+		public void StepClipReadWriteXElement()
+		{
+			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var clipA = new StepClip
+						{
+							Name = "helloclip",
+							TriggerAlignment = 4,
+							OutputId = Guid.NewGuid(),
+							UIRow = 12,
+							Steps = new ObservableCollection<float> { 40.2f, -345.28f, 0.0f, 4444.4f }
+						};
+			var xmlA = clipA.WriteXElement();
+			var clipB = new StepClip(xmlA);
+			var xmlB = clipB.WriteXElement();
+			var clipC = host.ReadClipXElement(xmlA);
+			Assert.IsInstanceOfType(clipC, typeof(StepClip));
+			var xmlC = clipC.WriteXElement();
+			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
+			Assert.AreEqual(clipA, clipB);
+			Assert.AreEqual(clipA.UIRow, clipB.UIRow);
+			Assert.AreEqual(clipA.UIColumn, clipB.UIColumn);
+			Assert.AreEqual(xmlA.ToString(), xmlC.ToString());
+			Assert.AreEqual(clipA, clipC);
+			Assert.AreEqual(clipA.UIRow, clipC.UIRow);
+			Assert.AreEqual(clipA.UIColumn, clipC.UIColumn);
+		}
+
+		[TestMethod]
+		[TestCategory("Model")]
+		public void DocumentReadWriteXElement()
+		{
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var docA = new Document
+					   {
+						   BeatsPerMinute = 44.3f,
+						   Duration = 284.345f,
+						   Name = "foodoc",
+						   UIColumns = 23,
+						   UIRows = 14
+					   };
+			var clipA1 = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
+			docA.Clips.Add(clipA1);
+			var clipA2 = new StepClip
+						 {
+							 Name = "steppp",
+							 Duration = 48.5f,
+							 Steps = new ObservableCollection<float> { 25.25f, -234.3f, 0.0f },
+							 TargetKey = "footarget",
+							 UIColumn = 4,
+							 UIRow = 2
+						 };
+			docA.Clips.Add(clipA2);
+			var outputA1 = new Output { Name = "out1", OutputType = "fooo_out" };
+			docA.Outputs.Add(outputA1);
+			var xmlA = docA.WriteXElement();
+			var docB = new Document(xmlA, host);
+			var xmlB = docB.WriteXElement();
+			Assert.AreEqual(docA.BeatsPerMinute, docB.BeatsPerMinute);
+			Assert.AreEqual(docA.Id, docB.Id);
+			Assert.AreEqual(docA.Duration, docB.Duration);
+			Assert.AreEqual(docA.Name, docB.Name);
+			Assert.AreEqual(docA.UIColumns, docB.UIColumns);
+			Assert.AreEqual(docA.UIRows, docB.UIRows);
+			CollectionAssert.Contains(docB.Clips, clipA1);
+			CollectionAssert.Contains(docB.Clips, clipA2);
+			Assert.IsTrue(docB.Clips.ItemsEqual(docA.Clips));
+			CollectionAssert.Contains(docB.Outputs, outputA1);
+			Assert.IsTrue(docB.Outputs.ItemsEqual(docA.Outputs));
+			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 		}
 
 		[TestMethod]
@@ -108,6 +190,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void TrackReadWriteXElement()
 		{
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
 			var docA = new Document();
 			var trackA = new Track();
 			docA.Tracks.Add(trackA);
@@ -122,7 +205,7 @@ namespace Animator.Tests
 			trackA.Clips.Add(clipB);
 			var xmlA = trackA.WriteXElement();
 
-			var trackB = new Track(xmlA);
+			var trackB = new Track(xmlA, host);
 			var xmlB = trackB.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(trackA, trackB);
@@ -164,6 +247,7 @@ namespace Animator.Tests
 
 	}
 
+	// ReSharper restore RedundantArgumentName
 	// ReSharper restore ConvertToLambdaExpression
 	// ReSharper restore MemberCanBeMadeStatic.Local
 	// ReSharper restore ConvertToConstant.Local

@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
@@ -37,6 +38,7 @@ namespace Animator.Tests
 
 		#region ModelTrackerTransmitter
 
+		[OutputTransmitter(Key = "modeltracker")]
 		internal sealed class ModelTrackerTransmitter : OutputTransmitter
 		{
 

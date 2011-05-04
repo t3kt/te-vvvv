@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using Animator.Common.Diagnostics;
 using Animator.Common.Threading;
+using Animator.Core.Composition;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using TESharedAnnotations;
@@ -17,6 +18,7 @@ namespace Animator.Core.Transport
 
 	#region MediaTransport
 
+	[Transport(Key = "media")]
 	public sealed class MediaTransport : IInternalTransport, IDisposable
 	{
 

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
@@ -22,7 +22,7 @@ namespace Animator.Core.Model
 
 	[Description("Step Sequence Clip")]
 	[ClipDataEditor("Animator.UI.Editors.StepListEditor, " + TEShared.AssemblyRef.ani)]
-	[Export(typeof(Clip))]
+	[Clip(ElementName = "stepclip", Key = "stepclip")]
 	public sealed class StepClip : Clip
 	{
 
@@ -143,18 +143,8 @@ namespace Animator.Core.Model
 		public override void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			try
-			{
-				this.Id = (Guid)element.Attribute(Schema.clip_id);
-				this.Name = (string)element.Attribute(Schema.clip_name);
-				this.Duration = (float)element.Attribute(Schema.clip_dur);
-				this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
-				this.Steps = new ObservableCollection<float>(element.Elements(Schema.stepclip_step).Select(e => (float)e));
-			}
-			finally
-			{
-				this.OnPropertyChanged(null);
-			}
+			base.ReadXElement(element);
+			this.Steps = new ObservableCollection<float>(element.Elements(Schema.stepclip_step).Select(e => (float)e));
 		}
 
 		public override XElement WriteXElement(XName name = null)

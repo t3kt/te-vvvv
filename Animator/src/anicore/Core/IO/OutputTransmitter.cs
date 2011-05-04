@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
@@ -25,6 +26,7 @@ namespace Animator.Core.IO
 		#region NullTransmitter
 
 		[Description("No Transmitter")]
+		[OutputTransmitter(Key = "null")]
 		internal sealed class NullTransmitter : OutputTransmitter
 		{
 
@@ -60,6 +62,7 @@ namespace Animator.Core.IO
 		#region TraceTransmitter
 
 		[Description("Debug Trace Transmitter")]
+		[OutputTransmitter(Key = "trace")]
 		internal sealed class TraceTransmitter : OutputTransmitter
 		{
 
