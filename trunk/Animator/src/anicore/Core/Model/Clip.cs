@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
-using Animator.Common;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
@@ -24,6 +22,7 @@ namespace Animator.Core.Model
 	#region Clip
 
 	[Description("Generic Clip")]
+	[Clip(ElementName = "clip", Key = "clip")]
 	public class Clip : DocumentItem, IEquatable<Clip>
 	{
 
@@ -41,16 +40,6 @@ namespace Animator.Core.Model
 			_TypeRegistry = new ImplementationRegistry<Clip>();
 			_TypeRegistry.SetDefault(typeof(Clip));
 			_TypeRegistry.RegisterTypes(typeof(Clip).Assembly);
-		}
-
-		[CanBeNull]
-		public static Clip ReadClipXElement([NotNull] XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			var clip = _TypeRegistry.CreateImplementation(element.Name.ToString());
-			if(clip != null)
-				clip.ReadXElement(element);
-			return clip;
 		}
 
 		#endregion

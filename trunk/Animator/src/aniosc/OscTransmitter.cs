@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
@@ -16,6 +17,7 @@ namespace Animator.Osc
 
 	#region OscTransmitter
 
+	[OutputTransmitter(Key = "osc")]
 	public class OscTransmitter : OutputTransmitter
 	{
 

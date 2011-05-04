@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using TESharedAnnotations;
@@ -19,6 +20,7 @@ namespace Animator.Core.Transport
 
 		#region NullTransport
 
+		[Transport(Key = "null")]
 		internal sealed class NullTransport : ITransport
 		{
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using Animator.Tests.Utils;
@@ -13,6 +14,7 @@ namespace Animator.Tests.Utils
 
 	#region DummyTransport
 
+	[Transport(Key = "dummy")]
 	internal sealed class DummyTransport : ITransport
 	{
 
