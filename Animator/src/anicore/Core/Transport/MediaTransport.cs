@@ -7,18 +7,14 @@ using System.Threading;
 using Animator.Common.Diagnostics;
 using Animator.Common.Threading;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
-using Animator.Core.Transport;
 using TESharedAnnotations;
-
-[assembly: RegisteredImplementation(typeof(ITransport), "media", typeof(MediaTransport))]
 
 namespace Animator.Core.Transport
 {
 
 	#region MediaTransport
 
-	[Transport(Key = "media")]
+	[Transport(Key = "media", Description = "Media Transport")]
 	public sealed class MediaTransport : IInternalTransport, IDisposable
 	{
 

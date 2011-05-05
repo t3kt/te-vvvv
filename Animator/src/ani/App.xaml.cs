@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Animator.AppCore;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Transport;
@@ -29,17 +30,9 @@ namespace Animator
 			}
 		}
 
-		public static void RegisterLoadedAssemblies()
+		internal static AniHost CurrentHost
 		{
-			var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
-#warning TODO: find a better way of ensuring that the aniosc assembly is loaded...
-			assemblies.Add(typeof(OscTransmitter).Assembly);
-			foreach(var assembly in assemblies)
-			{
-				Clip.TypeRegistry.RegisterTypes(assembly);
-				OutputTransmitter.TypeRegistry.RegisterTypes(assembly);
-				Transport.TypeRegistry.RegisterTypes(assembly);
-			}
+			get { return ((AniApplication)Current).Host; }
 		}
 
 		#endregion
@@ -48,6 +41,7 @@ namespace Animator
 
 		private readonly AppActionHistoryManager _ActionHistoryManager;
 		private readonly RecentFileManager _RecentFileManager;
+		private readonly AniHost _Host;
 
 		#endregion
 
@@ -65,6 +59,11 @@ namespace Animator
 			get { return _RecentFileManager; }
 		}
 
+		public AniHost Host
+		{
+			get { return this._Host; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -74,6 +73,7 @@ namespace Animator
 			this.InitializeComponent();
 			this._ActionHistoryManager = new AppActionHistoryManager();
 			this._RecentFileManager = new RecentFileManager();
+			this._Host = new AniHost();
 		}
 
 		#endregion
@@ -84,7 +84,7 @@ namespace Animator
 		{
 			base.OnStartup(e);
 			ApplicationCommands.Close.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control));
-			RegisterLoadedAssemblies();
+			this.RegisterLoadedAssemblies();
 		}
 
 		protected override void OnExit(ExitEventArgs e)
@@ -92,6 +92,18 @@ namespace Animator
 			this._RecentFileManager.SaveToSettings();
 			Settings.Default.Save();
 			base.OnExit(e);
+		}
+
+		private void RegisterLoadedAssemblies()
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
+#warning TODO: find a better way of ensuring that the aniosc assembly is loaded...
+			assemblies.Add(typeof(OscTransmitter).Assembly);
+			foreach(var assembly in assemblies.Distinct())
+			{
+				this._Host.LoadAssembly(assembly);
+			}
+			this._Host.LoadImports();
 		}
 
 		#endregion

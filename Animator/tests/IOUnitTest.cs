@@ -7,12 +7,8 @@ using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
-using Animator.Core.Runtime;
-using Animator.Tests;
 using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test", typeof(IOUnitTest.TestTransmitter))]
 
 namespace Animator.Tests
 {
@@ -21,23 +17,19 @@ namespace Animator.Tests
 	// ReSharper disable ConvertToConstant.Local
 	// ReSharper disable MemberCanBeMadeStatic.Local
 	// ReSharper disable ConvertToLambdaExpression
+	// ReSharper disable RedundantArgumentName
 
 	[TestClass]
 	public class IOUnitTest
 	{
 
-		[ClassInitialize]
-		public static void RegOutputTypes(TestContext testContext)
-		{
-			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(IOUnitTest).Assembly);
-		}
-
 		[TestMethod]
 		[TestCategory("IO")]
 		public void CreateNullTransmitter()
 		{
+			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = null };
-			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
 		}
 
@@ -60,9 +52,9 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void RegisterTransmitter()
 		{
-			OutputTransmitter.TypeRegistry.RegisterTypes(this.GetType().Assembly);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "test" };
-			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));
 		}
 
@@ -70,8 +62,9 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void CreateTraceTransmitter()
 		{
+			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
-			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.TraceTransmitter));
 		}
 
@@ -79,8 +72,9 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void TraceTransmitterOutput()
 		{
+			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
-			var transmitter = OutputTransmitter.CreateTransmitter(outputModel);
+			var transmitter = host.CreateTransmitter(outputModel);
 			int writeCount = 0;
 			var listener = new CallbackTraceListener(msg =>
 														{
@@ -101,6 +95,7 @@ namespace Animator.Tests
 
 	}
 
+	// ReSharper restore RedundantArgumentName
 	// ReSharper restore ConvertToLambdaExpression
 	// ReSharper restore MemberCanBeMadeStatic.Local
 	// ReSharper restore ConvertToConstant.Local

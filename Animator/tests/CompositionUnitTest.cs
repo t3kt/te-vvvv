@@ -164,8 +164,7 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void LoadClipTypeImports()
 		{
-			var host = CreateHost(test: false, core: true);
-			host.LoadImports();
+			var host = CreateHost(test: false, core: true, loadImports: true);
 			var imports = host.Imports;
 			Assert.IsNotNull(imports.Clips);
 			Assert.IsTrue(imports.Clips.Any());
@@ -204,8 +203,7 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void GetTransportByKey()
 		{
-			var host = CreateHost(test: true, core: true);
-			host.LoadImports();
+			var host = CreateHost(test: true, core: true, loadImports: true);
 			Assert.IsInstanceOfType(host.CreateTransportByKey("null"), typeof(Transport.NullTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey(null), typeof(Transport.NullTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey(String.Empty), typeof(Transport.NullTransport));
@@ -218,15 +216,14 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void GetOutputTransmitterByKey()
 		{
-			var host = CreateHost(test: true, core: true, osc: true);
-			host.LoadImports();
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey("null"), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey(null), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey(String.Empty), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey("test"), typeof(IOUnitTest.TestTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey("callback"), typeof(CallbackTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey("trace"), typeof(OutputTransmitter.TraceTransmitter));
-			Assert.IsInstanceOfType(host.CreateOutputTransmitterByKey("osc"), typeof(OscTransmitter));
+			var host = CreateHost(test: true, core: true, osc: true, loadImports: true);
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey("null"), typeof(OutputTransmitter.NullTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey(null), typeof(OutputTransmitter.NullTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey(String.Empty), typeof(OutputTransmitter.NullTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey("test"), typeof(IOUnitTest.TestTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey("test.callback"), typeof(CallbackTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey("trace"), typeof(OutputTransmitter.TraceTransmitter));
+			Assert.IsInstanceOfType(host.CreateTransmitterByKey("osc"), typeof(OscTransmitter));
 		}
 
 	}

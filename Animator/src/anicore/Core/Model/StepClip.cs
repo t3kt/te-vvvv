@@ -3,26 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
-using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
-
-[assembly: RegisteredImplementation(typeof(Clip), "stepclip", typeof(StepClip))]
 
 namespace Animator.Core.Model
 {
 
 	#region StepClip
 
-	[Description("Step Sequence Clip")]
 	[ClipDataEditor("Animator.UI.Editors.StepListEditor, " + TEShared.AssemblyRef.ani)]
-	[Clip(ElementName = "stepclip", Key = "stepclip")]
+	[Clip(ElementName = "stepclip", Key = "stepclip", Description = "Step Sequence Clip")]
 	public sealed class StepClip : Clip
 	{
 

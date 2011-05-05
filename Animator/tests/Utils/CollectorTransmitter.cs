@@ -10,7 +10,7 @@ namespace Animator.Tests.Utils
 
 	#region CollectorTransmitter
 
-	[OutputTransmitter(Key = "collector")]
+	[OutputTransmitter(Key = "test.collector")]
 	internal class CollectorTransmitter : OutputTransmitter
 	{
 

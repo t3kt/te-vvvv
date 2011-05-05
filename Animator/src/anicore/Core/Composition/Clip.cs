@@ -12,7 +12,7 @@ namespace Animator.Core.Composition
 
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class ClipAttribute : KeyedExportAttribute
+	public sealed class ClipAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -24,8 +24,6 @@ namespace Animator.Core.Composition
 		#endregion
 
 		#region Properties
-
-		public string ElementName { get; set; }
 
 		#endregion
 
@@ -40,15 +38,6 @@ namespace Animator.Core.Composition
 
 		#endregion
 
-	}
-
-	#endregion
-
-	#region IClipMetadata
-
-	public interface IClipMetadata : IKeyedExportMetadata
-	{
-		string ElementName { get; }
 	}
 
 	#endregion

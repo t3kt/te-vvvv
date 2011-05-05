@@ -76,7 +76,7 @@ namespace Animator.UI.Dialogs
 		// ReSharper disable MemberCanBeMadeStatic.Local
 		public IEnumerable<KeyValuePair<string, string>> TransportTypeDescriptions
 		{
-			get { return Transport.TypeRegistry.RegisteredTypeDescriptionsByKey; }
+			get { return AniApplication.CurrentHost.GetTransportTypeDescriptionsByKey(); }
 		}
 		// ReSharper restore MemberCanBeMadeStatic.Local
 

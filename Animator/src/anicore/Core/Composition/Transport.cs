@@ -12,7 +12,7 @@ namespace Animator.Core.Composition
 
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class TransportAttribute : KeyedExportAttribute
+	public sealed class TransportAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -41,14 +41,6 @@ namespace Animator.Core.Composition
 
 		#endregion
 
-	}
-
-	#endregion
-
-	#region ITransportMetadata
-
-	public interface ITransportMetadata : IKeyedExportMetadata
-	{
 	}
 
 	#endregion

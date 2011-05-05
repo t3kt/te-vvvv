@@ -1,46 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
-using Animator.Core.Model;
-using Animator.Core.Runtime;
 using Animator.Core.Transport;
-using TESharedAnnotations;
-
-[assembly: RegisteredImplementation(typeof(Clip), typeof(Clip))]
-[assembly: RegisteredImplementation(typeof(Clip), "clip", typeof(Clip))]
 
 namespace Animator.Core.Model
 {
 
 	#region Clip
 
-	[Description("Generic Clip")]
-	[Clip(ElementName = "clip", Key = "clip")]
+	[Clip(ElementName = "clip", Key = "clip", Description = "Generic Clip")]
 	public class Clip : DocumentItem, IEquatable<Clip>
 	{
 
 		#region Static / Constant
-
-		private static readonly ImplementationRegistry<Clip> _TypeRegistry;
-
-		public static IImplementationRegistry TypeRegistry
-		{
-			get { return _TypeRegistry; }
-		}
-
-		static Clip()
-		{
-			_TypeRegistry = new ImplementationRegistry<Clip>();
-			_TypeRegistry.SetDefault(typeof(Clip));
-			_TypeRegistry.RegisterTypes(typeof(Clip).Assembly);
-		}
 
 		#endregion
 

@@ -12,7 +12,7 @@ namespace Animator.Core.Composition
 
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class OutputTransmitterAttribute : KeyedExportAttribute
+	public sealed class OutputTransmitterAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -38,14 +38,6 @@ namespace Animator.Core.Composition
 
 		#endregion
 
-	}
-
-	#endregion
-
-	#region IOutputTransmitterMetadata
-
-	public interface IOutputTransmitterMetadata : IKeyedExportMetadata
-	{
 	}
 
 	#endregion

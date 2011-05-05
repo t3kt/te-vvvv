@@ -25,22 +25,10 @@ namespace Animator.UI.Dialogs
 
 		static AddClipDialog()
 		{
-			ClipTypeProperty = DependencyProperty.Register("ClipType", typeof(Type), typeof(AddClipDialog),
-														   new PropertyMetadata(typeof(Clip), null, CoerceClipType), ValidateClipType);
+			ClipTypeProperty = DependencyProperty.Register("ClipType", typeof(string), typeof(AddClipDialog),
+														   new PropertyMetadata(null));
 			ClipNameProperty = DependencyProperty.Register("ClipName", typeof(string), typeof(AddClipDialog),
 														   new PropertyMetadata("New Clip"));
-		}
-
-		private static object CoerceClipType(DependencyObject d, object basevalue)
-		{
-			return basevalue ?? typeof(Clip);
-		}
-
-		private static bool ValidateClipType(object value)
-		{
-			if(value == null)
-				return true;
-			return value is Type && typeof(Clip).IsAssignableFrom((Type)value);
 		}
 
 		public static Clip ShowDialogForNewClip(Window ownerWindow = null)
@@ -60,15 +48,18 @@ namespace Animator.UI.Dialogs
 		#region Properties
 
 		// ReSharper disable MemberCanBeMadeStatic.Local
-		public IEnumerable<KeyValuePair<Type, string>> ClipTypeDescriptions
+		public IEnumerable<KeyValuePair<string, string>> ClipTypeDescriptions
 		{
-			get { return Animator.Core.Model.Clip.TypeRegistry.RegisteredTypeDescriptions; }
+			get
+			{
+				return AniApplication.CurrentHost.GetClipTypeDescriptionsByKey();
+			}
 		}
 		// ReSharper restore MemberCanBeMadeStatic.Local
 
-		public Type ClipType
+		public string ClipType
 		{
-			get { return (Type)this.GetValue(ClipTypeProperty); }
+			get { return (string)this.GetValue(ClipTypeProperty); }
 			set { this.SetValue(ClipTypeProperty, value); }
 		}
 
@@ -101,9 +92,8 @@ namespace Animator.UI.Dialogs
 		public Clip CreateClip()
 		{
 			var type = this.ClipType;
-			Debug.Assert(type != null);
-			Debug.Assert(typeof(Clip).IsAssignableFrom(type));
-			var clip = (Clip)Activator.CreateInstance(type);
+			var clip = AniApplication.CurrentHost.CreateClipByKey(type);
+			Debug.Assert(clip != null);
 			clip.Name = this.ClipName;
 			return clip;
 		}
