@@ -15,16 +15,11 @@ namespace Animator.Tests
 	// ReSharper disable ConvertToConstant.Local
 	// ReSharper disable MemberCanBeMadeStatic.Local
 	// ReSharper disable ConvertToLambdaExpression
+	// ReSharper disable RedundantArgumentName
 
 	[TestClass]
 	public class TransportUnitTest
 	{
-
-		[ClassInitialize]
-		public static void RegTransportTypes(TestContext testContext)
-		{
-			Transport.TypeRegistry.RegisterTypes(typeof(TransportUnitTest).Assembly);
-		}
 
 		[TestMethod]
 		[TestCategory("Transport")]
@@ -76,7 +71,8 @@ namespace Animator.Tests
 		[TestCategory("Transport")]
 		public void DocumentTransportTypesTest()
 		{
-			var doc = new Document();
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var doc = new Document(host);
 			Assert.IsInstanceOfType(doc.Transport, typeof(Transport.NullTransport));
 			doc.TransportType = "dummy";
 			Assert.IsInstanceOfType(doc.Transport, typeof(DummyTransport));
@@ -88,6 +84,7 @@ namespace Animator.Tests
 
 	}
 
+	// ReSharper restore RedundantArgumentName
 	// ReSharper restore ConvertToLambdaExpression
 	// ReSharper restore MemberCanBeMadeStatic.Local
 	// ReSharper restore ConvertToConstant.Local

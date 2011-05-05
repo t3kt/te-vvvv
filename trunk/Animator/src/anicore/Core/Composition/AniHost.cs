@@ -28,13 +28,13 @@ namespace Animator.Core.Composition
 		{
 
 			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<Clip, IClipMetadata>> Clips { get; set; }
+			public IEnumerable<Lazy<Clip, IAniExportMetadata>> Clips { get; set; }
 
 			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<ITransport, ITransportMetadata>> Transports { get; set; }
+			public IEnumerable<Lazy<ITransport, IAniExportMetadata>> Transports { get; set; }
 
 			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<IOutputTransmitter, IOutputTransmitterMetadata>> OutputTransmitters { get; set; }
+			public IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters { get; set; }
 
 		}
 
@@ -52,16 +52,6 @@ namespace Animator.Core.Composition
 					Interlocked.CompareExchange(ref _Current, new AniHost(), null);
 				return _Current;
 			}
-		}
-
-		private static T GetByKey<T, TMetadata>(IEnumerable<Lazy<T, TMetadata>> imports, string key)
-			where T : class
-			where TMetadata : IKeyedExportMetadata
-		{
-			if(String.IsNullOrEmpty(key))
-				return null;
-			var import = imports.FirstOrDefault(i => i.Metadata.Key == key);
-			return import == null ? null : import.Value;
 		}
 
 		#endregion
@@ -98,7 +88,7 @@ namespace Animator.Core.Composition
 		public AniHost()
 		{
 			this._Catalog = new AggregateCatalog();
-			this._Container = new CompositionContainer(this._Catalog);
+			this._Container = new CompositionContainer(this._Catalog, true);
 			this._Imports = new ImportSet();
 		}
 
@@ -111,47 +101,6 @@ namespace Animator.Core.Composition
 			foreach(var catalog in this._Catalog.Catalogs.OfType<DirectoryCatalog>())
 				catalog.Refresh();
 			this._Container.ComposeParts(this._Imports);
-		}
-
-		internal Clip CreateClipByElementName(string elementName)
-		{
-			if(!String.IsNullOrEmpty(elementName))
-			{
-				if(this._Imports.Clips != null)
-				{
-					var entry = this._Imports.Clips.FirstOrDefault(x => x.Metadata.ElementName == elementName);
-					if(entry != null)
-					{
-						return entry.Value;
-					}
-				}
-			}
-			return new Clip();
-		}
-
-		[NotNull]
-		internal Clip ReadClipXElement([NotNull] XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			var clip = this.CreateClipByElementName(element.Name.ToString());
-			Debug.Assert(clip != null);
-			clip.ReadXElement(element);
-			return clip;
-		}
-
-		internal Clip CreateClipByKey(string key)
-		{
-			return GetByKey(this._Imports.Clips, key) ?? new Clip();
-		}
-
-		internal ITransport CreateTransportByKey(string key)
-		{
-			return GetByKey(this._Imports.Transports, key) ?? new Transport.Transport.NullTransport();
-		}
-
-		internal IOutputTransmitter CreateOutputTransmitterByKey(string key)
-		{
-			return GetByKey(this._Imports.OutputTransmitters, key) ?? new OutputTransmitter.NullTransmitter();
 		}
 
 		public void LoadDirectory(string path, string searchPattern = "*.dll")
@@ -173,6 +122,70 @@ namespace Animator.Core.Composition
 		internal void LoadCoreAssembly()
 		{
 			this.LoadAssembly(typeof(AniHost).Assembly);
+		}
+
+		internal Clip CreateClipByElementName(string elementName)
+		{
+			return this._Imports.Clips.CreateByElementName(elementName, () => new Clip());
+		}
+
+		[NotNull]
+		internal Clip ReadClipXElement([NotNull] XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			var clip = this.CreateClipByElementName(element.Name.ToString());
+			Debug.Assert(clip != null);
+			clip.ReadXElement(element);
+			return clip;
+		}
+
+		public Clip CreateClipByKey(string key)
+		{
+			return this._Imports.Clips.CreateByKey(key, () => new Clip());
+		}
+
+		public ITransport CreateTransportByKey(string key)
+		{
+			return this._Imports.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
+		}
+
+		public IOutputTransmitter CreateTransmitterByKey(string key)
+		{
+			return this._Imports.OutputTransmitters.CreateByKey(key, () => new OutputTransmitter.NullTransmitter());
+		}
+
+		[NotNull]
+		internal IOutputTransmitter CreateTransmitter([NotNull] Output outputModel)
+		{
+			Require.ArgNotNull(outputModel, "outputModel");
+			var transmitter = this.CreateTransmitterByKey(outputModel.OutputType);
+			Debug.Assert(transmitter != null);
+			transmitter.Initialize(outputModel);
+			return transmitter;
+		}
+
+		[NotNull]
+		internal ITransport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
+		{
+			var transport = this.CreateTransportByKey(transportType);
+			Debug.Assert(transport != null);
+			transport.SetParameters(parameters);
+			return transport;
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> GetClipTypeDescriptionsByKey()
+		{
+			return this._Imports.Clips.GetTypeDescriptionsByKey();
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> GetTransmitterTypeDescriptionsByKey()
+		{
+			return this._Imports.OutputTransmitters.GetTypeDescriptionsByKey();
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> GetTransportTypeDescriptionsByKey()
+		{
+			return this._Imports.Transports.GetTypeDescriptionsByKey();
 		}
 
 		#endregion

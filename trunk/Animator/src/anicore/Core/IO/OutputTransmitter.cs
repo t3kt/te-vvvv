@@ -4,16 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
-using Animator.Core.IO;
 using Animator.Core.Model;
-using Animator.Core.Runtime;
-using TESharedAnnotations;
-
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), typeof(OutputTransmitter.NullTransmitter))]
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "trace", typeof(OutputTransmitter.TraceTransmitter))]
 
 namespace Animator.Core.IO
 {
@@ -25,8 +18,7 @@ namespace Animator.Core.IO
 
 		#region NullTransmitter
 
-		[Description("No Transmitter")]
-		[OutputTransmitter(Key = "null")]
+		[OutputTransmitter(Key = "null", Description = "No Transmitter")]
 		internal sealed class NullTransmitter : OutputTransmitter
 		{
 
@@ -61,8 +53,7 @@ namespace Animator.Core.IO
 
 		#region TraceTransmitter
 
-		[Description("Debug Trace Transmitter")]
-		[OutputTransmitter(Key = "trace")]
+		[OutputTransmitter(Key = "trace", Description = "Debug Trace Transmitter")]
 		internal sealed class TraceTransmitter : OutputTransmitter
 		{
 
@@ -113,34 +104,6 @@ namespace Animator.Core.IO
 		#endregion
 
 		#region Static / Constant
-
-		private static readonly ImplementationRegistry<IOutputTransmitter> _TypeRegistry;
-
-		public static IImplementationRegistry TypeRegistry
-		{
-			get { return _TypeRegistry; }
-		}
-
-		static OutputTransmitter()
-		{
-			_TypeRegistry = new ImplementationRegistry<IOutputTransmitter>();
-			_TypeRegistry.SetDefault(typeof(NullTransmitter));
-			TypeRegistry.RegisterTypes(typeof(OutputTransmitter).Assembly);
-		}
-
-		[NotNull]
-		internal static IOutputTransmitter CreateTransmitter([NotNull] Output outputModel)
-		{
-			Require.ArgNotNull(outputModel, "outputModel");
-			var transmitter = _TypeRegistry.CreateImplementation(outputModel.OutputType) ?? new NullTransmitter();
-			transmitter.Initialize(outputModel);
-			return transmitter;
-		}
-
-		internal static bool IsNullTransmitter([CanBeNull]IOutputTransmitter transmitter)
-		{
-			return transmitter == null || transmitter is NullTransmitter;
-		}
 
 		#endregion
 

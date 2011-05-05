@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
 using Animator.Core.Transport;
-using Animator.Tests.Utils;
-
-[assembly: RegisteredImplementation(typeof(ITransport), "dummy", typeof(DummyTransport))]
 
 namespace Animator.Tests.Utils
 {

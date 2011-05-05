@@ -6,18 +6,14 @@ using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
-using Animator.Core.Runtime;
-using Animator.Osc;
 using VVVV.Utils.OSC;
-
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "osc", typeof(OscTransmitter))]
 
 namespace Animator.Osc
 {
 
 	#region OscTransmitter
 
-	[OutputTransmitter(Key = "osc")]
+	[OutputTransmitter(Key = "osc", Description = "OSC Transport")]
 	public class OscTransmitter : OutputTransmitter
 	{
 

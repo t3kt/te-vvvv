@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
-using Animator.Core.Runtime;
-using Animator.Core.Transport;
-using Animator.Tests;
 using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.callback", typeof(CallbackTransmitter))]
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.mtracker", typeof(RuntimeUnitTest.ModelTrackerTransmitter))]
-[assembly: RegisteredImplementation(typeof(IOutputTransmitter), "test.collector", typeof(CollectorTransmitter))]
 
 namespace Animator.Tests
 {
@@ -30,15 +21,9 @@ namespace Animator.Tests
 	public class RuntimeUnitTest
 	{
 
-		[ClassInitialize]
-		public static void RegOutputTypes(TestContext testContext)
-		{
-			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(RuntimeUnitTest).Assembly);
-		}
-
 		#region ModelTrackerTransmitter
 
-		[OutputTransmitter(Key = "modeltracker")]
+		[OutputTransmitter(Key = "test.mtracker")]
 		internal sealed class ModelTrackerTransmitter : OutputTransmitter
 		{
 
@@ -62,7 +47,8 @@ namespace Animator.Tests
 		[TestCategory("Runtime.Model")]
 		public void RTDocumentGetTransmitter()
 		{
-			var doc = new Document();
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var doc = new Document(host);
 			var outputA = new Output
 						  {
 							  OutputType = "test.mtracker"
@@ -144,7 +130,8 @@ namespace Animator.Tests
 		[TestCategory("Runtime.Model")]
 		public void RTDocumentPostStepClipValue()
 		{
-			var doc = new Document();
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var doc = new Document(host);
 			var output = new Output
 			{
 				Name = "collector_output",

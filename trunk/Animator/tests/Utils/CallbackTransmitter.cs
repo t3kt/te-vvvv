@@ -10,7 +10,7 @@ namespace Animator.Tests.Utils
 
 	#region CallbackTransmitter
 
-	[OutputTransmitter(Key = "callback")]
+	[OutputTransmitter(Key = "test.callback")]
 	internal sealed class CallbackTransmitter : OutputTransmitter
 	{
 

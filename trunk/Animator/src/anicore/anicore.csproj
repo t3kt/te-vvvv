@@ -67,8 +67,6 @@
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Composition\Clip.cs" />
-    <Compile Include="Core\Composition\ImportManager.cs" />
-    <Compile Include="Core\Composition\KeyedExport.cs" />
     <Compile Include="Core\Composition\OutputTransmitter.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
@@ -86,7 +84,6 @@
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
-    <Compile Include="Core\Runtime\ImplementationRegistry.cs" />
     <Compile Include="Core\Transport\ManualTransport.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />

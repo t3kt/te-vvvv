@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Osc;
@@ -10,17 +11,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
 {
+	// ReSharper disable RedundantArgumentName
 	[TestClass]
 	public class OscUnitTest
 	{
-
-		public TestContext TestContext { get; set; }
 
 		[TestMethod]
 		[TestCategory("OSC")]
 		public void CreateTransmitter()
 		{
-			OutputTransmitter.TypeRegistry.RegisterTypes(typeof(OscTransmitter).Assembly);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, osc: true, loadImports: true);
 			var model =
 				new Output(Guid.NewGuid())
 				{
@@ -32,10 +32,11 @@ namespace Animator.Tests
 							{"port", "9000"}
 						}
 				};
-			using(var transmitter = OutputTransmitter.CreateTransmitter(model))
+			using(var transmitter = host.CreateTransmitter(model))
 			{
 				Assert.IsInstanceOfType(transmitter, typeof(OscTransmitter));
 			}
 		}
 	}
+	// ReSharper restore RedundantArgumentName
 }

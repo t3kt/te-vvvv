@@ -116,16 +116,6 @@ namespace Animator.Common
 			}
 		}
 
-		[CanBeNull]
-		internal static string GetDescription([NotNull]this ICustomAttributeProvider target)
-		{
-			Require.ArgNotNull(target, "target");
-			var attrs = (DescriptionAttribute[])target.GetCustomAttributes(typeof(DescriptionAttribute), false);
-			if(attrs.Length == 0)
-				return null;
-			return attrs[0].Description;
-		}
-
 	}
 
 	#endregion

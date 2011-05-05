@@ -3,12 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
-using Animator.Core.Transport;
-using TESharedAnnotations;
-
-[assembly: RegisteredImplementation(typeof(ITransport), typeof(Transport.NullTransport))]
-[assembly: RegisteredImplementation(typeof(ITransport), "null", typeof(Transport.NullTransport))]
 
 namespace Animator.Core.Transport
 {
@@ -20,7 +14,7 @@ namespace Animator.Core.Transport
 
 		#region NullTransport
 
-		[Transport(Key = "null")]
+		[Transport(Key = "null", Description = "No Transport")]
 		internal sealed class NullTransport : ITransport
 		{
 
@@ -86,33 +80,6 @@ namespace Animator.Core.Transport
 		#endregion
 
 		#region Static / Constant
-
-		private static readonly ImplementationRegistry<ITransport> _TypeRegistry;
-
-		public static IImplementationRegistry TypeRegistry
-		{
-			get { return _TypeRegistry; }
-		}
-
-		static Transport()
-		{
-			_TypeRegistry = new ImplementationRegistry<ITransport>();
-			_TypeRegistry.SetDefault(typeof(NullTransport));
-			_TypeRegistry.RegisterTypes(typeof(Transport).Assembly);
-		}
-
-		[NotNull]
-		internal static ITransport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
-		{
-			var transport = _TypeRegistry.CreateImplementation(transportType) ?? new NullTransport();
-			transport.SetParameters(parameters);
-			return transport;
-		}
-
-		internal static bool IsNullTransport([CanBeNull]ITransport transport)
-		{
-			return transport == null || transport is NullTransport;
-		}
 
 		#endregion
 

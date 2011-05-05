@@ -175,6 +175,8 @@ namespace Animator.Core.Model
 
 		private Dictionary<Guid, IOutputTransmitter> _Transmitters;
 
+		private AniHost _Host;
+
 		#endregion
 
 		#region Properties
@@ -340,17 +342,24 @@ namespace Animator.Core.Model
 			get { return this._Transport ?? _DefaultTransport; }
 		}
 
+		internal AniHost Host
+		{
+			get { return this._Host ?? AniHost.Current; }
+			set { this._Host = value; }
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public Document()
-			: this(Guid.NewGuid())
+		public Document([CanBeNull] AniHost host = null)
+			: this(Guid.NewGuid(), host)
 		{
 		}
 
-		public Document(Guid id)
+		public Document(Guid id, [CanBeNull] AniHost host = null)
 		{
+			this._Host = host;
 			this._Id = id;
 			this._TransportData = new TransportData();
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
@@ -358,6 +367,7 @@ namespace Animator.Core.Model
 
 		public Document([NotNull] XElement element, [CanBeNull] AniHost host = null)
 		{
+			this._Host = host;
 			this._TransportData = new TransportData();
 			this.ReadXElement(element, host);
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
@@ -373,7 +383,7 @@ namespace Animator.Core.Model
 			var d = this._Transport as IDisposable;
 			if(d != null)
 				d.Dispose();
-			this._Transport = Core.Transport.Transport.CreateTransport(this._TransportData.TransportType, this._TransportData.Parameters);
+			this._Transport = this.Host.CreateTransport(this._TransportData.TransportType, this._TransportData.Parameters);
 		}
 
 		private void TransportData_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -509,7 +519,7 @@ namespace Animator.Core.Model
 			var output = this.GetOutput(id);
 			if(output != null)
 			{
-				transmitter = OutputTransmitter.CreateTransmitter(output);
+				transmitter = this.Host.CreateTransmitter(output);
 				this._Transmitters.Add(id, transmitter);
 				return transmitter;
 			}

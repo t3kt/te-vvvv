@@ -3,17 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
-using Animator.Core.Transport;
-
-[assembly: RegisteredImplementation(typeof(ITransport), "manual", typeof(ManualTransport))]
 
 namespace Animator.Core.Transport
 {
 
 	#region ManualTransport
 
-	[Transport(Key = "manual")]
+	[Transport(Key = "manual", Description = "Manual Transport")]
 	public sealed class ManualTransport : Transport
 	{
 
