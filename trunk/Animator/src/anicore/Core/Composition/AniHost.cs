@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using TESharedAnnotations;
 
@@ -35,6 +36,9 @@ namespace Animator.Core.Composition
 
 			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
 			public IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters { get; set; }
+
+			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
+			public IEnumerable<Lazy<IClipDataEditor, IClipDataEditorMetadata>> ClipDataEditors { get; set; }
 
 		}
 
@@ -139,16 +143,19 @@ namespace Animator.Core.Composition
 			return clip;
 		}
 
+		[NotNull]
 		public Clip CreateClipByKey(string key)
 		{
 			return this._Imports.Clips.CreateByKey(key, () => new Clip());
 		}
 
+		[NotNull]
 		public ITransport CreateTransportByKey(string key)
 		{
 			return this._Imports.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
 		}
 
+		[NotNull]
 		public IOutputTransmitter CreateTransmitterByKey(string key)
 		{
 			return this._Imports.OutputTransmitters.CreateByKey(key, () => new OutputTransmitter.NullTransmitter());
@@ -171,6 +178,33 @@ namespace Animator.Core.Composition
 			Debug.Assert(transport != null);
 			transport.SetParameters(parameters);
 			return transport;
+		}
+
+		[CanBeNull]
+		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType)
+		{
+			return clipType == null ? null : this._Imports.ClipDataEditors.CreateByPredicate(i => i.ClipType == clipType);
+		}
+
+		[CanBeNull]
+		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType, out bool reusable)
+		{
+			if(clipType != null)
+			{
+				if(this._Imports.ClipDataEditors != null)
+				{
+					foreach(var import in this._Imports.ClipDataEditors)
+					{
+						if(import.Metadata.ClipType == clipType)
+						{
+							reusable = import.Metadata.Reusable;
+							return import.Value;
+						}
+					}
+				}
+			}
+			reusable = false;
+			return null;
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetClipTypeDescriptionsByKey()

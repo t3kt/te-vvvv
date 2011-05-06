@@ -30,7 +30,7 @@ namespace Animator.Tests
 	public class CompositionUnitTest
 	{
 
-		internal static AniHost CreateHost(bool test = true, bool core = false, bool osc = false, bool loadImports = false)
+		internal static AniHost CreateHost(bool test = true, bool core = false, bool osc = false, bool app = false, bool loadImports = false)
 		{
 			var host = new AniHost();
 			if(test)
@@ -39,6 +39,8 @@ namespace Animator.Tests
 				host.LoadCoreAssembly();
 			if(osc)
 				host.LoadAssembly(typeof(OscTransmitter).Assembly);
+			if(app)
+				host.LoadAssembly(typeof(AniApplication).Assembly);
 			if(loadImports)
 				host.LoadImports();
 			return host;

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using Animator.Core.Composition;
+using Animator.Core.Model;
 using Animator.Core.Runtime;
 
 namespace Animator.UI.Editors
@@ -13,7 +14,7 @@ namespace Animator.UI.Editors
 	/// <summary>
 	/// Interaction logic for StepListEditor.xaml
 	/// </summary>
-	[Export(typeof(IClipDataEditor))]
+	[ClipDataEditorType(ClipType = typeof(StepClip), Reusable = true, Key = "steplisteditor")]
 	public partial class StepListEditor : IClipDataEditor
 	{
 

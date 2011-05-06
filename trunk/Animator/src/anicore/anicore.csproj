@@ -67,6 +67,7 @@
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Composition\Clip.cs" />
+    <Compile Include="Core\Composition\ClipDataEditor.cs" />
     <Compile Include="Core\Composition\OutputTransmitter.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />

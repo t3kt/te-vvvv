@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
 namespace Animator.Core.Composition
@@ -67,7 +68,6 @@ namespace Animator.Core.Composition
 		internal static readonly StringComparer KeyComparer = StringComparer.OrdinalIgnoreCase;
 		internal static readonly StringComparer ElementNameComparer = StringComparer.Ordinal;
 
-		[CanBeNull]
 		internal static T CreateByKey<T, TMetadata>([CanBeNull] this IEnumerable<Lazy<T, TMetadata>> imports, [CanBeNull] string key, [CanBeNull] Func<T> defaultFactory = null)
 			where T : class
 			where TMetadata : IAniExportMetadata
@@ -85,7 +85,6 @@ namespace Animator.Core.Composition
 			return null;
 		}
 
-		[CanBeNull]
 		internal static T CreateByElementName<T, TMetadata>([CanBeNull] this IEnumerable<Lazy<T, TMetadata>> imports, [CanBeNull] string elementName, [CanBeNull] Func<T> defaultFactory = null)
 			where T : class
 			where TMetadata : IAniExportMetadata
@@ -95,6 +94,24 @@ namespace Animator.Core.Composition
 				foreach(var import in imports)
 				{
 					if(ElementNameComparer.Equals(import.Metadata.ElementName, elementName))
+						return import.Value;
+				}
+			}
+			if(defaultFactory != null)
+				return defaultFactory();
+			return null;
+		}
+
+		[CanBeNull]
+		internal static T CreateByPredicate<T, TMetadata>([CanBeNull]this IEnumerable<Lazy<T, TMetadata>> imports, [NotNull]Func<TMetadata, bool> predicate, [CanBeNull] Func<T> defaultFactory = null)
+			  where T : class
+		{
+			Require.ArgNotNull(predicate, "predicate");
+			if(imports != null)
+			{
+				foreach(var import in imports)
+				{
+					if(predicate(import.Metadata))
 						return import.Value;
 				}
 			}
