@@ -86,7 +86,10 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public StepClip() { }
+		public StepClip()
+		{
+			this.Steps = new ObservableCollection<float> { 0.0f, 0.0f, 0.0f, 0.0f };
+		}
 
 		public StepClip(Guid id)
 			: base(id) { }

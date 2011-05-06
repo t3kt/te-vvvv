@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.AppCore;
+using Animator.Core.Composition;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,6 +21,7 @@ namespace Animator.Tests.AniApp
 	// ReSharper disable ClassCanBeSealed.Local
 	// ReSharper disable FieldCanBeMadeReadOnly.Local
 	// ReSharper disable JoinDeclarationAndInitializer
+	// ReSharper disable RedundantArgumentName
 
 	[TestClass]
 	public class ClipDataEditorsUnitTest
@@ -27,12 +29,10 @@ namespace Animator.Tests.AniApp
 
 		#region DummyClip
 
-		[ClipDataEditor(typeof(DummyClipDataEditor))]
 		internal class DummyClipReusable : Clip
 		{
 		}
 
-		[ClipDataEditor(typeof(DummyClipDataEditor), IsReusable = false)]
 		internal class DummyClipNotReusable : Clip
 		{
 		}
@@ -41,8 +41,16 @@ namespace Animator.Tests.AniApp
 
 		#region DummyClipDataEditor
 
-		[Export(typeof(IClipDataEditor))]
-		internal class DummyClipDataEditor : IClipDataEditor
+		[ClipDataEditorType(ClipType = typeof(DummyClipNotReusable))]
+		internal class DummyClipDataEditorNotReusable : IClipDataEditor
+		{
+
+			public Clip Clip { get; set; }
+
+		}
+
+		[ClipDataEditorType(ClipType = typeof(DummyClipReusable), Reusable = true)]
+		internal class DummyClipDataEditorReusable : IClipDataEditor
 		{
 
 			public Clip Clip { get; set; }
@@ -53,58 +61,32 @@ namespace Animator.Tests.AniApp
 
 		[TestMethod]
 		[TestCategory("ClipDataEditors")]
-		public void AppGetEditorTypeTest()
+		public void AppGetEditorTest()
 		{
-			Assert.IsNull(ClipDataEditors.GetEditorType(null));
-			Assert.IsNull(ClipDataEditors.GetEditorType(typeof(Clip)));
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, app: true, loadImports: true);
+			Assert.IsNull(host.CreateClipDataEditor(null));
+			Assert.IsNull(host.CreateClipDataEditor(typeof(Clip)));
 
 			bool stepEditorIsReusable;
-			Type stepEditorType;
-			stepEditorType = ClipDataEditors.GetEditorType(typeof(StepClip), out stepEditorIsReusable);
-			Assert.AreEqual(typeof(UI.Editors.StepListEditor), stepEditorType);
-			Assert.IsTrue(stepEditorIsReusable);
-			stepEditorType = ClipDataEditors.GetEditorType(typeof(StepClip), out stepEditorIsReusable);
-			Assert.AreEqual(typeof(UI.Editors.StepListEditor), stepEditorType);
+			var stepEditor = host.CreateClipDataEditor(typeof(StepClip), out stepEditorIsReusable);
+			Assert.IsNotNull(stepEditor);
+			Assert.IsInstanceOfType(stepEditor, typeof(UI.Editors.StepListEditor));
 			Assert.IsTrue(stepEditorIsReusable);
 
 			bool dummy1Reusable;
-			Type dummy1Type = ClipDataEditors.GetEditorType(typeof(DummyClipReusable), out dummy1Reusable);
-			Assert.AreEqual(typeof(DummyClipDataEditor), dummy1Type);
+			var dummy1Editor = host.CreateClipDataEditor(typeof(DummyClipReusable), out dummy1Reusable);
+			Assert.IsInstanceOfType(dummy1Editor, typeof(DummyClipDataEditorReusable));
 			Assert.IsTrue(dummy1Reusable);
 
 			bool dummy2Reusable;
-			Type dummy2Type = ClipDataEditors.GetEditorType(typeof(DummyClipNotReusable), out dummy2Reusable);
-			Assert.AreEqual(typeof(DummyClipDataEditor), dummy2Type);
+			var dummy2Editor = host.CreateClipDataEditor(typeof(DummyClipNotReusable), out dummy2Reusable);
+			Assert.IsInstanceOfType(dummy2Editor, typeof(DummyClipDataEditorNotReusable));
 			Assert.IsFalse(dummy2Reusable);
-		}
-
-		[TestMethod]
-		[TestCategory("ClipDataEditors")]
-		public void AppGetEditorTest()
-		{
-			Assert.IsNull(ClipDataEditors.GetEditor(null));
-			Assert.IsNull(ClipDataEditors.GetEditor(typeof(Clip)));
-
-			var stepEditor = ClipDataEditors.GetEditor(typeof(StepClip));
-			Assert.IsNotNull(stepEditor);
-			Assert.IsInstanceOfType(stepEditor, typeof(UI.Editors.StepListEditor));
-			Assert.AreSame(stepEditor, ClipDataEditors.GetEditor(typeof(StepClip)));
-
-			var dummyEditor1a = ClipDataEditors.GetEditor(typeof(DummyClipReusable));
-			Assert.IsInstanceOfType(dummyEditor1a, typeof(DummyClipDataEditor));
-			var dummyEditor1b = ClipDataEditors.GetEditor(typeof(DummyClipReusable));
-			Assert.IsInstanceOfType(dummyEditor1b, typeof(DummyClipDataEditor));
-			Assert.AreSame(dummyEditor1a, dummyEditor1b);
-
-			var dummyEditor2a = ClipDataEditors.GetEditor(typeof(DummyClipNotReusable));
-			Assert.IsInstanceOfType(dummyEditor2a, typeof(DummyClipDataEditor));
-			var dummyEditor2b = ClipDataEditors.GetEditor(typeof(DummyClipNotReusable));
-			Assert.IsInstanceOfType(dummyEditor2b, typeof(DummyClipDataEditor));
-			Assert.AreNotSame(dummyEditor2a, dummyEditor2b);
 		}
 
 	}
 
+	// ReSharper restore RedundantArgumentName
 	// ReSharper restore JoinDeclarationAndInitializer
 	// ReSharper restore FieldCanBeMadeReadOnly.Local
 	// ReSharper restore ClassCanBeSealed.Local
