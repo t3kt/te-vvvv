@@ -78,6 +78,7 @@
     <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="AppCore\PropertyChangeAppAction.cs" />
     <Compile Include="AppCore\RecentFileManager.cs" />
+    <Compile Include="AppCore\TargetPropertyChangedEvent.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
@@ -94,6 +95,10 @@
     </Compile>
     <Compile Include="UI\Dialogs\TransportPropertiesDialog.xaml.cs">
       <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\PropertyEditor.cs" />
+    <Compile Include="UI\Editors\DocumentPropertyEditor.xaml.cs">
+      <DependentUpon>DocumentPropertyEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Editors\StepListEditor.xaml.cs">
       <DependentUpon>StepListEditor.xaml</DependentUpon>
@@ -170,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\TransportPropertiesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Editors\DocumentPropertyEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
