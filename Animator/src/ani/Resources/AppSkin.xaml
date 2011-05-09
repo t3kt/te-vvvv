@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Panes="clr-namespace:Animator.UI.Panes">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Panes="clr-namespace:Animator.UI.Panes" xmlns:appCore="clr-namespace:Animator.AppCore">
 	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+	<appCore:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#4B698C"/>
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
 	<SolidColorBrush x:Key="CellBorderBrush" Color="#707070"/>

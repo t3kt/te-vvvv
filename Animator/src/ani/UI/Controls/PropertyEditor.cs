@@ -5,14 +5,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Animator.AppCore;
+using Animator.Core.Runtime;
 
 namespace Animator.UI.Controls
 {
 
 	#region PropertyEditor
 
-	public class PropertyEditor : UserControl
+	public class PropertyEditor : UserControl, IPropertyEditor
 	{
 
 		#region Static / Constant
@@ -23,10 +23,8 @@ namespace Animator.UI.Controls
 		public static readonly DependencyProperty AutoCommitProperty = DependencyProperty.Register("AutoCommit", typeof(bool),
 			typeof(PropertyEditor), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits, OnAutoCommitChanged));
 
-		private static readonly DependencyPropertyKey DirtyPropertyKey = DependencyProperty.RegisterReadOnly("Dirty", typeof(bool),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
-
-		public static readonly DependencyProperty DirtyProperty = DirtyPropertyKey.DependencyProperty;
+		public static readonly DependencyProperty DirtyProperty = DependencyProperty.Register("Dirty", typeof(bool),
+			typeof(PropertyEditor), new FrameworkPropertyMetadata(false));
 
 		public static readonly DependencyProperty BasicsVisibilityProperty = DependencyProperty.Register("BasicsVisibility", typeof(Visibility),
 			typeof(PropertyEditor), new FrameworkPropertyMetadata(Visibility.Visible));
@@ -76,7 +74,7 @@ namespace Animator.UI.Controls
 		public bool Dirty
 		{
 			get { return (bool)this.GetValue(DirtyProperty); }
-			private set { this.SetValue(DirtyPropertyKey, value); }
+			set { this.SetValue(DirtyProperty, value); }
 		}
 
 		public Visibility BasicsVisibility

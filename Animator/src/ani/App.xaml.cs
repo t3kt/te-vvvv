@@ -100,10 +100,7 @@ namespace Animator
 #warning TODO: find a better way of ensuring that the aniosc assembly is loaded...
 			assemblies.Add(typeof(OscTransmitter).Assembly);
 			foreach(var assembly in assemblies.Distinct())
-			{
 				this._Host.LoadAssembly(assembly);
-			}
-			this._Host.LoadImports();
 		}
 
 		#endregion

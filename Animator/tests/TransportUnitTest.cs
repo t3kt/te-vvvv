@@ -71,7 +71,7 @@ namespace Animator.Tests
 		[TestCategory("Transport")]
 		public void DocumentTransportTypesTest()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
 			Assert.IsInstanceOfType(doc.Transport, typeof(Transport.NullTransport));
 			doc.TransportType = "dummy";

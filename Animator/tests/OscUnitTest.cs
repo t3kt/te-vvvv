@@ -20,7 +20,7 @@ namespace Animator.Tests
 		[TestCategory("OSC")]
 		public void CreateTransmitter()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, osc: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, osc: true);
 			var model =
 				new Output(Guid.NewGuid())
 				{

@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Sanford.Collections">
       <HintPath>..\..\lib\Sanford.Collections.dll</HintPath>
@@ -69,6 +70,7 @@
     <Compile Include="Core\Composition\Clip.cs" />
     <Compile Include="Core\Composition\ClipDataEditor.cs" />
     <Compile Include="Core\Composition\OutputTransmitter.cs" />
+    <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
+    <Compile Include="Core\Runtime\IPropertyEditor.cs" />
+    <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
     <Compile Include="Core\Transport\ManualTransport.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />

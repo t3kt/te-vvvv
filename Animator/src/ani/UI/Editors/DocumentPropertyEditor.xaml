@@ -1,9 +1,9 @@
-﻿<Controls:PropertyEditor x:Class="Animator.UI.Editors.DocumentPropertyEditor"
+﻿<ctl:PropertyEditor x:Class="Animator.UI.Editors.DocumentPropertyEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Controls="clr-namespace:Animator.UI.Controls" xmlns:Editors="clr-namespace:Animator.UI.Editors" mc:Ignorable="d" 
-             MinWidth="150" Style="{StaticResource PaneUserControlStyle}">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ctl="clr-namespace:Animator.UI.Controls" xmlns:editor="clr-namespace:Animator.UI.Editors" mc:Ignorable="d" 
+             MinWidth="150">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
@@ -15,10 +15,10 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Name:" />
-		<TextBox Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Editors:DocumentPropertyEditor}}, Path=TargetName}"/>
+		<TextBox Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetName}"/>
 		<Label Grid.Row="1" Content="Rows:" />
-		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Editors:DocumentPropertyEditor}}, Path=TargetUIRows}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetUIRows}"/>
 		<Label Grid.Row="2" Content="Columns:" />
-		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Editors:DocumentPropertyEditor}}, Path=TargetUIColumns}"/>
+		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetUIColumns}"/>
 	</Grid>
-</Controls:PropertyEditor>
+</ctl:PropertyEditor>
