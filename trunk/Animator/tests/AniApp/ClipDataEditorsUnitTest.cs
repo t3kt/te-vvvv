@@ -63,7 +63,7 @@ namespace Animator.Tests.AniApp
 		[TestCategory("ClipDataEditors")]
 		public void AppGetEditorTest()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, app: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true, app: true);
 			Assert.IsNull(host.CreateClipDataEditor(null));
 			Assert.IsNull(host.CreateClipDataEditor(typeof(Clip)));
 

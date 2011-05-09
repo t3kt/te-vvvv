@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Animator.Core.Composition;
 using Animator.Core.Model;
 
 namespace Animator.UI.Editors
@@ -13,6 +15,8 @@ namespace Animator.UI.Editors
 	/// <summary>
 	/// Interaction logic for DocumentPropertyEditor.xaml
 	/// </summary>
+	[PropertyEditor(Description = "Document Property Editor", Key = "basic", TargetType = typeof(Document))]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public partial class DocumentPropertyEditor
 	{
 

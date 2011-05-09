@@ -1,0 +1,12 @@
+<Window x:Class="Animator.UI.Dialogs.PropertyEditorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PropertyEditorDialog" xmlns:dlg="clr-namespace:Animator.UI.Dialogs" SizeToContent="WidthAndHeight">
+	<StackPanel>
+		<ContentControl Content="{Binding Path=Editor, RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:PropertyEditorDialog}}"></ContentControl>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,4,0,0">
+			<Button Content="_OK" Width="60" IsDefault="True" x:Name="okButton" Click="okButton_Click" Margin="2" />
+			<Button Content="_Cancel" Width="60" IsCancel="True" x:Name="cancelButton" Click="cancelButton_Click" Margin="2" IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:PropertyEditorDialog, AncestorLevel=1}, Path=AutoCommit, Converter={StaticResource BooleanNegationConverter}}" />
+		</StackPanel>
+	</StackPanel>
+</Window>

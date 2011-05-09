@@ -23,27 +23,6 @@ namespace Animator.Core.Composition
 	public sealed class AniHost
 	{
 
-		#region ImportSet
-
-		internal sealed class ImportSet
-		{
-
-			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<Clip, IAniExportMetadata>> Clips { get; set; }
-
-			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<ITransport, IAniExportMetadata>> Transports { get; set; }
-
-			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters { get; set; }
-
-			[ImportMany(AllowRecomposition = true, RequiredCreationPolicy = CreationPolicy.NonShared)]
-			public IEnumerable<Lazy<IClipDataEditor, IClipDataEditorMetadata>> ClipDataEditors { get; set; }
-
-		}
-
-		#endregion
-
 		#region Static / Constant
 
 		private static AniHost _Current;
@@ -64,7 +43,6 @@ namespace Animator.Core.Composition
 
 		private readonly AggregateCatalog _Catalog;
 		private readonly CompositionContainer _Container;
-		private readonly ImportSet _Imports;
 
 		#endregion
 
@@ -80,9 +58,29 @@ namespace Animator.Core.Composition
 			get { return this._Container; }
 		}
 
-		internal ImportSet Imports
+		internal IEnumerable<Lazy<Clip, IAniExportMetadata>> Clips
 		{
-			get { return this._Imports; }
+			get { return this._Container.GetExports<Clip, IAniExportMetadata>(); }
+		}
+
+		internal IEnumerable<Lazy<ITransport, IAniExportMetadata>> Transports
+		{
+			get { return this._Container.GetExports<ITransport, IAniExportMetadata>(); }
+		}
+
+		internal IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters
+		{
+			get { return this._Container.GetExports<IOutputTransmitter, IAniExportMetadata>(); }
+		}
+
+		internal IEnumerable<Lazy<IClipDataEditor, IClipDataEditorMetadata>> ClipDataEditors
+		{
+			get { return this._Container.GetExports<IClipDataEditor, IClipDataEditorMetadata>(); }
+		}
+
+		internal IEnumerable<Lazy<IPropertyEditor, IPropertyEditorMetadata>> PropertyEditors
+		{
+			get { return this._Container.GetExports<IPropertyEditor, IPropertyEditorMetadata>(); }
 		}
 
 		#endregion
@@ -93,19 +91,12 @@ namespace Animator.Core.Composition
 		{
 			this._Catalog = new AggregateCatalog();
 			this._Container = new CompositionContainer(this._Catalog, true);
-			this._Imports = new ImportSet();
+			Interlocked.CompareExchange(ref _Current, this, null);
 		}
 
 		#endregion
 
 		#region Methods
-
-		public void LoadImports()
-		{
-			foreach(var catalog in this._Catalog.Catalogs.OfType<DirectoryCatalog>())
-				catalog.Refresh();
-			this._Container.ComposeParts(this._Imports);
-		}
 
 		public void LoadDirectory(string path, string searchPattern = "*.dll")
 		{
@@ -130,7 +121,7 @@ namespace Animator.Core.Composition
 
 		internal Clip CreateClipByElementName(string elementName)
 		{
-			return this._Imports.Clips.CreateByElementName(elementName, () => new Clip());
+			return this.Clips.CreateByElementName(elementName, () => new Clip());
 		}
 
 		[NotNull]
@@ -146,19 +137,25 @@ namespace Animator.Core.Composition
 		[NotNull]
 		public Clip CreateClipByKey(string key)
 		{
-			return this._Imports.Clips.CreateByKey(key, () => new Clip());
+			return this.Clips.CreateByKey(key, () => new Clip());
 		}
 
 		[NotNull]
 		public ITransport CreateTransportByKey(string key)
 		{
-			return this._Imports.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
+			return this.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
 		}
 
 		[NotNull]
 		public IOutputTransmitter CreateTransmitterByKey(string key)
 		{
-			return this._Imports.OutputTransmitters.CreateByKey(key, () => new OutputTransmitter.NullTransmitter());
+			return this.OutputTransmitters.CreateByKey(key, () => new OutputTransmitter.NullTransmitter());
+		}
+
+		[CanBeNull]
+		public IPropertyEditor CreatePropertyEditorByKey(string key)
+		{
+			return this.PropertyEditors.CreateByKey(key);
 		}
 
 		[NotNull]
@@ -183,23 +180,20 @@ namespace Animator.Core.Composition
 		[CanBeNull]
 		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType)
 		{
-			return clipType == null ? null : this._Imports.ClipDataEditors.CreateByPredicate(i => i.ClipType == clipType);
+			return clipType == null ? null : this.ClipDataEditors.CreateByPredicate(i => i.ClipType == clipType);
 		}
 
 		[CanBeNull]
 		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType, out bool reusable)
 		{
-			if(clipType != null)
+			if(clipType != null && this.ClipDataEditors != null)
 			{
-				if(this._Imports.ClipDataEditors != null)
+				foreach(var import in this.ClipDataEditors)
 				{
-					foreach(var import in this._Imports.ClipDataEditors)
+					if(import.Metadata.ClipType == clipType)
 					{
-						if(import.Metadata.ClipType == clipType)
-						{
-							reusable = import.Metadata.Reusable;
-							return import.Value;
-						}
+						reusable = import.Metadata.Reusable;
+						return import.Value;
 					}
 				}
 			}
@@ -207,19 +201,34 @@ namespace Animator.Core.Composition
 			return null;
 		}
 
+		[CanBeNull]
+		public IPropertyEditor CreatePropertyEditor([CanBeNull]Type targetType, [CanBeNull]string key = null)
+		{
+			if(targetType != null && this.PropertyEditors != null)
+			{
+				foreach(var import in this.PropertyEditors)
+				{
+					if(import.Metadata.TargetType == targetType &&
+						(key == null || AniExportUtil.KeyComparer.Equals(import.Metadata.Key, key)))
+						return import.Value;
+				}
+			}
+			return null;
+		}
+
 		public IEnumerable<KeyValuePair<string, string>> GetClipTypeDescriptionsByKey()
 		{
-			return this._Imports.Clips.GetTypeDescriptionsByKey();
+			return this.Clips.GetTypeDescriptionsByKey();
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetTransmitterTypeDescriptionsByKey()
 		{
-			return this._Imports.OutputTransmitters.GetTypeDescriptionsByKey();
+			return this.OutputTransmitters.GetTypeDescriptionsByKey();
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetTransportTypeDescriptionsByKey()
 		{
-			return this._Imports.Transports.GetTypeDescriptionsByKey();
+			return this.Transports.GetTypeDescriptionsByKey();
 		}
 
 		#endregion

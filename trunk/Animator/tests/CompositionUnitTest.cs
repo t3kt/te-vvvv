@@ -9,6 +9,7 @@ using Animator.Core.Model;
 using Animator.Core.Transport;
 using Animator.Osc;
 using Animator.Tests.Utils;
+using Animator.UI.Editors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
@@ -30,7 +31,7 @@ namespace Animator.Tests
 	public class CompositionUnitTest
 	{
 
-		internal static AniHost CreateHost(bool test = true, bool core = false, bool osc = false, bool app = false, bool loadImports = false)
+		internal static AniHost CreateHost(bool test = true, bool core = false, bool osc = false, bool app = false)
 		{
 			var host = new AniHost();
 			if(test)
@@ -41,8 +42,6 @@ namespace Animator.Tests
 				host.LoadAssembly(typeof(OscTransmitter).Assembly);
 			if(app)
 				host.LoadAssembly(typeof(AniApplication).Assembly);
-			if(loadImports)
-				host.LoadImports();
 			return host;
 		}
 
@@ -166,11 +165,10 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void LoadClipTypeImports()
 		{
-			var host = CreateHost(test: false, core: true, loadImports: true);
-			var imports = host.Imports;
-			Assert.IsNotNull(imports.Clips);
-			Assert.IsTrue(imports.Clips.Any());
-			Assert.IsTrue(imports.Clips.Any(x => x.Value is StepClip));
+			var host = CreateHost(test: false, core: true);
+			Assert.IsNotNull(host.Clips);
+			Assert.IsTrue(host.Clips.Any());
+			Assert.IsTrue(host.Clips.Any(x => x.Value is StepClip));
 		}
 
 		[TestMethod]
@@ -178,7 +176,6 @@ namespace Animator.Tests
 		public void GetClipByElementName()
 		{
 			var host = CreateHost(test: false, core: true);
-			host.LoadImports();
 			var clipA = host.CreateClipByElementName("clip");
 			Assert.IsInstanceOfType(clipA, typeof(Clip));
 			var clipB = host.CreateClipByElementName(null);
@@ -194,7 +191,6 @@ namespace Animator.Tests
 		public void GetClipByKey()
 		{
 			var host = CreateHost(test: false, core: true);
-			host.LoadImports();
 			Assert.IsInstanceOfType(host.CreateClipByKey("clip"), typeof(Clip));
 			Assert.IsInstanceOfType(host.CreateClipByKey(null), typeof(Clip));
 			Assert.IsInstanceOfType(host.CreateClipByKey(String.Empty), typeof(Clip));
@@ -205,7 +201,7 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void GetTransportByKey()
 		{
-			var host = CreateHost(test: true, core: true, loadImports: true);
+			var host = CreateHost(test: true, core: true);
 			Assert.IsInstanceOfType(host.CreateTransportByKey("null"), typeof(Transport.NullTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey(null), typeof(Transport.NullTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey(String.Empty), typeof(Transport.NullTransport));
@@ -218,7 +214,7 @@ namespace Animator.Tests
 		[TestCategory("Composition")]
 		public void GetOutputTransmitterByKey()
 		{
-			var host = CreateHost(test: true, core: true, osc: true, loadImports: true);
+			var host = CreateHost(test: true, core: true, osc: true);
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey("null"), typeof(OutputTransmitter.NullTransmitter));
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey(null), typeof(OutputTransmitter.NullTransmitter));
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey(String.Empty), typeof(OutputTransmitter.NullTransmitter));
@@ -226,6 +222,22 @@ namespace Animator.Tests
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey("test.callback"), typeof(CallbackTransmitter));
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey("trace"), typeof(OutputTransmitter.TraceTransmitter));
 			Assert.IsInstanceOfType(host.CreateTransmitterByKey("osc"), typeof(OscTransmitter));
+		}
+
+		[TestMethod]
+		[TestCategory("Composition")]
+		public void GetPropertyEditor()
+		{
+			var host = CreateHost(test: true, core: true, app: true);
+			Assert.IsNull(host.CreatePropertyEditorByKey("foo"));
+			Assert.IsNull(host.CreatePropertyEditorByKey(null));
+			Assert.IsInstanceOfType(host.CreatePropertyEditorByKey("thing"), typeof(RuntimeUnitTest.ThingEditor));
+			Assert.IsNull(host.CreatePropertyEditor(typeof(string)));
+			Assert.IsInstanceOfType(host.CreatePropertyEditor(typeof(RuntimeUnitTest.Thing)), typeof(RuntimeUnitTest.ThingEditor));
+			Assert.IsInstanceOfType(host.CreatePropertyEditor(typeof(Document), "basic"), typeof(DocumentPropertyEditor));
+			var a = host.CreatePropertyEditor(typeof(Document), "basic");
+			var b = host.CreatePropertyEditor(typeof(Document), "basic");
+			Assert.AreNotSame(a, b);
 		}
 
 	}

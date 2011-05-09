@@ -6,6 +6,7 @@ using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Runtime;
 using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -47,7 +48,7 @@ namespace Animator.Tests
 		[TestCategory("Runtime.Model")]
 		public void RTDocumentGetTransmitter()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
 			var outputA = new Output
 						  {
@@ -130,7 +131,7 @@ namespace Animator.Tests
 		[TestCategory("Runtime.Model")]
 		public void RTDocumentPostStepClipValue()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
 			var output = new Output
 			{
@@ -176,6 +177,71 @@ namespace Animator.Tests
 			Assert.AreEqual(1, collector.Messages.Count);
 			CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, OutputMessageComparer.Instance);
 		}
+
+		#region Thing
+
+		internal class Thing
+		{
+
+			public string Str { get; set; }
+
+		}
+
+		#endregion
+
+		#region ThingyEditor
+
+		[PropertyEditor(Key = "thing", TargetType = typeof(Thing))]
+		internal class ThingEditor : IPropertyEditor
+		{
+
+			#region Static/Constant
+
+			#endregion
+
+			#region Fields
+
+			#endregion
+
+			#region Properties
+
+			#endregion
+
+			#region Constructors
+
+			#endregion
+
+			#region Methods
+
+			#endregion
+
+			#region IPropertyEditor Members
+
+			public object Target { get; set; }
+
+			public bool AutoCommit { get; set; }
+
+			public bool Dirty { get; set; }
+
+			public System.Windows.Visibility BasicsVisibility { get; set; }
+
+			public System.Windows.Visibility DetailsVisibility { get; set; }
+
+			public event TargetPropertyChangedEventHandler TargetPropertyChanged;
+
+			public void Commit()
+			{
+			}
+
+			public void Reset()
+			{
+			}
+
+			#endregion
+
+		}
+
+		#endregion
 
 	}
 

@@ -69,6 +69,7 @@
     <Compile Include="AppCore\AppAction.cs" />
     <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="AppCore\BooleanNegationConverter.cs" />
     <Compile Include="AppCore\ClipDataEditors.cs" />
     <Compile Include="AppCore\Common\DoubleLinkedStack.cs" />
     <Compile Include="AppCore\Common\LimitedStack.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="AppCore\IAppAction.cs" />
     <Compile Include="AppCore\PropertyChangeAppAction.cs" />
     <Compile Include="AppCore\RecentFileManager.cs" />
-    <Compile Include="AppCore\TargetPropertyChangedEvent.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
@@ -89,6 +89,9 @@
     </Compile>
     <Compile Include="UI\Dialogs\AddOutputDialog.xaml.cs">
       <DependentUpon>AddOutputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\PropertyEditorDialog.xaml.cs">
+      <DependentUpon>PropertyEditorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dialogs\TrackPropertiesWindow.xaml.cs">
       <DependentUpon>TrackPropertiesWindow.xaml</DependentUpon>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Dialogs\AddOutputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Dialogs\PropertyEditorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

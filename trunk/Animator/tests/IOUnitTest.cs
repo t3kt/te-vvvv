@@ -27,7 +27,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void CreateNullTransmitter()
 		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = null };
 			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
@@ -52,7 +52,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void RegisterTransmitter()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "test" };
 			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));
@@ -62,7 +62,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void CreateTraceTransmitter()
 		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
 			var transmitter = host.CreateTransmitter(outputModel);
 			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.TraceTransmitter));
@@ -72,7 +72,7 @@ namespace Animator.Tests
 		[TestCategory("IO")]
 		public void TraceTransmitterOutput()
 		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
 			var transmitter = host.CreateTransmitter(outputModel);
 			int writeCount = 0;

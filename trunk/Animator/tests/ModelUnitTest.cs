@@ -46,7 +46,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void ClipReadWriteXElement()
 		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
 			var xmlA = clipA.WriteXElement();
 			var clipB = new Clip();
@@ -68,7 +68,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void StepClipReadWriteXElement()
 		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var clipA = new StepClip
 						{
 							Name = "helloclip",
@@ -97,7 +97,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void DocumentReadWriteXElement()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var docA = new Document
 					   {
 						   BeatsPerMinute = 44.3f,
@@ -190,7 +190,7 @@ namespace Animator.Tests
 		[TestCategory("Model")]
 		public void TrackReadWriteXElement()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true, loadImports: true);
+			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var docA = new Document();
 			var trackA = new Track();
 			docA.Tracks.Add(trackA);

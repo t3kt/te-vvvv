@@ -152,8 +152,16 @@ namespace Animator.UI
 		{
 			if(!this.PromptSaveForClose())
 				return;
-			this.ActiveDocument = new Document { Name = "Untitled" };
-			this.ActiveDocumentDirty = true;
+			var dlg = PropertyEditorDialog.Create(typeof(Document), editorKey: "basic", owner: this);
+			dlg.Title = "New Document";
+			dlg.AutoCommit = false;
+			var doc = new Document { Name = "Untitled" };
+			dlg.Target = doc;
+			if(dlg.ShowDialog() == true)
+			{
+				this.ActiveDocument = doc;
+				this.ActiveDocumentDirty = true;
+			}
 		}
 
 		internal void OnFileOpen(string path)
