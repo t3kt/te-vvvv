@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -37,7 +38,8 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
-
+		
+		[Category(TEShared.Names.Category_Output)]
 		public string TargetKey
 		{
 			get { return this._TargetKey; }
@@ -52,6 +54,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
 		public Time Duration
 		{
 			get { return this._Duration; }
@@ -65,6 +68,8 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public int TriggerAlignment
 		{
 			get { return this._TriggerAlignment; }
@@ -78,6 +83,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Output)]
 		public Guid? OutputId
 		{
 			get { return this._OutputId; }
@@ -91,6 +97,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_UI)]
 		public int? UIRow
 		{
 			get { return this._UIRow; }
@@ -104,6 +111,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_UI)]
 		public int? UIColumn
 		{
 			get { return this._UIColumn; }

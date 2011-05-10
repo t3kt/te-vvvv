@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using Animator.Core.Composition;
@@ -56,6 +57,26 @@ namespace Animator.Osc
 		#endregion
 
 		#region Properties
+
+		[Category(TEShared.Names.Category_Common)]
+		public string Host
+		{
+			get { return this._Connection.Host; }
+			set { this._Connection.Host = value; }
+		}
+
+		[Category(TEShared.Names.Category_Common)]
+		public int Port
+		{
+			get { return this._Connection.Port; }
+			set { this._Connection.Port = value; }
+		}
+
+		[Category(TEShared.Names.Category_Common)]
+		public bool IsConnected
+		{
+			get { return this._Connection.IsConnected; }
+		}
 
 		#endregion
 
