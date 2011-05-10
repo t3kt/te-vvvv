@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Controls.WpfPropertyGrid;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
@@ -207,30 +208,37 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
 		public Time Duration
 		{
 			get { return this._TransportData.Duration; }
 			set { this._TransportData.Duration = value; }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
 		public float BeatsPerMinute
 		{
 			get { return this._TransportData.BeatsPerMinute; }
 			set { this._TransportData.BeatsPerMinute = value; }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public int TriggerAlignment
 		{
 			get { return this._TransportData.TriggerAlignment; }
 			set { this._TransportData.TriggerAlignment = value; }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
 		public string TransportType
 		{
 			get { return this._TransportData.TransportType; }
 			set { this._TransportData.TransportType = value; }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public IDictionary<string, string> TransportParameters
 		{
 			get { return this._TransportData.Parameters; }
@@ -306,6 +314,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_UI)]
 		public int? UIRows
 		{
 			get { return this._UIRows; }
@@ -319,6 +328,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_UI)]
 		public int? UIColumns
 		{
 			get { return this._UIColumns; }
@@ -332,11 +342,14 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public IEnumerable<Clip> ActiveClips
 		{
 			get { return this._Clips == null ? Enumerable.Empty<Clip>() : this._Clips.Where(c => c.IsPlaying); }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public ITransport Transport
 		{
 			get { return this._Transport ?? _DefaultTransport; }

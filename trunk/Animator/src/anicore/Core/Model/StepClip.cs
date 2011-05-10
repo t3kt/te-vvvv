@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -33,6 +34,7 @@ namespace Animator.Core.Model
 
 		#region Properties
 
+		[Category(TEShared.Names.Category_Common)]
 		public ObservableCollection<float> Steps
 		{
 			get
@@ -56,6 +58,8 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Output)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public int StepCount
 		{
 			get { return this._Steps == null ? 0 : this._Steps.Count; }

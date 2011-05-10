@@ -57,6 +57,11 @@ namespace Animator.Test
 			dlg.ShowDialog();
 		}
 
+		private void attachDocToPropGridButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.propgrid.SelectedObject = AniApplication.CurrentActiveDocument;
+		}
+
 		#region Methods
 
 		#endregion

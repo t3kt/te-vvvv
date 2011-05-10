@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -27,6 +28,7 @@ namespace Animator.Core.Model
 
 		#region Properties
 
+		[Category(TEShared.Names.Category_Common)]
 		public string OutputType
 		{
 			get { return _OutputType; }
@@ -40,6 +42,8 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Output)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public IDictionary<string, string> Parameters
 		{
 			get { return _Parameters ?? (_Parameters = new Dictionary<string, string>()); }

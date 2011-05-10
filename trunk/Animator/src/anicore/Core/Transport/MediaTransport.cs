@@ -45,6 +45,7 @@ namespace Animator.Core.Transport
 
 		#region Properties
 
+		[Category(TEShared.Names.Category_Common)]
 		public float BeatsPerMinute
 		{
 			get
@@ -60,6 +61,7 @@ namespace Animator.Core.Transport
 			}
 		}
 
+		[Category(TEShared.Names.Category_Common)]
 		public TransportState State
 		{
 			get
@@ -69,6 +71,8 @@ namespace Animator.Core.Transport
 			}
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public Time Position
 		{
 			get
@@ -93,18 +97,23 @@ namespace Animator.Core.Transport
 			}
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public int Period
 		{
 			get { return this._Timer.Period; }
 			set { this._Timer.Period = value; }
 		}
 
+		[Category(TEShared.Names.Category_Transport)]
+		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public int Resolution
 		{
 			get { return this._Timer.Resolution; }
 			set { this._Timer.Resolution = value; }
 		}
 
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public ISynchronizeInvoke SynchronizingObject
 		{
 			get { return this._Timer.SynchronizingObject; }

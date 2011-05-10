@@ -48,6 +48,12 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.WpfPropertyGrid">
+      <HintPath>..\..\lib\System.Windows.Controls.WpfPropertyGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.WpfPropertyGrid.Themes">
+      <HintPath>..\..\lib\System.Windows.Controls.WpfPropertyGrid.Themes.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
