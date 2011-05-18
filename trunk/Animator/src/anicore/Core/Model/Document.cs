@@ -157,7 +157,7 @@ namespace Animator.Core.Model
 		internal const int NoAlignment = 0;
 		public const float DefaultBeatsPerMinute = 80.0f;
 
-		private static readonly ITransport _DefaultTransport = new Transport.Transport.NullTransport();
+		private static readonly Transport.Transport _DefaultTransport = new Transport.Transport.NullTransport();
 
 		#endregion
 
@@ -172,7 +172,7 @@ namespace Animator.Core.Model
 		private int? _UIRows;
 		private int? _UIColumns;
 		private readonly TransportData _TransportData;
-		private ITransport _Transport;
+		private Transport.Transport _Transport;
 
 		private Dictionary<Guid, IOutputTransmitter> _Transmitters;
 
@@ -216,6 +216,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
+		[DisplayName(TEShared.Names.DisplayName_BeatsPerMinute)]
 		public float BeatsPerMinute
 		{
 			get { return this._TransportData.BeatsPerMinute; }
@@ -342,7 +343,7 @@ namespace Animator.Core.Model
 			}
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Browsable(false)]
 		public IEnumerable<Clip> ActiveClips
 		{
 			get { return this._Clips == null ? Enumerable.Empty<Clip>() : this._Clips.Where(c => c.IsPlaying); }
@@ -350,7 +351,7 @@ namespace Animator.Core.Model
 
 		[Category(TEShared.Names.Category_Transport)]
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		public ITransport Transport
+		public Transport.Transport Transport
 		{
 			get { return this._Transport ?? _DefaultTransport; }
 		}
@@ -405,9 +406,8 @@ namespace Animator.Core.Model
 			switch(e.PropertyName)
 			{
 			case "BeatsPerMinute":
-				var t = this._Transport as IInternalTransport;
-				if(t != null)
-					t.BeatsPerMinute = this._TransportData.BeatsPerMinute;
+				if(this._Transport != null)
+					this._Transport.BeatsPerMinute = this._TransportData.BeatsPerMinute;
 				break;
 			case "TransportType":
 				this.RebuildTransport();
@@ -539,7 +539,7 @@ namespace Animator.Core.Model
 			return null;
 		}
 
-		internal void PostClipOutput(Clip clip, ITransport transport)
+		internal void PostClipOutput(Clip clip, Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			if(clip == null || !clip.IsPlaying || clip.OutputId == null)
@@ -551,7 +551,7 @@ namespace Animator.Core.Model
 			transmitter.PostMessage(message);
 		}
 
-		public void PostActiveClipOutputs(ITransport transport)
+		public void PostActiveClipOutputs(Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			foreach(var clip in this.ActiveClips.ToArray())

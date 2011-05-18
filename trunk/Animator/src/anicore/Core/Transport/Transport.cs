@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Animator.Core.Composition;
 
@@ -9,69 +10,40 @@ namespace Animator.Core.Transport
 
 	#region Transport
 
-	public abstract class Transport : ITransport, IDisposable
+	public abstract class Transport : IDisposable
 	{
 
 		#region NullTransport
 
 		[Transport(Key = "null", Description = "No Transport")]
-		internal sealed class NullTransport : ITransport
+		internal sealed class NullTransport : Transport
 		{
-
-			#region Static / Constant
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			#endregion
-
-			#region Methods
-
-			#endregion
 
 			#region ITransport Members
 
-			public void SetParameters(IDictionary<string, string> parameters)
-			{
-			}
-
-			public Time Position
+			public override Time Position
 			{
 				get { return 0; }
 				set { }
 			}
 
-			public TransportState State
+			public override TransportState State
 			{
 				get { return TransportState.Stopped; }
+				protected set { }
 			}
 
-			public void Play()
+			public override void Play()
 			{
 			}
 
-			public void Stop()
+			public override void Stop()
 			{
 			}
 
-			public void Pause()
+			public override void Pause()
 			{
 			}
-
-			public event EventHandler PositionChanged;
-
-			public event EventHandler StateChanged;
-
-			public event EventHandler Tick;
 
 			#endregion
 
@@ -85,42 +57,18 @@ namespace Animator.Core.Transport
 
 		#region Fields
 
-		private Time _Position;
-		private TransportState _State;
-
 		#endregion
 
 		#region Properties
 
-		public virtual void SetParameters(IDictionary<string, string> parameters)
-		{
-		}
+		[Category(TEShared.Names.Category_Common)]
+		public abstract Time Position { get; set; }
 
-		public virtual Time Position
-		{
-			get { return this._Position; }
-			set
-			{
-				if(value != this._Position)
-				{
-					this._Position = value;
-					this.OnPositionChanged();
-				}
-			}
-		}
+		[Category(TEShared.Names.Category_Common)]
+		public abstract TransportState State { get; protected set; }
 
-		public virtual TransportState State
-		{
-			get { return this._State; }
-			protected set
-			{
-				if(value != this._State)
-				{
-					this._State = value;
-					this.OnStateChanged();
-				}
-			}
-		}
+		[Category(TEShared.Names.Category_Transport)]
+		public virtual float BeatsPerMinute { get; internal set; }
 
 		#endregion
 
@@ -131,6 +79,24 @@ namespace Animator.Core.Transport
 		public event EventHandler StateChanged;
 
 		public event EventHandler PositionChanged;
+
+		[Browsable(false)]
+		protected EventHandler TickHandler
+		{
+			get { return this.Tick; }
+		}
+
+		[Browsable(false)]
+		protected EventHandler StateChangedHandler
+		{
+			get { return this.StateChanged; }
+		}
+
+		[Browsable(false)]
+		protected EventHandler PositionChangedHandler
+		{
+			get { return this.PositionChanged; }
+		}
 
 		protected virtual void OnTick()
 		{
@@ -170,6 +136,10 @@ namespace Animator.Core.Transport
 		#endregion
 
 		#region Methods
+
+		public virtual void SetParameters(IDictionary<string, string> parameters)
+		{
+		}
 
 		public virtual void Play()
 		{

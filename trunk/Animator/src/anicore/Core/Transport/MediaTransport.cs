@@ -15,7 +15,7 @@ namespace Animator.Core.Transport
 	#region MediaTransport
 
 	[Transport(Key = "media", Description = "Media Transport")]
-	public sealed class MediaTransport : IInternalTransport, IDisposable
+	public sealed class MediaTransport : Transport
 	{
 
 		#region Static / Constant
@@ -46,14 +46,14 @@ namespace Animator.Core.Transport
 		#region Properties
 
 		[Category(TEShared.Names.Category_Common)]
-		public float BeatsPerMinute
+		public override float BeatsPerMinute
 		{
 			get
 			{
 				using(this._Lock.ReadScope())
 					return this._BeatsPerMinute;
 			}
-			set
+			internal set
 			{
 				Require.ArgPositive(value, "value");
 				using(this._Lock.WriteScope())
@@ -62,18 +62,23 @@ namespace Animator.Core.Transport
 		}
 
 		[Category(TEShared.Names.Category_Common)]
-		public TransportState State
+		public override TransportState State
 		{
 			get
 			{
 				using(this._Lock.ReadScope())
 					return this._State;
 			}
+			protected set
+			{
+				using(this._Lock.WriteScope())
+					this._State = value;
+			}
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		public Time Position
+		public override Time Position
 		{
 			get
 			{
@@ -113,7 +118,7 @@ namespace Animator.Core.Transport
 			set { this._Timer.Resolution = value; }
 		}
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Browsable(false)]
 		public ISynchronizeInvoke SynchronizingObject
 		{
 			get { return this._Timer.SynchronizingObject; }
@@ -124,13 +129,7 @@ namespace Animator.Core.Transport
 
 		#region Events
 
-		public event EventHandler Tick;
-
-		public event EventHandler StateChanged;
-
-		public event EventHandler PositionChanged;
-
-		private void OnTick()
+		protected override void OnTick()
 		{
 			//var handler = this.Tick;
 			//if(handler != null)
@@ -141,23 +140,23 @@ namespace Animator.Core.Transport
 			//    else
 			//        handler(this, EventArgs.Empty);
 			//}
-			this.FireEvent(this.Tick);
+			this.FireEvent(this.TickHandler);
 		}
 
-		private void OnStateChanged()
+		protected override void OnStateChanged()
 		{
 			//var handler = this.StateChanged;
 			//if(handler != null)
 			//    handler(this, EventArgs.Empty);
-			this.FireEvent(this.StateChanged);
+			this.FireEvent(this.StateChangedHandler);
 		}
 
-		private void OnPositionChanged()
+		protected override void OnPositionChanged()
 		{
 			//var handler = this.PositionChanged;
 			//if(handler != null)
 			//    handler(this, EventArgs.Empty);
-			this.FireEvent(this.PositionChanged);
+			this.FireEvent(this.PositionChangedHandler);
 		}
 
 		private void FireEvent(EventHandler handler)
@@ -185,16 +184,11 @@ namespace Animator.Core.Transport
 			this._Timer.Tick += this.Timer_Tick;
 		}
 
-		~MediaTransport()
-		{
-			this.Dispose(false);
-		}
-
 		#endregion
 
 		#region Methods
 
-		public void SetParameters(IDictionary<string, string> parameters)
+		public override void SetParameters(IDictionary<string, string> parameters)
 		{
 			if(parameters != null)
 			{
@@ -242,7 +236,7 @@ namespace Animator.Core.Transport
 				this.OnTick();
 		}
 
-		public void Play()
+		public override void Play()
 		{
 			using(var scope = this._Lock.UpgradeableReadScope())
 			{
@@ -262,7 +256,7 @@ namespace Animator.Core.Transport
 			this.OnStateChanged();
 		}
 
-		public void Stop()
+		public override void Stop()
 		{
 			using(this._Lock.WriteScope())
 			{
@@ -284,7 +278,7 @@ namespace Animator.Core.Transport
 			this.OnStateChanged();
 		}
 
-		public void Pause()
+		public override void Pause()
 		{
 			using(this._Lock.UpgradeableReadScope())
 			{
@@ -307,7 +301,7 @@ namespace Animator.Core.Transport
 
 		#region IDisposable Members
 
-		private void Dispose(bool disposing)
+		protected override void Dispose(bool disposing)
 		{
 			if(disposing)
 			{
@@ -315,12 +309,6 @@ namespace Animator.Core.Transport
 				this._Lock.Dispose();
 			}
 			this._Timer.Dispose();
-		}
-
-		public void Dispose()
-		{
-			this.Dispose(true);
-			GC.SuppressFinalize(this);
 		}
 
 		#endregion

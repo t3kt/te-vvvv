@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
 using System.Linq;
@@ -12,7 +11,6 @@ using Animator.Common.Diagnostics;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
-using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Composition
@@ -63,9 +61,9 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<Clip, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<ITransport, IAniExportMetadata>> Transports
+		internal IEnumerable<Lazy<Transport.Transport, IAniExportMetadata>> Transports
 		{
-			get { return this._Container.GetExports<ITransport, IAniExportMetadata>(); }
+			get { return this._Container.GetExports<Transport.Transport, IAniExportMetadata>(); }
 		}
 
 		internal IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters
@@ -141,7 +139,7 @@ namespace Animator.Core.Composition
 		}
 
 		[NotNull]
-		public ITransport CreateTransportByKey(string key)
+		public Transport.Transport CreateTransportByKey(string key)
 		{
 			return this.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
 		}
@@ -169,7 +167,7 @@ namespace Animator.Core.Composition
 		}
 
 		[NotNull]
-		internal ITransport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
+		internal Transport.Transport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
 		{
 			var transport = this.CreateTransportByKey(transportType);
 			Debug.Assert(transport != null);

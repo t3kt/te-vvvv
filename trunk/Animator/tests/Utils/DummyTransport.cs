@@ -11,14 +11,14 @@ namespace Animator.Tests.Utils
 	#region DummyTransport
 
 	[Transport(Key = "dummy")]
-	internal sealed class DummyTransport : ITransport
+	internal sealed class DummyTransport : Transport
 	{
 
 		public bool IsPlaying { get; set; }
 
 		private Time _Position;
 
-		public Time Position
+		public override Time Position
 		{
 			get { return this._Position; }
 			set
@@ -32,10 +32,10 @@ namespace Animator.Tests.Utils
 		}
 
 		private TransportState _State;
-		public TransportState State
+		public override TransportState State
 		{
 			get { return this._State; }
-			set
+			protected set
 			{
 				if(value != this._State)
 				{
@@ -45,52 +45,24 @@ namespace Animator.Tests.Utils
 			}
 		}
 
-		public event EventHandler Tick;
-
-		public event EventHandler StateChanged;
-
-		public event EventHandler PositionChanged;
+		internal void SetState(TransportState state)
+		{
+			this.State = state;
+		}
 
 		public void FireTickEvent()
 		{
-			var handler = this.Tick;
-			if(handler != null)
-				handler(this, EventArgs.Empty);
+			this.OnTick();
 		}
 
 		public void FireStateChangedEvent()
 		{
-			var handler = this.StateChanged;
-			if(handler != null)
-				handler(this, EventArgs.Empty);
+			this.OnStateChanged();
 		}
 
 		public void FirePositionChangedEvent()
 		{
-			var handler = this.PositionChanged;
-			if(handler != null)
-				handler(this, EventArgs.Empty);
-		}
-
-		public void SetParameters(IDictionary<string, string> parameters)
-		{
-		}
-
-		public void Play()
-		{
-			this.State = TransportState.Playing;
-		}
-
-		public void Stop()
-		{
-			this.State = TransportState.Stopped;
-			this.Position = 0;
-		}
-
-		public void Pause()
-		{
-			//this.State = TransportState.Paused;
-			this.State = TransportState.Stopped;
+			this.OnPositionChanged();
 		}
 
 	}
