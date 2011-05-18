@@ -98,7 +98,6 @@
     <Compile Include="Core\Transport\TransportState.cs" />
     <Compile Include="Core\Transport\TriggerBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\Transport\ITransport.cs" />
     <Compile Include="Core\Transport\Time.cs" />
     <Compile Include="Resources\CoreStrings.Designer.cs">
       <AutoGen>True</AutoGen>

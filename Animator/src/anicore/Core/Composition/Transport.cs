@@ -30,7 +30,7 @@ namespace Animator.Core.Composition
 		#region Constructors
 
 		public TransportAttribute()
-			: base(typeof(ITransport))
+			: base(typeof(Transport.Transport))
 		{
 
 		}

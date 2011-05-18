@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -28,25 +29,22 @@ namespace Animator.UI
 		#region Static / Constant
 
 		public static readonly DependencyProperty ActiveDocumentProperty;
-		private static readonly DependencyPropertyKey HasActiveDocumentPropertyKey;
 		public static readonly DependencyProperty HasActiveDocumentProperty;
 		public static readonly DependencyProperty ActiveDocumentDirtyProperty;
 
 		static MainWindow()
 		{
-			ActiveDocumentProperty = DependencyProperty.Register("ActiveDocument", typeof(Document), typeof(MainWindow),
-																 new PropertyMetadata(null, OnActiveDocumentChanged));
-			HasActiveDocumentPropertyKey = DependencyProperty.RegisterReadOnly("HasActiveDocument", typeof(bool), typeof(MainWindow),
-																			   new PropertyMetadata(false));
-			HasActiveDocumentProperty = HasActiveDocumentPropertyKey.DependencyProperty;
+			ActiveDocumentProperty = AniUIManager.ActiveDocumentProperty.AddOwner(typeof(MainWindow),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveDocumentChanged));
+			HasActiveDocumentProperty = AniUIManager.HasActiveDocumentProperty.AddOwner(typeof(MainWindow));
 			ActiveDocumentDirtyProperty = DependencyProperty.Register("ActiveDocumentDirty", typeof(bool), typeof(MainWindow),
-																	  new PropertyMetadata(false, OnActiveDocumentDirtyChanged));
+				new PropertyMetadata(false, OnActiveDocumentDirtyChanged));
 		}
 
 		private static void OnActiveDocumentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
+			AniUIManager.OnActiveDocumentChanged(d, e);
 			var window = (MainWindow)d;
-			window.SetValue(HasActiveDocumentPropertyKey, e.NewValue != null);
 			window.OnActiveDocumentChanged((Document)e.OldValue, (Document)e.NewValue);
 			var app = Application.Current as AniApplication;
 			if(app != null)
@@ -194,6 +192,7 @@ namespace Animator.UI
 			try
 			{
 				var xdoc = XDocument.Load(path);
+				Debug.Assert(xdoc.Root != null);
 				var doc = new Document(xdoc.Root);
 				this._ActiveDocumentPath = path;
 				this.ActiveDocument = doc;

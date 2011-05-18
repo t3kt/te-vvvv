@@ -12,6 +12,7 @@ namespace TEShared
 		internal const string Category_Transport = "Transport";
 		internal const string Category_UI = "UI";
 		internal const string Category_Output = "Output";
+		internal const string DisplayName_BeatsPerMinute = "BPM";
 	}
 
 }

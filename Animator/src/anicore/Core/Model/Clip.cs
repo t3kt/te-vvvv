@@ -151,7 +151,7 @@ namespace Animator.Core.Model
 			return null;
 		}
 
-		public void Start(ITransport transport)
+		public void Start(Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			this._IsPlaying = true;
@@ -165,7 +165,7 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("IsPlaying");
 		}
 
-		public Time GetPosition(ITransport transport)
+		public Time GetPosition(Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			if(!this._IsPlaying)
@@ -173,14 +173,14 @@ namespace Animator.Core.Model
 			return (transport.Position - this._StartTime) % this.Duration;
 		}
 
-		public object GetValue(ITransport transport)
+		public object GetValue(Transport.Transport transport)
 		{
 			if(!this._IsPlaying)
 				return null;
 			return this.GetValue(this.GetPosition(transport));
 		}
 
-		internal OutputMessage BuildOutputMessage(ITransport transport)
+		internal OutputMessage BuildOutputMessage(Transport.Transport transport)
 		{
 			return new OutputMessage(this.TargetKey, this.GetValue(transport));
 		}

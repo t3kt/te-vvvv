@@ -11,7 +11,7 @@ namespace Animator.Core.Model
 	public interface IDocumentItem : IXElementWritable, IDisposable
 	{
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Browsable(false)]
 		Guid Id { get; }
 
 		[Category(TEShared.Names.Category_Common)]
