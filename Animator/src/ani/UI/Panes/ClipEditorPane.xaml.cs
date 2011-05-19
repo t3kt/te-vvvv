@@ -31,8 +31,8 @@ namespace Animator.UI.Panes
 
 		static ClipEditorPane()
 		{
-			ActiveClipProperty = DependencyProperty.Register("ActiveClip", typeof(Clip), typeof(ClipEditorPane),
-				new FrameworkPropertyMetadata(OnActiveClipChanged));
+			ActiveClipProperty = AniUIManager.ActiveClipProperty.AddOwner(typeof(ClipEditorPane),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveClipChanged));
 			DataEditorPropertyKey = DependencyProperty.RegisterReadOnly("DataEditor", typeof(UIElement), typeof(ClipEditorPane),
 				new FrameworkPropertyMetadata());
 			DataEditorProperty = DataEditorPropertyKey.DependencyProperty;
@@ -40,6 +40,7 @@ namespace Animator.UI.Panes
 
 		private static void OnActiveClipChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
+			AniUIManager.OnActiveClipChanged(d, e);
 			var pane = (ClipEditorPane)d;
 			var clip = (Clip)e.NewValue;
 			pane.DataContext = clip;

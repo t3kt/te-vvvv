@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Animator.AppCore;
 using Animator.Core.Model;
 
 namespace Animator.UI.Panes
@@ -20,6 +21,8 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
+		public static readonly DependencyProperty ActiveDocumentProperty = AniUIManager.ActiveDocumentProperty.AddOwner(typeof(DocumentPropertiesPane));
+
 		#endregion
 
 		#region Fields
@@ -32,6 +35,12 @@ namespace Animator.UI.Panes
 		{
 			get { return (Document)this.DataContext; }
 			set { this.DataContext = value; }
+		}
+
+		public Document ActiveDocument
+		{
+			get { return (Document)this.GetValue(ActiveDocumentProperty); }
+			set { this.SetValue(ActiveDocumentProperty, value); }
 		}
 
 		protected override bool CanShowEditDetail
