@@ -16,9 +16,9 @@ namespace Animator.UI.Controls
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(int), typeof(CustomUniformGrid), new PropertyMetadata(1, OnColumnsChanged), IsDimensionValid);
+		public static readonly DependencyProperty ColumnsProperty = DependencyProperty.Register("Columns", typeof(int), typeof(CustomUniformGrid), new PropertyMetadata(1, OnColumnsChanged, CoerceDimension));
 
-		public static readonly DependencyProperty RowsProperty = DependencyProperty.Register("Rows", typeof(int), typeof(CustomUniformGrid), new PropertyMetadata(1, OnRowsChanged), IsDimensionValid);
+		public static readonly DependencyProperty RowsProperty = DependencyProperty.Register("Rows", typeof(int), typeof(CustomUniformGrid), new PropertyMetadata(1, OnRowsChanged, CoerceDimension));
 
 		public static readonly DependencyProperty RowHeightProperty = DependencyProperty.Register("RowHeight", typeof(GridLength), typeof(CustomUniformGrid),
 			new FrameworkPropertyMetadata(new GridLength(1.0, GridUnitType.Star), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange, OnRowHeightChanged), IsCellDimensionValid);
@@ -31,9 +31,16 @@ namespace Animator.UI.Controls
 			return ((GridLength)value).Value >= 0.0;
 		}
 
-		private static bool IsDimensionValid(object value)
+		private static object CoerceDimension(DependencyObject d, object basevalue)
 		{
-			return (int)value >= 1;
+			if(basevalue != null)
+			{
+				if(basevalue is int)
+					return Math.Max(1, (int)basevalue);
+				if(basevalue is int?)
+					return Math.Max(1, ((int?)basevalue).Value);
+			}
+			return 1;
 		}
 
 		private static void OnColumnsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

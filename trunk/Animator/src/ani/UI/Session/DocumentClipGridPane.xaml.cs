@@ -21,9 +21,9 @@ namespace Animator.UI.Session
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty DocumentProperty;
+		public static readonly DependencyProperty ActiveDocumentProperty;
 
-		public static readonly DependencyProperty SelectedClipProperty;
+		public static readonly DependencyProperty ActiveClipProperty;
 
 		private static readonly DependencyPropertyKey RowsPropertyKey;
 		public static readonly DependencyProperty RowsProperty;
@@ -32,26 +32,35 @@ namespace Animator.UI.Session
 
 		static DocumentClipGridPane()
 		{
-			DocumentProperty = DependencyProperty.Register("Document", typeof(Document), typeof(DocumentClipGridPane),
-				new PropertyMetadata(null, OnDocumentChanged));
-			SelectedClipProperty = DependencyProperty.Register("SelectedClip", typeof(Clip), typeof(DocumentClipGridPane));
+			ActiveDocumentProperty = AniUIManager.ActiveDocumentProperty.AddOwner(typeof(DocumentClipGridPane),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveDocumentChanged));
 
 			RowsPropertyKey = DependencyProperty.RegisterReadOnly("Rows", typeof(int), typeof(DocumentClipGridPane),
-				new PropertyMetadata(0), ValidateDimension);
+				new PropertyMetadata(0, null, CoerceDimension));
 			RowsProperty = RowsPropertyKey.DependencyProperty;
 
 			ColumnsPropertyKey = DependencyProperty.RegisterReadOnly("Columns", typeof(int), typeof(DocumentClipGridPane),
-				new PropertyMetadata(0), ValidateDimension);
+				new PropertyMetadata(0, null, CoerceDimension));
 			ColumnsProperty = ColumnsPropertyKey.DependencyProperty;
+
+			ActiveClipProperty = AniUIManager.ActiveClipProperty.AddOwner(typeof(DocumentClipGridPane));
 		}
 
-		private static bool ValidateDimension(object value)
+		private static object CoerceDimension(DependencyObject d, object basevalue)
 		{
-			return value is int && (int)value >= 0;
+			if(basevalue != null)
+			{
+				if(basevalue is int)
+					return Math.Max(1, (int)basevalue);
+				if(basevalue is int?)
+					return Math.Max(1, ((int?)basevalue).Value);
+			}
+			return 1;
 		}
 
-		private static void OnDocumentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		private static void OnActiveDocumentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
+			AniUIManager.OnActiveDocumentChanged(d, e);
 			var pane = (DocumentClipGridPane)d;
 			var doc = (Document)e.NewValue;
 			if(e.OldValue != null)
@@ -69,16 +78,16 @@ namespace Animator.UI.Session
 
 		#region Properties
 
-		public Document Document
+		public Document ActiveDocument
 		{
-			get { return (Document)this.GetValue(DocumentProperty); }
-			set { this.SetValue(DocumentProperty, value); }
+			get { return (Document)this.GetValue(ActiveDocumentProperty); }
+			set { this.SetValue(ActiveDocumentProperty, value); }
 		}
 
-		public Clip SelectedClip
+		public Clip ActiveClip
 		{
-			get { return (Clip)this.GetValue(SelectedClipProperty); }
-			set { this.SetValue(SelectedClipProperty, value); }
+			get { return (Clip)this.GetValue(ActiveClipProperty); }
+			set { this.SetValue(ActiveClipProperty, value); }
 		}
 
 		public int Rows

@@ -101,7 +101,6 @@ namespace Animator.UI.Dialogs
 			if(d != null)
 				d.Dispose();
 			return null;
-			throw new NotImplementedException();
 		}
 
 		#endregion
