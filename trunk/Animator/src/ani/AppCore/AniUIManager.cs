@@ -11,7 +11,7 @@ namespace Animator.AppCore
 
 	#region AniUIManager
 
-	internal sealed class AniUIManager : DependencyObject
+	internal static class AniUIManager
 	{
 
 		public static readonly DependencyProperty ActiveDocumentProperty;

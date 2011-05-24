@@ -328,14 +328,11 @@ namespace Animator.Core.Transport
 			if(value == null)
 				throw this.GetConvertFromException(value);
 			if(value is string)
-			{
 				return Time.Parse((string)value);
-			}
 			if(value is float)
-			{
 				return new Time((float)value);
-			}
-			throw new ArgumentException("Cannot parse value as Time", "value");
+			return new Time(Convert.ToSingle(value));
+			//throw new ArgumentException("Cannot parse value as Time", "value");
 		}
 
 		public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
@@ -346,6 +343,8 @@ namespace Animator.Core.Transport
 					return value.ToString();
 				if(destinationType == typeof(float))
 					return (float)((Time)value);
+				if(destinationType == typeof(double))
+					return (double)(float)((Time)value);
 			}
 			return base.ConvertTo(context, culture, value, destinationType);
 		}
