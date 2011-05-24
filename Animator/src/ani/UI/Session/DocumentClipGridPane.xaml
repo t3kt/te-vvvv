@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" xmlns:Controls="clr-namespace:Animator.UI.Controls" xmlns:Model="clr-namespace:Animator.Core.Model;assembly=anicore" xmlns:Session="clr-namespace:Animator.UI.Session" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Clips">
+             d:DesignHeight="300" d:DesignWidth="300" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Session Clips">
 	<ListBox x:Name="clipsListBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Session:DocumentClipGridPane, AncestorLevel=1}, Path=ActiveDocument.Clips}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Session:DocumentClipGridPane, AncestorLevel=1}, Path=ActiveClip, Mode=TwoWay}">
 		<ListBox.Template>
 			<ControlTemplate TargetType="{x:Type ListBox}">

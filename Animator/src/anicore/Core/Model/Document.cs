@@ -195,6 +195,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Category(TEShared.Names.Category_Common)]
 		public string Name
 		{
 			get { return _Name; }
@@ -224,7 +225,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Browsable(false)]
 		public int TriggerAlignment
 		{
 			get { return this._TransportData.TriggerAlignment; }
@@ -239,13 +240,14 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		[Browsable(false)]
 		public IDictionary<string, string> TransportParameters
 		{
 			get { return this._TransportData.Parameters; }
 			set { this._TransportData.Parameters = value; }
 		}
 
+		[Browsable(false)]
 		public ObservableCollection<Output> Outputs
 		{
 			get
@@ -269,6 +271,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Browsable(false)]
 		public ObservableCollection<Track> Tracks
 		{
 			get
@@ -292,6 +295,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Browsable(false)]
 		public ObservableCollection<Clip> Clips
 		{
 			get
@@ -350,7 +354,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
+		[Browsable(false)]
 		public Transport.Transport Transport
 		{
 			get { return this._Transport ?? _DefaultTransport; }

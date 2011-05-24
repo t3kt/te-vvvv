@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Panes="clr-namespace:Animator.UI.Panes" xmlns:WpfPropertyGrid="clr-namespace:System.Windows.Controls.WpfPropertyGrid;assembly=System.Windows.Controls.WpfPropertyGrid" mc:Ignorable="d" 
-             d:DesignWidth="220" PaneHeader="Clip Properties" Style="{StaticResource DocumentItemPropertiesPaneStyle}">
+             d:DesignWidth="220" PaneHeader="Clip Properties" Style="{StaticResource DocumentItemPropertiesPaneStyle}" DataContextChanged="DocumentItemPropertiesPane_DataContextChanged">
 	<Grid>
 		<WpfPropertyGrid:PropertyGrid x:Name="clipPropertyGrid" PropertyFilterVisibility="Collapsed" />
 	</Grid>

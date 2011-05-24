@@ -16,6 +16,20 @@
 					<SolidColorBrush Color="Transparent"/>
 				</Setter.Value>
 			</Setter>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Style.Triggers>
+				<Trigger Property="ResizeDirection" Value="Columns">
+					<Trigger.Setters>
+						<Setter Property="Width" Value="4"/>
+					</Trigger.Setters>
+				</Trigger>
+				<Trigger Property="ResizeDirection" Value="Rows">
+					<Trigger.Setters>
+						<Setter Property="Height" Value="4"/>
+					</Trigger.Setters>
+				</Trigger>
+			</Style.Triggers>
 		</Style>
 	</Window.Resources>
 	<Window.CommandBindings>
@@ -34,7 +48,7 @@
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="Auto" MinWidth="200" />
+			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
@@ -101,44 +115,43 @@
 				</Button>
 			</StackPanel>-->
 		</Menu>
-		<Grid Grid.Row="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition />
-			</Grid.RowDefinitions>
-			<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-			<panes:AniPane Grid.Row="1" Style="{StaticResource HeaderedPaneUserControlStyle}" PaneHeader="Outputs" Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-				<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
-					<ListBox.CommandBindings>
-						<CommandBinding Command="ApplicationCommands.Delete" Executed="OutputList_DeleteCommand_Executed" />
-					</ListBox.CommandBindings>
-					<ListBox.ItemTemplate>
-						<DataTemplate DataType="{x:Type Model:Output}">
-							<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}">
-								<panes:OutputPropertiesPane.ContextMenu>
-									<ContextMenu>
-										<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
-									</ContextMenu>
-								</panes:OutputPropertiesPane.ContextMenu>
-							</panes:OutputPropertiesPane>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-
-				</ListBox>
-			</panes:AniPane>
-		</Grid>
-		<GridSplitter Grid.Row="1" Grid.Column="1" Width="2" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Grid.Row="1" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" MinWidth="150" />
+		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 		<Grid Grid.Row="1" Grid.Column="2">
 			<Grid.RowDefinitions>
 				<RowDefinition />
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="200"/>
 			</Grid.RowDefinitions>
-			<Session:DocumentClipGridPane x:Name="documentClipGrid" ActiveDocument="{Binding ElementName=mainWindow, Path=ActiveDocument}" />
-			<GridSplitter Grid.Row="1" Height="2" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+			<GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
 			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" ActiveClip="{Binding ElementName=documentClipGrid, Path=ActiveClip}" />
+			<TabControl IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow, AncestorLevel=1}, Path=HasActiveDocument}">
+				<TabItem Header="Session">
+					<Session:DocumentClipGridPane x:Name="documentClipGrid" ActiveDocument="{Binding ElementName=mainWindow, Path=ActiveDocument}" PaneHeaderVisibility="Collapsed" />
+				</TabItem>
+				<TabItem Header="Sequencing" IsEnabled="False">
+				</TabItem>
+				<TabItem Header="Outputs">
+					<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
+						<ListBox.CommandBindings>
+							<CommandBinding Command="ApplicationCommands.Delete" Executed="OutputList_DeleteCommand_Executed" />
+						</ListBox.CommandBindings>
+						<ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type Model:Output}">
+								<panes:OutputPropertiesPane Grid.Row="1" PaneHeader="{Binding Path=Name}" PaneHeaderVisibility="Collapsed">
+									<panes:OutputPropertiesPane.ContextMenu>
+										<ContextMenu>
+											<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
+										</ContextMenu>
+									</panes:OutputPropertiesPane.ContextMenu>
+								</panes:OutputPropertiesPane>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+			</TabControl>
 		</Grid>
-		<StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+		<StatusBar Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=my:MainWindow}}" />
 		</StatusBar>
 	</Grid>

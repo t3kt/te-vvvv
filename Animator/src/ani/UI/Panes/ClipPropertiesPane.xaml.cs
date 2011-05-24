@@ -31,19 +31,19 @@ namespace Animator.UI.Panes
 		public ClipPropertiesPane()
 		{
 			InitializeComponent();
-			this.DataContextChanged += this.ClipPropertiesPane_DataContextChanged;
-		}
-
-		void ClipPropertiesPane_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-		{
-			this.clipPropertyGrid.SelectedObject = e.NewValue;
 		}
 
 		#endregion
 
 		#region Methods
 
+		private void DocumentItemPropertiesPane_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+		{
+			this.clipPropertyGrid.SelectedObject = e.NewValue;
+		}
+
 		#endregion
+
 	}
 
 	#endregion
