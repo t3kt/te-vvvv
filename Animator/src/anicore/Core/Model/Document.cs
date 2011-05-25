@@ -320,6 +320,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_UI)]
+		[DisplayName(TEShared.Names.DisplayName_SessionRows)]
 		public int? UIRows
 		{
 			get { return this._UIRows; }
@@ -334,6 +335,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_UI)]
+		[DisplayName(TEShared.Names.DisplayName_SessionColumns)]
 		public int? UIColumns
 		{
 			get { return this._UIColumns; }

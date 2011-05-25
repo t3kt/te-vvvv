@@ -17,15 +17,12 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty ItemIdVisibilityProperty;
 		public static readonly DependencyProperty DetailButtonVisibilityProperty;
 
 		public static readonly RoutedUICommand ShowEditDetailCommand;
 
 		static DocumentItemPropertiesPane()
 		{
-			ItemIdVisibilityProperty = DependencyProperty.Register("ItemIdVisibility", typeof(Visibility),
-				typeof(DocumentItemPropertiesPane), new PropertyMetadata(Visibility.Collapsed));
 			DetailButtonVisibilityProperty = DependencyProperty.Register("DetailButtonVisibility", typeof(Visibility),
 				typeof(DocumentItemPropertiesPane), new PropertyMetadata(Visibility.Collapsed));
 			ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(DocumentItemPropertiesPane),
@@ -56,14 +53,7 @@ namespace Animator.UI.Panes
 
 		#region Properties
 
-		[Category("Visibility")]
-		public Visibility ItemIdVisibility
-		{
-			get { return (Visibility)this.GetValue(ItemIdVisibilityProperty); }
-			set { this.SetValue(ItemIdVisibilityProperty, value); }
-		}
-
-		[Category("Visibility")]
+		[Category(TEShared.Names.Category_Visibility)]
 		public Visibility DetailButtonVisibility
 		{
 			get { return (Visibility)this.GetValue(DetailButtonVisibilityProperty); }

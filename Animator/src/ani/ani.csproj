@@ -91,6 +91,9 @@
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
+    <Compile Include="UI\Dialogs\AboutDialog.xaml.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dialogs\AddClipDialog.xaml.cs">
       <DependentUpon>AddClipDialog.xaml</DependentUpon>
     </Compile>
@@ -112,9 +115,6 @@
     </Compile>
     <Compile Include="UI\Editors\StepListEditor.xaml.cs">
       <DependentUpon>StepListEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Editors\ValueSliderControl.xaml.cs">
-      <DependentUpon>ValueSliderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -172,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Dialogs\AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dialogs\AddClipDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,10 +203,6 @@
     <Page Include="UI\Editors\StepListEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Editors\ValueSliderControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -288,6 +288,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Sequencing\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Resources\ani_app_splash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </SplashScreen>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

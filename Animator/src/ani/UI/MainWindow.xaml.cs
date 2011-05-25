@@ -332,6 +332,12 @@ namespace Animator.UI
 			TransportPropertiesDialog.ShowDialogForDocument(this.ActiveDocument, this);
 		}
 
+		internal void ShowAboutAppDialog()
+		{
+			var dlg = new AboutDialog { Owner = this };
+			dlg.ShowDialog();
+		}
+
 		#endregion
 
 		#region Event Handlers
@@ -421,6 +427,11 @@ namespace Animator.UI
 		private void EditTransportCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			this.ShowEditTransport();
+		}
+
+		private void AboutApplicationCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			this.ShowAboutAppDialog();
 		}
 
 		#endregion
