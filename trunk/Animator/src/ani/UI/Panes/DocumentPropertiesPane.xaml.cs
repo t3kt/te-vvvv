@@ -66,11 +66,6 @@ namespace Animator.UI.Panes
 			MessageBox.Show("TODO: document edit detail...");
 		}
 
-		private void DocumentItemPropertiesPane_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			this.documentPropertyGrid.SelectedObject = e.NewValue;
-		}
-
 		#endregion
 
 	}

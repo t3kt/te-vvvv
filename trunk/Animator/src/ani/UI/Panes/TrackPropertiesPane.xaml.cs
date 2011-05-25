@@ -18,13 +18,6 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty AvailableOutputsProperty;
-
-		static TrackPropertiesPane()
-		{
-			AvailableOutputsProperty = DependencyProperty.Register("AvailableOutputs", typeof(ICollection<Output>), typeof(TrackPropertiesPane));
-		}
-
 		#endregion
 
 		#region Fields
@@ -32,18 +25,6 @@ namespace Animator.UI.Panes
 		#endregion
 
 		#region Properties
-
-		public Track Track
-		{
-			get { return (Track)this.DataContext; }
-			set { this.DataContext = value; }
-		}
-
-		public ICollection<Output> AvailableOutputs
-		{
-			get { return (ICollection<Output>)this.GetValue(AvailableOutputsProperty); }
-			set { this.SetValue(AvailableOutputsProperty, value); }
-		}
 
 		#endregion
 
@@ -57,6 +38,11 @@ namespace Animator.UI.Panes
 		#endregion
 
 		#region Methods
+
+		private void DocumentItemPropertiesPane_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			this.trackPropertyGrid.SelectedObject = e.NewValue;
+		}
 
 		#endregion
 

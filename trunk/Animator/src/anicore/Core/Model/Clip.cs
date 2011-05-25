@@ -40,6 +40,7 @@ namespace Animator.Core.Model
 		#region Properties
 		
 		[Category(TEShared.Names.Category_Output)]
+		[DisplayName(TEShared.Names.DisplayName_Target)]
 		public string TargetKey
 		{
 			get { return this._TargetKey; }
@@ -69,7 +70,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
+		[Browsable(false)]
 		public int TriggerAlignment
 		{
 			get { return this._TriggerAlignment; }
@@ -98,6 +99,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_UI)]
+		[DisplayName(TEShared.Names.DisplayName_SessionRow)]
 		public int? UIRow
 		{
 			get { return this._UIRow; }
@@ -112,6 +114,7 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_UI)]
+		[DisplayName(TEShared.Names.DisplayName_SessionColumn)]
 		public int? UIColumn
 		{
 			get { return this._UIColumn; }
@@ -125,6 +128,7 @@ namespace Animator.Core.Model
 			}
 		}
 
+		[Browsable(false)]
 		public bool IsPlaying
 		{
 			get { return this._IsPlaying; }

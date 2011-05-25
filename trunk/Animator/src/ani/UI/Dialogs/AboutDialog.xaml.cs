@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using Animator.AppCore;
-using Animator.Core.Model;
 
-namespace Animator.UI.Panes
+namespace Animator.UI.Dialogs
 {
-
-	#region ClipPropertiesPane
-
 	/// <summary>
-	/// Interaction logic for ClipPropertiesPane.xaml
+	/// Interaction logic for AboutDialog.xaml
 	/// </summary>
-	public partial class ClipPropertiesPane
+	public partial class AboutDialog
 	{
 
 		#region Static / Constant
@@ -31,7 +25,7 @@ namespace Animator.UI.Panes
 
 		#region Constructors
 
-		public ClipPropertiesPane()
+		public AboutDialog()
 		{
 			InitializeComponent();
 		}
@@ -43,7 +37,4 @@ namespace Animator.UI.Panes
 		#endregion
 
 	}
-
-	#endregion
-
 }

@@ -28,6 +28,7 @@ namespace Animator.Core.Model
 
 		public Guid Id { get; protected set; }
 
+		[Category(TEShared.Names.Category_Common)]
 		public string Name
 		{
 			get { return _Name; }

@@ -35,14 +35,14 @@ namespace Animator.UI.Panes
 
 		#region Properties
 
-		[Category("Common")]
+		[Category(TEShared.Names.Category_Common)]
 		public object PaneHeader
 		{
 			get { return this.GetValue(PaneHeaderProperty); }
 			set { this.SetValue(PaneHeaderProperty, value); }
 		}
 
-		[Category("Visibility")]
+		[Category(TEShared.Names.Category_Visibility)]
 		public Visibility PaneHeaderVisibility
 		{
 			get { return (Visibility)this.GetValue(PaneHeaderVisibilityProperty); }
