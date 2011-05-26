@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
@@ -15,14 +13,6 @@ namespace Animator.Common
 
 	public static class CommonUtil
 	{
-
-		internal static IDisposable SuspendNotifyScope(this ISuspendableNotify target)
-		{
-			if(target == null)
-				return ActionScope.Null;
-			target.SuspendNotify();
-			return new ActionScope(target.ResumeNotify);
-		}
 
 		internal static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
 		{

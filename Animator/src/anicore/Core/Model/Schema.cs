@@ -27,6 +27,7 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_outputs = "outputs";
 		public static readonly XName anidoc_tracks = "tracks";
 		public static readonly XName anidoc_clips = "clips";
+		public static readonly XName anidoc_sequences = "sequences";
 		public static readonly XName anidoc_ui_rows = "ui-rows";
 		public static readonly XName anidoc_ui_cols = "ui-cols";
 
@@ -65,6 +66,24 @@ namespace Animator.Core.Model
 
 		public static readonly XName stepclip = "stepclip";
 		public static readonly XName stepclip_step = "step";
+
+		public static readonly XName clipref = "clipref";
+		public static readonly XName clipref_id = "id";
+		public static readonly XName clipref_name = "name";
+		public static readonly XName clipref_clip_id = "clip-id";
+
+		public static readonly XName sequence = "sequence";
+		public static readonly XName sequence_id = "id";
+		public static readonly XName sequence_name = "name";
+		public static readonly XName sequence_dur = "dur";
+		public static readonly XName sequence_clips = "clips";
+
+		public static readonly XName seqclipref = "seqclipref";
+		public static readonly XName seqclipref_id = "id";
+		public static readonly XName seqclipref_name = "name";
+		public static readonly XName seqclipref_clip_id = "clip-id";
+		public static readonly XName seqclipref_start = "start";
+		public static readonly XName seqclipref_dur = "dur";
 
 	}
 
