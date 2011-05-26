@@ -5,9 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls.WpfPropertyGrid;
 using System.Xml.Linq;
-using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
@@ -19,7 +17,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, ISuspendableNotify, INotifyPropertyChanged
+	public sealed class Document : IDocumentItem, INotifyPropertyChanged
 	{
 
 		#region TransportData
@@ -166,7 +164,7 @@ namespace Animator.Core.Model
 		private ObservableCollection<Output> _Outputs;
 		private ObservableCollection<Track> _Tracks;
 		private ObservableCollection<Clip> _Clips;
-		private bool _NotifySuspended;
+		private ObservableCollection<Sequence> _Sequences;
 		private Guid _Id;
 		private string _Name;
 		private int? _UIRows;
@@ -315,6 +313,30 @@ namespace Animator.Core.Model
 					this._Clips = value;
 					this.AttachClips(value);
 					this.OnPropertyChanged("Clips");
+				}
+			}
+		}
+
+		[Browsable(false)]
+		public ObservableCollection<Sequence> Sequences
+		{
+			get
+			{
+				if(this._Sequences == null)
+				{
+					this._Sequences = new ObservableCollection<Sequence>();
+					this.AttachSequences(this._Sequences);
+				}
+				return this._Sequences;
+			}
+			set
+			{
+				if(value != this._Sequences)
+				{
+					this.DetachSequences(this._Sequences);
+					this._Sequences = value;
+					this.AttachSequences(value);
+					this.OnPropertyChanged("Sequences");
 				}
 			}
 		}
@@ -496,14 +518,21 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Clips");
 		}
 
-		internal void SuspendNotify()
+		private void AttachSequences(ObservableCollection<Sequence> sequences)
 		{
-			this._NotifySuspended = true;
+			if(sequences != null)
+				sequences.CollectionChanged += this.Sequences_CollectionChanged;
 		}
 
-		internal void ResumeNotify()
+		private void DetachSequences(ObservableCollection<Sequence> sequences)
 		{
-			this._NotifySuspended = false;
+			if(sequences != null)
+				sequences.CollectionChanged -= this.Sequences_CollectionChanged;
+		}
+
+		private void Sequences_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			this.OnPropertyChanged("Sequences");
 		}
 
 		public Output GetOutput(Guid id)
@@ -521,11 +550,9 @@ namespace Animator.Core.Model
 			return this.Clips.FindById(id);
 		}
 
-		public IDocumentItem GetItem(Guid id)
+		public Clip GetClip(ClipReference clipRef)
 		{
-			if(id == this.Id)
-				return this;
-			return this.GetOutput(id) ?? this.GetTrack(id) ?? (DocumentItem)this.GetClip(id);
+			return clipRef == null ? null : this.GetClip(clipRef.ClipId);
 		}
 
 		public IOutputTransmitter GetTransmitter(Guid id)
@@ -569,38 +596,33 @@ namespace Animator.Core.Model
 			Require.ArgNotNull(element, "element");
 			if(host == null)
 				host = AniHost.Current;
-			this.SuspendNotify();
-			try
-			{
-				this.Id = (Guid)element.Attribute(Schema.anidoc_id);
-				this.Name = (string)element.Attribute(Schema.anidoc_name);
 
-				var transportElement = element.Element(Schema.transport);
-				if(transportElement != null)
-				{
-					this._TransportData.ReadXElement(transportElement);
-				}
-				else
-				{
-					this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
-					this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
-					this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
-				}
+			this.Id = (Guid)element.Attribute(Schema.anidoc_id);
+			this.Name = (string)element.Attribute(Schema.anidoc_name);
 
-				var outputsElement = element.Element(Schema.anidoc_outputs);
-				this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
-				var tracksElement = element.Element(Schema.anidoc_tracks);
-				this.Tracks = tracksElement == null ? null : new ObservableCollection<Track>(tracksElement.Elements().Select(e => new Track(e, host)));
-				var clipsElement = element.Element(Schema.anidoc_clips);
-				this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(host.ReadClipXElement));
-				this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
-				this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
-			}
-			finally
+			var transportElement = element.Element(Schema.transport);
+			if(transportElement != null)
 			{
-				this.ResumeNotify();
-				this.OnPropertyChanged(null);
+				this._TransportData.ReadXElement(transportElement);
 			}
+			else
+			{
+				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
+				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
+				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
+			}
+
+			var outputsElement = element.Element(Schema.anidoc_outputs);
+			this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
+			var tracksElement = element.Element(Schema.anidoc_tracks);
+			this.Tracks = tracksElement == null ? null : new ObservableCollection<Track>(tracksElement.Elements().Select(e => new Track(e, host)));
+			var clipsElement = element.Element(Schema.anidoc_clips);
+			this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(host.ReadClipXElement));
+			var sequencesElement = element.Element(Schema.anidoc_sequences);
+			this.Sequences = sequencesElement == null ? null : new ObservableCollection<Sequence>(sequencesElement.Elements().Select(e => new Sequence(e)));
+
+			this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
+			this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
 		}
 
 		#endregion
@@ -616,6 +638,7 @@ namespace Animator.Core.Model
 				(this._Outputs == null || this._Outputs.Count == 0) ? null : new XElement(Schema.anidoc_outputs, this._Outputs.WriteXElements(null)),
 				(this._Tracks == null || this._Tracks.Count == 0) ? null : new XElement(Schema.anidoc_tracks, this._Tracks.WriteXElements(null)),
 				(this._Clips == null || this._Clips.Count == 0) ? null : new XElement(Schema.anidoc_clips, this._Clips.WriteXElements(null)),
+				(this._Sequences == null || this._Sequences.Count == 0) ? null : new XElement(Schema.anidoc_sequences, this._Sequences.WriteXElements(null)),
 				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_rows, this.UIRows),
 				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_cols, this.UIColumns));
 		}
@@ -626,29 +649,12 @@ namespace Animator.Core.Model
 
 		private void OnPropertyChanged(string name)
 		{
-			if(!_NotifySuspended)
-			{
-				var handler = this.PropertyChanged;
-				if(handler != null)
-					handler(this, new PropertyChangedEventArgs(name));
-			}
+			var handler = this.PropertyChanged;
+			if(handler != null)
+				handler(this, new PropertyChangedEventArgs(name));
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
-
-		#endregion
-
-		#region ISuspendableNotify Members
-
-		void ISuspendableNotify.SuspendNotify()
-		{
-			this.SuspendNotify();
-		}
-
-		void ISuspendableNotify.ResumeNotify()
-		{
-			this.ResumeNotify();
-		}
 
 		#endregion
 
@@ -656,7 +662,6 @@ namespace Animator.Core.Model
 
 		public void Dispose()
 		{
-			this.SuspendNotify();
 			this.PropertyChanged = null;
 			var transport = this._Transport as IDisposable;
 			if(transport != null)

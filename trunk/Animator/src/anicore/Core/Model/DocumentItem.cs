@@ -62,10 +62,6 @@ namespace Animator.Core.Model
 
 		public override int GetHashCode()
 		{
-			//unchecked
-			//{
-			//    return ((this._Name != null ? this._Name.GetHashCode() : 0) * 397) ^ this.Id.GetHashCode();
-			//}
 			return this.Id.GetHashCode();
 		}
 

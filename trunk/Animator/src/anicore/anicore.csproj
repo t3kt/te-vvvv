@@ -65,7 +65,6 @@
     <Compile Include="Common\ActionScope.cs" />
     <Compile Include="Common\CommonUtil.cs" />
     <Compile Include="Common\Diagnostics\Require.cs" />
-    <Compile Include="Common\ISuspendableNotify.cs" />
     <Compile Include="Common\Threading\LockUtil.cs" />
     <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
     <Compile Include="Core\Composition\AniExport.cs" />
@@ -75,6 +74,7 @@
     <Compile Include="Core\Composition\OutputTransmitter.cs" />
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
+    <Compile Include="Core\Model\ClipReference.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
@@ -83,6 +83,8 @@
     <Compile Include="Core\Model\ModelUtil.cs" />
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />
+    <Compile Include="Core\Model\Sequence.cs" />
+    <Compile Include="Core\Model\SequenceClipReference.cs" />
     <Compile Include="Core\Model\StepClip.cs" />
     <Compile Include="Core\Model\Track.cs" />
     <Compile Include="Core\IO\IOutputTransmitter.cs" />
@@ -117,7 +119,6 @@
       <LastGenOutput>CoreStrings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Core\Model\_ModelClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

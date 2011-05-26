@@ -160,7 +160,7 @@ namespace Animator.Core.Model
 				ModelUtil.WriteOptionalAttribute(Schema.track_name, this.Name),
 				ModelUtil.WriteOptionalValueAttribute(Schema.track_output, this.OutputId),
 				ModelUtil.WriteOptionalAttribute(Schema.track_target, this.TargetKey),
-				this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, (object)this.Clips.Select(WriteClipXElement)));
+				this.Clips.Count == 0 ? null : new XElement(Schema.track_clips, this.Clips.Select(WriteClipXElement)));
 		}
 
 		protected override void Dispose(bool disposing)

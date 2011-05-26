@@ -46,8 +46,15 @@ namespace Animator.Core.Model
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public IDictionary<string, string> Parameters
 		{
-			get { return _Parameters ?? (_Parameters = new Dictionary<string, string>()); }
-			set { _Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value); }
+			get { return this._Parameters ?? (this._Parameters = new Dictionary<string, string>()); }
+			set
+			{
+				if(value != this._Parameters)
+				{
+					this._Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value);
+					this.OnPropertyChanged("Parameters");
+				}
+			}
 		}
 
 		#endregion
@@ -82,17 +89,10 @@ namespace Animator.Core.Model
 		private void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			try
-			{
-				this.Id = (Guid)element.Attribute(Schema.output_id);
-				this.Name = (string)element.Attribute(Schema.output_name);
-				this.OutputType = (string)element.Attribute(Schema.output_type);
-				_Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.output_params));
-			}
-			finally
-			{
-				OnPropertyChanged(null);
-			}
+			this.Id = (Guid)element.Attribute(Schema.output_id);
+			this.Name = (string)element.Attribute(Schema.output_name);
+			this.OutputType = (string)element.Attribute(Schema.output_type);
+			this.Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.output_params));
 		}
 
 		public override XElement WriteXElement(XName name = null)

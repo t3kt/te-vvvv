@@ -44,8 +44,8 @@
 						<xs:element ref="transport" minOccurs="0"/>
 						<xs:element name="outputs" minOccurs="0">
 							<xs:complexType>
-								<xs:sequence>
-									<xs:element ref="output" minOccurs="0" maxOccurs="unbounded"/>
+								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+									<xs:element ref="output"/>
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
@@ -59,6 +59,13 @@
 						<xs:element name="clips" minOccurs="0">
 							<xs:complexType>
 								<xs:group ref="AnyClipGroup" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="sequences" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+									<xs:element ref="sequence"/>
+								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
@@ -90,6 +97,10 @@
 			<xs:selector xpath="outputs/output"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
+		<xs:key name="clipIdKey">
+			<xs:selector xpath="clips/*"/>
+			<xs:field xpath="@id"/>
+		</xs:key>
 		<xs:keyref name="trackOutputIdKeyRef" refer="outputIdKey">
 			<xs:selector xpath="tracks/track"/>
 			<xs:field xpath="@output"/>
@@ -97,6 +108,10 @@
 		<xs:keyref name="clipOutputIdKeyRef" refer="outputIdKey">
 			<xs:selector xpath="clips/clip"/>
 			<xs:field xpath="@output"/>
+		</xs:keyref>
+		<xs:keyref name="seqClipIdRef" refer="clipIdKey">
+			<xs:selector xpath="sequences/sequence/clips/seqclipref"/>
+			<xs:field xpath="@clip-id"/>
 		</xs:keyref>
 	</xs:element>
 	<xs:element name="output">
@@ -193,6 +208,60 @@
 			</xs:attribute>
 			<xs:attribute name="align" type="xs:nonNegativeInteger"/>
 			<xs:attribute name="type" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ClipRefType">
+		<xs:complexContent>
+			<xs:extension base="DocumentItemType">
+				<xs:attribute name="clip-id" type="Guid" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="clipref" type="ClipRefType"/>
+	<xs:element name="sequence">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="DocumentItemType">
+					<xs:sequence>
+						<xs:element name="clips" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="seqclipref" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="dur" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minExclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="seqclipref">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ClipRefType">
+					<xs:attribute name="start" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="dur">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minExclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
