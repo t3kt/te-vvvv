@@ -1,0 +1,3 @@
+#summary Animator Diagrams
+
+  * [https://docs.google.com/drawings/d/1vi8_5JDv8Q9Mc5FP468yoRxAm1sSETpMD0TV4Z84oEg/edit?hl=en_US Animator Document Structure]
