@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
-using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -12,7 +11,7 @@ namespace Animator.Core.Model
 
 	#region ClipReference
 
-	public class ClipReference : DocumentItem, IEquatable<ClipReference>
+	public abstract class ClipReference : DocumentItem, IEquatable<ClipReference>
 	{
 
 		#region Static / Constant
@@ -43,14 +42,14 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public ClipReference(Guid id, Clip clip)
+		protected ClipReference(Guid id, Clip clip)
 			: base(id)
 		{
 			this._Clip = clip;
 			this._ClipId = clip == null ? Guid.Empty : clip.Id;
 		}
 
-		public ClipReference([NotNull] XElement element, [CanBeNull]Document document)
+		protected ClipReference([NotNull] XElement element, [CanBeNull]Document document)
 			: base(element)
 		{
 			this._ClipId = (Guid)element.Attribute(Schema.clipref_clip_id);

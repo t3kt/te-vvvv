@@ -273,6 +273,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ani_icon_sequencing.ico" />
+    <Resource Include="Resources\ani_icon_sessions.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ani_icon_sequencing_16.png" />
+    <Resource Include="Resources\ani_icon_sessions_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ani_icon_output.ico" />
+    <Resource Include="Resources\ani_icon_output_16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
