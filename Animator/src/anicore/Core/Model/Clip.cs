@@ -16,7 +16,7 @@ namespace Animator.Core.Model
 	#region Clip
 
 	[Clip(ElementName = "clip", Key = "clip", Description = "Generic Clip")]
-	public class Clip : DocumentItem, IEquatable<Clip>
+	public class Clip : DocumentItem, IEquatable<Clip>, IClip
 	{
 
 		#region Static / Constant
@@ -26,7 +26,6 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private Time _Duration;
-		private int _TriggerAlignment;
 		private string _TargetKey;
 		private Guid? _OutputId;
 		private int? _UIRow;
@@ -38,7 +37,7 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
-		
+
 		[Category(TEShared.Names.Category_Output)]
 		[DisplayName(TEShared.Names.DisplayName_Target)]
 		public string TargetKey
@@ -65,21 +64,6 @@ namespace Animator.Core.Model
 				{
 					this._Duration = value;
 					this.OnPropertyChanged("Duration");
-				}
-			}
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
-		[Browsable(false)]
-		public int TriggerAlignment
-		{
-			get { return this._TriggerAlignment; }
-			set
-			{
-				if(value != this._TriggerAlignment)
-				{
-					this._TriggerAlignment = value;
-					this.OnPropertyChanged("TriggerAlignment");
 				}
 			}
 		}
@@ -142,9 +126,7 @@ namespace Animator.Core.Model
 			: this(Guid.NewGuid()) { }
 
 		public Clip(Guid id)
-		{
-			this.Id = id;
-		}
+			: base(id) { }
 
 		#endregion
 
@@ -184,7 +166,7 @@ namespace Animator.Core.Model
 			return this.GetValue(this.GetPosition(transport));
 		}
 
-		internal OutputMessage BuildOutputMessage(Transport.Transport transport)
+		public virtual OutputMessage BuildOutputMessage(Transport.Transport transport)
 		{
 			return new OutputMessage(this.TargetKey, this.GetValue(transport));
 		}
@@ -192,10 +174,8 @@ namespace Animator.Core.Model
 		public virtual void ReadXElement(XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			this.Id = (Guid)element.Attribute(Schema.clip_id);
-			this.Name = (string)element.Attribute(Schema.clip_name);
+			this.ReadCommonXAttributes(element);
 			this.Duration = (float)element.Attribute(Schema.clip_dur);
-			this.TriggerAlignment = (int?)element.Attribute(Schema.clip_align) ?? Document.NoAlignment;
 			this.TargetKey = (string)element.Attribute(Schema.clip_target);
 			this.OutputId = (Guid?)element.Attribute(Schema.clip_output);
 			this.UIRow = (int?)element.Attribute(Schema.clip_ui_row);
@@ -205,10 +185,8 @@ namespace Animator.Core.Model
 		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.clip,
-				new XAttribute(Schema.clip_id, this.Id),
-				ModelUtil.WriteOptionalAttribute(Schema.clip_name, this.Name),
+				this.WriteCommonXAttributes(),
 				new XAttribute(Schema.clip_dur, this.Duration.Beats),
-				this.TriggerAlignment == Document.NoAlignment ? null : new XAttribute(Schema.clip_align, this.TriggerAlignment),
 				ModelUtil.WriteOptionalAttribute(Schema.clip_target, this.TargetKey),
 				ModelUtil.WriteOptionalValueAttribute(Schema.clip_output, this.OutputId),
 				ModelUtil.WriteOptionalValueAttribute(Schema.clip_ui_row, this.UIRow),
@@ -233,7 +211,6 @@ namespace Animator.Core.Model
 		{
 			return base.Equals(other) &&
 				   other._Duration == this._Duration &&
-				   other._TriggerAlignment == this._TriggerAlignment &&
 				   other._TargetKey == this._TargetKey &&
 				   other._OutputId == this._OutputId;
 		}

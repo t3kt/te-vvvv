@@ -246,7 +246,7 @@ namespace Animator.UI
 				return;
 			try
 			{
-				var doc = new XDocument(this.ActiveDocument.WriteXElement());
+				var doc = this.ActiveDocument.WriteXDocument();
 				doc.Save(path);
 				this.ActiveDocumentDirty = false;
 				((AniApplication)Application.Current).RecentFileManager.AddFile(path);

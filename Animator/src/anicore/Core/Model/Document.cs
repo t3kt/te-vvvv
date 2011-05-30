@@ -9,6 +9,9 @@ using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
+using Animator.Core.Model.Sequences;
+using Animator.Core.Model.Sessions;
+using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using TESharedAnnotations;
 
@@ -17,7 +20,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, INotifyPropertyChanged
+	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>
 	{
 
 		#region TransportData
@@ -33,7 +36,6 @@ namespace Animator.Core.Model
 
 			private Time _Duration = Time.Infinite;
 			private float _BeatsPerMinute = DefaultBeatsPerMinute;
-			private int _TriggerAlignment = NoAlignment;
 			private string _TransportType;
 			private Dictionary<string, string> _Parameters;
 
@@ -69,19 +71,6 @@ namespace Animator.Core.Model
 				}
 			}
 
-			public int TriggerAlignment
-			{
-				get { return this._TriggerAlignment; }
-				set
-				{
-					if(value != this._TriggerAlignment)
-					{
-						this._TriggerAlignment = value;
-						this.OnPropertyChanged("TriggerAlignment");
-					}
-				}
-			}
-
 			public string TransportType
 			{
 				get { return this._TransportType; }
@@ -105,8 +94,6 @@ namespace Animator.Core.Model
 
 			#region Constructors
 
-			public TransportData() { }
-
 			#endregion
 
 			#region Methods
@@ -116,7 +103,6 @@ namespace Animator.Core.Model
 				Require.ArgNotNull(element, "element");
 				this._Duration = (float?)element.Attribute(Schema.transport_dur) ?? Time.Infinite;
 				this._BeatsPerMinute = (float?)element.Attribute(Schema.transport_bpm) ?? DefaultBeatsPerMinute;
-				this._TriggerAlignment = (int?)element.Attribute(Schema.transport_align) ?? NoAlignment;
 				this._TransportType = (string)element.Attribute(Schema.transport_type);
 				this._Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.transport_params));
 			}
@@ -126,7 +112,6 @@ namespace Animator.Core.Model
 				return new XElement(name ?? Schema.transport,
 					this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
 					new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
-					this.TriggerAlignment == NoAlignment ? null : new XAttribute(Schema.anidoc_align, this.TriggerAlignment),
 					ModelUtil.WriteOptionalAttribute(Schema.transport_type, this.TransportType),
 					ModelUtil.WriteParametersXElement(Schema.transport_params, this._Parameters));
 			}
@@ -152,7 +137,6 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		internal const int NoAlignment = 0;
 		public const float DefaultBeatsPerMinute = 80.0f;
 
 		private static readonly Transport.Transport _DefaultTransport = new Transport.Transport.NullTransport();
@@ -162,9 +146,9 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private ObservableCollection<Output> _Outputs;
-		private ObservableCollection<Track> _Tracks;
 		private ObservableCollection<Clip> _Clips;
 		private ObservableCollection<Sequence> _Sequences;
+		private ObservableCollection<Session> _Sessions;
 		private Guid _Id;
 		private string _Name;
 		private int? _UIRows;
@@ -223,14 +207,6 @@ namespace Animator.Core.Model
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		[Browsable(false)]
-		public int TriggerAlignment
-		{
-			get { return this._TransportData.TriggerAlignment; }
-			set { this._TransportData.TriggerAlignment = value; }
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
 		public string TransportType
 		{
 			get { return this._TransportData.TransportType; }
@@ -265,30 +241,6 @@ namespace Animator.Core.Model
 					this._Outputs = value;
 					this.AttachOutputs(this._Outputs);
 					this.OnPropertyChanged("Outputs");
-				}
-			}
-		}
-
-		[Browsable(false)]
-		public ObservableCollection<Track> Tracks
-		{
-			get
-			{
-				if(this._Tracks == null)
-				{
-					this._Tracks = new ObservableCollection<Track>();
-					this.AttachTracks(this._Tracks);
-				}
-				return this._Tracks;
-			}
-			set
-			{
-				if(value != this._Tracks)
-				{
-					this.DetachTracks(this._Tracks);
-					this._Tracks = value;
-					this.AttachTracks(this._Tracks);
-					this.OnPropertyChanged("Tracks");
 				}
 			}
 		}
@@ -337,6 +289,30 @@ namespace Animator.Core.Model
 					this._Sequences = value;
 					this.AttachSequences(value);
 					this.OnPropertyChanged("Sequences");
+				}
+			}
+		}
+
+		[Browsable(false)]
+		public ObservableCollection<Session> Sessions
+		{
+			get
+			{
+				if(this._Sessions == null)
+				{
+					this._Sessions = new ObservableCollection<Session>();
+					this.AttachSessions(this._Sessions);
+				}
+				return this._Sessions;
+			}
+			set
+			{
+				if(value != this._Sessions)
+				{
+					this.DetachSessions(this._Sessions);
+					this._Sessions = value;
+					this.AttachSessions(value);
+					this.OnPropertyChanged("Sessions");
 				}
 			}
 		}
@@ -416,6 +392,16 @@ namespace Animator.Core.Model
 			this.RebuildTransport();
 		}
 
+		public Document([NotNull]XDocument document, [CanBeNull]AniHost host = null)
+		{
+			Require.ArgNotNull(document, "document");
+			this._Host = host;
+			this._TransportData = new TransportData();
+			this.ReadXElement(document.Root, host);
+			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
+			this.RebuildTransport();
+		}
+
 		#endregion
 
 		#region Methods
@@ -484,23 +470,6 @@ namespace Animator.Core.Model
 			this.RemoveUnusedTransmitters();
 		}
 
-		private void AttachTracks(ObservableCollection<Track> tracks)
-		{
-			if(tracks != null)
-				tracks.CollectionChanged += this.Tracks_CollectionChanged;
-		}
-
-		private void DetachTracks(ObservableCollection<Track> tracks)
-		{
-			if(tracks != null)
-				tracks.CollectionChanged -= this.Tracks_CollectionChanged;
-		}
-
-		private void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Tracks");
-		}
-
 		private void AttachClips(ObservableCollection<Clip> clips)
 		{
 			if(clips != null)
@@ -535,14 +504,26 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Sequences");
 		}
 
+		private void AttachSessions(ObservableCollection<Session> sessions)
+		{
+			if(sessions != null)
+				sessions.CollectionChanged += this.Sessions_CollectionChanged;
+		}
+
+		private void DetachSessions(ObservableCollection<Session> sessions)
+		{
+			if(sessions != null)
+				sessions.CollectionChanged -= this.Sessions_CollectionChanged;
+		}
+
+		private void Sessions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			this.OnPropertyChanged("Sessions");
+		}
+
 		public Output GetOutput(Guid id)
 		{
 			return this.Outputs.FindById(id);
-		}
-
-		public Track GetTrack(Guid id)
-		{
-			return this.Tracks.FindById(id);
 		}
 
 		public Clip GetClip(Guid id)
@@ -550,9 +531,9 @@ namespace Animator.Core.Model
 			return this.Clips.FindById(id);
 		}
 
-		public Clip GetClip(ClipReference clipRef)
+		public Sequence GetSequence(Guid id)
 		{
-			return clipRef == null ? null : this.GetClip(clipRef.ClipId);
+			return this.Sequences.FindById(id);
 		}
 
 		public IOutputTransmitter GetTransmitter(Guid id)
@@ -609,17 +590,16 @@ namespace Animator.Core.Model
 			{
 				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
 				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
-				this.TriggerAlignment = (int?)element.Attribute(Schema.anidoc_align) ?? NoAlignment;
 			}
 
 			var outputsElement = element.Element(Schema.anidoc_outputs);
 			this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
-			var tracksElement = element.Element(Schema.anidoc_tracks);
-			this.Tracks = tracksElement == null ? null : new ObservableCollection<Track>(tracksElement.Elements().Select(e => new Track(e, host)));
 			var clipsElement = element.Element(Schema.anidoc_clips);
 			this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(host.ReadClipXElement));
 			var sequencesElement = element.Element(Schema.anidoc_sequences);
-			this.Sequences = sequencesElement == null ? null : new ObservableCollection<Sequence>(sequencesElement.Elements().Select(e => new Sequence(e)));
+			this.Sequences = sequencesElement == null ? null : new ObservableCollection<Sequence>(sequencesElement.Elements().Select(e => new Sequence(e, this)));
+			var sessionsElement = element.Element(Schema.anidoc_sessions);
+			this.Sessions = sessionsElement == null ? null : new ObservableCollection<Session>(sessionsElement.Elements().Select(e => new Session(e, this)));
 
 			this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
 			this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
@@ -635,12 +615,17 @@ namespace Animator.Core.Model
 				new XAttribute(Schema.anidoc_id, this.Id),
 				ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
 				this._TransportData.WriteXElement(),
-				(this._Outputs == null || this._Outputs.Count == 0) ? null : new XElement(Schema.anidoc_outputs, this._Outputs.WriteXElements(null)),
-				(this._Tracks == null || this._Tracks.Count == 0) ? null : new XElement(Schema.anidoc_tracks, this._Tracks.WriteXElements(null)),
-				(this._Clips == null || this._Clips.Count == 0) ? null : new XElement(Schema.anidoc_clips, this._Clips.WriteXElements(null)),
-				(this._Sequences == null || this._Sequences.Count == 0) ? null : new XElement(Schema.anidoc_sequences, this._Sequences.WriteXElements(null)),
+				ModelUtil.WriteListXElement(this._Outputs, Schema.anidoc_outputs),
+				ModelUtil.WriteListXElement(this._Clips, Schema.anidoc_clips),
+				ModelUtil.WriteListXElement(this._Sequences, Schema.anidoc_sequences),
+				ModelUtil.WriteListXElement(this._Sessions, Schema.anidoc_sessions),
 				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_rows, this.UIRows),
 				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_cols, this.UIColumns));
+		}
+
+		public XDocument WriteXDocument()
+		{
+			return new XDocument(this.WriteXElement());
 		}
 
 		#endregion
@@ -667,12 +652,12 @@ namespace Animator.Core.Model
 			if(transport != null)
 				transport.Dispose();
 			this._Transport = null;
-			if(this._Tracks != null)
+			if(this._Sequences != null)
 			{
-				foreach(var output in this._Tracks)
-					output.Dispose();
-				this.DetachTracks(this._Tracks);
-				this._Tracks = null;
+				foreach(var seq in this._Sequences)
+					seq.Dispose();
+				this.DetachSequences(this._Sequences);
+				this._Sequences = null;
 			}
 			if(this._Outputs != null)
 			{
@@ -688,6 +673,26 @@ namespace Animator.Core.Model
 				this._Transmitters = null;
 			}
 			GC.SuppressFinalize(this);
+		}
+
+		#endregion
+
+		#region IItemContainer<IDocumentItem> Members
+
+		public IDocumentItem FindById(Guid id)
+		{
+			if(this.Id == id)
+				return this;
+			var clip = this.GetClip(id);
+			if(clip != null)
+				return clip;
+			var output = this.GetOutput(id);
+			if(output != null)
+				return output;
+			var sequence = this.GetSequence(id);
+			if(sequence != null)
+				return sequence;
+			return null;
 		}
 
 		#endregion

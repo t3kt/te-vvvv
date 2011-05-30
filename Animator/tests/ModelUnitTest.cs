@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using System.Xml.Schema;
 using Animator.Core.Model;
 using Animator.Core.Transport;
 using Animator.Tests.Utils;
@@ -20,6 +23,33 @@ namespace Animator.Tests
 	[TestClass]
 	public class ModelUnitTest
 	{
+
+		private static XmlSchemaSet LoadDocumentSchemas()
+		{
+			using(var stream = typeof(Document).Assembly.GetManifestResourceStream("Animator.Core.Model.AniDocument.xsd"))
+			{
+				Assert.IsNotNull(stream);
+				var schema = XmlSchema.Read(stream, null);
+				var set = new XmlSchemaSet();
+				set.Add(schema);
+				return set;
+			}
+		}
+
+		private static void ValidateDocumentSchema(XDocument document)
+		{
+			var schemas = LoadDocumentSchemas();
+			Assert.IsNotNull(document);
+			try
+			{
+				document.Validate(schemas, null, false);
+			}
+			catch(XmlSchemaException ex)
+			{
+				throw new XmlSchemaException(
+					String.Format("{0} SourceObject: {1}", ex.Message, ex.SourceSchemaObject), ex, ex.LineNumber, ex.LinePosition);
+			}
+		}
 
 		[TestMethod]
 		[TestCategory("Model")]
@@ -47,7 +77,7 @@ namespace Animator.Tests
 		public void ClipReadWriteXElement()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
+			var clipA = new Clip { Name = "helloclip", OutputId = Guid.NewGuid(), UIRow = 12 };
 			var xmlA = clipA.WriteXElement();
 			var clipB = new Clip();
 			clipB.ReadXElement(xmlA);
@@ -72,7 +102,6 @@ namespace Animator.Tests
 			var clipA = new StepClip
 						{
 							Name = "helloclip",
-							TriggerAlignment = 4,
 							OutputId = Guid.NewGuid(),
 							UIRow = 12,
 							Steps = new ObservableCollection<float> { 40.2f, -345.28f, 0.0f, 4444.4f }
@@ -95,7 +124,7 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory("Model")]
-		public void DocumentReadWriteXElement()
+		public void DocumentReadWriteXDocument()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var docA = new Document
@@ -106,7 +135,9 @@ namespace Animator.Tests
 						   UIColumns = 23,
 						   UIRows = 14
 					   };
-			var clipA1 = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid(), UIRow = 12 };
+			var outputA1 = new Output { Name = "out1", OutputType = "fooo_out" };
+			docA.Outputs.Add(outputA1);
+			var clipA1 = new Clip { Name = "helloclip", OutputId = outputA1.Id, UIRow = 12 };
 			docA.Clips.Add(clipA1);
 			var clipA2 = new StepClip
 						 {
@@ -118,11 +149,10 @@ namespace Animator.Tests
 							 UIRow = 2
 						 };
 			docA.Clips.Add(clipA2);
-			var outputA1 = new Output { Name = "out1", OutputType = "fooo_out" };
-			docA.Outputs.Add(outputA1);
-			var xmlA = docA.WriteXElement();
+			var xmlA = docA.WriteXDocument();
+			ValidateDocumentSchema(xmlA);
 			var docB = new Document(xmlA, host);
-			var xmlB = docB.WriteXElement();
+			var xmlB = docB.WriteXDocument();
 			Assert.AreEqual(docA.BeatsPerMinute, docB.BeatsPerMinute);
 			Assert.AreEqual(docA.Id, docB.Id);
 			Assert.AreEqual(docA.Duration, docB.Duration);
@@ -188,40 +218,13 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory("Model")]
-		public void TrackReadWriteXElement()
-		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var docA = new Document();
-			var trackA = new Track();
-			docA.Tracks.Add(trackA);
-			var clipA = new Clip { Name = "helloclip", TriggerAlignment = 4, OutputId = Guid.NewGuid() };
-			trackA.Clips.Add(clipA);
-			trackA.Clips.Add(null);
-			var clipB = new StepClip
-			{
-				Name = "foosteps",
-				Steps = new ObservableCollection<float> { 5.0f, -2.3f, 3.73e+4f }
-			};
-			trackA.Clips.Add(clipB);
-			var xmlA = trackA.WriteXElement();
-
-			var trackB = new Track(xmlA, host);
-			var xmlB = trackB.WriteXElement();
-			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
-			Assert.AreEqual(trackA, trackB);
-		}
-
-		[TestMethod]
-		[TestCategory("Model")]
+		[ExpectedException(typeof(ArgumentException))]
 		public void NoDuplicateIds()
 		{
 			var doc = new Document();
 			var output = new Output();
-			var track = new Track(output.Id);
-			TestUtil.AssertThrowsException(() =>
-										   {
-											   doc.Tracks.Add(track);
-										   }, "Add duplicate id allowed");
+			var clip = new Clip(output.Id);
+			doc.Clips.Add(clip);
 		}
 
 		[TestMethod]
@@ -229,20 +232,53 @@ namespace Animator.Tests
 		public void StepClipGetValue()
 		{
 			var doc = new Document();
-			var track = new Track();
-			doc.Tracks.Add(track);
 			var clip = new StepClip
 			{
 				Duration = new Time(4),
 				Steps = new ObservableCollection<float> { 0.0f, 1.0f, 2.0f, 3.0f }
 			};
-			track.Clips.Add(clip);
+			doc.Clips.Add(clip);
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.0f)));
 			Assert.AreEqual(1.0f, clip.GetValue(new Time(1.0f)));
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.4f)));
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.5f)));
 			Assert.AreEqual(1.0f, clip.GetValue(new Time(1.5f)));
 			Assert.AreEqual(1.0f, clip.GetValue(new Time(5.5f)));
+		}
+
+		[TestMethod]
+		[TestCategory("Model")]
+		public void TargetObjectEquality()
+		{
+			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
+			var tgt2 = new TargetObject(tgt1.Id) { Name = tgt1.Name, OutputKey = tgt1.OutputKey };
+			Assert.AreEqual(tgt1, tgt2);
+			var prop1A = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 23.1f };
+			var prop2A = new TargetProperty(prop1A.Name, prop1A.Type) { DefaultValue = prop1A.DefaultValue };
+			tgt1.Properties.Add(prop1A);
+			Assert.AreNotEqual(tgt1, tgt2);
+			tgt2.Properties.Add(prop2A);
+			Assert.AreEqual(tgt1, tgt2);
+			prop1A.DefaultValue = 999.4f;
+			Assert.AreNotEqual(tgt1, tgt2);
+			prop2A.DefaultValue = prop1A.DefaultValue;
+			Assert.AreEqual(tgt1, tgt2);
+		}
+
+		[TestMethod]
+		[TestCategory("Model")]
+		public void TargetObjectReadWriteXElement()
+		{
+			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
+			var prop1A = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 23.1f };
+			var prop1B = new TargetProperty("propB", TargetPropertyType.String) { DefaultValue = "foo" };
+			tgt1.Properties.Add(prop1A);
+			tgt1.Properties.Add(prop1B);
+			var xml1 = tgt1.WriteXElement();
+			var tgt2 = new TargetObject(xml1);
+			var xml2 = tgt2.WriteXElement();
+			Assert.AreEqual(xml1.ToString(), xml2.ToString());
+			Assert.AreEqual(tgt1, tgt2);
 		}
 
 	}

@@ -2,17 +2,15 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Linq;
+using Animator.Core.Runtime;
 
 namespace Animator.Core.Model
 {
 
 	#region IDocumentItem
 
-	public interface IDocumentItem : IXElementWritable, IDisposable
+	public interface IDocumentItem : IGuidId, IXElementWritable, IDisposable
 	{
-
-		[Browsable(false)]
-		Guid Id { get; }
 
 		[Category(TEShared.Names.Category_Common)]
 		[NotifyParentProperty(true)]

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace Animator.Core.Model
 
 		private string _OutputType;
 		private Dictionary<string, string> _Parameters;
+		private ObservableCollection<TargetObject> _Targets;
 
 		#endregion
 
@@ -57,6 +60,29 @@ namespace Animator.Core.Model
 			}
 		}
 
+		public ObservableCollection<TargetObject> Targets
+		{
+			get
+			{
+				if(this._Targets == null)
+				{
+					this._Targets = new ObservableCollection<TargetObject>();
+					this.AttachTargets(this._Targets);
+				}
+				return this._Targets;
+			}
+			set
+			{
+				if(value != this._Targets)
+				{
+					this.DetachTargets(this._Targets);
+					this._Targets = value;
+					this.AttachTargets(this._Targets);
+					this.OnPropertyChanged("Targets");
+				}
+			}
+		}
+
 		#endregion
 
 		#region Constructors
@@ -65,11 +91,10 @@ namespace Animator.Core.Model
 			: this(Guid.NewGuid()) { }
 
 		public Output(Guid id)
-		{
-			this.Id = id;
-		}
+			: base(id) { }
 
 		public Output(XElement element)
+			: base(element)
 		{
 			ReadXElement(element);
 		}
@@ -77,6 +102,23 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Methods
+
+		private void AttachTargets(ObservableCollection<TargetObject> targets)
+		{
+			if(targets != null)
+				targets.CollectionChanged += this.Targets_CollectionChanged;
+		}
+
+		private void DetachTargets(ObservableCollection<TargetObject> targets)
+		{
+			if(targets != null)
+				targets.CollectionChanged -= this.Targets_CollectionChanged;
+		}
+
+		private void Targets_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			this.OnPropertyChanged("Targets");
+		}
 
 		internal string GetParameter(string key)
 		{
@@ -86,22 +128,25 @@ namespace Animator.Core.Model
 			return this._Parameters.TryGetValue(key, out value) ? value : null;
 		}
 
+		public TargetObject GetTargetObject(Guid id)
+		{
+			return this._Targets.FindById(id);
+		}
+
 		private void ReadXElement(XElement element)
 		{
-			Require.ArgNotNull(element, "element");
-			this.Id = (Guid)element.Attribute(Schema.output_id);
-			this.Name = (string)element.Attribute(Schema.output_name);
 			this.OutputType = (string)element.Attribute(Schema.output_type);
 			this.Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.output_params));
+			this.Targets = new ObservableCollection<TargetObject>(element.Elements(Schema.target).Select(e => new TargetObject(e)));
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.output,
-				new XAttribute(Schema.output_id, this.Id),
-				ModelUtil.WriteOptionalAttribute(Schema.output_name, this.Name),
+				this.WriteCommonXAttributes(),
 				ModelUtil.WriteOptionalAttribute(Schema.output_type, this.OutputType),
-				ModelUtil.WriteParametersXElement(Schema.output_params, this._Parameters));
+				ModelUtil.WriteParametersXElement(Schema.output_params, this._Parameters),
+				ModelUtil.WriteXElements(this._Targets));
 		}
 
 		public override int GetHashCode()
@@ -123,7 +168,8 @@ namespace Animator.Core.Model
 			if(!base.Equals(other))
 				return false;
 			return other._OutputType == this._OutputType &&
-				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters);
+				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters) &&
+				   this._Targets.ItemsEqual(other._Targets);
 		}
 
 		#endregion

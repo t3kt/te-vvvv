@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common;
+using Animator.Common.Diagnostics;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
@@ -46,6 +48,17 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
+		protected DocumentItem(Guid id)
+		{
+			this.Id = id;
+		}
+
+		protected DocumentItem([NotNull] XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			this.ReadCommonXAttributes(element);
+		}
+
 		//~DocumentItem()
 		//{
 		//    this.Dispose(false);
@@ -54,6 +67,23 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Methods
+
+		protected void ReadCommonXAttributes([NotNull]XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			this.Id = (Guid)element.Attribute(Schema.common_id);
+			this.Name = (string)element.Attribute(Schema.common_name);
+		}
+
+		protected XAttribute[] WriteCommonXAttributes()
+		{
+			return
+				new[]
+				{
+					new XAttribute(Schema.common_id, this.Id),
+					ModelUtil.WriteOptionalAttribute(Schema.common_name, this.Name)
+				};
+		}
 
 		public override bool Equals(object obj)
 		{

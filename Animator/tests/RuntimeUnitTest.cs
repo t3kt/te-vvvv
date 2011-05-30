@@ -243,6 +243,36 @@ namespace Animator.Tests
 
 		#endregion
 
+		[TestMethod]
+		[TestCategory("Runtime.Model")]
+		public void TargetObjectGetSetClear()
+		{
+			var tgtObj = new TargetObject();
+			object value;
+			var propA = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 12.3f };
+			Assert.IsFalse(tgtObj.GetValue(propA.Name, out value));
+			Assert.IsFalse(tgtObj.SetValue(propA.Name, 22.1f));
+			Assert.IsFalse(tgtObj.ClearValue(propA.Name));
+
+			tgtObj.Properties.Add(propA);
+			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.AreEqual(propA.DefaultValue, value);
+			Assert.IsTrue(tgtObj.ClearValue(propA.Name));
+			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.AreEqual(propA.DefaultValue, value);
+			Assert.IsTrue(tgtObj.SetValue(propA.Name, 22.1f));
+			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.AreEqual(22.1f, value);
+			Assert.IsTrue(tgtObj.ClearValue(propA.Name));
+			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.AreEqual(propA.DefaultValue, value);
+
+			Assert.IsTrue(tgtObj.Properties.Remove(propA));
+			Assert.IsFalse(tgtObj.GetValue(propA.Name, out value));
+			Assert.IsFalse(tgtObj.SetValue(propA.Name, 22.1f));
+			Assert.IsFalse(tgtObj.ClearValue(propA.Name));
+		}
+
 	}
 
 	// ReSharper restore ConvertToLambdaExpression
