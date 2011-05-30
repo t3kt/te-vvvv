@@ -27,8 +27,6 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		internal const TargetPropertyType DefaultType = TargetPropertyType.Value;
-
 		internal static object ParseValueAttribute(TargetPropertyType type, XAttribute attr)
 		{
 			switch(type)

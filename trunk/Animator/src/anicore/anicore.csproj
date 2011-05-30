@@ -98,8 +98,10 @@
     <Compile Include="Core\IO\OutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\Model\TrackBase.cs" />
+    <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
+    <Compile Include="Core\Runtime\IClipRefContainer.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IPropertyEditor.cs" />

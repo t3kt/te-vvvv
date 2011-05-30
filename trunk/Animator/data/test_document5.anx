@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<anidoc id="5bd3c6aa-18cf-4375-9182-aacbe2a9b4dc" name="Test Documfent fooo" ui-rows="6">
+  <transport bpm="120" type="manual" />
+  <outputs>
+		<output id="80f7b4ff-6255-4032-8a94-8218b4cfd36f" name="out A">
+			<target id="c532075d-9340-4a45-84b7-c51a18db9d86" name="myTarget" key="foo/mytarget/">
+				<prop name="valA" type="Value" default="22.4"/>
+			</target>
+		</output>
+    <output id="a7f4febc-7959-4bb1-9386-b2ba59a793a2" name="out B" />
+    <output id="aee444a7-9654-483a-b609-a5db8aa5abf8" name="OSC Out C" type="osc" />
+  </outputs>
+  <clips>
+    <clip id="f140f161-a009-4643-b8f3-c70f2c15ae01" name="clip z" dur="20" output="80f7b4ff-6255-4032-8a94-8218b4cfd36f" ui-row="1" ui-col="2" />
+    <stepclip id="677c8722-4b51-44db-b081-3f57c34939d1" name="s-clip y" dur="40" ui-row="2" ui-col="6">
+      <step>4</step>
+      <step>10</step>
+      <step>50</step>
+      <step>8</step>
+    </stepclip>
+  </clips>
+</anidoc>

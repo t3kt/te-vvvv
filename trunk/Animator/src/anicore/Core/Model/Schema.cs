@@ -85,6 +85,7 @@ namespace Animator.Core.Model
 
 		public static readonly XName sesclipref = "sesclipref";
 		public static readonly XName sesclipref_row = "row";
+		public static readonly XName sesclipref_active = "active";
 
 	}
 

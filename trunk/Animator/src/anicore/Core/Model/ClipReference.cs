@@ -61,6 +61,8 @@ namespace Animator.Core.Model
 
 		#region Methods
 
+		internal abstract bool IsActiveInternal(Transport.Transport transport);
+
 		protected virtual object GetValue(Transport.Transport transport, Clip clip)
 		{
 			if(clip == null)

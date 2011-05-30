@@ -77,6 +77,11 @@ namespace Animator.Core.Model.Sequences
 
 		#region Methods
 
+		internal override bool IsActiveInternal(Transport.Transport transport)
+		{
+			throw new NotImplementedException();
+		}
+
 		public override XElement WriteXElement(XName name = null)
 		{
 			return base.WriteXElement(name ?? Schema.seqclipref)
