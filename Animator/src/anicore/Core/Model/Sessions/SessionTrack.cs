@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
@@ -12,7 +13,7 @@ namespace Animator.Core.Model.Sessions
 
 	#region SessionTrack
 
-	public sealed class SessionTrack : TrackBase<SessionClipReference>
+	public sealed class SessionTrack : Track<SessionClipReference>
 	{
 
 		#region Static / Constant
@@ -29,6 +30,9 @@ namespace Animator.Core.Model.Sessions
 
 		#region Constructors
 
+		public SessionTrack()
+			: this(Guid.NewGuid()) { }
+
 		public SessionTrack(Guid id)
 			: base(id) { }
 
@@ -36,7 +40,7 @@ namespace Animator.Core.Model.Sessions
 			: base(element)
 		{
 			Require.ArgNotNull(document, "document");
-			this.Clips = new ObservableCollection<SessionClipReference>(element.Elements(Schema.sesclipref).Select(e => new SessionClipReference(e, document)));
+			this.Clips.AddRange(element.Elements(Schema.sesclipref).Select(e => new SessionClipReference(e, document)));
 		}
 
 		#endregion

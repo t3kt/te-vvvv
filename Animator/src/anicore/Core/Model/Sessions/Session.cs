@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
@@ -13,7 +13,7 @@ namespace Animator.Core.Model.Sessions
 
 	#region Session
 
-	public sealed class Session : DocumentItem
+	public sealed class Session : DocumentSection<SessionTrack>
 	{
 
 		#region Static / Constant
@@ -23,7 +23,6 @@ namespace Animator.Core.Model.Sessions
 		#region Fields
 
 		private int? _Rows;
-		private ObservableCollection<SessionTrack> _Tracks;
 
 		#endregion
 
@@ -38,29 +37,6 @@ namespace Animator.Core.Model.Sessions
 				{
 					this._Rows = value;
 					this.OnPropertyChanged("Rows");
-				}
-			}
-		}
-
-		public ObservableCollection<SessionTrack> Tracks
-		{
-			get
-			{
-				if(this._Tracks == null)
-				{
-					this._Tracks = new ObservableCollection<SessionTrack>();
-					this.AttachTracks(this._Tracks);
-				}
-				return this._Tracks;
-			}
-			set
-			{
-				if(value != this._Tracks)
-				{
-					this.DetachTracks(this._Tracks);
-					this._Tracks = value;
-					this.AttachTracks(value);
-					this.OnPropertyChanged("Tracks");
 				}
 			}
 		}
@@ -80,29 +56,12 @@ namespace Animator.Core.Model.Sessions
 		{
 			Require.ArgNotNull(document, "document");
 			this.Rows = (int?)element.Attribute(Schema.session_rows);
-			this.Tracks = new ObservableCollection<SessionTrack>(element.Elements(Schema.seqtrack).Select(e => new SessionTrack(e, document)));
+			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SessionTrack(e, document)));
 		}
 
 		#endregion
 
 		#region Methods
-
-		private void AttachTracks(ObservableCollection<SessionTrack> tracks)
-		{
-			if(tracks != null)
-				tracks.CollectionChanged += this.Tracks_CollectionChanged;
-		}
-
-		private void DetachTracks(ObservableCollection<SessionTrack> tracks)
-		{
-			if(tracks != null)
-				tracks.CollectionChanged -= this.Tracks_CollectionChanged;
-		}
-
-		private void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Tracks");
-		}
 
 		public override XElement WriteXElement(XName name = null)
 		{

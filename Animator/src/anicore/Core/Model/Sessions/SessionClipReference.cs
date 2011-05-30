@@ -20,6 +20,7 @@ namespace Animator.Core.Model.Sessions
 		#region Fields
 
 		private int? _Row;
+		private bool _IsActive;
 
 		#endregion
 
@@ -38,9 +39,25 @@ namespace Animator.Core.Model.Sessions
 			}
 		}
 
+		public bool IsActive
+		{
+			get { return this._IsActive; }
+			set
+			{
+				if(value != this._IsActive)
+				{
+					this._IsActive = value;
+					this.OnPropertyChanged("IsActive");
+				}
+			}
+		}
+
 		#endregion
 
 		#region Constructors
+
+		public SessionClipReference(Clip clip)
+			: this(Guid.NewGuid(), clip) {}
 
 		public SessionClipReference(Guid id, Clip clip)
 			: base(id, clip) { }
@@ -54,6 +71,11 @@ namespace Animator.Core.Model.Sessions
 		#endregion
 
 		#region Methods
+
+		internal override bool IsActiveInternal(Transport.Transport transport)
+		{
+			return this.IsActive;
+		}
 
 		public override XElement WriteXElement(XName name = null)
 		{

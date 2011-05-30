@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 
 namespace Animator.Core.Model.Sequences
@@ -11,7 +12,7 @@ namespace Animator.Core.Model.Sequences
 
 	#region SequenceTrack
 
-	public sealed class SequenceTrack : TrackBase<SequenceClipReference>
+	public sealed class SequenceTrack : Track<SequenceClipReference>
 	{
 
 		#region Static / Constant
@@ -38,7 +39,7 @@ namespace Animator.Core.Model.Sequences
 			: base(element)
 		{
 			Require.ArgNotNull(document, "document");
-			this.Clips = new ObservableCollection<SequenceClipReference>(element.Elements(Schema.seqclipref).Select(e => new SequenceClipReference(e, document)));
+			this.Clips.AddRange(element.Elements(Schema.seqclipref).Select(e => new SequenceClipReference(e, document)));
 		}
 
 		#endregion

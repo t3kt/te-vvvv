@@ -6,26 +6,24 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
-using Animator.Common.Diagnostics;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
 
-	#region TrackBase<TClipRef>
+	#region Track
 
-	public abstract class TrackBase<TClipRef> : DocumentItem
-		where TClipRef : ClipReference
+	public abstract class Track : DocumentItem, IClipRefContainer
 	{
 
-		#region Static / Constant
+		#region Static/Constant
 
 		#endregion
 
 		#region Fields
 
 		private Guid? _TargetId;
-		private ObservableCollection<TClipRef> _Clips;
 
 		#endregion
 
@@ -45,36 +43,16 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public ObservableCollection<TClipRef> Clips
-		{
-			get
-			{
-				if(this._Clips == null)
-				{
-					this._Clips = new ObservableCollection<TClipRef>();
-					this.AttachClips(this._Clips);
-				}
-				return this._Clips;
-			}
-			set
-			{
-				if(value != this._Clips)
-				{
-					this.DetachClips(this._Clips);
-					this._Clips = value;
-					this.AttachClips(this._Clips);
-				}
-			}
-		}
+		internal abstract IEnumerable<ClipReference> ClipsInternal { get; }
 
 		#endregion
 
 		#region Constructors
 
-		protected TrackBase(Guid id)
+		protected Track(Guid id)
 			: base(id) { }
 
-		protected TrackBase([NotNull] XElement element)
+		protected Track([NotNull] XElement element)
 			: base(element)
 		{
 			this.TargetId = (Guid?)element.Attribute(Schema.track_target);
@@ -84,27 +62,85 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		private void AttachClips(ObservableCollection<TClipRef> clips)
-		{
-			if(clips != null)
-				clips.CollectionChanged += this.Clips_CollectionChanged;
-		}
-
-		private void DetachClips(ObservableCollection<TClipRef> clips)
-		{
-			if(clips != null)
-				clips.CollectionChanged -= this.Clips_CollectionChanged;
-		}
-
-		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Clips");
-		}
-
 		protected new IEnumerable<XAttribute> WriteCommonXAttributes()
 		{
 			return base.WriteCommonXAttributes()
 				.Concat(new[] { ModelUtil.WriteOptionalValueAttribute(Schema.track_target, this.TargetId) });
+		}
+
+		#endregion
+
+		#region IClipRefContainer Members
+
+		IEnumerable<ClipReference> IClipRefContainer.Clips
+		{
+			get { return this.ClipsInternal; }
+		}
+
+		public virtual IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
+		{
+			return this.ClipsInternal.Where(c => c.IsActiveInternal(transport));
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
+	#region Track<TClipRef>
+
+	public abstract class Track<TClipRef> : Track
+		where TClipRef : ClipReference
+	{
+
+		#region Static / Constant
+
+		#endregion
+
+		#region Fields
+
+		private readonly ObservableCollection<TClipRef> _Clips;
+
+		#endregion
+
+		#region Properties
+
+		public ObservableCollection<TClipRef> Clips
+		{
+			get { return this._Clips; }
+		}
+
+		internal sealed override IEnumerable<ClipReference> ClipsInternal
+		{
+			get { return this.Clips; }
+		}
+
+		#endregion
+
+		#region Constructors
+
+		protected Track(Guid id)
+			: base(id)
+		{
+			this._Clips = new ObservableCollection<TClipRef>();
+			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
+		}
+
+		protected Track([NotNull] XElement element)
+			: base(element)
+		{
+			this._Clips = new ObservableCollection<TClipRef>();
+			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			this.OnPropertyChanged("Clips");
 		}
 
 		#endregion
