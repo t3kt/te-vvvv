@@ -75,6 +75,7 @@
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\ClipReference.cs" />
+    <Compile Include="Core\Model\IClip.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
@@ -83,22 +84,30 @@
     <Compile Include="Core\Model\ModelUtil.cs" />
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />
-    <Compile Include="Core\Model\Sequence.cs" />
-    <Compile Include="Core\Model\SequenceClipReference.cs" />
+    <Compile Include="Core\Model\Sequences\Sequence.cs" />
+    <Compile Include="Core\Model\Sequences\SequenceClipReference.cs" />
+    <Compile Include="Core\Model\Sequences\SequenceTrack.cs" />
+    <Compile Include="Core\Model\Sessions\Session.cs" />
+    <Compile Include="Core\Model\Sessions\SessionClipReference.cs" />
+    <Compile Include="Core\Model\Sessions\SessionTrack.cs" />
     <Compile Include="Core\Model\StepClip.cs" />
-    <Compile Include="Core\Model\Track.cs" />
+    <Compile Include="Core\Model\TargetObject.cs" />
+    <Compile Include="Core\Model\TargetProperty.cs" />
+    <Compile Include="Core\Model\TargetPropertyCollection.cs" />
     <Compile Include="Core\IO\IOutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
+    <Compile Include="Core\Model\TrackBase.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
+    <Compile Include="Core\Runtime\IGuidId.cs" />
+    <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IPropertyEditor.cs" />
     <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
     <Compile Include="Core\Transport\ManualTransport.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />
-    <Compile Include="Core\Transport\TriggerBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Transport\Time.cs" />
     <Compile Include="Resources\CoreStrings.Designer.cs">
@@ -121,6 +130,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Core\Model\_ModelClassDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

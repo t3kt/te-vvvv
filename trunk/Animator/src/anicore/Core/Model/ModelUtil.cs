@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -36,19 +37,42 @@ namespace Animator.Core.Model
 					entry.Value));
 		}
 
+		[CanBeNull]
 		internal static T FindById<T>(this IEnumerable<T> source, Guid id)
-			where T : class, IDocumentItem
+			where T : class, IGuidId
 		{
 			return source == null ? null : source.FirstOrDefault(x => x != null && x.Id == id);
 		}
 
-		internal static IEnumerable<XElement> WriteXElements<T>(this IEnumerable<T> source, XName name)
-			where T : IXElementWritable
+		[CanBeNull]
+		internal static T FindById<T>(this IEnumerable<IItemContainer<T>> containers, Guid id)
+			where T : class, IGuidId
+		{
+			if(containers == null)
+				return null;
+			foreach(var container in containers)
+			{
+				var item = container.FindById(id);
+				if(item != null)
+					return item;
+			}
+			return null;
+		}
+
+		internal static IEnumerable<XElement> WriteXElements(IEnumerable<IXElementWritable> source, XName name = null)
 		{
 			if(source == null)
 				return null;
 			return from item in source
 				   select item.WriteXElement(name);
+		}
+
+		internal static XElement WriteListXElement(IEnumerable<IXElementWritable> source, XName listName, XName itemName = null)
+		{
+			Require.ArgNotNull(listName, "listName");
+			if(source == null || !source.Any())
+				return null;
+			return new XElement(listName, WriteXElements(source, itemName));
 		}
 
 		internal static XAttribute WriteOptionalAttribute(XName name, string value)

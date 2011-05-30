@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Transport;
 
-namespace Animator.Core.Model
+namespace Animator.Core.Model.Sequences
 {
 
 	#region SequenceClipReference
@@ -63,24 +63,19 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public SequenceClipReference(Guid id)
-			: base(id) { }
+		public SequenceClipReference(Guid id, Clip clip)
+			: base(id, clip) { }
 
-		public SequenceClipReference(XElement element)
+		public SequenceClipReference(XElement element, Document document)
+			: base(element, document)
 		{
-			this.ReadXElement(element);
+			this.Start = (float)element.Attribute(Schema.seqclipref_start);
+			this.Duration = (float?)element.Attribute(Schema.seqclipref_dur);
 		}
 
 		#endregion
 
 		#region Methods
-
-		private new void ReadXElement(XElement element)
-		{
-			base.ReadXElement(element);
-			this.Start = (float)element.Attribute(Schema.seqclipref_start);
-			this.Duration = (float?)element.Attribute(Schema.seqclipref_dur);
-		}
 
 		public override XElement WriteXElement(XName name = null)
 		{

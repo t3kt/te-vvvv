@@ -103,9 +103,6 @@
     <Compile Include="UI\Dialogs\PropertyEditorDialog.xaml.cs">
       <DependentUpon>PropertyEditorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dialogs\TrackPropertiesWindow.xaml.cs">
-      <DependentUpon>TrackPropertiesWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Dialogs\TransportPropertiesDialog.xaml.cs">
       <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
     </Compile>
@@ -136,12 +133,6 @@
     </Compile>
     <Compile Include="UI\Panes\OutputPropertiesPane.xaml.cs">
       <DependentUpon>OutputPropertiesPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Panes\TrackOverviewPane.xaml.cs">
-      <DependentUpon>TrackOverviewPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Panes\TrackPropertiesPane.xaml.cs">
-      <DependentUpon>TrackPropertiesPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Panes\TransportPane.xaml.cs">
       <DependentUpon>TransportPane.xaml</DependentUpon>
@@ -188,10 +179,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Dialogs\TrackPropertiesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\Dialogs\TransportPropertiesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,14 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Panes\OutputPropertiesPane.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Panes\TrackOverviewPane.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Panes\TrackPropertiesPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

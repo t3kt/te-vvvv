@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Animator.Core.Model.Document">
+    <Position X="7.25" Y="1.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Animator.Core.Model.Document.TransportData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\Model\Document.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BBISIiAACKBDAAEgIAFAIEQBiKIBDgoAgABAADvUIAE=</HashCode>
+      <FileName>Core\Model\Document.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Outputs" />
+      <Property Name="Clips" />
+      <Property Name="Sequences" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.Clip" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="0.75" />
+        <Point X="4.383" Y="0.75" />
+        <Point X="4.383" Y="4.375" />
+        <Point X="5.5" Y="4.375" />
+        <Point X="5.5" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QBBAAggBIKDCAAIAgAAAAAABIAQAAIIAIAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Clip.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.Output">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="0.75" />
+        <Point X="5.344" Y="0.75" />
+        <Point X="5.344" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAQQgAAACAAAAAQgAIAAAIYAAAAAMAAAIAIAAIAAAA=</HashCode>
+      <FileName>Core\Model\Output.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Targets" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.TargetObject">
+    <Position X="1.5" Y="1.5" Width="2" />
+    <Members>
+      <Property Name="PropertyNameComparer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="0.75" />
+        <Point X="2.438" Y="0.75" />
+        <Point X="2.438" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Properties" Type="Animator.Core.Model.TargetProperty">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.05" Y="0.339" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQgAAIAEAAhAggAACAAAEAAAAAIAAAAAAgAIDAAE=</HashCode>
+      <FileName>Core\Model\TargetObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Properties" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.TargetProperty">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAIAAAARQAoAAAIAQEkEBAAIEBAQAgAAIABAA=</HashCode>
+      <FileName>Core\Model\TargetProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.Sequences.Sequence">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" FixedFromPoint="true">
+      <Path>
+        <Point X="7.5" Y="0.75" />
+        <Point X="11" Y="0.75" />
+        <Point X="11" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAEACAAAAAACAAIgAAAAAAAAABAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sequences\Sequence.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Animator.Core.Model.Sequences.SequenceTrack" Collapsed="true">
+    <Position X="10" Y="5.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sequences\SequenceTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animator.Core.Model.TrackBase&lt;TClipRef&gt;">
+    <Position X="12" Y="3" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="7.5" Y="0.75" />
+        <Point X="12.875" Y="0.75" />
+        <Point X="12.875" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAAAAAAAEAAAAAAIAAAgAAAAAAAAABIAA=</HashCode>
+      <FileName>Core\Model\TrackBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animator.Core.Model.Sequences.SequenceClipReference">
+    <Position X="7" Y="6" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACACAAAAAAAAAAAAAAAAgAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sequences\SequenceClipReference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animator.Core.Model.ClipReference">
+    <Position X="3.75" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="0.75" />
+        <Point X="4.375" Y="0.75" />
+        <Point X="4.375" Y="7.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAIIAAAAAAgAAAAAAAAAAAAIAIAAAAIAIAAAA=</HashCode>
+      <FileName>Core\Model\ClipReference.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Clip" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.DocumentItem" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAoAAAIARAgAAAAIAAAAAAAAIAIAA=</HashCode>
+      <FileName>Core\Model\DocumentItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Animator.Core.Model.Sessions.Session">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Animator.Core.Model.DocumentItem" FixedFromPoint="true">
+      <Path>
+        <Point X="7.5" Y="0.75" />
+        <Point X="14.75" Y="0.75" />
+        <Point X="14.75" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Tracks" Type="Animator.Core.Model.Sessions.SessionTrack" FixedFromPoint="true">
+      <Path>
+        <Point X="14.812" Y="3.252" />
+        <Point X="14.812" Y="5.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.91" Y="0.086" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAEAAAEAAAACAAIgAAAAAAAAABAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sessions\Session.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Animator.Core.Model.Sessions.SessionTrack" Collapsed="true">
+    <Position X="13" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sessions\SessionTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Animator.Core.Model.Sessions.SessionClipReference">
+    <Position X="7" Y="8.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAgAAAAAAAAIAAAA=</HashCode>
+      <FileName>Core\Model\Sessions\SessionClipReference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
