@@ -2,3 +2,4 @@
 
   * [https://docs.google.com/drawings/d/1vi8_5JDv8Q9Mc5FP468yoRxAm1sSETpMD0TV4Z84oEg/edit?hl=en_US Animator Document Structure]
   * [https://docs.google.com/drawings/d/146FtQXP70D9yvAmP3C82W4pbD4Nv3vcoVLQsjrgSm6Q/edit?hl=en_US Animator Data Flow]
+  * [https://docs.google.com/drawings/d/1IU429TOiIHNKtIpiX5EWS2RRG5ICErwpg2ImRfyZcgk/edit?hl=en_US Animator Runtime Activities]
