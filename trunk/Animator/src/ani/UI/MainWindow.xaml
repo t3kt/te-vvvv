@@ -62,11 +62,6 @@
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MainMenuItemStyle}" />
 			</Menu.Resources>
-			<!--<MenuItem Padding="2,2,2,3" IsEnabled="False">
-				<MenuItem.Header>
-					<Image Source="/ani;component/Resources/ani_icon_main.ico" Stretch="Fill" Width="16" Height="16" />
-				</MenuItem.Header>
-			</MenuItem>-->
 			<MenuItem Header="_File">
 				<MenuItem Command="ApplicationCommands.New" />
 				<MenuItem Command="ApplicationCommands.Open" />
@@ -130,12 +125,30 @@
 			<GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
 			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" ActiveClip="{Binding ElementName=documentClipGrid, Path=ActiveClip}" />
 			<TabControl IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=HasActiveDocument}">
-				<TabItem Header="Session">
+				<TabItem>
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/ani;component/Resources/ani_icon_sessions_16.png" Margin="0,0,4,0" />
+							<TextBlock Text="Session"/>
+						</StackPanel>
+					</TabItem.Header>
 					<ses:DocumentClipGridPane x:Name="documentClipGrid" ActiveDocument="{Binding ElementName=mainWindow, Path=ActiveDocument}" PaneHeaderVisibility="Collapsed" />
 				</TabItem>
-				<TabItem Header="Sequencing" IsEnabled="False">
+				<TabItem IsEnabled="False">
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/ani;component/Resources/ani_icon_sequencing_16.png" Margin="0,0,4,0" />
+							<TextBlock Text="Sequencing"/>
+						</StackPanel>
+					</TabItem.Header>
 				</TabItem>
-				<TabItem Header="Outputs">
+				<TabItem>
+					<TabItem.Header>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/ani;component/Resources/ani_icon_output_16.png" Margin="0,0,4,0" />
+							<TextBlock Text="Outputs"/>
+						</StackPanel>
+					</TabItem.Header>
 					<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
 						<ListBox.CommandBindings>
 							<CommandBinding Command="ApplicationCommands.Delete" Executed="OutputList_DeleteCommand_Executed" />
@@ -151,6 +164,15 @@
 								</panes:OutputPropertiesPane>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
+					</ListBox>
+				</TabItem>
+				<TabItem Header="Clips">
+					<ListBox x:Name="clipsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Clips}" DisplayMemberPath="Name">
+						<!--<ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type model:Clip}">
+								<panes:ClipPropertiesPane PaneHeader="{Binding Path=Name}" PaneHeaderVisibility="Collapsed"></panes:ClipPropertiesPane>
+							</DataTemplate>
+						</ListBox.ItemTemplate>-->
 					</ListBox>
 				</TabItem>
 			</TabControl>

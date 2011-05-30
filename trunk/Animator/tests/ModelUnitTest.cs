@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Animator.Core.Model;
 using Animator.Core.Transport;
-using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
@@ -24,31 +23,39 @@ namespace Animator.Tests
 	public class ModelUnitTest
 	{
 
-		private static XmlSchemaSet LoadDocumentSchemas()
+		private static XmlSchema _DocumentSchema;
+		private static XmlSchemaSet _DocumentSchemaSet;
+
+		[ClassInitialize]
+		public static void LoadDocumentSchemas(TestContext ctx)
 		{
 			using(var stream = typeof(Document).Assembly.GetManifestResourceStream("Animator.Core.Model.AniDocument.xsd"))
 			{
 				Assert.IsNotNull(stream);
-				var schema = XmlSchema.Read(stream, null);
-				var set = new XmlSchemaSet();
-				set.Add(schema);
-				return set;
+				_DocumentSchema = XmlSchema.Read(stream, null);
+				_DocumentSchemaSet = new XmlSchemaSet();
+				_DocumentSchemaSet.Add(_DocumentSchema);
 			}
 		}
 
 		private static void ValidateDocumentSchema(XDocument document)
 		{
-			var schemas = LoadDocumentSchemas();
 			Assert.IsNotNull(document);
-			try
-			{
-				document.Validate(schemas, null, false);
-			}
-			catch(XmlSchemaException ex)
-			{
-				throw new XmlSchemaException(
-					String.Format("{0} SourceObject: {1}", ex.Message, ex.SourceSchemaObject), ex, ex.LineNumber, ex.LinePosition);
-			}
+			document.Validate(_DocumentSchemaSet, null);
+		}
+
+		private static XmlQualifiedName ToQualName(XName name)
+		{
+			return new XmlQualifiedName(name.LocalName, name.NamespaceName);
+		}
+
+		private static void ValidateElementSchema(XElement element, XName elementName)
+		{
+			Assert.IsNotNull(element);
+			Assert.IsNotNull(elementName);
+			var elementSchema = _DocumentSchema.Elements[ToQualName(elementName)];
+			Assert.IsNotNull(elementSchema);
+			element.Validate(elementSchema, _DocumentSchemaSet, null);
 		}
 
 		[TestMethod]
@@ -84,6 +91,7 @@ namespace Animator.Tests
 			var xmlB = clipB.WriteXElement();
 			var clipC = host.ReadClipXElement(xmlA);
 			var xmlC = clipC.WriteXElement();
+			ValidateElementSchema(xmlA, Schema.clip);
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.AreEqual(clipA, clipB);
 			Assert.AreEqual(clipA.UIRow, clipB.UIRow);
@@ -110,6 +118,7 @@ namespace Animator.Tests
 			var clipB = new StepClip(xmlA);
 			var xmlB = clipB.WriteXElement();
 			var clipC = host.ReadClipXElement(xmlA);
+			ValidateElementSchema(xmlA, Schema.stepclip);
 			Assert.IsInstanceOfType(clipC, typeof(StepClip));
 			var xmlC = clipC.WriteXElement();
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
@@ -225,6 +234,7 @@ namespace Animator.Tests
 			var output = new Output();
 			var clip = new Clip(output.Id);
 			doc.Clips.Add(clip);
+			Assert.Inconclusive("Write id uniqueness checks");
 		}
 
 		[TestMethod]
@@ -277,6 +287,7 @@ namespace Animator.Tests
 			var xml1 = tgt1.WriteXElement();
 			var tgt2 = new TargetObject(xml1);
 			var xml2 = tgt2.WriteXElement();
+			ValidateElementSchema(xml1, Schema.target);
 			Assert.AreEqual(xml1.ToString(), xml2.ToString());
 			Assert.AreEqual(tgt1, tgt2);
 		}
