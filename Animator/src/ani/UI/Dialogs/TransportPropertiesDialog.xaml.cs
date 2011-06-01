@@ -26,15 +26,12 @@ namespace Animator.UI.Dialogs
 
 		public static readonly DependencyProperty TransportTypeProperty;
 		public static readonly DependencyProperty BeatsPerMinuteProperty;
-		public static readonly DependencyProperty DurationProperty;
 
 		static TransportPropertiesDialog()
 		{
 			TransportTypeProperty = DependencyProperty.Register("TransportType", typeof(string), typeof(TransportPropertiesDialog));
 			BeatsPerMinuteProperty = DependencyProperty.Register("BeatsPerMinute", typeof(float), typeof(TransportPropertiesDialog),
 				new PropertyMetadata(Document.DefaultBeatsPerMinute), ValidateBeatsPerMinute);
-			DurationProperty = DependencyProperty.Register("Duration", typeof(Time), typeof(TransportPropertiesDialog),
-				new PropertyMetadata(Time.Infinite), ValidateDuration);
 		}
 
 		private static bool ValidateDuration(object value)
@@ -54,14 +51,12 @@ namespace Animator.UI.Dialogs
 					  {
 						  Owner = ownerWindow,
 						  TransportType = document.TransportType,
-						  BeatsPerMinute = document.BeatsPerMinute,
-						  Duration = document.Duration
+						  BeatsPerMinute = document.BeatsPerMinute
 					  };
 			if(dlg.ShowDialog() == true)
 			{
 				document.TransportType = dlg.TransportType;
 				document.BeatsPerMinute = dlg.BeatsPerMinute;
-				document.Duration = dlg.Duration;
 			}
 		}
 
@@ -90,12 +85,6 @@ namespace Animator.UI.Dialogs
 		{
 			get { return (float)this.GetValue(BeatsPerMinuteProperty); }
 			set { this.SetValue(BeatsPerMinuteProperty, value); }
-		}
-
-		public Time Duration
-		{
-			get { return (Time)this.GetValue(DurationProperty); }
-			set { this.SetValue(DurationProperty, value); }
 		}
 
 		#endregion

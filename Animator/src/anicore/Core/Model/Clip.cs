@@ -17,7 +17,7 @@ namespace Animator.Core.Model
 	#region Clip
 
 	[Clip(ElementName = "clip", Key = "clip", Description = "Generic Clip")]
-	public class Clip : DocumentItem, IEquatable<Clip>, IClip
+	public class Clip : DocumentItem, IEquatable<Clip>
 	{
 
 		#region Static / Constant
@@ -46,7 +46,6 @@ namespace Animator.Core.Model
 			get { return this._TargetKey; }
 			set
 			{
-				value = value.OrNullIfEmpty();
 				if(value != this._TargetKey)
 				{
 					this._TargetKey = value;
