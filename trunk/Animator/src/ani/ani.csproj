@@ -70,21 +70,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppCore\AniAppActions.cs" />
     <Compile Include="AppCore\AniAppModelUtil.cs" />
     <Compile Include="AppCore\AniUIManager.cs" />
-    <Compile Include="AppCore\AppAction.cs" />
-    <Compile Include="AppCore\AppActionHistoryManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
     <Compile Include="AppCore\BooleanNegationConverter.cs" />
     <Compile Include="AppCore\ClipDataEditors.cs" />
-    <Compile Include="AppCore\Common\DoubleLinkedStack.cs" />
-    <Compile Include="AppCore\Common\LimitedStack.cs" />
-    <Compile Include="AppCore\Common\LinkedStack.cs" />
-    <Compile Include="AppCore\Common\StackBase.cs" />
-    <Compile Include="AppCore\DependencyPropertyChangeAppAction.cs" />
-    <Compile Include="AppCore\IAppAction.cs" />
-    <Compile Include="AppCore\PropertyChangeAppAction.cs" />
     <Compile Include="AppCore\RecentFileManager.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
@@ -266,6 +256,7 @@
     <Resource Include="Resources\ani_icon_main.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AppCore\Common\" />
     <Folder Include="UI\Sequencing\" />
   </ItemGroup>
   <ItemGroup>

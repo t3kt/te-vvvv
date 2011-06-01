@@ -70,9 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AniApp\ClipDataEditorsUnitTest.cs" />
-    <Compile Include="AniApp\DoubleLinkedStackTest.cs" />
-    <Compile Include="AniApp\LimitedStackTest.cs" />
-    <Compile Include="AniApp\LinkedStackTest.cs" />
     <Compile Include="CategoryNames.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
     <Compile Include="CompositionUnitTest.cs" />

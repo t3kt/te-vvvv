@@ -39,7 +39,6 @@ namespace Animator
 
 		#region Fields
 
-		private readonly AppActionHistoryManager _ActionHistoryManager;
 		private readonly RecentFileManager _RecentFileManager;
 		private readonly AniHost _Host;
 
@@ -48,11 +47,6 @@ namespace Animator
 		#region Properties
 
 		public Document ActiveDocument { get; internal set; }
-
-		internal AppActionHistoryManager ActionHistoryManager
-		{
-			get { return this._ActionHistoryManager; }
-		}
 
 		internal RecentFileManager RecentFileManager
 		{
@@ -71,7 +65,6 @@ namespace Animator
 		public AniApplication()
 		{
 			this.InitializeComponent();
-			this._ActionHistoryManager = new AppActionHistoryManager();
 			this._RecentFileManager = new RecentFileManager();
 			this._Host = new AniHost();
 		}

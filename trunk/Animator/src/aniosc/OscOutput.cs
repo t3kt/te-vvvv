@@ -10,7 +10,6 @@ using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
 using TESharedAnnotations;
-using VVVV.Utils.OSC;
 
 namespace Animator.Osc
 {
@@ -34,7 +33,7 @@ namespace Animator.Osc
 
 		#region Static / Constant
 
-		private static OSCPacket BuildPacket(OutputMessage message)
+		private static OscPacket BuildPacket(OutputMessage message)
 		{
 			Debug.Assert(message != null);
 			var address = message.TargetKey as string;
@@ -43,7 +42,7 @@ namespace Animator.Osc
 			var data = message.Data;
 			if(data == null)
 				return null;
-			var packet = new OSCMessage(address);
+			var packet = new OscMessage(address);
 			foreach(var item in data)
 				packet.Append(item);
 			return packet;
@@ -59,7 +58,7 @@ namespace Animator.Osc
 
 		#region Properties
 
-		[Category(TEShared.Names.Category_Common)]
+		[Category(TEShared.Names.Category_IO)]
 		public string Host
 		{
 			get { return this._Connection.Host; }
@@ -74,7 +73,7 @@ namespace Animator.Osc
 			}
 		}
 
-		[Category(TEShared.Names.Category_Common)]
+		[Category(TEShared.Names.Category_IO)]
 		public int Port
 		{
 			get { return this._Connection.Port; }
@@ -89,7 +88,8 @@ namespace Animator.Osc
 			}
 		}
 
-		[Category(TEShared.Names.Category_Common)]
+		[Category(TEShared.Names.Category_IO)]
+		[Browsable(false)]
 		public bool IsConnected
 		{
 			get { return this._Connection.IsConnected; }

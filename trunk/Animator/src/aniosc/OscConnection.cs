@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using VVVV.Utils.OSC;
 
 namespace Animator.Osc
 {
@@ -115,7 +114,7 @@ namespace Animator.Osc
 			}
 		}
 
-		public void Send(OSCPacket packet)
+		public void Send(OscPacket packet)
 		{
 			if(packet == null)
 				return;
