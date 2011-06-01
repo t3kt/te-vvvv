@@ -21,6 +21,7 @@ namespace Animator.Tests
 	{
 
 		[TestMethod]
+		[TestCategory(CategoryNames.Sessions)]
 		public void GetActiveClips()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);

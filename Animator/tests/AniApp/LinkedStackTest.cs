@@ -50,7 +50,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void LinkedStackConstructorWithValuesTest()
 		{
 			var stack = CreateWithTestValues();
@@ -70,7 +70,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void LinkedStackConstructorTest1()
 		{
 			this.CreateEmpty<GenericParameterHelper>();
@@ -91,14 +91,14 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void ClearTest()
 		{
 			ClearTestHelper<GenericParameterHelper>();
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void PeekTest()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();
@@ -115,7 +115,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void PopTest()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();
@@ -132,7 +132,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void PushTest()
 		{
 			LinkedStack<int> target = this.CreateWithTestValues();
@@ -146,7 +146,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void PushRangeTest()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();
@@ -159,7 +159,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		//[TestMethod]
-		//[TestCategory("LinkedStack")]
+		//[TestCategory(CategoryNames.LinkedStack)]
 		//[DeploymentItem("ani.exe")]
 		//public void GetInternalEnumeratorNonEmptyTest()
 		//{
@@ -177,7 +177,7 @@ namespace Animator.Tests.AniApp
 		//}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		[DeploymentItem("ani.exe")]
 		public void GetEnumeratorNonEmptyTest()
 		{
@@ -201,7 +201,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void GetEnumeratorEmpty()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();
@@ -218,7 +218,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void TryPeekTest()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();
@@ -233,7 +233,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LinkedStack")]
+		[TestCategory(CategoryNames.LinkedStack)]
 		public void TryPopTest()
 		{
 			LinkedStack<int> target = this.CreateEmpty<int>();

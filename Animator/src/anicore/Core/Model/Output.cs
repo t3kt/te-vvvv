@@ -3,19 +3,110 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
+using Animator.Core.IO;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
 
 	#region Output
 
-	public sealed class Output : DocumentItem, IEquatable<Output>
+	[Output(ElementName = "output", Key = "output", Description = "Generic Output")]
+	public class Output : DocumentItem, IEquatable<Output>
 	{
+
+		#region TraceOutput
+
+		[Output(ElementName = "traceoutput", Key = "trace", Description = "Debug Trace Output")]
+		internal sealed class TraceOutput : Output
+		{
+
+			#region Static/Constant
+
+			private const string DefaultCategory = "OUTPUT";
+			private const string DefaultPrefix = "[msg] ";
+
+			#endregion
+
+			#region Fields
+
+			private string _Category;
+			private string _Prefix;
+
+			#endregion
+
+			#region Properties
+
+			public string Category
+			{
+				get { return this._Category; }
+				set
+				{
+					if(value != this._Category)
+					{
+						this._Category = value;
+						this.OnPropertyChanged("Category");
+					}
+				}
+			}
+
+			public string Prefix
+			{
+				get { return this._Prefix; }
+				set
+				{
+					if(value != this._Prefix)
+					{
+						this._Prefix = value;
+						this.OnPropertyChanged("Prefix");
+					}
+				}
+			}
+
+			#endregion
+
+			#region Constructors
+
+			#endregion
+
+			#region Methods
+
+			public override void ReadXElement(XElement element)
+			{
+				base.ReadXElement(element);
+				this._Category = (string)element.Attribute(Schema.traceoutput_category) ?? DefaultCategory;
+				this._Prefix = (string)element.Attribute(Schema.traceoutput_prefix) ?? DefaultPrefix;
+			}
+
+			public override XElement WriteXElement(XName name = null)
+			{
+				return base.WriteXElement(name ?? Schema.traceoutput)
+					.WithContent(
+						ModelUtil.WriteOptionalAttribute(Schema.traceoutput_category, this._Category),
+						ModelUtil.WriteOptionalAttribute(Schema.traceoutput_prefix, this._Prefix));
+			}
+
+			protected override bool PostMessageInternal(OutputMessage message)
+			{
+				var str = OutputMessage.FormatTrace(message);
+				if(!String.IsNullOrWhiteSpace(this._Prefix))
+					str = this._Prefix + " " + str;
+				Trace.WriteLine(str, this._Category);
+				return true;
+			}
+
+			#endregion
+
+		}
+
+		#endregion
 
 		#region Static / Constant
 
@@ -23,64 +114,30 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private string _OutputType;
-		private Dictionary<string, string> _Parameters;
-		private ObservableCollection<TargetObject> _Targets;
+		private readonly ObservableCollection<TargetObject> _Targets;
 
 		#endregion
 
 		#region Properties
 
-		[Category(TEShared.Names.Category_Common)]
-		public string OutputType
-		{
-			get { return _OutputType; }
-			set
-			{
-				if(value != _OutputType)
-				{
-					_OutputType = value;
-					OnPropertyChanged("OutputType");
-				}
-			}
-		}
-
-		[Category(TEShared.Names.Category_Output)]
-		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		public IDictionary<string, string> Parameters
-		{
-			get { return this._Parameters ?? (this._Parameters = new Dictionary<string, string>()); }
-			set
-			{
-				if(value != this._Parameters)
-				{
-					this._Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value);
-					this.OnPropertyChanged("Parameters");
-				}
-			}
-		}
-
 		public ObservableCollection<TargetObject> Targets
 		{
-			get
-			{
-				if(this._Targets == null)
-				{
-					this._Targets = new ObservableCollection<TargetObject>();
-					this.AttachTargets(this._Targets);
-				}
-				return this._Targets;
-			}
-			set
-			{
-				if(value != this._Targets)
-				{
-					this.DetachTargets(this._Targets);
-					this._Targets = value;
-					this.AttachTargets(this._Targets);
-					this.OnPropertyChanged("Targets");
-				}
-			}
+			get { return this._Targets; }
+		}
+
+		#endregion
+
+		#region Events
+
+		public event EventHandler<OutputMessageEventArgs> MessageDropped;
+
+		protected virtual void OnMessageDropped(OutputMessage message)
+		{
+			if(message == null)
+				return;
+			var handler = this.MessageDropped;
+			if(handler != null)
+				handler(this, new OutputMessageEventArgs(message));
 		}
 
 		#endregion
@@ -91,28 +148,33 @@ namespace Animator.Core.Model
 			: this(Guid.NewGuid()) { }
 
 		public Output(Guid id)
-			: base(id) { }
-
-		public Output(XElement element)
-			: base(element)
+			: base(id)
 		{
-			ReadXElement(element);
+			this._Targets = new ObservableCollection<TargetObject>();
+			this._Targets.CollectionChanged += this.Targets_CollectionChanged;
 		}
 
 		#endregion
 
 		#region Methods
 
-		private void AttachTargets(ObservableCollection<TargetObject> targets)
+		protected virtual bool PostMessageInternal(OutputMessage message)
 		{
-			if(targets != null)
-				targets.CollectionChanged += this.Targets_CollectionChanged;
+			return false;
 		}
 
-		private void DetachTargets(ObservableCollection<TargetObject> targets)
+		public virtual void Initialize(Output outputModel)
 		{
-			if(targets != null)
-				targets.CollectionChanged -= this.Targets_CollectionChanged;
+			Require.ArgNotNull(outputModel, "outputModel");
+		}
+
+		public void PostMessage(OutputMessage message)
+		{
+			if(message != null)
+			{
+				if(!this.PostMessageInternal(message))
+					this.OnMessageDropped(message);
+			}
 		}
 
 		private void Targets_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -120,32 +182,22 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Targets");
 		}
 
-		internal string GetParameter(string key)
-		{
-			if(this._Parameters == null)
-				return null;
-			string value;
-			return this._Parameters.TryGetValue(key, out value) ? value : null;
-		}
-
 		public TargetObject GetTargetObject(Guid id)
 		{
 			return this._Targets.FindById(id);
 		}
 
-		private void ReadXElement(XElement element)
+		public virtual void ReadXElement([NotNull] XElement element)
 		{
-			this.OutputType = (string)element.Attribute(Schema.output_type);
-			this.Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.output_params));
-			this.Targets = new ObservableCollection<TargetObject>(element.Elements(Schema.target).Select(e => new TargetObject(e)));
+			Require.ArgNotNull(element, "element");
+			this.ReadCommonXAttributes(element);
+			this._Targets.AddRange(element.Elements(Schema.target).Select(e => new TargetObject(e)));
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.output,
 				this.WriteCommonXAttributes(),
-				ModelUtil.WriteOptionalAttribute(Schema.output_type, this.OutputType),
-				ModelUtil.WriteParametersXElement(Schema.output_params, this._Parameters),
 				ModelUtil.WriteXElements(this._Targets));
 		}
 
@@ -163,13 +215,11 @@ namespace Animator.Core.Model
 
 		#region IEquatable<Output> Members
 
-		public bool Equals(Output other)
+		public virtual bool Equals(Output other)
 		{
 			if(!base.Equals(other))
 				return false;
-			return other._OutputType == this._OutputType &&
-				   ModelUtil.ParametersEqual(other._Parameters, this._Parameters) &&
-				   this._Targets.ItemsEqual(other._Targets);
+			return this._Targets.ItemsEqual(other._Targets);
 		}
 
 		#endregion

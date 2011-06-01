@@ -23,20 +23,10 @@ namespace Animator.Tests
 	public class IOUnitTest
 	{
 
-		[TestMethod]
-		[TestCategory("IO")]
-		public void CreateNullTransmitter()
-		{
-			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var outputModel = new Output(Guid.Empty) { OutputType = null };
-			var transmitter = host.CreateTransmitter(outputModel);
-			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.NullTransmitter));
-		}
+		#region TestOutput
 
-		#region TestTransmitter
-
-		[OutputTransmitter(Key = "test")]
-		internal class TestTransmitter : OutputTransmitter
+		[Output(Key = "test")]
+		internal class TestOutput : Output
 		{
 
 			protected override bool PostMessageInternal(OutputMessage message)
@@ -49,32 +39,30 @@ namespace Animator.Tests
 		#endregion
 
 		[TestMethod]
-		[TestCategory("IO")]
+		[TestCategory(CategoryNames.IO)]
 		public void RegisterTransmitter()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var outputModel = new Output(Guid.Empty) { OutputType = "test" };
-			var transmitter = host.CreateTransmitter(outputModel);
-			Assert.IsInstanceOfType(transmitter, typeof(TestTransmitter));
+			var output = host.CreateOutputByKey("test");
+			Assert.IsInstanceOfType(output, typeof(TestOutput));
 		}
 
 		[TestMethod]
-		[TestCategory("IO")]
-		public void CreateTraceTransmitter()
+		[TestCategory(CategoryNames.IO)]
+		public void CreateTraceOutput()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
-			var transmitter = host.CreateTransmitter(outputModel);
-			Assert.IsInstanceOfType(transmitter, typeof(OutputTransmitter.TraceTransmitter));
+			var output = host.CreateOutputByKey("trace");
+			Assert.IsInstanceOfType(output, typeof(Output.TraceOutput));
 		}
 
 		[TestMethod]
-		[TestCategory("IO")]
-		public void TraceTransmitterOutput()
+		[TestCategory(CategoryNames.IO)]
+		public void TraceOutputMessaging()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var outputModel = new Output(Guid.Empty) { OutputType = "trace" };
-			var transmitter = host.CreateTransmitter(outputModel);
+			var output = host.CreateOutputByKey("trace");
+			Assert.IsInstanceOfType(output, typeof(Output.TraceOutput));
 			int writeCount = 0;
 			var listener = new CallbackTraceListener(msg =>
 														{
@@ -83,8 +71,8 @@ namespace Animator.Tests
 			Trace.Listeners.Add(listener);
 			try
 			{
-				transmitter.PostMessage(new OutputMessage("key1", 5));
-				transmitter.PostMessage(new OutputMessage("key2", new object[] { "x", 5 }));
+				output.PostMessage(new OutputMessage("key1", 5));
+				output.PostMessage(new OutputMessage("key2", new object[] { "x", 5 }));
 				Assert.AreEqual(2, writeCount);
 			}
 			finally

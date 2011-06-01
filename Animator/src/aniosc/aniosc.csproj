@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OscConnection.cs" />
-    <Compile Include="OscTransmitter.cs" />
+    <Compile Include="OscOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup Label="SHARED">

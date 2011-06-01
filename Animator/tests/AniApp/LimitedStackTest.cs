@@ -52,7 +52,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void CreateLimitedStackWithValuesTest()
 		{
 			var stackInf = CreateWithTestValues(Int32.MaxValue);
@@ -75,7 +75,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void CreateEmptyLimitedStackTest()
 		{
 			this.CreateEmpty<GenericParameterHelper>(Int32.MaxValue);
@@ -98,7 +98,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void ClearTest()
 		{
 			this.ClearTestHelper<GenericParameterHelper>(Int32.MaxValue);
@@ -123,7 +123,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void PeekTest()
 		{
 			this.PeekTestHelper(Int32.MaxValue);
@@ -150,7 +150,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void PeekEndTest()
 		{
 			this.PeekEndTestHelper(Int32.MaxValue);
@@ -185,7 +185,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void PopTest()
 		{
 			this.PopTestHelper(Int32.MaxValue);
@@ -244,7 +244,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void PushTest()
 		{
 			this.PushTestHelper(Int32.MaxValue);
@@ -298,7 +298,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void PushRangeTest()
 		{
 			this.PushRangeTestHelper(Int32.MaxValue);
@@ -312,7 +312,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		//[TestMethod]
-		//[TestCategory("LimitedStack")]
+		//[TestCategory(CategoryNames.LimitedStack)]
 		//public void PushRangeEndTest()
 		//{
 		//    LimitedStack<int> target = this.CreateEmpty<int>(Int32.MaxValue);
@@ -346,7 +346,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		[DeploymentItem("ani.exe")]
 		public void GetEnumeratorNonEmptyTest()
 		{
@@ -374,7 +374,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void TryPeekTest()
 		{
 			this.TryPeekTestHelper(Int32.MaxValue);
@@ -416,7 +416,7 @@ namespace Animator.Tests.AniApp
 		}
 
 		[TestMethod]
-		[TestCategory("LimitedStack")]
+		[TestCategory(CategoryNames.LimitedStack)]
 		public void TryPopTest()
 		{
 			this.TryPopTestHelper(Int32.MaxValue);

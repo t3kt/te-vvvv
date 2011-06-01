@@ -51,7 +51,7 @@ namespace Animator.UI.Dialogs
 		// ReSharper disable MemberCanBeMadeStatic.Local
 		public IEnumerable<KeyValuePair<string, string>> OutputTypeDescriptions
 		{
-			get { return AniApplication.CurrentHost.GetTransmitterTypeDescriptionsByKey(); }
+			get { return AniApplication.CurrentHost.GetOutputTypeDescriptionsByKey(); }
 		}
 		// ReSharper restore MemberCanBeMadeStatic.Local
 
@@ -89,11 +89,11 @@ namespace Animator.UI.Dialogs
 		[NotNull]
 		public Output CreateOutput()
 		{
-			return new Output
-				   {
-					   OutputType = this.OutputType,
-					   Name = this.OutputName
-				   };
+			var type = this.OutputType;
+			var output = AniApplication.CurrentHost.CreateOutputByKey(type);
+			Debug.Assert(output != null);
+			output.Name = this.OutputName;
+			return output;
 		}
 
 		private void okButton_Click(object sender, RoutedEventArgs e)

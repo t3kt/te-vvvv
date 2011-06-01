@@ -4,23 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
+using Animator.Core.Model;
 
 namespace Animator.Tests.Utils
 {
 
-	#region CollectorTransmitter
+	#region CallbackOutput
 
-	[OutputTransmitter(Key = "test.collector")]
-	internal class CollectorTransmitter : OutputTransmitter
+	[Output(Key = "test.callback")]
+	internal sealed class CallbackOutput : Output
 	{
 
-		#region Static/Constant
+		#region Static / Constant
 
 		#endregion
 
 		#region Fields
 
-		public readonly List<OutputMessage> Messages = new List<OutputMessage>();
+#pragma warning disable 649
+		public Func<OutputMessage, bool> PostMessageCallback;
+#pragma warning restore 649
 
 		#endregion
 
@@ -36,9 +39,9 @@ namespace Animator.Tests.Utils
 
 		protected override bool PostMessageInternal(OutputMessage message)
 		{
-			if(message != null)
-				this.Messages.Add(message);
-			return true;
+			if(this.PostMessageCallback == null)
+				return false;
+			return this.PostMessageCallback(message);
 		}
 
 		#endregion

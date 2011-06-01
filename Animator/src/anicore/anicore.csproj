@@ -71,7 +71,7 @@
     <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Composition\Clip.cs" />
     <Compile Include="Core\Composition\ClipDataEditor.cs" />
-    <Compile Include="Core\Composition\OutputTransmitter.cs" />
+    <Compile Include="Core\Composition\Output.cs" />
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\ClipReference.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Core\Model\Document.cs" />
     <Compile Include="Core\Model\DocumentItem.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
+    <Compile Include="Core\Model\ModelException.cs" />
     <Compile Include="Core\Model\ModelUtil.cs" />
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />
@@ -93,9 +94,6 @@
     <Compile Include="Core\Model\StepClip.cs" />
     <Compile Include="Core\Model\TargetObject.cs" />
     <Compile Include="Core\Model\TargetProperty.cs" />
-    <Compile Include="Core\Model\TargetPropertyCollection.cs" />
-    <Compile Include="Core\IO\IOutputTransmitter.cs" />
-    <Compile Include="Core\IO\OutputTransmitter.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\Model\TrackBase.cs" />
     <Compile Include="Core\Model\DocumentSection.cs" />

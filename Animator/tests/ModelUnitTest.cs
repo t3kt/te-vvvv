@@ -59,7 +59,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void ParametersEqual()
 		{
 			var x =
@@ -80,7 +80,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void ClipReadWriteXElement()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
@@ -103,7 +103,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void StepClipReadWriteXElement()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
@@ -132,7 +132,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void DocumentReadWriteXDocument()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
@@ -144,7 +144,7 @@ namespace Animator.Tests
 						   UIColumns = 23,
 						   UIRows = 14
 					   };
-			var outputA1 = new Output { Name = "out1", OutputType = "fooo_out" };
+			var outputA1 = new Output { Name = "out1" };
 			docA.Outputs.Add(outputA1);
 			var clipA1 = new Clip { Name = "helloclip", OutputId = outputA1.Id, UIRow = 12 };
 			docA.Clips.Add(clipA1);
@@ -177,7 +177,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void ClipEqualityComparison()
 		{
 			var clipA = new Clip(Guid.NewGuid())
@@ -226,7 +226,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		[ExpectedException(typeof(ArgumentException))]
 		public void NoDuplicateIds()
 		{
@@ -238,7 +238,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void StepClipGetValue()
 		{
 			var doc = new Document();
@@ -257,17 +257,15 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void TargetObjectEquality()
 		{
+			const string propA_Name = "propA";
 			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
 			var tgt2 = new TargetObject(tgt1.Id) { Name = tgt1.Name, OutputKey = tgt1.OutputKey };
 			Assert.AreEqual(tgt1, tgt2);
-			var prop1A = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 23.1f };
-			var prop2A = new TargetProperty(prop1A.Name, prop1A.Type) { DefaultValue = prop1A.DefaultValue };
-			tgt1.Properties.Add(prop1A);
-			Assert.AreNotEqual(tgt1, tgt2);
-			tgt2.Properties.Add(prop2A);
+			var prop1A = tgt1.Add(propA_Name, TargetPropertyType.Value, 23.1f);
+			var prop2A = tgt2.Add(prop1A.Name, prop1A.Type, prop1A.DefaultValue);
 			Assert.AreEqual(tgt1, tgt2);
 			prop1A.DefaultValue = 999.4f;
 			Assert.AreNotEqual(tgt1, tgt2);
@@ -276,14 +274,12 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Model")]
+		[TestCategory(CategoryNames.Model)]
 		public void TargetObjectReadWriteXElement()
 		{
 			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
-			var prop1A = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 23.1f };
-			var prop1B = new TargetProperty("propB", TargetPropertyType.String) { DefaultValue = "foo" };
-			tgt1.Properties.Add(prop1A);
-			tgt1.Properties.Add(prop1B);
+			var prop1A = tgt1.Add("propA", TargetPropertyType.Value, 23.1f);
+			var prop1B = tgt1.Add("propB", TargetPropertyType.String, "foo");
 			var xml1 = tgt1.WriteXElement();
 			var tgt2 = new TargetObject(xml1);
 			var xml2 = tgt2.WriteXElement();

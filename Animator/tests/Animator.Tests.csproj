@@ -73,6 +73,7 @@
     <Compile Include="AniApp\DoubleLinkedStackTest.cs" />
     <Compile Include="AniApp\LimitedStackTest.cs" />
     <Compile Include="AniApp\LinkedStackTest.cs" />
+    <Compile Include="CategoryNames.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
     <Compile Include="CompositionUnitTest.cs" />
     <Compile Include="ModelUnitTest.cs" />
@@ -82,9 +83,9 @@
     <Compile Include="RuntimeUnitTest.cs" />
     <Compile Include="SessionUnitTest.cs" />
     <Compile Include="TransportUnitTest.cs" />
+    <Compile Include="Utils\CallbackOutput.cs" />
     <Compile Include="Utils\CallbackTraceListener.cs" />
-    <Compile Include="Utils\CallbackTransmitter.cs" />
-    <Compile Include="Utils\CollectorTransmitter.cs" />
+    <Compile Include="Utils\CollectorOutput.cs" />
     <Compile Include="Utils\DummyTransport.cs" />
     <Compile Include="Utils\EventCounter.cs" />
     <Compile Include="Utils\OutputMessageComparer.cs" />

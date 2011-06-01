@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
@@ -145,24 +146,29 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private ObservableCollection<Output> _Outputs;
-		private ObservableCollection<Clip> _Clips;
-		private ObservableCollection<Sequence> _Sequences;
-		private ObservableCollection<Session> _Sessions;
+		private AniHost _Host;
+
+		private readonly ObservableCollection<Output> _Outputs;
+		private readonly ObservableCollection<Clip> _Clips;
+		private readonly ObservableCollection<Sequence> _Sequences;
+		private readonly ObservableCollection<Session> _Sessions;
 		private Guid _Id;
 		private string _Name;
 		private int? _UIRows;
 		private int? _UIColumns;
 		private readonly TransportData _TransportData;
+		private DocumentSection _ActiveSection;
 		private Transport.Transport _Transport;
-
-		private Dictionary<Guid, IOutputTransmitter> _Transmitters;
-
-		private AniHost _Host;
 
 		#endregion
 
 		#region Properties
+
+		internal AniHost Host
+		{
+			get { return this._Host ?? AniHost.Current; }
+			set { this._Host = value; }
+		}
 
 		public Guid Id
 		{
@@ -224,97 +230,25 @@ namespace Animator.Core.Model
 		[Browsable(false)]
 		public ObservableCollection<Output> Outputs
 		{
-			get
-			{
-				if(this._Outputs == null)
-				{
-					this._Outputs = new ObservableCollection<Output>();
-					this.AttachOutputs(this._Outputs);
-				}
-				return this._Outputs;
-			}
-			set
-			{
-				if(value != this._Outputs)
-				{
-					this.DetachOutputs(this._Outputs);
-					this._Outputs = value;
-					this.AttachOutputs(this._Outputs);
-					this.OnPropertyChanged("Outputs");
-				}
-			}
+			get { return this._Outputs; }
 		}
 
 		[Browsable(false)]
 		public ObservableCollection<Clip> Clips
 		{
-			get
-			{
-				if(this._Clips == null)
-				{
-					this._Clips = new ObservableCollection<Clip>();
-					this.AttachClips(this._Clips);
-				}
-				return this._Clips;
-			}
-			set
-			{
-				if(value != this._Clips)
-				{
-					this.DetachClips(this._Clips);
-					this._Clips = value;
-					this.AttachClips(value);
-					this.OnPropertyChanged("Clips");
-				}
-			}
+			get { return this._Clips; }
 		}
 
 		[Browsable(false)]
 		public ObservableCollection<Sequence> Sequences
 		{
-			get
-			{
-				if(this._Sequences == null)
-				{
-					this._Sequences = new ObservableCollection<Sequence>();
-					this.AttachSequences(this._Sequences);
-				}
-				return this._Sequences;
-			}
-			set
-			{
-				if(value != this._Sequences)
-				{
-					this.DetachSequences(this._Sequences);
-					this._Sequences = value;
-					this.AttachSequences(value);
-					this.OnPropertyChanged("Sequences");
-				}
-			}
+			get { return this._Sequences; }
 		}
 
 		[Browsable(false)]
 		public ObservableCollection<Session> Sessions
 		{
-			get
-			{
-				if(this._Sessions == null)
-				{
-					this._Sessions = new ObservableCollection<Session>();
-					this.AttachSessions(this._Sessions);
-				}
-				return this._Sessions;
-			}
-			set
-			{
-				if(value != this._Sessions)
-				{
-					this.DetachSessions(this._Sessions);
-					this._Sessions = value;
-					this.AttachSessions(value);
-					this.OnPropertyChanged("Sessions");
-				}
-			}
+			get { return this._Sessions; }
 		}
 
 		[Category(TEShared.Names.Category_UI)]
@@ -360,10 +294,27 @@ namespace Animator.Core.Model
 			get { return this._Transport ?? _DefaultTransport; }
 		}
 
-		internal AniHost Host
+		public DocumentSection ActiveSection
 		{
-			get { return this._Host ?? AniHost.Current; }
-			set { this._Host = value; }
+			get { return this._ActiveSection; }
+			set
+			{
+				if(value != this._ActiveSection)
+				{
+					if(value is Session)
+					{
+						if(!this._Sessions.Contains((Session)value))
+							throw new ModelException("Session is not from this document.");
+					}
+					else if(value is Sequence)
+					{
+						if(!this._Sequences.Contains((Sequence)value))
+							throw new ModelException("Sequence is not from this document.");
+					}
+					this._ActiveSection = value;
+					this.OnPropertyChanged("ActiveSection");
+				}
+			}
 		}
 
 		#endregion
@@ -371,34 +322,38 @@ namespace Animator.Core.Model
 		#region Constructors
 
 		public Document([CanBeNull] AniHost host = null)
-			: this(Guid.NewGuid(), host)
 		{
+			this._Host = host;
+			this._TransportData = new TransportData();
+			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
+			this._Clips = new ObservableCollection<Clip>();
+			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
+			this._Sequences = new ObservableCollection<Sequence>();
+			this._Sequences.CollectionChanged += this.Sequences_CollectionChanged;
+			this._Sessions = new ObservableCollection<Session>();
+			this._Sessions.CollectionChanged += this.Sessions_CollectionChanged;
+			this._Outputs = new ObservableCollection<Output>();
+			this._Outputs.CollectionChanged += this.Outputs_CollectionChanged;
 		}
 
 		public Document(Guid id, [CanBeNull] AniHost host = null)
+			: this(host)
 		{
-			this._Host = host;
 			this._Id = id;
-			this._TransportData = new TransportData();
-			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 		}
 
 		public Document([NotNull] XElement element, [CanBeNull] AniHost host = null)
+			: this(host)
 		{
-			this._Host = host;
-			this._TransportData = new TransportData();
 			this.ReadXElement(element, host);
-			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 			this.RebuildTransport();
 		}
 
-		public Document([NotNull]XDocument document, [CanBeNull]AniHost host = null)
+		public Document([NotNull] XDocument document, [CanBeNull]AniHost host = null)
+			: this(host)
 		{
 			Require.ArgNotNull(document, "document");
-			this._Host = host;
-			this._TransportData = new TransportData();
 			this.ReadXElement(document.Root, host);
-			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 			this.RebuildTransport();
 		}
 
@@ -430,56 +385,9 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Transport");
 		}
 
-		private void RemoveUnusedTransmitters()
-		{
-			if(this._Transmitters != null)
-			{
-				if(this._Outputs == null)
-				{
-					foreach(var t in this._Transmitters.Values)
-						t.Dispose();
-					this._Transmitters.Clear();
-				}
-				else
-				{
-					var unused = this._Transmitters.Where(t => !this._Outputs.Any(o => o.Id == t.Key)).ToList();
-					foreach(var t in unused)
-					{
-						t.Value.Dispose();
-						this._Transmitters.Remove(t.Key);
-					}
-				}
-			}
-		}
-
-		private void AttachOutputs(ObservableCollection<Output> outputs)
-		{
-			if(outputs != null)
-				outputs.CollectionChanged += this.Outputs_CollectionChanged;
-		}
-
-		private void DetachOutputs(ObservableCollection<Output> outputs)
-		{
-			if(outputs != null)
-				outputs.CollectionChanged -= this.Outputs_CollectionChanged;
-		}
-
 		private void Outputs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.OnPropertyChanged("Outputs");
-			this.RemoveUnusedTransmitters();
-		}
-
-		private void AttachClips(ObservableCollection<Clip> clips)
-		{
-			if(clips != null)
-				clips.CollectionChanged += this.Clips_CollectionChanged;
-		}
-
-		private void DetachClips(ObservableCollection<Clip> clips)
-		{
-			if(clips != null)
-				clips.CollectionChanged -= this.Clips_CollectionChanged;
 		}
 
 		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -487,33 +395,9 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Clips");
 		}
 
-		private void AttachSequences(ObservableCollection<Sequence> sequences)
-		{
-			if(sequences != null)
-				sequences.CollectionChanged += this.Sequences_CollectionChanged;
-		}
-
-		private void DetachSequences(ObservableCollection<Sequence> sequences)
-		{
-			if(sequences != null)
-				sequences.CollectionChanged -= this.Sequences_CollectionChanged;
-		}
-
 		private void Sequences_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.OnPropertyChanged("Sequences");
-		}
-
-		private void AttachSessions(ObservableCollection<Session> sessions)
-		{
-			if(sessions != null)
-				sessions.CollectionChanged += this.Sessions_CollectionChanged;
-		}
-
-		private void DetachSessions(ObservableCollection<Session> sessions)
-		{
-			if(sessions != null)
-				sessions.CollectionChanged -= this.Sessions_CollectionChanged;
 		}
 
 		private void Sessions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -536,33 +420,16 @@ namespace Animator.Core.Model
 			return this.Sequences.FindById(id);
 		}
 
-		public IOutputTransmitter GetTransmitter(Guid id)
-		{
-			IOutputTransmitter transmitter;
-			if(this._Transmitters == null)
-				this._Transmitters = new Dictionary<Guid, IOutputTransmitter>();
-			if(this._Transmitters.TryGetValue(id, out transmitter))
-				return transmitter;
-			var output = this.GetOutput(id);
-			if(output != null)
-			{
-				transmitter = this.Host.CreateTransmitter(output);
-				this._Transmitters.Add(id, transmitter);
-				return transmitter;
-			}
-			return null;
-		}
-
 		internal void PostClipOutput(Clip clip, Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			if(clip == null || !clip.IsPlaying || clip.OutputId == null)
 				return;
-			var transmitter = this.GetTransmitter(clip.OutputId.Value);
-			if(transmitter == null)
+			var output = this.GetOutput(clip.OutputId.Value);
+			if(output == null)
 				return;
 			var message = clip.BuildOutputMessage(transport);
-			transmitter.PostMessage(message);
+			output.PostMessage(message);
 		}
 
 		public void PostActiveClipOutputs(Transport.Transport transport)
@@ -593,13 +460,17 @@ namespace Animator.Core.Model
 			}
 
 			var outputsElement = element.Element(Schema.anidoc_outputs);
-			this.Outputs = outputsElement == null ? null : new ObservableCollection<Output>(outputsElement.Elements().Select(e => new Output(e)));
+			if(outputsElement != null)
+				this.Outputs.AddRange(outputsElement.Elements().Select(host.ReadOutputXElement));
 			var clipsElement = element.Element(Schema.anidoc_clips);
-			this.Clips = clipsElement == null ? null : new ObservableCollection<Clip>(clipsElement.Elements().Select(host.ReadClipXElement));
+			if(clipsElement != null)
+				this.Clips.AddRange(clipsElement.Elements().Select(host.ReadClipXElement));
 			var sequencesElement = element.Element(Schema.anidoc_sequences);
-			this.Sequences = sequencesElement == null ? null : new ObservableCollection<Sequence>(sequencesElement.Elements().Select(e => new Sequence(e, this)));
+			if(sequencesElement != null)
+				this.Sequences.AddRange(sequencesElement.Elements().Select(e => new Sequence(e, this)));
 			var sessionsElement = element.Element(Schema.anidoc_sessions);
-			this.Sessions = sessionsElement == null ? null : new ObservableCollection<Session>(sessionsElement.Elements().Select(e => new Session(e, this)));
+			if(sessionsElement != null)
+				this.Sessions.AddRange(sessionsElement.Elements().Select(e => new Session(e, this)));
 
 			this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
 			this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
@@ -648,30 +519,13 @@ namespace Animator.Core.Model
 		public void Dispose()
 		{
 			this.PropertyChanged = null;
-			var transport = this._Transport as IDisposable;
-			if(transport != null)
-				transport.Dispose();
+			if(this._Transport != null)
+				this._Transport.Dispose();
 			this._Transport = null;
-			if(this._Sequences != null)
-			{
-				foreach(var seq in this._Sequences)
-					seq.Dispose();
-				this.DetachSequences(this._Sequences);
-				this._Sequences = null;
-			}
-			if(this._Outputs != null)
-			{
-				foreach(var output in this._Outputs)
-					output.Dispose();
-				this.DetachOutputs(this._Outputs);
-				this._Outputs = null;
-			}
-			if(this._Transmitters != null)
-			{
-				foreach(var t in this._Transmitters.Values)
-					t.Dispose();
-				this._Transmitters = null;
-			}
+			this._Outputs.CollectionChanged -= this.Outputs_CollectionChanged;
+			foreach(var output in this._Outputs)
+				output.Dispose();
+			this._Outputs.Clear();
 			GC.SuppressFinalize(this);
 		}
 

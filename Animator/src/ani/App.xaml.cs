@@ -98,7 +98,7 @@ namespace Animator
 		{
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
 #warning TODO: find a better way of ensuring that the aniosc assembly is loaded...
-			assemblies.Add(typeof(OscTransmitter).Assembly);
+			assemblies.Add(typeof(OscOutput).Assembly);
 			foreach(var assembly in assemblies.Distinct())
 				this._Host.LoadAssembly(assembly);
 		}

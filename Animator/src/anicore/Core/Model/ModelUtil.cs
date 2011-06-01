@@ -13,7 +13,7 @@ namespace Animator.Core.Model
 
 	#region ModelUtil
 
-	internal static class ModelUtil
+	public static class ModelUtil
 	{
 
 		[CanBeNull]
@@ -103,7 +103,7 @@ namespace Animator.Core.Model
 			return true;
 		}
 
-		internal static XElement WithContent(this XElement element, params object[] content)
+		public static XElement WithContent(this XElement element, params object[] content)
 		{
 			Require.ArgNotNull(element, "element");
 			element.Add(content);

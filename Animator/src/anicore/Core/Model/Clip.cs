@@ -9,6 +9,7 @@ using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Transport;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
@@ -171,7 +172,7 @@ namespace Animator.Core.Model
 			return new OutputMessage(this.TargetKey, this.GetValue(transport));
 		}
 
-		public virtual void ReadXElement(XElement element)
+		public virtual void ReadXElement([NotNull] XElement element)
 		{
 			Require.ArgNotNull(element, "element");
 			this.ReadCommonXAttributes(element);

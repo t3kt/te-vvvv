@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Animator.Core.IO;
+using Animator.Core.Model;
 
 namespace Animator.Core.Composition
 {
 
-	#region OutputTransmitterAttribute
+	#region ClipAttribute
 
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class OutputTransmitterAttribute : AniExportAttribute
+	public sealed class OutputAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -29,8 +29,8 @@ namespace Animator.Core.Composition
 
 		#region Constructors
 
-		public OutputTransmitterAttribute()
-			: base(typeof(IOutputTransmitter)) { }
+		public OutputAttribute()
+			: base(typeof(Output)) { }
 
 		#endregion
 

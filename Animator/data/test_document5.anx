@@ -7,6 +7,9 @@
 				<prop name="valA" type="Value" default="22.4"/>
 			</target>
 		</output>
+		<oscoutput id="DAC6E5E4-EB43-4AFB-BE57-6A03803B1D6B" name="OSC Out D" host="localhost" port="2134">
+			
+		</oscoutput>
     <output id="a7f4febc-7959-4bb1-9386-b2ba59a793a2" name="out B" />
     <output id="aee444a7-9654-483a-b609-a5db8aa5abf8" name="OSC Out C" type="osc" />
   </outputs>

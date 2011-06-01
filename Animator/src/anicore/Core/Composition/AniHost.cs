@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Threading;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
-using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
@@ -66,9 +65,9 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<Transport.Transport, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<IOutputTransmitter, IAniExportMetadata>> OutputTransmitters
+		internal IEnumerable<Lazy<Output, IAniExportMetadata>> Outputs
 		{
-			get { return this._Container.GetExports<IOutputTransmitter, IAniExportMetadata>(); }
+			get { return this._Container.GetExports<Output, IAniExportMetadata>(); }
 		}
 
 		internal IEnumerable<Lazy<IClipDataEditor, IClipDataEditorMetadata>> ClipDataEditors
@@ -144,26 +143,31 @@ namespace Animator.Core.Composition
 			return this.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
 		}
 
-		[NotNull]
-		public IOutputTransmitter CreateTransmitterByKey(string key)
+		internal Output CreateOutputByElementName(string elementName)
 		{
-			return this.OutputTransmitters.CreateByKey(key, () => new OutputTransmitter.NullTransmitter());
+			return this.Outputs.CreateByElementName(elementName, () => new Output());
+		}
+
+		[NotNull]
+		internal Output ReadOutputXElement([NotNull]XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			var output = this.CreateOutputByElementName(element.Name.ToString());
+			Debug.Assert(output != null);
+			output.ReadXElement(element);
+			return output;
+		}
+
+		[NotNull]
+		public Output CreateOutputByKey(string key)
+		{
+			return this.Outputs.CreateByKey(key, () => new Output());
 		}
 
 		[CanBeNull]
 		public IPropertyEditor CreatePropertyEditorByKey(string key)
 		{
 			return this.PropertyEditors.CreateByKey(key);
-		}
-
-		[NotNull]
-		internal IOutputTransmitter CreateTransmitter([NotNull] Output outputModel)
-		{
-			Require.ArgNotNull(outputModel, "outputModel");
-			var transmitter = this.CreateTransmitterByKey(outputModel.OutputType);
-			Debug.Assert(transmitter != null);
-			transmitter.Initialize(outputModel);
-			return transmitter;
 		}
 
 		[NotNull]
@@ -219,9 +223,9 @@ namespace Animator.Core.Composition
 			return this.Clips.GetTypeDescriptionsByKey();
 		}
 
-		public IEnumerable<KeyValuePair<string, string>> GetTransmitterTypeDescriptionsByKey()
+		public IEnumerable<KeyValuePair<string, string>> GetOutputTypeDescriptionsByKey()
 		{
-			return this.OutputTransmitters.GetTypeDescriptionsByKey();
+			return this.Outputs.GetTypeDescriptionsByKey();
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetTransportTypeDescriptionsByKey()
