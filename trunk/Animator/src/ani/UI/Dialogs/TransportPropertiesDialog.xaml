@@ -10,27 +10,9 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Transport Type:"/>
 		<ComboBox Grid.Column="1" x:Name="typeComboBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}, Path=TransportTypeDescriptions}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}, Path=TransportType}" />
-		<Label Grid.Row="1" Content="Duration:" />
-		<TextBox Grid.Row="1" Grid.Column="1" Name="durationTextBox">
-			<TextBox.Text>
-				<Binding Path="Duration" RelativeSource="{RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}" NotifyOnValidationError="True">
-					<Binding.ValidationRules>
-						<ExceptionValidationRule/>
-					</Binding.ValidationRules>
-				</Binding>
-			</TextBox.Text>
-			<Validation.ErrorTemplate>
-				<ControlTemplate TargetType="{x:Type TextBox}">
-					<Border BorderThickness="2" BorderBrush="Red">
-						<ContentPresenter/>
-					</Border>
-				</ControlTemplate>
-			</Validation.ErrorTemplate>
-		</TextBox>
 		<Label Grid.Row="2" Content="BPM:" />
 		<!--Text="{Binding Path=BeatsPerMinute, RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}}"-->
 		<TextBox Grid.Row="2" Grid.Column="1" Name="bpmTextBox">

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Common;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
@@ -67,9 +68,9 @@ namespace Animator.Tests
 			{
 				TargetKey = "myoutput",
 				Duration = 4,
-				OutputId = output.Id,
-				Steps = new ObservableCollection<float> { 1f, 2f, 3f, 4f }
+				OutputId = output.Id
 			};
+			clip.Steps.ReplaceContents(new[] { 1f, 2f, 3f, 4f });
 			doc.Clips.Add(clip);
 
 			var transport = new DummyTransport();
@@ -99,9 +100,9 @@ namespace Animator.Tests
 			{
 				TargetKey = "myoutput",
 				Duration = 4,
-				OutputId = output.Id,
-				Steps = new ObservableCollection<float> { 1f, 2f, 3f, 4f }
+				OutputId = output.Id
 			};
+			clip.Steps.ReplaceContents(new[] { 1f, 2f, 3f, 4f });
 			doc.Clips.Add(clip);
 
 			var transport = new DummyTransport();

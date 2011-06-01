@@ -75,7 +75,6 @@
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\ClipReference.cs" />
-    <Compile Include="Core\Model\IClip.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />

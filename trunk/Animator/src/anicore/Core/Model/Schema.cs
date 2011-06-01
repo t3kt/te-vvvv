@@ -29,7 +29,6 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_name = common_name;
 		public static readonly XName anidoc_bpm = "bpm";
 		public static readonly XName anidoc_dur = common_dur;
-		public static readonly XName anidoc_params = @params;
 		public static readonly XName anidoc_outputs = "outputs";
 		public static readonly XName anidoc_clips = "clips";
 		public static readonly XName anidoc_sequences = "sequences";
@@ -40,7 +39,6 @@ namespace Animator.Core.Model
 		public static readonly XName transport = "transport";
 		public static readonly XName transport_type = common_type;
 		public static readonly XName transport_bpm = "bpm";
-		public static readonly XName transport_dur = common_dur;
 		public static readonly XName transport_params = @params;
 
 		public static readonly XName output = "output";
@@ -60,7 +58,6 @@ namespace Animator.Core.Model
 		public static readonly XName clip = "clip";
 		public static readonly XName clip_dur = common_dur;
 		public static readonly XName clip_target = "target";
-		public static readonly XName clip_params = @params;
 		public static readonly XName clip_output = "output";
 		public static readonly XName clip_ui_row = "ui-row";
 		public static readonly XName clip_ui_col = "ui-col";

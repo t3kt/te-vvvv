@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Runtime;
@@ -28,7 +29,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private ObservableCollection<float> _Steps;
+		private readonly ObservableCollection<float> _Steps;
 
 		#endregion
 
@@ -37,38 +38,20 @@ namespace Animator.Core.Model
 		[Category(TEShared.Names.Category_Common)]
 		public ObservableCollection<float> Steps
 		{
-			get
-			{
-				if(this._Steps == null)
-				{
-					this._Steps = new ObservableCollection<float>();
-					this.AttachSteps(this._Steps);
-				}
-				return _Steps;
-			}
-			set
-			{
-				if(value != this._Steps)
-				{
-					this.DetachSteps(this._Steps);
-					this._Steps = value;
-					this.AttachSteps(value);
-					this.OnPropertyChanged("Steps");
-				}
-			}
+			get { return _Steps; }
 		}
 
 		[Category(TEShared.Names.Category_Output)]
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public int StepCount
 		{
-			get { return this._Steps == null ? 0 : this._Steps.Count; }
+			get { return this._Steps.Count; }
 			set
 			{
 				Require.ArgNotNegative(value, "value");
-				if(this._Steps == null)
+				if(this._Steps.Count == 0)
 				{
-					this.Steps = new ObservableCollection<float>(Enumerable.Repeat(0.0f, value));
+					this._Steps.ReplaceContents(Enumerable.Repeat(0.0f, value));
 				}
 				else if(value < this._Steps.Count)
 				{
@@ -91,14 +74,17 @@ namespace Animator.Core.Model
 		#region Constructors
 
 		public StepClip()
-		{
-			this.Steps = new ObservableCollection<float> { 0.0f, 0.0f, 0.0f, 0.0f };
-		}
+			: this(Guid.NewGuid()) { }
 
 		public StepClip(Guid id)
-			: base(id) { }
+			: base(id)
+		{
+			this._Steps = new ObservableCollection<float>();
+			this._Steps.CollectionChanged += this.Steps_CollectionChanged;
+		}
 
 		public StepClip(XElement element)
+			: this()
 		{
 			this.ReadXElement(element);
 		}
@@ -107,28 +93,10 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		private void AttachSteps(ObservableCollection<float> steps)
+		private int GetStepIndex(Time position)
 		{
-			if(steps != null)
-				steps.CollectionChanged += this.Steps_CollectionChanged;
-		}
-
-		private void DetachSteps(ObservableCollection<float> steps)
-		{
-			if(steps != null)
-				steps.CollectionChanged -= this.Steps_CollectionChanged;
-		}
-
-		public void SetSteps(IList<float> steps)
-		{
-			Require.ArgNotNull(steps, "steps");
-			this.StepCount = steps.Count;
-			for(var i = 0; i < steps.Count; i++)
-				this.Steps[i] = steps[i];
-		}
-
-		private int GetStep(Time position)
-		{
+			if(this.StepCount == 0)
+				return 0;
 			position = position % this.Duration;
 			var stepLength = this.Duration / this.StepCount;
 			return (int)(position / stepLength);
@@ -138,7 +106,7 @@ namespace Animator.Core.Model
 		{
 			if(this.StepCount == 0)
 				return 0.0f;
-			var step = this.GetStep(position);
+			var step = this.GetStepIndex(position);
 			return this._Steps[step];
 		}
 
@@ -146,13 +114,13 @@ namespace Animator.Core.Model
 		{
 			Require.ArgNotNull(element, "element");
 			base.ReadXElement(element);
-			this.Steps = new ObservableCollection<float>(element.Elements(Schema.stepclip_step).Select(e => (float)e));
+			this._Steps.ReplaceContents(element.Elements(Schema.stepclip_step).Select(e => (float)e));
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
 			return base.WriteXElement(name ?? Schema.stepclip)
-				.WithContent(this._Steps == null ? null : this._Steps.Select(step => new XElement(Schema.stepclip_step, step)));
+				.WithContent(this._Steps.Select(step => new XElement(Schema.stepclip_step, step)));
 		}
 
 		private void Steps_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -169,16 +137,6 @@ namespace Animator.Core.Model
 				return false;
 			return stepClip._Steps.Count == this._Steps.Count &&
 				   stepClip._Steps.SequenceEqual(this._Steps);
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			base.Dispose(disposing);
-			if(disposing)
-			{
-				this.DetachSteps(this._Steps);
-				this._Steps = null;
-			}
 		}
 
 		#endregion

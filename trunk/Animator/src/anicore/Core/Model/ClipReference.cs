@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -20,7 +21,6 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly Guid _ClipId;
 		private readonly Clip _Clip;
 
 		#endregion
@@ -30,7 +30,7 @@ namespace Animator.Core.Model
 		[Browsable(false)]
 		public Guid ClipId
 		{
-			get { return this._ClipId; }
+			get { return this._Clip.Id; }
 		}
 
 		public Clip Clip
@@ -42,19 +42,21 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected ClipReference(Guid id, Clip clip)
+		protected ClipReference(Guid id, [NotNull] Clip clip)
 			: base(id)
 		{
+			Require.ArgNotNull(clip, "clip");
 			this._Clip = clip;
-			this._ClipId = clip == null ? Guid.Empty : clip.Id;
 		}
 
-		protected ClipReference([NotNull] XElement element, [CanBeNull]Document document)
+		protected ClipReference([NotNull] XElement element, [NotNull]Document document)
 			: base(element)
 		{
-			this._ClipId = (Guid)element.Attribute(Schema.clipref_clip_id);
-			if(document != null)
-				this._Clip = document.GetClip(this._ClipId);
+			Require.ArgNotNull(document, "document");
+			var clipId = (Guid)element.Attribute(Schema.clipref_clip_id);
+			this._Clip = document.GetClip(clipId);
+			if(this._Clip == null)
+				throw new ModelException(String.Format("Clip not found: {0}", clipId));
 		}
 
 		#endregion
@@ -63,10 +65,8 @@ namespace Animator.Core.Model
 
 		internal abstract bool IsActiveInternal(Transport.Transport transport);
 
-		protected virtual object GetValue(Transport.Transport transport, Clip clip)
+		protected virtual object GetValue(Transport.Transport transport)
 		{
-			if(clip == null)
-				return null;
 			throw new NotImplementedException();
 		}
 
@@ -95,7 +95,7 @@ namespace Animator.Core.Model
 		{
 			if(!base.Equals(other))
 				return false;
-			return this._ClipId == other._ClipId;
+			return ReferenceEquals(this._Clip, other._Clip);
 		}
 
 		#endregion

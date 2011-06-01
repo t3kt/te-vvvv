@@ -110,11 +110,6 @@ namespace Animator.Core.Model
 			return element;
 		}
 
-		internal static string OrNullIfEmpty(this string str)
-		{
-			return String.IsNullOrWhiteSpace(str) ? null : str;
-		}
-
 		internal static bool ItemsEqual(this IEnumerable<IDocumentItem> itemsA, IEnumerable<IDocumentItem> itemsB)
 		{
 			itemsA = itemsA == null ? Enumerable.Empty<IDocumentItem>() : itemsA.OrderBy(x => x.Id);

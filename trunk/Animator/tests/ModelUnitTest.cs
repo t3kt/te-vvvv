@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using Animator.Common;
 using Animator.Core.Model;
 using Animator.Core.Transport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -111,9 +112,9 @@ namespace Animator.Tests
 						{
 							Name = "helloclip",
 							OutputId = Guid.NewGuid(),
-							UIRow = 12,
-							Steps = new ObservableCollection<float> { 40.2f, -345.28f, 0.0f, 4444.4f }
+							UIRow = 12
 						};
+			clipA.Steps.ReplaceContents(new[] { 40.2f, -345.28f, 0.0f, 4444.4f });
 			var xmlA = clipA.WriteXElement();
 			var clipB = new StepClip(xmlA);
 			var xmlB = clipB.WriteXElement();
@@ -139,7 +140,6 @@ namespace Animator.Tests
 			var docA = new Document
 					   {
 						   BeatsPerMinute = 44.3f,
-						   Duration = 284.345f,
 						   Name = "foodoc",
 						   UIColumns = 23,
 						   UIRows = 14
@@ -152,11 +152,11 @@ namespace Animator.Tests
 						 {
 							 Name = "steppp",
 							 Duration = 48.5f,
-							 Steps = new ObservableCollection<float> { 25.25f, -234.3f, 0.0f },
 							 TargetKey = "footarget",
 							 UIColumn = 4,
 							 UIRow = 2
 						 };
+			clipA2.Steps.ReplaceContents(new[] { 25.25f, -234.3f, 0.0f });
 			docA.Clips.Add(clipA2);
 			var xmlA = docA.WriteXDocument();
 			ValidateDocumentSchema(xmlA);
@@ -164,7 +164,6 @@ namespace Animator.Tests
 			var xmlB = docB.WriteXDocument();
 			Assert.AreEqual(docA.BeatsPerMinute, docB.BeatsPerMinute);
 			Assert.AreEqual(docA.Id, docB.Id);
-			Assert.AreEqual(docA.Duration, docB.Duration);
 			Assert.AreEqual(docA.Name, docB.Name);
 			Assert.AreEqual(docA.UIColumns, docB.UIColumns);
 			Assert.AreEqual(docA.UIRows, docB.UIRows);
@@ -203,18 +202,18 @@ namespace Animator.Tests
 								Duration = 9.0f,
 								Name = "stepssss",
 								TargetKey = "tttgtt",
-								Steps = new ObservableCollection<float> { 3.5f, 12.0f },
 								OutputId = Guid.NewGuid()
 							};
+			stepClipA.Steps.ReplaceContents(new[] { 3.5f, 12.0f });
 			Assert.AreNotEqual(clipA, stepClipA);
 			var stepClipB = new StepClip(stepClipA.Id)
 							{
 								Duration = stepClipA.Duration,
 								Name = stepClipA.Name,
 								TargetKey = stepClipA.TargetKey,
-								Steps = new ObservableCollection<float>(stepClipA.Steps.ToArray()),
 								OutputId = stepClipA.OutputId
 							};
+			stepClipB.Steps.ReplaceContents(stepClipA.Steps);
 			Assert.AreEqual(stepClipA, stepClipB);
 			stepClipB.Steps.Add(-234.77f);
 			Assert.AreNotEqual(stepClipA, stepClipB);
@@ -244,9 +243,9 @@ namespace Animator.Tests
 			var doc = new Document();
 			var clip = new StepClip
 			{
-				Duration = new Time(4),
-				Steps = new ObservableCollection<float> { 0.0f, 1.0f, 2.0f, 3.0f }
+				Duration = new Time(4)
 			};
+			clip.Steps.ReplaceContents(new[] { 0.0f, 1.0f, 2.0f, 3.0f });
 			doc.Clips.Add(clip);
 			Assert.AreEqual(0.0f, clip.GetValue(new Time(0.0f)));
 			Assert.AreEqual(1.0f, clip.GetValue(new Time(1.0f)));

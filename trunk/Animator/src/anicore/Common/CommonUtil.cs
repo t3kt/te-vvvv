@@ -14,12 +14,20 @@ namespace Animator.Common
 	public static class CommonUtil
 	{
 
-		internal static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
+		internal static void AddRange<T>([NotNull] this ICollection<T> collection, [NotNull] IEnumerable<T> items)
 		{
 			Require.ArgNotNull(collection, "collection");
 			Require.ArgNotNull(items, "items");
 			foreach(var item in items)
 				collection.Add(item);
+		}
+
+		internal static void ReplaceContents<T>([NotNull] this ICollection<T> collection, [NotNull] IEnumerable<T> items)
+		{
+			Require.ArgNotNull(collection, "collection");
+			Require.ArgNotNull(items, "items");
+			collection.Clear();
+			collection.AddRange(items);
 		}
 
 		internal static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)

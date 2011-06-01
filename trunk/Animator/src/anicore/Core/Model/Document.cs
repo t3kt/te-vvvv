@@ -21,7 +21,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>
+	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>, IClipRefContainer
 	{
 
 		#region TransportData
@@ -35,7 +35,6 @@ namespace Animator.Core.Model
 
 			#region Fields
 
-			private Time _Duration = Time.Infinite;
 			private float _BeatsPerMinute = DefaultBeatsPerMinute;
 			private string _TransportType;
 			private Dictionary<string, string> _Parameters;
@@ -43,20 +42,6 @@ namespace Animator.Core.Model
 			#endregion
 
 			#region Properties
-
-			public Time Duration
-			{
-				get { return this._Duration; }
-				set
-				{
-					Require.ArgNotNegative(value, "value");
-					if(value != this._Duration)
-					{
-						this._Duration = value;
-						this.OnPropertyChanged("Duration");
-					}
-				}
-			}
 
 			public float BeatsPerMinute
 			{
@@ -102,7 +87,6 @@ namespace Animator.Core.Model
 			public void ReadXElement(XElement element)
 			{
 				Require.ArgNotNull(element, "element");
-				this._Duration = (float?)element.Attribute(Schema.transport_dur) ?? Time.Infinite;
 				this._BeatsPerMinute = (float?)element.Attribute(Schema.transport_bpm) ?? DefaultBeatsPerMinute;
 				this._TransportType = (string)element.Attribute(Schema.transport_type);
 				this._Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.transport_params));
@@ -111,7 +95,6 @@ namespace Animator.Core.Model
 			public XElement WriteXElement(XName name = null)
 			{
 				return new XElement(name ?? Schema.transport,
-					this.Duration == Time.Infinite ? null : new XAttribute(Schema.anidoc_dur, (float)this.Duration),
 					new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
 					ModelUtil.WriteOptionalAttribute(Schema.transport_type, this.TransportType),
 					ModelUtil.WriteParametersXElement(Schema.transport_params, this._Parameters));
@@ -194,13 +177,6 @@ namespace Animator.Core.Model
 					OnPropertyChanged("Name");
 				}
 			}
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
-		public Time Duration
-		{
-			get { return this._TransportData.Duration; }
-			set { this._TransportData.Duration = value; }
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
@@ -314,6 +290,11 @@ namespace Animator.Core.Model
 					this.OnPropertyChanged("ActiveSection");
 				}
 			}
+		}
+
+		internal IEnumerable<DocumentSection> AllSections
+		{
+			get { return this._Sequences.Concat<DocumentSection>(this._Sessions); }
 		}
 
 		#endregion
@@ -454,7 +435,6 @@ namespace Animator.Core.Model
 			}
 			else
 			{
-				this.Duration = (float?)element.Attribute(Schema.anidoc_dur) ?? Time.Infinite;
 				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
 			}
 
@@ -546,6 +526,27 @@ namespace Animator.Core.Model
 			if(sequence != null)
 				return sequence;
 			return null;
+		}
+
+		#endregion
+
+		#region IClipRefContainer Members
+
+		IEnumerable<ClipReference> IClipRefContainer.Clips
+		{
+			get
+			{
+				return from section in this.AllSections
+					   from clip in section.Clips
+					   select clip;
+			}
+		}
+
+		public IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
+		{
+			if(this._ActiveSection == null)
+				return Enumerable.Empty<ClipReference>();
+			return this._ActiveSection.GetActiveClips(transport);
 		}
 
 		#endregion
