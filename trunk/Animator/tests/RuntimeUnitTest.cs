@@ -6,6 +6,8 @@ using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Model.Sequences;
+using Animator.Core.Model.Sessions;
 using Animator.Core.Runtime;
 using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,50 +24,8 @@ namespace Animator.Tests
 	public class RuntimeUnitTest
 	{
 
-		#region ModelTrackerTransmitter
-
-		[OutputTransmitter(Key = "test.mtracker")]
-		internal sealed class ModelTrackerTransmitter : OutputTransmitter
-		{
-
-			public Output OutputModel;
-
-			public override void Initialize(Output outputModel)
-			{
-				this.OutputModel = outputModel;
-			}
-
-			protected override bool PostMessageInternal(OutputMessage message)
-			{
-				return false;
-			}
-
-		}
-
-		#endregion
-
 		[TestMethod]
-		[TestCategory("Runtime.Model")]
-		public void RTDocumentGetTransmitter()
-		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var doc = new Document(host);
-			var outputA = new Output
-						  {
-							  OutputType = "test.mtracker"
-						  };
-			doc.Outputs.Add(outputA);
-
-			Assert.IsNull(doc.GetTransmitter(Guid.NewGuid()));
-
-			var transmitterA = doc.GetTransmitter(outputA.Id);
-			Assert.IsNotNull(transmitterA);
-			Assert.IsInstanceOfType(transmitterA, typeof(ModelTrackerTransmitter));
-			Assert.AreSame(outputA, ((ModelTrackerTransmitter)transmitterA).OutputModel);
-		}
-
-		[TestMethod]
-		[TestCategory("Runtime.Model")]
+		[TestCategory(CategoryNames.Runtime_Model)]
 		public void RTDocumentActiveClips()
 		{
 			var doc = new Document();
@@ -94,14 +54,13 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime.Model")]
+		[TestCategory(CategoryNames.Runtime_Model)]
 		public void RTGetStepClipValue()
 		{
 			var doc = new Document();
 			var output = new Output
 			{
-				Name = "collector_output",
-				OutputType = "test.collector"
+				Name = "collector_output"
 			};
 			doc.Outputs.Add(output);
 			var clip = new StepClip
@@ -128,16 +87,13 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Runtime.Model")]
+		[TestCategory(CategoryNames.Runtime_Model)]
 		public void RTDocumentPostStepClipValue()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
-			var output = new Output
-			{
-				Name = "collector_output",
-				OutputType = "test.collector"
-			};
+			var output = host.CreateOutputByKey("test.collector");
+			output.Name = "collector_output";
 			doc.Outputs.Add(output);
 			var clip = new StepClip
 			{
@@ -149,10 +105,8 @@ namespace Animator.Tests
 			doc.Clips.Add(clip);
 
 			var transport = new DummyTransport();
-			var transmitter = doc.GetTransmitter(output.Id);
-			Assert.IsInstanceOfType(transmitter, typeof(CollectorTransmitter));
-			var collector = (CollectorTransmitter)transmitter;
-			Assert.IsNotNull(collector);
+			Assert.IsInstanceOfType(output, typeof(CollectorOutput));
+			var collector = (CollectorOutput)output;
 
 			Assert.AreSame(clip, doc.GetClip(clip.Id));
 
@@ -244,33 +198,66 @@ namespace Animator.Tests
 		#endregion
 
 		[TestMethod]
-		[TestCategory("Runtime.Model")]
+		[TestCategory(CategoryNames.Runtime_Model)]
 		public void TargetObjectGetSetClear()
 		{
 			var tgtObj = new TargetObject();
 			object value;
-			var propA = new TargetProperty("propA", TargetPropertyType.Value) { DefaultValue = 12.3f };
-			Assert.IsFalse(tgtObj.GetValue(propA.Name, out value));
-			Assert.IsFalse(tgtObj.SetValue(propA.Name, 22.1f));
-			Assert.IsFalse(tgtObj.ClearValue(propA.Name));
+			const string propA_Name = "propA";
+			Assert.IsFalse(tgtObj.GetValue(propA_Name, out value));
+			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsFalse(tgtObj.ClearValue(propA_Name));
 
-			tgtObj.Properties.Add(propA);
-			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			var propA = tgtObj.Add(propA_Name, TargetPropertyType.Value, 12.3f);
+			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
-			Assert.IsTrue(tgtObj.ClearValue(propA.Name));
-			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.IsTrue(tgtObj.ClearValue(propA_Name));
+			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
-			Assert.IsTrue(tgtObj.SetValue(propA.Name, 22.1f));
-			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.IsTrue(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(22.1f, value);
-			Assert.IsTrue(tgtObj.ClearValue(propA.Name));
-			Assert.IsTrue(tgtObj.GetValue(propA.Name, out value));
+			Assert.IsTrue(tgtObj.ClearValue(propA_Name));
+			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
 
-			Assert.IsTrue(tgtObj.Properties.Remove(propA));
-			Assert.IsFalse(tgtObj.GetValue(propA.Name, out value));
-			Assert.IsFalse(tgtObj.SetValue(propA.Name, 22.1f));
-			Assert.IsFalse(tgtObj.ClearValue(propA.Name));
+			Assert.IsTrue(tgtObj.Remove(propA_Name));
+			Assert.IsFalse(tgtObj.GetValue(propA_Name, out value));
+			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsFalse(tgtObj.ClearValue(propA_Name));
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Runtime_Model)]
+		public void ActiveSectionMustBeInDocumentValid()
+		{
+			var doc = new Document();
+			var ses = new Session();
+			doc.Sessions.Add(ses);
+			doc.ActiveSection = ses;
+			var seq = new Sequence();
+			doc.Sequences.Add(seq);
+			doc.ActiveSection = seq;
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Runtime_Model)]
+		[ExpectedException(typeof(ModelException))]
+		public void ActiveSessionMustBeInDocumentInvalid()
+		{
+			var doc = new Document();
+			var ses = new Session();
+			doc.ActiveSection = ses;
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Runtime_Model)]
+		[ExpectedException(typeof(ModelException))]
+		public void ActiveSequenceMustBeInDocumentInvalid()
+		{
+			var doc = new Document();
+			var seq = new Sequence();
+			doc.ActiveSection = seq;
 		}
 
 	}

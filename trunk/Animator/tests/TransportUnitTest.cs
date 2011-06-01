@@ -22,7 +22,7 @@ namespace Animator.Tests
 	{
 
 		[TestMethod]
-		[TestCategory("Transport")]
+		[TestCategory(CategoryNames.Transport)]
 		public void MediaTransportBasicStateChangeTest()
 		{
 			using(var transport = new MediaTransport())
@@ -68,7 +68,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Transport")]
+		[TestCategory(CategoryNames.Transport)]
 		public void DocumentTransportTypesTest()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);

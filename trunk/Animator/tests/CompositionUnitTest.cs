@@ -39,14 +39,14 @@ namespace Animator.Tests
 			if(core)
 				host.LoadCoreAssembly();
 			if(osc)
-				host.LoadAssembly(typeof(OscTransmitter).Assembly);
+				host.LoadAssembly(typeof(OscOutput).Assembly);
 			if(app)
 				host.LoadAssembly(typeof(AniApplication).Assembly);
 			return host;
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void LoadCoreAssemblyBasic()
 		{
 			var host = new AniHost();
@@ -137,21 +137,21 @@ namespace Animator.Tests
 		#endregion
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void LoadTestAssembly()
 		{
 			CreateHost(test: true, core: false);
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void LoadCoreAssembly()
 		{
 			CreateHost(test: false, core: true);
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void ComposeAttributedDummyContainer()
 		{
 			var host = CreateHost(test: true);
@@ -162,7 +162,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void LoadClipTypeImports()
 		{
 			var host = CreateHost(test: false, core: true);
@@ -172,7 +172,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void GetClipByElementName()
 		{
 			var host = CreateHost(test: false, core: true);
@@ -187,7 +187,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void GetClipByKey()
 		{
 			var host = CreateHost(test: false, core: true);
@@ -198,7 +198,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void GetTransportByKey()
 		{
 			var host = CreateHost(test: true, core: true);
@@ -211,21 +211,20 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
-		public void GetOutputTransmitterByKey()
+		[TestCategory(CategoryNames.Composition)]
+		public void GetOutputByKey()
 		{
 			var host = CreateHost(test: true, core: true, osc: true);
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey("null"), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey(null), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey(String.Empty), typeof(OutputTransmitter.NullTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey("test"), typeof(IOUnitTest.TestTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey("test.callback"), typeof(CallbackTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey("trace"), typeof(OutputTransmitter.TraceTransmitter));
-			Assert.IsInstanceOfType(host.CreateTransmitterByKey("osc"), typeof(OscTransmitter));
+			Assert.IsInstanceOfType(host.CreateOutputByKey(null), typeof(Output));
+			Assert.IsInstanceOfType(host.CreateOutputByKey(String.Empty), typeof(Output));
+			Assert.IsInstanceOfType(host.CreateOutputByKey("test"), typeof(IOUnitTest.TestOutput));
+			Assert.IsInstanceOfType(host.CreateOutputByKey("test.callback"), typeof(CallbackOutput));
+			Assert.IsInstanceOfType(host.CreateOutputByKey("trace"), typeof(Output.TraceOutput));
+			Assert.IsInstanceOfType(host.CreateOutputByKey("osc"), typeof(OscOutput));
 		}
 
 		[TestMethod]
-		[TestCategory("Composition")]
+		[TestCategory(CategoryNames.Composition)]
 		public void GetPropertyEditor()
 		{
 			var host = CreateHost(test: true, core: true, app: true);

@@ -127,21 +127,18 @@
 			<xs:field xpath="@target"/>
 		</xs:keyref>
 	</xs:element>
-	<xs:element name="output">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="DocumentItemType">
-					<xs:sequence>
-						<xs:element ref="params" minOccurs="0"/>
-						<xs:sequence minOccurs="0" maxOccurs="unbounded">
-							<xs:element ref="target"/>
-						</xs:sequence>
+	<xs:complexType name="OutputBaseType">
+		<xs:complexContent>
+			<xs:extension base="DocumentItemType">
+				<xs:sequence>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="target"/>
 					</xs:sequence>
-					<xs:attribute name="type" type="xs:string"/>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="output" type="OutputBaseType"/>
 	<xs:complexType name="ClipType">
 		<xs:complexContent>
 			<xs:extension base="DocumentItemType">
@@ -333,6 +330,26 @@
 					<xs:sequence>
 						<xs:element ref="sesclipref" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="oscoutput" substitutionGroup="output">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="OutputBaseType">
+					<xs:attribute name="host" type="xs:string" use="required"/>
+					<xs:attribute name="port" type="xs:nonNegativeInteger" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="traceoutput" substitutionGroup="output">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="OutputBaseType">
+					<xs:attribute name="category" type="xs:string"/>
+					<xs:attribute name="prefix" type="xs:string"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>

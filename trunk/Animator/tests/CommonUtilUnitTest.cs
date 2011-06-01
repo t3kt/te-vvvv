@@ -23,7 +23,7 @@ namespace Animator.Tests
 	{
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void MaxOrZeroBasicTest()
 		{
 			Assert.AreEqual(0, CommonUtil.MaxOrZero(Enumerable.Empty<int>()));
@@ -41,7 +41,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void MaxOrZeroSelectedTest()
 		{
 			Assert.AreEqual(0, CommonUtil.MaxOrZero(Enumerable.Empty<ThingWithInt>(), x => x.val));
@@ -50,7 +50,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void NullableMaxOrZeroBasicTest()
 		{
 			Assert.AreEqual(0, CommonUtil.MaxOrZero(Enumerable.Empty<int?>()));
@@ -70,7 +70,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void NullableMaxOrZeroSelectedTest()
 		{
 			Assert.AreEqual(0, CommonUtil.MaxOrZero(Enumerable.Empty<int?>()));
@@ -81,7 +81,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void ResizeCollectionTest()
 		{
 			List<int> listA;
@@ -100,7 +100,7 @@ namespace Animator.Tests
 		}
 
 		[TestMethod]
-		[TestCategory("CommonUtil")]
+		[TestCategory(CategoryNames.CommonUtil)]
 		public void CropListTest()
 		{
 			List<int> list;

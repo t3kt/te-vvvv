@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
@@ -29,7 +29,7 @@ namespace Animator.Core.Model
 		#region Fields
 
 		private string _OutputKey;
-		private TargetPropertyCollection _Properties;
+		private readonly Dictionary<string, TargetProperty> _Properties;
 
 		#endregion
 
@@ -49,27 +49,9 @@ namespace Animator.Core.Model
 			}
 		}
 
-		public TargetPropertyCollection Properties
+		public IEnumerable<TargetProperty> Properties
 		{
-			get
-			{
-				if(this._Properties == null)
-				{
-					this._Properties = new TargetPropertyCollection();
-					this.AttachProperties(this._Properties);
-				}
-				return this._Properties;
-			}
-			set
-			{
-				if(value != this._Properties)
-				{
-					this.DetachProperties(this._Properties);
-					this._Properties = value;
-					this.AttachProperties(this._Properties);
-					this.OnPropertyChanged("Properties");
-				}
-			}
+			get { return this._Properties.Values.OrderBy(p => p.Name, PropertyNameComparer); }
 		}
 
 		#endregion
@@ -80,22 +62,72 @@ namespace Animator.Core.Model
 			: this(Guid.NewGuid()) { }
 
 		public TargetObject(Guid id)
-			: base(id) { }
+			: base(id)
+		{
+			this._Properties = new Dictionary<string, TargetProperty>(PropertyNameComparer);
+		}
 
 		public TargetObject([NotNull]XElement element)
 			: base(element)
 		{
-			this.ReadXElement(element);
+			this.OutputKey = (string)element.Attribute(Schema.target_key);
+			this._Properties = new Dictionary<string, TargetProperty>(PropertyNameComparer);
+			foreach(var e in element.Elements(Schema.target_prop))
+				this.ReadProperty(e);
 		}
 
 		#endregion
 
 		#region Methods
 
-		private void ReadXElement(XElement element)
+		private void Property_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			this.OutputKey = (string)element.Attribute(Schema.target_key);
-			this.Properties = new TargetPropertyCollection(element.Elements(Schema.target_prop).Select(e => new TargetProperty(e)));
+			this.OnPropertyChanged("Properties");
+		}
+
+		private void Add(TargetProperty property)
+		{
+			Require.ArgNotNull(property, "property");
+			this._Properties.Add(property.Name, property);
+			property.PropertyChanged += this.Property_PropertyChanged;
+			this.OnPropertyChanged("Properties");
+		}
+
+		private void ReadProperty(XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			var property = new TargetProperty(this, element);
+			this.Add(property);
+		}
+
+		public TargetProperty Add(string name, TargetPropertyType type, object defaultValue)
+		{
+			var property = new TargetProperty(this, name, type, defaultValue);
+			this.Add(property);
+			return property;
+		}
+
+		public TargetProperty Add(string name, TargetPropertyType type)
+		{
+			return this.Add(name, type, null);
+		}
+
+		public TargetProperty Get(string name)
+		{
+			TargetProperty property;
+			return this._Properties.TryGetValue(name, out property) ? property : null;
+		}
+
+		public bool Remove(string name)
+		{
+			TargetProperty property;
+			if(!this._Properties.TryGetValue(name, out property))
+				return false;
+			property.PropertyChanged -= this.Property_PropertyChanged;
+			var removed = this._Properties.Remove(name);
+			Debug.Assert(removed);
+			this.OnPropertyChanged("Properties");
+			return true;
 		}
 
 		public override XElement WriteXElement(XName name = null)
@@ -103,24 +135,7 @@ namespace Animator.Core.Model
 			return new XElement(name ?? Schema.target,
 				this.WriteCommonXAttributes(),
 				ModelUtil.WriteOptionalAttribute(Schema.target_key, this._OutputKey),
-				ModelUtil.WriteXElements(this._Properties));
-		}
-
-		private void AttachProperties(TargetPropertyCollection properties)
-		{
-			if(properties != null)
-				properties.CollectionChanged += this.Properties_CollectionChanged;
-		}
-
-		private void DetachProperties(TargetPropertyCollection properties)
-		{
-			if(properties != null)
-				properties.CollectionChanged -= this.Properties_CollectionChanged;
-		}
-
-		private void Properties_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Properties");
+				ModelUtil.WriteXElements(this.Properties));
 		}
 
 		internal OutputMessage BuildPropertyValueMessage(TargetProperty property)
@@ -135,15 +150,13 @@ namespace Animator.Core.Model
 		{
 			if(this._Properties == null)
 				return Enumerable.Empty<OutputMessage>();
-			return this._Properties.Select(this.BuildPropertyValueMessage).Where(m => m != null);
+			return this._Properties.Values.Select(this.BuildPropertyValueMessage).Where(m => m != null);
 		}
 
 		internal bool SetValue(string name, object value)
 		{
-			if(this._Properties == null)
-				return false;
-			TargetProperty property;
-			if(!this._Properties.TryGetProperty(name, out property))
+			var property = this.Get(name);
+			if(property == null)
 				return false;
 			property.Value = value;
 			return true;
@@ -151,10 +164,8 @@ namespace Animator.Core.Model
 
 		internal bool ClearValue(string name)
 		{
-			if(this._Properties == null)
-				return false;
-			TargetProperty property;
-			if(!this._Properties.TryGetProperty(name, out property))
+			var property = this.Get(name);
+			if(property == null)
 				return false;
 			property.ClearValue();
 			return true;
@@ -162,8 +173,8 @@ namespace Animator.Core.Model
 
 		internal bool GetValue(string name, out object value)
 		{
-			TargetProperty property;
-			if(this._Properties != null && this._Properties.TryGetProperty(name, out property))
+			var property = this.Get(name);
+			if(property != null)
 			{
 				value = property.Value;
 				return true;
@@ -190,7 +201,7 @@ namespace Animator.Core.Model
 		{
 			if(!base.Equals(other) || this.OutputKey != other.OutputKey)
 				return false;
-			return this.Properties.OrderBy(p => p.Name, PropertyNameComparer).SequenceEqual(other.Properties.OrderBy(p => p.Name, PropertyNameComparer));
+			return this.Properties.SequenceEqual(other.Properties);
 		}
 
 		#endregion

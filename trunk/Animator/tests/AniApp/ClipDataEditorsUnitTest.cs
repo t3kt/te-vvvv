@@ -60,7 +60,7 @@ namespace Animator.Tests.AniApp
 		#endregion
 
 		[TestMethod]
-		[TestCategory("ClipDataEditors")]
+		[TestCategory(CategoryNames.ClipDataEditors)]
 		public void AppGetEditorTest()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true, app: true);

@@ -44,8 +44,10 @@ namespace Animator.Core.Model
 		public static readonly XName transport_params = @params;
 
 		public static readonly XName output = "output";
-		public static readonly XName output_type = common_type;
-		public static readonly XName output_params = @params;
+
+		public static readonly XName traceoutput = "traceoutput";
+		public static readonly XName traceoutput_category = "category";
+		public static readonly XName traceoutput_prefix = "prefix";
 
 		public static readonly XName target = "target";
 		public static readonly XName target_key = "key";

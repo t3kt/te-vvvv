@@ -70,6 +70,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
+		private readonly TargetObject _Parent;
 		private readonly string _Name;
 		private readonly TargetPropertyType _Type;
 		private object _DefaultValue;
@@ -118,15 +119,21 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public TargetProperty(string name, TargetPropertyType type)
+		internal TargetProperty([NotNull] TargetObject parent, [NotNull] string name, TargetPropertyType type, object defaultValue)
 		{
+			Require.ArgNotNull(parent, "parent");
+			Require.ArgNotNullOrEmpty(name, "name");
+			this._Parent = parent;
 			this._Name = name;
 			this._Type = type;
+			this._DefaultValue = defaultValue;
 		}
 
-		public TargetProperty([NotNull]XElement element)
+		internal TargetProperty([NotNull] TargetObject parent, [NotNull]XElement element)
 		{
+			Require.ArgNotNull(parent, "parent");
 			Require.ArgNotNull(element, "element");
+			this._Parent = parent;
 			this._Name = (string)element.Attribute(Schema.target_prop_name);
 			this._Type = (TargetPropertyType)Enum.Parse(typeof(TargetPropertyType), (string)element.Attribute(Schema.target_prop_type));
 			this._DefaultValue = ParseValueAttribute(this._Type, element.Attribute(Schema.target_prop_default));
@@ -161,7 +168,7 @@ namespace Animator.Core.Model
 			return other != null &&
 				   TargetObject.PropertyNameComparer.Equals(this._Name, other._Name) &&
 				   this._Type == other._Type &&
-				   ValuesEqual(this._Type,this._DefaultValue, other._DefaultValue);
+				   ValuesEqual(this._Type, this._DefaultValue, other._DefaultValue);
 		}
 
 		#endregion

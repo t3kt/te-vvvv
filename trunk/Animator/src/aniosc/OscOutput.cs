@@ -4,34 +4,35 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using TESharedAnnotations;
 using VVVV.Utils.OSC;
 
 namespace Animator.Osc
 {
 
-	#region OscTransmitter
+	#region OscOutput
 
-	[OutputTransmitter(Key = "osc", Description = "OSC Transport")]
-	public class OscTransmitter : OutputTransmitter
+	[Output(ElementName = "oscoutput", Key = "osc", Description = "OSC Output")]
+	public sealed class OscOutput : Output
 	{
 
-		#region Static / Constant
+		#region Schema
 
-		private static Tuple<string, int> GetConnectionParams(Output outputModel)
+		private static class Schema
 		{
-			Debug.Assert(outputModel != null);
-			string host;
-			if(!outputModel.Parameters.TryGetValue("host", out host))
-				return null;
-			string portStr;
-			int port;
-			if(!outputModel.Parameters.TryGetValue("port", out portStr) || !Int32.TryParse(portStr, out port))
-				return null;
-			return new Tuple<string, int>(host, port);
+			public static readonly XName oscoutput = "oscoutput";
+			public static readonly XName oscoutput_host = "host";
+			public static readonly XName oscoutput_port = "port";
 		}
+
+		#endregion
+
+		#region Static / Constant
 
 		private static OSCPacket BuildPacket(OutputMessage message)
 		{
@@ -62,14 +63,30 @@ namespace Animator.Osc
 		public string Host
 		{
 			get { return this._Connection.Host; }
-			set { this._Connection.Host = value; }
+			set
+			{
+				Require.ArgNotNullOrEmpty(value, "value");
+				if(value != this._Connection.Host)
+				{
+					this._Connection.Host = value;
+					this.OnPropertyChanged("Host");
+				}
+			}
 		}
 
 		[Category(TEShared.Names.Category_Common)]
 		public int Port
 		{
 			get { return this._Connection.Port; }
-			set { this._Connection.Port = value; }
+			set
+			{
+				Require.ArgNotNegative(value, "value");
+				if(value != this._Connection.Port)
+				{
+					this._Connection.Port = value;
+					this.OnPropertyChanged("Port");
+				}
+			}
 		}
 
 		[Category(TEShared.Names.Category_Common)]
@@ -82,18 +99,33 @@ namespace Animator.Osc
 
 		#region Constructors
 
+		public OscOutput() { }
+
+		public OscOutput(Guid id, [NotNull] string host, int port)
+			: base(id)
+		{
+			this.Host = host;
+			this.Port = port;
+		}
+
 		#endregion
 
 		#region Methods
 
-		public override void Initialize(Output outputModel)
+		public override void ReadXElement(XElement element)
 		{
-			Debug.Assert(outputModel != null);
-			var parms = GetConnectionParams(outputModel);
-			if(parms == null)
-				_Connection.Close();
-			else
-				_Connection.Open(parms.Item1, parms.Item2);
+			base.ReadXElement(element);
+			var host = (string)element.Attribute(Schema.oscoutput_host);
+			var port = (int)element.Attribute(Schema.oscoutput_port);
+			this._Connection.Open(host, port);
+		}
+
+		public override XElement WriteXElement(XName name = null)
+		{
+			return base.WriteXElement(name ?? Schema.oscoutput)
+				.WithContent(
+					new XAttribute(Schema.oscoutput_host, this.Host),
+					new XAttribute(Schema.oscoutput_port, this.Port));
 		}
 
 		protected override bool PostMessageInternal(OutputMessage message)
