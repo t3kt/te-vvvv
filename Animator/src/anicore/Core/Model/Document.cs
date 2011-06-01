@@ -146,7 +146,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private AniHost _Host;
+		private readonly AniHost _Host;
 
 		private readonly ObservableCollection<Output> _Outputs;
 		private readonly ObservableCollection<Clip> _Clips;
@@ -166,8 +166,7 @@ namespace Animator.Core.Model
 
 		internal AniHost Host
 		{
-			get { return this._Host ?? AniHost.Current; }
-			set { this._Host = value; }
+			get { return this._Host; }
 		}
 
 		public Guid Id
@@ -323,7 +322,7 @@ namespace Animator.Core.Model
 
 		public Document([CanBeNull] AniHost host = null)
 		{
-			this._Host = host;
+			this._Host = host ?? AniHost.Current;
 			this._TransportData = new TransportData();
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 			this._Clips = new ObservableCollection<Clip>();

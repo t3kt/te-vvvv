@@ -39,13 +39,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="VVVV.Utils">
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OscBundle.cs" />
     <Compile Include="OscConnection.cs" />
+    <Compile Include="OscMessage.cs" />
     <Compile Include="OscOutput.cs" />
+    <Compile Include="OscPacket.cs" />
+    <Compile Include="OscReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup Label="SHARED">

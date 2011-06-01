@@ -11,6 +11,7 @@ namespace TEShared
 		internal const string Category_Common = "Common";
 		internal const string Category_Transport = "Transport";
 		internal const string Category_UI = "UI";
+		internal const string Category_IO = "IO";
 		internal const string Category_Output = "Output";
 		internal const string Category_Visibility = "Visibility";
 		internal const string DisplayName_BeatsPerMinute = "BPM";
