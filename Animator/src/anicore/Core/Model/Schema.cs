@@ -84,7 +84,12 @@ namespace Animator.Core.Model
 
 		public static readonly XName sesclipref = "sesclipref";
 		public static readonly XName sesclipref_row = "row";
-		public static readonly XName sesclipref_active = "active";
+		public static readonly XName sesclipref_state = "state";
+
+		public static readonly XName constprop = "constprop";
+		public static readonly XName constprop_value = "value";
+
+		public static readonly XName clipbase_props = "props";
 
 	}
 

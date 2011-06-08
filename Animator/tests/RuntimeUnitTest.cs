@@ -233,10 +233,10 @@ namespace Animator.Tests
 		public void ActiveSectionMustBeInDocumentValid()
 		{
 			var doc = new Document();
-			var ses = new Session();
+			var ses = new Session(doc);
 			doc.Sessions.Add(ses);
 			doc.ActiveSection = ses;
-			var seq = new Sequence();
+			var seq = new Sequence(doc);
 			doc.Sequences.Add(seq);
 			doc.ActiveSection = seq;
 		}
@@ -247,7 +247,7 @@ namespace Animator.Tests
 		public void ActiveSessionMustBeInDocumentInvalid()
 		{
 			var doc = new Document();
-			var ses = new Session();
+			var ses = new Session(doc);
 			doc.ActiveSection = ses;
 		}
 
@@ -257,7 +257,7 @@ namespace Animator.Tests
 		public void ActiveSequenceMustBeInDocumentInvalid()
 		{
 			var doc = new Document();
-			var seq = new Sequence();
+			var seq = new Sequence(doc);
 			doc.ActiveSection = seq;
 		}
 

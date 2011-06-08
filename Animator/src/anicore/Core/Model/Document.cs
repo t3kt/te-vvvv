@@ -400,6 +400,17 @@ namespace Animator.Core.Model
 			return this.Sequences.FindById(id);
 		}
 
+		internal TargetObject GetTargetObject(Guid id)
+		{
+			foreach(var output in this._Outputs)
+			{
+				var target = output.GetTargetObject(id);
+				if(target != null)
+					return target;
+			}
+			return null;
+		}
+
 		internal void PostClipOutput(Clip clip, Transport.Transport transport)
 		{
 			Require.ArgNotNull(transport, "transport");

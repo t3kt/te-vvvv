@@ -34,10 +34,10 @@ namespace Animator.Tests
 			var clipC = new Clip { Name = "clipC" };
 			doc.Clips.Add(clipC);
 
-			var ses = new Session { Name = "sesA" };
+			var ses = new Session(doc) { Name = "sesA" };
 			doc.Sessions.Add(ses);
 
-			var trackA = new SessionTrack { Name = "trackA" };
+			var trackA = new SessionTrack(doc) { Name = "trackA" };
 			ses.Tracks.Add(trackA);
 
 			var trackA_clipA_Ref1 = new SessionClipReference(clipA) { Name = "trackA_clipA_Ref1" };
@@ -47,7 +47,7 @@ namespace Animator.Tests
 			var trackA_clipB_Ref1 = new SessionClipReference(clipB) { Name = "trackA_clipB_Ref1" };
 			trackA.Clips.Add(trackA_clipB_Ref1);
 
-			var trackB = new SessionTrack { Name = "trackB" };
+			var trackB = new SessionTrack(doc) { Name = "trackB" };
 			ses.Tracks.Add(trackB);
 			var trackB_clipA_Ref1 = new SessionClipReference(clipA) { Name = "trackB_clipA_Ref1" };
 			trackB.Clips.Add(trackB_clipA_Ref1);
@@ -63,7 +63,7 @@ namespace Animator.Tests
 				Assert.AreEqual(0, active.Count);
 			}
 
-			trackA_clipA_Ref1.IsActive = true;
+			trackA_clipA_Ref1.State = ClipState.Playing;
 			{
 				var active = trackA.GetActiveClips(transport).OrderBy(c => c.Id).ToList();
 				Assert.AreEqual(1, active.Count);
@@ -73,7 +73,7 @@ namespace Animator.Tests
 				CollectionAssert.AreEqual((new[] { trackA_clipA_Ref1 }).OrderBy(c => c.Id).ToList(), active);
 			}
 
-			trackA_clipA_Ref1.IsActive = false;
+			trackA_clipA_Ref1.State = ClipState.Stopped;
 			{
 				var active = trackA.GetActiveClips(transport).ToList();
 				Assert.AreEqual(0, active.Count);
@@ -81,8 +81,8 @@ namespace Animator.Tests
 				Assert.AreEqual(0, active.Count);
 			}
 
-			trackA_clipA_Ref1.IsActive = true;
-			trackA_clipB_Ref1.IsActive = true;
+			trackA_clipA_Ref1.State = ClipState.Playing;
+			trackA_clipB_Ref1.State = ClipState.Playing;
 			{
 				var active = trackA.GetActiveClips(transport).OrderBy(c => c.Id).ToList();
 				Assert.AreEqual(2, active.Count);
@@ -92,7 +92,7 @@ namespace Animator.Tests
 				CollectionAssert.AreEqual((new[] { trackA_clipA_Ref1, trackA_clipB_Ref1 }).OrderBy(c => c.Id).ToList(), active);
 			}
 
-			trackB_clipA_Ref1.IsActive = true;
+			trackB_clipA_Ref1.State = ClipState.Playing;
 			{
 				var active = trackA.GetActiveClips(transport).OrderBy(c => c.Id).ToList();
 				Assert.AreEqual(2, active.Count);

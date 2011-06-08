@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sessions
@@ -20,7 +21,7 @@ namespace Animator.Core.Model.Sessions
 		#region Fields
 
 		private int? _Row;
-		private bool _IsActive;
+		private ClipState _State;
 
 		#endregion
 
@@ -39,15 +40,15 @@ namespace Animator.Core.Model.Sessions
 			}
 		}
 
-		public bool IsActive
+		public ClipState State
 		{
-			get { return this._IsActive; }
+			get { return this._State; }
 			set
 			{
-				if(value != this._IsActive)
+				if(value != this._State)
 				{
-					this._IsActive = value;
-					this.OnPropertyChanged("IsActive");
+					this._State = value;
+					this.OnPropertyChanged("State");
 				}
 			}
 		}
@@ -56,31 +57,39 @@ namespace Animator.Core.Model.Sessions
 
 		#region Constructors
 
-		public SessionClipReference(Clip clip)
-			: this(Guid.NewGuid(), clip) {}
+		public SessionClipReference([NotNull] Clip clip)
+			: this(Guid.NewGuid(), clip) { }
 
-		public SessionClipReference(Guid id, Clip clip)
+		public SessionClipReference(Guid id, [NotNull] Clip clip)
 			: base(id, clip) { }
 
-		public SessionClipReference([NotNull] XElement element, [CanBeNull] Document document)
+		public SessionClipReference([NotNull] XElement element, [NotNull] Document document)
 			: base(element, document)
 		{
 			this.Row = (int?)element.Attribute(Schema.sesclipref_row);
+			this.State = ModelUtil.ParseNullableEnum<ClipState>((string)element.Attribute(Schema.sesclipref_state)) ?? ClipState.Stopped;
 		}
 
 		#endregion
 
 		#region Methods
 
-		internal override bool IsActiveInternal(Transport.Transport transport)
+		protected override Time GetPosition(Transport.Transport transport)
 		{
-			return this.IsActive;
+			throw new NotImplementedException();
+		}
+
+		internal override bool IsActive(Transport.Transport transport)
+		{
+			return this.State == ClipState.Playing;
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
 			return base.WriteXElement(name ?? Schema.sesclipref)
-				.WithContent(ModelUtil.WriteOptionalValueAttribute(Schema.sesclipref_row, this.Row));
+				.WithContent(
+					ModelUtil.WriteOptionalValueAttribute(Schema.sesclipref_row, this.Row),
+					new XAttribute(Schema.sesclipref_state, this.State));
 		}
 
 		#endregion

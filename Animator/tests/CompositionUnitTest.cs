@@ -6,6 +6,7 @@ using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 using Animator.Core.Transport;
 using Animator.Osc;
 using Animator.Tests.Utils;
@@ -176,14 +177,10 @@ namespace Animator.Tests
 		public void GetClipByElementName()
 		{
 			var host = CreateHost(test: false, core: true);
-			var clipA = host.CreateClipByElementName("clip");
-			Assert.IsInstanceOfType(clipA, typeof(Clip));
-			var clipB = host.CreateClipByElementName(null);
-			Assert.IsInstanceOfType(clipB, typeof(Clip));
-			var clipC = host.CreateClipByElementName(String.Empty);
-			Assert.IsInstanceOfType(clipC, typeof(Clip));
-			var clipD = host.CreateClipByElementName("stepclip");
-			Assert.IsInstanceOfType(clipD, typeof(StepClip));
+			Assert.IsInstanceOfType(host.CreateClipByElementName(Schema.clip.ToString()), typeof(Clip));
+			Assert.IsInstanceOfType(host.CreateClipByElementName(null), typeof(Clip));
+			Assert.IsInstanceOfType(host.CreateClipByElementName(String.Empty), typeof(Clip));
+			Assert.IsInstanceOfType(host.CreateClipByElementName(Schema.stepclip.ToString()), typeof(StepClip));
 		}
 
 		[TestMethod]
@@ -195,6 +192,28 @@ namespace Animator.Tests
 			Assert.IsInstanceOfType(host.CreateClipByKey(null), typeof(Clip));
 			Assert.IsInstanceOfType(host.CreateClipByKey(String.Empty), typeof(Clip));
 			Assert.IsInstanceOfType(host.CreateClipByKey("stepclip"), typeof(StepClip));
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Composition)]
+		public void GetClipPropertyDataByKey()
+		{
+			var host = CreateHost(test: false, core: true);
+			Assert.IsNull(host.CreateClipPropertyDataByKey(null));
+			Assert.IsNull(host.CreateClipPropertyDataByKey(String.Empty));
+			Assert.IsNull(host.CreateClipPropertyDataByKey("foo"));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey("const"), typeof(ConstData));
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Composition)]
+		public void GetClipPropertyDataByElementName()
+		{
+			var host = CreateHost(test: false, core: true);
+			Assert.IsNull(host.CreateClipPropertyDataByElementName(null));
+			Assert.IsNull(host.CreateClipPropertyDataByElementName(String.Empty));
+			Assert.IsNull(host.CreateClipPropertyDataByElementName("foo"));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(Schema.constprop.ToString()), typeof(ConstData));
 		}
 
 		[TestMethod]

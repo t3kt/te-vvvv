@@ -9,6 +9,7 @@ using System.Threading;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
 
@@ -58,6 +59,11 @@ namespace Animator.Core.Composition
 		internal IEnumerable<Lazy<Clip, IAniExportMetadata>> Clips
 		{
 			get { return this._Container.GetExports<Clip, IAniExportMetadata>(); }
+		}
+
+		internal IEnumerable<Lazy<ClipPropertyData, IAniExportMetadata>> ClipPropertyDatas
+		{
+			get { return this._Container.GetExports<ClipPropertyData, IAniExportMetadata>(); }
 		}
 
 		internal IEnumerable<Lazy<Transport.Transport, IAniExportMetadata>> Transports
@@ -135,6 +141,28 @@ namespace Animator.Core.Composition
 		public Clip CreateClipByKey(string key)
 		{
 			return this.Clips.CreateByKey(key, () => new Clip());
+		}
+
+		[CanBeNull]
+		internal ClipPropertyData CreateClipPropertyDataByElementName(string elementName)
+		{
+			return this.ClipPropertyDatas.CreateByElementName(elementName);
+		}
+
+		[NotNull]
+		internal ClipPropertyData ReadClipPropertyDataXElement([NotNull] XElement element)
+		{
+			Require.ArgNotNull(element, "element");
+			var clipData = this.CreateClipPropertyDataByElementName(element.Name.ToString());
+			Debug.Assert(clipData != null);
+			clipData.ReadXElement(element);
+			return clipData;
+		}
+
+		[CanBeNull]
+		public ClipPropertyData CreateClipPropertyDataByKey(string key)
+		{
+			return this.ClipPropertyDatas.CreateByKey(key);
 		}
 
 		[NotNull]

@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
 {
 
-	#region TrackContainer
+	#region DocumentSection
 
 	public abstract class DocumentSection : DocumentItem, IClipRefContainer
 	{
@@ -21,6 +22,8 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Fields
+
+		protected readonly Document _Document;
 
 		#endregion
 
@@ -32,15 +35,30 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected DocumentSection(Guid id)
-			: base(id) { }
+		protected DocumentSection(Guid id, [NotNull] Document document)
+			: base(id)
+		{
+			Require.ArgNotNull(document, "document");
+			this._Document = document;
+		}
 
-		protected DocumentSection([NotNull] XElement element)
-			: base(element) { }
+		protected DocumentSection([NotNull] XElement element, [NotNull] Document document)
+			: base(element)
+		{
+			Require.ArgNotNull(document, "document");
+			this._Document = document;
+		}
 
 		#endregion
 
 		#region Methods
+
+		public virtual void PushTargetChanges([NotNull] Transport.Transport transport)
+		{
+			Require.ArgNotNull(transport, "transport");
+			foreach(var track in this.TracksInternal)
+				track.PushTargetChanges(transport);
+		}
 
 		#endregion
 
@@ -69,7 +87,7 @@ namespace Animator.Core.Model
 
 	#endregion
 
-	#region TrackContainer<TTrack>
+	#region DocumentSection<TTrack>
 
 	public abstract class DocumentSection<TTrack> : DocumentSection
 		where TTrack : Track
@@ -101,15 +119,15 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected DocumentSection(Guid id)
-			: base(id)
+		protected DocumentSection(Guid id, [NotNull]Document document)
+			: base(id, document)
 		{
 			this._Tracks = new ObservableCollection<TTrack>();
 			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;
 		}
 
-		protected DocumentSection([NotNull] XElement element)
-			: base(element)
+		protected DocumentSection([NotNull] XElement element, [NotNull]Document document)
+			: base(element, document)
 		{
 			this._Tracks = new ObservableCollection<TTrack>();
 			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;

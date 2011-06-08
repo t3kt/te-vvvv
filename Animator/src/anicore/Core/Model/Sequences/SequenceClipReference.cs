@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Transport;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
 {
@@ -66,7 +67,7 @@ namespace Animator.Core.Model.Sequences
 		public SequenceClipReference(Guid id, Clip clip)
 			: base(id, clip) { }
 
-		public SequenceClipReference(XElement element, Document document)
+		public SequenceClipReference([NotNull] XElement element, [NotNull] Document document)
 			: base(element, document)
 		{
 			this.Start = (float)element.Attribute(Schema.seqclipref_start);
@@ -77,7 +78,12 @@ namespace Animator.Core.Model.Sequences
 
 		#region Methods
 
-		internal override bool IsActiveInternal(Transport.Transport transport)
+		internal override bool IsActive(Transport.Transport transport)
+		{
+			throw new NotImplementedException();
+		}
+
+		protected override Time GetPosition(Transport.Transport transport)
 		{
 			throw new NotImplementedException();
 		}

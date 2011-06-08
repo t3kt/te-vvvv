@@ -30,16 +30,15 @@ namespace Animator.Core.Model.Sessions
 
 		#region Constructors
 
-		public SessionTrack()
-			: this(Guid.NewGuid()) { }
+		public SessionTrack([NotNull]Document document)
+			: this(Guid.NewGuid(), document) { }
 
-		public SessionTrack(Guid id)
-			: base(id) { }
+		public SessionTrack(Guid id, [NotNull]Document document)
+			: base(id, document) { }
 
 		public SessionTrack([NotNull] XElement element, [NotNull]Document document)
-			: base(element)
+			: base(element, document)
 		{
-			Require.ArgNotNull(document, "document");
 			this.Clips.AddRange(element.Elements(Schema.sesclipref).Select(e => new SessionClipReference(e, document)));
 		}
 

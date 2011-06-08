@@ -117,6 +117,14 @@ namespace Animator.Core.Model
 			return itemsA.OrderBy(x => x.Id).SequenceEqual(itemsB.OrderBy(x => x.Id));
 		}
 
+		internal static T? ParseNullableEnum<T>(string str, bool ignoreCase = false)
+			where T : struct
+		{
+			if(String.IsNullOrEmpty(str))
+				return null;
+			return (T?)Enum.Parse(typeof(T), str, ignoreCase);
+		}
+
 	}
 
 	#endregion

@@ -45,16 +45,15 @@ namespace Animator.Core.Model.Sessions
 
 		#region Constructors
 
-		public Session(Guid id)
-			: base(id) { }
+		public Session(Guid id, [NotNull]Document document)
+			: base(id, document) { }
 
-		public Session()
-			: this(Guid.NewGuid()) { }
+		public Session([NotNull]Document document)
+			: this(Guid.NewGuid(), document) { }
 
 		public Session([NotNull] XElement element, [NotNull] Document document)
-			: base(element)
+			: base(element, document)
 		{
-			Require.ArgNotNull(document, "document");
 			this.Rows = (int?)element.Attribute(Schema.session_rows);
 			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SessionTrack(e, document)));
 		}
