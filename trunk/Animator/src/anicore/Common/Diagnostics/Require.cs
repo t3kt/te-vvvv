@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Animator.Core.Transport;
 using Animator.Resources;
@@ -16,6 +17,14 @@ namespace Animator.Common.Diagnostics
 
 		[AssertionMethod]
 		public static void ArgNotNull([AssertionCondition(AssertionConditionType.IS_NOT_NULL)]object value, [InvokerParameterName]string name)
+		{
+			if(value == null)
+				throw new ArgumentNullException(name);
+		}
+
+		[AssertionMethod]
+		[Conditional("DEBUG")]
+		internal static void DBG_ArgNotNull([AssertionCondition(AssertionConditionType.IS_NOT_NULL)]object value, [InvokerParameterName]string name)
 		{
 			if(value == null)
 				throw new ArgumentNullException(name);
@@ -62,13 +71,13 @@ namespace Animator.Common.Diagnostics
 
 		public static void ArgNotZero(float value, [InvokerParameterName]string name)
 		{
-			if(value==0)
+			if(value == 0)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
 		}
 
 		public static void ArgNotZero(long value, [InvokerParameterName]string name)
 		{
-			if(value==0)
+			if(value == 0)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
 		}
 

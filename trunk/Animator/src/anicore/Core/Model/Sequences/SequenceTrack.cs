@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
 {
@@ -29,16 +30,15 @@ namespace Animator.Core.Model.Sequences
 
 		#region Constructors
 
-		public SequenceTrack(Guid id)
-			: base(id) { }
+		public SequenceTrack(Guid id, [NotNull]Document document)
+			: base(id, document) { }
 
-		public SequenceTrack()
-			: this(Guid.NewGuid()) { }
+		public SequenceTrack([NotNull]Document document)
+			: this(Guid.NewGuid(), document) { }
 
-		public SequenceTrack(XElement element, Document document)
-			: base(element)
+		public SequenceTrack([NotNull] XElement element, [NotNull]Document document)
+			: base(element, document)
 		{
-			Require.ArgNotNull(document, "document");
 			this.Clips.AddRange(element.Elements(Schema.seqclipref).Select(e => new SequenceClipReference(e, document)));
 		}
 

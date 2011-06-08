@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -63,11 +64,24 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		internal abstract bool IsActiveInternal(Transport.Transport transport);
+		internal abstract bool IsActive(Transport.Transport transport);
 
 		protected virtual object GetValue(Transport.Transport transport)
 		{
 			throw new NotImplementedException();
+		}
+
+		protected abstract Time GetPosition(Transport.Transport transport);
+
+		internal virtual void PushTargetChanges([NotNull] TargetObject target, [NotNull] Transport.Transport transport)
+		{
+			Require.DBG_ArgNotNull(target, "target");
+			Require.DBG_ArgNotNull(transport, "transport");
+			if(this.IsActive(transport))
+			{
+				var pos = this.GetPosition(transport);
+				throw new NotImplementedException();
+			}
 		}
 
 		public override XElement WriteXElement(XName name = null)

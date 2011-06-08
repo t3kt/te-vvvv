@@ -50,16 +50,15 @@ namespace Animator.Core.Model.Sequences
 
 		#region Constructors
 
-		public Sequence(Guid id)
-			: base(id) { }
+		public Sequence(Guid id, [NotNull]Document document)
+			: base(id, document) { }
 
-		public Sequence()
-			: this(Guid.NewGuid()) { }
+		public Sequence([NotNull]Document document)
+			: this(Guid.NewGuid(), document) { }
 
 		public Sequence([NotNull] XElement element, [NotNull] Document document)
-			: base(element)
+			: base(element, document)
 		{
-			Require.ArgNotNull(document, "document");
 			this.Duration = (float)element.Attribute(Schema.sequence_dur);
 			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SequenceTrack(e, document)));
 		}

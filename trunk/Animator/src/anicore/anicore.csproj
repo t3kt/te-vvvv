@@ -71,10 +71,14 @@
     <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Composition\Clip.cs" />
     <Compile Include="Core\Composition\ClipDataEditor.cs" />
+    <Compile Include="Core\Composition\ClipPropertyData.cs" />
     <Compile Include="Core\Composition\Output.cs" />
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\Model\ClipReference.cs" />
+    <Compile Include="Core\Model\Clips\ClipBase.cs" />
+    <Compile Include="Core\Model\Clips\ClipPropertyData.cs" />
+    <Compile Include="Core\Model\Clips\ConstData.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Core\Model\Sequences\Sequence.cs" />
     <Compile Include="Core\Model\Sequences\SequenceClipReference.cs" />
     <Compile Include="Core\Model\Sequences\SequenceTrack.cs" />
+    <Compile Include="Core\Model\Sessions\ClipState.cs" />
     <Compile Include="Core\Model\Sessions\Session.cs" />
     <Compile Include="Core\Model\Sessions\SessionClipReference.cs" />
     <Compile Include="Core\Model\Sessions\SessionTrack.cs" />

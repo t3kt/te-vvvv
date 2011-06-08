@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
 
@@ -23,7 +24,9 @@ namespace Animator.Core.Model
 
 		#region Fields
 
+		protected readonly Document _Document;
 		private Guid? _TargetId;
+		private TargetObject _Target;
 
 		#endregion
 
@@ -38,8 +41,24 @@ namespace Animator.Core.Model
 				if(value != this._TargetId)
 				{
 					this._TargetId = value;
+					this._Target = null;
 					this.OnPropertyChanged("TargetId");
 				}
+			}
+		}
+
+		internal TargetObject Target
+		{
+			get
+			{
+				if(this._Target == null && this._TargetId != null)
+					this._Target = this._Document.GetTargetObject(this._TargetId.Value);
+				return this._Target;
+			}
+			set
+			{
+				this._Target = value;
+				this._TargetId = value == null ? (Guid?)null : value.Id;
 			}
 		}
 
@@ -49,12 +68,18 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Track(Guid id)
-			: base(id) { }
+		protected Track(Guid id, [NotNull]Document document)
+			: base(id)
+		{
+			Require.ArgNotNull(document, "document");
+			this._Document = document;
+		}
 
-		protected Track([NotNull] XElement element)
+		protected Track([NotNull] XElement element, [NotNull]Document document)
 			: base(element)
 		{
+			Require.ArgNotNull(document, "document");
+			this._Document = document;
 			this.TargetId = (Guid?)element.Attribute(Schema.track_target);
 		}
 
@@ -68,6 +93,15 @@ namespace Animator.Core.Model
 				.Concat(new[] { ModelUtil.WriteOptionalValueAttribute(Schema.track_target, this.TargetId) });
 		}
 
+		internal virtual void PushTargetChanges([NotNull] Transport.Transport transport)
+		{
+			if(this.Target != null)
+			{
+				foreach(var clip in this.ClipsInternal)
+					clip.PushTargetChanges(this.Target, transport);
+			}
+		}
+
 		#endregion
 
 		#region IClipRefContainer Members
@@ -79,7 +113,7 @@ namespace Animator.Core.Model
 
 		public virtual IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
 		{
-			return this.ClipsInternal.Where(c => c.IsActiveInternal(transport));
+			return this.ClipsInternal.Where(c => c.IsActive(transport));
 		}
 
 		#endregion
@@ -120,15 +154,15 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Track(Guid id)
-			: base(id)
+		protected Track(Guid id, [NotNull]Document document)
+			: base(id, document)
 		{
 			this._Clips = new ObservableCollection<TClipRef>();
 			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
 		}
 
-		protected Track([NotNull] XElement element)
-			: base(element)
+		protected Track([NotNull] XElement element, [NotNull]Document document)
+			: base(element, document)
 		{
 			this._Clips = new ObservableCollection<TClipRef>();
 			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
