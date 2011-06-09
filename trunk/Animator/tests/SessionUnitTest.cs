@@ -24,23 +24,22 @@ namespace Animator.Tests
 		[TestCategory(CategoryNames.Sessions)]
 		public void GetActiveClips()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var doc = new Document(host);
-
-			var clipA = new Clip { Name = "clipA" };
-			doc.Clips.Add(clipA);
-			var clipB = new StepClip { Name = "clipB", StepCount = 7 };
-			doc.Clips.Add(clipB);
-			var clipC = new Clip { Name = "clipC" };
-			doc.Clips.Add(clipC);
-
-			var ses = new Session(doc) { Name = "sesA" };
-			doc.Sessions.Add(ses);
-
-			var trackA = new SessionTrack(doc) { Name = "trackA" };
-			ses.Tracks.Add(trackA);
-
 			Assert.Inconclusive();
+			//var host = CompositionUnitTest.CreateHost(test: true, core: true);
+			//var doc = new Document(host);
+
+			//var clipA = new Clip { Name = "clipA" };
+			//doc.Clips.Add(clipA);
+			//var clipB = new StepClip { Name = "clipB", StepCount = 7 };
+			//doc.Clips.Add(clipB);
+			//var clipC = new Clip { Name = "clipC" };
+			//doc.Clips.Add(clipC);
+
+			//var ses = new Session(doc) { Name = "sesA" };
+			//doc.Sessions.Add(ses);
+
+			//var trackA = new SessionTrack(doc) { Name = "trackA" };
+			//ses.Tracks.Add(trackA);
 
 			//var trackA_clipA_Ref1 = new SessionClipReference(clipA) { Name = "trackA_clipA_Ref1" };
 			//trackA.Clips.Add(trackA_clipA_Ref1);

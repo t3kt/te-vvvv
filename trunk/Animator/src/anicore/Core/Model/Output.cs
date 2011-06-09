@@ -18,17 +18,21 @@ namespace Animator.Core.Model
 
 	#region Output
 
-	[Output(ElementName = "output", Key = "output", Description = "Generic Output")]
+	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
 	public class Output : DocumentItem, IEquatable<Output>
 	{
 
 		#region TraceOutput
 
-		[Output(ElementName = "traceoutput", Key = "trace", Description = "Debug Trace Output")]
+		[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
 		internal sealed class TraceOutput : Output
 		{
 
 			#region Static/Constant
+
+			internal new const string Export_Key = "trace";
+			internal new const string Export_ElementName = "traceoutput";
+			internal new const string Export_Description = "Debug Trace Output";
 
 			private const string DefaultCategory = "OUTPUT";
 			private const string DefaultPrefix = "[msg] ";
@@ -109,6 +113,10 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Static / Constant
+
+		internal const string Export_Key = "output";
+		internal const string Export_ElementName = "output";
+		internal const string Export_Description = "Generic Output";
 
 		#endregion
 

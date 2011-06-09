@@ -15,6 +15,7 @@ namespace Animator.Core.Model.Clips
 		Key = Export_Key,
 		ElementName = Export_ElementName,
 		Description = Export_Description)]
+	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.ConstDataEditor, " + TEShared.AssemblyRef.ani)]
 	public sealed class ConstData : ClipPropertyData
 	{
 		#region Static / Constant

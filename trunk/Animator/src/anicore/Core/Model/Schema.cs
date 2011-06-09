@@ -41,9 +41,9 @@ namespace Animator.Core.Model
 		public static readonly XName transport_bpm = "bpm";
 		public static readonly XName transport_params = @params;
 
-		public static readonly XName output = "output";
+		public static readonly XName output = Output.Export_ElementName;
 
-		public static readonly XName traceoutput = "traceoutput";
+		public static readonly XName traceoutput = Output.TraceOutput.Export_ElementName;
 		public static readonly XName traceoutput_category = "category";
 		public static readonly XName traceoutput_prefix = "prefix";
 
@@ -54,16 +54,6 @@ namespace Animator.Core.Model
 		public static readonly XName target_prop_name = common_name;
 		public static readonly XName target_prop_type = common_type;
 		public static readonly XName target_prop_default = "default";
-
-		public static readonly XName clip = "clip";
-		public static readonly XName clip_dur = common_dur;
-		public static readonly XName clip_target = "target";
-		public static readonly XName clip_output = "output";
-		public static readonly XName clip_ui_row = "ui-row";
-		public static readonly XName clip_ui_col = "ui-col";
-
-		public static readonly XName stepclip = "stepclip";
-		public static readonly XName stepclip_step = "step";
 
 		public static readonly XName sequence = "sequence";
 		public static readonly XName sequence_dur = common_dur;

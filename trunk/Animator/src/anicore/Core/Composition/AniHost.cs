@@ -56,11 +56,6 @@ namespace Animator.Core.Composition
 			get { return this._Container; }
 		}
 
-		internal IEnumerable<Lazy<Clip, IAniExportMetadata>> Clips
-		{
-			get { return this._Container.GetExports<Clip, IAniExportMetadata>(); }
-		}
-
 		internal IEnumerable<Lazy<ClipPropertyData, IAniExportMetadata>> ClipPropertyDatas
 		{
 			get { return this._Container.GetExports<ClipPropertyData, IAniExportMetadata>(); }
@@ -76,9 +71,9 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<Output, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<IClipDataEditor, IClipDataEditorMetadata>> ClipDataEditors
+		internal IEnumerable<Lazy<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>> ClipPropertyDataEditors
 		{
-			get { return this._Container.GetExports<IClipDataEditor, IClipDataEditorMetadata>(); }
+			get { return this._Container.GetExports<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>(); }
 		}
 
 		internal IEnumerable<Lazy<IPropertyEditor, IPropertyEditorMetadata>> PropertyEditors
@@ -120,27 +115,6 @@ namespace Animator.Core.Composition
 		internal void LoadCoreAssembly()
 		{
 			this.LoadAssembly(typeof(AniHost).Assembly);
-		}
-
-		internal Clip CreateClipByElementName(string elementName)
-		{
-			return this.Clips.CreateByElementName(elementName, () => new Clip());
-		}
-
-		[NotNull]
-		internal Clip ReadClipXElement([NotNull] XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			var clip = this.CreateClipByElementName(element.Name.ToString());
-			Debug.Assert(clip != null);
-			clip.ReadXElement(element);
-			return clip;
-		}
-
-		[NotNull]
-		public Clip CreateClipByKey(string key)
-		{
-			return this.Clips.CreateByKey(key, () => new Clip());
 		}
 
 		[CanBeNull]
@@ -208,19 +182,19 @@ namespace Animator.Core.Composition
 		}
 
 		[CanBeNull]
-		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType)
+		internal IClipPropertyDataEditor CreateClipPropertyDataEditor([CanBeNull]Type clipDataType)
 		{
-			return clipType == null ? null : this.ClipDataEditors.CreateByPredicate(i => i.ClipType == clipType);
+			return clipDataType == null ? null : this.ClipPropertyDataEditors.CreateByPredicate(i => i.ClipDataType == clipDataType);
 		}
 
 		[CanBeNull]
-		public IClipDataEditor CreateClipDataEditor([CanBeNull]Type clipType, out bool reusable)
+		internal IClipPropertyDataEditor CreateClipPropertyDataEditor([CanBeNull]Type clipDataType, out bool reusable)
 		{
-			if(clipType != null && this.ClipDataEditors != null)
+			if(clipDataType != null && this.ClipPropertyDataEditors != null)
 			{
-				foreach(var import in this.ClipDataEditors)
+				foreach(var import in this.ClipPropertyDataEditors)
 				{
-					if(import.Metadata.ClipType == clipType)
+					if(import.Metadata.ClipDataType == clipDataType)
 					{
 						reusable = import.Metadata.Reusable;
 						return import.Value;
@@ -244,11 +218,6 @@ namespace Animator.Core.Composition
 				}
 			}
 			return null;
-		}
-
-		public IEnumerable<KeyValuePair<string, string>> GetClipTypeDescriptionsByKey()
-		{
-			return this.Clips.GetTypeDescriptionsByKey();
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetOutputTypeDescriptionsByKey()

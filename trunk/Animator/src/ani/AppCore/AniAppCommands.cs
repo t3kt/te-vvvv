@@ -17,8 +17,6 @@ namespace Animator.AppCore
 
 		public static readonly RoutedUICommand EditDetail = new RoutedUICommand("Edit", "EditDetail", typeof(AniAppCommands));
 
-		public static readonly RoutedUICommand AddClip = new RoutedUICommand("Add _Clip", "AddClip", typeof(AniAppCommands));
-
 		public static readonly RoutedUICommand AddOutput = new RoutedUICommand("Add _Output", "AddOutput", typeof(AniAppCommands));
 
 		public static readonly RoutedUICommand EditTransport = new RoutedUICommand("Edit _Transport", "EditTransport", typeof(AniAppCommands),

@@ -44,13 +44,6 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="clips" minOccurs="0">
-							<xs:complexType>
-								<xs:sequence minOccurs="0" maxOccurs="unbounded">
-									<xs:element ref="clip"/>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
 						<xs:element name="sequences" minOccurs="0">
 							<xs:complexType>
 								<xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -72,21 +65,13 @@
 			</xs:complexContent>
 		</xs:complexType>
 		<xs:key name="itemIdKey">
-			<xs:selector xpath=".|outputs/*|outputs/*/target|clips/*|sequences/sequence|sequences/sequence/seqtrack|sequences/sequence/seqtrack/seqclip|sessions/session|sessions/session/sestrack|sessions/session/sestrack/sesclip"/>
+			<xs:selector xpath=".|outputs/*|outputs/*/target|sequences/sequence|sequences/sequence/seqtrack|sequences/sequence/seqtrack/seqclip|sessions/session|sessions/session/sestrack|sessions/session/sestrack/sesclip"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
 		<xs:key name="outputIdKey">
 			<xs:selector xpath="outputs/output"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
-		<xs:key name="clipIdKey">
-			<xs:selector xpath="clips/*"/>
-			<xs:field xpath="@id"/>
-		</xs:key>
-		<xs:keyref name="clipOutputIdKeyRef" refer="outputIdKey">
-			<xs:selector xpath="clips/clip"/>
-			<xs:field xpath="@output"/>
-		</xs:keyref>
 		<xs:key name="outputTargetIdKey">
 			<xs:selector xpath="outputs/output/target"/>
 			<xs:field xpath="@id"/>
@@ -113,35 +98,6 @@
 				</xs:simpleType>
 			</xs:attribute>
 			<xs:attribute name="type" type="xs:string"/>
-		</xs:complexType>
-	</xs:element>
-	<xs:complexType name="ClipType">
-		<xs:complexContent>
-			<xs:extension base="DocumentItemType">
-				<xs:attribute name="dur" use="required">
-					<xs:simpleType>
-						<xs:restriction base="xs:float">
-							<xs:minInclusive value="0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
-				<xs:attribute name="target" type="xs:string"/>
-				<xs:attribute name="output" type="Guid"/>
-				<xs:attribute name="ui-row" type="xs:nonNegativeInteger"/>
-				<xs:attribute name="ui-col" type="xs:nonNegativeInteger"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="clip" type="ClipType"/>
-	<xs:element name="stepclip" substitutionGroup="clip">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="ClipType">
-					<xs:sequence maxOccurs="unbounded">
-						<xs:element name="step" type="xs:float"/>
-					</xs:sequence>
-				</xs:extension>
-			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="TrackBaseType">

@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.AppCore
 {
 
-	#region ClipDataEditors
+	#region ClipPropertyDataEditors
 
-	internal static class ClipDataEditors
+	internal static class ClipPropertyDataEditors
 	{
 
 		#region TypeRec
@@ -29,7 +29,7 @@ namespace Animator.AppCore
 			public readonly Type Type;
 			public readonly bool IsReusable;
 
-			private IClipDataEditor _Instance;
+			private IClipPropertyDataEditor _Instance;
 
 			#endregion
 
@@ -41,7 +41,7 @@ namespace Animator.AppCore
 
 			public TypeRec(Type type, bool isReusable)
 			{
-				Debug.Assert(typeof(IClipDataEditor).IsAssignableFrom(type));
+				Debug.Assert(typeof(IClipPropertyDataEditor).IsAssignableFrom(type));
 				this.Type = type;
 				this.IsReusable = isReusable;
 			}
@@ -50,11 +50,11 @@ namespace Animator.AppCore
 
 			#region Methods
 
-			public IClipDataEditor GetOrCreateInstance()
+			public IClipPropertyDataEditor GetOrCreateInstance()
 			{
 				if(this.IsReusable && this._Instance != null)
 					return this._Instance;
-				var instance = (IClipDataEditor)Activator.CreateInstance(this.Type);
+				var instance = (IClipPropertyDataEditor)Activator.CreateInstance(this.Type);
 				if(this.IsReusable)
 					this._Instance = instance;
 				return instance;
@@ -69,47 +69,47 @@ namespace Animator.AppCore
 		private static readonly Dictionary<Type, TypeRec> _EditorTypes = new Dictionary<Type, TypeRec>();
 
 		[CanBeNull]
-		private static TypeRec BuildClipDataEditorType([CanBeNull] Type clipType)
+		private static TypeRec LoadEditorType([CanBeNull] Type clipDataType)
 		{
-			if(clipType == null)
+			if(clipDataType == null)
 				return null;
-			Debug.Assert(typeof(Clip).IsAssignableFrom(clipType));
-			var attrs = (ClipDataEditorAttribute[])clipType.GetCustomAttributes(typeof(ClipDataEditorAttribute), false);
+			Debug.Assert(typeof(ClipPropertyData).IsAssignableFrom(clipDataType));
+			var attrs = (ClipPropertyDataEditorAttribute[])clipDataType.GetCustomAttributes(typeof(ClipPropertyDataEditorAttribute), false);
 			if(attrs.Length == 0)
 				return null;
 			var editorType = attrs[0].GetEditorType();
 			if(editorType == null)
 				return null;
-			Debug.Assert(typeof(IClipDataEditor).IsAssignableFrom(editorType));
+			Debug.Assert(typeof(IClipPropertyDataEditor).IsAssignableFrom(editorType));
 			return new TypeRec(editorType, attrs[0].IsReusable);
 		}
 
 		[CanBeNull]
-		private static TypeRec GetEditorTypeRec([CanBeNull] Type clipType)
+		private static TypeRec GetEditorTypeRec([CanBeNull] Type clipDataType)
 		{
-			if(clipType == null)
+			if(clipDataType == null)
 				return null;
 			TypeRec editorTypeRec;
-			if(!_EditorTypes.TryGetValue(clipType, out editorTypeRec))
+			if(!_EditorTypes.TryGetValue(clipDataType, out editorTypeRec))
 			{
-				editorTypeRec = BuildClipDataEditorType(clipType);
+				editorTypeRec = LoadEditorType(clipDataType);
 				if(editorTypeRec != null)
-					_EditorTypes.Add(clipType, editorTypeRec);
+					_EditorTypes.Add(clipDataType, editorTypeRec);
 			}
 			return editorTypeRec;
 		}
 
 		[CanBeNull]
-		internal static Type GetEditorType([CanBeNull] Type clipType)
+		internal static Type GetEditorType([CanBeNull] Type clipDataType)
 		{
 			bool isReusable;
-			return GetEditorType(clipType, out isReusable);
+			return GetEditorType(clipDataType, out isReusable);
 		}
 
 		[CanBeNull]
-		internal static Type GetEditorType([CanBeNull] Type clipType, out bool isReusable)
+		internal static Type GetEditorType([CanBeNull] Type clipDataType, out bool isReusable)
 		{
-			var rec = GetEditorTypeRec(clipType);
+			var rec = GetEditorTypeRec(clipDataType);
 			if(rec == null)
 			{
 				isReusable = false;
@@ -120,10 +120,10 @@ namespace Animator.AppCore
 		}
 
 		[CanBeNull]
-		internal static IClipDataEditor GetEditor([CanBeNull] Type clipType)
+		internal static IClipPropertyDataEditor GetEditor([CanBeNull]Type clipDataType)
 		{
-			var editorTypeRec = GetEditorTypeRec(clipType);
-			return editorTypeRec == null ? null : editorTypeRec.GetOrCreateInstance();
+			var rec = GetEditorTypeRec(clipDataType);
+			return rec == null ? null : rec.GetOrCreateInstance();
 		}
 
 	}

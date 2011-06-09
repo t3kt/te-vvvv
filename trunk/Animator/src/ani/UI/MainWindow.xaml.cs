@@ -302,18 +302,6 @@ namespace Animator.UI
 			base.OnClosing(e);
 		}
 
-		internal void ShowAddClip()
-		{
-			if(!this.HasActiveDocument)
-				return;
-			var clip = AddClipDialog.ShowDialogForNewClip(this);
-			if(clip != null)
-			{
-				//...
-				this.ActiveDocument.Clips.Add(clip);
-			}
-		}
-
 		internal void ShowAddOutput()
 		{
 			if(!this.HasActiveDocument)
@@ -400,11 +388,6 @@ namespace Animator.UI
 		private void ShowRecentFilesInfoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
 			TestCommands.DoShowRecentFilesInfo(this);
-		}
-
-		private void AddClipCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-		{
-			this.ShowAddClip();
 		}
 
 		private void AddOutputCommand_Executed(object sender, ExecutedRoutedEventArgs e)

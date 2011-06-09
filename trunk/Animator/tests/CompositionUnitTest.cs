@@ -164,38 +164,6 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Composition)]
-		public void LoadClipTypeImports()
-		{
-			var host = CreateHost(test: false, core: true);
-			Assert.IsNotNull(host.Clips);
-			Assert.IsTrue(host.Clips.Any());
-			Assert.IsTrue(host.Clips.Any(x => x.Value is StepClip));
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Composition)]
-		public void GetClipByElementName()
-		{
-			var host = CreateHost(test: false, core: true);
-			Assert.IsInstanceOfType(host.CreateClipByElementName(Schema.clip.ToString()), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByElementName(null), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByElementName(String.Empty), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByElementName(Schema.stepclip.ToString()), typeof(StepClip));
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Composition)]
-		public void GetClipByKey()
-		{
-			var host = CreateHost(test: false, core: true);
-			Assert.IsInstanceOfType(host.CreateClipByKey("clip"), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByKey(null), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByKey(String.Empty), typeof(Clip));
-			Assert.IsInstanceOfType(host.CreateClipByKey("stepclip"), typeof(StepClip));
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Composition)]
 		public void GetClipPropertyDataByKey()
 		{
 			var host = CreateHost(test: false, core: true);
@@ -203,7 +171,7 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByKey(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByKey("foo"));
 			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(ConstData.Export_Key), typeof(ConstData));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(StepData.Export_Key), typeof (StepData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(StepData.Export_Key), typeof(StepData));
 		}
 
 		[TestMethod]
@@ -215,7 +183,7 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByElementName(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByElementName("foo"));
 			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(ConstData.Export_ElementName), typeof(ConstData));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(StepData.Export_ElementName), typeof (StepData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(StepData.Export_ElementName), typeof(StepData));
 		}
 
 		[TestMethod]
@@ -238,10 +206,11 @@ namespace Animator.Tests
 			var host = CreateHost(test: true, core: true, osc: true);
 			Assert.IsInstanceOfType(host.CreateOutputByKey(null), typeof(Output));
 			Assert.IsInstanceOfType(host.CreateOutputByKey(String.Empty), typeof(Output));
+			Assert.IsInstanceOfType(host.CreateOutputByKey(Output.Export_Key), typeof(Output));
 			Assert.IsInstanceOfType(host.CreateOutputByKey("test"), typeof(IOUnitTest.TestOutput));
 			Assert.IsInstanceOfType(host.CreateOutputByKey("test.callback"), typeof(CallbackOutput));
-			Assert.IsInstanceOfType(host.CreateOutputByKey("trace"), typeof(Output.TraceOutput));
-			Assert.IsInstanceOfType(host.CreateOutputByKey("osc"), typeof(OscOutput));
+			Assert.IsInstanceOfType(host.CreateOutputByKey(Output.TraceOutput.Export_Key), typeof(Output.TraceOutput));
+			Assert.IsInstanceOfType(host.CreateOutputByKey(OscOutput.Export_Key), typeof(OscOutput));
 		}
 
 		[TestMethod]
