@@ -72,7 +72,7 @@
 			</xs:complexContent>
 		</xs:complexType>
 		<xs:key name="itemIdKey">
-			<xs:selector xpath=".|outputs/*|outputs/*/target|clips/*|sequences/sequence|sequences/sequence/seqtrack|sequences/sequence/seqtrack/seqclipref|sessions/session|sessions/session/sestrack|sessions/session/sestrack/sesclipref"/>
+			<xs:selector xpath=".|outputs/*|outputs/*/target|clips/*|sequences/sequence|sequences/sequence/seqtrack|sequences/sequence/seqtrack/seqclip|sessions/session|sessions/session/sestrack|sessions/session/sestrack/sesclip"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
 		<xs:key name="outputIdKey">
@@ -86,14 +86,6 @@
 		<xs:keyref name="clipOutputIdKeyRef" refer="outputIdKey">
 			<xs:selector xpath="clips/clip"/>
 			<xs:field xpath="@output"/>
-		</xs:keyref>
-		<xs:keyref name="seqClipIdRef" refer="clipIdKey">
-			<xs:selector xpath="sequences/sequence/seqtrack/seqclipref"/>
-			<xs:field xpath="@clip-id"/>
-		</xs:keyref>
-		<xs:keyref name="sesClipIdRef" refer="clipIdKey">
-			<xs:selector xpath="sessions/session/sestrack/sesclipref"/>
-			<xs:field xpath="@clip-id"/>
 		</xs:keyref>
 		<xs:key name="outputTargetIdKey">
 			<xs:selector xpath="outputs/output/target"/>
@@ -152,14 +144,6 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<xs:complexType name="ClipRefType">
-		<xs:complexContent>
-			<xs:extension base="DocumentItemType">
-				<xs:attribute name="clip-id" type="Guid" use="required"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:element name="clipref" type="ClipRefType"/>
 	<xs:complexType name="TrackBaseType">
 		<xs:complexContent>
 			<xs:extension base="DocumentItemType">
@@ -253,10 +237,21 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="seqclipref">
+	<xs:element name="seqtrack">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension base="ClipRefType">
+				<xs:extension base="TrackBaseType">
+					<xs:sequence>
+						<xs:element ref="seqclip" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="seqclip">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ClipBaseType">
 					<xs:attribute name="start" use="required">
 						<xs:simpleType>
 							<xs:restriction base="xs:float">
@@ -264,24 +259,13 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
-					<xs:attribute name="dur">
+					<xs:attribute name="dur" use="required">
 						<xs:simpleType>
 							<xs:restriction base="xs:float">
 								<xs:minExclusive value="0"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="seqtrack">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="TrackBaseType">
-					<xs:sequence>
-						<xs:element ref="seqclipref" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -305,26 +289,37 @@
 			<xs:enumeration value="Playing"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:element name="sesclipref">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="ClipRefType">
-					<xs:attribute name="row" type="xs:nonNegativeInteger"/>
-					<xs:attribute name="state" type="ClipState"/>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
 	<xs:element name="sestrack">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="TrackBaseType">
 					<xs:sequence>
-						<xs:element ref="sesclipref" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="sesclip" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="sesclip">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ClipBaseType">
+					<xs:attribute name="row" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="state" type="ClipState" use="required"/>
+					<xs:attribute name="dur" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+		<xs:key name="sesclip-prop-name-key">
+			<xs:selector xpath="props/*"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
 	</xs:element>
 	<!--CLIPS + CLIP DATA-->
 	<xs:complexType name="ClipPropType">
@@ -342,6 +337,17 @@
 			<xs:complexContent>
 				<xs:extension base="ClipPropType">
 					<xs:attribute name="value" type="xs:float" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stepprop" substitutionGroup="clipprop">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ClipPropType">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="step" type="xs:float"/>
+					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -367,25 +373,4 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="sesclip">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="ClipBaseType">
-					<xs:attribute name="row" type="xs:nonNegativeInteger"/>
-					<xs:attribute name="state" type="ClipState"/>
-					<xs:attribute name="dur">
-						<xs:simpleType>
-							<xs:restriction base="xs:float">
-								<xs:minInclusive value="0"/>
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-		<xs:key name="sesclip-prop-name-key">
-			<xs:selector xpath="props/*"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
-	</xs:element>
 </xs:schema>

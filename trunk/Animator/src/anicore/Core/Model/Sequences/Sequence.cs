@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using Animator.Core.Transport;
 using TESharedAnnotations;
 
@@ -56,11 +57,11 @@ namespace Animator.Core.Model.Sequences
 		public Sequence([NotNull]Document document)
 			: this(Guid.NewGuid(), document) { }
 
-		public Sequence([NotNull] XElement element, [NotNull] Document document)
+		public Sequence([NotNull] XElement element, [NotNull] Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
 			this.Duration = (float)element.Attribute(Schema.sequence_dur);
-			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SequenceTrack(e, document)));
+			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SequenceTrack(e, document, host)));
 		}
 
 		#endregion

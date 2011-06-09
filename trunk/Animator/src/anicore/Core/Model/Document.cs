@@ -21,7 +21,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>, IClipRefContainer
+	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>
 	{
 
 		#region TransportData
@@ -457,10 +457,10 @@ namespace Animator.Core.Model
 				this.Clips.AddRange(clipsElement.Elements().Select(host.ReadClipXElement));
 			var sequencesElement = element.Element(Schema.anidoc_sequences);
 			if(sequencesElement != null)
-				this.Sequences.AddRange(sequencesElement.Elements().Select(e => new Sequence(e, this)));
+				this.Sequences.AddRange(sequencesElement.Elements().Select(e => new Sequence(e, this, host)));
 			var sessionsElement = element.Element(Schema.anidoc_sessions);
 			if(sessionsElement != null)
-				this.Sessions.AddRange(sessionsElement.Elements().Select(e => new Session(e, this)));
+				this.Sessions.AddRange(sessionsElement.Elements().Select(e => new Session(e, this, host)));
 
 			this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
 			this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
@@ -537,27 +537,6 @@ namespace Animator.Core.Model
 			if(sequence != null)
 				return sequence;
 			return null;
-		}
-
-		#endregion
-
-		#region IClipRefContainer Members
-
-		IEnumerable<ClipReference> IClipRefContainer.Clips
-		{
-			get
-			{
-				return from section in this.AllSections
-					   from clip in section.Clips
-					   select clip;
-			}
-		}
-
-		public IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
-		{
-			if(this._ActiveSection == null)
-				return Enumerable.Empty<ClipReference>();
-			return this._ActiveSection.GetActiveClips(transport);
 		}
 
 		#endregion

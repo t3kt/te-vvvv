@@ -114,6 +114,53 @@ namespace Animator.Common
 			}
 		}
 
+		internal static float MapFloating(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		{
+			if(inMaximum - inMinimum == 0)
+				return 0f;
+			var range = inMaximum - inMinimum;
+			var normalized = (input - inMinimum) / range;
+			return outMinimum + normalized * (outMaximum - outMinimum);
+		}
+
+		internal static float MapClamped(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		{
+			if(inMaximum - inMinimum == 0)
+				return 0;
+			var range = inMaximum - inMinimum;
+			var normalized = (input - inMinimum) / range;
+			var output = outMinimum + normalized * (outMaximum - outMinimum);
+			var min = Math.Min(outMinimum, outMaximum);
+			var max = Math.Max(outMinimum, outMaximum);
+			return Math.Min(Math.Max(output, min), max);
+		}
+
+		internal static float MapWrapping(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		{
+			if(inMaximum - inMinimum == 0)
+				return 0;
+			var range = inMaximum - inMinimum;
+			var normalized = (input - inMinimum) / range;
+
+			if(normalized < 0)
+				normalized = 1 + normalized;
+			return outMinimum + (normalized % 1) * (outMaximum - outMinimum);
+		}
+
+		internal static float Clamp(float input, float min, float max)
+		{
+			var minTemp = Math.Min(min, max);
+			var maxTemp = Math.Max(min, max);
+			return Math.Min(Math.Max(input, minTemp), maxTemp);
+		}
+
+		internal static int Clamp(int input, int min, int max)
+		{
+			var minTemp = Math.Min(min, max);
+			var maxTemp = Math.Max(min, max);
+			return Math.Min(Math.Max(input, minTemp), maxTemp);
+		}
+
 	}
 
 	#endregion

@@ -202,7 +202,8 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByKey(null));
 			Assert.IsNull(host.CreateClipPropertyDataByKey(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByKey("foo"));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey("const"), typeof(ConstData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(ConstData.Export_Key), typeof(ConstData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(StepData.Export_Key), typeof (StepData));
 		}
 
 		[TestMethod]
@@ -213,7 +214,8 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByElementName(null));
 			Assert.IsNull(host.CreateClipPropertyDataByElementName(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByElementName("foo"));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(Schema.constprop.ToString()), typeof(ConstData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(ConstData.Export_ElementName), typeof(ConstData));
+			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(StepData.Export_ElementName), typeof (StepData));
 		}
 
 		[TestMethod]

@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
-using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -13,7 +12,7 @@ namespace Animator.Core.Model.Sequences
 
 	#region SequenceTrack
 
-	public sealed class SequenceTrack : Track<SequenceClipReference>
+	public sealed class SequenceTrack : Track<SequenceClip>
 	{
 
 		#region Static / Constant
@@ -36,10 +35,10 @@ namespace Animator.Core.Model.Sequences
 		public SequenceTrack([NotNull]Document document)
 			: this(Guid.NewGuid(), document) { }
 
-		public SequenceTrack([NotNull] XElement element, [NotNull]Document document)
+		public SequenceTrack([NotNull] XElement element, [NotNull]Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
-			this.Clips.AddRange(element.Elements(Schema.seqclipref).Select(e => new SequenceClipReference(e, document)));
+			this.Clips.AddRange(element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? document.Host)));
 		}
 
 		#endregion

@@ -5,15 +5,17 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
+using Animator.Core.Model.Clips;
 using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
 {
 
-	#region SequenceClipReference
+	#region SequenceClip
 
-	public sealed class SequenceClipReference : ClipReference
+	public sealed class SequenceClip : ClipBase
 	{
 
 		#region Static / Constant
@@ -23,7 +25,7 @@ namespace Animator.Core.Model.Sequences
 		#region Fields
 
 		private Time _Start;
-		private Time? _Duration;
+		private Time _Duration;
 
 		#endregion
 
@@ -45,13 +47,12 @@ namespace Animator.Core.Model.Sequences
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		public Time? Duration
+		public Time Duration
 		{
 			get { return this._Duration; }
 			set
 			{
-				if(value != null)
-					Require.ArgPositive((float)value.Value, "value");
+				Require.ArgNotNegative((float)value, "value");
 				if(value != this._Duration)
 				{
 					this._Duration = value;
@@ -60,18 +61,23 @@ namespace Animator.Core.Model.Sequences
 			}
 		}
 
+		internal Time End
+		{
+			get { return this._Start + this._Duration; }
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public SequenceClipReference(Guid id, Clip clip)
-			: base(id, clip) { }
+		public SequenceClip(Guid id)
+			: base(id) { }
 
-		public SequenceClipReference([NotNull] XElement element, [NotNull] Document document)
-			: base(element, document)
+		public SequenceClip([NotNull] XElement element, [CanBeNull] AniHost host)
+			: base(element, host)
 		{
-			this.Start = (float)element.Attribute(Schema.seqclipref_start);
-			this.Duration = (float?)element.Attribute(Schema.seqclipref_dur);
+			this.Start = (float)element.Attribute(Schema.seqclip_start);
+			this.Duration = (float)element.Attribute(Schema.seqclip_dur);
 		}
 
 		#endregion
@@ -80,20 +86,22 @@ namespace Animator.Core.Model.Sequences
 
 		internal override bool IsActive(Transport.Transport transport)
 		{
-			throw new NotImplementedException();
+			var pos = transport.Position;
+			return !(pos < this.Start) && pos < this.End;
 		}
 
-		protected override Time GetPosition(Transport.Transport transport)
+		protected override float GetPosition(Transport.Transport transport)
 		{
 			throw new NotImplementedException();
 		}
 
 		public override XElement WriteXElement(XName name = null)
 		{
-			return base.WriteXElement(name ?? Schema.seqclipref)
-				.WithContent(
-					new XAttribute(Schema.seqclipref_start, (float)this.Start),
-					ModelUtil.WriteOptionalValueAttribute(Schema.seqclipref_dur, (float?)this.Duration));
+			return new XElement(name ?? Schema.seqclip,
+				this.WriteCommonXAttributes(),
+				new XAttribute(Schema.seqclip_start, (float)this._Start),
+				new XAttribute(Schema.seqclip_dur, (float)this._Duration),
+				this.WritePropertiesXElement());
 		}
 
 		#endregion

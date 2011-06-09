@@ -75,10 +75,10 @@
     <Compile Include="Core\Composition\Output.cs" />
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
-    <Compile Include="Core\Model\ClipReference.cs" />
     <Compile Include="Core\Model\Clips\ClipBase.cs" />
     <Compile Include="Core\Model\Clips\ClipPropertyData.cs" />
     <Compile Include="Core\Model\Clips\ConstData.cs" />
+    <Compile Include="Core\Model\Clips\StepData.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
@@ -89,11 +89,11 @@
     <Compile Include="Core\Model\Output.cs" />
     <Compile Include="Core\Model\Schema.cs" />
     <Compile Include="Core\Model\Sequences\Sequence.cs" />
-    <Compile Include="Core\Model\Sequences\SequenceClipReference.cs" />
+    <Compile Include="Core\Model\Sequences\SequenceClip.cs" />
     <Compile Include="Core\Model\Sequences\SequenceTrack.cs" />
     <Compile Include="Core\Model\Sessions\ClipState.cs" />
     <Compile Include="Core\Model\Sessions\Session.cs" />
-    <Compile Include="Core\Model\Sessions\SessionClipReference.cs" />
+    <Compile Include="Core\Model\Sessions\SessionClip.cs" />
     <Compile Include="Core\Model\Sessions\SessionTrack.cs" />
     <Compile Include="Core\Model\StepClip.cs" />
     <Compile Include="Core\Model\TargetObject.cs" />
@@ -103,7 +103,6 @@
     <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\NativeMethods.cs" />
     <Compile Include="Core\Runtime\ClipDataEditor.cs" />
-    <Compile Include="Core\Runtime\IClipRefContainer.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IPropertyEditor.cs" />
@@ -121,7 +120,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup Label="SHARED">
-    <Compile Include="..\shared\*.cs" />
+    <Compile Include="..\shared\SharedAnnotations.cs" />
+    <Compile Include="..\shared\SharedAssemblyInfo.cs" />
+    <Compile Include="..\shared\SharedAssemblyRef.cs" />
+    <Compile Include="..\shared\SharedNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Core\Model\AniDocument.xsd">

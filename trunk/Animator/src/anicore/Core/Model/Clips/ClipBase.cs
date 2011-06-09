@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
+using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using TESharedAnnotations;
 
@@ -63,14 +64,14 @@ namespace Animator.Core.Model.Clips
 
 		#region Methods
 
-		internal abstract bool IsActive(Transport.Transport transport);
+		internal abstract bool IsActive([NotNull] Transport.Transport transport);
 
-		protected abstract float GetPosition(Transport.Transport transport);
+		protected abstract float GetPosition([NotNull] Transport.Transport transport);
 
-		internal virtual void PushTargetChanges(TargetObject target, Transport.Transport transport)
+		internal virtual void PushTargetChanges([NotNull] TargetObject target, [NotNull] Transport.Transport transport)
 		{
-			if(target == null || !this.IsActive(transport))
-				return;
+			Require.DBG_ArgNotNull(target, "target");
+			Require.DBG_ArgNotNull(transport, "transport");
 			var pos = this.GetPosition(transport);
 			foreach(var prop in this._Properties)
 				target.SetValue(prop.Name, prop.GetValue(pos));

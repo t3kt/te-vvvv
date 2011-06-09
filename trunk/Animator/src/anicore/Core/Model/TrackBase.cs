@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
 using TESharedAnnotations;
 
@@ -15,7 +16,7 @@ namespace Animator.Core.Model
 
 	#region Track
 
-	public abstract class Track : DocumentItem, IClipRefContainer
+	public abstract class Track : DocumentItem
 	{
 
 		#region Static/Constant
@@ -62,7 +63,7 @@ namespace Animator.Core.Model
 			}
 		}
 
-		internal abstract IEnumerable<ClipReference> ClipsInternal { get; }
+		internal abstract IEnumerable<ClipBase> ClipsInternal { get; }
 
 		#endregion
 
@@ -104,28 +105,14 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region IClipRefContainer Members
-
-		IEnumerable<ClipReference> IClipRefContainer.Clips
-		{
-			get { return this.ClipsInternal; }
-		}
-
-		public virtual IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
-		{
-			return this.ClipsInternal.Where(c => c.IsActive(transport));
-		}
-
-		#endregion
-
 	}
 
 	#endregion
 
-	#region Track<TClipRef>
+	#region Track<TClip>
 
-	public abstract class Track<TClipRef> : Track
-		where TClipRef : ClipReference
+	public abstract class Track<TClip> : Track
+		where TClip : ClipBase
 	{
 
 		#region Static / Constant
@@ -134,18 +121,18 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly ObservableCollection<TClipRef> _Clips;
+		private readonly ObservableCollection<TClip> _Clips;
 
 		#endregion
 
 		#region Properties
 
-		public ObservableCollection<TClipRef> Clips
+		public ObservableCollection<TClip> Clips
 		{
 			get { return this._Clips; }
 		}
 
-		internal sealed override IEnumerable<ClipReference> ClipsInternal
+		internal sealed override IEnumerable<ClipBase> ClipsInternal
 		{
 			get { return this.Clips; }
 		}
@@ -157,14 +144,14 @@ namespace Animator.Core.Model
 		protected Track(Guid id, [NotNull]Document document)
 			: base(id, document)
 		{
-			this._Clips = new ObservableCollection<TClipRef>();
+			this._Clips = new ObservableCollection<TClip>();
 			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
 		}
 
 		protected Track([NotNull] XElement element, [NotNull]Document document)
 			: base(element, document)
 		{
-			this._Clips = new ObservableCollection<TClipRef>();
+			this._Clips = new ObservableCollection<TClip>();
 			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
 		}
 
