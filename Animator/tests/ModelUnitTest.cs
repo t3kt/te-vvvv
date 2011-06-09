@@ -113,9 +113,7 @@ namespace Animator.Tests
 			var docA = new Document
 					   {
 						   BeatsPerMinute = 44.3f,
-						   Name = "foodoc",
-						   UIColumns = 23,
-						   UIRows = 14
+						   Name = "foodoc"
 					   };
 			var outputA1 = new Output { Name = "out1" };
 			docA.Outputs.Add(outputA1);
@@ -138,8 +136,6 @@ namespace Animator.Tests
 			Assert.AreEqual(docA.BeatsPerMinute, docB.BeatsPerMinute);
 			Assert.AreEqual(docA.Id, docB.Id);
 			Assert.AreEqual(docA.Name, docB.Name);
-			//Assert.AreEqual(docA.UIColumns, docB.UIColumns);
-			Assert.AreEqual(docA.UIRows, docB.UIRows);
 			//CollectionAssert.Contains(docB.Clips, clipA1);
 			//CollectionAssert.Contains(docB.Clips, clipA2);
 			//Assert.IsTrue(docB.Clips.ItemsEqual(docA.Clips));
@@ -210,9 +206,9 @@ namespace Animator.Tests
 			var prop1A = tgt1.Add(propA_Name, TargetPropertyType.Value, 23.1f);
 			var prop2A = tgt2.Add(prop1A.Name, prop1A.Type, prop1A.DefaultValue);
 			Assert.AreEqual(tgt1, tgt2);
-			prop1A.DefaultValue = 999.4f;
+			Assert.IsTrue(tgt1.SetDefaultValue(prop1A.Name, 999.4f));
 			Assert.AreNotEqual(tgt1, tgt2);
-			prop2A.DefaultValue = prop1A.DefaultValue;
+			Assert.IsTrue(tgt2.SetDefaultValue(prop1A.Name, prop1A.DefaultValue));
 			Assert.AreEqual(tgt1, tgt2);
 		}
 

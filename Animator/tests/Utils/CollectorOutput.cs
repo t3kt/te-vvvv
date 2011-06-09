@@ -11,11 +11,15 @@ namespace Animator.Tests.Utils
 
 	#region CollectorOutput
 
-	[Output(Key = "test.collector")]
+	[Output(Key = Export_Key)]
 	internal sealed class CollectorOutput : Output
 	{
 
 		#region Static / Constant
+
+		internal new const string Export_Key = "test.collector";
+		internal new const string Export_ElementName = null;
+		internal new const string Export_Description = "Collector TEST Output";
 
 		#endregion
 

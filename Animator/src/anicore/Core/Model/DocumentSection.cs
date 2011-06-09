@@ -6,7 +6,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
-using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -23,7 +22,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		protected readonly Document _Document;
+		private readonly Document _Document;
 
 		#endregion
 

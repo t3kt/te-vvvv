@@ -25,9 +25,13 @@ namespace Animator.Tests
 
 		#region TestOutput
 
-		[Output(Key = "test")]
+		[Output(Key = Export_Key)]
 		internal class TestOutput : Output
 		{
+
+			internal new const string Export_Key = "test";
+			internal new const string Export_ElementName = null;
+			internal new const string Export_Description = "TEST Output";
 
 			protected override bool PostMessageInternal(OutputMessage message)
 			{
@@ -43,7 +47,7 @@ namespace Animator.Tests
 		public void RegisterTransmitter()
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var output = host.CreateOutputByKey("test");
+			var output = host.CreateOutputByKey(TestOutput.Export_Key);
 			Assert.IsInstanceOfType(output, typeof(TestOutput));
 		}
 
@@ -52,8 +56,8 @@ namespace Animator.Tests
 		public void CreateTraceOutput()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var output = host.CreateOutputByKey("trace");
-			Assert.IsInstanceOfType(output, typeof(Output.TraceOutput));
+			var output = host.CreateOutputByKey(TraceOutput.Export_Key);
+			Assert.IsInstanceOfType(output, typeof(TraceOutput));
 		}
 
 		[TestMethod]
@@ -61,8 +65,8 @@ namespace Animator.Tests
 		public void TraceOutputMessaging()
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			var output = host.CreateOutputByKey("trace");
-			Assert.IsInstanceOfType(output, typeof(Output.TraceOutput));
+			var output = host.CreateOutputByKey(TraceOutput.Export_Key);
+			Assert.IsInstanceOfType(output, typeof(TraceOutput));
 			int writeCount = 0;
 			var listener = new CallbackTraceListener(msg =>
 														{

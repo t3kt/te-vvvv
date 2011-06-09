@@ -43,7 +43,7 @@ namespace Animator.Core.Model
 
 		public static readonly XName output = Output.Export_ElementName;
 
-		public static readonly XName traceoutput = Output.TraceOutput.Export_ElementName;
+		public static readonly XName traceoutput = TraceOutput.Export_ElementName;
 		public static readonly XName traceoutput_category = "category";
 		public static readonly XName traceoutput_prefix = "prefix";
 

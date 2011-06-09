@@ -9,11 +9,9 @@ using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
-using Animator.Core.IO;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Model.Sessions;
 using Animator.Core.Runtime;
-using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -219,36 +217,6 @@ namespace Animator.Core.Model
 			get { return this._Sessions; }
 		}
 
-		[Category(TEShared.Names.Category_UI)]
-		[DisplayName(TEShared.Names.DisplayName_SessionRows)]
-		public int? UIRows
-		{
-			get { return this._UIRows; }
-			set
-			{
-				if(value != this._UIRows)
-				{
-					this._UIRows = value;
-					this.OnPropertyChanged("UIRows");
-				}
-			}
-		}
-
-		[Category(TEShared.Names.Category_UI)]
-		[DisplayName(TEShared.Names.DisplayName_SessionColumns)]
-		public int? UIColumns
-		{
-			get { return this._UIColumns; }
-			set
-			{
-				if(value != this._UIColumns)
-				{
-					this._UIColumns = value;
-					this.OnPropertyChanged("UIColumns");
-				}
-			}
-		}
-
 		[Category(TEShared.Names.Category_Transport)]
 		[Browsable(false)]
 		public Transport.Transport Transport
@@ -277,11 +245,6 @@ namespace Animator.Core.Model
 					this.OnPropertyChanged("ActiveSection");
 				}
 			}
-		}
-
-		internal IEnumerable<DocumentSection> AllSections
-		{
-			get { return this._Sequences.Concat<DocumentSection>(this._Sessions); }
 		}
 
 		#endregion
@@ -355,11 +318,6 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Outputs");
 		}
 
-		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Clips");
-		}
-
 		private void Sequences_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.OnPropertyChanged("Sequences");
@@ -391,6 +349,13 @@ namespace Animator.Core.Model
 			return null;
 		}
 
+		public void PushTargetChanges()
+		{
+			if(this._ActiveSection == null)
+				return;
+			this._ActiveSection.PushTargetChanges(this.Transport);
+		}
+
 		private void ReadXElement(XElement element, AniHost host)
 		{
 			Require.ArgNotNull(element, "element");
@@ -419,9 +384,6 @@ namespace Animator.Core.Model
 			var sessionsElement = element.Element(Schema.anidoc_sessions);
 			if(sessionsElement != null)
 				this.Sessions.AddRange(sessionsElement.Elements().Select(e => new Session(e, this, host)));
-
-			this.UIRows = (int?)element.Attribute(Schema.anidoc_ui_rows);
-			this.UIColumns = (int?)element.Attribute(Schema.anidoc_ui_cols);
 		}
 
 		#endregion
@@ -436,9 +398,7 @@ namespace Animator.Core.Model
 				this._TransportData.WriteXElement(),
 				ModelUtil.WriteListXElement(this._Outputs, Schema.anidoc_outputs),
 				ModelUtil.WriteListXElement(this._Sequences, Schema.anidoc_sequences),
-				ModelUtil.WriteListXElement(this._Sessions, Schema.anidoc_sessions),
-				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_rows, this.UIRows),
-				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_cols, this.UIColumns));
+				ModelUtil.WriteListXElement(this._Sessions, Schema.anidoc_sessions));
 		}
 
 		public XDocument WriteXDocument()

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Animator.Common;
-using Animator.Core.Composition;
-using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Model.Sessions;
-using Animator.Core.Runtime;
 using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -20,6 +15,8 @@ namespace Animator.Tests
 	// ReSharper disable ConvertToConstant.Local
 	// ReSharper disable MemberCanBeMadeStatic.Local
 	// ReSharper disable ConvertToLambdaExpression
+	// ReSharper disable RedundantTypeArgumentsOfMethod
+#pragma warning disable 168
 
 	[TestClass]
 	public class RuntimeUnitTest
@@ -102,71 +99,6 @@ namespace Animator.Tests
 			//CollectionAssert.AreEqual(new[] { new OutputMessage(clip.TargetKey, 4f) }, collector.Messages, OutputMessageComparer.Instance);
 		}
 
-		#region Thing
-
-		internal class Thing
-		{
-
-			public string Str { get; set; }
-
-		}
-
-		#endregion
-
-		#region ThingyEditor
-
-		[PropertyEditor(Key = "thing", TargetType = typeof(Thing))]
-		internal class ThingEditor : IPropertyEditor
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			#endregion
-
-			#region Methods
-
-			#endregion
-
-			#region IPropertyEditor Members
-
-			public object Target { get; set; }
-
-			public bool AutoCommit { get; set; }
-
-			public bool Dirty { get; set; }
-
-			public System.Windows.Visibility BasicsVisibility { get; set; }
-
-			public System.Windows.Visibility DetailsVisibility { get; set; }
-
-			public event TargetPropertyChangedEventHandler TargetPropertyChanged;
-
-			public void Commit()
-			{
-			}
-
-			public void Reset()
-			{
-			}
-
-			#endregion
-
-		}
-
-		#endregion
-
 		[TestMethod]
 		[TestCategory(CategoryNames.Runtime_Model)]
 		public void TargetObjectGetSetClear()
@@ -197,9 +129,98 @@ namespace Animator.Tests
 			Assert.IsFalse(tgtObj.ClearValue(propA_Name));
 		}
 
+		private void TargetObjectNotifyValueChangesHelper<T>(TargetPropertyType prop1_type, T prop1_def, T testVal)
+		{
+			Assert.AreEqual(typeof(T), TargetProperty.GetValueType(prop1_type));
+
+			var output = new CollectorOutput();
+			var tgt = new TargetObject { OutputKey = "fooOutput-" };
+			output.Targets.Add(tgt);
+
+			var prop1_name = "prop1";
+			var prop1 = tgt.Add(prop1_name, prop1_type, prop1_def);
+
+			var events = new List<TargetPropertyValueChangedEventArgs>();
+			tgt.PropertyValueChanged += (sender, e) =>
+			{
+				Assert.AreSame(tgt, sender);
+				events.Add(e);
+			};
+
+			Assert.AreEqual(tgt.GetValue(prop1_name), prop1_def);
+			Assert.AreEqual(prop1.Value, prop1_def);
+
+			Assert.IsTrue(tgt.SetValue(prop1_name, testVal));
+			Assert.AreEqual(tgt.GetValue(prop1_name), testVal);
+
+			Assert.AreEqual(1, events.Count);
+			Assert.AreEqual(prop1_name, events[0].Name);
+			Assert.AreEqual(tgt.OutputKey, events[0].OutputKey);
+			Assert.AreEqual(testVal, events[0].Value);
+			events.Clear();
+
+			Assert.AreEqual(1, output.Messages.Count);
+			Assert.AreEqual(tgt.OutputKey + TargetPropertyValueChangedEventArgs.KeyNameSeparator + prop1_name, output.Messages[0].TargetKey);
+			CollectionAssert.AreEqual(new object[] { testVal }, output.Messages[0].Data);
+			output.Messages.Clear();
+
+			Assert.IsTrue(tgt.SetValue(prop1_name, testVal));
+			Assert.AreEqual(0, events.Count);
+			Assert.AreEqual(0, output.Messages.Count);
+			Assert.IsTrue(tgt.SetValue(prop1_name, testVal));
+			Assert.AreEqual(0, events.Count);
+			Assert.AreEqual(0, output.Messages.Count);
+
+			Assert.IsTrue(tgt.ClearValue(prop1_name));
+			Assert.AreEqual(1, events.Count);
+			Assert.AreEqual(prop1_name, events[0].Name);
+			Assert.AreEqual(tgt.OutputKey, events[0].OutputKey);
+			Assert.AreEqual(prop1_def, events[0].Value);
+			events.Clear();
+
+			Assert.AreEqual(1, output.Messages.Count);
+			Assert.AreEqual(tgt.OutputKey + TargetPropertyValueChangedEventArgs.KeyNameSeparator + prop1_name, output.Messages[0].TargetKey);
+			CollectionAssert.AreEqual(new object[] { prop1_def }, output.Messages[0].Data);
+			output.Messages.Clear();
+
+			Assert.IsTrue(tgt.SetValue(prop1_name, testVal));
+			events.Clear();
+			output.Messages.Clear();
+			Assert.IsTrue(tgt.SetValue(prop1_name, prop1_def));
+
+			Assert.AreEqual(1, events.Count);
+			Assert.AreEqual(prop1_name, events[0].Name);
+			Assert.AreEqual(tgt.OutputKey, events[0].OutputKey);
+			Assert.AreEqual(prop1_def, events[0].Value);
+			events.Clear();
+
+			Assert.AreEqual(1, output.Messages.Count);
+			Assert.AreEqual(tgt.OutputKey + TargetPropertyValueChangedEventArgs.KeyNameSeparator + prop1_name, output.Messages[0].TargetKey);
+			CollectionAssert.AreEqual(new object[] { prop1_def }, output.Messages[0].Data);
+			output.Messages.Clear();
+
+			Assert.IsTrue(tgt.ClearValue(prop1_name));
+			Assert.AreEqual(0, events.Count);
+			Assert.AreEqual(0, output.Messages.Count);
+		}
+
 		[TestMethod]
 		[TestCategory(CategoryNames.Runtime_Model)]
-		public void ActiveSectionMustBeInDocumentValid()
+		public void TargetObjectNotifyValueChanges_ValueProperty()
+		{
+			this.TargetObjectNotifyValueChangesHelper<float>(TargetPropertyType.Value, 3.2f, 252.3f);
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Runtime_Model)]
+		public void TargetObjectNotifyValueChanges_StringProperty()
+		{
+			this.TargetObjectNotifyValueChangesHelper<string>(TargetPropertyType.String, "xyz#123", "helloooooooo");
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Runtime_Model)]
+		public void ActiveSectionMustBeInDocument_Valid()
 		{
 			var doc = new Document();
 			var ses = new Session(doc);
@@ -213,7 +234,7 @@ namespace Animator.Tests
 		[TestMethod]
 		[TestCategory(CategoryNames.Runtime_Model)]
 		[ExpectedException(typeof(ModelException))]
-		public void ActiveSessionMustBeInDocumentInvalid()
+		public void ActiveSessionMustBeInDocument_Invalid()
 		{
 			var doc = new Document();
 			var ses = new Session(doc);
@@ -223,7 +244,7 @@ namespace Animator.Tests
 		[TestMethod]
 		[TestCategory(CategoryNames.Runtime_Model)]
 		[ExpectedException(typeof(ModelException))]
-		public void ActiveSequenceMustBeInDocumentInvalid()
+		public void ActiveSequenceMustBeInDocument_Invalid()
 		{
 			var doc = new Document();
 			var seq = new Sequence(doc);
@@ -232,6 +253,8 @@ namespace Animator.Tests
 
 	}
 
+#pragma warning restore 168
+	// ReSharper restore RedundantTypeArgumentsOfMethod
 	// ReSharper restore ConvertToLambdaExpression
 	// ReSharper restore MemberCanBeMadeStatic.Local
 	// ReSharper restore ConvertToConstant.Local

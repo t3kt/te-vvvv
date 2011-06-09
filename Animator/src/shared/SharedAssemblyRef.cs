@@ -12,6 +12,8 @@ namespace TEShared
 		internal const string anicore = "anicore";
 		internal const string aniosc = "aniosc";
 		internal const string AnimatorTests = "Animator.Tests";
+
+		internal const string winmm_dll = "winmm.dll";
 	}
 
 }

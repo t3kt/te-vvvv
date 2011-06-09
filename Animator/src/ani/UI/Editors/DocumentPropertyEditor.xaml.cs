@@ -25,34 +25,12 @@ namespace Animator.UI.Editors
 		public static readonly DependencyProperty TargetNameProperty = DependencyProperty.Register("TargetName", typeof(string),
 			typeof(DocumentPropertyEditor), new PropertyMetadata(OnTargetNameChanged));
 
-		public static readonly DependencyProperty TargetUIRowsProperty = DependencyProperty.Register("TargetUIRows", typeof(int?),
-			typeof(DocumentPropertyEditor), new PropertyMetadata(null, OnTargetUIRowsChanged));
-
-		public static readonly DependencyProperty TargetUIColumnsProperty = DependencyProperty.Register("TargetUIColumns", typeof(int?),
-			typeof(DocumentPropertyEditor), new PropertyMetadata(null, OnTargetUIColumnsChanged));
-
 		private static void OnTargetNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var editor = (DocumentPropertyEditor)d;
 			var doc = editor.Target as Document;
 			if(editor.AutoCommit && doc != null)
 				doc.Name = (string)e.NewValue;
-		}
-
-		private static void OnTargetUIRowsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
-			var editor = (DocumentPropertyEditor)d;
-			var doc = editor.Target as Document;
-			if(editor.AutoCommit && doc != null)
-				doc.UIRows = (int?)e.NewValue;
-		}
-
-		private static void OnTargetUIColumnsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		{
-			var editor = (DocumentPropertyEditor)d;
-			var doc = editor.Target as Document;
-			if(editor.AutoCommit && doc != null)
-				doc.UIColumns = (int?)e.NewValue;
 		}
 
 		#endregion
@@ -67,18 +45,6 @@ namespace Animator.UI.Editors
 		{
 			get { return (string)this.GetValue(TargetNameProperty); }
 			set { this.SetValue(TargetNameProperty, value); }
-		}
-
-		public int? TargetUIRows
-		{
-			get { return (int?)this.GetValue(TargetUIRowsProperty); }
-			set { this.SetValue(TargetUIRowsProperty, value); }
-		}
-
-		public int? TargetUIColumns
-		{
-			get { return (int?)this.GetValue(TargetUIColumnsProperty); }
-			set { this.SetValue(TargetUIColumnsProperty, value); }
 		}
 
 		#endregion
@@ -100,8 +66,6 @@ namespace Animator.UI.Editors
 			if(doc != null)
 			{
 				doc.Name = this.TargetName;
-				doc.UIRows = this.TargetUIRows;
-				doc.UIColumns = this.TargetUIColumns;
 			}
 		}
 
@@ -111,14 +75,10 @@ namespace Animator.UI.Editors
 			if(doc == null)
 			{
 				this.TargetName = null;
-				this.TargetUIRows = null;
-				this.TargetUIColumns = null;
 			}
 			else
 			{
 				this.TargetName = doc.Name;
-				this.TargetUIRows = doc.UIRows;
-				this.TargetUIColumns = doc.UIColumns;
 			}
 		}
 

@@ -3,7 +3,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.Text;
 using System.Xml.Linq;
-using Animator.Common;
 using Animator.Common.Diagnostics;
 using TESharedAnnotations;
 
@@ -22,24 +21,28 @@ namespace Animator.Core.Model
 
 		#region Fields
 
+		private Guid _Id;
 		private string _Name;
 
 		#endregion
 
 		#region Properties
 
-		public Guid Id { get; protected set; }
+		public Guid Id
+		{
+			get { return this._Id; }
+		}
 
 		[Category(TEShared.Names.Category_Common)]
 		public string Name
 		{
-			get { return _Name; }
+			get { return this._Name; }
 			set
 			{
-				if(value != _Name)
+				if(value != this._Name)
 				{
-					_Name = value;
-					OnPropertyChanged("Name");
+					this._Name = value;
+					this.OnPropertyChanged("Name");
 				}
 			}
 		}
@@ -50,7 +53,7 @@ namespace Animator.Core.Model
 
 		protected DocumentItem(Guid id)
 		{
-			this.Id = id;
+			this._Id = id;
 		}
 
 		protected DocumentItem([NotNull] XElement element)
@@ -71,7 +74,7 @@ namespace Animator.Core.Model
 		protected void ReadCommonXAttributes([NotNull]XElement element)
 		{
 			Require.ArgNotNull(element, "element");
-			this.Id = (Guid)element.Attribute(Schema.common_id);
+			this._Id = (Guid)element.Attribute(Schema.common_id);
 			this.Name = (string)element.Attribute(Schema.common_name);
 		}
 
@@ -80,14 +83,14 @@ namespace Animator.Core.Model
 			return
 				new[]
 				{
-					new XAttribute(Schema.common_id, this.Id),
-					ModelUtil.WriteOptionalAttribute(Schema.common_name, this.Name)
+					new XAttribute(Schema.common_id, this._Id),
+					ModelUtil.WriteOptionalAttribute(Schema.common_name, this._Name)
 				};
 		}
 
 		public override bool Equals(object obj)
 		{
-			return Equals(obj as IDocumentItem);
+			return this.Equals(obj as IDocumentItem);
 		}
 
 		public override int GetHashCode()
@@ -132,9 +135,7 @@ namespace Animator.Core.Model
 		protected virtual void Dispose(bool disposing)
 		{
 			if(disposing)
-			{
 				this.PropertyChanged = null;
-			}
 		}
 
 		public void Dispose()

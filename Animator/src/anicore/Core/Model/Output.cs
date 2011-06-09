@@ -22,88 +22,74 @@ namespace Animator.Core.Model
 	public class Output : DocumentItem, IEquatable<Output>
 	{
 
-		#region TraceOutput
+		#region TargetCollection
 
-		[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
-		internal sealed class TraceOutput : Output
+		private sealed class TargetCollection : ObservableCollection<TargetObject>
 		{
 
 			#region Static/Constant
-
-			internal new const string Export_Key = "trace";
-			internal new const string Export_ElementName = "traceoutput";
-			internal new const string Export_Description = "Debug Trace Output";
-
-			private const string DefaultCategory = "OUTPUT";
-			private const string DefaultPrefix = "[msg] ";
 
 			#endregion
 
 			#region Fields
 
-			private string _Category;
-			private string _Prefix;
+			private readonly Output _Output;
 
 			#endregion
 
 			#region Properties
 
-			public string Category
-			{
-				get { return this._Category; }
-				set
-				{
-					if(value != this._Category)
-					{
-						this._Category = value;
-						this.OnPropertyChanged("Category");
-					}
-				}
-			}
-
-			public string Prefix
-			{
-				get { return this._Prefix; }
-				set
-				{
-					if(value != this._Prefix)
-					{
-						this._Prefix = value;
-						this.OnPropertyChanged("Prefix");
-					}
-				}
-			}
-
 			#endregion
 
 			#region Constructors
+
+			public TargetCollection(Output output)
+			{
+				this._Output = output;
+			}
 
 			#endregion
 
 			#region Methods
 
-			public override void ReadXElement(XElement element)
+			private void Attach(TargetObject item)
 			{
-				base.ReadXElement(element);
-				this._Category = (string)element.Attribute(Schema.traceoutput_category) ?? DefaultCategory;
-				this._Prefix = (string)element.Attribute(Schema.traceoutput_prefix) ?? DefaultPrefix;
+				Require.DBG_ArgNotNull(item, "item");
+				item.PropertyValueChanged += this._Output.Target_PropertyValueChanged;
 			}
 
-			public override XElement WriteXElement(XName name = null)
+			private void Detach(TargetObject item)
 			{
-				return base.WriteXElement(name ?? Schema.traceoutput)
-					.WithContent(
-						ModelUtil.WriteOptionalAttribute(Schema.traceoutput_category, this._Category),
-						ModelUtil.WriteOptionalAttribute(Schema.traceoutput_prefix, this._Prefix));
+				Require.DBG_ArgNotNull(item, "item");
+				item.PropertyValueChanged += this._Output.Target_PropertyValueChanged;
 			}
 
-			protected override bool PostMessageInternal(OutputMessage message)
+			protected override void InsertItem(int index, TargetObject item)
 			{
-				var str = OutputMessage.FormatTrace(message);
-				if(!String.IsNullOrWhiteSpace(this._Prefix))
-					str = this._Prefix + " " + str;
-				Trace.WriteLine(str, this._Category);
-				return true;
+				base.InsertItem(index, item);
+				this.Attach(item);
+			}
+
+			protected override void ClearItems()
+			{
+				foreach(var item in this)
+					this.Detach(item);
+				base.ClearItems();
+			}
+
+			protected override void RemoveItem(int index)
+			{
+				var item = this[index];
+				this.Detach(item);
+				base.RemoveItem(index);
+			}
+
+			protected override void SetItem(int index, TargetObject item)
+			{
+				var oldItem = this[index];
+				this.Detach(oldItem);
+				this.Attach(item);
+				base.SetItem(index, item);
 			}
 
 			#endregion
@@ -122,7 +108,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly ObservableCollection<TargetObject> _Targets;
+		private readonly TargetCollection _Targets;
 
 		#endregion
 
@@ -158,13 +144,25 @@ namespace Animator.Core.Model
 		public Output(Guid id)
 			: base(id)
 		{
-			this._Targets = new ObservableCollection<TargetObject>();
+			this._Targets = new TargetCollection(this);
 			this._Targets.CollectionChanged += this.Targets_CollectionChanged;
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void Target_PropertyValueChanged(object sender, TargetPropertyValueChangedEventArgs e)
+		{
+			Debug.Assert(sender is TargetObject);
+			this.HandleTargetChange((TargetObject)sender, e);
+		}
+
+		protected virtual void HandleTargetChange(TargetObject targetObject, TargetPropertyValueChangedEventArgs e)
+		{
+			var message = e.BuildOutputMessage();
+			this.PostMessage(message);
+		}
 
 		protected virtual bool PostMessageInternal(OutputMessage message)
 		{
@@ -228,6 +226,96 @@ namespace Animator.Core.Model
 			if(!base.Equals(other))
 				return false;
 			return this._Targets.ItemsEqual(other._Targets);
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
+	#region TraceOutput
+
+	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
+	internal sealed class TraceOutput : Output
+	{
+
+		#region Static/Constant
+
+		internal new const string Export_Key = "trace";
+		internal new const string Export_ElementName = "traceoutput";
+		internal new const string Export_Description = "Debug Trace Output";
+
+		private const string DefaultCategory = "OUTPUT";
+		private const string DefaultPrefix = "[msg] ";
+
+		#endregion
+
+		#region Fields
+
+		private string _Category;
+		private string _Prefix;
+
+		#endregion
+
+		#region Properties
+
+		public string Category
+		{
+			get { return this._Category; }
+			set
+			{
+				if(value != this._Category)
+				{
+					this._Category = value;
+					this.OnPropertyChanged("Category");
+				}
+			}
+		}
+
+		public string Prefix
+		{
+			get { return this._Prefix; }
+			set
+			{
+				if(value != this._Prefix)
+				{
+					this._Prefix = value;
+					this.OnPropertyChanged("Prefix");
+				}
+			}
+		}
+
+		#endregion
+
+		#region Constructors
+
+		#endregion
+
+		#region Methods
+
+		public override void ReadXElement(XElement element)
+		{
+			base.ReadXElement(element);
+			this._Category = (string)element.Attribute(Schema.traceoutput_category) ?? DefaultCategory;
+			this._Prefix = (string)element.Attribute(Schema.traceoutput_prefix) ?? DefaultPrefix;
+		}
+
+		public override XElement WriteXElement(XName name = null)
+		{
+			return base.WriteXElement(name ?? Schema.traceoutput)
+				.WithContent(
+					ModelUtil.WriteOptionalAttribute(Schema.traceoutput_category, this._Category),
+					ModelUtil.WriteOptionalAttribute(Schema.traceoutput_prefix, this._Prefix));
+		}
+
+		protected override bool PostMessageInternal(OutputMessage message)
+		{
+			var str = OutputMessage.FormatTrace(message);
+			if(!String.IsNullOrWhiteSpace(this._Prefix))
+				str = this._Prefix + " " + str;
+			Trace.WriteLine(str, this._Category);
+			return true;
 		}
 
 		#endregion
