@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Animator.Common.Diagnostics;
 using Animator.Common.Threading;
@@ -29,6 +30,9 @@ namespace Animator.Core.Transport
 		{
 			get { return 1; }
 		}
+
+		[DllImport(TEShared.AssemblyRef.winmm_dll)]
+		public static extern uint timeGetTime();
 
 		#endregion
 
@@ -219,7 +223,7 @@ namespace Animator.Core.Transport
 			{
 				if(this._State == TransportState.Playing)
 				{
-					var now = NativeMethods.timeGetTime();
+					var now = timeGetTime();
 					var dur = now - this._LastUpdate;
 					if(dur > 0)
 					{
@@ -248,7 +252,7 @@ namespace Animator.Core.Transport
 				case TransportState.Stopped:
 					scope.UpgradeToWriteLock();
 					this._State = TransportState.Playing;
-					this._LastUpdate = NativeMethods.timeGetTime();
+					this._LastUpdate = timeGetTime();
 					this._Timer.Start();
 					break;
 				}

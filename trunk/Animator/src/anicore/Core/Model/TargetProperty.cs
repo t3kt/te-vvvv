@@ -25,54 +25,124 @@ namespace Animator.Core.Model
 	public sealed class TargetProperty : INotifyPropertyChanged, IXElementWritable, IEquatable<TargetProperty>
 	{
 
+		#region TypeHandler
+
+		private abstract class TypeHandler
+		{
+
+			public readonly Type ValueType;
+
+			protected TypeHandler(Type valueType)
+			{
+				this.ValueType = valueType;
+			}
+
+			public abstract object ParseValueAttribute(XAttribute attribute);
+
+			public virtual XAttribute WriteValueAttribute(XName name, object value)
+			{
+				if(value == null)
+					return null;
+				return new XAttribute(name, value);
+			}
+
+			public abstract bool ValuesEqual(object x, object y);
+
+		}
+
+		#endregion
+
+		#region ValueHandler
+
+		private sealed class ValueHandler : TypeHandler
+		{
+
+			public ValueHandler() : base(typeof(float)) { }
+
+			public override object ParseValueAttribute(XAttribute attribute)
+			{
+				return (float?)attribute ?? 0f;
+			}
+
+			public override bool ValuesEqual(object x, object y)
+			{
+				if(x == y)
+					return true;
+				if(x == null || y == null)
+					return false;
+				return (float)x == (float)y;
+			}
+
+		}
+
+		#endregion
+
+		#region StringHandler
+
+		private sealed class StringHandler : TypeHandler
+		{
+
+			public StringHandler() : base(typeof(string)) { }
+
+			public override object ParseValueAttribute(XAttribute attribute)
+			{
+				return (string)attribute;
+			}
+
+			public override bool ValuesEqual(object x, object y)
+			{
+				if(x == y)
+					return true;
+				if(x == null || y == null)
+					return false;
+				return (string)x == (string)y;
+			}
+
+		}
+
+		#endregion
+
 		#region Static / Constant
+
+		private static readonly Dictionary<TargetPropertyType, TypeHandler> _TypeHandlers;
+
+		static TargetProperty()
+		{
+			_TypeHandlers =
+				new Dictionary<TargetPropertyType, TypeHandler>
+				{
+					{TargetPropertyType.Value, new ValueHandler()},
+					{TargetPropertyType.String, new StringHandler()}
+				};
+		}
 
 		internal static object ParseValueAttribute(TargetPropertyType type, XAttribute attr)
 		{
-			switch(type)
-			{
-			case TargetPropertyType.Value:
-				return ((float?)attr) ?? 0f;
-			case TargetPropertyType.String:
-				return (string)attr;
-			default:
-				return null;
-			}
+			return _TypeHandlers[type].ParseValueAttribute(attr);
 		}
 
 		internal static XAttribute WriteValueAttribute(XName name, TargetPropertyType type, object value)
 		{
-			if(value == null)
-				return null;
-			return new XAttribute(name, value);
+			return _TypeHandlers[type].WriteValueAttribute(name, value);
 		}
 
-		private static bool ValuesEqual(TargetPropertyType type, object value1, object value2)
+		internal static bool ValuesEqual(TargetPropertyType type, object x, object y)
 		{
-			if(value1 == value2)
-				return true;
-			if(value1 == null)
-				return false;
-			if(value2 == null)
-				return false;
-			switch(type)
-			{
-			case TargetPropertyType.String:
-				return String.Equals(Convert.ToString(value1), Convert.ToString(value2));
-			case TargetPropertyType.Value:
-				return Convert.ToSingle(value1) == Convert.ToSingle(value2);
-			default:
-				return false;
-			}
+			return _TypeHandlers[type].ValuesEqual(x, y);
+		}
+
+		internal static Type GetValueType(TargetPropertyType type)
+		{
+			return _TypeHandlers[type].ValueType;
 		}
 
 		#endregion
 
 		#region Fields
 
-		private readonly TargetObject _Parent;
 		private readonly string _Name;
 		private readonly TargetPropertyType _Type;
+		private readonly TypeHandler _Handler;
 		private object _DefaultValue;
 		private bool _HasValue;
 		private object _Value;
@@ -109,34 +179,58 @@ namespace Animator.Core.Model
 			get { return this._HasValue ? this._Value : this._DefaultValue; }
 			internal set
 			{
-				this._Value = value;
-				this._HasValue = true;
-				this.OnValueChanged();
+				if(!this._Handler.ValuesEqual(value, this._Value))
+				{
+					this._Value = value;
+					this._HasValue = true;
+					this.OnValueChanged();
+				}
 			}
+		}
+
+		#endregion
+
+		#region Events
+
+		public event EventHandler ValueChanged;
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnValueChanged()
+		{
+			var handler = this.ValueChanged;
+			if(handler != null)
+				handler(this, EventArgs.Empty);
+			this.OnPropertyChanged("Value");
+		}
+
+		private void OnPropertyChanged(string name)
+		{
+			var handler = this.PropertyChanged;
+			if(handler != null)
+				handler(this, new PropertyChangedEventArgs(name));
 		}
 
 		#endregion
 
 		#region Constructors
 
-		internal TargetProperty([NotNull] TargetObject parent, [NotNull] string name, TargetPropertyType type, object defaultValue)
+		internal TargetProperty([NotNull] string name, TargetPropertyType type, object defaultValue)
 		{
-			Require.ArgNotNull(parent, "parent");
 			Require.ArgNotNullOrEmpty(name, "name");
-			this._Parent = parent;
 			this._Name = name;
 			this._Type = type;
+			this._Handler = _TypeHandlers[type];
 			this._DefaultValue = defaultValue;
 		}
 
-		internal TargetProperty([NotNull] TargetObject parent, [NotNull]XElement element)
+		internal TargetProperty([NotNull] XElement element)
 		{
-			Require.ArgNotNull(parent, "parent");
 			Require.ArgNotNull(element, "element");
-			this._Parent = parent;
 			this._Name = (string)element.Attribute(Schema.target_prop_name);
 			this._Type = (TargetPropertyType)Enum.Parse(typeof(TargetPropertyType), (string)element.Attribute(Schema.target_prop_type));
-			this._DefaultValue = ParseValueAttribute(this._Type, element.Attribute(Schema.target_prop_default));
+			this._Handler = _TypeHandlers[this._Type];
+			this._DefaultValue = this._Handler.ParseValueAttribute(element.Attribute(Schema.target_prop_default));
 		}
 
 		#endregion
@@ -145,8 +239,13 @@ namespace Animator.Core.Model
 
 		internal void ClearValue()
 		{
-			this._HasValue = false;
-			this._Value = null;
+			if(this._HasValue)
+			{
+				this._HasValue = false;
+				if(!this._Handler.ValuesEqual(this._Value, this._DefaultValue))
+					this.OnValueChanged();
+				this._Value = null;
+			}
 		}
 
 		public override int GetHashCode()
@@ -168,7 +267,7 @@ namespace Animator.Core.Model
 			return other != null &&
 				   TargetObject.PropertyNameComparer.Equals(this._Name, other._Name) &&
 				   this._Type == other._Type &&
-				   ValuesEqual(this._Type, this._DefaultValue, other._DefaultValue);
+				   this._Handler.ValuesEqual(this._DefaultValue, other._DefaultValue);
 		}
 
 		#endregion
@@ -180,30 +279,7 @@ namespace Animator.Core.Model
 			return new XElement(name ?? Schema.target_prop,
 				new XAttribute(Schema.target_prop_name, this._Name),
 				new XAttribute(Schema.target_prop_type, this._Type),
-				WriteValueAttribute(Schema.target_prop_default, this._Type, this._DefaultValue));
-		}
-
-		#endregion
-
-		#region INotifyPropertyChanged Members
-
-		public event EventHandler ValueChanged;
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		private void OnValueChanged()
-		{
-			var handler = this.ValueChanged;
-			if(handler != null)
-				handler(this, EventArgs.Empty);
-			this.OnPropertyChanged("Value");
-		}
-
-		private void OnPropertyChanged(string name)
-		{
-			var handler = this.PropertyChanged;
-			if(handler != null)
-				handler(this, new PropertyChangedEventArgs(name));
+				this._Handler.WriteValueAttribute(Schema.target_prop_default, this._DefaultValue));
 		}
 
 		#endregion

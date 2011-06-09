@@ -83,7 +83,7 @@ namespace Animator.Core.Model.Sessions
 		{
 			this._Row = (int?)element.Attribute(Schema.sesclip_row);
 			this._State = (ClipState)Enum.Parse(typeof(ClipState), (string)element.Attribute(Schema.sesclip_state));
-			this._Duration = (Time)(float)element.Attribute(Schema.sesclip_dur);
+			this._Duration = (float)element.Attribute(Schema.sesclip_dur);
 		}
 
 		#endregion

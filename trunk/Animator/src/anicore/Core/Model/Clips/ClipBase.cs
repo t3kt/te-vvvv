@@ -68,10 +68,12 @@ namespace Animator.Core.Model.Clips
 
 		protected abstract float GetPosition([NotNull] Transport.Transport transport);
 
-		internal virtual void PushTargetChanges([NotNull] TargetObject target, [NotNull] Transport.Transport transport)
+		internal void PushTargetChanges([NotNull] TargetObject target, [NotNull] Transport.Transport transport)
 		{
 			Require.DBG_ArgNotNull(target, "target");
 			Require.DBG_ArgNotNull(transport, "transport");
+			if(!this.IsActive(transport))
+				return;
 			var pos = this.GetPosition(transport);
 			foreach(var prop in this._Properties)
 				target.SetValue(prop.Name, prop.GetValue(pos));

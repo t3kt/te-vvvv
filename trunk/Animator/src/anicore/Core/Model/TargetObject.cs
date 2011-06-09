@@ -12,6 +12,77 @@ using TESharedAnnotations;
 namespace Animator.Core.Model
 {
 
+	#region TargetPropertyValueChangedEventArgs
+
+	public sealed class TargetPropertyValueChangedEventArgs : EventArgs
+	{
+
+		#region Static/Constant
+
+		internal const string KeyNameSeparator = "#";
+
+		#endregion
+
+		#region Fields
+
+		private readonly string _OutputKey;
+		private readonly string _Name;
+		private readonly object _Value;
+
+		#endregion
+
+		#region Properties
+
+		public string OutputKey
+		{
+			get { return this._OutputKey; }
+		}
+
+		public string Name
+		{
+			get { return this._Name; }
+		}
+
+		public object Value
+		{
+			get { return this._Value; }
+		}
+
+		#endregion
+
+		#region Constructors
+
+		public TargetPropertyValueChangedEventArgs(string outputKey, string name, object value)
+		{
+			this._OutputKey = outputKey;
+			this._Name = name;
+			this._Value = value;
+		}
+
+		#endregion
+
+		#region Methods
+
+		private string GetTargetKey()
+		{
+			if(String.IsNullOrEmpty(this._OutputKey))
+				return this._Name ?? String.Empty;
+			if(String.IsNullOrEmpty(this._Name))
+				return this._OutputKey;
+			return this._OutputKey + KeyNameSeparator + this._Name;
+		}
+
+		internal OutputMessage BuildOutputMessage()
+		{
+			return new OutputMessage(this.GetTargetKey(), this._Value);
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
 	#region TargetObject
 
 	public sealed class TargetObject : DocumentItem, IEquatable<TargetObject>
@@ -56,6 +127,19 @@ namespace Animator.Core.Model
 
 		#endregion
 
+		#region Events
+
+		public event EventHandler<TargetPropertyValueChangedEventArgs> PropertyValueChanged;
+
+		private void OnPropertyValueChanged(string name, object value)
+		{
+			var handler = this.PropertyValueChanged;
+			if(handler != null)
+				handler(this, new TargetPropertyValueChangedEventArgs(this.OutputKey, name, value));
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public TargetObject()
@@ -73,7 +157,7 @@ namespace Animator.Core.Model
 			this.OutputKey = (string)element.Attribute(Schema.target_key);
 			this._Properties = new Dictionary<string, TargetProperty>(PropertyNameComparer);
 			foreach(var e in element.Elements(Schema.target_prop))
-				this.ReadProperty(e);
+				this.Add(new TargetProperty(e));
 		}
 
 		#endregion
@@ -85,24 +169,26 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Properties");
 		}
 
+		private void Property_ValueChanged(object sender, EventArgs e)
+		{
+			Debug.Assert(sender is TargetProperty);
+			var prop = (TargetProperty)sender;
+			//if(prop != null)
+			this.OnPropertyValueChanged(prop.Name, prop.Value);
+		}
+
 		private void Add(TargetProperty property)
 		{
 			Require.ArgNotNull(property, "property");
 			this._Properties.Add(property.Name, property);
 			property.PropertyChanged += this.Property_PropertyChanged;
+			property.ValueChanged += this.Property_ValueChanged;
 			this.OnPropertyChanged("Properties");
-		}
-
-		private void ReadProperty(XElement element)
-		{
-			Require.ArgNotNull(element, "element");
-			var property = new TargetProperty(this, element);
-			this.Add(property);
 		}
 
 		public TargetProperty Add(string name, TargetPropertyType type, object defaultValue)
 		{
-			var property = new TargetProperty(this, name, type, defaultValue);
+			var property = new TargetProperty(name, type, defaultValue);
 			this.Add(property);
 			return property;
 		}
@@ -124,6 +210,7 @@ namespace Animator.Core.Model
 			if(!this._Properties.TryGetValue(name, out property))
 				return false;
 			property.PropertyChanged -= this.Property_PropertyChanged;
+			property.ValueChanged -= this.Property_ValueChanged;
 			var removed = this._Properties.Remove(name);
 			Debug.Assert(removed);
 			this.OnPropertyChanged("Properties");
@@ -138,22 +225,7 @@ namespace Animator.Core.Model
 				ModelUtil.WriteXElements(this.Properties));
 		}
 
-		internal OutputMessage BuildPropertyValueMessage(TargetProperty property)
-		{
-			if(property == null)
-				return null;
-			var key = this.OutputKey + property.Name;
-			return new OutputMessage(key, property.Value);
-		}
-
-		internal IEnumerable<OutputMessage> BuildPropertyValueMessages()
-		{
-			if(this._Properties == null)
-				return Enumerable.Empty<OutputMessage>();
-			return this._Properties.Values.Select(this.BuildPropertyValueMessage).Where(m => m != null);
-		}
-
-		internal bool SetValue(string name, object value)
+		public bool SetValue(string name, object value)
 		{
 			var property = this.Get(name);
 			if(property == null)
@@ -162,13 +234,30 @@ namespace Animator.Core.Model
 			return true;
 		}
 
-		internal bool ClearValue(string name)
+		public bool SetDefaultValue(string name, object value)
+		{
+			var property = this.Get(name);
+			if(property == null)
+				return false;
+			property.DefaultValue = value;
+			return true;
+		}
+
+		public bool ClearValue(string name)
 		{
 			var property = this.Get(name);
 			if(property == null)
 				return false;
 			property.ClearValue();
 			return true;
+		}
+
+		public object GetValue(string name)
+		{
+			object value;
+			if(!this.GetValue(name, out value))
+				throw new KeyNotFoundException(String.Format("TargetProperty not found: '{0}'", name));
+			return value;
 		}
 
 		internal bool GetValue(string name, out object value)

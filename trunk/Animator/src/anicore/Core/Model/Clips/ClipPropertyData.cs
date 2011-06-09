@@ -17,7 +17,7 @@ namespace Animator.Core.Model.Clips
 
 		#region Static / Constant
 
-		internal static readonly StringComparer NameComparer = StringComparer.OrdinalIgnoreCase;
+		private static readonly StringComparer NameComparer = StringComparer.OrdinalIgnoreCase;
 
 		#endregion
 
@@ -34,7 +34,7 @@ namespace Animator.Core.Model.Clips
 			get { return this._Name; }
 			set
 			{
-				if(value != this._Name)
+				if(!NameComparer.Equals(value, this._Name))
 				{
 					this._Name = value;
 					this.OnPropertyChanged("Name");
@@ -77,7 +77,7 @@ namespace Animator.Core.Model.Clips
 
 		#region INotifyPropertyChanged Members
 
-		protected virtual void OnPropertyChanged(string name)
+		protected void OnPropertyChanged(string name)
 		{
 			var handler = this.PropertyChanged;
 			if(handler != null)

@@ -46,37 +46,32 @@ namespace Animator.Core.Composition
 
 		#region Properties
 
-		public AggregateCatalog Catalog
-		{
-			get { return this._Catalog; }
-		}
-
 		public CompositionContainer Container
 		{
 			get { return this._Container; }
 		}
 
-		internal IEnumerable<Lazy<ClipPropertyData, IAniExportMetadata>> ClipPropertyDatas
+		private IEnumerable<Lazy<ClipPropertyData, IAniExportMetadata>> ClipPropertyDatas
 		{
 			get { return this._Container.GetExports<ClipPropertyData, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<Transport.Transport, IAniExportMetadata>> Transports
+		private IEnumerable<Lazy<Transport.Transport, IAniExportMetadata>> Transports
 		{
 			get { return this._Container.GetExports<Transport.Transport, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<Output, IAniExportMetadata>> Outputs
+		private IEnumerable<Lazy<Output, IAniExportMetadata>> Outputs
 		{
 			get { return this._Container.GetExports<Output, IAniExportMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>> ClipPropertyDataEditors
+		private IEnumerable<Lazy<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>> ClipPropertyDataEditors
 		{
 			get { return this._Container.GetExports<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>(); }
 		}
 
-		internal IEnumerable<Lazy<IPropertyEditor, IPropertyEditorMetadata>> PropertyEditors
+		private IEnumerable<Lazy<IPropertyEditor, IPropertyEditorMetadata>> PropertyEditors
 		{
 			get { return this._Container.GetExports<IPropertyEditor, IPropertyEditorMetadata>(); }
 		}

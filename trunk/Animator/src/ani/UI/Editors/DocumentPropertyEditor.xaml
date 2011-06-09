@@ -11,14 +11,8 @@
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Name:" />
 		<TextBox Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetName}"/>
-		<Label Grid.Row="1" Content="Rows:" />
-		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetUIRows}"/>
-		<Label Grid.Row="2" Content="Columns:" />
-		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type editor:DocumentPropertyEditor}}, Path=TargetUIColumns}"/>
 	</Grid>
 </ctl:PropertyEditor>

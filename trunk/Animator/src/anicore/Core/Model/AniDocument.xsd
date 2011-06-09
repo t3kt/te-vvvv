@@ -59,8 +59,6 @@
 							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
-					<xs:attribute name="ui-rows" type="xs:nonNegativeInteger"/>
-					<xs:attribute name="ui-cols" type="xs:nonNegativeInteger"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>

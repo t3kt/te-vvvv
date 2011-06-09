@@ -11,7 +11,7 @@ namespace Animator.Core.Runtime
 
 	public delegate void TargetPropertyChangedEventHandler(object sender, TargetPropertyChangedEventArgs e);
 
-	public class TargetPropertyChangedEventArgs : RoutedEventArgs
+	public sealed class TargetPropertyChangedEventArgs : RoutedEventArgs
 	{
 
 		#region Static/Constant

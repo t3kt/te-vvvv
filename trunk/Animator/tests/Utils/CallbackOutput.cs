@@ -11,11 +11,15 @@ namespace Animator.Tests.Utils
 
 	#region CallbackOutput
 
-	[Output(Key = "test.callback")]
+	[Output(Key = Export_Key)]
 	internal sealed class CallbackOutput : Output
 	{
 
 		#region Static / Constant
+
+		internal new const string Export_Key = "test.callback";
+		internal new const string Export_ElementName = null;
+		internal new const string Export_Description = "Callback TEST Output";
 
 		#endregion
 

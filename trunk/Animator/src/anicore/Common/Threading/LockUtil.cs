@@ -14,30 +14,6 @@ namespace Animator.Common.Threading
 	internal static class LockUtil
 	{
 
-		//[NotNull]
-		//public static IDisposable ReadScope([NotNull] this ReaderWriterLockSlim lok)
-		//{
-		//    Require.ArgNotNull(lok, "lok");
-		//    lok.EnterReadLock();
-		//    return new ActionScope(lok.ExitReadLock);
-		//}
-
-		//[NotNull]
-		//public static IDisposable WriteScope([NotNull] this ReaderWriterLockSlim lok)
-		//{
-		//    Require.ArgNotNull(lok, "lok");
-		//    lok.EnterWriteLock();
-		//    return new ActionScope(lok.ExitWriteLock);
-		//}
-
-		//[NotNull]
-		//public static IDisposable UpgradeableReadScope([NotNull] this ReaderWriterLockSlim lok)
-		//{
-		//    Require.ArgNotNull(lok, "lok");
-		//    lok.EnterUpgradeableReadLock();
-		//    return new ActionScope(lok.ExitUpgradeableReadLock);
-		//}
-
 		/// <summary>
 		/// Creates a <see cref="ReaderWriterLockSlimReadScope"/>, in which <paramref name="lok"/> holds
 		/// a read lock.

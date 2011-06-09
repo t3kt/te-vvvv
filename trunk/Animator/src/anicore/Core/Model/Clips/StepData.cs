@@ -8,7 +8,6 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
 
 namespace Animator.Core.Model.Clips
 {
