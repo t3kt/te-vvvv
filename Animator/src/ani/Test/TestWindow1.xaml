@@ -28,7 +28,6 @@
 			</my3:CustomUniformGrid>
 		</Border>
 		<my4:ClipCell x:Name="clipCell1" Width="100" Canvas.Left="299" Canvas.Top="58"/>
-		<Button Canvas.Left="346" Canvas.Top="283" Content="Show Add Clip" Name="showAddClipButton" Click="showAddClipButton_Click" />
 		<pg:PropertyGrid Name="propgrid" Canvas.Left="588" Canvas.Top="240" MinHeight="270" MinWidth="232">
 			<pg:PropertyGrid.Layout>
 				<pgdes:CategorizedLayout/>

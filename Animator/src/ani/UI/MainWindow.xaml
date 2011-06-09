@@ -42,7 +42,6 @@
 		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
 		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
-		<CommandBinding Command="appCore:AniAppCommands.AddClip" Executed="AddClipCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.EditTransport" Executed="EditTransportCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AboutApplication" Executed="AboutApplicationCommand_Executed"/>
@@ -92,7 +91,6 @@
 				<MenuItem Command="appCore:AniAppCommands.EditTransport" Header="Document _Transport" />
 			</MenuItem>
 			<MenuItem Header="_Add" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
-				<MenuItem Command="appCore:AniAppCommands.AddClip" Header="_Clip" />
 				<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
 			</MenuItem>
 			<MenuItem Header="_View">
@@ -123,7 +121,6 @@
 				<RowDefinition Height="200"/>
 			</Grid.RowDefinitions>
 			<GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
-			<panes:ClipEditorPane Grid.Row="2" x:Name="activeClipEditorPane" Visibility="{Binding ElementName=clipEditMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" ActiveClip="{Binding ElementName=documentClipGrid, Path=ActiveClip}" />
 			<TabControl IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=HasActiveDocument}">
 				<TabItem>
 					<TabItem.Header>
@@ -132,7 +129,6 @@
 							<TextBlock Text="Session"/>
 						</StackPanel>
 					</TabItem.Header>
-					<ses:DocumentClipGridPane x:Name="documentClipGrid" ActiveDocument="{Binding ElementName=mainWindow, Path=ActiveDocument}" PaneHeaderVisibility="Collapsed" />
 				</TabItem>
 				<TabItem IsEnabled="False">
 					<TabItem.Header>
@@ -164,15 +160,6 @@
 								</panes:OutputPropertiesPane>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
-					</ListBox>
-				</TabItem>
-				<TabItem Header="Clips">
-					<ListBox x:Name="clipsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Clips}" DisplayMemberPath="Name">
-						<!--<ListBox.ItemTemplate>
-							<DataTemplate DataType="{x:Type model:Clip}">
-								<panes:ClipPropertiesPane PaneHeader="{Binding Path=Name}" PaneHeaderVisibility="Collapsed"></panes:ClipPropertiesPane>
-							</DataTemplate>
-						</ListBox.ItemTemplate>-->
 					</ListBox>
 				</TabItem>
 			</TabControl>

@@ -69,7 +69,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AniApp\ClipDataEditorsUnitTest.cs" />
     <Compile Include="CategoryNames.cs" />
     <Compile Include="ClipDataUnitTest.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
@@ -109,7 +108,9 @@
   <ItemGroup>
     <Shadow Include="Test References\ani.accessor" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AniApp\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

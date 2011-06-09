@@ -51,12 +51,6 @@ namespace Animator.Test
 
 		#endregion
 
-		private void showAddClipButton_Click(object sender, RoutedEventArgs e)
-		{
-			var dlg = new AddClipDialog { Owner = this };
-			dlg.ShowDialog();
-		}
-
 		private void attachDocToPropGridButton_Click(object sender, RoutedEventArgs e)
 		{
 			this.propgrid.SelectedObject = AniApplication.CurrentActiveDocument;

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Core.Composition;
+using Animator.Core.Runtime;
 
 namespace Animator.Core.Model.Clips
 {
@@ -18,6 +19,7 @@ namespace Animator.Core.Model.Clips
 		Key = Export_Key,
 		ElementName = Export_ElementName,
 		Description = Export_Description)]
+	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.StepDataEditor, " + TEShared.AssemblyRef.ani)]
 	public sealed class StepData : ClipPropertyData
 	{
 
@@ -73,9 +75,9 @@ namespace Animator.Core.Model.Clips
 			if(this._Steps.Count == 0)
 				return 0;
 			position = CommonUtil.Clamp(position, 0, 1);
-			var i = position*this._Steps.Count;
+			var i = position * this._Steps.Count;
 			var j = (float)Math.Floor(i);
-			return (int) CommonUtil.Clamp(j, 0, this._Steps.Count - 1);
+			return (int)CommonUtil.Clamp(j, 0, this._Steps.Count - 1);
 			//return (int)Math.Floor(CommonUtil.MapClamped(position, 0f, 1f, 0f, this._Steps.Count - 1));
 		}
 

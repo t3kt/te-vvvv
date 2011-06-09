@@ -44,21 +44,6 @@ namespace Animator.Core.Model
 			return source == null ? null : source.FirstOrDefault(x => x != null && x.Id == id);
 		}
 
-		[CanBeNull]
-		internal static T FindById<T>(this IEnumerable<IItemContainer<T>> containers, Guid id)
-			where T : class, IGuidId
-		{
-			if(containers == null)
-				return null;
-			foreach(var container in containers)
-			{
-				var item = container.FindById(id);
-				if(item != null)
-					return item;
-			}
-			return null;
-		}
-
 		internal static IEnumerable<XElement> WriteXElements(IEnumerable<IXElementWritable> source, XName name = null)
 		{
 			if(source == null)

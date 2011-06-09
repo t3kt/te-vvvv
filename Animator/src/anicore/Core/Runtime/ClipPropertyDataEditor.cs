@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 
 namespace Animator.Core.Runtime
 {
 
-	#region ClipDataEditorAttribute
+	#region ClipPropertyDataEditorAttribute
 
 	[AttributeUsage(AttributeTargets.Class, Inherited = false)]
-	public sealed class ClipDataEditorAttribute : Attribute
+	public sealed class ClipPropertyDataEditorAttribute : Attribute
 	{
 
 		#region Static/Constant
@@ -19,6 +19,7 @@ namespace Animator.Core.Runtime
 
 		#region Fields
 
+		private bool _IsReusable = true;
 		private readonly Type _EditorType;
 		private readonly string _EditorTypeName;
 
@@ -36,22 +37,24 @@ namespace Animator.Core.Runtime
 			get { return this._EditorTypeName; }
 		}
 
-		public bool IsReusable { get; set; }
+		public bool IsReusable
+		{
+			get { return this._IsReusable; }
+			set { this._IsReusable = value; }
+		}
 
 		#endregion
 
 		#region Constructors
 
-		public ClipDataEditorAttribute(Type editorType)
+		public ClipPropertyDataEditorAttribute(Type editorType)
 		{
 			this._EditorType = editorType;
-			this.IsReusable = true;
 		}
 
-		public ClipDataEditorAttribute(string editorTypeName)
+		public ClipPropertyDataEditorAttribute(string editorTypeName)
 		{
 			this._EditorTypeName = editorTypeName;
-			this.IsReusable = true;
 		}
 
 		#endregion
@@ -71,12 +74,12 @@ namespace Animator.Core.Runtime
 
 	#endregion
 
-	#region IClipDataEditor
+	#region IClipPropertyDataEditor
 
-	public interface IClipDataEditor
+	public interface IClipPropertyDataEditor
 	{
 
-		Clip Clip { get; set; }
+		ClipPropertyData ClipPropertyData { get; set; }
 
 	}
 

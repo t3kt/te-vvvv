@@ -69,9 +69,8 @@
     <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
-    <Compile Include="Core\Composition\Clip.cs" />
-    <Compile Include="Core\Composition\ClipDataEditor.cs" />
     <Compile Include="Core\Composition\ClipPropertyData.cs" />
+    <Compile Include="Core\Composition\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Composition\Output.cs" />
     <Compile Include="Core\Composition\PropertyEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="Core\Model\Clips\ConstData.cs" />
     <Compile Include="Core\Model\Clips\StepData.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
-    <Compile Include="Core\Model\Clip.cs" />
     <Compile Include="Core\Model\Document.cs" />
     <Compile Include="Core\Model\DocumentItem.cs" />
     <Compile Include="Core\Model\IDocumentItem.cs" />
@@ -95,14 +93,13 @@
     <Compile Include="Core\Model\Sessions\Session.cs" />
     <Compile Include="Core\Model\Sessions\SessionClip.cs" />
     <Compile Include="Core\Model\Sessions\SessionTrack.cs" />
-    <Compile Include="Core\Model\StepClip.cs" />
     <Compile Include="Core\Model\TargetObject.cs" />
     <Compile Include="Core\Model\TargetProperty.cs" />
     <Compile Include="Core\IO\OutputMessage.cs" />
     <Compile Include="Core\Model\TrackBase.cs" />
     <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\NativeMethods.cs" />
-    <Compile Include="Core\Runtime\ClipDataEditor.cs" />
+    <Compile Include="Core\Runtime\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IPropertyEditor.cs" />

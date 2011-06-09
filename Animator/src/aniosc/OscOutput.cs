@@ -16,7 +16,10 @@ namespace Animator.Osc
 
 	#region OscOutput
 
-	[Output(ElementName = "oscoutput", Key = "osc", Description = "OSC Output")]
+	[Output(
+		Key = Export_Key,
+		ElementName = Export_ElementName,
+		Description = Export_Description)]
 	public sealed class OscOutput : Output
 	{
 
@@ -24,7 +27,7 @@ namespace Animator.Osc
 
 		private static class Schema
 		{
-			public static readonly XName oscoutput = "oscoutput";
+			public static readonly XName oscoutput = Export_ElementName;
 			public static readonly XName oscoutput_host = "host";
 			public static readonly XName oscoutput_port = "port";
 		}
@@ -32,6 +35,10 @@ namespace Animator.Osc
 		#endregion
 
 		#region Static / Constant
+
+		internal const string Export_Key = "osc";
+		internal const string Export_ElementName = "oscoutput";
+		internal const string Export_Description = "OSC Output";
 
 		private static OscPacket BuildPacket(OutputMessage message)
 		{

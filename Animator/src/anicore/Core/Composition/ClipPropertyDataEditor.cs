@@ -1,18 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using Animator.Core.Runtime;
 
 namespace Animator.Core.Composition
 {
 
-	#region ClipDataEditor
+	#region ClipPropertyDataEditorAttribute
 
-	[MetadataAttribute]
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class ClipDataEditorTypeAttribute : AniExportAttribute
+	public sealed class ClipPropertyDataEditorAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -25,7 +22,7 @@ namespace Animator.Core.Composition
 
 		#region Properties
 
-		public Type ClipType { get; set; }
+		public Type ClipDataType { get; set; }
 
 		public bool Reusable { get; set; }
 
@@ -33,8 +30,8 @@ namespace Animator.Core.Composition
 
 		#region Constructors
 
-		public ClipDataEditorTypeAttribute()
-			: base(typeof(IClipDataEditor)) { }
+		public ClipPropertyDataEditorAttribute()
+			: base(typeof(IClipPropertyDataEditor)) { }
 
 		#endregion
 
@@ -46,11 +43,11 @@ namespace Animator.Core.Composition
 
 	#endregion
 
-	#region IClipDataEditorMetadata
+	#region IClipPropertyDataEditorMetadata
 
-	public interface IClipDataEditorMetadata : IAniExportMetadata
+	public interface IClipPropertyDataEditorMetadata : IAniExportMetadata
 	{
-		Type ClipType { get; }
+		Type ClipDataType { get; }
 		bool Reusable { get; }
 	}
 

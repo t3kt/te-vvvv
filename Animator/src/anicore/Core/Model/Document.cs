@@ -132,7 +132,6 @@ namespace Animator.Core.Model
 		private readonly AniHost _Host;
 
 		private readonly ObservableCollection<Output> _Outputs;
-		private readonly ObservableCollection<Clip> _Clips;
 		private readonly ObservableCollection<Sequence> _Sequences;
 		private readonly ObservableCollection<Session> _Sessions;
 		private Guid _Id;
@@ -209,12 +208,6 @@ namespace Animator.Core.Model
 		}
 
 		[Browsable(false)]
-		public ObservableCollection<Clip> Clips
-		{
-			get { return this._Clips; }
-		}
-
-		[Browsable(false)]
 		public ObservableCollection<Sequence> Sequences
 		{
 			get { return this._Sequences; }
@@ -254,12 +247,6 @@ namespace Animator.Core.Model
 					this.OnPropertyChanged("UIColumns");
 				}
 			}
-		}
-
-		[Browsable(false)]
-		public IEnumerable<Clip> ActiveClips
-		{
-			get { return this._Clips == null ? Enumerable.Empty<Clip>() : this._Clips.Where(c => c.IsPlaying); }
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
@@ -306,8 +293,6 @@ namespace Animator.Core.Model
 			this._Host = host ?? AniHost.Current;
 			this._TransportData = new TransportData();
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
-			this._Clips = new ObservableCollection<Clip>();
-			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
 			this._Sequences = new ObservableCollection<Sequence>();
 			this._Sequences.CollectionChanged += this.Sequences_CollectionChanged;
 			this._Sessions = new ObservableCollection<Session>();
@@ -390,11 +375,6 @@ namespace Animator.Core.Model
 			return this.Outputs.FindById(id);
 		}
 
-		public Clip GetClip(Guid id)
-		{
-			return this.Clips.FindById(id);
-		}
-
 		public Sequence GetSequence(Guid id)
 		{
 			return this.Sequences.FindById(id);
@@ -409,25 +389,6 @@ namespace Animator.Core.Model
 					return target;
 			}
 			return null;
-		}
-
-		internal void PostClipOutput(Clip clip, Transport.Transport transport)
-		{
-			Require.ArgNotNull(transport, "transport");
-			if(clip == null || !clip.IsPlaying || clip.OutputId == null)
-				return;
-			var output = this.GetOutput(clip.OutputId.Value);
-			if(output == null)
-				return;
-			var message = clip.BuildOutputMessage(transport);
-			output.PostMessage(message);
-		}
-
-		public void PostActiveClipOutputs(Transport.Transport transport)
-		{
-			Require.ArgNotNull(transport, "transport");
-			foreach(var clip in this.ActiveClips.ToArray())
-				this.PostClipOutput(clip, transport);
 		}
 
 		private void ReadXElement(XElement element, AniHost host)
@@ -452,9 +413,6 @@ namespace Animator.Core.Model
 			var outputsElement = element.Element(Schema.anidoc_outputs);
 			if(outputsElement != null)
 				this.Outputs.AddRange(outputsElement.Elements().Select(host.ReadOutputXElement));
-			var clipsElement = element.Element(Schema.anidoc_clips);
-			if(clipsElement != null)
-				this.Clips.AddRange(clipsElement.Elements().Select(host.ReadClipXElement));
 			var sequencesElement = element.Element(Schema.anidoc_sequences);
 			if(sequencesElement != null)
 				this.Sequences.AddRange(sequencesElement.Elements().Select(e => new Sequence(e, this, host)));
@@ -477,7 +435,6 @@ namespace Animator.Core.Model
 				ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
 				this._TransportData.WriteXElement(),
 				ModelUtil.WriteListXElement(this._Outputs, Schema.anidoc_outputs),
-				ModelUtil.WriteListXElement(this._Clips, Schema.anidoc_clips),
 				ModelUtil.WriteListXElement(this._Sequences, Schema.anidoc_sequences),
 				ModelUtil.WriteListXElement(this._Sessions, Schema.anidoc_sessions),
 				ModelUtil.WriteOptionalValueAttribute(Schema.anidoc_ui_rows, this.UIRows),
@@ -527,9 +484,6 @@ namespace Animator.Core.Model
 		{
 			if(this.Id == id)
 				return this;
-			var clip = this.GetClip(id);
-			if(clip != null)
-				return clip;
 			var output = this.GetOutput(id);
 			if(output != null)
 				return output;
