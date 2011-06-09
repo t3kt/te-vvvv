@@ -23,6 +23,7 @@ namespace Animator.Tests
 		public const string DoubleLinkedStack = "DoubleLinkedStack";
 		public const string LimitedStack = "LimitedStack";
 		public const string LinkedStack = "LinkedStack";
+		public const string ClipData = "ClipData";
 
 	}
 

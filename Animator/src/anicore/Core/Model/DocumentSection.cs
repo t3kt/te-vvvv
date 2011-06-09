@@ -14,7 +14,7 @@ namespace Animator.Core.Model
 
 	#region DocumentSection
 
-	public abstract class DocumentSection : DocumentItem, IClipRefContainer
+	public abstract class DocumentSection : DocumentItem
 	{
 
 		#region Static/Constant
@@ -58,27 +58,6 @@ namespace Animator.Core.Model
 			Require.ArgNotNull(transport, "transport");
 			foreach(var track in this.TracksInternal)
 				track.PushTargetChanges(transport);
-		}
-
-		#endregion
-
-		#region IClipRefContainer Members
-
-		public IEnumerable<ClipReference> Clips
-		{
-			get
-			{
-				return from track in this.TracksInternal
-					   from clip in track.ClipsInternal
-					   select clip;
-			}
-		}
-
-		public IEnumerable<ClipReference> GetActiveClips(Transport.Transport transport)
-		{
-			return from track in this.TracksInternal
-				   from clip in track.GetActiveClips(transport)
-				   select clip;
 		}
 
 		#endregion

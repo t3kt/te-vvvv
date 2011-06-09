@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
-using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sessions
@@ -51,11 +50,11 @@ namespace Animator.Core.Model.Sessions
 		public Session([NotNull]Document document)
 			: this(Guid.NewGuid(), document) { }
 
-		public Session([NotNull] XElement element, [NotNull] Document document)
+		public Session([NotNull] XElement element, [NotNull] Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
 			this.Rows = (int?)element.Attribute(Schema.session_rows);
-			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SessionTrack(e, document)));
+			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SessionTrack(e, document, host)));
 		}
 
 		#endregion

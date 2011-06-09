@@ -65,31 +65,32 @@ namespace Animator.Core.Model
 		public static readonly XName stepclip = "stepclip";
 		public static readonly XName stepclip_step = "step";
 
-		public static readonly XName clipref = "clipref";
-		public static readonly XName clipref_clip_id = "clip-id";
-
 		public static readonly XName sequence = "sequence";
 		public static readonly XName sequence_dur = common_dur;
 
 		public static readonly XName seqtrack = "seqtrack";
-
-		public static readonly XName seqclipref = "seqclipref";
-		public static readonly XName seqclipref_start = "start";
-		public static readonly XName seqclipref_dur = common_dur;
 
 		public static readonly XName session = "session";
 		public static readonly XName session_rows = "rows";
 
 		public static readonly XName sestrack = "sestrack";
 
-		public static readonly XName sesclipref = "sesclipref";
-		public static readonly XName sesclipref_row = "row";
-		public static readonly XName sesclipref_state = "state";
-
-		public static readonly XName constprop = "constprop";
+		public static readonly XName constprop = Clips.ConstData.Export_ElementName;
 		public static readonly XName constprop_value = "value";
 
+		public static readonly XName stepprop = Clips.StepData.Export_ElementName;
+		public static readonly XName stepprop_step = "step";
+
 		public static readonly XName clipbase_props = "props";
+
+		public static readonly XName sesclip = "sesclip";
+		public static readonly XName sesclip_row = "row";
+		public static readonly XName sesclip_state = "state";
+		public static readonly XName sesclip_dur = common_dur;
+
+		public static readonly XName seqclip = "seqclip";
+		public static readonly XName seqclip_start = "start";
+		public static readonly XName seqclip_dur = common_dur;
 
 	}
 

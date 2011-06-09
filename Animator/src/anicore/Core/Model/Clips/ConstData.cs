@@ -11,11 +11,17 @@ namespace Animator.Core.Model.Clips
 
 	#region ConstData
 
-	[ClipPropertyData(Key = "const", Description = "Constant Value Data", ElementName = "constprop")]
+	[ClipPropertyData(
+		Key = Export_Key,
+		ElementName = Export_ElementName,
+		Description = Export_Description)]
 	public sealed class ConstData : ClipPropertyData
 	{
-
 		#region Static / Constant
+
+		internal const string Export_Key = "const";
+		internal const string Export_ElementName = "constprop";
+		internal const string Export_Description = "Constant Value Data";
 
 		#endregion
 
