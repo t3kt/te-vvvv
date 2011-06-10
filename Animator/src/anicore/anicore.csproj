@@ -106,7 +106,6 @@
     <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IPropertyEditor.cs" />
     <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
-    <Compile Include="Core\Transport\ManualTransport.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />

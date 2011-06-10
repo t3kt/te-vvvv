@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,13 +74,113 @@ namespace Animator.Tests
 		{
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
-			Assert.IsInstanceOfType(doc.Transport, typeof(Transport.NullTransport));
+			Assert.IsInstanceOfType(doc.Transport, typeof(NullTransport));
 			doc.TransportType = "dummy";
 			Assert.IsInstanceOfType(doc.Transport, typeof(DummyTransport));
 			doc.TransportType = null;
-			Assert.IsInstanceOfType(doc.Transport, typeof(Transport.NullTransport));
+			Assert.IsInstanceOfType(doc.Transport, typeof(NullTransport));
 			doc.TransportType = "media";
 			Assert.IsInstanceOfType(doc.Transport, typeof(MediaTransport));
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Transport)]
+		public void SanfordMultimediaTimerTicks()
+		{
+			var toleranceMS = 20;
+			var toleranceTicks = 0;
+			var period = 10;
+			var reps = 10;
+			var sleep = period * reps;
+			using(var timer = new Sanford.Multimedia.Timers.Timer())
+			{
+				var caps = Sanford.Multimedia.Timers.Timer.Capabilities;
+				Trace.WriteLine(String.Format("CAPS periodMin: {0} ms", caps.periodMin));
+				Trace.WriteLine(String.Format("CAPS periodMax: {0} ms", caps.periodMax));
+
+				Trace.WriteLine(String.Format("period: {0}ms  reps: {1}  sleep: {2}ms", period, reps, sleep));
+
+				var tickCounter = new EventCounter();
+
+				timer.Tick += tickCounter.Handler;
+
+				Assert.AreEqual(0, tickCounter.Count);
+
+				timer.Period = period;
+
+				//{
+				//    var startTime = DateTime.UtcNow;
+				//    Trace.WriteLine(String.Format("Start time: {0}", startTime.ToLongTimeString()));
+				//    Thread.Sleep(sleep);
+				//    var endTime = DateTime.UtcNow;
+				//    Trace.WriteLine(String.Format("End time: {0}", endTime.ToLongTimeString()));
+				//    var diffTicks = endTime.Ticks - startTime.Ticks;
+				//    var diffMs = diffTicks / TimeSpan.TicksPerMillisecond;
+				//    Trace.WriteLine(String.Format("Duration: {0}ms", diffMs));
+
+				//    var err = Math.Abs(sleep - diffMs);
+				//    Assert.IsTrue(err <= toleranceMS);
+				//}
+
+				{
+					var startTime = DateTime.UtcNow;
+					Trace.WriteLine(String.Format("Start time: {0}", startTime.ToLongTimeString()));
+					timer.Start();
+					Thread.Sleep(sleep);
+					timer.Stop();
+					var endTime = DateTime.UtcNow;
+					Trace.WriteLine(String.Format("End time: {0}", endTime.ToLongTimeString()));
+					var dur = (endTime.Ticks - startTime.Ticks) / TimeSpan.TicksPerMillisecond;
+					Trace.WriteLine(String.Format("Duration: {0}ms", dur));
+					Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS);
+
+					Trace.WriteLine(String.Format("Tick count: {0}", tickCounter.Count));
+					Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks);
+				}
+			}
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Transport)]
+		public void MediaTransportTiming()
+		{
+			var toleranceMS = 20;
+			var toleranceTicks = 0;
+			var period = 5;
+			var reps = 4;
+			var sleep = period * reps;
+			using(var transport = new MediaTransport())
+			{
+
+				var tickCounter = new EventCounter();
+				tickCounter.ExtraAction = () => { Trace.WriteLine("..transport tick #" + tickCounter.Count); };
+				transport.Tick += tickCounter.Handler;
+
+				var caps = Sanford.Multimedia.Timers.Timer.Capabilities;
+				Trace.WriteLine(String.Format("CAPS periodMin: {0} ms", caps.periodMin));
+				Trace.WriteLine(String.Format("CAPS periodMax: {0} ms", caps.periodMax));
+
+
+				//Assert.AreEqual(MediaTransport_Accessor.DefaultPeriod, transport.Period);
+				transport.Period = period;
+				Trace.WriteLine(String.Format("Period: {0} ms", transport.Period));
+
+				Assert.AreEqual(0, tickCounter.Count);
+
+				var startTime = DateTime.UtcNow;
+				Trace.WriteLine(String.Format("Start time: {0}", startTime.ToLongTimeString()));
+				transport.Play();
+				Thread.Sleep(sleep);
+				transport.Stop();
+				var endTime = DateTime.UtcNow;
+				Trace.WriteLine(String.Format("End time: {0}", endTime.ToLongTimeString()));
+				var dur = (endTime.Ticks - startTime.Ticks) / TimeSpan.TicksPerMillisecond;
+				Trace.WriteLine(String.Format("Duration: {0}ms", dur));
+				Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS);
+
+				Trace.WriteLine(String.Format("Tick count: {0}", tickCounter.Count));
+				Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks);
+			}
 		}
 
 	}

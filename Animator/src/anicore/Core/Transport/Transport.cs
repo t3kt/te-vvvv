@@ -13,44 +13,6 @@ namespace Animator.Core.Transport
 	public abstract class Transport : IDisposable
 	{
 
-		#region NullTransport
-
-		[Transport(Key = "null", Description = "No Transport")]
-		internal sealed class NullTransport : Transport
-		{
-
-			#region ITransport Members
-
-			public override Time Position
-			{
-				get { return 0; }
-				set { }
-			}
-
-			public override TransportState State
-			{
-				get { return TransportState.Stopped; }
-				protected set { }
-			}
-
-			public override void Play()
-			{
-			}
-
-			public override void Stop()
-			{
-			}
-
-			public override void Pause()
-			{
-			}
-
-			#endregion
-
-		}
-
-		#endregion
-
 		#region Static / Constant
 
 		#endregion
@@ -171,6 +133,51 @@ namespace Animator.Core.Transport
 		{
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
+		}
+
+		#endregion
+
+	}
+
+	#endregion
+
+	#region NullTransport
+
+	[Transport(Key = Export_Key, Description = Export_Description)]
+	internal sealed class NullTransport : Transport
+	{
+
+		#region Static / Constant
+
+		internal const string Export_Key = "null";
+		internal const string Export_Description = "No Transport";
+
+		#endregion
+
+		#region ITransport Members
+
+		public override Time Position
+		{
+			get { return 0; }
+			set { }
+		}
+
+		public override TransportState State
+		{
+			get { return TransportState.Stopped; }
+			protected set { }
+		}
+
+		public override void Play()
+		{
+		}
+
+		public override void Stop()
+		{
+		}
+
+		public override void Pause()
+		{
 		}
 
 		#endregion

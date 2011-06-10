@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
+using Animator.Core.Transport;
 
-namespace Animator.Core.Transport
+namespace Animator.Tests.Utils
 {
 
 	#region ManualTransport

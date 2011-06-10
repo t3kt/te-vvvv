@@ -192,9 +192,9 @@ namespace Animator.Tests
 		public void GetTransportByKey()
 		{
 			var host = CreateHost(test: true, core: true);
-			Assert.IsInstanceOfType(host.CreateTransportByKey("null"), typeof(Transport.NullTransport));
-			Assert.IsInstanceOfType(host.CreateTransportByKey(null), typeof(Transport.NullTransport));
-			Assert.IsInstanceOfType(host.CreateTransportByKey(String.Empty), typeof(Transport.NullTransport));
+			Assert.IsInstanceOfType(host.CreateTransportByKey(NullTransport.Export_Key), typeof(NullTransport));
+			Assert.IsInstanceOfType(host.CreateTransportByKey(null), typeof(NullTransport));
+			Assert.IsInstanceOfType(host.CreateTransportByKey(String.Empty), typeof(NullTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey("manual"), typeof(ManualTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey("media"), typeof(MediaTransport));
 			Assert.IsInstanceOfType(host.CreateTransportByKey("dummy"), typeof(DummyTransport));

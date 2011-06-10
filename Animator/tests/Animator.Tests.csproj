@@ -85,6 +85,7 @@
     <Compile Include="Utils\CollectorOutput.cs" />
     <Compile Include="Utils\DummyTransport.cs" />
     <Compile Include="Utils\EventCounter.cs" />
+    <Compile Include="Utils\ManualTransport.cs" />
     <Compile Include="Utils\OutputMessageComparer.cs" />
     <Compile Include="Utils\TestUtil.cs" />
   </ItemGroup>
