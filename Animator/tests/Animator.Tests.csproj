@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ANIMATOR_TESTS_ASSEMBLY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -28,7 +28,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;ANIMATOR_TESTS_ASSEMBLY</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -80,13 +80,17 @@
     <Compile Include="RuntimeUnitTest.cs" />
     <Compile Include="SessionUnitTest.cs" />
     <Compile Include="TransportUnitTest.cs" />
+    <Compile Include="Utils\AniAssert.cs" />
     <Compile Include="Utils\CallbackOutput.cs" />
     <Compile Include="Utils\CallbackTraceListener.cs" />
     <Compile Include="Utils\CollectorOutput.cs" />
+    <Compile Include="Utils\DocumentItemComparer.cs" />
     <Compile Include="Utils\DummyTransport.cs" />
     <Compile Include="Utils\EventCounter.cs" />
     <Compile Include="Utils\ManualTransport.cs" />
+    <Compile Include="Utils\OutputComparer.cs" />
     <Compile Include="Utils\OutputMessageComparer.cs" />
+    <Compile Include="Utils\TargetComparer.cs" />
     <Compile Include="Utils\TestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AniApp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\shared\SharedAssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

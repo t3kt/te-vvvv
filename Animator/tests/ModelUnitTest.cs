@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Animator.Common;
+using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Transport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

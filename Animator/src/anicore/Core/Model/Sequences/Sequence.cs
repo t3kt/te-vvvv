@@ -24,19 +24,19 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
-		private Time _Duration;
+		private TimeSpan _Duration;
 
 		#endregion
 
 		#region Properties
 
 		[Category(TEShared.Names.Category_Transport)]
-		public Time Duration
+		public TimeSpan Duration
 		{
 			get { return this._Duration; }
 			set
 			{
-				Require.ArgPositive((float)value, "value");
+				Require.ArgPositive(value, "value");
 				if(value != this._Duration)
 				{
 					this._Duration = value;
@@ -58,7 +58,7 @@ namespace Animator.Core.Model.Sequences
 		public Sequence([NotNull] XElement element, [NotNull] Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
-			this.Duration = (float)element.Attribute(Schema.sequence_dur);
+			this.Duration = ModelUtil.ParseTimeSpan(element.Attribute(Schema.sequence_dur));
 			this.Tracks.AddRange(element.Elements(Schema.seqtrack).Select(e => new SequenceTrack(e, document, host)));
 		}
 
@@ -70,7 +70,7 @@ namespace Animator.Core.Model.Sequences
 		{
 			return new XElement(name ?? Schema.sequence,
 				this.WriteCommonXAttributes(),
-				new XAttribute(Schema.sequence_dur, (float)this.Duration),
+				ModelUtil.WriteXAttribute(Schema.sequence_dur, this._Duration),
 				ModelUtil.WriteXElements(this.Tracks));
 		}
 

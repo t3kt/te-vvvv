@@ -24,7 +24,7 @@ namespace Animator.Core.Transport
 		#region Properties
 
 		[Category(TEShared.Names.Category_Common)]
-		public abstract Time Position { get; set; }
+		public abstract TimeSpan Position { get; set; }
 
 		[Category(TEShared.Names.Category_Common)]
 		public abstract TransportState State { get; protected set; }
@@ -111,7 +111,7 @@ namespace Animator.Core.Transport
 		public virtual void Stop()
 		{
 			this.State = TransportState.Stopped;
-			this.Position = 0;
+			this.Position = TimeSpan.Zero;
 		}
 
 		public virtual void Pause()
@@ -156,9 +156,9 @@ namespace Animator.Core.Transport
 
 		#region ITransport Members
 
-		public override Time Position
+		public override TimeSpan Position
 		{
-			get { return 0; }
+			get { return TimeSpan.Zero; }
 			set { }
 		}
 

@@ -102,14 +102,30 @@ namespace Animator.Core.Model
 			return itemsA.OrderBy(x => x.Id).SequenceEqual(itemsB.OrderBy(x => x.Id));
 		}
 
-		internal static T? ParseNullableEnum<T>(string str, bool ignoreCase = false)
-			where T : struct
+		internal static bool ItemsEqual<T>(IEnumerable<T> itemsA, IEnumerable<T> itemsB, IEqualityComparer<T> comparer)
+			where T : IGuidId
 		{
-			if(String.IsNullOrEmpty(str))
-				return null;
-			return (T?)Enum.Parse(typeof(T), str, ignoreCase);
+			itemsA = itemsA == null ? Enumerable.Empty<T>() : itemsA.OrderBy(x => x.Id);
+			itemsB = itemsB == null ? Enumerable.Empty<T>() : itemsB.OrderBy(x => x.Id);
+			return itemsA.OrderBy(x => x.Id).SequenceEqual(itemsB.OrderBy(x => x.Id), comparer);
 		}
 
+		internal static TimeSpan ParseTimeSpan(XAttribute attribute)
+		{
+			Require.ArgNotNull(attribute, "attribute");
+			var seconds = (double)attribute;
+			return TimeSpan.FromSeconds(seconds);
+		}
+
+		internal static TimeSpan? ParseNullableTimeSpan(XAttribute attribute)
+		{
+			return attribute == null ? (TimeSpan?)null : ParseTimeSpan(attribute);
+		}
+
+		internal static XAttribute WriteXAttribute([NotNull]XName name, TimeSpan value)
+		{
+			return new XAttribute(name, value.TotalSeconds);
+		}
 	}
 
 	#endregion

@@ -34,11 +34,6 @@ namespace Animator.UI.Dialogs
 				new PropertyMetadata(Document.DefaultBeatsPerMinute), ValidateBeatsPerMinute);
 		}
 
-		private static bool ValidateDuration(object value)
-		{
-			return !(0.0f > (Time)value);
-		}
-
 		private static bool ValidateBeatsPerMinute(object value)
 		{
 			return (float)value > 0;

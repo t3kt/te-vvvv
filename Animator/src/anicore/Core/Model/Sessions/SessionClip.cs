@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model.Clips;
 using Animator.Core.Transport;
@@ -25,7 +26,7 @@ namespace Animator.Core.Model.Sessions
 
 		private int? _Row;
 		private ClipState _State;
-		private Time _Duration;
+		private TimeSpan _Duration;
 
 		#endregion
 
@@ -58,11 +59,12 @@ namespace Animator.Core.Model.Sessions
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		public Time Duration
+		public TimeSpan Duration
 		{
 			get { return this._Duration; }
 			set
 			{
+				Require.ArgNotNegative(value, "value");
 				if(value != this._Duration)
 				{
 					this._Duration = value;
@@ -83,7 +85,7 @@ namespace Animator.Core.Model.Sessions
 		{
 			this._Row = (int?)element.Attribute(Schema.sesclip_row);
 			this._State = (ClipState)Enum.Parse(typeof(ClipState), (string)element.Attribute(Schema.sesclip_state));
-			this._Duration = (float)element.Attribute(Schema.sesclip_dur);
+			this._Duration = ModelUtil.ParseTimeSpan(element.Attribute(Schema.sesclip_dur));
 		}
 
 		#endregion
@@ -96,7 +98,7 @@ namespace Animator.Core.Model.Sessions
 				this.WriteCommonXAttributes(),
 				ModelUtil.WriteOptionalValueAttribute(Schema.sesclip_row, this._Row),
 				new XAttribute(Schema.sesclip_state, this._State),
-				new XAttribute(Schema.sesclip_dur, (float)this._Duration),
+				new XAttribute(Schema.sesclip_dur, this._Duration),
 				this.WritePropertiesXElement());
 		}
 

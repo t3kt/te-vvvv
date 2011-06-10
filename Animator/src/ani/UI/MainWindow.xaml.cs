@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
 using Animator.AppCore;
+using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Properties;
 using Animator.Test;

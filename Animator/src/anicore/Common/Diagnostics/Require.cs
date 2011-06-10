@@ -45,12 +45,6 @@ namespace Animator.Common.Diagnostics
 				throw new ArgumentOutOfRangeException(name);
 		}
 
-		public static void ArgNotNegative(Time value, [InvokerParameterName]string name)
-		{
-			if(value < 0)
-				throw new ArgumentOutOfRangeException(name);
-		}
-
 		public static void ArgPositive(int value, [InvokerParameterName]string name)
 		{
 			if(value <= 0)
@@ -60,6 +54,18 @@ namespace Animator.Common.Diagnostics
 		public static void ArgPositive(float value, [InvokerParameterName]string name)
 		{
 			if(value <= 0)
+				throw new ArgumentOutOfRangeException(name);
+		}
+
+		public static void ArgNotNegative(TimeSpan value, [InvokerParameterName]string name)
+		{
+			if(value < TimeSpan.Zero)
+				throw new ArgumentOutOfRangeException(name);
+		}
+
+		public static void ArgPositive(TimeSpan value, [InvokerParameterName]string name)
+		{
+			if(value <= TimeSpan.Zero)
 				throw new ArgumentOutOfRangeException(name);
 		}
 

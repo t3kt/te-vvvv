@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using Animator.Core.Model;
+using Animator.Core.IO;
 
 namespace Animator.Core.Composition
 {

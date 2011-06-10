@@ -146,8 +146,8 @@ namespace Animator.Tests
 		{
 			var toleranceMS = 20;
 			var toleranceTicks = 0;
-			var period = 5;
-			var reps = 4;
+			var period = 10;
+			var reps = 10;
 			var sleep = period * reps;
 			using(var transport = new MediaTransport())
 			{
