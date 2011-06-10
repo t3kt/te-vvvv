@@ -128,6 +128,16 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="logoutput" substitutionGroup="output">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="OutputBaseType">
+					<xs:attribute name="path" type="xs:string" use="required"/>
+					<xs:attribute name="append" type="xs:boolean" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="traceoutput" substitutionGroup="output">
 		<xs:complexType>
 			<xs:complexContent>
@@ -180,13 +190,7 @@
 					<xs:sequence>
 						<xs:element ref="seqtrack" minOccurs="0" maxOccurs="unbounded"/>
 					</xs:sequence>
-					<xs:attribute name="dur" use="required">
-						<xs:simpleType>
-							<xs:restriction base="xs:float">
-								<xs:minExclusive value="0"/>
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
+					<xs:attribute name="dur" type="xs:double" use="required"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -208,14 +212,14 @@
 				<xs:extension base="ClipBaseType">
 					<xs:attribute name="start" use="required">
 						<xs:simpleType>
-							<xs:restriction base="xs:float">
+							<xs:restriction base="xs:double">
 								<xs:minInclusive value="0"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
 					<xs:attribute name="dur" use="required">
 						<xs:simpleType>
-							<xs:restriction base="xs:float">
+							<xs:restriction base="xs:double">
 								<xs:minExclusive value="0"/>
 							</xs:restriction>
 						</xs:simpleType>
@@ -262,7 +266,7 @@
 					<xs:attribute name="state" type="ClipState" use="required"/>
 					<xs:attribute name="dur" use="required">
 						<xs:simpleType>
-							<xs:restriction base="xs:float">
+							<xs:restriction base="xs:double">
 								<xs:minInclusive value="0"/>
 							</xs:restriction>
 						</xs:simpleType>

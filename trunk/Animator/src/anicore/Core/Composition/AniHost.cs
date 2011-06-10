@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;

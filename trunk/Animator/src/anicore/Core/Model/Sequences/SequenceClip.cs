@@ -24,20 +24,20 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
-		private Time _Start;
-		private Time _Duration;
+		private TimeSpan _Start;
+		private TimeSpan _Duration;
 
 		#endregion
 
 		#region Properties
 
 		[Category(TEShared.Names.Category_Transport)]
-		public Time Start
+		public TimeSpan Start
 		{
 			get { return this._Start; }
 			set
 			{
-				Require.ArgNotNegative((float)value, "value");
+				Require.ArgNotNegative(value, "value");
 				if(value != this._Start)
 				{
 					this._Start = value;
@@ -47,12 +47,12 @@ namespace Animator.Core.Model.Sequences
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
-		public Time Duration
+		public TimeSpan Duration
 		{
 			get { return this._Duration; }
 			set
 			{
-				Require.ArgNotNegative((float)value, "value");
+				Require.ArgNotNegative(value, "value");
 				if(value != this._Duration)
 				{
 					this._Duration = value;
@@ -61,7 +61,7 @@ namespace Animator.Core.Model.Sequences
 			}
 		}
 
-		internal Time End
+		internal TimeSpan End
 		{
 			get { return this._Start + this._Duration; }
 		}
@@ -76,8 +76,8 @@ namespace Animator.Core.Model.Sequences
 		public SequenceClip([NotNull] XElement element, [CanBeNull] AniHost host)
 			: base(element, host)
 		{
-			this.Start = (float)element.Attribute(Schema.seqclip_start);
-			this.Duration = (float)element.Attribute(Schema.seqclip_dur);
+			this.Start = ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_start));
+			this.Duration = ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_dur));
 		}
 
 		#endregion
@@ -99,8 +99,8 @@ namespace Animator.Core.Model.Sequences
 		{
 			return new XElement(name ?? Schema.seqclip,
 				this.WriteCommonXAttributes(),
-				new XAttribute(Schema.seqclip_start, (float)this._Start),
-				new XAttribute(Schema.seqclip_dur, (float)this._Duration),
+				new XAttribute(Schema.seqclip_start, this._Start),
+				ModelUtil.WriteXAttribute(Schema.seqclip_dur, this._Duration),
 				this.WritePropertiesXElement());
 		}
 

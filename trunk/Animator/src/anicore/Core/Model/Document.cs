@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
+using Animator.Core.IO;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Model.Sessions;
 using Animator.Core.Runtime;
@@ -134,8 +135,6 @@ namespace Animator.Core.Model
 		private readonly ObservableCollection<Session> _Sessions;
 		private Guid _Id;
 		private string _Name;
-		private int? _UIRows;
-		private int? _UIColumns;
 		private readonly TransportData _TransportData;
 		private DocumentSection _ActiveSection;
 		private Transport.Transport _Transport;

@@ -41,7 +41,7 @@ namespace Animator.Core.Transport
 		private readonly Sanford.Multimedia.Timers.Timer _Timer;
 		private TransportState _State;
 		private uint _LastUpdate;
-		private Time _Position;
+		private TimeSpan _Position;
 		private float _BeatsPerMinute = Model.Document.DefaultBeatsPerMinute;
 		private readonly ReaderWriterLockSlim _Lock;
 
@@ -82,7 +82,7 @@ namespace Animator.Core.Transport
 
 		[Category(TEShared.Names.Category_Transport)]
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
-		public override Time Position
+		public override TimeSpan Position
 		{
 			get
 			{
@@ -183,7 +183,7 @@ namespace Animator.Core.Transport
 					if(dur > 0)
 					{
 						scope.UpgradeToWriteLock();
-						this._Position += Time.TicksToBeats(now, this._BeatsPerMinute);
+						this._Position += TimeSpan.FromTicks(now);
 						posChanged = true;
 					}
 					shouldTick = true;
@@ -222,14 +222,14 @@ namespace Animator.Core.Transport
 				switch(this._State)
 				{
 				case TransportState.Playing:
-					this._Position = 0;
+					this._Position = TimeSpan.Zero;
 					this._State = TransportState.Stopped;
 					this._Timer.Stop();
 					break;
 				//case TransportState.Paused:
 				//    throw new NotImplementedException();
 				case TransportState.Stopped:
-					this._Position = 0;
+					this._Position = TimeSpan.Zero;
 					return;
 				}
 			}

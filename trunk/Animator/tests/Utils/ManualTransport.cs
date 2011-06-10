@@ -20,14 +20,14 @@ namespace Animator.Tests.Utils
 
 		#region Fields
 
-		private Time _Position;
+		private TimeSpan _Position;
 		private TransportState _State;
 
 		#endregion
 
 		#region Properties
 
-		public override Time Position
+		public override TimeSpan Position
 		{
 			get { return this._Position; }
 			set
