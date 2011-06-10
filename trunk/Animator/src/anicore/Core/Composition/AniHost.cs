@@ -137,7 +137,7 @@ namespace Animator.Core.Composition
 		[NotNull]
 		public Transport.Transport CreateTransportByKey(string key)
 		{
-			return this.Transports.CreateByKey(key, () => new Transport.Transport.NullTransport());
+			return this.Transports.CreateByKey(key, () => new Transport.NullTransport());
 		}
 
 		internal Output CreateOutputByElementName(string elementName)

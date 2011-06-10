@@ -32,7 +32,7 @@ namespace Animator.Core.Transport
 		}
 
 		[DllImport(TEShared.AssemblyRef.winmm_dll)]
-		public static extern uint timeGetTime();
+		private static extern uint timeGetTime();
 
 		#endregion
 
@@ -122,44 +122,22 @@ namespace Animator.Core.Transport
 			set { this._Timer.Resolution = value; }
 		}
 
-		[Browsable(false)]
-		public ISynchronizeInvoke SynchronizingObject
-		{
-			get { return this._Timer.SynchronizingObject; }
-			set { this._Timer.SynchronizingObject = value; }
-		}
-
 		#endregion
 
 		#region Events
 
 		protected override void OnTick()
 		{
-			//var handler = this.Tick;
-			//if(handler != null)
-			//{
-			//    var sync = this.SynchronizingObject;
-			//    if(sync != null)
-			//        sync.BeginInvoke(handler, new object[] { EventArgs.Empty });
-			//    else
-			//        handler(this, EventArgs.Empty);
-			//}
 			this.FireEvent(this.TickHandler);
 		}
 
 		protected override void OnStateChanged()
 		{
-			//var handler = this.StateChanged;
-			//if(handler != null)
-			//    handler(this, EventArgs.Empty);
 			this.FireEvent(this.StateChangedHandler);
 		}
 
 		protected override void OnPositionChanged()
 		{
-			//var handler = this.PositionChanged;
-			//if(handler != null)
-			//    handler(this, EventArgs.Empty);
 			this.FireEvent(this.PositionChangedHandler);
 		}
 
@@ -167,7 +145,7 @@ namespace Animator.Core.Transport
 		{
 			if(handler == null)
 				return;
-			var sync = this.SynchronizingObject;
+			var sync = this._Timer.SynchronizingObject;
 			if(sync != null)
 				sync.BeginInvoke(handler, new object[] { this, EventArgs.Empty });
 			else
@@ -191,29 +169,6 @@ namespace Animator.Core.Transport
 		#endregion
 
 		#region Methods
-
-		public override void SetParameters(IDictionary<string, string> parameters)
-		{
-			if(parameters != null)
-			{
-				string str;
-				int i;
-				if(parameters.TryGetValue("Period", out str))
-				{
-					if(String.IsNullOrEmpty(str))
-						this.Period = DefaultPeriod;
-					else if(Int32.TryParse(str, out i))
-						this.Period = i;
-				}
-				if(parameters.TryGetValue("Resolution", out str))
-				{
-					if(String.IsNullOrEmpty(str))
-						this.Period = DefaultResolution;
-					else if(Int32.TryParse(str, out i))
-						this.Resolution = i;
-				}
-			}
-		}
 
 		private void Timer_Tick(object sender, EventArgs e)
 		{

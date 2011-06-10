@@ -121,7 +121,7 @@ namespace Animator.Core.Model
 
 		public const float DefaultBeatsPerMinute = 80.0f;
 
-		private static readonly Transport.Transport _DefaultTransport = new Transport.Transport.NullTransport();
+		private static readonly Transport.Transport _DefaultTransport = new Transport.NullTransport();
 
 		#endregion
 
