@@ -126,9 +126,18 @@ namespace Animator.Core.Transport
 
 		#region Events
 
-		protected override void OnTick()
+		protected override void OnTick(TimeSpan interval)
 		{
-			this.FireEvent(this.TickHandler);
+			var handler = this.TickHandler;
+			if(handler != null)
+			{
+				var sync = this._Timer.SynchronizingObject;
+				var e = new TransportTickEventArgs(interval);
+				if(sync != null)
+					sync.BeginInvoke(handler, new object[] { this, e });
+				else
+					handler(this, e);
+			}
 		}
 
 		protected override void OnStateChanged()
@@ -174,12 +183,13 @@ namespace Animator.Core.Transport
 		{
 			var posChanged = false;
 			var shouldTick = false;
+			uint dur = 0;
 			using(var scope = this._Lock.UpgradeableReadScope())
 			{
 				if(this._State == TransportState.Playing)
 				{
 					var now = timeGetTime();
-					var dur = now - this._LastUpdate;
+					dur = now - this._LastUpdate;
 					if(dur > 0)
 					{
 						scope.UpgradeToWriteLock();
@@ -192,7 +202,7 @@ namespace Animator.Core.Transport
 			if(posChanged)
 				this.OnPositionChanged();
 			if(shouldTick)
-				this.OnTick();
+				this.OnTick(TimeSpan.FromTicks(dur));
 		}
 
 		public override void Play()

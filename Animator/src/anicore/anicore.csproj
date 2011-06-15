@@ -93,6 +93,7 @@
     <Compile Include="Core\Model\Schema.cs" />
     <Compile Include="Core\Model\Sequences\Sequence.cs" />
     <Compile Include="Core\Model\Sequences\SequenceClip.cs" />
+    <Compile Include="Core\Model\Sequences\SequenceClipCollection.cs" />
     <Compile Include="Core\Model\Sequences\SequenceTrack.cs" />
     <Compile Include="Core\Model\Sessions\ClipState.cs" />
     <Compile Include="Core\Model\Sessions\Session.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />
+    <Compile Include="Core\Transport\TransportTickEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CoreStrings.Designer.cs">
       <AutoGen>True</AutoGen>

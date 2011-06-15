@@ -87,9 +87,9 @@ namespace Animator.Tests
 		[TestCategory(CategoryNames.Transport)]
 		public void SanfordMultimediaTimerTicks()
 		{
-			var toleranceMS = 20;
+			var toleranceMS = 50;
 			var toleranceTicks = 0;
-			var period = 10;
+			var period = 20;
 			var reps = 10;
 			var sleep = period * reps;
 			using(var timer = new Sanford.Multimedia.Timers.Timer())
@@ -132,10 +132,10 @@ namespace Animator.Tests
 					Trace.WriteLine(String.Format("End time: {0}", endTime.ToLongTimeString()));
 					var dur = (endTime.Ticks - startTime.Ticks) / TimeSpan.TicksPerMillisecond;
 					Trace.WriteLine(String.Format("Duration: {0}ms", dur));
-					Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS);
+					Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS, "Sleep duration {0}ms is not in tolerance of expected duration {1}ms", dur, sleep);
 
 					Trace.WriteLine(String.Format("Tick count: {0}", tickCounter.Count));
-					Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks);
+					Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks, "Tick count {0} is not in tolerance of expected tick count {1}", tickCounter.Count, reps);
 				}
 			}
 		}
@@ -144,9 +144,9 @@ namespace Animator.Tests
 		[TestCategory(CategoryNames.Transport)]
 		public void MediaTransportTiming()
 		{
-			var toleranceMS = 20;
+			var toleranceMS = 50;
 			var toleranceTicks = 0;
-			var period = 10;
+			var period = 20;
 			var reps = 10;
 			var sleep = period * reps;
 			using(var transport = new MediaTransport())
@@ -154,7 +154,7 @@ namespace Animator.Tests
 
 				var tickCounter = new EventCounter();
 				tickCounter.ExtraAction = () => { Trace.WriteLine("..transport tick #" + tickCounter.Count); };
-				transport.Tick += tickCounter.Handler;
+				transport.Tick += (s, e) => tickCounter.Handler(s, e);
 
 				var caps = Sanford.Multimedia.Timers.Timer.Capabilities;
 				Trace.WriteLine(String.Format("CAPS periodMin: {0} ms", caps.periodMin));
@@ -176,10 +176,10 @@ namespace Animator.Tests
 				Trace.WriteLine(String.Format("End time: {0}", endTime.ToLongTimeString()));
 				var dur = (endTime.Ticks - startTime.Ticks) / TimeSpan.TicksPerMillisecond;
 				Trace.WriteLine(String.Format("Duration: {0}ms", dur));
-				Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS);
+				Assert.IsTrue(Math.Abs(sleep - dur) <= toleranceMS, "Sleep duration {0}ms is not in tolerance of expected duration {1}ms", dur, sleep);
 
 				Trace.WriteLine(String.Format("Tick count: {0}", tickCounter.Count));
-				Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks);
+				Assert.IsTrue(Math.Abs(reps - tickCounter.Count) <= toleranceTicks, "Tick count {0} is not in tolerance of expected tick count {1}", tickCounter.Count, reps);
 			}
 		}
 

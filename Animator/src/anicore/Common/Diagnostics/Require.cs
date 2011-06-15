@@ -26,8 +26,7 @@ namespace Animator.Common.Diagnostics
 		[Conditional("DEBUG")]
 		internal static void DBG_ArgNotNull([AssertionCondition(AssertionConditionType.IS_NOT_NULL)]object value, [InvokerParameterName]string name)
 		{
-			if(value == null)
-				throw new ArgumentNullException(name);
+			ArgNotNull(value, name);
 		}
 
 		[AssertionMethod]
@@ -85,6 +84,54 @@ namespace Animator.Common.Diagnostics
 		{
 			if(value == 0)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
+		}
+
+		public static void ArgGreaterThan(float value, [InvokerParameterName]string name, float comparand)
+		{
+			if(value <= comparand)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgGreaterThan, name, value, comparand), name);
+		}
+
+		public static void ArgLessThan(float value, [InvokerParameterName]string name, float comparand)
+		{
+			if(value >= comparand)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgLessThan, name, value, comparand), name);
+		}
+
+		public static void ArgGreaterThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		{
+			if(value < comparand)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgGreaterThanOrEqualTo, name, value, comparand), name);
+		}
+
+		public static void ArgLessThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		{
+			if(value > comparand)
+				throw new ArgumentException(String.Format(CoreStrings.Require_ArgLessThanOrEqualTo, name, value, comparand), name);
+		}
+
+		[Conditional("DEBUG")]
+		public static void DBG_ArgGreaterThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		{
+			ArgGreaterThanOrEqualTo(value, name, comparand);
+		}
+
+		[Conditional("DEBUG")]
+		public static void DBG_ArgLessThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		{
+			ArgLessThanOrEqualTo(value, name, comparand);
+		}
+
+		[Conditional("DEBUG")]
+		public static void DBG_ArgGreaterThan(float value, [InvokerParameterName]string name, float comparand)
+		{
+			ArgGreaterThan(value, name, comparand);
+		}
+
+		[Conditional("DEBUG")]
+		public static void DBG_ArgLessThan(float value, [InvokerParameterName]string name, float comparand)
+		{
+			ArgLessThan(value, name, comparand);
 		}
 
 	}

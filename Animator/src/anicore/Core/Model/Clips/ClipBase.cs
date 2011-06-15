@@ -79,6 +79,15 @@ namespace Animator.Core.Model.Clips
 				target.SetValue(prop.Name, prop.GetValue(pos));
 		}
 
+		internal void PushTargetValues([NotNull]TargetObject target, float position)
+		{
+			Require.DBG_ArgNotNull(target, "target");
+			Require.DBG_ArgGreaterThanOrEqualTo(position, "position", 0f);
+			Require.DBG_ArgLessThanOrEqualTo(position, "position", 1f);
+			foreach(var prop in this._Properties)
+				target.SetValue(prop.Name, prop.GetValue(position));
+		}
+
 		protected XElement WritePropertiesXElement()
 		{
 			if(this._Properties.Count == 0)

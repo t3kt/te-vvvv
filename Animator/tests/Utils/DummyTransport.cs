@@ -50,9 +50,9 @@ namespace Animator.Tests.Utils
 			this.State = state;
 		}
 
-		public void FireTickEvent()
+		public void FireTickEvent(TimeSpan interval)
 		{
-			this.OnTick();
+			this.OnTick(interval);
 		}
 
 		public void FireStateChangedEvent()
