@@ -12,6 +12,7 @@ namespace Animator.Tests
 	{
 
 		public const string Sessions = "Sessions";
+		public const string Sequences = "Sequences";
 		public const string Runtime_Model = "Runtime.Model";
 		public const string CommonUtil = "CommonUtil";
 		public const string Composition = "Composition";
@@ -19,10 +20,6 @@ namespace Animator.Tests
 		public const string Model = "Model";
 		public const string OSC = "OSC";
 		public const string Transport = "Transport";
-		public const string ClipDataEditors = "ClipDataEditors";
-		public const string DoubleLinkedStack = "DoubleLinkedStack";
-		public const string LimitedStack = "LimitedStack";
-		public const string LinkedStack = "LinkedStack";
 		public const string ClipData = "ClipData";
 
 	}

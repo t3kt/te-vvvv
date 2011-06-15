@@ -36,14 +36,14 @@ namespace Animator.Core.Transport
 
 		#region Events
 
-		public event EventHandler Tick;
+		public event EventHandler<TransportTickEventArgs> Tick;
 
 		public event EventHandler StateChanged;
 
 		public event EventHandler PositionChanged;
 
 		[Browsable(false)]
-		protected EventHandler TickHandler
+		protected EventHandler<TransportTickEventArgs> TickHandler
 		{
 			get { return this.Tick; }
 		}
@@ -60,11 +60,11 @@ namespace Animator.Core.Transport
 			get { return this.PositionChanged; }
 		}
 
-		protected virtual void OnTick()
+		protected virtual void OnTick(TimeSpan interval)
 		{
 			var handler = this.Tick;
 			if(handler != null)
-				handler(this, EventArgs.Empty);
+				handler(this, new TransportTickEventArgs(interval));
 		}
 
 		protected virtual void OnStateChanged()

@@ -61,9 +61,9 @@ namespace Animator.Tests.Utils
 
 		#region Methods
 
-		public void SendTick()
+		public void SendTick(TimeSpan interval)
 		{
-			this.OnTick();
+			this.OnTick(interval);
 		}
 
 		#endregion

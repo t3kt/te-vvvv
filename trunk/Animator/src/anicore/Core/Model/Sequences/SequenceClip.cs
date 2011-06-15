@@ -7,7 +7,6 @@ using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model.Clips;
-using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -83,6 +82,11 @@ namespace Animator.Core.Model.Sequences
 		#endregion
 
 		#region Methods
+
+		internal bool ContainsPosition(TimeSpan position)
+		{
+			return position >= this._Start && position < this.End;
+		}
 
 		internal override bool IsActive(Transport.Transport transport)
 		{
