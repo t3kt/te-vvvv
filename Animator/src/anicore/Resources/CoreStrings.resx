@@ -150,4 +150,10 @@
   <data name="Require_ArgLessThanOrEqualTo" xml:space="preserve">
     <value>Argument '{0}' must be less than or equal to {1} (actual value: {2})</value>
   </data>
+	<data name="DuplicateClipId">
+		<value xml:space="preserve">Duplicate clip id: {0}</value>
+	</data>
+	<data name="DurationMustNotBeNegative">
+		<value xml:space="preserve">Duration must not be negative</value>
+	</data>
 </root>

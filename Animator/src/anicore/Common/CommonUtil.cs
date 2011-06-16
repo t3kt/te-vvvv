@@ -161,6 +161,32 @@ namespace Animator.Common
 			return Math.Min(Math.Max(input, minTemp), maxTemp);
 		}
 
+		internal static TimeSpan Min(TimeSpan x, TimeSpan y)
+		{
+			return x < y ? x : y;
+		}
+
+		internal static TimeSpan Max(TimeSpan x, TimeSpan y)
+		{
+			return x > y ? x : y;
+		}
+
+		internal static TimeSpan Clamp(TimeSpan input, TimeSpan min, TimeSpan max)
+		{
+			var minTemp = Min(min, max);
+			var maxTemp = Max(min, max);
+			return Min(Max(input, minTemp), maxTemp);
+		}
+
+		internal static bool IsOverlap(TimeSpan aStart, TimeSpan aEnd, TimeSpan bStart, TimeSpan bEnd)
+		{
+			if(bEnd < aStart)
+				return false;
+			if(bStart > aEnd)
+				return false;
+			return true;
+		}
+
 	}
 
 	#endregion

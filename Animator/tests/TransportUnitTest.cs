@@ -88,8 +88,8 @@ namespace Animator.Tests
 		public void SanfordMultimediaTimerTicks()
 		{
 			var toleranceMS = 50;
-			var toleranceTicks = 0;
-			var period = 20;
+			var toleranceTicks = 2;
+			var period = 30;
 			var reps = 10;
 			var sleep = period * reps;
 			using(var timer = new Sanford.Multimedia.Timers.Timer())
@@ -145,8 +145,8 @@ namespace Animator.Tests
 		public void MediaTransportTiming()
 		{
 			var toleranceMS = 50;
-			var toleranceTicks = 0;
-			var period = 20;
+			var toleranceTicks = 2;
+			var period = 30;
 			var reps = 10;
 			var sleep = period * reps;
 			using(var transport = new MediaTransport())

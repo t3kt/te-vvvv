@@ -118,6 +118,71 @@ namespace Animator.Tests
 			CollectionAssert.AreEqual(list, new int[0]);
 		}
 
+		[TestMethod]
+		[TestCategory(CategoryNames.CommonUtil)]
+		public void TimeSpanMinMaxClamp()
+		{
+			var ts_1 = TimeSpan.FromSeconds(1);
+			var ts_2 = TimeSpan.FromSeconds(2);
+			var ts_3 = TimeSpan.FromSeconds(3);
+			var ts_4 = TimeSpan.FromSeconds(4);
+
+			Assert.AreEqual(ts_1, CommonUtil.Min(ts_1, ts_2));
+			Assert.AreEqual(ts_1, CommonUtil.Min(ts_2, ts_1));
+			Assert.AreEqual(ts_1, CommonUtil.Min(ts_1, ts_1));
+
+			Assert.AreEqual(ts_2, CommonUtil.Max(ts_1, ts_2));
+			Assert.AreEqual(ts_2, CommonUtil.Max(ts_2, ts_1));
+			Assert.AreEqual(ts_2, CommonUtil.Max(ts_2, ts_2));
+
+			Assert.AreEqual(ts_2, CommonUtil.Clamp(ts_1, ts_2, ts_3));
+			Assert.AreEqual(ts_2, CommonUtil.Clamp(ts_1, ts_3, ts_2));
+			Assert.AreEqual(ts_2, CommonUtil.Clamp(ts_1, ts_2, ts_2));
+
+			Assert.AreEqual(ts_3, CommonUtil.Clamp(ts_4, ts_2, ts_3));
+			Assert.AreEqual(ts_3, CommonUtil.Clamp(ts_4, ts_3, ts_2));
+			Assert.AreEqual(ts_2, CommonUtil.Clamp(ts_4, ts_2, ts_2));
+		}
+
+		private static void TimeSpanIsOverlapHelper(Span a, Span b, bool expected)
+		{
+			var actual = CommonUtil.IsOverlap(a.Start, a.End, b.Start, b.End);
+			Assert.AreEqual(expected, actual, "IsOverlap {0} :: {1} should be {2}", a, b, expected);
+			Assert.AreEqual(actual, CommonUtil.IsOverlap(b.Start, b.End, a.Start, a.End), "IsOverlap {0} :: {1} should be reflexive", a, b);
+		}
+
+		struct Span
+		{
+			public readonly TimeSpan Start, End;
+			public Span(TimeSpan s, TimeSpan e) { this.Start = s; this.End = e; }
+			public override string ToString()
+			{
+				return String.Format("[{0} -> {1}]", this.Start, this.End);
+			}
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.CommonUtil)]
+		public void TimeSpanIsOverlap()
+		{
+			var ts_10 = TimeSpan.FromSeconds(10);
+			var ts_20 = TimeSpan.FromSeconds(20);
+			var ts_30 = TimeSpan.FromSeconds(30);
+			var ts_34 = TimeSpan.FromSeconds(34);
+			var ts_35 = TimeSpan.FromSeconds(35);
+			var ts_40 = TimeSpan.FromSeconds(40);
+			var ts_50 = TimeSpan.FromSeconds(50);
+			var ts_60 = TimeSpan.FromSeconds(60);
+
+
+
+			TimeSpanIsOverlapHelper(new Span(ts_10, ts_20), new Span(ts_30, ts_40), false);
+			TimeSpanIsOverlapHelper(new Span(ts_50, ts_60), new Span(ts_30, ts_40), false);
+			TimeSpanIsOverlapHelper(new Span(ts_10, ts_35), new Span(ts_30, ts_40), true);
+			TimeSpanIsOverlapHelper(new Span(ts_34, ts_35), new Span(ts_30, ts_40), true);
+			TimeSpanIsOverlapHelper(new Span(ts_35, ts_50), new Span(ts_30, ts_40), true);
+		}
+
 	}
 
 	// ReSharper restore JoinDeclarationAndInitializer
