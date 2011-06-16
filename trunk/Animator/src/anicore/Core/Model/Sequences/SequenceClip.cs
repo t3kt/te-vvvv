@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model.Clips;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -23,6 +25,8 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
+		private EventHandler<TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>> _TryChangeSpanHandler;
+
 		private TimeSpan _Start;
 		private TimeSpan _Duration;
 
@@ -36,12 +40,11 @@ namespace Animator.Core.Model.Sequences
 			get { return this._Start; }
 			set
 			{
-				Require.ArgNotNegative(value, "value");
-				if(value != this._Start)
-				{
-					this._Start = value;
-					this.OnPropertyChanged("Start");
-				}
+				//if(value < TimeSpan.Zero)
+				//    value = TimeSpan.Zero;
+				//Require.ArgNotNegative(value, "value");
+				if(value != this.Start)
+					this.ChangeSpan(value, this._Duration);
 			}
 		}
 
@@ -51,12 +54,9 @@ namespace Animator.Core.Model.Sequences
 			get { return this._Duration; }
 			set
 			{
-				Require.ArgNotNegative(value, "value");
+				//Require.ArgNotNegative(value, "value");
 				if(value != this._Duration)
-				{
-					this._Duration = value;
-					this.OnPropertyChanged("Duration");
-				}
+					this.ChangeSpan(this._Start, value);
 			}
 		}
 
@@ -68,6 +68,9 @@ namespace Animator.Core.Model.Sequences
 		#endregion
 
 		#region Constructors
+
+		public SequenceClip()
+			: this(Guid.NewGuid()) { }
 
 		public SequenceClip(Guid id)
 			: base(id) { }
@@ -83,9 +86,63 @@ namespace Animator.Core.Model.Sequences
 
 		#region Methods
 
+		internal void ChangeSpan(TimeSpan start, TimeSpan duration)
+		{
+			//if(duration < TimeSpan.Zero)
+			//    throw new NotImplementedException();
+			if(this._TryChangeSpanHandler != null)
+			{
+				var current = new Tuple<TimeSpan, TimeSpan>(this._Start, this._Duration);
+				var requested = new Tuple<TimeSpan, TimeSpan>(start, duration);
+				var e = new TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>(current, requested);
+				this._TryChangeSpanHandler(this, e);
+				switch(e.Decision)
+				{
+				case TryChangeValueDecision.Denied:
+					return;
+				case TryChangeValueDecision.ModifiedApproved:
+					start = e.NewValue.Item1;
+					duration = e.NewValue.Item2;
+					break;
+				//case TryChangeValueDecision.None:
+				//case TryChangeValueDecision.Approved:
+				//default:
+				//    break;
+				}
+			}
+			if(start != this._Start)
+			{
+				this._Start = start;
+				this.OnPropertyChanged("Start");
+			}
+			if(duration != this._Duration)
+			{
+				this._Duration = duration;
+				this.OnPropertyChanged("Duration");
+			}
+		}
+
+		internal void SetSpanChangeHandler(EventHandler<TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>> handler, bool applyNow = false)
+		{
+			this._TryChangeSpanHandler = handler;
+			if(applyNow)
+				this.ApplySpanChangeHandler();
+		}
+
+		internal void ApplySpanChangeHandler()
+		{
+			this.ChangeSpan(this._Start, this._Duration);
+		}
+
 		internal bool ContainsPosition(TimeSpan position)
 		{
 			return position >= this._Start && position < this.End;
+		}
+
+		internal bool Overlaps([NotNull] SequenceClip other)
+		{
+			Require.ArgNotNull(other, "other");
+			return CommonUtil.IsOverlap(this.Start, this.End, other.Start, other.End);
 		}
 
 		internal override bool IsActive(Transport.Transport transport)

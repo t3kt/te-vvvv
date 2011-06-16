@@ -61,6 +61,24 @@ namespace Animator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate clip id: {0}.
+        /// </summary>
+        internal static string DuplicateClipId {
+            get {
+                return ResourceManager.GetString("DuplicateClipId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration must not be negative.
+        /// </summary>
+        internal static string DurationMustNotBeNegative {
+            get {
+                return ResourceManager.GetString("DurationMustNotBeNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read scope not allowed for non-recursive lock that holds lock.
         /// </summary>
         internal static string LockReadScope_NonRecursiveWithLockNotAllowed {

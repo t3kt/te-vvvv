@@ -2,6 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Common.Diagnostics;
+using Animator.Core.Runtime;
+using Animator.Resources;
+using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
 {
@@ -77,6 +81,8 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
+		private readonly List<SequenceClip> _Clips;
+
 		#endregion
 
 		#region Properties
@@ -85,37 +91,85 @@ namespace Animator.Core.Model.Sequences
 
 		#region Constructors
 
+		public SequenceClipCollection()
+		{
+			this._Clips = new List<SequenceClip>();
+		}
+
 		#endregion
 
 		#region Methods
+
+		private void Clip_HandleTryChangeSpan(object sender, TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>> e)
+		{
+			var clip = (SequenceClip)sender;
+			foreach(var other in this._Clips)
+			{
+				if(!ReferenceEquals(clip, other))
+				{
+
+				}
+			}
+			throw new NotImplementedException();
+		}
+
+		private void Attach(SequenceClip clip, bool applyNow)
+		{
+			Require.DBG_ArgNotNull(clip, "clip");
+			clip.SetSpanChangeHandler(this.Clip_HandleTryChangeSpan, applyNow);
+		}
+
+		private void Detach(SequenceClip clip)
+		{
+			Require.DBG_ArgNotNull(clip, "clip");
+			clip.SetSpanChangeHandler(null);
+		}
+
+		public void AddBatch([NotNull] IEnumerable<SequenceClip> items)
+		{
+			Require.ArgNotNull(items, "items");
+			foreach(var item in items.OrderBy(x => x.Start))
+				this.Add(item, true);
+		}
+
+		internal void Add([NotNull]SequenceClip item, bool applyNow)
+		{
+			Require.ArgNotNull(item, "item");
+			if(this.Contains(item))
+				throw new ArgumentException(String.Format(CoreStrings.DuplicateClipId, item.Id), "item");
+			this.Attach(item, applyNow);
+			this._Clips.Add(item);
+		}
 
 		#endregion
 
 		#region ICollection<SequenceClip> Members
 
-		public void Add(SequenceClip item)
+		public void Add([NotNull] SequenceClip item)
 		{
-			throw new NotImplementedException();
+			this.Add(item, true);
 		}
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			foreach(var clip in this._Clips)
+				this.Detach(clip);
+			this._Clips.Clear();
 		}
 
 		public bool Contains(SequenceClip item)
 		{
-			throw new NotImplementedException();
+			return item != null && this._Clips.Contains(item, GuidIdComparer.Default);
 		}
 
 		public void CopyTo(SequenceClip[] array, int arrayIndex)
 		{
-			throw new NotImplementedException();
+			this.ToArray().CopyTo(array, arrayIndex);
 		}
 
 		public int Count
 		{
-			get { throw new NotImplementedException(); }
+			get { return this._Clips.Count; }
 		}
 
 		bool ICollection<SequenceClip>.IsReadOnly
@@ -125,7 +179,16 @@ namespace Animator.Core.Model.Sequences
 
 		public bool Remove(SequenceClip item)
 		{
-			throw new NotImplementedException();
+			//return this._Clips.Remove(item);
+			if(item == null || !this.Contains(item))
+				return false;
+			//var i = this._Clips.FindIndex(x => GuidIdComparer.Default.Equals(x, item));
+			//if(i < 0)
+			//    return false;
+			this.Detach(item);
+			//this._Clips.RemoveAt(i);
+			this._Clips.Remove(item);
+			return true;
 		}
 
 		#endregion
@@ -134,7 +197,7 @@ namespace Animator.Core.Model.Sequences
 
 		public IEnumerator<SequenceClip> GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return this._Clips.OrderBy(x => x.Start).GetEnumerator();
 		}
 
 		#endregion
