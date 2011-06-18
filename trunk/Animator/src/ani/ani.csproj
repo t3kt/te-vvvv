@@ -104,7 +104,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI\Panes\AniPane.cs" />
     <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
@@ -114,6 +113,15 @@
     </Compile>
     <Compile Include="UI\Panes\TransportPane.xaml.cs">
       <DependentUpon>TransportPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sequencing\SequenceClipBlock.xaml.cs">
+      <DependentUpon>SequenceClipBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sequencing\SequencePanel.xaml.cs">
+      <DependentUpon>SequencePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sequencing\SequenceTrackPane.xaml.cs">
+      <DependentUpon>SequenceTrackPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Session\ClipCell.xaml.cs">
       <DependentUpon>ClipCell.xaml</DependentUpon>
@@ -174,6 +182,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Sequencing\SequenceClipBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Sequencing\SequencePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Sequencing\SequenceTrackPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Session\ClipCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppCore\Common\" />
-    <Folder Include="UI\Sequencing\" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\ani_app_splash.png">

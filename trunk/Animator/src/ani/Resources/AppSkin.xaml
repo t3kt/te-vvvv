@@ -72,18 +72,18 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<Style x:Key="HeaderedPaneUserControlStyle" TargetType="{x:Type Panes:AniPane}">
+	<Style x:Key="HeaderedPaneStyle" TargetType="{x:Type ContentControl}">
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Panes:AniPane}">
+				<ControlTemplate TargetType="{x:Type ContentControl}">
 					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="1">
 						<Grid>
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition/>
 							</Grid.RowDefinitions>
-							<Border Background="{StaticResource PaneHeaderBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="0,0,0,1" CornerRadius="2" Visibility="{TemplateBinding Property=PaneHeaderVisibility}" Margin="0,0,0,8">
-								<TextBlock Text="{TemplateBinding PaneHeader}" Margin="6,2" />
+							<Border Background="{StaticResource PaneHeaderBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="0,0,0,1" CornerRadius="2" Visibility="{TemplateBinding Property=appCore:AniUIManager.PaneHeaderVisibility}" Margin="0,0,0,8">
+								<TextBlock Text="{TemplateBinding appCore:AniUIManager.PaneHeader}" Margin="6,2" />
 							</Border>
 							<ContentPresenter Margin="{TemplateBinding Padding}" Grid.RowSpan="2" Grid.Row="1"/>
 						</Grid>
@@ -98,7 +98,7 @@
 				<ControlTemplate TargetType="{x:Type Panes:DocumentItemPropertiesPane}">
 					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" Margin="1">
 						<StackPanel>
-							<Border Background="{StaticResource PaneHeaderBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="0,0,0,1" CornerRadius="2" Visibility="{TemplateBinding Property=PaneHeaderVisibility}" Margin="0,0,0,8">
+							<Border Background="{StaticResource PaneHeaderBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="0,0,0,1" CornerRadius="2" Visibility="{TemplateBinding Property=appCore:AniUIManager.PaneHeaderVisibility}" Margin="0,0,0,8">
 								<DockPanel>
 									<Button DockPanel.Dock="Right" Content="[edit]" Command="Panes:DocumentItemPropertiesPane.ShowEditDetailCommand" Focusable="False" Visibility="{TemplateBinding DetailButtonVisibility}" Margin="2,0">
 										<Button.Template>
@@ -107,7 +107,7 @@
 											</ControlTemplate>
 										</Button.Template>
 									</Button>
-									<TextBlock Text="{TemplateBinding PaneHeader}" Margin="6,2" />
+									<TextBlock Text="{TemplateBinding appCore:AniUIManager.PaneHeader}" Margin="6,2" />
 								</DockPanel>
 							</Border>
 							<ContentPresenter Margin="{TemplateBinding Padding}"/>

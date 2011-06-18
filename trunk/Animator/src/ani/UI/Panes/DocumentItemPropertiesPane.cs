@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Animator.Core.Model;
 
@@ -12,7 +13,7 @@ namespace Animator.UI.Panes
 
 	#region DocumentItemPropertiesPane
 
-	public class DocumentItemPropertiesPane : AniPane
+	public class DocumentItemPropertiesPane : UserControl
 	{
 
 		#region Static / Constant

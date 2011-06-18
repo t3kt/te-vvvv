@@ -15,27 +15,21 @@ namespace Animator.AppCore
 	internal static class AniUIManager
 	{
 
-		public static readonly DependencyProperty ActiveDocumentProperty;
-		private static readonly DependencyPropertyKey HasActiveDocumentPropertyKey;
-		public static readonly DependencyProperty HasActiveDocumentProperty;
-		public static readonly DependencyProperty ActiveDocumentDirtyProperty;
+		#region Active Document
 
-		public static readonly DependencyProperty GridSelectedObjectProperty;
-
-		static AniUIManager()
-		{
-			ActiveDocumentProperty = DependencyProperty.RegisterAttached("ActiveDocument", typeof(Document), typeof(AniUIManager),
+		public static readonly DependencyProperty ActiveDocumentProperty =
+			DependencyProperty.RegisterAttached("ActiveDocument", typeof(Document), typeof(AniUIManager),
 				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveDocumentChanged));
-			HasActiveDocumentPropertyKey = DependencyProperty.RegisterAttachedReadOnly("HasActiveDocument", typeof(bool), typeof(AniUIManager),
-				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
-			HasActiveDocumentProperty = HasActiveDocumentPropertyKey.DependencyProperty;
 
-			ActiveDocumentDirtyProperty = DependencyProperty.RegisterAttached("ActiveDocumentDirty", typeof(bool), typeof(AniUIManager),
+		private static readonly DependencyPropertyKey HasActiveDocumentPropertyKey =
+			DependencyProperty.RegisterAttachedReadOnly("HasActiveDocument", typeof(bool), typeof(AniUIManager),
 				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
-			GridSelectedObjectProperty = DependencyProperty.RegisterAttached("GridSelectedObject", typeof(object), typeof(AniUIManager),
-				new PropertyMetadata(null, OnGridSelectedObjectChanged));
-		}
+		public static readonly DependencyProperty HasActiveDocumentProperty = HasActiveDocumentPropertyKey.DependencyProperty;
+
+		public static readonly DependencyProperty ActiveDocumentDirtyProperty =
+			DependencyProperty.RegisterAttached("ActiveDocumentDirty", typeof(bool), typeof(AniUIManager),
+				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
 		public static Document GetActiveDocument(DependencyObject d)
 		{
@@ -53,6 +47,14 @@ namespace Animator.AppCore
 		{
 			d.SetValue(HasActiveDocumentPropertyKey, e.NewValue != null);
 		}
+
+		#endregion
+
+		#region PropertyGrid SelectedObject
+
+		public static readonly DependencyProperty GridSelectedObjectProperty =
+			DependencyProperty.RegisterAttached("GridSelectedObject", typeof(object), typeof(AniUIManager),
+				new PropertyMetadata(null, OnGridSelectedObjectChanged));
 
 		private static void OnGridSelectedObjectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
@@ -72,6 +74,43 @@ namespace Animator.AppCore
 			Require.ArgNotNull(d, "d");
 			d.SetValue(GridSelectedObjectProperty, value);
 		}
+
+		#endregion
+
+		#region Pane Headers
+
+		public static readonly DependencyProperty PaneHeaderProperty =
+			DependencyProperty.RegisterAttached("PaneHeader", typeof(object), typeof(AniUIManager));
+
+		public static readonly DependencyProperty PaneHeaderVisibilityProperty =
+			DependencyProperty.RegisterAttached("PaneHeaderVisibility", typeof(Visibility),
+				typeof(AniUIManager), new PropertyMetadata(Visibility.Visible));
+
+		public static object GetPaneHeader(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return d.GetValue(PaneHeaderProperty);
+		}
+
+		public static void SetPaneHeader(DependencyObject d, object value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(PaneHeaderProperty, value);
+		}
+
+		public static Visibility GetPaneHeadVisibility(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (Visibility)d.GetValue(PaneHeaderVisibilityProperty);
+		}
+
+		public static void SetPaneHeaderVisibility(DependencyObject d, Visibility value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(PaneHeaderVisibilityProperty, value);
+		}
+
+		#endregion
 
 	}
 
