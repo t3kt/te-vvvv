@@ -1,0 +1,84 @@
+
+
+
+#######  CASE A: other before target
+        00          10          20          30          40          50
+target:                                      [----------]
+other:               [----------]
+result:                                      [----------]
+result.Start = target.Start
+result.End   = target.End
+result.Dur   = target.Dur
+
+
+#######  CASE B: target before other
+        00          10          20          30          40          50
+target:              [----------]
+other:                                       [----------]
+result:              [----------]
+result.Start = target.Start
+result.End   = target.End
+result.Dur   = target.Dur
+
+
+
+
+
+
+
+#######  CASE C: other contains target
+        00          10          20          30          40          50
+target:                          [----------]
+other:               [----------------------------------]
+result:                                                  |
+result.Start = other.End
+result.End   = other.End
+result.Dur   = 0
+
+#######  CASE C2:
+        00          10          20          30          40          50
+target:                          [----------------------]
+other:               [----------------------------------]
+result:                                                  |
+result.Start = other.End
+result.End   = other.End
+result.Dur   = 0
+
+
+
+
+
+#######  CASE D: other overlaps start of target
+        00          10          20          30          40          50
+target:                          [----------------------]
+other:               [----------------------]
+result:                                      [----------]
+result.Start = other.End
+result.End   = target.End
+result.Dur   = target.End - other.Start
+
+
+
+
+
+
+#######  CASE E: target contains other
+        00          10          20          30          40          50
+target:              [----------------------------------]
+other:                           [----------]
+result:              [----------]
+result.Start = target.Start
+result.End   = other.Start
+result.Dur   = other.Start - target.Start
+
+
+#######  CASE F: other overlaps end of target
+        00          10          20          30          40          50
+target:              [----------------------]
+other:                           [----------------------]
+result:              [----------]
+result.Start = target.Start
+result.End   = other.Start
+result.Dur   = other.Start - target.Start
+
+

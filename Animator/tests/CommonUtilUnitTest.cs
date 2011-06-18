@@ -174,8 +174,6 @@ namespace Animator.Tests
 			var ts_50 = TimeSpan.FromSeconds(50);
 			var ts_60 = TimeSpan.FromSeconds(60);
 
-
-
 			TimeSpanIsOverlapHelper(new Span(ts_10, ts_20), new Span(ts_30, ts_40), false);
 			TimeSpanIsOverlapHelper(new Span(ts_50, ts_60), new Span(ts_30, ts_40), false);
 			TimeSpanIsOverlapHelper(new Span(ts_10, ts_35), new Span(ts_30, ts_40), true);
@@ -183,6 +181,102 @@ namespace Animator.Tests
 			TimeSpanIsOverlapHelper(new Span(ts_35, ts_50), new Span(ts_30, ts_40), true);
 		}
 
+		private static void IntervalIsOverlapHelper(Interval a, Interval b, bool expected)
+		{
+			var actual = a.Overlaps(b);
+			Assert.AreEqual(expected, actual, "IsOverlap {0} :: {1} should be {2}", a, b, expected);
+			Assert.AreEqual(actual, b.Overlaps(a), "IsOverlap {0} :: {1} should be reflexive", a, b);
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.CommonUtil)]
+		public void IntervalIsOverlap()
+		{
+			var ts_10 = TimeSpan.FromSeconds(10);
+			var ts_20 = TimeSpan.FromSeconds(20);
+			var ts_30 = TimeSpan.FromSeconds(30);
+			var ts_34 = TimeSpan.FromSeconds(34);
+			var ts_35 = TimeSpan.FromSeconds(35);
+			var ts_40 = TimeSpan.FromSeconds(40);
+			var ts_50 = TimeSpan.FromSeconds(50);
+			var ts_60 = TimeSpan.FromSeconds(60);
+
+			IntervalIsOverlapHelper(Interval.FromBounds(ts_10, ts_20), Interval.FromBounds(ts_30, ts_40), false);
+			IntervalIsOverlapHelper(Interval.FromBounds(ts_50, ts_60), Interval.FromBounds(ts_30, ts_40), false);
+			IntervalIsOverlapHelper(Interval.FromBounds(ts_10, ts_35), Interval.FromBounds(ts_30, ts_40), true);
+			IntervalIsOverlapHelper(Interval.FromBounds(ts_34, ts_35), Interval.FromBounds(ts_30, ts_40), true);
+			IntervalIsOverlapHelper(Interval.FromBounds(ts_35, ts_50), Interval.FromBounds(ts_30, ts_40), true);
+		}
+
+		private static void IntervalPreventOverlap_NoOverlap(Interval target, Interval other)
+		{
+			Assert.IsFalse(target.Overlaps(other));
+			var result = Interval.PreventOverlap(target, other);
+			Assert.AreEqual(target, result);
+		}
+
+		private static void IntervalPreventOverlap_Modified(Interval target, Interval other, Interval expected)
+		{
+			Assert.IsTrue(target.Overlaps(other));
+			var result = Interval.PreventOverlap(target, other);
+			Assert.AreEqual(expected, result);
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.CommonUtil)]
+		public void IntervalPreventOverlap()
+		{
+			var ts_10 = TimeSpan.FromSeconds(10);
+			var ts_20 = TimeSpan.FromSeconds(20);
+			var ts_30 = TimeSpan.FromSeconds(30);
+			var ts_40 = TimeSpan.FromSeconds(40);
+
+			var i_10_20 = Interval.FromBounds(ts_10, ts_20);
+			var i_10_40 = Interval.FromBounds(ts_10, ts_40);
+			var i_10_30 = Interval.FromBounds(ts_10, ts_30);
+			var i_20_30 = Interval.FromBounds(ts_20, ts_30);
+			var i_20_40 = Interval.FromBounds(ts_20, ts_40);
+			var i_30_40 = Interval.FromBounds(ts_30, ts_40);
+			var i_40_40 = Interval.FromBounds(ts_40, ts_40);
+
+			// other BEFORE target
+			//               [-target-]
+			// [-other-]
+			// no change
+			IntervalPreventOverlap_NoOverlap(i_30_40, i_10_20);
+
+			// other AFTER target
+			// [-target-]
+			//               [-other-]
+			// no change
+			IntervalPreventOverlap_NoOverlap(i_10_20, i_30_40);
+
+			// other AFTER target OVERLAPPING
+			// [-----target-----]
+			//          [-----other-----]
+			// change to:
+			// [-target-]
+			IntervalPreventOverlap_Modified(i_10_30, i_20_40, i_10_20);
+
+			// other BEFORE target OVERLAPPING
+			IntervalPreventOverlap_Modified(i_20_40, i_10_30, i_30_40);
+
+			// other CONTAINS target
+			{
+				var tgt = i_20_30;
+				var other = i_10_40;
+				Assert.IsTrue(other.Contains(tgt));
+				IntervalPreventOverlap_Modified(tgt, other, i_40_40);
+			}
+
+			// target CONTAINS other
+			{
+				var tgt = i_10_40;
+				var other = i_20_30;
+				Assert.IsTrue(tgt.Contains(other));
+				IntervalPreventOverlap_Modified(tgt, other, i_30_40);
+			}
+		}
 	}
 
 	// ReSharper restore JoinDeclarationAndInitializer
