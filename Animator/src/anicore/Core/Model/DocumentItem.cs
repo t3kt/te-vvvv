@@ -28,6 +28,12 @@ namespace Animator.Core.Model
 
 		#region Properties
 
+		//[Browsable(false)]
+		public Type ItemType
+		{
+			get { return this.GetType(); }
+		}
+
 		public Guid Id
 		{
 			get { return this._Id; }

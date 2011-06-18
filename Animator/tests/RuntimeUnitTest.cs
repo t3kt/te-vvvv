@@ -147,10 +147,10 @@ namespace Animator.Tests
 		{
 			var doc = new Document();
 			var ses = new Session(doc);
-			doc.Sessions.Add(ses);
+			doc.Sections.Add(ses);
 			doc.ActiveSection = ses;
 			var seq = new Sequence(doc);
-			doc.Sequences.Add(seq);
+			doc.Sections.Add(seq);
 			doc.ActiveSection = seq;
 		}
 

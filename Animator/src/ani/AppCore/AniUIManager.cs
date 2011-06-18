@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.WpfPropertyGrid;
-using System.Windows.Input;
+using System.Windows.Media;
 using Animator.Common.Diagnostics;
 using Animator.Core.Model;
-using Animator.UI.Panes;
 
 namespace Animator.AppCore
 {
@@ -32,6 +31,12 @@ namespace Animator.AppCore
 		public static readonly DependencyProperty ActiveDocumentDirtyProperty =
 			DependencyProperty.RegisterAttached("ActiveDocumentDirty", typeof(bool), typeof(AniUI),
 				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static bool GetHasActiveDocument(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (bool)d.GetValue(HasActiveDocumentProperty);
+		}
 
 		public static Document GetActiveDocument(DependencyObject d)
 		{
@@ -114,10 +119,23 @@ namespace Animator.AppCore
 
 		#endregion
 
-		#region Commands
+		#region Misc
 
-		public static readonly RoutedUICommand ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(DocumentItemPropertiesPane),
-				new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
+		public static readonly DependencyProperty ItemIconSourceProperty =
+			DependencyProperty.RegisterAttached("ItemIconSource", typeof(ImageSource), typeof(AniUI),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static ImageSource GetItemIconSource(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (ImageSource)d.GetValue(ItemIconSourceProperty);
+		}
+
+		public static void SetItemIconSource(DependencyObject d, ImageSource value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(ItemIconSourceProperty, value);
+		}
 
 		#endregion
 

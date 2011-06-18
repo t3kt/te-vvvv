@@ -5,8 +5,6 @@ using System.Linq;
 using Animator.Common;
 using Animator.Core.Model;
 using Animator.Core.Model.Sequences;
-using Animator.Core.Runtime;
-using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
@@ -55,7 +53,7 @@ namespace Animator.Tests
 			var doc = new Document(host);
 
 			var seq = new Sequence(doc);
-			doc.Sequences.Add(seq);
+			doc.Sections.Add(seq);
 
 			var track = new SequenceTrack(doc);
 			seq.Tracks.Add(track);
@@ -132,7 +130,7 @@ namespace Animator.Tests
 			var doc = new Document(host);
 
 			var seq = new Sequence(doc);
-			doc.Sequences.Add(seq);
+			doc.Sections.Add(seq);
 
 			var track = new SequenceTrack(doc);
 			seq.Tracks.Add(track);

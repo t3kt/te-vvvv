@@ -35,6 +35,11 @@ namespace Animator
 			get { return ((AniApplication)Current).Host; }
 		}
 
+		internal static void ShowNotImplementedWarning()
+		{
+			MessageBox.Show(Current.MainWindow, "Not Implemented");
+		}
+
 		#endregion
 
 		#region Fields

@@ -6,6 +6,9 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
+using Animator.Core.Composition;
+using Animator.Core.Model.Sequences;
+using Animator.Core.Model.Sessions;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -17,6 +20,16 @@ namespace Animator.Core.Model
 	{
 
 		#region Static/Constant
+
+		internal static DocumentSection ReadSectionXElement([NotNull] XElement element, [NotNull] Document document, [CanBeNull]AniHost host = null)
+		{
+			Require.ArgNotNull(element, "element");
+			if(element.Name == Schema.sequence)
+				return new Sequence(element, document, host);
+			if(element.Name == Schema.session)
+				return new Session(element, document, host);
+			return null;
+		}
 
 		#endregion
 
