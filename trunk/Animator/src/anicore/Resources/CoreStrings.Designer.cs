@@ -79,6 +79,15 @@ namespace Animator.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start ({0}) must not be after end ({1}).
+        /// </summary>
+        internal static string Interval_StartMustNotBeAfterEnd {
+            get {
+                return ResourceManager.GetString("Interval_StartMustNotBeAfterEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read scope not allowed for non-recursive lock that holds lock.
         /// </summary>
         internal static string LockReadScope_NonRecursiveWithLockNotAllowed {

@@ -25,44 +25,48 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
-		private EventHandler<TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>> _TryChangeSpanHandler;
+		private EventHandler<TryChangeValueEventArgs<Interval>> _TryChangeIntervalHandler;
 
-		private TimeSpan _Start;
-		private TimeSpan _Duration;
+		private Interval _Interval;
 
 		#endregion
 
 		#region Properties
 
+		internal Interval Interval
+		{
+			get { return this._Interval; }
+		}
+
 		[Category(TEShared.Names.Category_Transport)]
 		public TimeSpan Start
 		{
-			get { return this._Start; }
+			get { return this._Interval.Start; }
 			set
 			{
 				//if(value < TimeSpan.Zero)
 				//    value = TimeSpan.Zero;
 				//Require.ArgNotNegative(value, "value");
-				if(value != this.Start)
-					this.ChangeSpan(value, this._Duration);
+				if(value != this._Interval.Start)
+					this.ChangeInterval(new Interval(value, this._Interval.Duration));
 			}
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
 		public TimeSpan Duration
 		{
-			get { return this._Duration; }
+			get { return this._Interval.Duration; }
 			set
 			{
 				//Require.ArgNotNegative(value, "value");
-				if(value != this._Duration)
-					this.ChangeSpan(this._Start, value);
+				if(value != this._Interval.Duration)
+					this.ChangeInterval(new Interval(this._Interval.Start, value));
 			}
 		}
 
 		internal TimeSpan End
 		{
-			get { return this._Start + this._Duration; }
+			get { return this._Interval.End; }
 		}
 
 		#endregion
@@ -78,31 +82,29 @@ namespace Animator.Core.Model.Sequences
 		public SequenceClip([NotNull] XElement element, [CanBeNull] AniHost host)
 			: base(element, host)
 		{
-			this.Start = ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_start));
-			this.Duration = ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_dur));
+			this._Interval =
+				new Interval(ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_start)),
+					ModelUtil.ParseTimeSpan(element.Attribute(Schema.seqclip_dur)));
 		}
 
 		#endregion
 
 		#region Methods
 
-		internal void ChangeSpan(TimeSpan start, TimeSpan duration)
+		internal void ChangeInterval(Interval interval)
 		{
 			//if(duration < TimeSpan.Zero)
 			//    throw new NotImplementedException();
-			if(this._TryChangeSpanHandler != null)
+			if(this._TryChangeIntervalHandler != null)
 			{
-				var current = new Tuple<TimeSpan, TimeSpan>(this._Start, this._Duration);
-				var requested = new Tuple<TimeSpan, TimeSpan>(start, duration);
-				var e = new TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>(current, requested);
-				this._TryChangeSpanHandler(this, e);
+				var e = new TryChangeValueEventArgs<Interval>(this._Interval, interval);
+				this._TryChangeIntervalHandler(this, e);
 				switch(e.Decision)
 				{
 				case TryChangeValueDecision.Denied:
 					return;
 				case TryChangeValueDecision.ModifiedApproved:
-					start = e.NewValue.Item1;
-					duration = e.NewValue.Item2;
+					interval = e.NewValue;
 					break;
 				//case TryChangeValueDecision.None:
 				//case TryChangeValueDecision.Approved:
@@ -110,33 +112,31 @@ namespace Animator.Core.Model.Sequences
 				//    break;
 				}
 			}
-			if(start != this._Start)
+			if(interval != this._Interval)
 			{
-				this._Start = start;
+				this._Interval = interval;
+				this.OnPropertyChanged("Interval");
 				this.OnPropertyChanged("Start");
-			}
-			if(duration != this._Duration)
-			{
-				this._Duration = duration;
 				this.OnPropertyChanged("Duration");
+				this.OnPropertyChanged("End");
 			}
 		}
 
-		internal void SetSpanChangeHandler(EventHandler<TryChangeValueEventArgs<Tuple<TimeSpan, TimeSpan>>> handler, bool applyNow = false)
+		internal void SetIntervalChangeHandler(EventHandler<TryChangeValueEventArgs<Interval>> handler, bool applyNow = false)
 		{
-			this._TryChangeSpanHandler = handler;
+			this._TryChangeIntervalHandler = handler;
 			if(applyNow)
-				this.ApplySpanChangeHandler();
+				this.ApplyIntervalChangeHandler();
 		}
 
-		internal void ApplySpanChangeHandler()
+		internal void ApplyIntervalChangeHandler()
 		{
-			this.ChangeSpan(this._Start, this._Duration);
+			this.ChangeInterval(this._Interval);
 		}
 
 		internal bool ContainsPosition(TimeSpan position)
 		{
-			return position >= this._Start && position < this.End;
+			return position >= this._Interval.Start && position < this._Interval.End;
 		}
 
 		internal bool Overlaps([NotNull] SequenceClip other)
@@ -160,8 +160,8 @@ namespace Animator.Core.Model.Sequences
 		{
 			return new XElement(name ?? Schema.seqclip,
 				this.WriteCommonXAttributes(),
-				new XAttribute(Schema.seqclip_start, this._Start),
-				ModelUtil.WriteXAttribute(Schema.seqclip_dur, this._Duration),
+				new XAttribute(Schema.seqclip_start, this._Interval.Start),
+				ModelUtil.WriteXAttribute(Schema.seqclip_dur, this._Interval.Duration),
 				this.WritePropertiesXElement());
 		}
 

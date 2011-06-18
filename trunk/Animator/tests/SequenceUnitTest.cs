@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using Animator.Common;
 using Animator.Core.Model;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Runtime;
@@ -245,12 +246,13 @@ namespace Animator.Tests
 
 			var a_start = TimeSpan.FromSeconds(1);
 			var a_dur = TimeSpan.FromSeconds(2);
+			var a_int = new Interval(a_start, a_dur);
 
-			clip.ChangeSpan(a_start, a_dur);
+			clip.ChangeInterval(a_int);
 			Assert.AreEqual(a_start, clip.Start);
 			Assert.AreEqual(a_dur, clip.Duration);
 
-			clip.SetSpanChangeHandler(
+			clip.SetIntervalChangeHandler(
 				(s, e) =>
 				{
 					e.Approve();
@@ -258,40 +260,45 @@ namespace Animator.Tests
 
 			var b_start = TimeSpan.FromSeconds(3);
 			var b_dur = TimeSpan.FromSeconds(4);
-			clip.ChangeSpan(b_start, b_dur);
+			var b_int = new Interval(b_start, b_dur);
+			clip.ChangeInterval(b_int);
 			Assert.AreEqual(b_start, clip.Start);
 			Assert.AreEqual(b_dur, clip.Duration);
 
-			clip.SetSpanChangeHandler(
+			clip.SetIntervalChangeHandler(
 				(s, e) =>
 				{
 					e.Deny();
 				});
 			var c_start = TimeSpan.FromSeconds(5);
 			var c_dur = TimeSpan.FromSeconds(6);
-			clip.ChangeSpan(c_start, c_dur);
+			var c_int = new Interval(c_start, c_dur);
+			clip.ChangeInterval(c_int);
 			Assert.AreEqual(b_start, clip.Start);
 			Assert.AreEqual(b_dur, clip.Duration);
 
-			clip.SetSpanChangeHandler(
+			clip.SetIntervalChangeHandler(
 				(s, e) =>
 				{
 				});
-			clip.ChangeSpan(c_start, c_dur);
+			clip.ChangeInterval(c_int);
 			Assert.AreEqual(c_start, clip.Start);
 			Assert.AreEqual(c_dur, clip.Duration);
 
 			var d_start = TimeSpan.FromSeconds(7);
 			var d_dur = TimeSpan.FromSeconds(8);
+			var d_int = new Interval(d_start, d_dur);
+
 			var e_start = TimeSpan.FromSeconds(9);
 			var e_dur = TimeSpan.FromSeconds(10);
+			var e_int = new Interval(e_start, e_dur);
 
-			clip.SetSpanChangeHandler(
+			clip.SetIntervalChangeHandler(
 				(s, e) =>
 				{
-					e.ApproveModified(new Tuple<TimeSpan, TimeSpan>(e_start, e_dur));
+					e.ApproveModified(e_int);
 				});
-			clip.ChangeSpan(d_start, d_dur);
+			clip.ChangeInterval(d_int);
 			Assert.AreEqual(e_start, clip.Start);
 			Assert.AreEqual(e_dur, clip.Duration);
 		}

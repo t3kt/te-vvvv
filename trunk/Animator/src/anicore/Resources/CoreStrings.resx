@@ -156,4 +156,7 @@
 	<data name="DurationMustNotBeNegative">
 		<value xml:space="preserve">Duration must not be negative</value>
 	</data>
+	<data name="Interval_StartMustNotBeAfterEnd">
+		<value xml:space="preserve">Start ({0}) must not be after end ({1})</value>
+	</data>
 </root>
