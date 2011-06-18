@@ -30,8 +30,7 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_name = common_name;
 		public static readonly XName anidoc_bpm = "bpm";
 		public static readonly XName anidoc_outputs = "outputs";
-		public static readonly XName anidoc_sequences = "sequences";
-		public static readonly XName anidoc_sessions = "sessions";
+		public static readonly XName anidoc_sections = "sections";
 
 		public static readonly XName transport = "transport";
 		public static readonly XName transport_type = common_type;

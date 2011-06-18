@@ -103,6 +103,19 @@ namespace Animator.UI.Dialogs
 			return null;
 		}
 
+		public static bool ShowForTarget(object target, [NotNull]ObjectEditor editor, [CanBeNull]Window owner = null)
+		{
+			Require.ArgNotNull(target, "target");
+			Require.ArgNotNull(editor, "editor");
+			var dlg = new ObjectEditorDialog
+					  {
+						  Owner = owner,
+						  Editor = editor,
+						  Target = target
+					  };
+			return dlg.ShowDialog() == true;
+		}
+
 		#endregion
 
 		#region Fields

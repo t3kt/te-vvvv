@@ -24,6 +24,9 @@ namespace Animator.AppCore
 
 		public static readonly RoutedUICommand AboutApplication = new RoutedUICommand("_About Application", "AboutApplication", typeof(AniAppCommands));
 
+		public static readonly RoutedUICommand ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(AniAppCommands),
+			new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
+
 	}
 
 	#endregion

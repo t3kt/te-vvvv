@@ -131,8 +131,7 @@ namespace Animator.Core.Model
 		private readonly AniHost _Host;
 
 		private readonly ObservableCollection<Output> _Outputs;
-		private readonly ObservableCollection<Sequence> _Sequences;
-		private readonly ObservableCollection<Session> _Sessions;
+		private readonly ObservableCollection<DocumentSection> _Sections;
 		private Guid _Id;
 		private string _Name;
 		private readonly TransportData _TransportData;
@@ -204,16 +203,19 @@ namespace Animator.Core.Model
 			get { return this._Outputs; }
 		}
 
-		[Browsable(false)]
-		public ObservableCollection<Sequence> Sequences
+		public IEnumerable<Sequence> Sequences
 		{
-			get { return this._Sequences; }
+			get { return this._Sections.OfType<Sequence>(); }
 		}
 
-		[Browsable(false)]
-		public ObservableCollection<Session> Sessions
+		public IEnumerable<Session> Sessions
 		{
-			get { return this._Sessions; }
+			get { return this._Sections.OfType<Session>(); }
+		}
+
+		public ObservableCollection<DocumentSection> Sections
+		{
+			get { return this._Sections; }
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
@@ -230,16 +232,8 @@ namespace Animator.Core.Model
 			{
 				if(value != this._ActiveSection)
 				{
-					if(value is Session)
-					{
-						if(!this._Sessions.Contains((Session)value))
-							throw new ModelException("Session is not from this document.");
-					}
-					else if(value is Sequence)
-					{
-						if(!this._Sequences.Contains((Sequence)value))
-							throw new ModelException("Sequence is not from this document.");
-					}
+					if(!this._Sections.Contains(value))
+						throw new ModelException("Section is not from this document");
 					this._ActiveSection = value;
 					this.OnPropertyChanged("ActiveSection");
 				}
@@ -250,17 +244,18 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		public Document([CanBeNull] AniHost host = null)
+		public Document()
+			: this(null) { }
+
+		public Document([CanBeNull] AniHost host)
 		{
 			this._Host = host ?? AniHost.Current;
 			this._TransportData = new TransportData();
 			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
-			this._Sequences = new ObservableCollection<Sequence>();
-			this._Sequences.CollectionChanged += this.Sequences_CollectionChanged;
-			this._Sessions = new ObservableCollection<Session>();
-			this._Sessions.CollectionChanged += this.Sessions_CollectionChanged;
 			this._Outputs = new ObservableCollection<Output>();
 			this._Outputs.CollectionChanged += this.Outputs_CollectionChanged;
+			this._Sections = new ObservableCollection<DocumentSection>();
+			this._Sections.CollectionChanged += this.Sections_CollectionChanged;
 		}
 
 		public Document(Guid id, [CanBeNull] AniHost host = null)
@@ -317,14 +312,9 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Outputs");
 		}
 
-		private void Sequences_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void Sections_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			this.OnPropertyChanged("Sequences");
-		}
-
-		private void Sessions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Sessions");
+			this.OnPropertyChanged("Sections");
 		}
 
 		public Output GetOutput(Guid id)
@@ -377,12 +367,10 @@ namespace Animator.Core.Model
 			var outputsElement = element.Element(Schema.anidoc_outputs);
 			if(outputsElement != null)
 				this.Outputs.AddRange(outputsElement.Elements().Select(host.ReadOutputXElement));
-			var sequencesElement = element.Element(Schema.anidoc_sequences);
-			if(sequencesElement != null)
-				this.Sequences.AddRange(sequencesElement.Elements().Select(e => new Sequence(e, this, host)));
-			var sessionsElement = element.Element(Schema.anidoc_sessions);
-			if(sessionsElement != null)
-				this.Sessions.AddRange(sessionsElement.Elements().Select(e => new Session(e, this, host)));
+
+			var sectionsElement = element.Element(Schema.anidoc_sections);
+			if(sectionsElement != null)
+				this._Sections.AddRange(sectionsElement.Elements().Select(e => DocumentSection.ReadSectionXElement(e, this, host)).Where(s => s != null));
 		}
 
 		#endregion
@@ -396,8 +384,7 @@ namespace Animator.Core.Model
 				ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
 				this._TransportData.WriteXElement(),
 				ModelUtil.WriteListXElement(this._Outputs, Schema.anidoc_outputs),
-				ModelUtil.WriteListXElement(this._Sequences, Schema.anidoc_sequences),
-				ModelUtil.WriteListXElement(this._Sessions, Schema.anidoc_sessions));
+				ModelUtil.WriteListXElement(this._Sections, Schema.anidoc_sections));
 		}
 
 		public XDocument WriteXDocument()
@@ -432,7 +419,6 @@ namespace Animator.Core.Model
 			foreach(var output in this._Outputs)
 				output.Dispose();
 			this._Outputs.Clear();
-			GC.SuppressFinalize(this);
 		}
 
 		#endregion

@@ -5,13 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
-using Animator.Core.Model;
 using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
 using Animator.Core.Transport;
 using Animator.Osc;
 using Animator.Tests.Utils;
-using Animator.UI.Editors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
@@ -224,10 +222,6 @@ namespace Animator.Tests
 			Assert.IsInstanceOfType(host.CreateObjectEditorByKey(ThingEditor.Export_Key), typeof(ThingEditor));
 			Assert.IsNull(host.CreateObjectEditor(typeof(string)));
 			Assert.IsInstanceOfType(host.CreateObjectEditor(typeof(Thing)), typeof(ThingEditor));
-			Assert.IsInstanceOfType(host.CreateObjectEditor(typeof(Document), "basic"), typeof(DocumentPropertyEditor));
-			var a = host.CreateObjectEditor(typeof(Document), "basic");
-			var b = host.CreateObjectEditor(typeof(Document), "basic");
-			Assert.AreNotSame(a, b);
 		}
 
 		#region Thing

@@ -26,7 +26,7 @@ namespace Animator.UI.Panes
 		static DocumentItemPropertiesPane()
 		{
 			CommandManager.RegisterClassCommandBinding(typeof(DocumentItemPropertiesPane),
-				new CommandBinding(AniUI.ShowEditDetailCommand, ShowEditDetailCommand_Executed, ShowEditDetailCommand_CanExecute));
+				new CommandBinding(AniAppCommands.ShowEditDetailCommand, ShowEditDetailCommand_Executed, ShowEditDetailCommand_CanExecute));
 			IsTabStopProperty.OverrideMetadata(typeof(DocumentItemPropertiesPane), new FrameworkPropertyMetadata(true));
 		}
 

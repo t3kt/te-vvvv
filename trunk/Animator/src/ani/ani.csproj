@@ -94,9 +94,6 @@
       <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\ObjectEditor.cs" />
-    <Compile Include="UI\Editors\DocumentPropertyEditor.xaml.cs">
-      <DependentUpon>DocumentPropertyEditor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -105,6 +102,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
+    <Compile Include="UI\Panes\DocumentNavigationPane.xaml.cs">
+      <DependentUpon>DocumentNavigationPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
       <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
     </Compile>
@@ -123,7 +123,7 @@
     <Compile Include="UI\Sequencing\SequenceTrackPane.xaml.cs">
       <DependentUpon>SequenceTrackPane.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Session\ClipCell.xaml.cs">
+    <Compile Include="UI\Sessions\ClipCell.xaml.cs">
       <DependentUpon>ClipCell.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\AppSkin.xaml">
@@ -162,11 +162,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Editors\DocumentPropertyEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Panes\DocumentNavigationPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +194,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Session\ClipCell.xaml">
+    <Page Include="UI\Sessions\ClipCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +242,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppCore\Common\" />
+    <Folder Include="UI\Common\" />
+    <Folder Include="UI\Editors\" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\ani_app_splash.png">

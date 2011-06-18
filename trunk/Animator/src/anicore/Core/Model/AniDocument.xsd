@@ -44,18 +44,12 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="sequences" minOccurs="0">
+						<xs:element name="sections" minOccurs="0">
 							<xs:complexType>
-								<xs:sequence minOccurs="0" maxOccurs="unbounded">
+								<xs:choice minOccurs="0" maxOccurs="unbounded">
 									<xs:element ref="sequence"/>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="sessions" minOccurs="0">
-							<xs:complexType>
-								<xs:sequence minOccurs="0" maxOccurs="unbounded">
 									<xs:element ref="session"/>
-								</xs:sequence>
+								</xs:choice>
 							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
@@ -63,7 +57,7 @@
 			</xs:complexContent>
 		</xs:complexType>
 		<xs:key name="itemIdKey">
-			<xs:selector xpath=".|outputs/*|outputs/*/target|sequences/sequence|sequences/sequence/seqtrack|sequences/sequence/seqtrack/seqclip|sessions/session|sessions/session/sestrack|sessions/session/sestrack/sesclip"/>
+			<xs:selector xpath=".|outputs/*|outputs/*/target|sections/sequence|sections/sequence/seqtrack|sections/sequence/seqtrack/seqclip|sections/session|sections/session/sestrack|sections/session/sestrack/sesclip"/>
 			<xs:field xpath="@id"/>
 		</xs:key>
 		<xs:key name="outputIdKey">
@@ -75,11 +69,11 @@
 			<xs:field xpath="@id"/>
 		</xs:key>
 		<xs:keyref name="seqTrackTargetIdKeyRef" refer="outputTargetIdKey">
-			<xs:selector xpath="sequences/sequence/seqtrack"/>
+			<xs:selector xpath="sections/sequence/seqtrack"/>
 			<xs:field xpath="@target"/>
 		</xs:keyref>
 		<xs:keyref name="sesTrackTargetIdKeyRef" refer="outputTargetIdKey">
-			<xs:selector xpath="sessions/session/sestrack"/>
+			<xs:selector xpath="sections/session/sestrack"/>
 			<xs:field xpath="@target"/>
 		</xs:keyref>
 	</xs:element>

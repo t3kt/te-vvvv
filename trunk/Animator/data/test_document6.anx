@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<anidoc id="5bd3c6aa-18cf-4375-9182-aacbe2a9b4dc" name="Test Documfent fooo">
+	<transport bpm="120" type="manual" />
+	<outputs>
+		<output id="80f7b4ff-6255-4032-8a94-8218b4cfd36f" name="out A">
+			<target id="c532075d-9340-4a45-84b7-c51a18db9d86" name="myTarget" key="foo/mytarget/">
+				<prop name="valA" type="Value" default="22.4"/>
+			</target>
+		</output>
+		<oscoutput id="DAC6E5E4-EB43-4AFB-BE57-6A03803B1D6B" name="OSC Out D" host="localhost" port="2134"/>
+		<output id="a7f4febc-7959-4bb1-9386-b2ba59a793a2" name="out B" />
+	</outputs>
+	<sections>
+		<sequence id="f140f161-a009-4643-b8f3-c70f2c15ae01" name="foo seq" dur="40"/>
+		<session id="2f3702de-0737-4cd6-89dc-bf06404294e0" name="qq sess"/>
+		<sequence id="c70f2c15-4643-a009-b081-15ae01c70f2c" name="baz seq" dur="40"/>
+		<session id="4d9a7bf7-9517-4c46-8948-c181a178a5cb" name="zz sess"/>
+	</sections>
+</anidoc>

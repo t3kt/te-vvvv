@@ -61,7 +61,21 @@
 		</Grid.RowDefinitions>
 		<Menu Style="{DynamicResource MainMenuStyle}" Grid.ColumnSpan="3">
 			<Menu.Resources>
-				<Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MainMenuItemStyle}" />
+				<Style TargetType="{x:Type MenuItem}">
+					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
+				</Style>
+				<Style x:Key="SeparatorStyle" TargetType="{x:Type Separator}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type Separator}">
+								<Grid SnapsToDevicePixels="true" Background="{StaticResource PaneBackgroundBrush}">
+									<Rectangle Fill="{StaticResource MainMenuSeparatorBrush}" Height="2" Margin="10,2,10,2"/>
+								</Grid>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
+				</Style>
 			</Menu.Resources>
 			<MenuItem Header="_File">
 				<MenuItem Command="ApplicationCommands.New" />
@@ -69,7 +83,7 @@
 				<MenuItem Command="ApplicationCommands.Save" />
 				<MenuItem Command="ApplicationCommands.SaveAs" />
 				<MenuItem Command="ApplicationCommands.Close" />
-				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem x:Name="RecentFilesMenu" Header="_Recent Files" ItemsSource="{Binding ElementName=mainWindow, Path=RecentFiles}">
 					<MenuItem.ItemContainerStyle>
 						<Style TargetType="{x:Type MenuItem}">
@@ -78,25 +92,24 @@
 						</Style>
 					</MenuItem.ItemContainerStyle>
 				</MenuItem>
-				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem Command="appCore:AniAppCommands.Exit" />
 			</MenuItem>
 			<MenuItem Header="_Edit">
 				<MenuItem Command="ApplicationCommands.Undo"/>
 				<MenuItem Command="ApplicationCommands.Redo"/>
-				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem Command="ApplicationCommands.Cut"/>
 				<MenuItem Command="ApplicationCommands.Copy"/>
 				<MenuItem Command="ApplicationCommands.Paste"/>
 				<MenuItem Command="ApplicationCommands.Delete"/>
-				<Separator Style="{StaticResource MainMenuSeparatorStyle}" />
+				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem Command="appCore:AniAppCommands.EditTransport" Header="Document _Transport" />
 			</MenuItem>
 			<MenuItem Header="_Add" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
 				<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
 			</MenuItem>
 			<MenuItem Header="_View">
-				<MenuItem x:Name="docPropsVisibleMenuItem" Header="_Document Properties" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
 				<MenuItem x:Name="clipEditMenuItem" Header="_Clip Editor" IsCheckable="True" IsChecked="True"/>
@@ -114,7 +127,7 @@
 				</Button>
 			</StackPanel>-->
 		</Menu>
-		<panes:DocumentPropertiesPane x:Name="documentPropertiesPane" Grid.Row="1" Margin="1" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}" Visibility="{Binding ElementName=docPropsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" MinWidth="150" />
+		<panes:DocumentNavigationPane Grid.Row="1" MinWidth="100" />
 		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 		<Grid Grid.Row="1" Grid.Column="2">
 			<Grid.RowDefinitions>
