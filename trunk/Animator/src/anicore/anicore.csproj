@@ -76,7 +76,7 @@
     <Compile Include="Core\Composition\ClipPropertyData.cs" />
     <Compile Include="Core\Composition\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Composition\Output.cs" />
-    <Compile Include="Core\Composition\PropertyEditor.cs" />
+    <Compile Include="Core\Composition\ObjectEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\IO\TraceOutput.cs" />
     <Compile Include="Core\Model\Clips\ClipBase.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Core\Runtime\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IItemContainer.cs" />
-    <Compile Include="Core\Runtime\IPropertyEditor.cs" />
+    <Compile Include="Core\Runtime\IObjectEditor.cs" />
     <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
     <Compile Include="Core\Runtime\TryChangeValueEvent.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />

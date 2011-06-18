@@ -216,17 +216,17 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Composition)]
-		public void GetPropertyEditor()
+		public void GetObjectEditor()
 		{
 			var host = CreateHost(test: true, core: true, app: true);
-			Assert.IsNull(host.CreatePropertyEditorByKey("foo"));
-			Assert.IsNull(host.CreatePropertyEditorByKey(null));
-			Assert.IsInstanceOfType(host.CreatePropertyEditorByKey(ThingEditor.Export_Key), typeof(ThingEditor));
-			Assert.IsNull(host.CreatePropertyEditor(typeof(string)));
-			Assert.IsInstanceOfType(host.CreatePropertyEditor(typeof(Thing)), typeof(ThingEditor));
-			Assert.IsInstanceOfType(host.CreatePropertyEditor(typeof(Document), "basic"), typeof(DocumentPropertyEditor));
-			var a = host.CreatePropertyEditor(typeof(Document), "basic");
-			var b = host.CreatePropertyEditor(typeof(Document), "basic");
+			Assert.IsNull(host.CreateObjectEditorByKey("foo"));
+			Assert.IsNull(host.CreateObjectEditorByKey(null));
+			Assert.IsInstanceOfType(host.CreateObjectEditorByKey(ThingEditor.Export_Key), typeof(ThingEditor));
+			Assert.IsNull(host.CreateObjectEditor(typeof(string)));
+			Assert.IsInstanceOfType(host.CreateObjectEditor(typeof(Thing)), typeof(ThingEditor));
+			Assert.IsInstanceOfType(host.CreateObjectEditor(typeof(Document), "basic"), typeof(DocumentPropertyEditor));
+			var a = host.CreateObjectEditor(typeof(Document), "basic");
+			var b = host.CreateObjectEditor(typeof(Document), "basic");
 			Assert.AreNotSame(a, b);
 		}
 
@@ -243,8 +243,8 @@ namespace Animator.Tests
 
 		#region ThingyEditor
 
-		[PropertyEditor(Key = Export_Key, TargetType = typeof(Thing))]
-		internal class ThingEditor : IPropertyEditor
+		[ObjectEditor(Key = Export_Key, TargetType = typeof(Thing))]
+		internal class ThingEditor : IObjectEditor
 		{
 
 			#region Static/Constant
@@ -270,7 +270,7 @@ namespace Animator.Tests
 
 			#endregion
 
-			#region IPropertyEditor Members
+			#region IObjectEditor Members
 
 			public object Target { get; set; }
 

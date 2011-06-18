@@ -72,9 +72,9 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>(); }
 		}
 
-		private IEnumerable<Lazy<IPropertyEditor, IPropertyEditorMetadata>> PropertyEditors
+		private IEnumerable<Lazy<IObjectEditor, IObjectEditorMetadata>> ObjectEditors
 		{
-			get { return this._Container.GetExports<IPropertyEditor, IPropertyEditorMetadata>(); }
+			get { return this._Container.GetExports<IObjectEditor, IObjectEditorMetadata>(); }
 		}
 
 		#endregion
@@ -163,9 +163,9 @@ namespace Animator.Core.Composition
 		}
 
 		[CanBeNull]
-		public IPropertyEditor CreatePropertyEditorByKey(string key)
+		public IObjectEditor CreateObjectEditorByKey(string key)
 		{
-			return this.PropertyEditors.CreateByKey(key);
+			return this.ObjectEditors.CreateByKey(key);
 		}
 
 		[NotNull]
@@ -202,11 +202,11 @@ namespace Animator.Core.Composition
 		}
 
 		[CanBeNull]
-		public IPropertyEditor CreatePropertyEditor([CanBeNull]Type targetType, [CanBeNull]string key = null)
+		public IObjectEditor CreateObjectEditor([CanBeNull]Type targetType, [CanBeNull]string key = null)
 		{
-			if(targetType != null && this.PropertyEditors != null)
+			if(targetType != null && this.ObjectEditors != null)
 			{
-				foreach(var import in this.PropertyEditors)
+				foreach(var import in this.ObjectEditors)
 				{
 					if(import.Metadata.TargetType == targetType &&
 						(key == null || AniExportUtil.KeyComparer.Equals(import.Metadata.Key, key)))

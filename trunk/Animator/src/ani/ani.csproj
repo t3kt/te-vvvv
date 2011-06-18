@@ -87,13 +87,13 @@
     <Compile Include="UI\Dialogs\AddOutputDialog.xaml.cs">
       <DependentUpon>AddOutputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Dialogs\PropertyEditorDialog.xaml.cs">
-      <DependentUpon>PropertyEditorDialog.xaml</DependentUpon>
+    <Compile Include="UI\Dialogs\ObjectEditorDialog.xaml.cs">
+      <DependentUpon>ObjectEditorDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Dialogs\TransportPropertiesDialog.xaml.cs">
       <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\PropertyEditor.cs" />
+    <Compile Include="UI\Controls\ObjectEditor.cs" />
     <Compile Include="UI\Editors\DocumentPropertyEditor.xaml.cs">
       <DependentUpon>DocumentPropertyEditor.xaml</DependentUpon>
     </Compile>
@@ -154,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Dialogs\PropertyEditorDialog.xaml">
+    <Page Include="UI\Dialogs\ObjectEditorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,8 +163,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Editors\DocumentPropertyEditor.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\MainWindow.xaml">
       <SubType>Designer</SubType>

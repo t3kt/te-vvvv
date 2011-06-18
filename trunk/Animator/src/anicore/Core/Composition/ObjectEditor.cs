@@ -8,11 +8,11 @@ using Animator.Core.Runtime;
 namespace Animator.Core.Composition
 {
 
-	#region PropertyEditorAttribute
+	#region ObjectEditorAttribute
 
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public sealed class PropertyEditorAttribute : AniExportAttribute
+	public sealed class ObjectEditorAttribute : AniExportAttribute
 	{
 
 		#region Static / Constant
@@ -31,8 +31,8 @@ namespace Animator.Core.Composition
 
 		#region Constructors
 
-		public PropertyEditorAttribute()
-			: base(typeof(IPropertyEditor)) { }
+		public ObjectEditorAttribute()
+			: base(typeof(IObjectEditor)) { }
 
 		#endregion
 
@@ -44,9 +44,9 @@ namespace Animator.Core.Composition
 
 	#endregion
 
-	#region IPropertyEditorMetadata
+	#region IObjectEditorMetadata
 
-	public interface IPropertyEditorMetadata : IAniExportMetadata
+	public interface IObjectEditorMetadata : IAniExportMetadata
 	{
 
 		Type TargetType { get; }
