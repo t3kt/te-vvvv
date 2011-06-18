@@ -14,72 +14,72 @@ using TESharedAnnotations;
 namespace Animator.UI.Dialogs
 {
 
-	#region PropertyEditorDialog
+	#region ObjectEditorDialog
 
 	/// <summary>
-	/// Interaction logic for PropertyEditorDialog.xaml
+	/// Interaction logic for ObjectEditorDialog.xaml
 	/// </summary>
-	public partial class PropertyEditorDialog : IPropertyEditor
+	public partial class ObjectEditorDialog : IObjectEditor
 	{
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty EditorProperty = DependencyProperty.Register("Editor", typeof(PropertyEditor),
-				typeof(PropertyEditorDialog), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, OnEditorChanged));
+		public static readonly DependencyProperty EditorProperty = DependencyProperty.Register("Editor", typeof(ObjectEditor),
+				typeof(ObjectEditorDialog), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, OnEditorChanged));
 
-		public static readonly DependencyProperty TargetProperty = PropertyEditor.TargetProperty.AddOwner(typeof(PropertyEditorDialog),
+		public static readonly DependencyProperty TargetProperty = ObjectEditor.TargetProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(null));
 
-		public static readonly DependencyProperty AutoCommitProperty = PropertyEditor.AutoCommitProperty.AddOwner(typeof(PropertyEditorDialog),
+		public static readonly DependencyProperty AutoCommitProperty = ObjectEditor.AutoCommitProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(true));
 
-		public static readonly DependencyProperty BasicsVisibilityProperty = PropertyEditor.BasicsVisibilityProperty.AddOwner(typeof(PropertyEditorDialog),
+		public static readonly DependencyProperty BasicsVisibilityProperty = ObjectEditor.BasicsVisibilityProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(Visibility.Visible));
 
-		public static readonly DependencyProperty DetailsVisibilityProperty = PropertyEditor.DetailsVisibilityProperty.AddOwner(typeof(PropertyEditorDialog),
+		public static readonly DependencyProperty DetailsVisibilityProperty = ObjectEditor.DetailsVisibilityProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(Visibility.Collapsed));
 
-		public static readonly DependencyProperty DirtyProperty = PropertyEditor.DirtyProperty.AddOwner(typeof(PropertyEditorDialog),
+		public static readonly DependencyProperty DirtyProperty = ObjectEditor.DirtyProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(false));
 
 		public static readonly DependencyProperty EditorStyleProperty = DependencyProperty.Register("EditorStyle", typeof(Style),
-			typeof(PropertyEditorDialog), new FrameworkPropertyMetadata(null));
+			typeof(ObjectEditorDialog), new FrameworkPropertyMetadata(null));
 
-		public static readonly RoutedEvent TargetPropertyChangedEvent = PropertyEditor.TargetPropertyChangedEvent.AddOwner(typeof(PropertyEditorDialog));
+		public static readonly RoutedEvent TargetPropertyChangedEvent = ObjectEditor.TargetPropertyChangedEvent.AddOwner(typeof(ObjectEditorDialog));
 
 		private static void OnEditorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			var dlg = (PropertyEditorDialog)d;
-			dlg.DetachEditor(e.OldValue as PropertyEditor);
-			dlg.AttachEditor(e.NewValue as PropertyEditor);
+			var dlg = (ObjectEditorDialog)d;
+			dlg.DetachEditor(e.OldValue as ObjectEditor);
+			dlg.AttachEditor(e.NewValue as ObjectEditor);
 		}
 
 		[NotNull]
-		public static PropertyEditorDialog Create([NotNull] Type targetType, [CanBeNull]string editorKey = null, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
+		public static ObjectEditorDialog Create([NotNull] Type targetType, [CanBeNull]string editorKey = null, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
 		{
 			Require.ArgNotNull(targetType, "targetType");
 			if(host == null)
 				host = AniApplication.CurrentHost;
-			var editor = host.CreatePropertyEditor(targetType, editorKey);
+			var editor = host.CreateObjectEditor(targetType, editorKey);
 			return
-				new PropertyEditorDialog
+				new ObjectEditorDialog
 				{
 					Owner = owner,
-					Editor = editor as PropertyEditor
+					Editor = editor as ObjectEditor
 				};
 		}
 		[NotNull]
-		public static PropertyEditorDialog Create([NotNull] string editorKey, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
+		public static ObjectEditorDialog Create([NotNull] string editorKey, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
 		{
 			Require.ArgNotNullOrEmpty(editorKey, "editorKey");
 			if(host == null)
 				host = AniApplication.CurrentHost;
-			var editor = host.CreatePropertyEditorByKey(editorKey);
+			var editor = host.CreateObjectEditorByKey(editorKey);
 			return
-				new PropertyEditorDialog
+				new ObjectEditorDialog
 				{
 					Owner = owner,
-					Editor = editor as PropertyEditor
+					Editor = editor as ObjectEditor
 				};
 		}
 
@@ -111,9 +111,9 @@ namespace Animator.UI.Dialogs
 
 		#region Properties
 
-		public PropertyEditor Editor
+		public ObjectEditor Editor
 		{
-			get { return (PropertyEditor)this.GetValue(EditorProperty); }
+			get { return (ObjectEditor)this.GetValue(EditorProperty); }
 			set { this.SetValue(EditorProperty, value); }
 		}
 
@@ -167,7 +167,7 @@ namespace Animator.UI.Dialogs
 
 		#region Constructors
 
-		public PropertyEditorDialog()
+		public ObjectEditorDialog()
 		{
 			InitializeComponent();
 		}
@@ -181,7 +181,7 @@ namespace Animator.UI.Dialogs
 			this.RaiseEvent(new TargetPropertyChangedEventArgs(TargetPropertyChangedEvent, this, e.Target, e.PropertyName));
 		}
 
-		private void AttachEditor(PropertyEditor editor)
+		private void AttachEditor(ObjectEditor editor)
 		{
 			if(editor == null)
 				return;
@@ -230,7 +230,7 @@ namespace Animator.UI.Dialogs
 				});
 		}
 
-		private void DetachEditor(PropertyEditor editor)
+		private void DetachEditor(ObjectEditor editor)
 		{
 			if(editor == null)
 				return;

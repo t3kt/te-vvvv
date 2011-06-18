@@ -7,9 +7,9 @@ using System.Windows;
 namespace Animator.Core.Runtime
 {
 
-	#region IPropertyEditor
+	#region IObjectEditor
 
-	public interface IPropertyEditor
+	public interface IObjectEditor
 	{
 		object Target { get; set; }
 		bool AutoCommit { get; set; }

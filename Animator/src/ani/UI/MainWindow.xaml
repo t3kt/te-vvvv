@@ -153,7 +153,7 @@
 						</ListBox.CommandBindings>
 						<ListBox.ItemTemplate>
 							<DataTemplate DataType="{x:Type io:Output}">
-								<panes:OutputPropertiesPane Grid.Row="1" appCore:AniUIManager.PaneHeader="{Binding Path=Name}" appCore:AniUIManager.PaneHeaderVisibility="Collapsed">
+								<panes:OutputPropertiesPane Grid.Row="1" appCore:AniUI.PaneHeader="{Binding Path=Name}" appCore:AniUI.PaneHeaderVisibility="Collapsed">
 									<panes:OutputPropertiesPane.ContextMenu>
 										<ContextMenu>
 											<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />

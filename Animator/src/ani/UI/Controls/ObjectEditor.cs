@@ -10,40 +10,40 @@ using Animator.Core.Runtime;
 namespace Animator.UI.Controls
 {
 
-	#region PropertyEditor
+	#region ObjectEditor
 
-	public class PropertyEditor : UserControl, IPropertyEditor
+	public class ObjectEditor : UserControl, IObjectEditor
 	{
 
 		#region Static / Constant
 
 		public static readonly DependencyProperty TargetProperty = DependencyProperty.Register("Target", typeof(object),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(null, OnTargetChanged));
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(null, OnTargetChanged));
 
 		public static readonly DependencyProperty AutoCommitProperty = DependencyProperty.Register("AutoCommit", typeof(bool),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits, OnAutoCommitChanged));
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits, OnAutoCommitChanged));
 
 		public static readonly DependencyProperty DirtyProperty = DependencyProperty.Register("Dirty", typeof(bool),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(false));
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(false));
 
 		public static readonly DependencyProperty BasicsVisibilityProperty = DependencyProperty.Register("BasicsVisibility", typeof(Visibility),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(Visibility.Visible));
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(Visibility.Visible));
 
 		public static readonly DependencyProperty DetailsVisibilityProperty = DependencyProperty.Register("DetailsVisibility", typeof(Visibility),
-			typeof(PropertyEditor), new FrameworkPropertyMetadata(Visibility.Collapsed));
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(Visibility.Collapsed));
 
 		public static readonly RoutedEvent TargetPropertyChangedEvent = EventManager.RegisterRoutedEvent("TargetPropertyChanged", RoutingStrategy.Bubble,
-			typeof(TargetPropertyChangedEventHandler), typeof(PropertyEditor));
+			typeof(TargetPropertyChangedEventHandler), typeof(ObjectEditor));
 
 		private static void OnTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			var editor = (PropertyEditor)d;
+			var editor = (ObjectEditor)d;
 			editor.OnTargetChanged(e);
 		}
 
 		private static void OnAutoCommitChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			var editor = (PropertyEditor)d;
+			var editor = (ObjectEditor)d;
 			if((bool)e.NewValue)
 			{
 				editor.PerformCommit();

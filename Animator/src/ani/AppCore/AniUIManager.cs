@@ -4,31 +4,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.WpfPropertyGrid;
+using System.Windows.Input;
 using Animator.Common.Diagnostics;
 using Animator.Core.Model;
+using Animator.UI.Panes;
 
 namespace Animator.AppCore
 {
 
-	#region AniUIManager
+	#region AniUI
 
-	internal static class AniUIManager
+	internal static class AniUI
 	{
 
 		#region Active Document
 
 		public static readonly DependencyProperty ActiveDocumentProperty =
-			DependencyProperty.RegisterAttached("ActiveDocument", typeof(Document), typeof(AniUIManager),
+			DependencyProperty.RegisterAttached("ActiveDocument", typeof(Document), typeof(AniUI),
 				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveDocumentChanged));
 
 		private static readonly DependencyPropertyKey HasActiveDocumentPropertyKey =
-			DependencyProperty.RegisterAttachedReadOnly("HasActiveDocument", typeof(bool), typeof(AniUIManager),
+			DependencyProperty.RegisterAttachedReadOnly("HasActiveDocument", typeof(bool), typeof(AniUI),
 				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
 		public static readonly DependencyProperty HasActiveDocumentProperty = HasActiveDocumentPropertyKey.DependencyProperty;
 
 		public static readonly DependencyProperty ActiveDocumentDirtyProperty =
-			DependencyProperty.RegisterAttached("ActiveDocumentDirty", typeof(bool), typeof(AniUIManager),
+			DependencyProperty.RegisterAttached("ActiveDocumentDirty", typeof(bool), typeof(AniUI),
 				new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.Inherits));
 
 		public static Document GetActiveDocument(DependencyObject d)
@@ -53,7 +55,7 @@ namespace Animator.AppCore
 		#region PropertyGrid SelectedObject
 
 		public static readonly DependencyProperty GridSelectedObjectProperty =
-			DependencyProperty.RegisterAttached("GridSelectedObject", typeof(object), typeof(AniUIManager),
+			DependencyProperty.RegisterAttached("GridSelectedObject", typeof(object), typeof(AniUI),
 				new PropertyMetadata(null, OnGridSelectedObjectChanged));
 
 		private static void OnGridSelectedObjectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -80,11 +82,11 @@ namespace Animator.AppCore
 		#region Pane Headers
 
 		public static readonly DependencyProperty PaneHeaderProperty =
-			DependencyProperty.RegisterAttached("PaneHeader", typeof(object), typeof(AniUIManager));
+			DependencyProperty.RegisterAttached("PaneHeader", typeof(object), typeof(AniUI));
 
 		public static readonly DependencyProperty PaneHeaderVisibilityProperty =
 			DependencyProperty.RegisterAttached("PaneHeaderVisibility", typeof(Visibility),
-				typeof(AniUIManager), new PropertyMetadata(Visibility.Visible));
+				typeof(AniUI), new PropertyMetadata(Visibility.Visible));
 
 		public static object GetPaneHeader(DependencyObject d)
 		{
@@ -109,6 +111,13 @@ namespace Animator.AppCore
 			Require.ArgNotNull(d, "d");
 			d.SetValue(PaneHeaderVisibilityProperty, value);
 		}
+
+		#endregion
+
+		#region Commands
+
+		public static readonly RoutedUICommand ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(DocumentItemPropertiesPane),
+				new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
 
 		#endregion
 

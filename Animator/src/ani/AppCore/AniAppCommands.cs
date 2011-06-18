@@ -9,7 +9,7 @@ namespace Animator.AppCore
 
 	#region AniAppCommands
 
-	public static class AniAppCommands
+	internal static class AniAppCommands
 	{
 
 		public static readonly RoutedUICommand Exit = new RoutedUICommand("_Exit", "Exit", typeof(AniAppCommands),

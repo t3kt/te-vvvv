@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Animator.AppCore;
 using Animator.Core.Model;
 
 namespace Animator.UI.Panes
@@ -18,18 +19,14 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty DetailButtonVisibilityProperty;
-
-		public static readonly RoutedUICommand ShowEditDetailCommand;
+		public static readonly DependencyProperty DetailButtonVisibilityProperty =
+			DependencyProperty.Register("DetailButtonVisibility", typeof (Visibility),
+				typeof (DocumentItemPropertiesPane), new PropertyMetadata(Visibility.Collapsed));
 
 		static DocumentItemPropertiesPane()
 		{
-			DetailButtonVisibilityProperty = DependencyProperty.Register("DetailButtonVisibility", typeof(Visibility),
-				typeof(DocumentItemPropertiesPane), new PropertyMetadata(Visibility.Collapsed));
-			ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(DocumentItemPropertiesPane),
-				new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
 			CommandManager.RegisterClassCommandBinding(typeof(DocumentItemPropertiesPane),
-				new CommandBinding(ShowEditDetailCommand, ShowEditDetailCommand_Executed, ShowEditDetailCommand_CanExecute));
+				new CommandBinding(AniUI.ShowEditDetailCommand, ShowEditDetailCommand_Executed, ShowEditDetailCommand_CanExecute));
 			IsTabStopProperty.OverrideMetadata(typeof(DocumentItemPropertiesPane), new FrameworkPropertyMetadata(true));
 		}
 

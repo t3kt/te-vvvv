@@ -21,7 +21,7 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty ActiveDocumentProperty = AniUIManager.ActiveDocumentProperty.AddOwner(typeof(DocumentPropertiesPane));
+		public static readonly DependencyProperty ActiveDocumentProperty = AniUI.ActiveDocumentProperty.AddOwner(typeof(DocumentPropertiesPane));
 
 		#endregion
 

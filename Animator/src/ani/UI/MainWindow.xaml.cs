@@ -35,16 +35,16 @@ namespace Animator.UI
 
 		static MainWindow()
 		{
-			ActiveDocumentProperty = AniUIManager.ActiveDocumentProperty.AddOwner(typeof(MainWindow),
+			ActiveDocumentProperty = AniUI.ActiveDocumentProperty.AddOwner(typeof(MainWindow),
 				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits, OnActiveDocumentChanged));
-			HasActiveDocumentProperty = AniUIManager.HasActiveDocumentProperty.AddOwner(typeof(MainWindow));
+			HasActiveDocumentProperty = AniUI.HasActiveDocumentProperty.AddOwner(typeof(MainWindow));
 			ActiveDocumentDirtyProperty = DependencyProperty.Register("ActiveDocumentDirty", typeof(bool), typeof(MainWindow),
 				new PropertyMetadata(false, OnActiveDocumentDirtyChanged));
 		}
 
 		private static void OnActiveDocumentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
-			AniUIManager.OnActiveDocumentChanged(d, e);
+			AniUI.OnActiveDocumentChanged(d, e);
 			var window = (MainWindow)d;
 			window.OnActiveDocumentChanged((Document)e.OldValue, (Document)e.NewValue);
 			var app = Application.Current as AniApplication;
@@ -151,22 +151,16 @@ namespace Animator.UI
 		{
 			if(!this.PromptSaveForClose())
 				return;
-			var dlg = PropertyEditorDialog.Create(typeof(Document), editorKey: "basic", owner: this);
-			dlg.Title = "New Document";
-			dlg.AutoCommit = false;
-			var doc = new Document { Name = "Untitled" };
-			dlg.Target = doc;
-			if(dlg.ShowDialog() == true)
-			{
-				this.ActiveDocument = doc;
-				this.ActiveDocumentDirty = true;
-			}
+			this.CloseFile();
+			this.ActiveDocument = new Document { Name = "Untitled" };
+			this.ActiveDocumentDirty = false;
 		}
 
 		internal void OnFileOpen(string path)
 		{
 			if(!this.PromptSaveForClose())
 				return;
+			this.CloseFile();
 			if(!String.IsNullOrEmpty(path))
 			{
 				this.OpenFile(path);
@@ -288,6 +282,7 @@ namespace Animator.UI
 		{
 			this.ActiveDocument = null;
 			this.ActiveDocumentDirty = false;
+			this._ActiveDocumentPath = null;
 		}
 
 		internal void OnFileClose()
@@ -300,6 +295,8 @@ namespace Animator.UI
 		{
 			if(!this.PromptSaveForClose())
 				e.Cancel = true;
+			else
+				this.CloseFile();
 			base.OnClosing(e);
 		}
 

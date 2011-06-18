@@ -3,9 +3,9 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:wpg="clr-namespace:System.Windows.Controls.WpfPropertyGrid;assembly=System.Windows.Controls.WpfPropertyGrid" xmlns:wpgDes="clr-namespace:System.Windows.Controls.WpfPropertyGrid.Design;assembly=System.Windows.Controls.WpfPropertyGrid" xmlns:appCore="clr-namespace:Animator.AppCore" mc:Ignorable="d"
-			 d:DesignWidth="300" Style="{StaticResource ResourceKey=DocumentItemPropertiesPaneStyle}" appCore:AniUIManager.PaneHeader="Document Properties">
+			 d:DesignWidth="300" Style="{StaticResource ResourceKey=DocumentItemPropertiesPaneStyle}" appCore:AniUI.PaneHeader="Document Properties">
 	<Grid>
-		<wpg:PropertyGrid x:Name="documentPropertyGrid" PropertyFilterVisibility="Collapsed" appCore:AniUIManager.GridSelectedObject="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext}">
+		<wpg:PropertyGrid x:Name="documentPropertyGrid" PropertyFilterVisibility="Collapsed" appCore:AniUI.GridSelectedObject="{Binding RelativeSource={RelativeSource Mode=Self}, Path=DataContext}">
 			<wpg:PropertyGrid.Layout>
 				<wpgDes:CategorizedLayout/>
 			</wpg:PropertyGrid.Layout>

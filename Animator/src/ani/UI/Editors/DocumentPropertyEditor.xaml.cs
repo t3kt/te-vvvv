@@ -15,7 +15,7 @@ namespace Animator.UI.Editors
 	/// <summary>
 	/// Interaction logic for DocumentPropertyEditor.xaml
 	/// </summary>
-	[PropertyEditor(Description = "Document Property Editor", Key = "basic", TargetType = typeof(Document))]
+	[ObjectEditor(Description = "Document Property Editor", Key = "basic", TargetType = typeof(Document))]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public partial class DocumentPropertyEditor
 	{
