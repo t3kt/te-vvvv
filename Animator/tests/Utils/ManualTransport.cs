@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.Transport;
@@ -11,6 +12,7 @@ namespace Animator.Tests.Utils
 	#region ManualTransport
 
 	[Transport(Key = "manual", Description = "Manual Transport")]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class ManualTransport : Transport
 	{
 

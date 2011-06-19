@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Animator.Core.Composition;
+using TEShared;
 
 namespace Animator.Core.Transport
 {
@@ -23,13 +25,13 @@ namespace Animator.Core.Transport
 
 		#region Properties
 
-		[Category(TEShared.Names.Category_Common)]
+		[Category(Names.Category_Common)]
 		public abstract TimeSpan Position { get; set; }
 
-		[Category(TEShared.Names.Category_Common)]
+		[Category(Names.Category_Common)]
 		public abstract TransportState State { get; protected set; }
 
-		[Category(TEShared.Names.Category_Transport)]
+		[Category(Names.Category_Transport)]
 		public virtual float BeatsPerMinute { get; internal set; }
 
 		#endregion
@@ -137,6 +139,7 @@ namespace Animator.Core.Transport
 
 		#endregion
 
+		public const float DefaultBeatsPerMinute = 80.0f;
 	}
 
 	#endregion
@@ -144,6 +147,7 @@ namespace Animator.Core.Transport
 	#region NullTransport
 
 	[Transport(Key = Export_Key, Description = Export_Description)]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class NullTransport : Transport
 	{
 

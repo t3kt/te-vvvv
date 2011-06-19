@@ -70,21 +70,6 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Transport)]
-		public void DocumentTransportTypesTest()
-		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var doc = new Document(host);
-			Assert.IsInstanceOfType(doc.Transport, typeof(NullTransport));
-			doc.TransportType = "dummy";
-			Assert.IsInstanceOfType(doc.Transport, typeof(DummyTransport));
-			doc.TransportType = null;
-			Assert.IsInstanceOfType(doc.Transport, typeof(NullTransport));
-			doc.TransportType = "media";
-			Assert.IsInstanceOfType(doc.Transport, typeof(MediaTransport));
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Transport)]
 		public void SanfordMultimediaTimerTicks()
 		{
 			var toleranceMS = 50;

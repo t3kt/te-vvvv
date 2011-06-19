@@ -16,7 +16,7 @@ namespace Animator.AppCore
 	internal static class AniUI
 	{
 
-		#region Active Document
+		#region Active Document / Items
 
 		public static readonly DependencyProperty ActiveDocumentProperty =
 			DependencyProperty.RegisterAttached("ActiveDocument", typeof(Document), typeof(AniUI),
@@ -55,6 +55,22 @@ namespace Animator.AppCore
 			d.SetValue(HasActiveDocumentPropertyKey, e.NewValue != null);
 		}
 
+		public static readonly DependencyProperty SelectedSectionProperty =
+			DependencyProperty.RegisterAttached("SelectedSection", typeof (DocumentSection), typeof (AniUI),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static DocumentSection GetSelectedSection(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (DocumentSection)d.GetValue(SelectedSectionProperty);
+		}
+
+		public static void SetSelectedSection(DependencyObject d, DocumentSection value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(SelectedSectionProperty, value);
+		}
+
 		#endregion
 
 		#region PropertyGrid SelectedObject
@@ -91,7 +107,11 @@ namespace Animator.AppCore
 
 		public static readonly DependencyProperty PaneHeaderVisibilityProperty =
 			DependencyProperty.RegisterAttached("PaneHeaderVisibility", typeof(Visibility),
-				typeof(AniUI), new PropertyMetadata(Visibility.Visible));
+				typeof(AniUI), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static readonly DependencyProperty PaneHeaderHorizontalAlignmentProperty =
+			DependencyProperty.RegisterAttached("PaneHeaderHorizontalAlignment", typeof(HorizontalAlignment), typeof(AniUI),
+				new FrameworkPropertyMetadata(HorizontalAlignment.Stretch, FrameworkPropertyMetadataOptions.Inherits));
 
 		public static object GetPaneHeader(DependencyObject d)
 		{
@@ -115,6 +135,18 @@ namespace Animator.AppCore
 		{
 			Require.ArgNotNull(d, "d");
 			d.SetValue(PaneHeaderVisibilityProperty, value);
+		}
+
+		public static HorizontalAlignment GetPaneHeadHorizontalAlignment(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (HorizontalAlignment)d.GetValue(PaneHeaderHorizontalAlignmentProperty);
+		}
+
+		public static void SetPaneHeaderHorizontalAlignment(DependencyObject d, HorizontalAlignment value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(PaneHeaderHorizontalAlignmentProperty, value);
 		}
 
 		#endregion

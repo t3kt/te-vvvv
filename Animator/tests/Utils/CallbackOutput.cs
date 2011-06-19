@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using Animator.Core.Composition;
 using Animator.Core.IO;
@@ -12,6 +13,7 @@ namespace Animator.Tests.Utils
 	#region CallbackOutput
 
 	[Output(Key = Export_Key)]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class CallbackOutput : Output
 	{
 

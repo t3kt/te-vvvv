@@ -138,20 +138,6 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Composition)]
-		public void LoadTestAssembly()
-		{
-			CreateHost(test: true, core: false);
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Composition)]
-		public void LoadCoreAssembly()
-		{
-			CreateHost(test: false, core: true);
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Composition)]
 		public void ComposeAttributedDummyContainer()
 		{
 			var host = CreateHost(test: true);
@@ -169,7 +155,11 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByKey(null));
 			Assert.IsNull(host.CreateClipPropertyDataByKey(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByKey("foo"));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(ConstData.Export_Key), typeof(ConstData));
+			var const_data_a= host.CreateClipPropertyDataByKey(ConstData.Export_Key);
+			Assert.IsInstanceOfType(const_data_a, typeof(ConstData));
+			var const_data_b = host.CreateClipPropertyDataByKey(ConstData.Export_Key);
+			Assert.IsInstanceOfType(const_data_b, typeof(ConstData));
+			Assert.AreNotSame(const_data_a, const_data_b);
 			Assert.IsInstanceOfType(host.CreateClipPropertyDataByKey(StepData.Export_Key), typeof(StepData));
 		}
 
@@ -181,7 +171,11 @@ namespace Animator.Tests
 			Assert.IsNull(host.CreateClipPropertyDataByElementName(null));
 			Assert.IsNull(host.CreateClipPropertyDataByElementName(String.Empty));
 			Assert.IsNull(host.CreateClipPropertyDataByElementName("foo"));
-			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(ConstData.Export_ElementName), typeof(ConstData));
+			var const_data_a = host.CreateClipPropertyDataByElementName(ConstData.Export_ElementName);
+			Assert.IsInstanceOfType(const_data_a, typeof(ConstData));
+			var const_data_b = host.CreateClipPropertyDataByElementName(ConstData.Export_ElementName);
+			Assert.IsInstanceOfType(const_data_b, typeof(ConstData));
+			Assert.AreNotSame(const_data_a, const_data_b);
 			Assert.IsInstanceOfType(host.CreateClipPropertyDataByElementName(StepData.Export_ElementName), typeof(StepData));
 		}
 
@@ -214,6 +208,32 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Composition)]
+		public void GetOutputByElementName()
+		{
+			var host = CreateHost(test: true, core: true, osc: true);
+			var output_a = host.CreateOutputByElementName(null);
+			Assert.IsInstanceOfType(output_a, typeof(Output));
+			var output_b = host.CreateOutputByElementName(null);
+			Assert.IsInstanceOfType(output_a, typeof(Output));
+			Assert.AreNotSame(output_a, output_b);
+			var output_c = host.CreateOutputByElementName(null);
+			Assert.IsInstanceOfType(output_c, typeof(Output));
+			Assert.AreNotSame(output_a, output_c);
+
+			var osc_output_a = host.CreateOutputByElementName(OscOutput.Export_ElementName);
+			Assert.IsInstanceOfType(osc_output_a, typeof(OscOutput));
+
+			//var output_d = host.CreateOutputByElementName(null);
+			//Assert.IsInstanceOfType(output_d, typeof(Output));
+			//Assert.AreNotSame(output_a, output_d);
+
+			var osc_output_b = host.CreateOutputByElementName(OscOutput.Export_ElementName);
+			Assert.IsInstanceOfType(osc_output_b, typeof(OscOutput));
+			Assert.AreNotSame(osc_output_a, osc_output_b);
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.Composition)]
 		public void GetObjectEditor()
 		{
 			var host = CreateHost(test: true, core: true, app: true);
@@ -238,6 +258,7 @@ namespace Animator.Tests
 		#region ThingyEditor
 
 		[ObjectEditor(Key = Export_Key, TargetType = typeof(Thing))]
+		[PartCreationPolicy(CreationPolicy.NonShared)]
 		internal class ThingEditor : IObjectEditor
 		{
 

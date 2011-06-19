@@ -141,9 +141,11 @@ namespace Animator.Core.Composition
 			return this.Transports.CreateByKey(key, () => new Transport.NullTransport());
 		}
 
+		[NotNull]
 		internal Output CreateOutputByElementName(string elementName)
 		{
-			return this.Outputs.CreateByElementName(elementName, () => new Output());
+			var output = this.Outputs.CreateByElementName(elementName, () => new Output());
+			return output;
 		}
 
 		[NotNull]

@@ -5,12 +5,17 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore" mc:Ignorable="d" 
 			 d:DesignHeight="500" d:DesignWidth="1000">
 	<Grid>
-		<ListBox>
+		<TextBlock>
+			<TextBlock.Text>
+				<Binding Path="Name" StringFormat="hello sequence {0}" />
+			</TextBlock.Text>
+		</TextBlock> 
+		<!--<ListBox>
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type seq:SequenceTrack}">
 					
 				</DataTemplate>
 			</ListBox.ItemTemplate>
-		</ListBox>
+		</ListBox>-->
 	</Grid>
 </UserControl>

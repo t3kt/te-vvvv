@@ -71,15 +71,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppCore\AniAppModelUtil.cs" />
+    <Compile Include="AppCore\AniItemTypes.cs" />
     <Compile Include="AppCore\AniUIManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
-    <Compile Include="AppCore\BooleanNegationConverter.cs" />
+    <Compile Include="UI\Common\AdvancedBooleanToVisibilityConverter.cs" />
+    <Compile Include="UI\Common\BooleanNegationConverter.cs" />
     <Compile Include="AppCore\ClipPropertyDataEditors.cs" />
     <Compile Include="AppCore\RecentFileManager.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Common\SectionTemplateSelector.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
     <Compile Include="UI\Dialogs\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
@@ -94,6 +97,9 @@
       <DependentUpon>TransportPropertiesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\ObjectEditor.cs" />
+    <Compile Include="UI\Editors\PropertyGridObjectEditor.xaml.cs">
+      <DependentUpon>PropertyGridObjectEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -101,15 +107,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UI\Panes\DocItemNavList.xaml.cs">
+      <DependentUpon>DocItemNavList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
-    <Compile Include="UI\Panes\DocumentNavigationPane.xaml.cs">
-      <DependentUpon>DocumentNavigationPane.xaml</DependentUpon>
+    <Compile Include="UI\Panes\OutputsPane.xaml.cs">
+      <DependentUpon>OutputsPane.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Panes\DocumentPropertiesPane.xaml.cs">
-      <DependentUpon>DocumentPropertiesPane.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Panes\OutputPropertiesPane.xaml.cs">
-      <DependentUpon>OutputPropertiesPane.xaml</DependentUpon>
+    <Compile Include="UI\Panes\SectionsPane.xaml.cs">
+      <DependentUpon>SectionsPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Panes\TransportPane.xaml.cs">
       <DependentUpon>TransportPane.xaml</DependentUpon>
@@ -162,19 +168,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Editors\PropertyGridObjectEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Panes\DocumentNavigationPane.xaml">
+    <Page Include="UI\Panes\DocItemNavList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Panes\DocumentPropertiesPane.xaml">
+    <Page Include="UI\Panes\OutputsPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Panes\OutputPropertiesPane.xaml">
+    <Page Include="UI\Panes\SectionsPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,8 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppCore\Common\" />
-    <Folder Include="UI\Common\" />
-    <Folder Include="UI\Editors\" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\ani_app_splash.png">

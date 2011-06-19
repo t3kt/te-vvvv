@@ -32,11 +32,6 @@ namespace Animator.Core.Model
 		public static readonly XName anidoc_outputs = "outputs";
 		public static readonly XName anidoc_sections = "sections";
 
-		public static readonly XName transport = "transport";
-		public static readonly XName transport_type = common_type;
-		public static readonly XName transport_bpm = "bpm";
-		public static readonly XName transport_params = @params;
-
 		public static readonly XName output = Output.Export_ElementName;
 
 		public static readonly XName traceoutput = TraceOutput.Export_ElementName;

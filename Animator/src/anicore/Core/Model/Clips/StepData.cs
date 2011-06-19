@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
@@ -19,6 +20,7 @@ namespace Animator.Core.Model.Clips
 		ElementName = Export_ElementName,
 		Description = Export_Description)]
 	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.StepDataEditor, " + TEShared.AssemblyRef.ani)]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class StepData : ClipPropertyData
 	{
 

@@ -113,7 +113,6 @@ namespace Animator.Tests
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var docA = new Document
 					   {
-						   BeatsPerMinute = 44.3f,
 						   Name = "foodoc"
 					   };
 			var outputA1 = new Output { Name = "out1" };
@@ -134,7 +133,6 @@ namespace Animator.Tests
 			ValidateDocumentSchema(xmlA);
 			var docB = new Document(xmlA, host);
 			var xmlB = docB.WriteXDocument();
-			Assert.AreEqual(docA.BeatsPerMinute, docB.BeatsPerMinute);
 			Assert.AreEqual(docA.Id, docB.Id);
 			Assert.AreEqual(docA.Name, docB.Name);
 			//CollectionAssert.Contains(docB.Clips, clipA1);

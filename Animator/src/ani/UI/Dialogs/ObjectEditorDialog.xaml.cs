@@ -113,7 +113,20 @@ namespace Animator.UI.Dialogs
 						  Editor = editor,
 						  Target = target
 					  };
-			return dlg.ShowDialog() == true;
+			var result = dlg.ShowDialog();
+			return result == true;
+		}
+
+		public static bool ShowForEditor([NotNull]ObjectEditor editor, [CanBeNull]Window owner = null)
+		{
+			Require.ArgNotNull(editor, "editor");
+			var dlg = new ObjectEditorDialog
+			{
+				Owner = owner,
+				Editor = editor
+			};
+			var result = dlg.ShowDialog();
+			return result == true;
 		}
 
 		#endregion
@@ -199,13 +212,6 @@ namespace Animator.UI.Dialogs
 			if(editor == null)
 				return;
 			editor.TargetPropertyChanged += this.Editor_TargetPropertyChanged;
-			editor.SetBinding(TargetProperty,
-				new Binding
-				{
-					Source = this,
-					Path = new PropertyPath("Target"),
-					Mode = BindingMode.TwoWay
-				});
 			editor.SetBinding(AutoCommitProperty,
 				new Binding
 				{
@@ -247,7 +253,6 @@ namespace Animator.UI.Dialogs
 		{
 			if(editor == null)
 				return;
-			BindingOperations.ClearBinding(editor, TargetProperty);
 			BindingOperations.ClearBinding(editor, AutoCommitProperty);
 			BindingOperations.ClearBinding(editor, DirtyProperty);
 			BindingOperations.ClearBinding(editor, BasicsVisibilityProperty);

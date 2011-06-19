@@ -107,8 +107,8 @@
     <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\Runtime\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
-    <Compile Include="Core\Runtime\IItemContainer.cs" />
     <Compile Include="Core\Runtime\IObjectEditor.cs" />
+    <Compile Include="Core\Runtime\ItemType.cs" />
     <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
     <Compile Include="Core\Runtime\TryChangeValueEvent.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />

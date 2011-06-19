@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace Animator.Core.Transport
 	#region MediaTransport
 
 	[Transport(Key = "media", Description = "Media Transport")]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class MediaTransport : Transport
 	{
 
@@ -42,7 +44,7 @@ namespace Animator.Core.Transport
 		private TransportState _State;
 		private uint _LastUpdate;
 		private TimeSpan _Position;
-		private float _BeatsPerMinute = Model.Document.DefaultBeatsPerMinute;
+		private float _BeatsPerMinute = DefaultBeatsPerMinute;
 		private readonly ReaderWriterLockSlim _Lock;
 
 		#endregion

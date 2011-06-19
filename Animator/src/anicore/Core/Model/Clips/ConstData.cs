@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Core.Composition;
@@ -16,6 +17,7 @@ namespace Animator.Core.Model.Clips
 		ElementName = Export_ElementName,
 		Description = Export_Description)]
 	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.ConstDataEditor, " + TEShared.AssemblyRef.ani)]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class ConstData : ClipPropertyData
 	{
 		#region Static / Constant
