@@ -20,109 +20,12 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, INotifyPropertyChanged, IItemContainer<IDocumentItem>
+	public sealed class Document : IDocumentItem, INotifyPropertyChanged
 	{
-
-		#region TransportData
-
-		private sealed class TransportData : IXElementWritable, INotifyPropertyChanged
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			private float _BeatsPerMinute = DefaultBeatsPerMinute;
-			private string _TransportType;
-			private Dictionary<string, string> _Parameters;
-
-			#endregion
-
-			#region Properties
-
-			public float BeatsPerMinute
-			{
-				get { return this._BeatsPerMinute; }
-				set
-				{
-					Require.ArgPositive(value, "value");
-					if(value != this._BeatsPerMinute)
-					{
-						this._BeatsPerMinute = value;
-						this.OnPropertyChanged("BeatsPerMinute");
-					}
-				}
-			}
-
-			public string TransportType
-			{
-				get { return this._TransportType; }
-				set
-				{
-					if(value != this._TransportType)
-					{
-						this._TransportType = value;
-						this.OnPropertyChanged("TransportType");
-					}
-				}
-			}
-
-			public IDictionary<string, string> Parameters
-			{
-				get { return this._Parameters ?? (this._Parameters = new Dictionary<string, string>()); }
-				set { this._Parameters = value == null ? null : value.ToDictionary(x => x.Key, x => x.Value); }
-			}
-
-			#endregion
-
-			#region Constructors
-
-			#endregion
-
-			#region Methods
-
-			public void ReadXElement(XElement element)
-			{
-				Require.ArgNotNull(element, "element");
-				this._BeatsPerMinute = (float?)element.Attribute(Schema.transport_bpm) ?? DefaultBeatsPerMinute;
-				this._TransportType = (string)element.Attribute(Schema.transport_type);
-				this._Parameters = ModelUtil.ReadParametersXElement(element.Element(Schema.transport_params));
-			}
-
-			public XElement WriteXElement(XName name = null)
-			{
-				return new XElement(name ?? Schema.transport,
-					new XAttribute(Schema.anidoc_bpm, this.BeatsPerMinute),
-					ModelUtil.WriteOptionalAttribute(Schema.transport_type, this.TransportType),
-					ModelUtil.WriteParametersXElement(Schema.transport_params, this._Parameters));
-			}
-
-			#endregion
-
-			#region INotifyPropertyChanged Members
-
-			public event PropertyChangedEventHandler PropertyChanged;
-
-			private void OnPropertyChanged(string name)
-			{
-				var handler = this.PropertyChanged;
-				if(handler != null)
-					handler(this, new PropertyChangedEventArgs(name));
-			}
-
-			#endregion
-
-		}
-
-		#endregion
 
 		#region Static / Constant
 
-		public const float DefaultBeatsPerMinute = 80.0f;
-
-		private static readonly Transport.Transport _DefaultTransport = new Transport.NullTransport();
+		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Document), canEditDetail: false, canDelete: false);
 
 		#endregion
 
@@ -134,13 +37,17 @@ namespace Animator.Core.Model
 		private readonly ObservableCollection<DocumentSection> _Sections;
 		private Guid _Id;
 		private string _Name;
-		private readonly TransportData _TransportData;
 		private DocumentSection _ActiveSection;
 		private Transport.Transport _Transport;
 
 		#endregion
 
 		#region Properties
+
+		public ItemTypeInfo ItemType
+		{
+			get { return _ItemType; }
+		}
 
 		internal AniHost Host
 		{
@@ -174,30 +81,6 @@ namespace Animator.Core.Model
 			}
 		}
 
-		[Category(TEShared.Names.Category_Transport)]
-		[DisplayName(TEShared.Names.DisplayName_BeatsPerMinute)]
-		public float BeatsPerMinute
-		{
-			get { return this._TransportData.BeatsPerMinute; }
-			set { this._TransportData.BeatsPerMinute = value; }
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
-		public string TransportType
-		{
-			get { return this._TransportData.TransportType; }
-			set { this._TransportData.TransportType = value; }
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
-		[Browsable(false)]
-		public IDictionary<string, string> TransportParameters
-		{
-			get { return this._TransportData.Parameters; }
-			set { this._TransportData.Parameters = value; }
-		}
-
-		[Browsable(false)]
 		public ObservableCollection<Output> Outputs
 		{
 			get { return this._Outputs; }
@@ -216,13 +99,6 @@ namespace Animator.Core.Model
 		public ObservableCollection<DocumentSection> Sections
 		{
 			get { return this._Sections; }
-		}
-
-		[Category(TEShared.Names.Category_Transport)]
-		[Browsable(false)]
-		public Transport.Transport Transport
-		{
-			get { return this._Transport ?? _DefaultTransport; }
 		}
 
 		public DocumentSection ActiveSection
@@ -250,8 +126,6 @@ namespace Animator.Core.Model
 		public Document([CanBeNull] AniHost host)
 		{
 			this._Host = host ?? AniHost.Current;
-			this._TransportData = new TransportData();
-			this._TransportData.PropertyChanged += this.TransportData_PropertyChanged;
 			this._Outputs = new ObservableCollection<Output>();
 			this._Outputs.CollectionChanged += this.Outputs_CollectionChanged;
 			this._Sections = new ObservableCollection<DocumentSection>();
@@ -268,7 +142,6 @@ namespace Animator.Core.Model
 			: this(host)
 		{
 			this.ReadXElement(element, host);
-			this.RebuildTransport();
 		}
 
 		public Document([NotNull] XDocument document, [CanBeNull]AniHost host = null)
@@ -276,36 +149,11 @@ namespace Animator.Core.Model
 		{
 			Require.ArgNotNull(document, "document");
 			this.ReadXElement(document.Root, host);
-			this.RebuildTransport();
 		}
 
 		#endregion
 
 		#region Methods
-
-		private void RebuildTransport()
-		{
-			var d = this._Transport as IDisposable;
-			if(d != null)
-				d.Dispose();
-			this._Transport = this.Host.CreateTransport(this._TransportData.TransportType, this._TransportData.Parameters);
-		}
-
-		private void TransportData_PropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-			this.OnPropertyChanged(e.PropertyName);
-			switch(e.PropertyName)
-			{
-			case "BeatsPerMinute":
-				if(this._Transport != null)
-					this._Transport.BeatsPerMinute = this._TransportData.BeatsPerMinute;
-				break;
-			case "TransportType":
-				this.RebuildTransport();
-				break;
-			}
-			this.OnPropertyChanged("Transport");
-		}
 
 		private void Outputs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
@@ -338,11 +186,44 @@ namespace Animator.Core.Model
 			return null;
 		}
 
-		public void PushTargetChanges()
+		private static void DisposeIfNeeded(object obj)
 		{
-			if(this._ActiveSection == null)
-				return;
-			this._ActiveSection.PushTargetChanges(this.Transport);
+			var d = obj as IDisposable;
+			if(d != null)
+				d.Dispose();
+		}
+
+		public bool TryDeleteItem(IDocumentItem item)
+		{
+			if(item == null)
+				return false;
+			if(item is Output && this._Outputs.Remove((Output)item))
+			{
+				DisposeIfNeeded(item);
+				return true;
+			}
+			if(item is DocumentSection && this._Sections.Remove((DocumentSection)item))
+			{
+				DisposeIfNeeded(item);
+				return true;
+			}
+			foreach(var output in this._Outputs)
+			{
+				if(output.TryDeleteItem(item))
+				{
+					DisposeIfNeeded(item);
+					return true;
+				}
+			}
+			foreach(var section in this._Sections)
+			{
+				if(section.TryDeleteItem(item))
+				{
+					DisposeIfNeeded(item);
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private void ReadXElement(XElement element, AniHost host)
@@ -353,16 +234,6 @@ namespace Animator.Core.Model
 
 			this.Id = (Guid)element.Attribute(Schema.anidoc_id);
 			this.Name = (string)element.Attribute(Schema.anidoc_name);
-
-			var transportElement = element.Element(Schema.transport);
-			if(transportElement != null)
-			{
-				this._TransportData.ReadXElement(transportElement);
-			}
-			else
-			{
-				this.BeatsPerMinute = (float?)element.Attribute(Schema.anidoc_bpm) ?? DefaultBeatsPerMinute;
-			}
 
 			var outputsElement = element.Element(Schema.anidoc_outputs);
 			if(outputsElement != null)
@@ -382,7 +253,6 @@ namespace Animator.Core.Model
 			return new XElement(name ?? Schema.anidoc,
 				new XAttribute(Schema.anidoc_id, this.Id),
 				ModelUtil.WriteOptionalAttribute(Schema.anidoc_name, this.Name),
-				this._TransportData.WriteXElement(),
 				ModelUtil.WriteListXElement(this._Outputs, Schema.anidoc_outputs),
 				ModelUtil.WriteListXElement(this._Sections, Schema.anidoc_sections));
 		}
@@ -419,23 +289,6 @@ namespace Animator.Core.Model
 			foreach(var output in this._Outputs)
 				output.Dispose();
 			this._Outputs.Clear();
-		}
-
-		#endregion
-
-		#region IItemContainer<IDocumentItem> Members
-
-		public IDocumentItem FindById(Guid id)
-		{
-			if(this.Id == id)
-				return this;
-			var output = this.GetOutput(id);
-			if(output != null)
-				return output;
-			var sequence = this.GetSequence(id);
-			if(sequence != null)
-				return sequence;
-			return null;
 		}
 
 		#endregion

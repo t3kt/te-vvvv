@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -14,6 +15,7 @@ namespace Animator.Core.IO
 	#region LogOutput
 
 	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
+	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class LogOutput : Output
 	{
 

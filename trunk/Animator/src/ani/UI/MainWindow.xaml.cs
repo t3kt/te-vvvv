@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Xml.Linq;
 using Animator.AppCore;
@@ -32,6 +33,7 @@ namespace Animator.UI
 		public static readonly DependencyProperty ActiveDocumentProperty;
 		public static readonly DependencyProperty HasActiveDocumentProperty;
 		public static readonly DependencyProperty ActiveDocumentDirtyProperty;
+		public static readonly DependencyProperty SelectedSectionProperty;
 
 		static MainWindow()
 		{
@@ -40,6 +42,7 @@ namespace Animator.UI
 			HasActiveDocumentProperty = AniUI.HasActiveDocumentProperty.AddOwner(typeof(MainWindow));
 			ActiveDocumentDirtyProperty = DependencyProperty.Register("ActiveDocumentDirty", typeof(bool), typeof(MainWindow),
 				new PropertyMetadata(false, OnActiveDocumentDirtyChanged));
+			SelectedSectionProperty = AniUI.SelectedSectionProperty.AddOwner(typeof(MainWindow));
 		}
 
 		private static void OnActiveDocumentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -91,6 +94,12 @@ namespace Animator.UI
 			set { this.SetValue(ActiveDocumentDirtyProperty, value); }
 		}
 
+		public DocumentSection SelectedSection
+		{
+			get { return (DocumentSection)this.GetValue(SelectedSectionProperty); }
+			set { this.SetValue(SelectedSectionProperty, value); }
+		}
+
 		public ObservableCollection<string> RecentFiles
 		{
 			get { return ((AniApplication)Application.Current).RecentFileManager.Files; }
@@ -103,6 +112,12 @@ namespace Animator.UI
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.SetBinding(SelectedSectionProperty,
+				new Binding
+				{
+					ElementName = this.sectionsPane.Name,
+					Path = new PropertyPath("SelectedSession")
+				});
 		}
 
 		#endregion
@@ -311,13 +326,6 @@ namespace Animator.UI
 			}
 		}
 
-		internal void ShowEditTransport()
-		{
-			if(!this.HasActiveDocument)
-				return;
-			TransportPropertiesDialog.ShowDialogForDocument(this.ActiveDocument, this);
-		}
-
 		internal void ShowAboutAppDialog()
 		{
 			var dlg = new AboutDialog { Owner = this };
@@ -403,11 +411,6 @@ namespace Animator.UI
 				this.ActiveDocument.Outputs.Remove(output);
 				output.Dispose();
 			}
-		}
-
-		private void EditTransportCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-		{
-			this.ShowEditTransport();
 		}
 
 		private void AboutApplicationCommand_Executed(object sender, ExecutedRoutedEventArgs e)

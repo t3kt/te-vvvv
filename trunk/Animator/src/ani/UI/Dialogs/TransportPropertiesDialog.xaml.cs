@@ -31,28 +31,12 @@ namespace Animator.UI.Dialogs
 		{
 			TransportTypeProperty = DependencyProperty.Register("TransportType", typeof(string), typeof(TransportPropertiesDialog));
 			BeatsPerMinuteProperty = DependencyProperty.Register("BeatsPerMinute", typeof(float), typeof(TransportPropertiesDialog),
-				new PropertyMetadata(Document.DefaultBeatsPerMinute), ValidateBeatsPerMinute);
+				new PropertyMetadata(Transport.DefaultBeatsPerMinute), ValidateBeatsPerMinute);
 		}
 
 		private static bool ValidateBeatsPerMinute(object value)
 		{
 			return (float)value > 0;
-		}
-
-		public static void ShowDialogForDocument(Document document, Window ownerWindow = null)
-		{
-			Require.ArgNotNull(document, "document");
-			var dlg = new TransportPropertiesDialog
-					  {
-						  Owner = ownerWindow,
-						  TransportType = document.TransportType,
-						  BeatsPerMinute = document.BeatsPerMinute
-					  };
-			if(dlg.ShowDialog() == true)
-			{
-				document.TransportType = dlg.TransportType;
-				document.BeatsPerMinute = dlg.BeatsPerMinute;
-			}
 		}
 
 		#endregion

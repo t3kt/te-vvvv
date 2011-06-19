@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Animator.Tests
 		#region TestOutput
 
 		[Output(Key = Export_Key)]
+		[PartCreationPolicy(CreationPolicy.NonShared)]
 		internal class TestOutput : Output
 		{
 

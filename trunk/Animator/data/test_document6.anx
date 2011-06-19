@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <anidoc id="5bd3c6aa-18cf-4375-9182-aacbe2a9b4dc" name="Test Documfent fooo">
-	<transport bpm="120" type="manual" />
 	<outputs>
 		<output id="80f7b4ff-6255-4032-8a94-8218b4cfd36f" name="out A">
 			<target id="c532075d-9340-4a45-84b7-c51a18db9d86" name="myTarget" key="foo/mytarget/">

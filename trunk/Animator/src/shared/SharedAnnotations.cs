@@ -333,7 +333,7 @@ namespace TESharedAnnotations
 	[Flags]
 	internal enum ImplicitUseKindFlags
 	{
-		Default = Access | Assign | Instantiated,
+		Default = Access | Assign | InstantiatedWithFixedConstructorSignature,
 
 		/// <summary>
 		/// Only entity marked with attribute considered used
@@ -346,9 +346,15 @@ namespace TESharedAnnotations
 		Assign = 2,
 
 		/// <summary>
+		/// Indicates implicit instantiation of a type with fixed constructor signature.
+		/// That means any unused constructor parameters won't be reported as such.
+		/// </summary>
+		InstantiatedWithFixedConstructorSignature = 4,
+
+		/// <summary>
 		/// Indicates implicit instantiation of a type
 		/// </summary>
-		Instantiated = 4,
+		InstantiatedNoFixedConstructorSignature = 8,
 	}
 
 	/// <summary>
@@ -372,52 +378,39 @@ namespace TESharedAnnotations
 		WithMembers = Itself | Members
 	}
 
-	internal enum PointKinds
+	/// <summary>
+	/// This attribute is intended to mark publicly available API which should not be removed and so is treated as used.
+	/// </summary>
+	[MeansImplicitUse]
+	[Conditional("ANNOTATIONS")]
+	internal sealed class PublicAPIAttribute : Attribute
 	{
-		This,
-		Ret,
-		Par,
-		LamPar,
-		LamRet
+		public PublicAPIAttribute() { }
+
+		// ReSharper disable UnusedParameter.Local
+		public PublicAPIAttribute(string comment) { }
+		// ReSharper restore UnusedParameter.Local
 	}
 
-	internal enum PointPlurality
+	/// <summary>
+	/// Tells code analysis engine if the parameter is completely handled when the invoked method is on stack. 
+	/// If the parameter is delegate, indicates that delegate is executed while the method is executed.
+	/// If the parameter is enumerable, indicates that it is enumerated while the method is executed.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Parameter, Inherited = true)]
+	[Conditional("ANNOTATIONS")]
+	internal sealed class InstantHandleAttribute : Attribute
 	{
-		El,
-		Col
 	}
 
-	internal sealed class ValueFlowAttribute
+	/// <summary>
+	/// Indicates that method doesn't contain observable side effects.
+	/// The same as <see cref="System.Diagnostics.Contracts.PureAttribute"/>
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Method, Inherited = true)]
+	[Conditional("ANNOTATIONS")]
+	internal sealed class PureAttribute : Attribute
 	{
-		// Methods
-		public ValueFlowAttribute(PointPlurality fromPlurality, PointKinds fromPointKinds, byte fromParameterIndex, byte fromLambdaIndex, PointPlurality toPlurality, PointKinds toPointKinds, byte toParameterIndex, byte toLambdaParameterIndex)
-		{
-			this.FromPlurality = fromPlurality;
-			this.FromPointKind = fromPointKinds;
-			this.FromParameterIndex = fromParameterIndex;
-			this.FromLambdaIndex = fromLambdaIndex;
-			this.ToPlurality = toPlurality;
-			this.ToPointKind = toPointKinds;
-			this.ToParameterIndex = toParameterIndex;
-			this.ToLambdaParameterIndex = toLambdaParameterIndex;
-		}
-
-		// Properties
-		public byte FromLambdaIndex { get; private set; }
-
-		public byte FromParameterIndex { get; private set; }
-
-		public PointPlurality FromPlurality { get; private set; }
-
-		public PointKinds FromPointKind { get; private set; }
-
-		public byte ToLambdaParameterIndex { get; private set; }
-
-		public byte ToParameterIndex { get; private set; }
-
-		public PointPlurality ToPlurality { get; private set; }
-
-		public PointKinds ToPointKind { get; private set; }
 	}
 
 #pragma warning restore 1591

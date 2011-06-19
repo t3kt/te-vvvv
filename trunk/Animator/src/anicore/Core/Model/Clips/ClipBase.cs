@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Clips
@@ -20,6 +21,8 @@ namespace Animator.Core.Model.Clips
 
 		#region Static / Constant
 
+		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(ClipBase));
+
 		#endregion
 
 		#region Fields
@@ -29,6 +32,11 @@ namespace Animator.Core.Model.Clips
 		#endregion
 
 		#region Properties
+
+		public sealed override ItemTypeInfo ItemType
+		{
+			get { return _ItemType; }
+		}
 
 		public ObservableCollection<ClipPropertyData> Properties
 		{

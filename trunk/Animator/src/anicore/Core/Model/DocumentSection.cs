@@ -133,6 +133,20 @@ namespace Animator.Core.Model
 			this.OnPropertyChanged("Tracks");
 		}
 
+		internal override bool TryDeleteItem(IDocumentItem item)
+		{
+			if(item == null)
+				return false;
+			if(item is TTrack)
+				return this._Tracks.Remove((TTrack)item);
+			foreach(var track in this._Tracks)
+			{
+				if(track.TryDeleteItem(item))
+					return true;
+			}
+			return false;
+		}
+
 		#endregion
 
 	}

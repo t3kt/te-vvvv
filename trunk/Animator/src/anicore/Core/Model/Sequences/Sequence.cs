@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
-using Animator.Core.Transport;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -20,6 +20,8 @@ namespace Animator.Core.Model.Sequences
 
 		#region Static / Constant
 
+		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Sequence));
+
 		#endregion
 
 		#region Fields
@@ -29,6 +31,11 @@ namespace Animator.Core.Model.Sequences
 		#endregion
 
 		#region Properties
+
+		public override ItemTypeInfo ItemType
+		{
+			get { return _ItemType; }
+		}
 
 		[Category(TEShared.Names.Category_Transport)]
 		public TimeSpan Duration

@@ -168,7 +168,6 @@ namespace Animator.UI.Controls
 
 		protected virtual void PerformReset()
 		{
-			throw new NotImplementedException();
 		}
 
 		#endregion

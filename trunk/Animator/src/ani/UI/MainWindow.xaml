@@ -3,8 +3,8 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		Title="Animator" Height="600" Width="1000" x:Name="mainWindow" Style="{StaticResource MainWindowStyle}"
 		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:appCore="clr-namespace:Animator.AppCore" xmlns:test="clr-namespace:Animator.Test"
-		xmlns:ui="clr-namespace:Animator.UI"
-		xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore" MinWidth="500" MinHeight="400">
+		xmlns:ui="clr-namespace:Animator.UI" xmlns:cmn="clr-namespace:Animator.UI.Common"
+		xmlns:seq="clr-namespace:Animator.UI.Sequencing" MinWidth="500" MinHeight="400">
 	<Window.Resources>
 		<Style TargetType="{x:Type GridSplitter}">
 			<Setter Property="DragIncrement" Value="20"/>
@@ -45,7 +45,6 @@
 		<CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAsCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
-		<CommandBinding Command="appCore:AniAppCommands.EditTransport" Executed="EditTransportCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AboutApplication" Executed="AboutApplicationCommand_Executed"/>
 	</Window.CommandBindings>
 	<Grid>
@@ -53,13 +52,15 @@
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition />
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<Menu Style="{DynamicResource MainMenuStyle}" Grid.ColumnSpan="3">
+		<Menu Style="{DynamicResource MainMenuStyle}" Grid.ColumnSpan="5">
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}">
 					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
@@ -110,9 +111,11 @@
 				<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
 			</MenuItem>
 			<MenuItem Header="_View">
+				<MenuItem x:Name="sectionsVisibleMenuItem" Header="_Sections" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
+				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
-				<MenuItem x:Name="clipEditMenuItem" Header="_Clip Editor" IsCheckable="True" IsChecked="True"/>
+				<!--<MenuItem x:Name="clipEditMenuItem" Header="_Clip Editor" IsCheckable="True" IsChecked="True" IsEnabled="False"/>-->
 			</MenuItem>
 			<MenuItem Header="_Debug">
 				<MenuItem Command="test:TestCommands.ShowTestWindow" />
@@ -122,64 +125,28 @@
 			<MenuItem Header="_Help">
 				<MenuItem Command="appCore:AniAppCommands.AboutApplication" Header="_About Animator" />
 			</MenuItem>
-			<!--<StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-				<Button Width="16" Background="{StaticResource CloseButtonImage}">
-				</Button>
-			</StackPanel>-->
 		</Menu>
-		<panes:DocumentNavigationPane Grid.Row="1" MinWidth="100" />
-		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-		<Grid Grid.Row="1" Grid.Column="2">
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="200"/>
-			</Grid.RowDefinitions>
-			<GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
-			<TabControl IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=HasActiveDocument}">
-				<TabItem>
-					<TabItem.Header>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="/ani;component/Resources/ani_icon_sessions_16.png" Margin="0,0,4,0" />
-							<TextBlock Text="Session"/>
-						</StackPanel>
-					</TabItem.Header>
-				</TabItem>
-				<TabItem IsEnabled="False">
-					<TabItem.Header>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="/ani;component/Resources/ani_icon_sequencing_16.png" Margin="0,0,4,0" />
-							<TextBlock Text="Sequencing"/>
-						</StackPanel>
-					</TabItem.Header>
-				</TabItem>
-				<TabItem>
-					<TabItem.Header>
-						<StackPanel Orientation="Horizontal">
-							<Image Source="/ani;component/Resources/ani_icon_output_16.png" Margin="0,0,4,0" />
-							<TextBlock Text="Outputs"/>
-						</StackPanel>
-					</TabItem.Header>
-					<ListBox x:Name="outputsListBox" Background="{x:Null}" ItemsSource="{Binding Path=Outputs}" HorizontalContentAlignment="Stretch">
-						<ListBox.CommandBindings>
-							<CommandBinding Command="ApplicationCommands.Delete" Executed="OutputList_DeleteCommand_Executed" />
-						</ListBox.CommandBindings>
-						<ListBox.ItemTemplate>
-							<DataTemplate DataType="{x:Type io:Output}">
-								<panes:OutputPropertiesPane Grid.Row="1" appCore:AniUI.PaneHeader="{Binding Path=Name}" appCore:AniUI.PaneHeaderVisibility="Collapsed">
-									<panes:OutputPropertiesPane.ContextMenu>
-										<ContextMenu>
-											<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
-										</ContextMenu>
-									</panes:OutputPropertiesPane.ContextMenu>
-								</panes:OutputPropertiesPane>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</TabItem>
-			</TabControl>
-		</Grid>
-		<StatusBar Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="3" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+		<panes:SectionsPane x:Name="sectionsPane" Grid.Row="1" MinWidth="150" Visibility="{Binding ElementName=sectionsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"
+					  Visibility="{Binding ElementName=sectionsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+		<UserControl Grid.Row="1" Grid.Column="2" Style="{StaticResource PaneUserControlStyle}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ui:MainWindow,AncestorLevel=1}, Path=SelectedSection}">
+			<UserControl.ContentTemplateSelector>
+				<cmn:SectionTemplateSelector>
+					<cmn:SectionTemplateSelector.SequenceTemplate>
+						<DataTemplate>
+							<seq:SequencePanel/>
+						</DataTemplate>
+					</cmn:SectionTemplateSelector.SequenceTemplate>
+				</cmn:SectionTemplateSelector>
+			</UserControl.ContentTemplateSelector>
+		</UserControl>
+		
+		<GridSplitter Grid.Row="1" Grid.Column="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"
+						   Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+		<panes:OutputsPane Grid.Row="1" Grid.Column="4" MinWidth="130" appCore:AniUI.PaneHeaderHorizontalAlignment="Right"
+						   Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
+		<StatusBar Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="5" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow}}" />
 		</StatusBar>
 	</Grid>

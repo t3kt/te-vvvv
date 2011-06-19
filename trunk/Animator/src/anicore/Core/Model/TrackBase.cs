@@ -21,6 +21,8 @@ namespace Animator.Core.Model
 
 		#region Static/Constant
 
+		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Track));
+
 		#endregion
 
 		#region Fields
@@ -32,6 +34,11 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
+
+		public sealed override ItemTypeInfo ItemType
+		{
+			get { return _ItemType; }
+		}
 
 		[Category(TEShared.Names.Category_Output)]
 		public Guid? TargetId
@@ -162,6 +169,12 @@ namespace Animator.Core.Model
 		private void Clips_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			this.OnPropertyChanged("Clips");
+		}
+
+		internal override bool TryDeleteItem(IDocumentItem item)
+		{
+			var clip = item as TClip;
+			return clip != null && this._Clips.Remove(clip);
 		}
 
 		#endregion
