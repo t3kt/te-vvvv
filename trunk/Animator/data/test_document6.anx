@@ -10,7 +10,9 @@
 		<output id="a7f4febc-7959-4bb1-9386-b2ba59a793a2" name="out B" />
 	</outputs>
 	<sections>
-		<sequence id="f140f161-a009-4643-b8f3-c70f2c15ae01" name="foo seq" dur="40"/>
+		<sequence id="f140f161-a009-4643-b8f3-c70f2c15ae01" name="foo seq" dur="40">
+			<seqtrack id="93fcf617-8fb7-7365-82c3-d48b2c31f910" name="track a"/>
+		</sequence>
 		<session id="2f3702de-0737-4cd6-89dc-bf06404294e0" name="qq sess"/>
 		<sequence id="c70f2c15-4643-a009-b081-15ae01c70f2c" name="baz seq" dur="40"/>
 		<session id="4d9a7bf7-9517-4c46-8948-c181a178a5cb" name="zz sess"/>

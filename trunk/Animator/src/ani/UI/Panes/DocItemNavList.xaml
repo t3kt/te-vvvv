@@ -25,6 +25,7 @@
 					</ContextMenu>
 				</Setter.Value>
 			</Setter>
+			<EventSetter Event="MouseDoubleClick" Handler="Item_DoubleClick" />
 		</Style>
 	</ListBox.ItemContainerStyle>
 	<ListBox.ItemTemplate>
