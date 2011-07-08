@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 using Animator.AppCore;
 using Animator.Core.IO;
 using Animator.Core.Model;
-using Animator.UI.Dialogs;
-using Animator.UI.Editors;
 
 namespace Animator.UI.Panes
 {
@@ -63,6 +62,16 @@ namespace Animator.UI.Panes
 		private void Item_DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = AniItemTypes.CanDelete(this.DataContext as Document, e.Parameter);
+		}
+
+		private void Item_DoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			var itemControl = e.Source as FrameworkElement;
+			if(itemControl != null)
+			{
+				if(AniItemTypes.ShowEditDetail(itemControl.DataContext))
+					e.Handled = true;
+			}
 		}
 
 		#endregion

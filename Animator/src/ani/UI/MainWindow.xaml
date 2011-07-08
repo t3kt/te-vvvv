@@ -130,17 +130,14 @@
 		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"
 					  Visibility="{Binding ElementName=sectionsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-		<UserControl Grid.Row="1" Grid.Column="2" Style="{StaticResource PaneUserControlStyle}" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ui:MainWindow,AncestorLevel=1}, Path=SelectedSection}">
-			<UserControl.ContentTemplateSelector>
-				<cmn:SectionTemplateSelector>
-					<cmn:SectionTemplateSelector.SequenceTemplate>
-						<DataTemplate>
-							<seq:SequencePanel/>
-						</DataTemplate>
-					</cmn:SectionTemplateSelector.SequenceTemplate>
-				</cmn:SectionTemplateSelector>
-			</UserControl.ContentTemplateSelector>
-		</UserControl>
+		<panes:SectionEditorPane Grid.Row="1" Grid.Column="2" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ui:MainWindow,AncestorLevel=1}, Path=SelectedSection}">
+			<panes:SectionEditorPane.SequenceEditor>
+				<seq:SequencePanel />
+			</panes:SectionEditorPane.SequenceEditor>
+			<panes:SectionEditorPane.SessionEditor>
+				<UserControl Style="{DynamicResource HeaderedPaneStyle}" appCore:AniUI.PaneHeader="Session" IsEnabled="False" />
+			</panes:SectionEditorPane.SessionEditor>
+		</panes:SectionEditorPane>
 		
 		<GridSplitter Grid.Row="1" Grid.Column="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"
 						   Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />

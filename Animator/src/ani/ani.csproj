@@ -114,6 +114,9 @@
     <Compile Include="UI\Panes\OutputsPane.xaml.cs">
       <DependentUpon>OutputsPane.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Panes\SectionEditorPane.xaml.cs">
+      <DependentUpon>SectionEditorPane.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Panes\SectionsPane.xaml.cs">
       <DependentUpon>SectionsPane.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Panes\OutputsPane.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Panes\SectionEditorPane.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
