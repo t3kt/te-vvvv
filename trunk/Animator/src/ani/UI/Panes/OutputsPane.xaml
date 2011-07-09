@@ -6,7 +6,7 @@
 			 xmlns:panes="clr-namespace:Animator.UI.Panes"
 			 xmlns:appCore="clr-namespace:Animator.AppCore"
 			 mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="200"
-			 Style="{DynamicResource HeaderedPaneStyle}"
+			 Style="{StaticResource HeaderedPaneStyle}"
 			 appCore:AniUI.PaneHeader="Outputs">
 	<panes:DocItemNavList ItemsSource="{Binding Path=Outputs}" />
 </UserControl>

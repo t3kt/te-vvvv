@@ -22,6 +22,8 @@ namespace Animator.Tests
 		public const string Transport = "Transport";
 		public const string ClipData = "ClipData";
 
+		public const string App_Converters = "App.Converters";
+
 	}
 
 	#endregion

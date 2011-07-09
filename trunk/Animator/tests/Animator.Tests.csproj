@@ -69,6 +69,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AniApp\ConvertersUnitTest.cs" />
     <Compile Include="CategoryNames.cs" />
     <Compile Include="ClipDataUnitTest.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
@@ -114,9 +115,7 @@
   <ItemGroup>
     <Shadow Include="Test References\ani.accessor" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AniApp\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="..\src\shared\SharedAssemblyInfo.cs" />
   </ItemGroup>

@@ -7,6 +7,7 @@ using System.Windows.Controls.WpfPropertyGrid;
 using System.Windows.Media;
 using Animator.Common.Diagnostics;
 using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 
 namespace Animator.AppCore
 {
@@ -56,7 +57,7 @@ namespace Animator.AppCore
 		}
 
 		public static readonly DependencyProperty SelectedSectionProperty =
-			DependencyProperty.RegisterAttached("SelectedSection", typeof (DocumentSection), typeof (AniUI),
+			DependencyProperty.RegisterAttached("SelectedSection", typeof(DocumentSection), typeof(AniUI),
 				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
 
 		public static DocumentSection GetSelectedSection(DependencyObject d)
@@ -69,6 +70,22 @@ namespace Animator.AppCore
 		{
 			Require.ArgNotNull(d, "d");
 			d.SetValue(SelectedSectionProperty, value);
+		}
+
+		public static readonly DependencyProperty SelectedClipProperty =
+			DependencyProperty.RegisterAttached("SelectedClip", typeof(ClipBase), typeof(AniUI),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static ClipBase GetSelectedClip(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (ClipBase)d.GetValue(SelectedClipProperty);
+		}
+
+		public static void SetSelectedClip(DependencyObject d, ClipBase value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(SelectedClipProperty, value);
 		}
 
 		#endregion
@@ -109,10 +126,6 @@ namespace Animator.AppCore
 			DependencyProperty.RegisterAttached("PaneHeaderVisibility", typeof(Visibility),
 				typeof(AniUI), new FrameworkPropertyMetadata(Visibility.Visible, FrameworkPropertyMetadataOptions.Inherits));
 
-		public static readonly DependencyProperty PaneHeaderHorizontalAlignmentProperty =
-			DependencyProperty.RegisterAttached("PaneHeaderHorizontalAlignment", typeof(HorizontalAlignment), typeof(AniUI),
-				new FrameworkPropertyMetadata(HorizontalAlignment.Stretch, FrameworkPropertyMetadataOptions.Inherits));
-
 		public static object GetPaneHeader(DependencyObject d)
 		{
 			Require.ArgNotNull(d, "d");
@@ -135,18 +148,6 @@ namespace Animator.AppCore
 		{
 			Require.ArgNotNull(d, "d");
 			d.SetValue(PaneHeaderVisibilityProperty, value);
-		}
-
-		public static HorizontalAlignment GetPaneHeadHorizontalAlignment(DependencyObject d)
-		{
-			Require.ArgNotNull(d, "d");
-			return (HorizontalAlignment)d.GetValue(PaneHeaderHorizontalAlignmentProperty);
-		}
-
-		public static void SetPaneHeaderHorizontalAlignment(DependencyObject d, HorizontalAlignment value)
-		{
-			Require.ArgNotNull(d, "d");
-			d.SetValue(PaneHeaderHorizontalAlignmentProperty, value);
 		}
 
 		#endregion

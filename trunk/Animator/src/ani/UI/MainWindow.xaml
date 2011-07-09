@@ -60,7 +60,7 @@
 			<RowDefinition/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<Menu Style="{DynamicResource MainMenuStyle}" Grid.ColumnSpan="5">
+		<Menu Style="{StaticResource MainMenuStyle}" Grid.ColumnSpan="5">
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}">
 					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
@@ -135,15 +135,18 @@
 				<seq:SequencePanel />
 			</panes:SectionEditorPane.SequenceEditor>
 			<panes:SectionEditorPane.SessionEditor>
-				<UserControl Style="{DynamicResource HeaderedPaneStyle}" appCore:AniUI.PaneHeader="Session" IsEnabled="False" />
+				<UserControl Style="{StaticResource HeaderedPaneStyle}" appCore:AniUI.PaneHeader="Session" IsEnabled="False" />
 			</panes:SectionEditorPane.SessionEditor>
+			<panes:SectionEditorPane.NoEditor>
+				<UserControl Style="{StaticResource PaneUserControlStyle}"/>
+			</panes:SectionEditorPane.NoEditor>
 		</panes:SectionEditorPane>
 		
 		<GridSplitter Grid.Row="1" Grid.Column="3" ResizeDirection="Columns" HorizontalAlignment="Stretch"
 						   Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-		<panes:OutputsPane Grid.Row="1" Grid.Column="4" MinWidth="130" appCore:AniUI.PaneHeaderHorizontalAlignment="Right"
+		<panes:OutputsPane Grid.Row="1" Grid.Column="4" MinWidth="130"
 						   Visibility="{Binding ElementName=outputsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-		<StatusBar Style="{DynamicResource MainStatusBarStyle}" Grid.ColumnSpan="5" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+		<StatusBar Style="{StaticResource MainStatusBarStyle}" Grid.ColumnSpan="5" Grid.Row="2" Visibility="{Binding ElementName=statusBarVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
 			<CheckBox IsEnabled="False" IsChecked="{Binding Path=ActiveDocumentDirty, RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow}}" />
 		</StatusBar>
 	</Grid>
