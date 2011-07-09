@@ -24,12 +24,9 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		static SectionEditorPane()
-		{
-			//DataContextProperty.OverrideMetadata(typeof(SectionEditorPane),
-			//    new PropertyMetadata(null, OnDataContextChanged));
-			
-		}
+		public static readonly DependencyProperty NoEditorProperty =
+			DependencyProperty.Register("NoEditor", typeof(object), typeof(SectionEditorPane),
+			new PropertyMetadata(null, OnEditorChanged));
 
 		public static readonly DependencyProperty SequenceEditorProperty =
 			DependencyProperty.Register("SequenceEditor", typeof(object), typeof(SectionEditorPane),
@@ -38,11 +35,6 @@ namespace Animator.UI.Panes
 		public static readonly DependencyProperty SessionEditorProperty =
 			DependencyProperty.Register("SessionEditor", typeof(object), typeof(SectionEditorPane),
 			new PropertyMetadata(null, OnEditorChanged));
-
-		//private static void OnDataContextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		//{
-		//    ((SectionEditorPane)d).UpdateEditors();
-		//}
 
 		private static void OnEditorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
@@ -56,6 +48,12 @@ namespace Animator.UI.Panes
 		#endregion
 
 		#region Properties
+
+		public object NoEditor
+		{
+			get { return this.GetValue(NoEditorProperty); }
+			set { this.SetValue(NoEditorProperty, value); }
+		}
 
 		public object SequenceEditor
 		{
@@ -86,7 +84,7 @@ namespace Animator.UI.Panes
 		{
 			var type = this.DataContext == null ? null : this.DataContext.GetType();
 			if(type == null)
-				this.Content = null;
+				this.Content = this.NoEditor;
 			else if(type == typeof(Sequence))
 				this.Content = this.SequenceEditor;
 			else if(type == typeof(Session))

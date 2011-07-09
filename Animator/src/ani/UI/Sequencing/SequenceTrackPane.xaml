@@ -2,15 +2,18 @@
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:appCore="clr-namespace:Animator.AppCore"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:seqdata="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
+			 xmlns:appCore="clr-namespace:Animator.AppCore"
+			 xmlns:seq="clr-namespace:Animator.UI.Sequencing"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="150" d:DesignWidth="800" Padding="0">
+			 d:DesignHeight="150" d:DesignWidth="500" Padding="0">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="150" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<ContentControl Style="{StaticResource HeaderedPaneStyle}" appCore:AniUI.PaneHeader="Track">
+		<Border Style="{StaticResource PaneBorderStyle}" CornerRadius="4,0,0,4" BorderThickness="2,2,0,2">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -23,9 +26,23 @@
 				<TextBlock Text="Name:" />
 				<TextBox Grid.Column="1" Text="{Binding Path=Name}"/>
 			</Grid>
-		</ContentControl>
-		<ContentControl Grid.Column="1" Style="{StaticResource PaneUserControlStyle}">
-			stuff
-		</ContentControl>
+		</Border>
+
+		<Border Grid.Column="1" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0">
+			<ListBox Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch"
+							 ItemsSource="{Binding Path=Clips}"
+							 SelectedItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=seq:SequenceTrackPane}, Path=SelectedClip}">
+				<ListBox.ItemTemplate>
+					<DataTemplate DataType="{x:Type seqdata:SequenceClip}">
+						<seq:SequenceClipBlock/>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+			</ListBox>
+		</Border>
 	</Grid>
 </UserControl>

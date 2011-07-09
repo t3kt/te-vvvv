@@ -7,7 +7,7 @@
 			 xmlns:panes="clr-namespace:Animator.UI.Panes"
 			 xmlns:appCore="clr-namespace:Animator.AppCore"
 			 mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="200"
-			 Style="{DynamicResource HeaderedPaneStyle}"
+			 Style="{StaticResource HeaderedPaneStyle}"
 			 appCore:AniUI.PaneHeader="Sections">
 	<panes:DocItemNavList ItemsSource="{Binding Path=Sections}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=SelectedSection}" />
 </UserControl>

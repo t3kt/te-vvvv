@@ -11,7 +11,24 @@
 	</outputs>
 	<sections>
 		<sequence id="f140f161-a009-4643-b8f3-c70f2c15ae01" name="foo seq" dur="40">
-			<seqtrack id="93fcf617-8fb7-7365-82c3-d48b2c31f910" name="track a"/>
+			<seqtrack id="93fcf617-8fb7-7365-82c3-d48b2c31f910" name="track a">
+				<seqclip id="{FA686AD2-CA8A-4FC9-B906-F188A933E6DB}" name="clippy" start="0" dur="4">
+					<props>
+						<constprop name="awesomeness" value="99.9"/>
+						<stepprop name="fun">
+							<step>1</step>
+							<step>2</step>
+							<step>4</step>
+							<step>8</step>
+						</stepprop>
+					</props>
+				</seqclip>
+				<seqclip id="{59C1DFE3-AD5C-443C-9054-520D94227A99}" name="not clippy" start="6" dur="2">
+					<props>
+						<constprop name="x" value="3"/>
+					</props>
+				</seqclip>
+			</seqtrack>
 		</sequence>
 		<session id="2f3702de-0737-4cd6-89dc-bf06404294e0" name="qq sess"/>
 		<sequence id="c70f2c15-4643-a009-b081-15ae01c70f2c" name="baz seq" dur="40"/>

@@ -24,9 +24,6 @@ namespace Animator.UI.Sequencing
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty PaneHeaderProperty =
-			AniUI.PaneHeaderProperty.AddOwner(typeof(SequencePanel));
-
 		#endregion
 
 		#region Fields
@@ -41,12 +38,6 @@ namespace Animator.UI.Sequencing
 			set { this.DataContext = value; }
 		}
 
-		public object PaneHeader
-		{
-			get { return this.GetValue(PaneHeaderProperty); }
-			set { this.SetValue(PaneHeaderProperty, value); }
-		}
-
 		#endregion
 
 		#region Constructors
@@ -59,13 +50,6 @@ namespace Animator.UI.Sequencing
 		#endregion
 
 		#region Methods
-
-		private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			var seq = this.Sequence;
-			if(seq != null)
-				AniUI.SetPaneHeader(this, String.Format("Sequence [{0}]", seq.Name));
-		}
 
 		#endregion
 

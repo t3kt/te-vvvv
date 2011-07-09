@@ -82,7 +82,9 @@
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Common\SectionTemplateSelector.cs" />
+    <Compile Include="UI\Common\DurationToWidthConverter.cs" />
+    <Compile Include="UI\Common\MultiplyConverter.cs" />
+    <Compile Include="UI\Controls\AniPane.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
     <Compile Include="UI\Dialogs\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
