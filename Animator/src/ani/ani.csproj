@@ -84,6 +84,8 @@
     </Compile>
     <Compile Include="UI\Common\DurationToWidthConverter.cs" />
     <Compile Include="UI\Common\MultiplyConverter.cs" />
+    <Compile Include="UI\Common\TypeEqualsConverter.cs" />
+    <Compile Include="UI\Common\SwitchConverter.cs" />
     <Compile Include="UI\Controls\AniPane.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
     <Compile Include="UI\Dialogs\AboutDialog.xaml.cs">
@@ -137,6 +139,9 @@
     <Compile Include="UI\Sessions\ClipCell.xaml.cs">
       <DependentUpon>ClipCell.xaml</DependentUpon>
     </Compile>
+    <DesignData Include="Design\Data\SequenceClip.xaml">
+      <SubType>Designer</SubType>
+    </DesignData>
     <Page Include="Resources\AppSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,10 +151,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\TransportButtons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\WindowButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

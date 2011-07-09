@@ -4,9 +4,6 @@
 		 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 		 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		 xmlns:model="clr-namespace:Animator.Core.Model;assembly=anicore"
-		 xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
-		 xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore"
-		 xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
 		 xmlns:appCore="clr-namespace:Animator.AppCore"
 		 mc:Ignorable="d" 
 		 d:DesignHeight="300" d:DesignWidth="300"
@@ -32,23 +29,7 @@
 		<DataTemplate DataType="{x:Type model:DocumentItem}">
 			<Border Style="{StaticResource PaneBorderStyle}" Margin="{TemplateBinding Margin}">
 				<DockPanel>
-					<Image DockPanel.Dock="Left" Width="16" Height="16" Margin="0,0,4,0">
-						<Image.Style>
-							<Style TargetType="{x:Type Image}">
-								<Style.Triggers>
-									<DataTrigger Binding="{Binding Path=ItemType.Type}" Value="{x:Type seq:Sequence}">
-										<Setter Property="Source" Value="{StaticResource SequencingIcon}"/>
-									</DataTrigger>
-									<DataTrigger Binding="{Binding Path=ItemType.Type}" Value="{x:Type ses:Session}">
-										<Setter Property="Source" Value="{StaticResource SessionsIcon}"/>
-									</DataTrigger>
-									<DataTrigger Binding="{Binding Path=ItemType.Type}" Value="{x:Type io:Output}">
-										<Setter Property="Source" Value="{StaticResource OutputIcon}"/>
-									</DataTrigger>
-								</Style.Triggers>
-							</Style>
-						</Image.Style>
-					</Image>
+					<Image DockPanel.Dock="Left" Margin="0,0,4,0" Style="{StaticResource DocumentItemIconStyle}" />
 					<TextBlock Text="{Binding Path=Name}"/>
 				</DockPanel>
 			</Border>

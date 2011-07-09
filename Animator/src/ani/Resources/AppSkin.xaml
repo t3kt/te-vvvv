@@ -2,10 +2,13 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:appCore="clr-namespace:Animator.AppCore"
-	xmlns:cmn="clr-namespace:Animator.UI.Common">
+	xmlns:cmn="clr-namespace:Animator.UI.Common"
+	xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
+	xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
+	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore">
 	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 	<cmn:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
-	<cmn:DurationToWidthConverter x:Key="ClipDurationToWidthConverter" DefaultMultiplier="100" />
+	<cmn:DurationToWidthConverter x:Key="ClipDurationToWidthConverter" DefaultMultiplier="50" />
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#4B698C"/>
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
 	<SolidColorBrush x:Key="CellBorderBrush" Color="#707070"/>
@@ -21,6 +24,18 @@
 	<ImageSource x:Key="OutputIcon">/ani;component/Resources/ani_icon_output.ico</ImageSource>
 	<ImageSource x:Key="SequencingIcon">/ani;component/Resources/ani_icon_sequencing.ico</ImageSource>
 	<ImageSource x:Key="SessionsIcon">/ani;component/Resources/ani_icon_sessions.ico</ImageSource>
+
+	<cmn:SwitchConverter x:Key="DocumentItemToIconConverter" DefaultValue="{StaticResource MainIcon}">
+		<cmn:TypeCase Type="{x:Type io:Output}" Value="{StaticResource OutputIcon}"/>
+		<cmn:TypeCase Type="{x:Type seq:Sequence}" Value="{StaticResource SequencingIcon}"/>
+		<cmn:TypeCase Type="{x:Type ses:Session}" Value="{StaticResource SessionsIcon}"/>
+	</cmn:SwitchConverter>
+	
+	<Style x:Key="DocumentItemIconStyle" TargetType="{x:Type Image}">
+		<Setter Property="Source" Value="{Binding Converter={StaticResource DocumentItemToIconConverter}}"/>
+		<Setter Property="Width" Value="16"/>
+		<Setter Property="Height" Value="16"/>
+	</Style>
 
 	<Style x:Key="SubWindowStyle" TargetType="{x:Type Window}">
 		<Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
