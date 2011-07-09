@@ -1,0 +1,18 @@
+﻿<seq:SequenceClip xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+									xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+									xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
+									xmlns:clips="clr-namespace:Animator.Core.Model.Clips;assembly=anicore"
+									xmlns:sys="clr-namespace:System;assembly=mscorlib"
+									Name="i am a seq clip" Start="1" Duration="4">
+	<seq:SequenceClip.Properties>
+		<clips:ConstData Name="foo" Value="12" />
+		<clips:StepData Name="baz">
+			<clips:StepData.Steps>
+				<sys:Single>4</sys:Single>
+				<sys:Single>3</sys:Single>
+				<sys:Single>2</sys:Single>
+				<sys:Single>1</sys:Single>
+			</clips:StepData.Steps>
+		</clips:StepData>
+	</seq:SequenceClip.Properties>
+</seq:SequenceClip>

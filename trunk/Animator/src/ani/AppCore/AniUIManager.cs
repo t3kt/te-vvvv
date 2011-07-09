@@ -88,6 +88,22 @@ namespace Animator.AppCore
 			d.SetValue(SelectedClipProperty, value);
 		}
 
+		public static readonly DependencyProperty SelectedTrackProperty =
+			DependencyProperty.RegisterAttached("SelectedTrack", typeof(Track), typeof(AniUI),
+				new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.Inherits));
+
+		public static Track GetSelectedTrack(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (Track)d.GetValue(SelectedTrackProperty);
+		}
+
+		public static void SetSelectedTrack(DependencyObject d, Track value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(SelectedTrackProperty, value);
+		}
+
 		#endregion
 
 		#region PropertyGrid SelectedObject

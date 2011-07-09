@@ -4,7 +4,9 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 mc:Ignorable="d" 
-			 d:DesignHeight="50" d:DesignWidth="200" Style="{StaticResource PaneUserControlStyle}" Width="{Binding Path=Duration, Converter={StaticResource ClipDurationToWidthConverter}}">
+			 d:DesignHeight="50" d:DesignWidth="200"
+			 d:DataContext="{d:DesignData Source=../../Design/Data/SequenceClip.xaml }"
+			 Style="{StaticResource PaneUserControlStyle}" Width="{Binding Path=Duration, Converter={StaticResource ClipDurationToWidthConverter}}">
 	<Grid>
 		<TextBlock Text="{Binding Path=Name}" />
 	</Grid>
