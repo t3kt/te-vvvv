@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Markup;
 using System.Xml.Linq;
@@ -86,7 +85,7 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly ObservableCollection<TTrack> _Tracks;
+		private readonly DocumentNodeCollection<TTrack> _Tracks;
 
 		#endregion
 
@@ -109,25 +108,20 @@ namespace Animator.Core.Model
 		protected DocumentSection(Guid id)
 			: base(id)
 		{
-			this._Tracks = new ObservableCollection<TTrack>();
-			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;
+			this._Tracks = new DocumentNodeCollection<TTrack>(this);
+			this.ObserveChildCollection("Tracks", this._Tracks);
 		}
 
 		protected DocumentSection([NotNull] XElement element)
 			: base(element)
 		{
-			this._Tracks = new ObservableCollection<TTrack>();
-			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;
+			this._Tracks = new DocumentNodeCollection<TTrack>(this);
+			this.ObserveChildCollection("Tracks", this._Tracks);
 		}
 
 		#endregion
 
 		#region Methods
-
-		private void Tracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Tracks");
-		}
 
 		internal override bool TryDeleteItem(IDocumentItem item)
 		{
@@ -139,6 +133,16 @@ namespace Animator.Core.Model
 			{
 				if(track.TryDeleteItem(item))
 					return true;
+			}
+			return false;
+		}
+
+		public override bool TryDeleteChild(DocumentNode node)
+		{
+			if(node is TTrack && this._Tracks.Remove((TTrack)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
 			}
 			return false;
 		}

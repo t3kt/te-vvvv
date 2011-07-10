@@ -42,6 +42,18 @@ namespace Animator.AppCore
 			return info != null && info.CanDelete;
 		}
 
+		public static bool CanDeleteNode(DocumentNode node)
+		{
+			if(node == null || node.Parent == null)
+				return false;
+			if(node is IDocumentItem)
+			{
+				var info = GetObjTypeInfo(node);
+				return info != null && info.CanDelete;
+			}
+			return true;
+		}
+
 		public static bool ShowEditDetail(object obj)
 		{
 			if(!CanShowEditDetail(obj))
@@ -62,6 +74,15 @@ namespace Animator.AppCore
 			if(item == null)
 				return false;
 			return doc.TryDeleteItem(item);
+		}
+
+		public static bool TryDeleteNode(DocumentNode node)
+		{
+			if(!CanDeleteNode(node))
+				return false;
+			// ReSharper disable PossibleNullReferenceException
+			return node.Parent.TryDeleteChild(node);
+			// ReSharper restore PossibleNullReferenceException
 		}
 
 		internal static void OnItemDoubleClick(object sender, MouseButtonEventArgs e)

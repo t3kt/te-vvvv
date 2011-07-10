@@ -84,6 +84,7 @@
     <Compile Include="Core\Model\Clips\ClipPropertyData.cs" />
     <Compile Include="Core\Model\Clips\ConstData.cs" />
     <Compile Include="Core\Model\Clips\StepData.cs" />
+    <Compile Include="Core\Model\DocumentNodeCollection.cs" />
     <Compile Include="Core\Model\IXElementWritable.cs" />
     <Compile Include="Core\Model\Document.cs" />
     <Compile Include="Core\Model\DocumentItem.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Core\Model\TrackBase.cs" />
     <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\Runtime\ClipPropertyDataEditor.cs" />
+    <Compile Include="Core\Model\DocumentNode.cs" />
+    <Compile Include="Core\Runtime\DocNodeChangedEvent.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IObjectEditor.cs" />
     <Compile Include="Core\Runtime\ItemType.cs" />

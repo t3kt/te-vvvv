@@ -15,6 +15,7 @@ namespace Animator.Core.Model.Sequences
 
 	#region SequenceClipCollection
 
+	[Incomplete]
 	public sealed class SequenceClipCollection : ICollection<SequenceClip>, INotifyCollectionChanged
 	{
 

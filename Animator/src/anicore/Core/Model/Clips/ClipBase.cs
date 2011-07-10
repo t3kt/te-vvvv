@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Markup;
 using System.Xml.Linq;
@@ -29,7 +28,7 @@ namespace Animator.Core.Model.Clips
 
 		#region Fields
 
-		private readonly ObservableCollection<ClipPropertyData> _Properties;
+		private readonly DocumentNodeCollection<ClipPropertyData> _Properties;
 
 		#endregion
 
@@ -52,15 +51,15 @@ namespace Animator.Core.Model.Clips
 		protected ClipBase(Guid id)
 			: base(id)
 		{
-			this._Properties = new ObservableCollection<ClipPropertyData>();
-			this._Properties.CollectionChanged += this.Properties_CollectionChanged;
+			this._Properties = new DocumentNodeCollection<ClipPropertyData>(this);
+			this.ObserveChildCollection("Properties", this._Properties);
 		}
 
 		protected ClipBase([NotNull] XElement element, [CanBeNull]AniHost host)
 			: base(element)
 		{
-			this._Properties = new ObservableCollection<ClipPropertyData>();
-			this._Properties.CollectionChanged += this.Properties_CollectionChanged;
+			this._Properties = new DocumentNodeCollection<ClipPropertyData>(this);
+			this.ObserveChildCollection("Properties", this._Properties);
 			var propsElement = element.Element(Schema.clipbase_props);
 			if(propsElement != null)
 			{
@@ -103,11 +102,6 @@ namespace Animator.Core.Model.Clips
 			if(this._Properties.Count == 0)
 				return null;
 			return new XElement(Schema.clipbase_props, ModelUtil.WriteXElements(this._Properties));
-		}
-
-		private void Properties_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Properties");
 		}
 
 		#endregion
