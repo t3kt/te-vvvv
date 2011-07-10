@@ -12,7 +12,7 @@ namespace Animator.Core.Model
 
 	#region DocumentItem
 
-	public abstract class DocumentItem : IDocumentItem, INotifyPropertyChanged,
+	public abstract class DocumentItem : DocumentNode, IDocumentItem,
 		IEquatable<IDocumentItem>
 	{
 
@@ -120,19 +120,6 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region INotifyPropertyChanged Members
-
-		protected virtual void OnPropertyChanged(string name)
-		{
-			var handler = this.PropertyChanged;
-			if(handler != null)
-				handler(this, new PropertyChangedEventArgs(name));
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		#endregion
-
 		#region IXElementWritable Members
 
 		public abstract XElement WriteXElement(XName name = null);
@@ -144,7 +131,7 @@ namespace Animator.Core.Model
 		protected virtual void Dispose(bool disposing)
 		{
 			if(disposing)
-				this.PropertyChanged = null;
+				this.ClearPropertyChangedListeners();
 		}
 
 		public void Dispose()

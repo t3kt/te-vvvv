@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
@@ -27,7 +26,7 @@ namespace Animator.Core.IO
 
 		#region TargetCollection
 
-		private sealed class TargetCollection : ObservableCollection<TargetObject>
+		private sealed class TargetCollection : DocumentNodeCollection<TargetObject>
 		{
 
 			#region Static/Constant
@@ -47,6 +46,7 @@ namespace Animator.Core.IO
 			#region Constructors
 
 			public TargetCollection(Output output)
+				: base(output)
 			{
 				this._Output = output;
 			}
@@ -55,44 +55,16 @@ namespace Animator.Core.IO
 
 			#region Methods
 
-			private void Attach(TargetObject item)
+			protected override void Attach(TargetObject item)
 			{
 				Require.DBG_ArgNotNull(item, "item");
 				item.PropertyValueChanged += this._Output.Target_PropertyValueChanged;
 			}
 
-			private void Detach(TargetObject item)
+			protected override void Detach(TargetObject item)
 			{
 				Require.DBG_ArgNotNull(item, "item");
 				item.PropertyValueChanged += this._Output.Target_PropertyValueChanged;
-			}
-
-			protected override void InsertItem(int index, TargetObject item)
-			{
-				base.InsertItem(index, item);
-				this.Attach(item);
-			}
-
-			protected override void ClearItems()
-			{
-				foreach(var item in this)
-					this.Detach(item);
-				base.ClearItems();
-			}
-
-			protected override void RemoveItem(int index)
-			{
-				var item = this[index];
-				this.Detach(item);
-				base.RemoveItem(index);
-			}
-
-			protected override void SetItem(int index, TargetObject item)
-			{
-				var oldItem = this[index];
-				this.Detach(oldItem);
-				this.Attach(item);
-				base.SetItem(index, item);
 			}
 
 			#endregion
@@ -155,7 +127,7 @@ namespace Animator.Core.IO
 			: base(id)
 		{
 			this._Targets = new TargetCollection(this);
-			this._Targets.CollectionChanged += this.Targets_CollectionChanged;
+			this.ObserveChildCollection("Targets", this._Targets);
 		}
 
 		#endregion
@@ -188,11 +160,6 @@ namespace Animator.Core.IO
 			}
 		}
 
-		private void Targets_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Targets");
-		}
-
 		public TargetObject GetTargetObject(Guid id)
 		{
 			return this._Targets.FindById(id);
@@ -201,6 +168,16 @@ namespace Animator.Core.IO
 		internal override bool TryDeleteItem(IDocumentItem item)
 		{
 			return item is TargetObject && this._Targets.Remove((TargetObject)item);
+		}
+
+		public override bool TryDeleteChild(DocumentNode node)
+		{
+			if(node is TargetObject && this._Targets.Remove((TargetObject)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
+			}
+			return false;
 		}
 
 		public virtual void ReadXElement([NotNull] XElement element)

@@ -12,7 +12,7 @@ namespace Animator.Core.Model.Clips
 
 	#region ClipPropertyData
 
-	public abstract class ClipPropertyData : INotifyPropertyChanged, IXElementWritable
+	public abstract class ClipPropertyData : DocumentNode, IXElementWritable
 	{
 
 		#region Static / Constant
@@ -72,19 +72,6 @@ namespace Animator.Core.Model.Clips
 		#region IXElementWritable Members
 
 		public abstract XElement WriteXElement(XName name = null);
-
-		#endregion
-
-		#region INotifyPropertyChanged Members
-
-		protected void OnPropertyChanged(string name)
-		{
-			var handler = this.PropertyChanged;
-			if(handler != null)
-				handler(this, new PropertyChangedEventArgs(name));
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		#endregion
 

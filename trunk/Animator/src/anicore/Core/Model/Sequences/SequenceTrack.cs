@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Markup;
 using System.Xml.Linq;
@@ -22,7 +21,7 @@ namespace Animator.Core.Model.Sequences
 
 		#region ClipCollection
 
-		private sealed class ClipCollection : ObservableCollection<SequenceClip>
+		private sealed class ClipCollection : DocumentNodeCollection<SequenceClip>
 		{
 
 			#region Static/Constant
@@ -30,8 +29,6 @@ namespace Animator.Core.Model.Sequences
 			#endregion
 
 			#region Fields
-
-			private readonly SequenceTrack _Track;
 
 			#endregion
 
@@ -42,19 +39,11 @@ namespace Animator.Core.Model.Sequences
 			#region Constructors
 
 			public ClipCollection(SequenceTrack track)
-			{
-				this._Track = track;
-			}
+				: base(track) { }
 
 			#endregion
 
 			#region Methods
-
-			protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-			{
-				base.OnCollectionChanged(e);
-				this._Track.OnPropertyChanged("Clips");
-			}
 
 			#endregion
 
@@ -98,6 +87,7 @@ namespace Animator.Core.Model.Sequences
 			: base(id, document)
 		{
 			this._Clips = new ClipCollection(this);
+			this.ObserveChildCollection("Clips", this._Clips);
 		}
 
 		public SequenceTrack()
@@ -110,6 +100,7 @@ namespace Animator.Core.Model.Sequences
 			: base(element, document)
 		{
 			this._Clips = new ClipCollection(this);
+			this.ObserveChildCollection("Clips", this._Clips);
 			this._Clips.AddRange(element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? AniHost.Current)));
 		}
 
@@ -141,6 +132,16 @@ namespace Animator.Core.Model.Sequences
 		{
 			var clip = item as SequenceClip;
 			return clip != null && this._Clips.Remove(clip);
+		}
+
+		public override bool TryDeleteChild(DocumentNode node)
+		{
+			if(node is SequenceClip && this._Clips.Remove((SequenceClip)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
+			}
+			return false;
 		}
 
 		public override XElement WriteXElement(XName name = null)

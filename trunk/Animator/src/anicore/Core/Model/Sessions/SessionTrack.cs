@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
@@ -12,7 +13,7 @@ namespace Animator.Core.Model.Sessions
 
 	#region SessionTrack
 
-	public sealed class SessionTrack : Track<SessionClip>
+	public sealed class SessionTrack : Track
 	{
 
 		#region Static / Constant
@@ -21,29 +22,63 @@ namespace Animator.Core.Model.Sessions
 
 		#region Fields
 
+		private readonly DocumentNodeCollection<SessionClip> _Clips;
+
 		#endregion
 
 		#region Properties
+
+		public ObservableCollection<SessionClip> Clips
+		{
+			get { return this._Clips; }
+		}
+
+		internal override IEnumerable<Clips.ClipBase> ClipsInternal
+		{
+			get { return this._Clips; }
+		}
 
 		#endregion
 
 		#region Constructors
 
-		public SessionTrack([NotNull]Document document)
+		public SessionTrack(Document document)
 			: this(Guid.NewGuid(), document) { }
 
-		public SessionTrack(Guid id, [NotNull]Document document)
-			: base(id, document) { }
+		public SessionTrack(Guid id, Document document)
+			: base(id, document)
+		{
+			this._Clips = new DocumentNodeCollection<SessionClip>(this);
+			this.ObserveChildCollection("Clips", this._Clips);
+		}
 
-		public SessionTrack([NotNull] XElement element, [NotNull]Document document, [CanBeNull]AniHost host)
+		public SessionTrack([NotNull] XElement element, Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
-			this.Clips.AddRange(element.Elements(Schema.sesclip).Select(e => new SessionClip(e, host ?? document.Host)));
+			this._Clips = new DocumentNodeCollection<SessionClip>(this);
+			this.ObserveChildCollection("Clips", this._Clips);
+			this._Clips.AddRange(element.Elements(Schema.sesclip).Select(e => new SessionClip(e, host ?? AniHost.Current)));
 		}
 
 		#endregion
 
 		#region Methods
+
+		internal override bool TryDeleteItem(IDocumentItem item)
+		{
+			var clip = item as SessionClip;
+			return clip != null && this._Clips.Remove(clip);
+		}
+
+		public override bool TryDeleteChild(DocumentNode node)
+		{
+			if(node is SessionClip && this._Clips.Remove((SessionClip)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
+			}
+			return false;
+		}
 
 		public override XElement WriteXElement(XName name = null)
 		{

@@ -83,7 +83,6 @@
     <Compile Include="Test\TestWindow1.xaml.cs">
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Common\DurationToWidthConverter.cs" />
     <Compile Include="UI\Common\MultiplyConverter.cs" />
     <Compile Include="UI\Common\SwitchConverter.cs" />
     <Compile Include="UI\Controls\AniPane.cs" />

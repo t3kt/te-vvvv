@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
@@ -20,7 +19,7 @@ namespace Animator.Core.Model
 
 	#region Document
 
-	public sealed class Document : IDocumentItem, INotifyPropertyChanged
+	public sealed class Document : DocumentNode, IDocumentItem
 	{
 
 		#region Static / Constant
@@ -33,8 +32,8 @@ namespace Animator.Core.Model
 
 		private readonly AniHost _Host;
 
-		private readonly ObservableCollection<Output> _Outputs;
-		private readonly ObservableCollection<DocumentSection> _Sections;
+		private readonly DocumentNodeCollection<Output> _Outputs;
+		private readonly DocumentNodeCollection<DocumentSection> _Sections;
 		private Guid _Id;
 		private string _Name;
 		private DocumentSection _ActiveSection;
@@ -126,10 +125,10 @@ namespace Animator.Core.Model
 		public Document([CanBeNull] AniHost host)
 		{
 			this._Host = host ?? AniHost.Current;
-			this._Outputs = new ObservableCollection<Output>();
-			this._Outputs.CollectionChanged += this.Outputs_CollectionChanged;
-			this._Sections = new ObservableCollection<DocumentSection>();
-			this._Sections.CollectionChanged += this.Sections_CollectionChanged;
+			this._Outputs = new DocumentNodeCollection<Output>(this);
+			this.ObserveChildCollection("Outputs", this._Outputs);
+			this._Sections = new DocumentNodeCollection<DocumentSection>(this);
+			this.ObserveChildCollection("Sections", this._Sections);
 		}
 
 		public Document(Guid id, [CanBeNull] AniHost host = null)
@@ -155,16 +154,6 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		private void Outputs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Outputs");
-		}
-
-		private void Sections_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			this.OnPropertyChanged("Sections");
-		}
-
 		public Output GetOutput(Guid id)
 		{
 			return this.Outputs.FindById(id);
@@ -184,13 +173,6 @@ namespace Animator.Core.Model
 					return target;
 			}
 			return null;
-		}
-
-		private static void DisposeIfNeeded(object obj)
-		{
-			var d = obj as IDisposable;
-			if(d != null)
-				d.Dispose();
 		}
 
 		public bool TryDeleteItem(IDocumentItem item)
@@ -222,6 +204,23 @@ namespace Animator.Core.Model
 					DisposeIfNeeded(item);
 					return true;
 				}
+			}
+			return false;
+		}
+
+		public override bool TryDeleteChild(DocumentNode node)
+		{
+			if(node == null)
+				return false;
+			if(node is Output && this._Outputs.Remove((Output)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
+			}
+			if(node is DocumentSection && this._Sections.Remove((DocumentSection)node))
+			{
+				DisposeIfNeeded(node);
+				return true;
 			}
 			return false;
 		}
@@ -264,28 +263,14 @@ namespace Animator.Core.Model
 
 		#endregion
 
-		#region INotifyPropertyChanged Members
-
-		private void OnPropertyChanged(string name)
-		{
-			var handler = this.PropertyChanged;
-			if(handler != null)
-				handler(this, new PropertyChangedEventArgs(name));
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		#endregion
-
 		#region IDisposable Members
 
 		public void Dispose()
 		{
-			this.PropertyChanged = null;
+			this.ClearPropertyChangedListeners();
 			if(this._Transport != null)
 				this._Transport.Dispose();
 			this._Transport = null;
-			this._Outputs.CollectionChanged -= this.Outputs_CollectionChanged;
 			foreach(var output in this._Outputs)
 				output.Dispose();
 			this._Outputs.Clear();

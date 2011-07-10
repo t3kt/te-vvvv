@@ -430,12 +430,12 @@ namespace Animator.UI
 
 		private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			AniItemTypes.TryDelete(this.ActiveDocument, e.Parameter);
+			AniItemTypes.TryDeleteNode(e.Parameter as DocumentNode);
 		}
 
 		private void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
-			e.CanExecute = AniItemTypes.CanDelete(this.ActiveDocument, e.Parameter);
+			e.CanExecute = AniItemTypes.CanDeleteNode(e.Parameter as DocumentNode);
 		}
 
 		#endregion
