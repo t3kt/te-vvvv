@@ -1,12 +1,13 @@
 ﻿<ctl:AniPane x:Class="Animator.UI.Sequencing.SequencePanel"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:seqdata="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
-			 xmlns:appCore="clr-namespace:Animator.AppCore"
-			 xmlns:seq="clr-namespace:Animator.UI.Sequencing" xmlns:ctl="clr-namespace:Animator.UI.Controls" mc:Ignorable="d" 
-			 d:DesignHeight="500" d:DesignWidth="1000" Style="{StaticResource HeaderedPaneStyle}">
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:seqdata="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
+						 xmlns:appCore="clr-namespace:Animator.AppCore"
+						 xmlns:seq="clr-namespace:Animator.UI.Sequencing" xmlns:ctl="clr-namespace:Animator.UI.Controls"
+						 mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="1000" d:DataContext="{d:DesignData Source=../../Design/Data/Sequence.xaml }"
+						 Style="{StaticResource HeaderedPaneStyle}">
 	<ctl:AniPane.PaneHeader>
 		<StackPanel Orientation="Horizontal">
 			<Image Source="{StaticResource SequencingIcon}" Width="16" Height="16" Margin="0,0,4,0"/>
@@ -14,10 +15,10 @@
 		</StackPanel>
 	</ctl:AniPane.PaneHeader>
 	<Grid>
-		<ListBox Background="{x:Null}" ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch">
+		<ListBox ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" Style="{StaticResource CleanListBoxStyle}">
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type seqdata:SequenceTrack}">
-					<seq:SequenceTrackPane MinHeight="80" />
+					<seq:SequenceTrackPane Height="80" Margin="0,2" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>

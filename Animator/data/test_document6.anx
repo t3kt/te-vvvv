@@ -29,6 +29,9 @@
 					</props>
 				</seqclip>
 			</seqtrack>
+			<seqtrack id="{150BA18F-71C7-4E08-B56A-D733D69D268E}" name="another track">
+				<seqclip id="{4A9B05BB-6D0E-4E79-83F2-DBAEF01FA9BE}" name="omg" start="3" dur="3"/>
+			</seqtrack>
 		</sequence>
 		<session id="2f3702de-0737-4cd6-89dc-bf06404294e0" name="qq sess"/>
 		<sequence id="c70f2c15-4643-a009-b081-15ae01c70f2c" name="baz seq" dur="40"/>

@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Markup;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Core.Composition;
@@ -21,6 +22,7 @@ namespace Animator.Core.Model.Clips
 		Description = Export_Description)]
 	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.StepDataEditor, " + TEShared.AssemblyRef.ani)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
+	[ContentProperty("Steps")]
 	public sealed class StepData : ClipPropertyData
 	{
 

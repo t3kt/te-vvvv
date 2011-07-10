@@ -59,7 +59,7 @@ namespace Animator.Core.Model
 		{
 			get
 			{
-				if(this._Target == null && this._TargetId != null)
+				if(this._Target == null && this._TargetId != null && this._Document != null)
 					this._Target = this._Document.GetTargetObject(this._TargetId.Value);
 				return this._Target;
 			}
@@ -76,17 +76,15 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Track(Guid id, [NotNull]Document document)
+		protected Track(Guid id, Document document)
 			: base(id)
 		{
-			Require.ArgNotNull(document, "document");
 			this._Document = document;
 		}
 
-		protected Track([NotNull] XElement element, [NotNull]Document document)
+		protected Track([NotNull] XElement element, Document document)
 			: base(element)
 		{
-			Require.ArgNotNull(document, "document");
 			this._Document = document;
 			this.TargetId = (Guid?)element.Attribute(Schema.track_target);
 		}
@@ -148,14 +146,14 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected Track(Guid id, [NotNull]Document document)
+		protected Track(Guid id, Document document)
 			: base(id, document)
 		{
 			this._Clips = new ObservableCollection<TClip>();
 			this._Clips.CollectionChanged += this.Clips_CollectionChanged;
 		}
 
-		protected Track([NotNull] XElement element, [NotNull]Document document)
+		protected Track([NotNull] XElement element, Document document)
 			: base(element, document)
 		{
 			this._Clips = new ObservableCollection<TClip>();

@@ -7,7 +7,8 @@
 			 xmlns:appCore="clr-namespace:Animator.AppCore"
 			 xmlns:seq="clr-namespace:Animator.UI.Sequencing"
 			 mc:Ignorable="d" 
-			 d:DesignHeight="150" d:DesignWidth="500" Padding="0">
+			 d:DesignHeight="150" d:DesignWidth="500" d:DataContext="{d:DesignData Source=../../Design/Data/SequenceTrack.xaml }"
+			 Padding="0">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="150" />
@@ -19,19 +20,15 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-				<TextBlock Text="Name:" />
-				<TextBox Grid.Column="1" Text="{Binding Path=Name}"/>
+				<TextBox Text="{Binding Path=Name}"/>
 			</Grid>
 		</Border>
 
 		<Border Grid.Column="1" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0">
-			<ListBox Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch"
+			<ListBox VerticalContentAlignment="Stretch"
 							 ItemsSource="{Binding Path=Clips}"
-							 SelectedItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=seq:SequenceTrackPane}, Path=SelectedClip}">
+							 SelectedItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=seq:SequenceTrackPane}, Path=SelectedClip}"
+							 Style="{StaticResource CleanListBoxStyle}">
 				<ListBox.ItemTemplate>
 					<DataTemplate DataType="{x:Type seqdata:SequenceClip}">
 						<seq:SequenceClipBlock/>
@@ -39,7 +36,7 @@
 				</ListBox.ItemTemplate>
 				<ListBox.ItemsPanel>
 					<ItemsPanelTemplate>
-						<StackPanel Orientation="Horizontal"/>
+						<seq:SequenceTrackClipPanel UnitsPerSecond="20"/>
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 			</ListBox>

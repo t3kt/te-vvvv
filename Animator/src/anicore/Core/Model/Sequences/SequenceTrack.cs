@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Markup;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Core.Composition;
@@ -15,6 +16,7 @@ namespace Animator.Core.Model.Sequences
 
 	#region SequenceTrack
 
+	[ContentProperty("Clips")]
 	public sealed class SequenceTrack : Track
 	{
 
@@ -73,7 +75,7 @@ namespace Animator.Core.Model.Sequences
 
 		#region Properties
 
-		public IList<SequenceClip> Clips
+		public ObservableCollection<SequenceClip> Clips
 		{
 			get { return this._Clips; }
 		}
@@ -92,20 +94,23 @@ namespace Animator.Core.Model.Sequences
 
 		#region Constructors
 
-		public SequenceTrack(Guid id, [NotNull]Document document)
+		public SequenceTrack(Guid id, Document document)
 			: base(id, document)
 		{
 			this._Clips = new ClipCollection(this);
 		}
 
-		public SequenceTrack([NotNull]Document document)
+		public SequenceTrack()
+			: this(Guid.NewGuid(), null) { }
+
+		public SequenceTrack(Document document)
 			: this(Guid.NewGuid(), document) { }
 
-		public SequenceTrack([NotNull] XElement element, [NotNull]Document document, [CanBeNull]AniHost host)
+		public SequenceTrack([NotNull] XElement element, Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
 			this._Clips = new ClipCollection(this);
-			this._Clips.AddRange(element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? document.Host)));
+			this._Clips.AddRange(element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? AniHost.Current)));
 		}
 
 		#endregion

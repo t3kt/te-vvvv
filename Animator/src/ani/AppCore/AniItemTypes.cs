@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 using Animator.Core.Model;
 using Animator.Core.Runtime;
 using Animator.UI.Dialogs;
@@ -61,6 +63,17 @@ namespace Animator.AppCore
 				return false;
 			return doc.TryDeleteItem(item);
 		}
+
+		internal static void OnItemDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			var itemControl = e.Source as FrameworkElement;
+			if(itemControl != null)
+			{
+				if(ShowEditDetail(itemControl.DataContext))
+					e.Handled = true;
+			}
+		}
+
 
 	}
 
