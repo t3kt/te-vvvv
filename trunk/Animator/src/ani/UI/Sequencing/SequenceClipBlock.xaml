@@ -6,7 +6,7 @@
 			 mc:Ignorable="d" 
 			 d:DesignHeight="50" d:DesignWidth="200"
 			 d:DataContext="{d:DesignData Source=../../Design/Data/SequenceClip.xaml }"
-			 Style="{StaticResource PaneUserControlStyle}" Width="{Binding Path=Duration, Converter={StaticResource ClipDurationToWidthConverter}}">
+			 Style="{StaticResource PaneUserControlStyle}">
 	<Grid>
 		<TextBlock Text="{Binding Path=Name}" />
 	</Grid>

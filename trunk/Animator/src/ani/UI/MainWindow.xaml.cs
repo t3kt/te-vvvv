@@ -418,6 +418,26 @@ namespace Animator.UI
 			this.ShowAboutAppDialog();
 		}
 
+		private void EditDetailCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			AniItemTypes.ShowEditDetail(e.Parameter);
+		}
+
+		private void EditDetailCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = AniItemTypes.CanShowEditDetail(e.Parameter);
+		}
+
+		private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			AniItemTypes.TryDelete(this.ActiveDocument, e.Parameter);
+		}
+
+		private void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = AniItemTypes.CanDelete(this.ActiveDocument, e.Parameter);
+		}
+
 		#endregion
 
 	}

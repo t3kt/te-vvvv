@@ -52,7 +52,7 @@ namespace Animator.Tests
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
 
-			var seq = new Sequence(doc);
+			var seq = new Sequence();
 			doc.Sections.Add(seq);
 
 			var track = new SequenceTrack(doc);
@@ -129,7 +129,7 @@ namespace Animator.Tests
 			var host = CompositionUnitTest.CreateHost(test: true, core: true);
 			var doc = new Document(host);
 
-			var seq = new Sequence(doc);
+			var seq = new Sequence();
 			doc.Sections.Add(seq);
 
 			var track = new SequenceTrack(doc);

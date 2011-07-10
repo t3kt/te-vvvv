@@ -74,6 +74,7 @@
     <Compile Include="AppCore\AniItemTypes.cs" />
     <Compile Include="AppCore\AniUIManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
+    <Compile Include="AppCore\Common\TreeUtil.cs" />
     <Compile Include="UI\Common\AdvancedBooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Common\BooleanNegationConverter.cs" />
     <Compile Include="AppCore\ClipPropertyDataEditors.cs" />
@@ -84,7 +85,6 @@
     </Compile>
     <Compile Include="UI\Common\DurationToWidthConverter.cs" />
     <Compile Include="UI\Common\MultiplyConverter.cs" />
-    <Compile Include="UI\Common\TypeEqualsConverter.cs" />
     <Compile Include="UI\Common\SwitchConverter.cs" />
     <Compile Include="UI\Controls\AniPane.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
@@ -114,7 +114,6 @@
     <Compile Include="UI\Panes\DocItemNavList.xaml.cs">
       <DependentUpon>DocItemNavList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Panes\DocumentItemPropertiesPane.cs" />
     <Compile Include="UI\Panes\OutputsPane.xaml.cs">
       <DependentUpon>OutputsPane.xaml</DependentUpon>
     </Compile>
@@ -133,6 +132,7 @@
     <Compile Include="UI\Sequencing\SequencePanel.xaml.cs">
       <DependentUpon>SequencePanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Sequencing\SequenceTrackClipPanel.cs" />
     <Compile Include="UI\Sequencing\SequenceTrackPane.xaml.cs">
       <DependentUpon>SequenceTrackPane.xaml</DependentUpon>
     </Compile>
@@ -142,6 +142,14 @@
     <DesignData Include="Design\Data\SequenceClip.xaml">
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="Design\Data\SequenceTrack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Design\Data\Sequence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\AppSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -260,9 +268,7 @@
   <ItemGroup>
     <Resource Include="Resources\ani_icon_main.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AppCore\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SplashScreen Include="Resources\ani_app_splash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

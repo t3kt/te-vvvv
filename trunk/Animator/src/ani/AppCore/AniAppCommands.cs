@@ -15,8 +15,6 @@ namespace Animator.AppCore
 		public static readonly RoutedUICommand Exit = new RoutedUICommand("_Exit", "Exit", typeof(AniAppCommands),
 			new InputGestureCollection { new KeyGesture(Key.F4, ModifierKeys.Alt) });
 
-		public static readonly RoutedUICommand EditDetail = new RoutedUICommand("Edit", "EditDetail", typeof(AniAppCommands));
-
 		public static readonly RoutedUICommand AddOutput = new RoutedUICommand("Add _Output", "AddOutput", typeof(AniAppCommands));
 
 		public static readonly RoutedUICommand EditTransport = new RoutedUICommand("Edit _Transport", "EditTransport", typeof(AniAppCommands),
@@ -24,8 +22,8 @@ namespace Animator.AppCore
 
 		public static readonly RoutedUICommand AboutApplication = new RoutedUICommand("_About Application", "AboutApplication", typeof(AniAppCommands));
 
-		public static readonly RoutedUICommand ShowEditDetailCommand = new RoutedUICommand("Edit", "ShowEditDetail", typeof(AniAppCommands),
-			new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
+		public static readonly RoutedUICommand EditDetail = new RoutedUICommand("Edit", "ShowEditDetail", typeof (AniAppCommands),
+			new InputGestureCollection(new[] {new KeyGesture(Key.Enter, ModifierKeys.Alt)}));
 
 	}
 

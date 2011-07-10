@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Markup;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
@@ -35,8 +36,6 @@ namespace Animator.Core.Model
 
 		#region Fields
 
-		private readonly Document _Document;
-
 		#endregion
 
 		#region Properties
@@ -47,18 +46,14 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected DocumentSection(Guid id, [NotNull] Document document)
+		protected DocumentSection(Guid id)
 			: base(id)
 		{
-			Require.ArgNotNull(document, "document");
-			this._Document = document;
 		}
 
-		protected DocumentSection([NotNull] XElement element, [NotNull] Document document)
+		protected DocumentSection([NotNull] XElement element)
 			: base(element)
 		{
-			Require.ArgNotNull(document, "document");
-			this._Document = document;
 		}
 
 		#endregion
@@ -80,6 +75,7 @@ namespace Animator.Core.Model
 
 	#region DocumentSection<TTrack>
 
+	[ContentProperty("Tracks")]
 	public abstract class DocumentSection<TTrack> : DocumentSection
 		where TTrack : Track
 	{
@@ -110,15 +106,15 @@ namespace Animator.Core.Model
 
 		#region Constructors
 
-		protected DocumentSection(Guid id, [NotNull]Document document)
-			: base(id, document)
+		protected DocumentSection(Guid id)
+			: base(id)
 		{
 			this._Tracks = new ObservableCollection<TTrack>();
 			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;
 		}
 
-		protected DocumentSection([NotNull] XElement element, [NotNull]Document document)
-			: base(element, document)
+		protected DocumentSection([NotNull] XElement element)
+			: base(element)
 		{
 			this._Tracks = new ObservableCollection<TTrack>();
 			this._Tracks.CollectionChanged += this.Tracks_CollectionChanged;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Windows.Markup;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
@@ -16,6 +17,7 @@ namespace Animator.Core.Model.Clips
 
 	#region ClipBase
 
+	[ContentProperty("Properties")]
 	public abstract class ClipBase : DocumentItem
 	{
 

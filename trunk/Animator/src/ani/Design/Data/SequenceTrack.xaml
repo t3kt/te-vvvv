@@ -1,0 +1,7 @@
+﻿<seq:SequenceTrack xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+									xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+									xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
+									Name="some track">
+	<seq:SequenceClip Name="clippy" Start="1" Duration="2" />
+	<seq:SequenceClip Name="not clippy" Start="3" Duration="3"/>
+</seq:SequenceTrack>

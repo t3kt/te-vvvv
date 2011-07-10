@@ -18,11 +18,6 @@ namespace Animator.UI.Panes
 
 		#region Static / Constant
 
-		private static bool IsSupportedType(object o)
-		{
-			return o is Output || o is DocumentSection;
-		}
-
 		#endregion
 
 		#region Fields

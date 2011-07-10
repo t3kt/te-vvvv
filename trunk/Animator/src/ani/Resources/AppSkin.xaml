@@ -6,9 +6,10 @@
 	xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
 	xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
 	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore">
+	
 	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 	<cmn:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
-	<cmn:DurationToWidthConverter x:Key="ClipDurationToWidthConverter" DefaultMultiplier="50" />
+	
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#4B698C"/>
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
 	<SolidColorBrush x:Key="CellBorderBrush" Color="#707070"/>
@@ -35,6 +36,11 @@
 		<Setter Property="Source" Value="{Binding Converter={StaticResource DocumentItemToIconConverter}}"/>
 		<Setter Property="Width" Value="16"/>
 		<Setter Property="Height" Value="16"/>
+	</Style>
+	
+	<Style x:Key="CleanListBoxStyle" TargetType="ListBox">
+		<Setter Property="BorderBrush" Value="{x:Null}"/>
+		<Setter Property="Background" Value="{x:Null}"/>
 	</Style>
 
 	<Style x:Key="SubWindowStyle" TargetType="{x:Type Window}">
@@ -119,23 +125,6 @@
 				<ControlTemplate TargetType="{x:Type Menu}">
 					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
 						<DockPanel IsItemsHost="True" LastChildFill="False" />
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	<Style x:Key="MainStatusBarStyle" TargetType="{x:Type StatusBar}">
-		<Setter Property="Background" Value="#FFF1EDED"/>
-		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-		<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.StatusFontFamilyKey}}"/>
-		<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.StatusFontSizeKey}}"/>
-		<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.StatusFontStyleKey}}"/>
-		<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.StatusFontWeightKey}}"/>
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type StatusBar}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4" SnapsToDevicePixels="True">
-						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
