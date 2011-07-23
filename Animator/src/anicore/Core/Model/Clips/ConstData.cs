@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Xml.Linq;
+using Animator.Common;
 using Animator.Core.Composition;
+using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Clips
@@ -16,7 +18,7 @@ namespace Animator.Core.Model.Clips
 		Key = Export_Key,
 		ElementName = Export_ElementName,
 		Description = Export_Description)]
-	//[ClipPropertyDataEditor("Animator.UI.Editors.Clips.ConstDataEditor, " + TEShared.AssemblyRef.ani)]
+	[ClipPropertyDataEditor("Animator.UI.Clips.ConstDataEditor, " + TEShared.AssemblyRef.ani)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class ConstData : ClipPropertyData
 	{
@@ -41,7 +43,7 @@ namespace Animator.Core.Model.Clips
 			get { return this._Value; }
 			set
 			{
-				if(value != this._Value)
+				if(!CommonUtil.AreValuesClose(value, this._Value))
 				{
 					this._Value = value;
 					this.OnPropertyChanged("Value");

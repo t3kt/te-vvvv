@@ -75,6 +75,19 @@
     <Compile Include="AppCore\AniUIManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
     <Compile Include="AppCore\Common\TreeUtil.cs" />
+    <Compile Include="Test\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clips\ClipPropertiesEditor.xaml.cs">
+      <DependentUpon>ClipPropertiesEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clips\ClipPropertyDataTemplateSelector.cs" />
+    <Compile Include="UI\Clips\ConstDataEditor.xaml.cs">
+      <DependentUpon>ConstDataEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clips\StepDataEditor.xaml.cs">
+      <DependentUpon>StepDataEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Common\AdvancedBooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Common\BooleanNegationConverter.cs" />
     <Compile Include="AppCore\ClipPropertyDataEditors.cs" />
@@ -141,11 +154,23 @@
     <DesignData Include="Design\Data\SequenceClip.xaml">
       <SubType>Designer</SubType>
     </DesignData>
+    <Page Include="Design\Data\ConstData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Design\Data\StepData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Design\Data\SequenceTrack.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Design\Data\Sequence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\AppShared.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +187,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Test\TestWindow1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test\UserControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Clips\ClipPropertiesEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Clips\ConstDataEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Clips\StepDataEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

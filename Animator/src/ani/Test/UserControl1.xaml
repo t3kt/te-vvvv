@@ -1,0 +1,25 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Animator.UserControl1"
+	x:Name="UserControl"
+	d:DesignWidth="500" d:DesignHeight="100">
+
+	<HeaderedContentControl Style="{DynamicResource SideHeaderedStyle}">
+		<HeaderedContentControl.Header>
+			<StackPanel>
+				<TextBlock Text="whatever"/>
+				<TextBox Text="xhfhfhf"/>
+			</StackPanel>
+		</HeaderedContentControl.Header>
+		<HeaderedContentControl.Content>
+			<StackPanel Orientation="Horizontal">
+				<Button Content="xyz"/>
+				<TextBox Text="123 fhgh"/>
+			</StackPanel>
+		</HeaderedContentControl.Content>
+	</HeaderedContentControl>
+</UserControl>

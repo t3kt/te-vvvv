@@ -73,7 +73,7 @@ namespace Animator.AppCore
 		{
 			if(clipDataType == null)
 				return null;
-			Debug.Assert(typeof(ClipPropertyData).IsAssignableFrom(clipDataType));
+			//Debug.Assert(typeof(ClipPropertyData).IsAssignableFrom(clipDataType));
 			var attrs = (ClipPropertyDataEditorAttribute[])clipDataType.GetCustomAttributes(typeof(ClipPropertyDataEditorAttribute), false);
 			if(attrs.Length == 0)
 				return null;

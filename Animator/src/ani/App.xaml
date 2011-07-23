@@ -5,6 +5,7 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Resources/AppShared.xaml"/>
 				<ResourceDictionary Source="Resources/AppSkin.xaml"/>
 				<ResourceDictionary Source="Resources/TransportButtons.xaml"/>
 				<ResourceDictionary Source="Resources/SessionButtons.xaml"/>

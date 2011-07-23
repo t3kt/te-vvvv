@@ -9,12 +9,8 @@
 			 mc:Ignorable="d" 
 			 d:DesignHeight="150" d:DesignWidth="500" d:DataContext="{d:DesignData Source=../../Design/Data/SequenceTrack.xaml }"
 			 Padding="0">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="150" />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-		<Border Style="{StaticResource PaneBorderStyle}" CornerRadius="4,0,0,4" BorderThickness="2,2,0,2">
+	<HeaderedContentControl Style="{StaticResource SideHeaderedStyle}">
+		<HeaderedContentControl.Header>
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -22,24 +18,21 @@
 				</Grid.RowDefinitions>
 				<TextBox Text="{Binding Path=Name}"/>
 			</Grid>
-		</Border>
-
-		<Border Grid.Column="1" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0">
-			<ListBox VerticalContentAlignment="Stretch"
+		</HeaderedContentControl.Header>
+		<ListBox VerticalContentAlignment="Stretch"
 							 ItemsSource="{Binding Path=Clips}"
 							 SelectedItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=seq:SequenceTrackPane}, Path=SelectedClip}"
 							 Style="{StaticResource CleanListBoxStyle}">
-				<ListBox.ItemTemplate>
-					<DataTemplate DataType="{x:Type seqdata:SequenceClip}">
-						<seq:SequenceClipBlock/>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-				<ListBox.ItemsPanel>
-					<ItemsPanelTemplate>
-						<seq:SequenceTrackClipPanel UnitsPerSecond="20"/>
-					</ItemsPanelTemplate>
-				</ListBox.ItemsPanel>
-			</ListBox>
-		</Border>
-	</Grid>
+			<ListBox.ItemTemplate>
+				<DataTemplate DataType="{x:Type seqdata:SequenceClip}">
+					<seq:SequenceClipBlock/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<seq:SequenceTrackClipPanel UnitsPerSecond="20"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+		</ListBox>
+	</HeaderedContentControl>
 </UserControl>

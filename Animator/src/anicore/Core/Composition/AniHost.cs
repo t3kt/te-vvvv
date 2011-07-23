@@ -67,11 +67,6 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<Output, IAniExportMetadata>(); }
 		}
 
-		private IEnumerable<Lazy<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>> ClipPropertyDataEditors
-		{
-			get { return this._Container.GetExports<IClipPropertyDataEditor, IClipPropertyDataEditorMetadata>(); }
-		}
-
 		private IEnumerable<Lazy<IObjectEditor, IObjectEditorMetadata>> ObjectEditors
 		{
 			get { return this._Container.GetExports<IObjectEditor, IObjectEditorMetadata>(); }
@@ -177,30 +172,6 @@ namespace Animator.Core.Composition
 			Debug.Assert(transport != null);
 			transport.SetParameters(parameters);
 			return transport;
-		}
-
-		[CanBeNull]
-		internal IClipPropertyDataEditor CreateClipPropertyDataEditor([CanBeNull]Type clipDataType)
-		{
-			return clipDataType == null ? null : this.ClipPropertyDataEditors.CreateByPredicate(i => i.ClipDataType == clipDataType);
-		}
-
-		[CanBeNull]
-		internal IClipPropertyDataEditor CreateClipPropertyDataEditor([CanBeNull]Type clipDataType, out bool reusable)
-		{
-			if(clipDataType != null && this.ClipPropertyDataEditors != null)
-			{
-				foreach(var import in this.ClipPropertyDataEditors)
-				{
-					if(import.Metadata.ClipDataType == clipDataType)
-					{
-						reusable = import.Metadata.Reusable;
-						return import.Value;
-					}
-				}
-			}
-			reusable = false;
-			return null;
 		}
 
 		[CanBeNull]

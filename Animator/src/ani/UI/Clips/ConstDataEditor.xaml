@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Animator.UI.Clips.ConstDataEditor"
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:wpgCtl="clr-namespace:System.Windows.Controls.WpfPropertyGrid.Controls;assembly=System.Windows.Controls.WpfPropertyGrid"
+						 mc:Ignorable="d"
+						 d:DataContext="{d:DesignData Source=../../Design/Data/ConstData.xaml }"
+						 d:DesignHeight="100" d:DesignWidth="300"
+						 Style="{StaticResource PaneUserControlStyle}">
+	<Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Label Content="Value:" />
+		<wpgCtl:DoubleEditor Grid.Column="1" Width="100" Value="{Binding Path=Value}" MaxPrecision="4" />
+	</Grid>
+</UserControl>
