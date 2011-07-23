@@ -19,7 +19,7 @@ namespace Animator.Core.Runtime
 
 		#region Fields
 
-		private bool _IsReusable = true;
+		private bool _IsReusable;
 		private readonly Type _EditorType;
 		private readonly string _EditorTypeName;
 

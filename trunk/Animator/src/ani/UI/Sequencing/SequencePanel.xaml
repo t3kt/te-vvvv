@@ -15,7 +15,7 @@
 		</StackPanel>
 	</ctl:AniPane.PaneHeader>
 	<Grid>
-		<ListBox ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" Style="{StaticResource CleanListBoxStyle}">
+		<ListBox ItemsSource="{Binding Path=Tracks}" HorizontalContentAlignment="Stretch" Style="{StaticResource CleanListBoxStyle}" Grid.IsSharedSizeScope="True">
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type seqdata:SequenceTrack}">
 					<seq:SequenceTrackPane Height="80" Margin="0,2" />

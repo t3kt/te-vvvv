@@ -187,6 +187,13 @@ namespace Animator.Common
 			return true;
 		}
 
+		internal const float ValueComparisonEpsilon = 0.0001f;
+
+		public static bool AreValuesClose(float x, float y)
+		{
+			return Math.Abs(x - y) > ValueComparisonEpsilon;
+		}
+
 	}
 
 	#endregion

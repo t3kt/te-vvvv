@@ -62,7 +62,25 @@
 			<RowDefinition/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<Menu Style="{StaticResource MainMenuStyle}" Grid.ColumnSpan="5">
+		<Menu Grid.ColumnSpan="5">
+			<Menu.Style>
+				<Style TargetType="{x:Type Menu}">
+					<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
+					<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"/>
+					<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"/>
+					<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}"/>
+					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type Menu}">
+								<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+									<DockPanel IsItemsHost="True" LastChildFill="False" />
+								</Border>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</Menu.Style>
 			<Menu.Resources>
 				<Style TargetType="{x:Type MenuItem}">
 					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />

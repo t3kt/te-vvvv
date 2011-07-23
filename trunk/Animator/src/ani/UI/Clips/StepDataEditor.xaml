@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Animator.UI.Clips.StepDataEditor"
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:wpgCtl="clr-namespace:System.Windows.Controls.WpfPropertyGrid.Controls;assembly=System.Windows.Controls.WpfPropertyGrid"
+						 mc:Ignorable="d" 
+						 d:DataContext="{d:DesignData Source=../../Design/Data/StepData.xaml }"
+						 d:DesignHeight="200" d:DesignWidth="400"
+						 Style="{StaticResource PaneUserControlStyle}">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<ListBox Style="{StaticResource CleanListBoxStyle}">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid IsItemsHost="True" Columns="{Binding Path=Steps.Count}" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<wpgCtl:DoubleEditor Value="{Binding}" MaxPrecision="4" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</UserControl>

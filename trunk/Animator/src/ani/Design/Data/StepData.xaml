@@ -1,0 +1,10 @@
+﻿<clips:StepData xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+								xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+								xmlns:clips="clr-namespace:Animator.Core.Model.Clips;assembly=anicore"
+								xmlns:sys="clr-namespace:System;assembly=mscorlib">
+	<clips:StepData.Name>stuff</clips:StepData.Name>
+	<sys:Single>4</sys:Single>
+	<sys:Single>3</sys:Single>
+	<sys:Single>2</sys:Single>
+	<sys:Single>1</sys:Single>
+</clips:StepData>

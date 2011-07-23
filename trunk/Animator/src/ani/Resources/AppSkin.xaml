@@ -5,10 +5,8 @@
 	xmlns:cmn="clr-namespace:Animator.UI.Common"
 	xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
 	xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
-	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore">
-	
-	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-	<cmn:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore"
+	xmlns:clipsUI="clr-namespace:Animator.UI.Clips">
 	
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#4B698C"/>
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
@@ -114,18 +112,25 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	<Style x:Key="MainMenuStyle" TargetType="{x:Type Menu}">
-		<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
-		<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"/>
-		<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"/>
-		<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}"/>
-		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+	<Style x:Key="SideHeaderedStyle" TargetType="{x:Type HeaderedContentControl}">
+		<Setter Property="Padding" Value="0"/>
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Menu}">
-					<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
-						<DockPanel IsItemsHost="True" LastChildFill="False" />
-					</Border>
+				<ControlTemplate TargetType="{x:Type HeaderedContentControl}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="SideHeaderWidthGroup"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Border Style="{StaticResource PaneBorderStyle}" CornerRadius="4,0,0,4" BorderThickness="2,2,0,2">
+							<ContentPresenter ContentSource="Header"/>
+						</Border>
+						<GridSplitter Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+						<Border Grid.Column="2" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0">
+							<ContentPresenter/>
+						</Border>
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

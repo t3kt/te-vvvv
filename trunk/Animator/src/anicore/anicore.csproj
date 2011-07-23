@@ -75,7 +75,6 @@
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
     <Compile Include="Core\Composition\ClipPropertyData.cs" />
-    <Compile Include="Core\Composition\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Composition\Output.cs" />
     <Compile Include="Core\Composition\ObjectEditor.cs" />
     <Compile Include="Core\Composition\Transport.cs" />
