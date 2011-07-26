@@ -126,8 +126,8 @@
 						<Border Style="{StaticResource PaneBorderStyle}" CornerRadius="4,0,0,4" BorderThickness="2,2,0,2">
 							<ContentPresenter ContentSource="Header"/>
 						</Border>
-						<GridSplitter Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
-						<Border Grid.Column="2" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0">
+						<GridSplitter Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" Background="{StaticResource PaneBorderBrush}" Width="2"/>
+						<Border Grid.Column="2" Style="{StaticResource PaneBorderStyle}" CornerRadius="0,4,4,0" BorderThickness="0,2,2,2">
 							<ContentPresenter/>
 						</Border>
 					</Grid>

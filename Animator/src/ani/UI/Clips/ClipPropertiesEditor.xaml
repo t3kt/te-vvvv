@@ -8,21 +8,33 @@
 						 d:DesignHeight="300" d:DesignWidth="300"
 						 d:DataContext="{d:DesignData Source=../../Design/Data/SequenceClip.xaml}"
 						 Style="{StaticResource PaneUserControlStyle}">
-	<Grid>
-		<ListBox Style="{StaticResource CleanListBoxStyle}" ItemsSource="{Binding Path=Properties}" HorizontalContentAlignment="Stretch">
+	<DockPanel>
+		<ListBox Style="{StaticResource CleanListBoxStyle}" ItemsSource="{Binding Path=Properties}" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top">
+			<ListBox.CommandBindings>
+				<CommandBinding Command="ApplicationCommands.Delete" Executed="DeleteCommand_Executed"/>
+			</ListBox.CommandBindings>
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type clips:ClipPropertyData}">
 					<HeaderedContentControl Style="{StaticResource SideHeaderedStyle}"
 																	ContentTemplateSelector="{StaticResource ClipPropertyDataTemplateSelector}"
 																	MinHeight="50">
 						<HeaderedContentControl.Header>
-							<StackPanel MinWidth="50">
-								<TextBox Text="{Binding Name}" />
-							</StackPanel>
+							<Grid MinWidth="60">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<Button Background="{StaticResource DeleteButtonDrawingBrush}" Width="16" Height="16" VerticalAlignment="Top" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
+								<TextBox Text="{Binding Name}" Grid.Column="1" />
+							</Grid>
 						</HeaderedContentControl.Header>
 					</HeaderedContentControl>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-	</Grid>
+	</DockPanel>
 </UserControl>
