@@ -3,17 +3,17 @@
    <BOUNDS height="6525" left="15675" top="555" type="Window" width="5370">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\plugins\Timeliner.dll" id="0" nodename="Timeliner (Animation)" systemname="Timeliner (Animation)">
-   <PIN pinname="Pin Settings" slicecount="6" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;137&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;145&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Period&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;141&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Linear&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;30.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Pause&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;110&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Step&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;1.0000&quot; /&gt;|">
+   <PIN pinname="Pin Settings" slicecount="6" values="|&lt;PIN Name=&quot;Ruler0&quot; Type=&quot;Ruler&quot; SliceCount=&quot;0&quot; Height=&quot;20&quot; Parent=&quot;0&quot; /&gt;|,|&lt;PIN Name=&quot;Automata0&quot; Type=&quot;Automata&quot; SliceCount=&quot;1&quot; Height=&quot;40&quot; Parent=&quot;0&quot; AllInOne=&quot;False&quot; Collapsed=&quot;True&quot; /&gt;|,|&lt;PIN Name=&quot;Translate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;137&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;Rotate Scale&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;145&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;3.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Period&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;129&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Cubic&quot; Minimum=&quot;-30.0000&quot; Maximum=&quot;30.0000&quot; /&gt;|,|&lt;PIN Name=&quot;GRotate Pause&quot; Type=&quot;Value&quot; SliceCount=&quot;1&quot; Height=&quot;110&quot; Parent=&quot;1&quot; AllInOne=&quot;False&quot; Collapsed=&quot;False&quot; InterpolationIn=&quot;Step&quot; Minimum=&quot;0.0000&quot; Maximum=&quot;1.0000&quot; /&gt;|">
    </PIN>
    <BOUNDS height="100" left="930" top="3960" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="8625" left="930" top="3960" type="Box" width="10290">
    </BOUNDS>
-   <BOUNDS height="10575" left="1305" top="2400" type="Window" width="22695">
+   <BOUNDS height="9540" left="795" top="1350" type="Window" width="22695">
    </BOUNDS>
-   <PIN pinname="Translate" slicecount="1" values="18.7074756622314">
+   <PIN pinname="Translate" slicecount="1" values="5.80555248260498">
    </PIN>
-   <PIN pinname="Scale" slicecount="1" values="10.1844356726616">
+   <PIN pinname="Scale" slicecount="1" values="15.2827263425554">
    </PIN>
    <PIN pinname="Translate Scale-Time0" slicecount="92" values="0.11808166346589,2.73999982833862,3.37999970436096,4.27057349977414,5.35999942779541,8.13272666079939,9.7160283574191,17.8121336791282,19.0132529388679,19.9331734676819,23.2680721282959,24.4029064178467,24.6647924415448,25.4504470825195,31.79871202241,34.3545334270193,35.5,36.5369107438688,38.6864111934462,39.9825512026977,40.7573686239712,40.7574686239712,41.1832057232843,41.4268787608849,41.7915413676497,42.2173773064655,42.2782096862793,42.4377274877635,42.4378274877635,44.0413278848093,44.0414278848093,44.0902938842773,44.1043141415594,44.1358528137207,44.1499705698832,44.1848053493405,44.2024370523723,44.2304725646973,44.2514991760254,44.2804555813165,44.2970593388418,44.4080898225039,44.5195828927326,44.6153335736231,44.7108823312092,44.8157145105906,44.8437486978801,44.9021833724395,45.1891359923892,45.7198600769043,45.7584088376043,45.8845672607422,45.8880728873247,45.9020918883181,45.9441452026367,45.947647071811,46.031756132821,46.0527826868602,46.0668004086493,46.2034720801622,46.3369445800781,46.3471551194182,46.5258788260454,46.7711906433105,46.8789666440548,46.9008570108258,46.9113680330684,46.9253870340618,46.9359016303879,46.9534225463867,46.9674415588379,46.9849624633789,47.0024833679199,47.0971031188965,47.1111231699382,47.8832977998413,48.042715056676,48.2818412780762,48.5687942504883,48.855747062625,49.5781239202566,49.7321510314941,49.9024100291543,50.4669627496228,51.7093252609946,51.9444309941635,67.4438433216246,69.1275484345347,70.5463594372395,74.6702957616224,77.5177803271003,80">
    </PIN>
@@ -23,7 +23,7 @@
    </PIN>
    <PIN pinname="Translate Scale-OutType0" slicecount="92" values="2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,2,2,0,0,2,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,2,2,2,2,2,2,2,2,2">
    </PIN>
-   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;88&quot; /&gt;&lt;/GUI&gt;|">
+   <PIN pinname="GUI Settings" slicecount="1" values="|&lt;GUI&gt;&lt;TIMEBAR Mode=&quot;Manual&quot; /&gt;&lt;SPLITTER Position=&quot;42&quot; /&gt;&lt;/GUI&gt;|">
    </PIN>
    <PIN pinname="Automata0-Time0" slicecount="6" values="0,20.0161075592041,40,60,80,1.7E308">
    </PIN>
@@ -53,19 +53,19 @@
    </PIN>
    <PIN pinname="Set Time" visible="1">
    </PIN>
-   <PIN pinname="GRotate Period-Time0" slicecount="24" values="-0.0712995861901934,12.8793700710833,25.4429676287317,34.3249769777322,35.0593306569935,35.4766484864797,37.1574859619141,37.9442942024325,45.1149443831231,45.6665805513476,46.222278645609,46.2499063752014,46.5067972076993,46.8718906583621,48.0308744650463,48.5067583666343,49.4011532643297,50.7321665652236,51.5467722624835,52.3795665173313,65.7551124989408,68.6062443505605,70.4936585411864,77.7141584609236">
+   <PIN pinname="GRotate Period-Time0" slicecount="28" values="-0.0712995861901934,12.8793700710833,25.4429676287317,25.4430676287317,28.4232634803691,31.3793056647374,35.0593306569935,35.4766484864797,37.1574859619141,37.9442942024325,45.1149443831231,45.6665805513476,46.222278645609,46.2499063752014,46.5067972076993,46.8718906583621,48.0308744650463,48.5067583666343,49.4011532643297,50.7321665652236,51.5467722624835,52.3795665173313,58.1745402326832,61.611156463623,65.7551124989408,68.6062443505605,70.4936585411864,77.7141584609236">
    </PIN>
-   <PIN pinname="GRotate Period-Value0" slicecount="24" values="30,15.6000007629395,29.7999992370605,23.8,9.79999961853027,6,2.79999995231628,30,30,0.599999904632568,3.99999923706055,28.5999996185303,0.599999999999998,26.2,0.399999618530279,30,1.26382978723404,30,11.0000007629395,2.03829787234043,1.8,12.1999996185303,30,24.46808547162">
+   <PIN pinname="GRotate Period-Value0" slicecount="28" values="30,15.6000007629395,29.7999992370605,-29.5744688967441,30,23.8,9.79999961853027,6,2.79999995231628,30,30,0.599999904632568,3.99999923706055,28.5999996185303,0.599999999999998,26.2,0.399999618530279,30,1.26382978723404,30,11.0000007629395,2.03829787234043,-5.31914836802382,1.91489362716675,1.8,12.1999996185303,30,24.46808547162">
    </PIN>
-   <PIN pinname="GRotate Period-InType0" slicecount="24" values="2,2,0,1,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,1,1,2,1">
+   <PIN pinname="GRotate Period-InType0" slicecount="28" values="2,2,0,0,2,2,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,2,0,1,1,2,1">
    </PIN>
-   <PIN pinname="GRotate Period-OutType0" slicecount="24" values="2,2,0,1,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,1,1,2,1">
+   <PIN pinname="GRotate Period-OutType0" slicecount="28" values="2,2,0,0,2,2,1,1,2,0,2,0,2,0,0,0,0,0,0,0,2,2,2,0,1,1,2,1">
    </PIN>
    <PIN pinname="GRotate Period" visible="1">
    </PIN>
-   <PIN pinname="GRotate Pause-Time0" slicecount="17" values="-1.17816852519791,1.32308862162875,7.50899728296639,12.4184483880346,14.4804198024335,16.1496325557882,37.7512220364112,39.8131902981888,54.7379251961584,55.8180045618639,57.290840172071,57.683596231411,59.450998903482,61.3165893786139,70.9391122373668,72.8047090780425,77.9105351920252">
+   <PIN pinname="GRotate Pause-Time0" slicecount="17" values="-0.570886347650329,0.27615500249776,7.50899728296639,12.4184483880346,14.4804198024335,16.1496325557882,37.7512220364112,39.8131902981888,54.7379251961584,55.8180045618639,57.290840172071,57.683596231411,59.450998903482,61.3165893786139,70.9391122373668,72.8047090780425,77.9105351920252">
    </PIN>
-   <PIN pinname="GRotate Pause-Value0" slicecount="17" values="0.909090909090909,0,0.918181818181818,0,0.909090909090909,0,0.918181818181819,0,0.927272727272728,0,0.945454545454546,0,0.927272727272727,0,0.954545454545455,0.0181818268515849,0.954545454545455">
+   <PIN pinname="GRotate Pause-Value0" slicecount="17" values="0.8,0,0.918181818181818,0,0.909090909090909,0,0.918181818181819,0,0.927272727272728,0,0.945454545454546,0,0.927272727272727,0,0.954545454545455,0.0181818268515849,0.954545454545455">
    </PIN>
    <PIN pinname="GRotate Pause-InType0" slicecount="17" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
    </PIN>
@@ -354,10 +354,10 @@
    </NODE>
    <LINK dstnodeid="21" dstpinname="Y Input Value" srcnodeid="0" srcpinname="GRotate Period">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="22">
-   <BOUNDS type="Node" left="4425" top="4650" width="100" height="100">
+   <NODE componentmode="InABox" id="22" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="4425" top="4650" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4425" top="4650" width="480" height="480">
+   <BOUNDS height="480" left="4425" top="4650" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -373,11 +373,11 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|GRotate Pause|">
    </PIN>
-   <PIN pinname="X Input Value" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="GRotate Pause" dstnodeid="22" dstpinname="Y Input Value">
+   <LINK dstnodeid="22" dstpinname="Y Input Value" srcnodeid="0" srcpinname="GRotate Pause">
    </LINK>
    </PATCH>

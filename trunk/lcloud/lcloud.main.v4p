@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud\lcloud.main.v4p" locked="0" systemname="lcloud.main">
-   <BOUNDS height="4320" left="0" top="0" type="Window" width="2295">
+   <BOUNDS height="4320" left="0" top="0" type="Window" width="3375">
    </BOUNDS>
    <NODE componentmode="InABox" id="77" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="180" top="510" type="Node" width="100">
@@ -31,7 +31,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="lcloud.line1.v4p" id="191" nodename="lcloud.line1.v4p" systemname="lcloud.line1" path="C:\Users\thezer0ist\vvvv\lcloud\">
    <BOUNDS height="100" left="405" top="2190" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="7890" left="2520" top="0" type="Window" width="14445">
+   <BOUNDS height="10155" left="2715" top="2055" type="Window" width="14445">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -59,7 +59,7 @@
    </PIN>
    <PIN pinname="Translate Var Enabled" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Line Width" pintype="Input" slicecount="1" visible="-1" values="3.83999999999999">
+   <PIN pinname="Line Width" pintype="Input" slicecount="1" visible="-1" values="4.06999999999999">
    </PIN>
    <PIN pinname="Translate Deviation" pintype="Input" slicecount="1" visible="-1" values="0.19">
    </PIN>
@@ -101,7 +101,7 @@
    </PIN>
    <PIN pinname="Period" pintype="Input" slicecount="1" visible="-1" values="3.79">
    </PIN>
-   <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.03">
+   <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.05">
    </PIN>
    <PIN pinname="Run" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -145,9 +145,9 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
@@ -239,5 +239,27 @@
    </LINKPOINT>
    <LINKPOINT x="915" y="2558">
    </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InAWindow" filename="lcloud.midi.v4p" id="271" nodename="lcloud.midi.v4p" systemname="lcloud.midi" path="C:\Users\thezer0ist\vvvv\lcloud\">
+   <BOUNDS height="100" left="1350" top="1260" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Midi Input Port" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="11640" top="1395" width="10500" height="7155">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="IOBox (Enumerations)" nodename="IOBox (Enumerations)" componentmode="InABox" id="272">
+   <BOUNDS type="Node" left="1440" top="255" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1440" top="255" width="1590" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="BCR2000">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Midi Input Port|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="272" srcpinname="Output Enum" dstnodeid="271" dstpinname="Midi Input Port">
    </LINK>
    </PATCH>
