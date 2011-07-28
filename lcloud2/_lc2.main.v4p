@@ -1,0 +1,167 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\_lc2.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\_lc2.main.v4p" systemname="_lc2.main">
+   <BOUNDS height="3615" left="12765" top="540" type="Window" width="3795">
+   </BOUNDS>
+   <NODE componentmode="Hidden" filename="lc2.renderer.v4p" id="0" nodename="lc2.renderer.v4p" systemname="lc2.renderer" path="C:\Users\thezer0ist\vvvv\lcloud2\">
+   <BOUNDS height="100" left="360" top="2250" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="4095" left="8520" top="6825" type="Window" width="2895">
+   </BOUNDS>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Grid" visible="1">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="lc2.midi.v4p" id="1" nodename="lc2.midi.v4p" systemname="lc2.midi" path="C:\Users\thezer0ist\vvvv\lcloud2\">
+   <BOUNDS height="100" left="1770" top="990" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="8715" left="3120" top="3255" type="Window" width="6480">
+   </BOUNDS>
+   <PIN pinname="Midi Input Port" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="lc2.config.v4p" id="2" nodename="lc2.config.v4p" systemname="lc2.config" path="C:\Users\thezer0ist\vvvv\lcloud2\">
+   <BOUNDS height="100" left="1770" top="1335" type="Node" width="100">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="InABox" id="3" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="100" left="1770" top="420" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="1770" top="420" type="Box" width="1590">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="|In From MIDI Yoke:  1|">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Midi Input Port|">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Midi Input Port" srcnodeid="3" srcpinname="Output Enum">
+   </LINK>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="795" top="375" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="795" top="375" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Enabled" srcnodeid="4" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="330" top="1290" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="330" top="1290" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Grid">
+   </PIN>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="1">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Grid" srcnodeid="5" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InAWindow" filename="lc2.lines.v4p" id="6" nodename="lc2.lines.v4p" systemname="lc2.lines" path="C:\Users\thezer0ist\vvvv\lcloud2\">
+   <BOUNDS height="100" left="1425" top="1725" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="10185" left="8415" top="4170" type="Window" width="12510">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="6" srcpinname="Layer">
+   </LINK>
+   <NODE componentmode="Hidden" filename="lc2.seeder.v4p" id="10" nodename="lc2.seeder.v4p" systemname="lc2.seeder">
+   <BOUNDS height="100" left="1695" top="2220" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="4530" left="16875" top="555" type="Window" width="2460">
+   </BOUNDS>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Period" visible="1">
+   </PIN>
+   <PIN pinname="Seed" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
+   <BOUNDS type="Node" left="2910" top="2190" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2910" top="2190" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="seed">
+   </PIN>
+   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Enabled">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="12">
+   <BOUNDS type="Node" left="1185" top="2685" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1185" top="2685" width="810" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Period">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Period">
+   </LINK>
+   </PATCH>
