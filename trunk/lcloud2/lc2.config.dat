@@ -1,0 +1,8 @@
+<config>
+ <ctl name="sys.on" cc="65" min="0" max="127" />
+ <ctl name="grid.on" cc="66" min="0" max="127" />
+ <ctl name="trans.on" cc="67" min="0" max="127" />
+ <ctl name="trans.dev" cc="81" min="0" max="4" />
+ <ctl name="trans.filt" cc="82" min="0" max="5" />
+ <ctl name="trans.scale" cc="83" min="0" max="5" />
+</config>
