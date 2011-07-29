@@ -1,9 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.gaussmod.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.gaussmod.v4p" systemname="lc2.gaussmod">
-   <BOUNDS height="7860" left="2715" top="2535" type="Window" width="6480">
+   <BOUNDS height="8565" left="2715" top="2535" type="Window" width="6465">
    </BOUNDS>
    <NODE componentmode="Hidden" id="14" nodename="GaussianSpread (Spreads)" systemname="GaussianSpread (Spreads)">
-   <BOUNDS height="100" left="1800" top="1785" type="Node" width="100">
+   <BOUNDS height="100" left="1860" top="2280" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -17,9 +17,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="13" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1005" top="690" type="Node" width="100">
+   <BOUNDS height="100" left="1125" top="1770" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="1005" top="690" type="Box" width="795">
+   <BOUNDS height="240" left="1125" top="1770" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -30,24 +30,8 @@
    </NODE>
    <LINK dstnodeid="14" dstpinname="Standard Deviation" srcnodeid="13" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="3945" top="540" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="240" left="3945" top="540" type="Box" width="570">
-   </BOUNDS>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Random Seed|">
-   </PIN>
-   <PIN pinname="Digits" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE componentmode="Hidden" id="11" nodename="Self (VVVV)" systemname="Self (VVVV)">
-   <BOUNDS height="100" left="2490" top="855" type="Node" width="100">
+   <BOUNDS height="100" left="2415" top="570" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="ID in ParentPatch" visible="1">
    </PIN>
@@ -71,7 +55,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="10" nodename="Add (Value)" systemname="Add (Value)">
-   <BOUNDS height="100" left="2385" top="1260" type="Node" width="100">
+   <BOUNDS height="100" left="2430" top="1005" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -80,12 +64,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="10" dstpinname="Input 1" srcnodeid="12" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="14" dstpinname="Random Seed" srcnodeid="10" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" id="9" nodename="Damper (Animation)" systemname="Damper (Animation)">
-   <BOUNDS height="100" left="2280" top="2880" type="Node" width="100">
+   <BOUNDS height="100" left="2340" top="3360" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Go To Position" visible="1">
    </PIN>
@@ -103,9 +83,9 @@
    <LINK dstnodeid="9" dstpinname="Go To Position" srcnodeid="14" srcpinname="Output">
    </LINK>
    <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2985" top="2190" type="Node" width="100">
+   <BOUNDS height="100" left="3045" top="2670" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2985" top="2190" type="Box" width="675">
+   <BOUNDS height="240" left="3045" top="2670" type="Box" width="675">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -118,12 +98,10 @@
    </NODE>
    <LINK dstnodeid="9" dstpinname="FilterTime" srcnodeid="8" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="10" dstpinname="Input 2" srcnodeid="11" srcpinname="Instance index">
-   </LINK>
    <NODE componentmode="InABox" id="7" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="5550" top="360" type="Node" width="100">
+   <BOUNDS height="100" left="4950" top="600" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="5550" top="360" type="Box" width="645">
+   <BOUNDS height="240" left="4950" top="600" type="Box" width="645">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -141,9 +119,9 @@
    <LINK dstnodeid="14" dstpinname="Spread Count" srcnodeid="7" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="3600" top="1650" type="Node" width="100">
+   <BOUNDS height="100" left="3660" top="2130" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="255" left="3600" top="1650" type="Box" width="660">
+   <BOUNDS height="255" left="3660" top="2130" type="Box" width="660">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Default Value|">
    </PIN>
@@ -153,7 +131,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="5" nodename="Stallone (Spreads)" systemname="Stallone (Spreads)">
-   <BOUNDS height="100" left="3645" top="2835" type="Node" width="100">
+   <BOUNDS height="100" left="3705" top="3315" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Spread Count" visible="1">
    </PIN>
@@ -171,7 +149,7 @@
    <LINK dstnodeid="5" dstpinname="Input 1" srcnodeid="6" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" id="4" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
-   <BOUNDS height="100" left="1305" top="5085" type="Node" width="100">
+   <BOUNDS height="100" left="1365" top="5565" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -183,9 +161,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="3" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="420" top="630" type="Node" width="100">
+   <BOUNDS height="100" left="405" top="750" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="480" left="420" top="630" type="Box" width="480">
+   <BOUNDS height="480" left="405" top="750" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -205,9 +183,9 @@
    <LINK dstnodeid="4" dstpinname="Switch" srcnodeid="3" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2055" top="6150" type="Node" width="100">
+   <BOUNDS height="100" left="2115" top="6630" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2055" top="6150" type="Box" width="795">
+   <BOUNDS height="240" left="2115" top="6630" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -221,9 +199,9 @@
    <LINK dstnodeid="4" dstpinname="Input 1" srcnodeid="5" srcpinname="Output 1">
    </LINK>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="3975" top="4200" type="Node" width="100">
+   <BOUNDS height="100" left="4035" top="4680" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="3975" top="4200" type="Box" width="795">
+   <BOUNDS height="240" left="4035" top="4680" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Scale">
    </PIN>
@@ -235,7 +213,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="0" nodename="Multiply (Value)" systemname="Multiply (Value)">
-   <BOUNDS height="100" left="2055" top="5760" type="Node" width="100">
+   <BOUNDS height="100" left="2115" top="6240" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -251,7 +229,7 @@
    <LINK dstnodeid="2" dstpinname="Y Input Value" srcnodeid="0" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="15" nodename="EQ (Value)" systemname="EQ (Value)">
-   <BOUNDS height="100" left="1425" top="2775" type="Node" width="100">
+   <BOUNDS height="100" left="1485" top="3255" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Epsilon" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -265,7 +243,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="16" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
-   <BOUNDS height="100" left="1530" top="3780" type="Node" width="100">
+   <BOUNDS height="100" left="1590" top="4260" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Switch" visible="1">
    </PIN>
@@ -285,17 +263,35 @@
    <LINK dstnodeid="16" dstpinname="Input 2" srcnodeid="9" srcpinname="Position Out">
    </LINK>
    <LINK dstnodeid="16" dstpinname="Input 1" srcnodeid="14" srcpinname="Output">
-   <LINKPOINT x="1815" y="3795">
+   <LINKPOINT x="1875" y="4283">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="18" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="4860" top="105" type="Node" width="100">
+   <BOUNDS height="100" left="2925" top="570" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="lc2.seed">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="12" dstpinname="Y Input Value" srcnodeid="18" srcpinname="Output">
+   <NODE systemname="Gate (Value)" nodename="Gate (Value)" componentmode="Hidden" id="19" filename="..\plugins\MiscNodes\bin\MiscNodes.dll">
+   <BOUNDS type="Node" left="2655" top="1680" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Gate" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output" dstnodeid="19" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output" dstnodeid="14" dstpinname="Random Seed">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="19" dstpinname="Gate">
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="10" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Instance index" dstnodeid="10" dstpinname="Input 1">
    </LINK>
    </PATCH>
