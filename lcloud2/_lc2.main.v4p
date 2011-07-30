@@ -17,7 +17,7 @@
    <NODE componentmode="Hidden" filename="lc2.midi.v4p" id="1" nodename="lc2.midi.v4p" systemname="lc2.midi" path="C:\Users\thezer0ist\vvvv\lcloud2\">
    <BOUNDS height="100" left="1545" top="795" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="8715" left="3120" top="3255" type="Window" width="6480">
+   <BOUNDS height="10260" left="4485" top="915" type="Window" width="6480">
    </BOUNDS>
    <PIN pinname="Midi Input Port" visible="1">
    </PIN>
@@ -31,7 +31,7 @@
    </BOUNDS>
    <BOUNDS height="240" left="1545" top="225" type="Box" width="1590">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="|In From MIDI Yoke:  1|">
+   <PIN pinname="Input Enum" slicecount="1" values="|In From MIDI Yoke:  2|">
    </PIN>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
@@ -75,7 +75,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="570" top="1215" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -93,27 +93,27 @@
    </PIN>
    <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="1">
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Grid" srcnodeid="5" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InAWindow" filename="lc2.lines.v4p" id="6" nodename="lc2.lines.v4p" systemname="lc2.lines" path="C:\Users\thezer0ist\vvvv\lcloud2\" debug="0">
+   <NODE componentmode="InAWindow" debug="1" filename="lc2.lines.v4p" id="6" nodename="lc2.lines.v4p" systemname="lc2.lines" path="C:\Users\thezer0ist\vvvv\lcloud2\">
    <BOUNDS height="100" left="1200" top="1530" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="11775" left="9720" top="1320" type="Window" width="10605">
+   <BOUNDS height="11775" left="12210" top="1905" type="Window" width="10605">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="6" srcpinname="Layer">
    </LINK>
-   <NODE componentmode="Hidden" filename="lc2.seeder.v4p" id="10" nodename="lc2.seeder.v4p" systemname="lc2.seeder" path="C:\Users\thezer0ist\vvvv\lcloud2\">
+   <NODE componentmode="InAWindow" filename="lc2.seeder.v4p" id="10" nodename="lc2.seeder.v4p" systemname="lc2.seeder" path="C:\Users\thezer0ist\vvvv\lcloud2\">
    <BOUNDS height="100" left="1890" top="2610" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="5055" left="13635" top="735" type="Window" width="4605">
+   <BOUNDS height="5055" left="13635" top="735" type="Window" width="6105">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>
@@ -127,7 +127,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="2625" top="1890" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -145,7 +145,7 @@
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="10" dstpinname="Enabled" srcnodeid="11" srcpinname="Y Output Value">
@@ -161,7 +161,7 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Period">
    </PIN>
-   <PIN pinname="X Output Value" visible="-1" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
    <LINK dstnodeid="10" dstpinname="Period" srcnodeid="12" srcpinname="Y Output Value">

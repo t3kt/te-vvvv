@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.seeder.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.seeder.v4p" systemname="lc2.seeder">
-   <BOUNDS height="5055" left="13635" top="735" type="Window" width="4605">
+   <BOUNDS height="5055" left="13635" top="735" type="Window" width="6105">
    </BOUNDS>
    <NODE componentmode="Hidden" id="5" nodename="LFO (Animation)" systemname="LFO (Animation)">
    <BOUNDS height="100" left="390" top="2010" type="Node" width="100">
@@ -148,22 +148,22 @@
    </LINK>
    <LINK dstnodeid="14" dstpinname="Input" srcnodeid="2" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="CurrentTime (Astronomy)" nodename="CurrentTime (Astronomy)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="3165" top="1320" width="100" height="100">
+   <NODE componentmode="Hidden" id="15" nodename="CurrentTime (Astronomy)" systemname="CurrentTime (Astronomy)">
+   <BOUNDS height="100" left="3165" top="1320" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="GMT" visible="1">
    </PIN>
-   <PIN pinname="Time Zone" visible="-1" pintype="Output">
+   <PIN pinname="Time Zone" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Time Zone Name" visible="-1" pintype="Output">
+   <PIN pinname="Time Zone Name" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Daylight Saving Time" visible="-1" pintype="Output">
+   <PIN pinname="Daylight Saving Time" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Current Time" visible="-1" pintype="Output">
+   <PIN pinname="Current Time" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE systemname="Mod (Value)" nodename="Mod (Value)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="3180" top="2160" width="100" height="100">
+   <NODE componentmode="Hidden" id="16" nodename="Mod (Value)" systemname="Mod (Value)">
+   <BOUNDS height="100" left="3180" top="2160" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="10000">
    </PIN>
@@ -172,8 +172,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="3165" top="1725" width="100" height="100">
+   <NODE componentmode="Hidden" id="17" nodename="Multiply (Value)" systemname="Multiply (Value)">
+   <BOUNDS height="100" left="3165" top="1725" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="100000">
    </PIN>
@@ -182,10 +182,10 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="15" srcpinname="GMT" dstnodeid="17" dstpinname="Input 1">
+   <LINK dstnodeid="17" dstpinname="Input 1" srcnodeid="15" srcpinname="GMT">
    </LINK>
-   <NODE systemname="Gate (Value)" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" nodename="Gate (Value)" componentmode="Hidden" id="18">
-   <BOUNDS type="Node" left="2730" top="2595" width="100" height="100">
+   <NODE componentmode="Hidden" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" id="18" nodename="Gate (Value)" systemname="Gate (Value)">
+   <BOUNDS height="100" left="2730" top="2595" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Gate" visible="1">
    </PIN>
@@ -194,16 +194,16 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Cycles" dstnodeid="1" dstpinname="Input">
+   <LINK dstnodeid="1" dstpinname="Input" srcnodeid="5" srcpinname="Cycles">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="OnChange" dstnodeid="18" dstpinname="Gate">
+   <LINK dstnodeid="18" dstpinname="Gate" srcnodeid="1" srcpinname="OnChange">
    </LINK>
-   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="16" dstpinname="Input 1">
+   <LINK dstnodeid="16" dstpinname="Input 1" srcnodeid="17" srcpinname="Output">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="19">
-   <BOUNDS type="Node" left="2310" top="1545" width="100" height="100">
+   <NODE componentmode="InABox" id="19" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2310" top="1545" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2310" top="1545" width="480" height="480">
+   <BOUNDS height="480" left="2310" top="1545" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -219,23 +219,23 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="OnChange">
    </PIN>
-   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Input Value" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="OnChange" dstnodeid="19" dstpinname="Y Input Value">
+   <LINK dstnodeid="19" dstpinname="Y Input Value" srcnodeid="1" srcpinname="OnChange">
    </LINK>
-   <NODE systemname="Frac (Value)" nodename="Frac (Value)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="1740" top="2805" width="100" height="100">
+   <NODE componentmode="Hidden" id="21" nodename="Frac (Value)" systemname="Frac (Value)">
+   <BOUNDS height="100" left="1740" top="2805" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Whole Part" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="22">
-   <BOUNDS type="Node" left="1485" top="3255" width="100" height="100">
+   <NODE componentmode="Hidden" id="22" nodename="Add (Value)" systemname="Add (Value)">
+   <BOUNDS height="100" left="1485" top="3255" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -244,11 +244,11 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Cycles" dstnodeid="22" dstpinname="Input 1">
+   <LINK dstnodeid="22" dstpinname="Input 1" srcnodeid="5" srcpinname="Cycles">
    </LINK>
-   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="4" dstpinname="Y Input Value">
+   <LINK dstnodeid="4" dstpinname="Y Input Value" srcnodeid="22" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="6" dstpinname="Input">
+   <LINK dstnodeid="6" dstpinname="Input" srcnodeid="22" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="23" nodename="Multiply (Value)" systemname="Multiply (Value)">
    <BOUNDS height="100" left="2730" top="3030" type="Node" width="100">
@@ -260,16 +260,16 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="23" dstpinname="Input 1">
+   <LINK dstnodeid="23" dstpinname="Input 1" srcnodeid="18" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="21" dstpinname="Input">
+   <LINK dstnodeid="21" dstpinname="Input" srcnodeid="23" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="21" srcpinname="Whole Part" dstnodeid="22" dstpinname="Input 2">
+   <LINK dstnodeid="22" dstpinname="Input 2" srcnodeid="21" srcpinname="Whole Part">
    </LINK>
-   <LINK srcnodeid="16" srcpinname="Output" dstnodeid="18" dstpinname="Input">
+   <LINK dstnodeid="18" dstpinname="Input" srcnodeid="16" srcpinname="Output">
    </LINK>
-   <NODE systemname="GE (Value)" nodename="GE (Value)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="435" top="3180" width="100" height="100">
+   <NODE componentmode="Hidden" id="24" nodename="GE (Value)" systemname="GE (Value)">
+   <BOUNDS height="100" left="435" top="3180" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="1000">
    </PIN>
@@ -278,22 +278,22 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Cycles" dstnodeid="24" dstpinname="Input 1">
+   <LINK dstnodeid="24" dstpinname="Input 1" srcnodeid="5" srcpinname="Cycles">
    </LINK>
-   <NODE systemname="FrameDelay (Animation)" nodename="FrameDelay (Animation)" componentmode="Hidden" id="25">
-   <BOUNDS type="Node" left="990" top="2370" width="100" height="100">
+   <NODE componentmode="Hidden" id="25" nodename="FrameDelay (Animation)" systemname="FrameDelay (Animation)">
+   <BOUNDS height="100" left="990" top="2370" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Default 1" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Default 1" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Initialize" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Initialize" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Output 1" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="25" dstpinname="Input 1">
+   <LINK dstnodeid="25" dstpinname="Input 1" srcnodeid="24" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="25" srcpinname="Output 1" dstnodeid="5" dstpinname="Reset">
+   <LINK dstnodeid="5" dstpinname="Reset" srcnodeid="25" srcpinname="Output 1">
    </LINK>
    </PATCH>
