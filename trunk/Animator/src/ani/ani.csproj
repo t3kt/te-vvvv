@@ -81,7 +81,7 @@
     <Compile Include="UI\Clips\ClipPropertiesEditor.xaml.cs">
       <DependentUpon>ClipPropertiesEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Clips\ClipPropertyDataTemplateSelector.cs" />
+    <Compile Include="UI\Clips\ClipPropertyEditorHost.cs" />
     <Compile Include="UI\Clips\ConstDataEditor.xaml.cs">
       <DependentUpon>ConstDataEditor.xaml</DependentUpon>
     </Compile>
@@ -90,7 +90,6 @@
     </Compile>
     <Compile Include="UI\Common\AdvancedBooleanToVisibilityConverter.cs" />
     <Compile Include="UI\Common\BooleanNegationConverter.cs" />
-    <Compile Include="AppCore\ClipPropertyDataEditors.cs" />
     <Compile Include="AppCore\RecentFileManager.cs" />
     <Compile Include="Test\TestCommands.cs" />
     <Compile Include="Test\TestWindow1.xaml.cs">

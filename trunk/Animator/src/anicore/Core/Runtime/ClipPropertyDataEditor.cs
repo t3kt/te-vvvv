@@ -74,15 +74,15 @@ namespace Animator.Core.Runtime
 
 	#endregion
 
-	#region IClipPropertyDataEditor
+	//#region IClipPropertyDataEditor
 
-	public interface IClipPropertyDataEditor
-	{
+	//public interface IClipPropertyDataEditor
+	//{
 
-		ClipPropertyData ClipPropertyData { get; set; }
+	//    ClipPropertyData ClipPropertyData { get; set; }
 
-	}
+	//}
 
-	#endregion
+	//#endregion
 
 }

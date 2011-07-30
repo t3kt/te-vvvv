@@ -10,7 +10,7 @@ namespace Animator.UI.Clips
 	/// <summary>
 	/// Interaction logic for ConstDataEditor.xaml
 	/// </summary>
-	public partial class ConstDataEditor : IClipPropertyDataEditor
+	public partial class ConstDataEditor
 	{
 
 		#region Static / Constant
@@ -35,16 +35,6 @@ namespace Animator.UI.Clips
 		#endregion
 
 		#region Methods
-
-		#endregion
-
-		#region IClipPropertyDataEditor Members
-
-		public ClipPropertyData ClipPropertyData
-		{
-			get { return this.DataContext as ClipPropertyData; }
-			set { this.DataContext = value; }
-		}
 
 		#endregion
 

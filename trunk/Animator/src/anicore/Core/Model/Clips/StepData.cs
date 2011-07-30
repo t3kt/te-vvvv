@@ -62,6 +62,39 @@ namespace Animator.Core.Model.Clips
 
 		#region Methods
 
+		public bool SetCount(int count)
+		{
+			if(count <= 0 || count == this._Steps.Count)
+				return false;
+			if(count < this._Steps.Count)
+			{
+				while(count < this._Steps.Count)
+					this._Steps.RemoveAt(this._Steps.Count - 1);
+			}
+			else
+			{
+				while(count > this._Steps.Count)
+					this._Steps.Add(0);
+			}
+			return true;
+		}
+
+		public void Resize(int amount)
+		{
+			if(amount == 0)
+				return;
+			if(amount < 0)
+			{
+				for(var i = 0; this._Steps.Count > 1 && i < -amount; i++)
+					this._Steps.RemoveAt(this._Steps.Count - 1);
+			}
+			else
+			{
+				for(var i = 0; i < amount; i++)
+					this._Steps.Add(0);
+			}
+		}
+
 		public override void ReadXElement(XElement element)
 		{
 			base.ReadXElement(element);

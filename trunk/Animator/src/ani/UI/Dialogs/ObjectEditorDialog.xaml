@@ -6,7 +6,7 @@
 		xmlns:dlg="clr-namespace:Animator.UI.Dialogs"
 		mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
 		MinWidth="200" MinHeight="200" Style="{StaticResource SubWindowStyle}"
-		Title="ObjectEditorDialog" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+		Title="Edit Object" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 	<DockPanel>
 		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,4,0,0">
 			<Button Content="_OK" Width="60" IsDefault="True" x:Name="okButton" Click="okButton_Click" Margin="2" />

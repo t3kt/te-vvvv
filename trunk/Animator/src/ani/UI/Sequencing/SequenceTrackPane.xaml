@@ -9,6 +9,10 @@
 			 mc:Ignorable="d" 
 			 d:DesignHeight="150" d:DesignWidth="500" d:DataContext="{d:DesignData Source=../../Design/Data/SequenceTrack.xaml }"
 			 Padding="0">
+	<UserControl.CommandBindings>
+		<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="Clips_EditDetailCommand_Executed" />
+		<CommandBinding Command="ApplicationCommands.Delete" Executed="Clips_DeleteCommand_Executed"/>
+	</UserControl.CommandBindings>
 	<HeaderedContentControl Style="{StaticResource SideHeaderedStyle}">
 		<HeaderedContentControl.Header>
 			<Grid>
@@ -30,7 +34,14 @@
 			</ListBox.ItemTemplate>
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
-					<seq:SequenceTrackClipPanel UnitsPerSecond="20"/>
+					<seq:SequenceTrackClipPanel UnitsPerSecond="20">
+						<seq:SequenceTrackClipPanel.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="_Edit" Command="appCore:AniAppCommands.EditDetail" CommandParameter="{Binding}"/>
+								<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
+							</ContextMenu>
+						</seq:SequenceTrackClipPanel.ContextMenu>
+					</seq:SequenceTrackClipPanel>
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>

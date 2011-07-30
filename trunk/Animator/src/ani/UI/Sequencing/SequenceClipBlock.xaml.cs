@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
+using Animator.AppCore;
 
 namespace Animator.UI.Sequencing
 {
@@ -33,6 +35,12 @@ namespace Animator.UI.Sequencing
 		#endregion
 
 		#region Methods
+
+		protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+		{
+			AniAppCommands.EditDetail.Execute(this.DataContext, this);
+			base.OnMouseDoubleClick(e);
+		}
 
 		#endregion
 
