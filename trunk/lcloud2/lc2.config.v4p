@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.config.v4p" systemname="lc2.config" filename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.config.v4p">
-   <BOUNDS type="Window" left="9360" top="5235" width="3975" height="6540">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.config.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.config.v4p" systemname="lc2.config">
+   <BOUNDS height="6540" left="9360" top="5235" type="Window" width="3975">
    </BOUNDS>
    <LINK dstnodeid="15" dstpinname="Input" srcnodeid="16" srcpinname="Content">
    </LINK>
@@ -292,18 +292,18 @@
    <PIN pinname="ID" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="17">
-   <BOUNDS type="Node" left="540" top="4410" width="100" height="100">
+   <NODE componentmode="InABox" id="17" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="540" top="4410" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="540" top="4410" width="2535" height="1185">
+   <BOUNDS height="1185" left="540" top="4410" type="Box" width="2535">
    </BOUNDS>
    <PIN pinname="Input String" visible="1">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Config XML|">
    </PIN>
-   <PIN pinname="SliceOffset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="16" srcpinname="Content" dstnodeid="17" dstpinname="Input String">
+   <LINK dstnodeid="17" dstpinname="Input String" srcnodeid="16" srcpinname="Content">
    </LINK>
    </PATCH>

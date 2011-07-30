@@ -1,0 +1,6 @@
+65, sys.on 0 127;
+66, grid.on 0 127;
+67, ln.trans.on 0 127;
+81, ln.trans.dev 0 4;
+82, ln.trans.filt 0 5;
+83, ln.trans.scale 0 5;

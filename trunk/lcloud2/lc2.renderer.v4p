@@ -7,7 +7,7 @@
    </BOUNDS>
    <BOUNDS height="1800" left="615" top="3000" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="7080" left="1275" top="6045" type="Window" width="6750">
+   <BOUNDS height="7080" left="255" top="7485" type="Window" width="6750">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -74,7 +74,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
    </NODE>
-   <LINK dstnodeid="0" dstpinname="Enabled" srcnodeid="1" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="0" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="1" srcpinname="Y Output Value">
    <LINKPOINT x="195" y="2805">
    </LINKPOINT>
    <LINKPOINT x="990" y="2805">
@@ -204,7 +204,7 @@
    <LINKPOINT x="1170" y="2080">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="2" srcpinname="Layer" linkstyle="Bezier">
+   <LINK dstnodeid="0" dstpinname="Layers" linkstyle="Bezier" srcnodeid="2" srcpinname="Layer">
    <LINKPOINT x="810" y="2783">
    </LINKPOINT>
    <LINKPOINT x="645" y="2783">
