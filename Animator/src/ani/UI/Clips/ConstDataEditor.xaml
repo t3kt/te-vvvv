@@ -14,6 +14,6 @@
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		<Label Content="Value:" />
-		<wpgCtl:DoubleEditor Grid.Column="1" Width="100" Value="{Binding Path=Value}" MaxPrecision="4" />
+		<wpgCtl:DoubleEditor Grid.Column="1" Width="100" Value="{Binding Path=Value}" />
 	</Grid>
 </UserControl>

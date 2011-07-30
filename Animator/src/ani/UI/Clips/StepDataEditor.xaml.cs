@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 using Animator.Core.Model.Clips;
 
 namespace Animator.UI.Clips
@@ -14,6 +17,20 @@ namespace Animator.UI.Clips
 
 		#region Static / Constant
 
+		public static readonly DependencyProperty StepCountProperty =
+			DependencyProperty.Register("StepCount", typeof(int), typeof(StepDataEditor),
+				new PropertyMetadata(1, OnStepCountChanged));
+
+		private static void OnStepCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			var stepEditor = (StepDataEditor)d;
+			var data = stepEditor.DataContext as StepData;
+			var count = (int)e.NewValue;
+			if(count <= 0 || data == null)
+				return;
+			data.SetCount(count);
+		}
+
 		#endregion
 
 		#region Fields
@@ -21,6 +38,12 @@ namespace Animator.UI.Clips
 		#endregion
 
 		#region Properties
+
+		public int StepCount
+		{
+			get { return (int)this.GetValue(StepCountProperty); }
+			set { this.SetValue(StepCountProperty, value); }
+		}
 
 		#endregion
 
@@ -35,17 +58,20 @@ namespace Animator.UI.Clips
 
 		#region Methods
 
-		#endregion
-
-		#region IClipPropertyDataEditor Members
-
-		public ClipPropertyData ClipPropertyData
+		private void AddStepButton_Click(object sender, RoutedEventArgs e)
 		{
-			get { return this.DataContext as ClipPropertyData; }
-			set { this.DataContext = value; }
+			var data = this.DataContext as StepData;
+			if(data != null)
+				data.Resize(1);
+		}
+
+		private void RemoveStepButton_Click(object sender, RoutedEventArgs e)
+		{
+			var data = this.DataContext as StepData;
+			if(data != null)
+				data.Resize(-1);
 		}
 
 		#endregion
-
 	}
 }

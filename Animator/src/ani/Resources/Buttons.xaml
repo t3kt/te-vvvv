@@ -4,12 +4,33 @@
 		<DrawingBrush.Drawing>
 			<DrawingGroup>
 				<DrawingGroup.Children>
-					<GeometryDrawing Geometry="F1 M 2,2L 14,14">
+					<GeometryDrawing Geometry="M 2,2L 14,14M 2,14L 14,2">
 						<GeometryDrawing.Pen>
 							<Pen StartLineCap="Round" EndLineCap="Round" LineJoin="Round" Brush="#FF4B5662"/>
 						</GeometryDrawing.Pen>
 					</GeometryDrawing>
-					<GeometryDrawing Geometry="F1 M 2,14L 14,2">
+				</DrawingGroup.Children>
+			</DrawingGroup>
+		</DrawingBrush.Drawing>
+	</DrawingBrush>
+	<DrawingBrush x:Key="AddButtonDrawingBrush" Stretch="Uniform">
+		<DrawingBrush.Drawing>
+			<DrawingGroup>
+				<DrawingGroup.Children>
+					<GeometryDrawing Geometry="M 2.00001,7.99999L 14,7.99999M 8.00001,14L 8.00001,1.99999">
+						<GeometryDrawing.Pen>
+							<Pen StartLineCap="Round" EndLineCap="Round" LineJoin="Round" Brush="#FF4B5662"/>
+						</GeometryDrawing.Pen>
+					</GeometryDrawing>
+				</DrawingGroup.Children>
+			</DrawingGroup>
+		</DrawingBrush.Drawing>
+	</DrawingBrush>
+	<DrawingBrush x:Key="SubtractButtonDrawingBrush" Stretch="Uniform">
+		<DrawingBrush.Drawing>
+			<DrawingGroup>
+				<DrawingGroup.Children>
+					<GeometryDrawing Geometry="F1 M 2.00001,7.99999L 14,7.99999">
 						<GeometryDrawing.Pen>
 							<Pen StartLineCap="Round" EndLineCap="Round" LineJoin="Round" Brush="#FF4B5662"/>
 						</GeometryDrawing.Pen>

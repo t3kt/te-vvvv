@@ -8,12 +8,14 @@
 						 d:DataContext="{d:DesignData Source=../../Design/Data/StepData.xaml }"
 						 d:DesignHeight="200" d:DesignWidth="400"
 						 Style="{StaticResource PaneUserControlStyle}">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="Auto" />
-		</Grid.ColumnDefinitions>
-		<ListBox Style="{StaticResource CleanListBoxStyle}">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+			<Label>Steps:</Label>
+			<Button Style="{StaticResource SmallSquareButtonStyle}" Background="{StaticResource SubtractButtonDrawingBrush}" Click="RemoveStepButton_Click" />
+			<TextBox Text="{Binding Path=Steps.Count, Mode=OneWay}" IsReadOnly="True" />
+			<Button Style="{StaticResource SmallSquareButtonStyle}" Background="{StaticResource AddButtonDrawingBrush}" Click="AddStepButton_Click" />
+		</StackPanel>
+		<ListBox Style="{StaticResource CleanListBoxStyle}" ItemsSource="{Binding Path=Steps}" HorizontalContentAlignment="Stretch">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<UniformGrid IsItemsHost="True" Columns="{Binding Path=Steps.Count}" />
@@ -21,9 +23,9 @@
 			</ListBox.ItemsPanel>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<wpgCtl:DoubleEditor Value="{Binding}" MaxPrecision="4" />
+					<wpgCtl:DoubleEditor Value="{Binding}"  />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-	</Grid>
+	</DockPanel>
 </UserControl>

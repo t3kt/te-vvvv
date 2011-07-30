@@ -148,6 +148,7 @@ namespace Animator.UI
 			this.DataContext = newDocument;
 			CommandManager.InvalidateRequerySuggested();
 			this.UpdateWindowTitle();
+			this.SelectedSection = newDocument == null ? null : newDocument.Sections.FirstOrDefault();
 		}
 
 		private void AttachDocument(Document document)

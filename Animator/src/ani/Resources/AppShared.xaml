@@ -6,9 +6,10 @@
 	xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
 	xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
 	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore"
+	xmlns:clips="clr-namespace:Animator.Core.Model.Clips;assembly=anicore"
 	xmlns:clipsUI="clr-namespace:Animator.UI.Clips">
 
 	<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 	<cmn:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
-	<clipsUI:ClipPropertyDataTemplateSelector x:Key="ClipPropertyDataTemplateSelector"/>
+	
 </ResourceDictionary>

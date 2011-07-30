@@ -199,6 +199,11 @@ namespace Animator.Core.Composition
 			return this.Transports.GetTypeDescriptionsByKey();
 		}
 
+		public IEnumerable<KeyValuePair<string,string>> GetClipPropertyDataTypeDescriptionsByKey()
+		{
+			return this.ClipPropertyDatas.GetTypeDescriptionsByKey();
+		}
+
 		#endregion
 
 	}

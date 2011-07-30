@@ -6,8 +6,9 @@
 	xmlns:io="clr-namespace:Animator.Core.IO;assembly=anicore"
 	xmlns:seq="clr-namespace:Animator.Core.Model.Sequences;assembly=anicore"
 	xmlns:ses="clr-namespace:Animator.Core.Model.Sessions;assembly=anicore"
-	xmlns:clipsUI="clr-namespace:Animator.UI.Clips">
-	
+	xmlns:clipsUI="clr-namespace:Animator.UI.Clips"
+	xmlns:wpgCtl="clr-namespace:System.Windows.Controls.WpfPropertyGrid.Controls;assembly=System.Windows.Controls.WpfPropertyGrid">
+
 	<SolidColorBrush x:Key="ForegroundBrush" Color="#4B698C"/>
 	<SolidColorBrush x:Key="PaneBorderBrush" Color="#4B5662"/>
 	<SolidColorBrush x:Key="CellBorderBrush" Color="#707070"/>
@@ -29,13 +30,13 @@
 		<cmn:TypeCase Type="{x:Type seq:Sequence}" Value="{StaticResource SequencingIcon}"/>
 		<cmn:TypeCase Type="{x:Type ses:Session}" Value="{StaticResource SessionsIcon}"/>
 	</cmn:SwitchConverter>
-	
+
 	<Style x:Key="DocumentItemIconStyle" TargetType="{x:Type Image}">
 		<Setter Property="Source" Value="{Binding Converter={StaticResource DocumentItemToIconConverter}}"/>
 		<Setter Property="Width" Value="16"/>
 		<Setter Property="Height" Value="16"/>
 	</Style>
-	
+
 	<Style x:Key="CleanListBoxStyle" TargetType="ListBox">
 		<Setter Property="BorderBrush" Value="{x:Null}"/>
 		<Setter Property="Background" Value="{x:Null}"/>
@@ -134,5 +135,14 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+	</Style>
+	<Style x:Key="SmallSquareButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="Width" Value="16"/>
+		<Setter Property="Height" Value="16"/>
+	</Style>
+	<Style TargetType="{x:Type wpgCtl:DoubleEditor}">
+		<Setter Property="Minimum" Value="-Infinity"/>
+		<Setter Property="Maximum" Value="Infinity"/>
+		<Setter Property="MaxPrecision" Value="4"/>
 	</Style>
 </ResourceDictionary>
