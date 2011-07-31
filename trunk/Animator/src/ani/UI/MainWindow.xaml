@@ -4,7 +4,7 @@
 		Title="Animator" Height="600" Width="1000" x:Name="mainWindow" Style="{StaticResource MainWindowStyle}"
 		xmlns:panes="clr-namespace:Animator.UI.Panes" xmlns:appCore="clr-namespace:Animator.AppCore" xmlns:test="clr-namespace:Animator.Test"
 		xmlns:ui="clr-namespace:Animator.UI" xmlns:cmn="clr-namespace:Animator.UI.Common"
-		xmlns:seq="clr-namespace:Animator.UI.Sequencing" MinWidth="500" MinHeight="400">
+		xmlns:seq="clr-namespace:Animator.UI.Sequencing" xmlns:ctl="clr-namespace:Animator.UI.Controls" MinWidth="500" MinHeight="400">
 	<Window.Resources>
 		<Style TargetType="{x:Type GridSplitter}">
 			<Setter Property="DragIncrement" Value="20"/>
@@ -37,8 +37,6 @@
 	<Window.CommandBindings>
 		<CommandBinding Command="appCore:AniAppCommands.Exit" Executed="ExitCommand_Executed" />
 		<CommandBinding Command="test:TestCommands.ShowTestWindow" Executed="ShowTestWindowCommand_Executed" />
-		<CommandBinding Command="test:TestCommands.DebuggerBreak" Executed="DebuggerBreakCommand_Executed"/>
-		<CommandBinding Command="test:TestCommands.ShowRecentFilesInfo" Executed="ShowRecentFilesInfoCommand_Executed"/>
 		<CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommand_Executed" />
 		<CommandBinding Command="ApplicationCommands.Save" Executed="SaveCommand_Executed" CanExecute="Command_CanExecuteWhenActiveDocumentDirty" />
@@ -105,14 +103,7 @@
 				<MenuItem Command="ApplicationCommands.SaveAs" />
 				<MenuItem Command="ApplicationCommands.Close" />
 				<Separator Style="{StaticResource SeparatorStyle}" />
-				<MenuItem x:Name="RecentFilesMenu" Header="_Recent Files" ItemsSource="{Binding ElementName=mainWindow, Path=RecentFiles}">
-					<MenuItem.ItemContainerStyle>
-						<Style TargetType="{x:Type MenuItem}">
-							<Setter Property="Command" Value="ApplicationCommands.Open" />
-							<Setter Property="CommandParameter" Value="{Binding}"/>
-						</Style>
-					</MenuItem.ItemContainerStyle>
-				</MenuItem>
+				<ctl:RecentFilesMenuItem Header="_Recent Files" Background="{StaticResource PaneBackgroundBrush}"/>
 				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem Command="appCore:AniAppCommands.Exit" />
 			</MenuItem>
@@ -127,20 +118,18 @@
 				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem Command="appCore:AniAppCommands.EditTransport" Header="Document _Transport" />
 			</MenuItem>
-			<MenuItem Header="_Add" IsEnabled="{Binding ElementName=mainWindow, Path=HasActiveDocument}">
+			<MenuItem Header="_Add">
 				<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
+				<MenuItem Command="appCore:AniAppCommands.AddTrack" Header="_Track" />
 			</MenuItem>
 			<MenuItem Header="_View">
 				<MenuItem x:Name="sectionsVisibleMenuItem" Header="_Sections" IsCheckable="True" IsChecked="True"/>
 				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
 				<Separator Style="{StaticResource SeparatorStyle}" />
 				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
-				<!--<MenuItem x:Name="clipEditMenuItem" Header="_Clip Editor" IsCheckable="True" IsChecked="True" IsEnabled="False"/>-->
 			</MenuItem>
 			<MenuItem Header="_Debug">
 				<MenuItem Command="test:TestCommands.ShowTestWindow" />
-				<MenuItem Command="test:TestCommands.DebuggerBreak" />
-				<MenuItem Command="test:TestCommands.ShowRecentFilesInfo" />
 			</MenuItem>
 			<MenuItem Header="_Help">
 				<MenuItem Command="appCore:AniAppCommands.AboutApplication" Header="_About Animator" />

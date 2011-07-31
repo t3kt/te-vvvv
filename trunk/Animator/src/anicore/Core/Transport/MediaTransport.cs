@@ -16,7 +16,7 @@ namespace Animator.Core.Transport
 
 	#region MediaTransport
 
-	[Transport(Key = "media", Description = "Media Transport")]
+	[AniExport(typeof(Transport), Key = "media", Description = "Media Transport")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class MediaTransport : Transport
 	{

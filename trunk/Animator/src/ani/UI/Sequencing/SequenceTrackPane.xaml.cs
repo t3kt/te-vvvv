@@ -76,6 +76,14 @@ namespace Animator.UI.Sequencing
 			}
 		}
 
+		private void EditDetailCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var track = this.DataContext as SequenceTrack;
+			if(track != null)
+				ObjectEditorDialog.ShowForEditor(new PropertyGridObjectEditor { Target = track, AutoCommit = true }, Window.GetWindow(this));
+			e.Handled = true;
+		}
+
 		#endregion
 
 	}

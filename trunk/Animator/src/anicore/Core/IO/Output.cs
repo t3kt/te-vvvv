@@ -19,7 +19,7 @@ namespace Animator.Core.IO
 
 	#region Output
 
-	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
+	[AniExport(typeof(Output), Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public class Output : DocumentItem, IEquatable<Output>
 	{

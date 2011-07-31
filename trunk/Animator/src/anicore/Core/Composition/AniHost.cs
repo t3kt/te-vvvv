@@ -26,7 +26,7 @@ namespace Animator.Core.Composition
 
 		private static AniHost _Current;
 
-		internal static AniHost Current
+		public static AniHost Current
 		{
 			get
 			{
@@ -65,11 +65,6 @@ namespace Animator.Core.Composition
 		private IEnumerable<Lazy<Output, IAniExportMetadata>> Outputs
 		{
 			get { return this._Container.GetExports<Output, IAniExportMetadata>(); }
-		}
-
-		private IEnumerable<Lazy<IObjectEditor, IObjectEditorMetadata>> ObjectEditors
-		{
-			get { return this._Container.GetExports<IObjectEditor, IObjectEditorMetadata>(); }
 		}
 
 		#endregion
@@ -159,12 +154,6 @@ namespace Animator.Core.Composition
 			return this.Outputs.CreateByKey(key, () => new Output());
 		}
 
-		[CanBeNull]
-		public IObjectEditor CreateObjectEditorByKey(string key)
-		{
-			return this.ObjectEditors.CreateByKey(key);
-		}
-
 		[NotNull]
 		internal Transport.Transport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
 		{
@@ -172,21 +161,6 @@ namespace Animator.Core.Composition
 			Debug.Assert(transport != null);
 			transport.SetParameters(parameters);
 			return transport;
-		}
-
-		[CanBeNull]
-		public IObjectEditor CreateObjectEditor([CanBeNull]Type targetType, [CanBeNull]string key = null)
-		{
-			if(targetType != null && this.ObjectEditors != null)
-			{
-				foreach(var import in this.ObjectEditors)
-				{
-					if(import.Metadata.TargetType == targetType &&
-						(key == null || AniExportUtil.KeyComparer.Equals(import.Metadata.Key, key)))
-						return import.Value;
-				}
-			}
-			return null;
 		}
 
 		public IEnumerable<KeyValuePair<string, string>> GetOutputTypeDescriptionsByKey()

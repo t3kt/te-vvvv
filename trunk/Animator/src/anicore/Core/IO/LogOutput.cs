@@ -14,7 +14,7 @@ namespace Animator.Core.IO
 
 	#region LogOutput
 
-	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
+	[AniExport(typeof(Output), Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class LogOutput : Output
 	{

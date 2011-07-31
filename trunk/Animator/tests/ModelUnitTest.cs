@@ -9,6 +9,8 @@ using System.Xml.Schema;
 using Animator.Common;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.Core.Model.Clips;
+using Animator.Core.Model.Sequences;
 using Animator.Core.Transport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -84,26 +86,29 @@ namespace Animator.Tests
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Model)]
-		public void ClipReadWriteXElement()
+		public void SeqClipReadWriteXElement()
 		{
-			Assert.Inconclusive();
-			//var host = CompositionUnitTest.CreateHost(test: false, core: true);
-			//var clipA = new Clip { Name = "helloclip", OutputId = Guid.NewGuid(), UIRow = 12 };
-			//var xmlA = clipA.WriteXElement();
-			//var clipB = new Clip();
-			//clipB.ReadXElement(xmlA);
-			//var xmlB = clipB.WriteXElement();
-			//var clipC = host.ReadClipXElement(xmlA);
-			//var xmlC = clipC.WriteXElement();
-			//ValidateElementSchema(xmlA, Schema.clip);
-			//Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
+			var host = CompositionUnitTest.CreateHost(test: false, core: true);
+			var clipA = new SequenceClip { Name = "helloclip", Start = TimeSpan.FromSeconds(4.2), Duration = TimeSpan.FromSeconds(49) };
+			clipA.Properties.Add(new ConstData { Name = "fooo", Value = -23.421f });
+			var stepProp = new StepData { Name = "etc" };
+			stepProp.Steps.AddRange(new[] { 9492f, -23.04f, 0.0001f });
+			clipA.Properties.Add(stepProp);
+
+			var xmlA = clipA.WriteXElement();
+			ValidateElementSchema(xmlA, Schema.seqclip);
+
+			var clipB = new SequenceClip(xmlA, host);
+			var xmlB = clipB.WriteXElement();
+
+			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			//Assert.AreEqual(clipA, clipB);
-			//Assert.AreEqual(clipA.UIRow, clipB.UIRow);
-			//Assert.AreEqual(clipA.UIColumn, clipB.UIColumn);
-			//Assert.AreEqual(xmlA.ToString(), xmlC.ToString());
-			//Assert.AreEqual(clipA, clipC);
-			//Assert.AreEqual(clipA.UIRow, clipC.UIRow);
-			//Assert.AreEqual(clipA.UIColumn, clipC.UIColumn);
+			Assert.AreEqual(clipA.Name, clipB.Name);
+			Assert.AreEqual(clipA.Start, clipB.Start);
+			Assert.AreEqual(clipA.Duration, clipB.Duration);
+			Assert.AreEqual(clipA.Properties.Count, clipB.Properties.Count);
+			Assert.AreEqual(clipA.Properties[0].Name, clipB.Properties[0].Name);
+			//...
 		}
 
 		[TestMethod]
@@ -142,56 +147,6 @@ namespace Animator.Tests
 			Assert.IsTrue(docB.Outputs.ItemsEqual(docA.Outputs));
 			Assert.AreEqual(xmlA.ToString(), xmlB.ToString());
 			Assert.Inconclusive();
-		}
-
-		[TestMethod]
-		[TestCategory(CategoryNames.Model)]
-		public void ClipEqualityComparison()
-		{
-			Assert.Inconclusive();
-			//var clipA = new Clip(Guid.NewGuid())
-			//            {
-			//                Duration = 3.0f,
-			//                Name = "fooClip",
-			//                TargetKey = "tgt",
-			//                OutputId = Guid.NewGuid()
-			//            };
-			//var clipB = new Clip(clipA.Id)
-			//            {
-			//                Duration = clipA.Duration,
-			//                Name = clipA.Name,
-			//                TargetKey = clipA.TargetKey,
-			//                OutputId = clipA.OutputId
-			//            };
-			//Assert.AreEqual(clipA, clipB);
-			//clipB.Duration = -999.33f;
-			//Assert.AreNotEqual(clipA, clipB);
-
-			//var stepClipA = new StepClip(Guid.NewGuid())
-			//                {
-			//                    Duration = 9.0f,
-			//                    Name = "stepssss",
-			//                    TargetKey = "tttgtt",
-			//                    OutputId = Guid.NewGuid()
-			//                };
-			//stepClipA.Steps.ReplaceContents(new[] { 3.5f, 12.0f });
-			//Assert.AreNotEqual(clipA, stepClipA);
-			//var stepClipB = new StepClip(stepClipA.Id)
-			//                {
-			//                    Duration = stepClipA.Duration,
-			//                    Name = stepClipA.Name,
-			//                    TargetKey = stepClipA.TargetKey,
-			//                    OutputId = stepClipA.OutputId
-			//                };
-			//stepClipB.Steps.ReplaceContents(stepClipA.Steps);
-			//Assert.AreEqual(stepClipA, stepClipB);
-			//stepClipB.Steps.Add(-234.77f);
-			//Assert.AreNotEqual(stepClipA, stepClipB);
-			//stepClipB.Steps.RemoveAt(stepClipB.Steps.Count - 1);
-			//stepClipB.Name = "qqq";
-			//Assert.AreNotEqual(stepClipA, stepClipB);
-			//stepClipB.Name = stepClipA.Name;
-			//Assert.AreEqual(stepClipA, stepClipB);
 		}
 
 		[TestMethod]

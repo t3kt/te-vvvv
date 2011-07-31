@@ -26,7 +26,7 @@ namespace Animator.Tests
 
 		#region TestOutput
 
-		[Output(Key = Export_Key)]
+		[AniExport(typeof(Output), Key = Export_Key)]
 		[PartCreationPolicy(CreationPolicy.NonShared)]
 		internal class TestOutput : Output
 		{

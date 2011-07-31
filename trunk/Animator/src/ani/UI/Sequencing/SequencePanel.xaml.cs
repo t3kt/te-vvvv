@@ -65,6 +65,15 @@ namespace Animator.UI.Sequencing
 
 		#region Methods
 
+		private void Tracks_DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var sequence = this.DataContext as Sequence;
+			var track = e.Parameter as SequenceTrack;
+			if(sequence != null && track != null)
+				sequence.Tracks.Remove(track);
+			e.Handled = true;
+		}
+
 		#endregion
 
 	}

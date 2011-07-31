@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +117,96 @@ namespace Animator.Tests
 			list = new List<int> { 0, 1, 2, 3, 4 };
 			CommonUtil.CropList(list, 0);
 			CollectionAssert.AreEqual(list, new int[0]);
+		}
+
+		private static void ClearStackAtTargetHelper(Stack<char> stack, char target, List<char> expectedRemoved, Stack<char> expectedRetained)
+		{
+			Debug.WriteLine("Testing ClearStackAtTarget()..");
+			Debug.WriteLine(String.Format("    Stack: {0}", CharStackToString(stack)));
+			Debug.WriteLine(String.Format("    Target: {0}", target));
+			var actualRemoved = CommonUtil.ClearStackAtTarget(stack, target);
+			Debug.WriteLine(String.Format("     Expected Removed: {0}", CharListToString(expectedRemoved)));
+			Debug.WriteLine(String.Format("       Actual Removed: {0}", CharListToString(actualRemoved)));
+			Debug.WriteLine(String.Format("    Expected Retained: {0}", CharStackToString(expectedRetained)));
+			Debug.WriteLine(String.Format("      Actual Retained: {0}", CharStackToString(stack)));
+			CollectionAssert.AreEqual(expectedRemoved, actualRemoved, "Expected removed != actual");
+			CollectionAssert.AreEqual(expectedRetained, stack, "Expected retained: != actual");
+			Debug.WriteLine(".. passed");
+		}
+
+		private static string CharListToString(IEnumerable<char> list)
+		{
+			if(list == null)
+				return "(null)";
+			return String.Format("[{0}]", String.Join(", ", list.Select(c => "'" + c + "'")));
+		}
+
+		private static string CharStackToString(Stack<char> stack)
+		{
+			if(stack == null)
+				return "(null)";
+			if(stack.Count == 0)
+				return "[]";
+			return String.Format("top{0}bottom", CharListToString(stack.ToArray().Reverse()));
+		}
+
+		private static Stack<char> MakeInitialCharStack()
+		{
+			var stack = new Stack<char>();
+			stack.Push('a');
+			stack.Push('b');
+			stack.Push('c');
+			stack.Push('d');
+			stack.Push('e');
+			stack.Push('f');
+			return stack;
+		}
+
+		[TestMethod]
+		[TestCategory(CategoryNames.CommonUtil)]
+		public void TestClearStackAtTarget()
+		{
+			{
+				//var stack = new Stack<char>(new[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+				var stack = MakeInitialCharStack();
+				var target = 'c';
+				var expectedRemoved = new List<char> { 'c', 'b', 'a' };
+				var expectedRetained = new Stack<char>();
+				expectedRetained.Push('d');
+				expectedRetained.Push('e');
+				expectedRetained.Push('f');
+				ClearStackAtTargetHelper(stack, target, expectedRemoved, expectedRetained);
+			}
+			{
+				//var stack = new Stack<char>(new[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+				var stack = MakeInitialCharStack();
+				var target = 'f';
+				var expectedRemoved = new List<char> { 'f', 'e', 'd', 'c', 'b', 'a' };
+				var expectedRetained = new Stack<char> { };
+				ClearStackAtTargetHelper(stack, target, expectedRemoved, expectedRetained);
+			}
+			{
+				//var stack = new Stack<char>(new[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+				var stack = MakeInitialCharStack();
+				var target = 'a';
+				var expectedRemoved = new List<char> { 'a' };
+				var expectedRetained = new Stack<char>();
+				expectedRetained.Push('b');
+				expectedRetained.Push('c');
+				expectedRetained.Push('d');
+				expectedRetained.Push('e');
+				expectedRetained.Push('f');
+				ClearStackAtTargetHelper(stack, target, expectedRemoved, expectedRetained);
+			}
+			{
+				//var stack = new Stack<char>(new[] { 'a', 'b', 'c', 'd', 'e', 'f' });
+				var stack = MakeInitialCharStack();
+				var target = 'Q';
+				var expectedRemoved = new List<char> { };
+				//var expectedRetained = new List<char> { 'f', 'e', 'd', 'c', 'b', 'a' };
+				var expectedRetained = MakeInitialCharStack();
+				ClearStackAtTargetHelper(stack, target, expectedRemoved, expectedRetained);
+			}
 		}
 
 		[TestMethod]

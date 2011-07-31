@@ -13,7 +13,7 @@ namespace Animator.Core.IO
 
 	#region TraceOutput
 
-	[Output(Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
+	[AniExport(typeof(Output), Key = Export_Key, ElementName = Export_ElementName, Description = Export_Description)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class TraceOutput : Output
 	{

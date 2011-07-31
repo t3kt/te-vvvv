@@ -11,7 +11,7 @@ namespace Animator.Tests.Utils
 
 	#region ManualTransport
 
-	[Transport(Key = "manual", Description = "Manual Transport")]
+	[AniExport(typeof(Transport), Key = "manual", Description = "Manual Transport")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	public sealed class ManualTransport : Transport
 	{

@@ -23,6 +23,7 @@ namespace Animator.Tests
 		public const string ClipData = "ClipData";
 
 		public const string App_Converters = "App.Converters";
+		public const string App_Tasks = "App.Tasks";
 
 	}
 

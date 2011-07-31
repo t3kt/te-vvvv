@@ -10,23 +10,37 @@
 			 d:DesignHeight="150" d:DesignWidth="500" d:DataContext="{d:DesignData Source=../../Design/Data/SequenceTrack.xaml }"
 			 Padding="0">
 	<UserControl.CommandBindings>
-		<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="Clips_EditDetailCommand_Executed" />
-		<CommandBinding Command="ApplicationCommands.Delete" Executed="Clips_DeleteCommand_Executed"/>
+		<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="EditDetailCommand_Executed" />
 	</UserControl.CommandBindings>
 	<HeaderedContentControl Style="{StaticResource SideHeaderedStyle}">
 		<HeaderedContentControl.Header>
 			<Grid>
+				<Grid.ContextMenu>
+					<ContextMenu>
+						<MenuItem Header="_Edit" Command="appCore:AniAppCommands.EditDetail" CommandParameter="{Binding}"/>
+						<MenuItem Header="_Delete" Command="ApplicationCommands.Delete" CommandParameter="{Binding}" />
+					</ContextMenu>
+				</Grid.ContextMenu>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
-				<TextBox Text="{Binding Path=Name}"/>
+				<Button Background="{StaticResource DeleteButtonDrawingBrush}" Style="{StaticResource SmallSquareButtonStyle}" VerticalAlignment="Top" Command="Delete" CommandParameter="{Binding}" Margin="0,0,2,0" />
+				<TextBox Grid.Column="1" Text="{Binding Path=Name}" MinWidth="80"/>
 			</Grid>
 		</HeaderedContentControl.Header>
 		<ListBox VerticalContentAlignment="Stretch"
 							 ItemsSource="{Binding Path=Clips}"
 							 SelectedItem="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=seq:SequenceTrackPane}, Path=SelectedClip}"
 							 Style="{StaticResource CleanListBoxStyle}">
+			<ListBox.CommandBindings>
+				<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="Clips_EditDetailCommand_Executed" />
+				<CommandBinding Command="ApplicationCommands.Delete" Executed="Clips_DeleteCommand_Executed"/>
+			</ListBox.CommandBindings>
 			<ListBox.ItemTemplate>
 				<DataTemplate DataType="{x:Type seqdata:SequenceClip}">
 					<seq:SequenceClipBlock/>
