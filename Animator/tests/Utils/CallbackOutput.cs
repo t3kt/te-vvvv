@@ -12,7 +12,7 @@ namespace Animator.Tests.Utils
 
 	#region CallbackOutput
 
-	[Output(Key = Export_Key)]
+	[AniExport(typeof(Output), Key = Export_Key)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class CallbackOutput : Output
 	{

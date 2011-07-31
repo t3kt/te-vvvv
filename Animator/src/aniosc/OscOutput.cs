@@ -17,7 +17,7 @@ namespace Animator.Osc
 
 	#region OscOutput
 
-	[Output(
+	[AniExport(typeof(Output),
 		Key = Export_Key,
 		ElementName = Export_ElementName,
 		Description = Export_Description)]

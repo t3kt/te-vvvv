@@ -146,7 +146,7 @@ namespace Animator.Core.Transport
 
 	#region NullTransport
 
-	[Transport(Key = Export_Key, Description = Export_Description)]
+	[AniExport(typeof(Transport), Key = Export_Key, Description = Export_Description)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class NullTransport : Transport
 	{

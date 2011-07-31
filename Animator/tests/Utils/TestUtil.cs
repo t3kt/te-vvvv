@@ -13,7 +13,7 @@ namespace Animator.Tests.Utils
 	internal static class TestUtil
 	{
 
-		internal static void AssertThrowsException<TException>(Action action, string failMessage=null)
+		internal static void AssertThrowsException<TException>(Action action, string failMessage = null)
 			where TException : Exception
 		{
 			try
@@ -26,7 +26,7 @@ namespace Animator.Tests.Utils
 			}
 		}
 
-		internal static void AssertThrowsException(Action action, string failMessage=null)
+		internal static void AssertThrowsException(Action action, string failMessage = null)
 		{
 			try
 			{
@@ -38,6 +38,13 @@ namespace Animator.Tests.Utils
 			// ReSharper restore EmptyGeneralCatchClause
 			{
 			}
+		}
+
+		internal static void AssertCounterEquals(int expected, EventCounter counter, bool reset = false)
+		{
+			Assert.AreEqual(expected, counter.Count);
+			if(reset)
+				counter.Reset();
 		}
 
 	}

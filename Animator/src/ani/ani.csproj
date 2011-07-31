@@ -64,6 +64,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.1.4.0\lib\40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -75,6 +78,15 @@
     <Compile Include="AppCore\AniUIManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
     <Compile Include="AppCore\Common\TreeUtil.cs" />
+    <Compile Include="AppCore\DocumentManager.cs" />
+    <Compile Include="AppCore\Tasks\AnonymousTask.cs" />
+    <Compile Include="AppCore\Tasks\ChangeDependencyPropertyTask.cs" />
+    <Compile Include="AppCore\Tasks\ChangeObjectPropertyTask.cs" />
+    <Compile Include="AppCore\Tasks\CompositeTask.cs" />
+    <Compile Include="AppCore\Tasks\LockingTaskStack.cs" />
+    <Compile Include="AppCore\Tasks\TaskEvents.cs" />
+    <Compile Include="AppCore\Tasks\TaskBase.cs" />
+    <Compile Include="AppCore\Tasks\TaskManager.cs" />
     <Compile Include="Test\UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
@@ -96,9 +108,13 @@
       <DependentUpon>TestWindow1.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Common\MultiplyConverter.cs" />
+    <Compile Include="UI\Common\NullToBooleanConverter.cs" />
     <Compile Include="UI\Common\SwitchConverter.cs" />
     <Compile Include="UI\Controls\AniPane.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
+    <Compile Include="UI\Controls\RecentFilesMenuItem.xaml.cs">
+      <DependentUpon>RecentFilesMenuItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Dialogs\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
@@ -209,6 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Controls\RecentFilesMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dialogs\AboutDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -289,6 +309,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

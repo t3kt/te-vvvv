@@ -74,10 +74,6 @@
     <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
-    <Compile Include="Core\Composition\ClipPropertyData.cs" />
-    <Compile Include="Core\Composition\Output.cs" />
-    <Compile Include="Core\Composition\ObjectEditor.cs" />
-    <Compile Include="Core\Composition\Transport.cs" />
     <Compile Include="Core\IO\TraceOutput.cs" />
     <Compile Include="Core\Model\Clips\ClipBase.cs" />
     <Compile Include="Core\Model\Clips\ClipPropertyData.cs" />
@@ -108,7 +104,6 @@
     <Compile Include="Core\Model\DocumentSection.cs" />
     <Compile Include="Core\Runtime\ClipPropertyDataEditor.cs" />
     <Compile Include="Core\Model\DocumentNode.cs" />
-    <Compile Include="Core\Runtime\DocNodeChangedEvent.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IObjectEditor.cs" />
     <Compile Include="Core\Runtime\ItemType.cs" />

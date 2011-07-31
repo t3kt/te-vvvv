@@ -160,7 +160,7 @@ namespace Animator.Core.Model.Sequences
 		{
 			return new XElement(name ?? Schema.seqclip,
 				this.WriteCommonXAttributes(),
-				new XAttribute(Schema.seqclip_start, this._Interval.Start),
+				ModelUtil.WriteXAttribute(Schema.seqclip_start, this._Interval.Start),
 				ModelUtil.WriteXAttribute(Schema.seqclip_dur, this._Interval.Duration),
 				this.WritePropertiesXElement());
 		}

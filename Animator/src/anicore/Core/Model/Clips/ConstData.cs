@@ -14,7 +14,7 @@ namespace Animator.Core.Model.Clips
 
 	#region ConstData
 
-	[ClipPropertyData(
+	[AniExport(typeof(ClipPropertyData),
 		Key = Export_Key,
 		ElementName = Export_ElementName,
 		Description = Export_Description)]

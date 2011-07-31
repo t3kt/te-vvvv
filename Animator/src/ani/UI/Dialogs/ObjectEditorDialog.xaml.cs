@@ -54,56 +54,7 @@ namespace Animator.UI.Dialogs
 			dlg.AttachEditor(e.NewValue as ObjectEditor);
 		}
 
-		[NotNull]
-		public static ObjectEditorDialog Create([NotNull] Type targetType, [CanBeNull]string editorKey = null, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
-		{
-			Require.ArgNotNull(targetType, "targetType");
-			if(host == null)
-				host = AniApplication.CurrentHost;
-			var editor = host.CreateObjectEditor(targetType, editorKey);
-			return
-				new ObjectEditorDialog
-				{
-					Owner = owner,
-					Editor = editor as ObjectEditor
-				};
-		}
-		[NotNull]
-		public static ObjectEditorDialog Create([NotNull] string editorKey, [CanBeNull] AniHost host = null, [CanBeNull] Window owner = null)
-		{
-			Require.ArgNotNullOrEmpty(editorKey, "editorKey");
-			if(host == null)
-				host = AniApplication.CurrentHost;
-			var editor = host.CreateObjectEditorByKey(editorKey);
-			return
-				new ObjectEditorDialog
-				{
-					Owner = owner,
-					Editor = editor as ObjectEditor
-				};
-		}
-
-		public static bool ShowForTarget<T>(T target, [CanBeNull]string editorKey = null, [CanBeNull]AniHost host = null, [CanBeNull]Window owner = null)
-		{
-			var dlg = Create(typeof(T), editorKey, host, owner);
-			dlg.Target = target;
-			return dlg.ShowDialog() == true;
-		}
-
-		[CanBeNull]
-		public static T ShowForNewTarget<T>([CanBeNull]string editorKey = null, [CanBeNull]AniHost host = null, [CanBeNull]Window owner = null)
-			where T : class, new()
-		{
-			var target = new T();
-			if(ShowForTarget(target, editorKey, host, owner))
-				return target;
-			var d = target as IDisposable;
-			if(d != null)
-				d.Dispose();
-			return null;
-		}
-
-		public static bool ShowForTarget(object target, [NotNull]ObjectEditor editor, [CanBeNull]Window owner = null)
+		public static bool ShowForTarget(object target, [NotNull]ObjectEditor editor, [CanBeNull]Window owner = null, [CanBeNull]string title = null)
 		{
 			Require.ArgNotNull(target, "target");
 			Require.ArgNotNull(editor, "editor");

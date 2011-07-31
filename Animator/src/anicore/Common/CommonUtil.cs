@@ -30,6 +30,58 @@ namespace Animator.Common
 			collection.AddRange(items);
 		}
 
+		public static void PushAll<T>([NotNull]Stack<T> stack, [NotNull]IEnumerable<T> items)
+		{
+			Require.ArgNotNull(stack, "stack");
+			Require.ArgNotNull(items, "items");
+			foreach(var item in items)
+				stack.Push(item);
+		}
+
+		public static bool TryPop<T>([NotNull]Stack<T> stack, out T item)
+		{
+			Require.ArgNotNull(stack, "stack");
+			if(stack.Count == 0)
+			{
+				item = default(T);
+				return false;
+			}
+			item = stack.Pop();
+			return true;
+		}
+
+		[NotNull]
+		public static List<T> ClearStackAtTarget<T>([NotNull] Stack<T> stack, T target, IEqualityComparer<T> comparer = null)
+		{
+			Require.ArgNotNull(stack, "stack");
+			if(comparer == null)
+				comparer = EqualityComparer<T>.Default;
+			var keepStack = new Stack<T>(stack.Count);
+			var removedList = new List<T>(stack.Count);
+			T item;
+			while(stack.Count > 0)
+			{
+				item = stack.Pop();
+				if(comparer.Equals(item, target))
+				{
+					removedList.Add(item);
+					while(stack.Count > 0)
+					{
+						item = stack.Pop();
+						removedList.Add(item);
+					}
+					break;
+				}
+				keepStack.Push(item);
+			}
+			while(keepStack.Count > 0)
+			{
+				item = keepStack.Pop();
+				stack.Push(item);
+			}
+			return removedList;
+		}
+
 		internal static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
 		{
 			Require.ArgNotNull(dictionary, "dictionary");

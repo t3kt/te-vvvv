@@ -11,7 +11,7 @@ namespace Animator.Tests.Utils
 
 	#region DummyTransport
 
-	[Transport(Key = "dummy")]
+	[AniExport(typeof(Transport), Key = "dummy")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class DummyTransport : Transport
 	{

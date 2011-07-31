@@ -12,7 +12,7 @@ namespace Animator.Tests.Utils
 
 	#region CollectorOutput
 
-	[Output(Key = Export_Key)]
+	[AniExport(typeof(Output), Key = Export_Key)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	internal sealed class CollectorOutput : Output
 	{

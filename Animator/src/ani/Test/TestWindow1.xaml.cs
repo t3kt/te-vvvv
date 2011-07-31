@@ -35,11 +35,6 @@ namespace Animator.Test
 
 		#region Properties
 
-		internal ObservableCollection<string> RecentFiles
-		{
-			get { return ((AniApplication)Application.Current).RecentFileManager.Files; }
-		}
-
 		#endregion
 
 		#region Constructors
@@ -53,7 +48,6 @@ namespace Animator.Test
 
 		private void attachDocToPropGridButton_Click(object sender, RoutedEventArgs e)
 		{
-			this.propgrid.SelectedObject = AniApplication.CurrentActiveDocument;
 		}
 
 		#region Methods

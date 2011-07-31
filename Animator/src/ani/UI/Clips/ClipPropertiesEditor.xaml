@@ -41,7 +41,7 @@
 									<RowDefinition Height="Auto"/>
 									<RowDefinition/>
 								</Grid.RowDefinitions>
-								<Button Background="{StaticResource DeleteButtonDrawingBrush}" Style="{StaticResource SmallSquareButtonStyle}" VerticalAlignment="Top" CommandParameter="{Binding}"/>
+								<Button Background="{StaticResource DeleteButtonDrawingBrush}" Style="{StaticResource SmallSquareButtonStyle}" VerticalAlignment="Top" Command="Delete" CommandParameter="{Binding}"/>
 								<TextBox Text="{Binding Name}" Grid.Column="1" />
 							</Grid>
 						</HeaderedContentControl.Header>

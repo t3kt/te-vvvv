@@ -53,15 +53,23 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Controls.WpfPropertyGrid, Version=2010.11.10.0, Culture=neutral, PublicKeyToken=be4b71144cd8a3e5, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.WpfPropertyGrid.Themes">
+      <HintPath>..\lib\System.Windows.Controls.WpfPropertyGrid.Themes.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.4.0\lib\40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -70,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AniApp\ConvertersUnitTest.cs" />
+    <Compile Include="AniApp\Tasks\LockingTaskStackTest.cs" />
+    <Compile Include="AniApp\Tasks\TaskManagerTest.cs" />
+    <Compile Include="AniApp\Tasks\TestTask.cs" />
     <Compile Include="CategoryNames.cs" />
     <Compile Include="ClipDataUnitTest.cs" />
     <Compile Include="CommonUtilUnitTest.cs" />
