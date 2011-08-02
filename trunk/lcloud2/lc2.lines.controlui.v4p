@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.lines.controlui.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\lc2.lines.controlui.v4p" systemname="lc2.lines.controlui">
-   <BOUNDS height="6480" left="3945" top="2010" type="Window" width="9960">
+   <BOUNDS height="6480" left="6060" top="1320" type="Window" width="9960">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="46" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="3960" top="1005" type="Node" width="100">
@@ -93,7 +93,7 @@
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5.11">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5.1">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Deviation">
    </PIN>
@@ -321,7 +321,7 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Scale">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1.23">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1.29">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -523,9 +523,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
@@ -753,11 +753,11 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="1">
+   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
@@ -783,7 +783,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
