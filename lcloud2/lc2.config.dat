@@ -1,8 +1,54 @@
 <config>
- <ctl name="sys.on" cc="65" min="0" max="127" />
- <ctl name="grid.on" cc="66" min="0" max="127" />
- <ctl name="ln.trans.on" cc="67" min="0" max="127" />
- <ctl name="ln.trans.dev" cc="81" min="0" max="4" />
- <ctl name="ln.trans.filt" cc="82" min="0" max="5" />
- <ctl name="ln.trans.scale" cc="83" min="0" max="5" />
+ <ctl name="sys.on"				cc="65"	min="0"		max="127"	type="BOOL" />
+ <ctl name="grid.on"			cc="66"	min="0"		max="127"	type="BOOL" />
+ 
+ <ctl name="ln.trans.on"		cc="67"	min="0"		max="127"	type="BOOL" />
+ <!--
+ <ctl name="ln.trans.frozen"	cc=""	min="0"		max="127"	type="BOOL" />
+ -->
+ <ctl name="ln.trans.dev"		cc="81"	min="0"		max="4" />
+ <ctl name="ln.trans.filt"		cc="82"	min="0"		max="5" />
+ <!--
+ <ctl name="ln.trans.def"		cc=""	min="0"		max="10" />
+ -->
+ <ctl name="ln.trans.scale"		cc="83"	min="0"		max="5" />
+ 
+ 
+ <!--
+ <ctl name="seed.per"			cc=""	min="0.1"	max="6" />
+ <ctl name="seed.on"			cc=""	min="0"		max="127"	type="BOOL" />
+ <ctl name="ln.scount"			cc=""	min="1"		max="900" />
+ <ctl name="ln.vspread"			cc=""	min="0"		max="8" />
+ <ctl name="ln.length"			cc=""	min="50"	max="400" />
+ <ctl name="ln.width"			cc=""	min="0.5"	max="6" />
+ 
+ <ctl name="ln.color.h"			cc=""	min="0"		max="1" />
+ <ctl name="ln.color.s"			cc=""	min="0"		max="1" />
+ <ctl name="ln.color.v"			cc=""	min="0"		max="1" />
+ <ctl name="ln.color.a"			cc=""	min="0"		max="0.5" />
+ 
+ <ctl name="ln.rot.on"			cc=""	min="0"		max="127"	type="BOOL" />
+ <ctl name="ln.rot.frozen"		cc=""	min="0"		max="127"	type="BOOL" />
+ <ctl name="ln.rot.dev"			cc=""	min="0"		max="4" />
+ <ctl name="ln.rot.filt"		cc=""	min="0"		max="5" />
+ <ctl name="ln.rot.def"			cc=""	min="0"		max="1" />
+ <ctl name="ln.rot.scale"		cc=""	min="0"		max="3" />
+ 
+ <ctl name="ln.grot.on"			cc=""	min="0"		max="127"	type="BOOL" />
+ <ctl name="ln.grot.trans.x"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.trans.y"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.trans.z"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.fixed.x"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.fixed.y"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.fixed.z"	cc=""	min="0"		max="1" />
+ <ctl name="ln.grot.osc.on"		cc=""	min="0"		max="127"	type="BOOL" />
+ <ctl name="ln.grot.osc.per.x"	cc=""	min="0.1"	max="30" />
+ <ctl name="ln.grot.osc.per.x"	cc=""	min="0.1"	max="30" />
+ <ctl name="ln.grot.osc.per.x"	cc=""	min="0.1"	max="30" />
+ <ctl name="ln.grot.pause"		cc=""	min="0"		max="127"	type="BOOL" />
+ 
+ 
+ -->
+ 
+ 
 </config>
