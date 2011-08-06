@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Common;
 using Animator.Core.Model;
 using Animator.Core.Model.Sequences;
+using Animator.Core.Runtime;
+using Animator.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Animator.Tests
@@ -299,6 +302,152 @@ namespace Animator.Tests
 			clip.ChangeInterval(d_int);
 			Assert.AreEqual(e_start, clip.Start);
 			Assert.AreEqual(e_dur, clip.Duration);
+		}
+
+		private static void AssertIntervalsEqual(Interval expected, Interval actual, string message = null)
+		{
+			Tracer.Line("Expected interval: {0}", expected);
+			Tracer.Line("Actual interval:   {0}", actual);
+			Assert.AreEqual(expected, actual, message);
+			Tracer.Line("... they're equal!");
+		}
+
+		[TestCategory(CategoryNames.Sequences)]
+		[TestMethod]
+		public void SeqClipCollectionPreventInsertOverlaps()
+		{
+			var clips = new SequenceClipCollection(new SequenceTrack());
+
+			var a_start = TimeSpan.FromSeconds(1);
+			var a_dur = TimeSpan.FromSeconds(2);
+			var a_end = a_start + a_dur;// 3
+			var a_interval = new Interval(a_start, a_dur);
+			var a = new SequenceClip(a_interval);
+			Assert.IsTrue(clips.Add(a));
+			Assert.AreEqual(a_interval, a.Interval);
+			Assert.AreEqual(1, clips.Count);
+			CollectionAssert.AreEqual(new[] { a }, clips.ToArray());
+
+			var b_start = TimeSpan.FromSeconds(5);
+			var b_dur = TimeSpan.FromSeconds(3);
+			var b_end = b_start + b_dur; //	8
+			var b_interval = new Interval(b_start, b_dur);
+			var b = new SequenceClip(b_interval);
+			Assert.AreEqual(b_interval, b.Interval);
+			Assert.IsTrue(clips.Add(b));
+			Assert.AreEqual(b_interval, b.Interval);
+			CollectionAssert.AreEqual(new[] { a, b }, clips.ToArray());
+
+			var c_start = TimeSpan.FromSeconds(6);
+			var c_dur = TimeSpan.FromSeconds(1);
+			var c_end = c_start + c_dur;// 7
+			var c_interval = new Interval(c_start, c_dur);
+			var c = new SequenceClip(c_interval);
+			Assert.AreEqual(c_interval, c.Interval);
+			Assert.IsFalse(clips.Add(c));
+			Assert.AreEqual(c_interval, c.Interval);
+			CollectionAssert.AreEqual(new[] { a, b }, clips.ToArray());
+		}
+
+		private static string DumpSeqClipIntervals(IEnumerable<SequenceClip> clips)
+		{
+			return String.Join("  ", clips.Select(c => String.Format("[{0} <--{1}--> {2}] ", c.Start, c.Name, c.End)));
+		}
+
+		[TestCategory(CategoryNames.Sequences)]
+		[TestMethod]
+		public void SeqClipCollectionPreventClipPropertyChangeOverlaps()
+		{
+			var clips = new SequenceClipCollection(new SequenceTrack());
+
+			var a_interval = new Interval(1, 2);
+			SequenceClip a;
+			using(Tracer.CategorySection("Clip A", "init"))
+			{
+				Tracer.CategoryLine("Clip A", "initial interval: {0}", a_interval);
+				//Debug.WriteLine("");
+				//a = new SequenceClip { Start = a_start, Duration = a_dur };
+				a = new SequenceClip(a_interval) { Name = "A" };
+				Assert.AreEqual(a_interval, a.Interval);
+				Tracer.CategoryLine("Clip A", "equal to interval {0}", a_interval);
+				Assert.IsTrue(clips.Add(a));
+				Assert.AreEqual(a_interval, a.Interval);
+				Tracer.CategoryLine("Clip A", "equal to interval {0}", a_interval);
+			}
+
+			Trace.WriteLine(DumpSeqClipIntervals(clips), "SeqClip Intervals");
+
+			var a_interval_new = new Interval(a_interval.Start, 3);
+			using(Tracer.CategorySection("Clip A", "change duration"))
+			{
+				Tracer.CategoryLine("Clip A", "current interval: {0}", a.Interval);
+				Tracer.CategoryLine("Clip A", "Trying to change duration from {0} to {1}", a_interval.Duration, a_interval_new.Duration);
+				a.Duration = a_interval_new.Duration;
+				Assert.AreEqual(a_interval_new.Duration, a.Duration, "Clip A duration have successfully been set");
+				Assert.AreEqual(a_interval_new, a.Interval);
+				Tracer.CategoryLine("Clip A", "equal to new interval {0}", a_interval_new);
+				CollectionAssert.AreEqual(new[] { a }, clips.ToArray());
+			}
+
+			Trace.WriteLine(DumpSeqClipIntervals(clips), "SeqClip Intervals");
+
+			var b_interval = new Interval(5, 3);
+			SequenceClip b;
+			using(Tracer.CategorySection("Clip B", "init"))
+			{
+				Tracer.CategoryLine("Clip B", "Creating clip B");
+				Tracer.CategoryLine("Clip B", "initial interval: {0}", b_interval);
+				//b = new SequenceClip { Start = b_start, Duration = b_dur };
+				b = new SequenceClip(b_interval) { Name = "B" };
+				Assert.AreEqual(b_interval, b.Interval);
+				Tracer.CategoryLine("Clip B", "equal to interval {0}", b_interval);
+				Assert.IsTrue(clips.Add(b));
+				Assert.AreEqual(b_interval, b.Interval);
+				Tracer.CategoryLine("Clip B", "equal to interval {0}", b_interval);
+				CollectionAssert.AreEqual(new[] { a, b }, clips.ToArray());
+			}
+
+			Trace.WriteLine(DumpSeqClipIntervals(clips), "SeqClip Intervals");
+
+			using(Tracer.CategorySection("Clip B", "change start (with interval)"))
+			{
+				var b_interval_new = Interval.FromBounds(TimeSpan.FromSeconds(2), b_interval.End);
+
+				Tracer.CategoryLine("Clip A", "interval: {0}", a.Interval);
+				Tracer.CategoryLine("Clip B", "interval: {0}", b.Interval);
+				Tracer.CategoryLine("Clip B", "Trying to change clip B start from {0} to {1} (new interval would be: {2})...", b_interval.Start, b_interval_new.Start, b_interval_new);
+				var decision = b.TryChangeInterval(b_interval_new);
+				Assert.AreEqual(TryChangeValueDecision.Denied, decision);
+				//b.Start = b_start_new;
+				Tracer.CategoryLine("Clip B", "new actual interval: {0}", b.Interval);
+				Assert.AreEqual(b_interval.Start, b.Start);
+				Assert.AreNotEqual(b_interval_new.Start, b.Start);
+				Assert.AreEqual(b_interval, b.Interval);
+				Tracer.CategoryLine("Clip B", "equal to interval {0}", b_interval);
+				CollectionAssert.AreEqual(new[] { a, b }, clips.ToArray());
+			}
+
+			Trace.WriteLine(DumpSeqClipIntervals(clips), "SeqClip Intervals");
+
+			using(Tracer.CategorySection("Clip B", "change start"))
+			{
+				var b_interval_new = Interval.FromBounds(TimeSpan.FromSeconds(2), b_interval.End);
+
+				var b_interval_new_actual = Interval.FromBounds(a_interval_new.End, b_interval.End);
+
+				Tracer.CategoryLine("Clip A", "interval: {0}", a.Interval);
+				Tracer.CategoryLine("Clip B", "interval: {0}", b.Interval);
+				Tracer.CategoryLine("Clip B", "Trying to change clip B start from {0} to {1} (new interval would be: {2})...", b_interval.Start, b_interval_new.Start, b_interval_new);
+				var decision = b.TryChangeStart(b_interval_new.Start);
+				Assert.AreEqual(TryChangeValueDecision.Denied, decision);
+				//b.Start = b_start_new;
+				Tracer.CategoryLine("Clip B", "new actual interval: {0}", b.Interval);
+				Assert.AreEqual(b_interval.Start, b.Start);
+				Assert.AreNotEqual(b_interval_new.Start, b.Start);
+				Assert.AreEqual(b_interval, b.Interval);
+				Tracer.CategoryLine("Clip B", "equal to interval {0}", b_interval);
+				CollectionAssert.AreEqual(new[] { a, b }, clips.ToArray());
+			}
 		}
 
 	}

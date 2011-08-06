@@ -30,6 +30,16 @@ namespace Animator.Common
 			collection.AddRange(items);
 		}
 
+		[NotNull]
+		internal static IEnumerable<T> NonNull<T>([CanBeNull]this IEnumerable<T> source)
+			where T : class
+		{
+			//Require.ArgNotNull(source, "source");
+			if(source == null)
+				return Enumerable.Empty<T>();
+			return source.Where(x => x != null);
+		}
+
 		public static void PushAll<T>([NotNull]Stack<T> stack, [NotNull]IEnumerable<T> items)
 		{
 			Require.ArgNotNull(stack, "stack");
@@ -244,6 +254,11 @@ namespace Animator.Common
 		public static bool AreValuesClose(float x, float y)
 		{
 			return Math.Abs(x - y) > ValueComparisonEpsilon;
+		}
+
+		internal static IDisposable ActionBlock(Action start = null, Action success = null, Action error = null, Action end = null)
+		{
+			throw new NotImplementedException();
 		}
 
 	}
