@@ -249,6 +249,16 @@ namespace Animator.Common
 			return new Interval(start, end - start);
 		}
 
+		internal static Interval FromStartAndDuration(TimeSpan start, TimeSpan duration)
+		{
+			return new Interval(start, duration);
+		}
+
+		internal static Interval FromEndAndDuration(TimeSpan end, TimeSpan duration)
+		{
+			return new Interval(end - duration, duration);
+		}
+
 		#endregion
 
 		#region Fields
@@ -287,6 +297,21 @@ namespace Animator.Common
 			this._Duration = duration;
 		}
 
+		public Interval(double secondsStart, double secondsDuration)
+			: this(TimeSpan.FromSeconds(secondsStart), TimeSpan.FromSeconds(secondsDuration))
+		{
+		}
+
+		internal Interval(TimeSpan start, double secondsDuration)
+			: this(start, TimeSpan.FromSeconds(secondsDuration))
+		{
+		}
+
+		internal Interval(double secondsStart, TimeSpan seconds)
+			: this(TimeSpan.FromSeconds(secondsStart), seconds)
+		{
+		}
+
 		#endregion
 
 		#region Methods
@@ -308,7 +333,8 @@ namespace Animator.Common
 
 		public override string ToString()
 		{
-			return String.Format("{0} -> {1} (dur: {2})", this._Start, this.End, this._Duration);
+			//return String.Format("{0} -> {1} (dur: {2})", this._Start, this.End, this._Duration);
+			return String.Format("[{0} <--- {1} ---> {2}]", this._Start, this._Duration, this.End);
 		}
 
 		public override bool Equals(object obj)

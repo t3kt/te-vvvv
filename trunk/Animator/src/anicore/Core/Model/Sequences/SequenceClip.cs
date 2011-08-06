@@ -36,6 +36,7 @@ namespace Animator.Core.Model.Sequences
 		internal Interval Interval
 		{
 			get { return this._Interval; }
+			set { this.ChangeInterval(value); }
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
@@ -71,6 +72,19 @@ namespace Animator.Core.Model.Sequences
 
 		#endregion
 
+		#region Events
+
+		internal event EventHandler<ValueChangedEventArgs<Interval>> IntervalChanged;
+
+		internal void OnIntervalChanged(Interval origInterval)
+		{
+			var handler = this.IntervalChanged;
+			if (handler != null)
+				handler(this, new ValueChangedEventArgs<Interval>(origInterval, this._Interval));
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public SequenceClip()
@@ -78,6 +92,12 @@ namespace Animator.Core.Model.Sequences
 
 		public SequenceClip(Guid id)
 			: base(id) { }
+
+		internal SequenceClip(Interval interval)
+			:this()
+		{
+			this._Interval = interval;
+		}
 
 		public SequenceClip([NotNull] XElement element, [CanBeNull] AniHost host)
 			: base(element, host)
@@ -91,35 +111,47 @@ namespace Animator.Core.Model.Sequences
 
 		#region Methods
 
-		internal void ChangeInterval(Interval interval)
+		internal TryChangeValueDecision TryChangeStart(TimeSpan value)
 		{
-			//if(duration < TimeSpan.Zero)
-			//    throw new NotImplementedException();
-			if(this._TryChangeIntervalHandler != null)
-			{
-				var e = new TryChangeValueEventArgs<Interval>(this._Interval, interval);
-				this._TryChangeIntervalHandler(this, e);
-				switch(e.Decision)
-				{
-				case TryChangeValueDecision.Denied:
-					return;
-				case TryChangeValueDecision.ModifiedApproved:
-					interval = e.NewValue;
-					break;
-				//case TryChangeValueDecision.None:
-				//case TryChangeValueDecision.Approved:
-				//default:
-				//    break;
-				}
-			}
-			if(interval != this._Interval)
-			{
-				this._Interval = interval;
-				this.OnPropertyChanged("Interval");
-				this.OnPropertyChanged("Start");
-				this.OnPropertyChanged("Duration");
-				this.OnPropertyChanged("End");
-			}
+			//if(value < TimeSpan.Zero)
+			//    value = TimeSpan.Zero;
+			//Require.ArgNotNegative(value, "value");
+			if(value == this._Interval.Start)
+				return TryChangeValueDecision.None;
+			return this.TryChangeInterval(new Interval(value, this._Interval.Duration));
+		}
+
+		internal TryChangeValueDecision TryChangeDuration(TimeSpan value)
+		{
+			//Require.ArgNotNegative(value, "value");
+			if(value == this._Interval.Duration)
+				return TryChangeValueDecision.None;
+			return this.TryChangeInterval(new Interval(this._Interval.Start, value));
+		}
+
+		internal TryChangeValueDecision TryChangeInterval(Interval interval)
+		{
+			if(interval == this._Interval)
+				return TryChangeValueDecision.None;
+			var decision = TryChangeValueUtil.ApplyHandler(this._TryChangeIntervalHandler, this, this._Interval, ref interval);
+			if(decision != TryChangeValueDecision.Approved)
+				return decision;
+			if(interval == this._Interval)
+				return TryChangeValueDecision.None;
+			var origInterval = this._Interval;
+			this._Interval = interval;
+			this.OnPropertyChanged("Interval");
+			this.OnPropertyChanged("Start");
+			this.OnPropertyChanged("Duration");
+			this.OnPropertyChanged("End");
+			this.OnIntervalChanged(origInterval);
+			return decision;
+		}
+
+		internal bool ChangeInterval(Interval interval)
+		{
+			var decision = this.TryChangeInterval(interval);
+			return TryChangeValueUtil.IsApproved(decision);
 		}
 
 		internal void SetIntervalChangeHandler(EventHandler<TryChangeValueEventArgs<Interval>> handler, bool applyNow = false)
@@ -136,13 +168,15 @@ namespace Animator.Core.Model.Sequences
 
 		internal bool ContainsPosition(TimeSpan position)
 		{
-			return position >= this._Interval.Start && position < this._Interval.End;
+			//return position >= this._Interval.Start && position < this._Interval.End;
+			return this._Interval.Contains(position);
 		}
 
 		internal bool Overlaps([NotNull] SequenceClip other)
 		{
 			Require.ArgNotNull(other, "other");
-			return CommonUtil.IsOverlap(this.Start, this.End, other.Start, other.End);
+			//return CommonUtil.IsOverlap(this.Start, this.End, other.Start, other.End);
+			return this._Interval.Overlaps(other._Interval);
 		}
 
 		internal override bool IsActive(Transport.Transport transport)

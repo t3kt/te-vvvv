@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Animator.Resources;
+using TESharedAnnotations;
 
 namespace Animator.Core.Runtime
 {
@@ -63,9 +64,22 @@ namespace Animator.Core.Runtime
 			this._NewValue = newValue;
 		}
 
+		private TryChangeValueEventArgs([NotNull] TryChangeValueEventArgs<T> other, bool withDecision)
+		{
+			this._OriginalValue = other._OriginalValue;
+			this._NewValue = other._NewValue;
+			if(withDecision)
+				this._Decision = other._Decision;
+		}
+
 		#endregion
 
 		#region Methods
+
+		internal TryChangeValueEventArgs<T> CloneWithoutDecision()
+		{
+			return new TryChangeValueEventArgs<T>(this, false);
+		}
 
 		public void Deny()
 		{
@@ -94,13 +108,23 @@ namespace Animator.Core.Runtime
 	internal static class TryChangeValueUtil
 	{
 
-		internal static bool ApplyTryChangeHandler<T>(EventHandler<TryChangeValueEventArgs<T>> handler, object sender, T origValue, ref T newValue, bool defaultApproved = true)
+		internal static bool IsApproved(TryChangeValueDecision decision)
 		{
-			var e = new TryChangeValueEventArgs<T>(origValue, newValue);
+			return decision == TryChangeValueDecision.Approved || decision == TryChangeValueDecision.ModifiedApproved;
+		}
+
+		internal static TryChangeValueDecision ApplyHandler<T>(EventHandler<TryChangeValueEventArgs<T>> handler, object sender, T origValue, ref T newValue, bool defaultApproved = true)
+		{
+			TryChangeValueEventArgs<T> e;
+			ApplyHandler(handler, sender, origValue, ref newValue, out e, defaultApproved);
+			return e.Decision;
+		}
+
+		internal static bool ApplyHandler<T>(EventHandler<TryChangeValueEventArgs<T>> handler, object sender, T origValue, ref T newValue, out TryChangeValueEventArgs<T> e, bool defaultApproved = true)
+		{
+			e = new TryChangeValueEventArgs<T>(origValue, newValue);
 			if(handler != null)
-			{
 				handler(sender, e);
-			}
 			if(e.Decision == TryChangeValueDecision.None)
 			{
 				if(defaultApproved)
@@ -113,14 +137,14 @@ namespace Animator.Core.Runtime
 			case TryChangeValueDecision.Denied:
 				return false;
 			case TryChangeValueDecision.Approved:
-				break;
+				return true;
 			case TryChangeValueDecision.ModifiedApproved:
-				break;
+				newValue = e.NewValue;
+				return true;
 			//case TryChangeValueDecision.None:
 			default:
 				throw new InvalidOperationException();
 			}
-			throw new NotImplementedException();
 		}
 
 	}
