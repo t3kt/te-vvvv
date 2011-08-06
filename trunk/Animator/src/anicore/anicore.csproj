@@ -110,6 +110,7 @@
     <Compile Include="Core\Runtime\ItemType.cs" />
     <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
     <Compile Include="Core\Runtime\TryChangeValueEvent.cs" />
+    <Compile Include="Core\Runtime\ValueChangeEvent.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />
