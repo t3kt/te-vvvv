@@ -273,7 +273,7 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="ClipPropType">
-					<xs:attribute name="value" type="xs:float" use="required"/>
+					<xs:attribute name="value" type="xs:double" use="required"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -283,7 +283,7 @@
 			<xs:complexContent>
 				<xs:extension base="ClipPropType">
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
-						<xs:element name="step" type="xs:float"/>
+						<xs:element name="step" type="xs:double"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>

@@ -10,9 +10,9 @@ using TEShared;
 namespace Animator.Core.Transport
 {
 
-	#region Transport
+	#region TransportBase
 
-	public abstract class Transport : IDisposable
+	public abstract class TransportBase : ITransportController
 	{
 
 		#region Static / Constant
@@ -30,9 +30,6 @@ namespace Animator.Core.Transport
 
 		[Category(Names.Category_Common)]
 		public abstract TransportState State { get; protected set; }
-
-		[Category(Names.Category_Transport)]
-		public virtual float BeatsPerMinute { get; internal set; }
 
 		#endregion
 
@@ -87,12 +84,12 @@ namespace Animator.Core.Transport
 
 		#region Constructors
 
-		protected Transport()
+		protected TransportBase()
 		{
 
 		}
 
-		~Transport()
+		~TransportBase()
 		{
 			this.Dispose(false);
 		}
@@ -100,10 +97,6 @@ namespace Animator.Core.Transport
 		#endregion
 
 		#region Methods
-
-		public virtual void SetParameters(IDictionary<string, string> parameters)
-		{
-		}
 
 		public virtual void Play()
 		{
@@ -139,16 +132,15 @@ namespace Animator.Core.Transport
 
 		#endregion
 
-		public const float DefaultBeatsPerMinute = 80.0f;
 	}
 
 	#endregion
 
 	#region NullTransport
 
-	[AniExport(typeof(Transport), Key = Export_Key, Description = Export_Description)]
+	[AniExport(typeof(ITransportController), Key = Export_Key, Description = Export_Description)]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
-	internal sealed class NullTransport : Transport
+	internal sealed class NullTransport : ITransportController
 	{
 
 		#region Static / Constant
@@ -158,34 +150,46 @@ namespace Animator.Core.Transport
 
 		#endregion
 
-		#region ITransport Members
+		#region ITransportController Members
 
-		public override TimeSpan Position
+		public TimeSpan Position
 		{
 			get { return TimeSpan.Zero; }
 			set { }
 		}
 
-		public override TransportState State
+		public TransportState State
 		{
 			get { return TransportState.Stopped; }
-			protected set { }
 		}
 
-		public override void Play()
+		public void Play()
 		{
 		}
 
-		public override void Stop()
+		public void Stop()
 		{
 		}
 
-		public override void Pause()
+		public void Pause()
+		{
+		}
+
+		public event EventHandler<TransportTickEventArgs> Tick;
+
+		public event EventHandler StateChanged;
+
+		public event EventHandler PositionChanged;
+
+		#endregion
+
+		#region IDisposable Members
+
+		public void Dispose()
 		{
 		}
 
 		#endregion
-
 	}
 
 	#endregion

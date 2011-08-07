@@ -91,8 +91,6 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(TargetObject), canEditDetail: false);
-
 		internal static StringComparer PropertyNameComparer
 		{
 			get { return StringComparer.OrdinalIgnoreCase; }
@@ -108,11 +106,6 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
-
-		public override ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		[Category(TEShared.Names.Category_Common)]
 		public string OutputKey

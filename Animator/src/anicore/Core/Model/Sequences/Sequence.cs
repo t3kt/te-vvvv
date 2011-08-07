@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -20,22 +20,16 @@ namespace Animator.Core.Model.Sequences
 
 		#region Static / Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Sequence));
-
 		#endregion
 
 		#region Fields
 
 		private TimeSpan _Duration;
+		private TimeSpan _Position;
 
 		#endregion
 
 		#region Properties
-
-		public override ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		[Category(TEShared.Names.Category_Transport)]
 		public TimeSpan Duration
@@ -72,6 +66,29 @@ namespace Animator.Core.Model.Sequences
 		#endregion
 
 		#region Methods
+
+		internal void UpdatePosition(TimeSpan position)
+		{
+			if(position == this._Position)
+				return;
+			this._Position = position;
+			foreach(var track in this.Tracks)
+				track.UpdatePosition(position);
+		}
+
+		internal void PushTargetValues()
+		{
+			foreach(var track in this.Tracks)
+				track.PushTargetValues();
+		}
+
+		public override void PushTargetValues(ITransportController transport)
+		{
+			Require.DBG_ArgNotNull(transport,"transport");
+			this.UpdatePosition(transport.Position);
+			this.PushTargetValues();
+			base.PushTargetValues(transport);
+		}
 
 		public override XElement WriteXElement(XName name = null)
 		{

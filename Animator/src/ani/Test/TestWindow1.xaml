@@ -33,6 +33,6 @@
 				<pgdes:CategorizedLayout/>
 			</pg:PropertyGrid.Layout>
 		</pg:PropertyGrid>
-		<Button Canvas.Left="352" Canvas.Top="396" Content="Attach Doc to Grid" Click="attachDocToPropGridButton_Click" />
+		<Button Canvas.Left="352" Canvas.Top="396" Content="Attach obj to Grid" Click="attachObjToPropGridButton_Click" />
 	</Canvas>
 </Window>

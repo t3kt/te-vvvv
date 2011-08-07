@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using Animator.Common.Diagnostics;
-using Animator.Core.Composition;
 using Animator.Core.Runtime;
+using Animator.Core.Runtime.ObjectStates;
 using Animator.UI.Controls;
+using Animator.UI.Editors;
 using TESharedAnnotations;
 
 namespace Animator.UI.Dialogs
@@ -24,7 +24,7 @@ namespace Animator.UI.Dialogs
 
 		#region Static / Constant
 
-		public static readonly DependencyProperty EditorProperty = DependencyProperty.Register("Editor", typeof(ObjectEditor),
+		public static readonly DependencyProperty EditorProperty = DependencyProperty.Register("Editor", typeof(IObjectEditor),
 				typeof(ObjectEditorDialog), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.None, OnEditorChanged));
 
 		public static readonly DependencyProperty TargetProperty = ObjectEditor.TargetProperty.AddOwner(typeof(ObjectEditorDialog),
@@ -33,25 +33,14 @@ namespace Animator.UI.Dialogs
 		public static readonly DependencyProperty AutoCommitProperty = ObjectEditor.AutoCommitProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(true));
 
-		public static readonly DependencyProperty BasicsVisibilityProperty = ObjectEditor.BasicsVisibilityProperty.AddOwner(typeof(ObjectEditorDialog),
-				new FrameworkPropertyMetadata(Visibility.Visible));
-
-		public static readonly DependencyProperty DetailsVisibilityProperty = ObjectEditor.DetailsVisibilityProperty.AddOwner(typeof(ObjectEditorDialog),
-				new FrameworkPropertyMetadata(Visibility.Collapsed));
-
 		public static readonly DependencyProperty DirtyProperty = ObjectEditor.DirtyProperty.AddOwner(typeof(ObjectEditorDialog),
 				new FrameworkPropertyMetadata(false));
-
-		public static readonly DependencyProperty EditorStyleProperty = DependencyProperty.Register("EditorStyle", typeof(Style),
-			typeof(ObjectEditorDialog), new FrameworkPropertyMetadata(null));
-
-		public static readonly RoutedEvent TargetPropertyChangedEvent = ObjectEditor.TargetPropertyChangedEvent.AddOwner(typeof(ObjectEditorDialog));
 
 		private static void OnEditorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var dlg = (ObjectEditorDialog)d;
-			dlg.DetachEditor(e.OldValue as ObjectEditor);
-			dlg.AttachEditor(e.NewValue as ObjectEditor);
+			dlg.DetachEditor(e.OldValue as IObjectEditor);
+			dlg.AttachEditor(e.NewValue as IObjectEditor);
 		}
 
 		public static bool ShowForTarget(object target, [NotNull]ObjectEditor editor, [CanBeNull]Window owner = null, [CanBeNull]string title = null)
@@ -68,7 +57,7 @@ namespace Animator.UI.Dialogs
 			return result == true;
 		}
 
-		public static bool ShowForEditor([NotNull]ObjectEditor editor, [CanBeNull]Window owner = null)
+		public static bool ShowForEditor([NotNull]IObjectEditor editor, [CanBeNull]Window owner = null)
 		{
 			Require.ArgNotNull(editor, "editor");
 			var dlg = new ObjectEditorDialog
@@ -80,6 +69,17 @@ namespace Animator.UI.Dialogs
 			return result == true;
 		}
 
+		internal static bool ShowPropertyGridForTarget(object target, [CanBeNull]Window owner = null, [CanBeNull]string title = null)
+		{
+			Require.ArgNotNull(target, "target");
+			return ShowForEditor(
+				new PropertyGridObjectEditor
+				{
+					Target = target,
+					AutoCommit = true
+				});
+		}
+
 		#endregion
 
 		#region Fields
@@ -88,9 +88,9 @@ namespace Animator.UI.Dialogs
 
 		#region Properties
 
-		public ObjectEditor Editor
+		public IObjectEditor Editor
 		{
-			get { return (ObjectEditor)this.GetValue(EditorProperty); }
+			get { return (IObjectEditor)this.GetValue(EditorProperty); }
 			set { this.SetValue(EditorProperty, value); }
 		}
 
@@ -112,33 +112,9 @@ namespace Animator.UI.Dialogs
 			set { this.SetValue(DirtyProperty, value); }
 		}
 
-		public Visibility BasicsVisibility
-		{
-			get { return (Visibility)this.GetValue(BasicsVisibilityProperty); }
-			set { this.SetValue(BasicsVisibilityProperty, value); }
-		}
-
-		public Visibility DetailsVisibility
-		{
-			get { return (Visibility)this.GetValue(DetailsVisibilityProperty); }
-			set { this.SetValue(DetailsVisibilityProperty, value); }
-		}
-
-		public Style EditorStyle
-		{
-			get { return (Style)this.GetValue(EditorStyleProperty); }
-			set { this.SetValue(EditorStyleProperty, value); }
-		}
-
 		#endregion
 
 		#region Events
-
-		public event TargetPropertyChangedEventHandler TargetPropertyChanged
-		{
-			add { this.AddHandler(TargetPropertyChangedEvent, value); }
-			remove { this.RemoveHandler(TargetPropertyChangedEvent, value); }
-		}
 
 		#endregion
 
@@ -153,63 +129,41 @@ namespace Animator.UI.Dialogs
 
 		#region Methods
 
-		private void Editor_TargetPropertyChanged(object sender, TargetPropertyChangedEventArgs e)
+		private void AttachEditor(IObjectEditor editor)
 		{
-			this.RaiseEvent(new TargetPropertyChangedEventArgs(TargetPropertyChangedEvent, this, e.Target, e.PropertyName));
-		}
-
-		private void AttachEditor(ObjectEditor editor)
-		{
+			this.editorArea.Content = editor;
 			if(editor == null)
 				return;
-			editor.TargetPropertyChanged += this.Editor_TargetPropertyChanged;
-			editor.SetBinding(AutoCommitProperty,
+			var fEditor = editor as FrameworkElement;
+			if(fEditor == null)
+				return;
+			fEditor.SetBinding(AutoCommitProperty,
 				new Binding
 				{
 					Source = this,
 					Path = new PropertyPath("AutoCommit"),
 					Mode = BindingMode.TwoWay
 				});
-			editor.SetBinding(DirtyProperty,
+			fEditor.SetBinding(DirtyProperty,
 				new Binding
 				{
 					Source = this,
 					Path = new PropertyPath("Dirty"),
 					Mode = BindingMode.TwoWay
 				});
-			editor.SetBinding(BasicsVisibilityProperty,
-				new Binding
-				{
-					Source = this,
-					Path = new PropertyPath("BasicsVisibility"),
-					Mode = BindingMode.TwoWay
-				});
-			editor.SetBinding(DetailsVisibilityProperty,
-				new Binding
-				{
-					Source = this,
-					Path = new PropertyPath("DetailsVisibility"),
-					Mode = BindingMode.TwoWay
-				});
-			editor.SetBinding(StyleProperty,
-				new Binding
-				{
-					Source = this,
-					Path = new PropertyPath("EditorStyle"),
-					Mode = BindingMode.OneWay
-				});
 		}
 
-		private void DetachEditor(ObjectEditor editor)
+		private void DetachEditor(IObjectEditor editor)
 		{
+			if(editor == this.editorArea.Content)
+				this.editorArea.Content = null;
 			if(editor == null)
 				return;
-			BindingOperations.ClearBinding(editor, AutoCommitProperty);
-			BindingOperations.ClearBinding(editor, DirtyProperty);
-			BindingOperations.ClearBinding(editor, BasicsVisibilityProperty);
-			BindingOperations.ClearBinding(editor, DetailsVisibilityProperty);
-			BindingOperations.ClearBinding(editor, StyleProperty);
-			editor.TargetPropertyChanged -= this.Editor_TargetPropertyChanged;
+			var fEditor = editor as FrameworkElement;
+			if(fEditor == null)
+				return;
+			BindingOperations.ClearBinding(fEditor, AutoCommitProperty);
+			BindingOperations.ClearBinding(fEditor, DirtyProperty);
 		}
 
 		private void okButton_Click(object sender, RoutedEventArgs e)

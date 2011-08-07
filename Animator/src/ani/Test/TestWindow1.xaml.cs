@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Animator.Core.Model;
+using Animator.Core.Runtime.ObjectStates;
 using Animator.UI.Dialogs;
 
 namespace Animator.Test
@@ -46,16 +48,28 @@ namespace Animator.Test
 
 		#endregion
 
-		private void attachDocToPropGridButton_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
 		#region Methods
+
+		private void attachObjToPropGridButton_Click(object sender, RoutedEventArgs e)
+		{
+			var obj = new TestObj {Foo = "fooooo", X = 12};
+			//propgrid.SelectedObject = obj;
+			var state = ObjectState.CreateState(obj);
+			propgrid.SelectedObject = state;
+		}
 
 		#endregion
 
 	}
 
 	#endregion
+
+	public class TestObj
+	{
+		[StateProperty]
+		public string Foo { get; set; }
+		[StateProperty]
+		public int X { get; set; }
+	}
 
 }

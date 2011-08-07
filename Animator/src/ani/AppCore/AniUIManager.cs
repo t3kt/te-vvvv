@@ -186,6 +186,21 @@ namespace Animator.AppCore
 			d.SetValue(ItemIconSourceProperty, value);
 		}
 
+		public static readonly DependencyProperty DirtyProperty =
+			DependencyProperty.RegisterAttached("Dirty", typeof(bool), typeof(AniUI), new FrameworkPropertyMetadata(false));
+
+		public static bool GetDirty(DependencyObject d)
+		{
+			Require.ArgNotNull(d, "d");
+			return (bool)d.GetValue(DirtyProperty);
+		}
+
+		public static void SetDirty(DependencyObject d, bool value)
+		{
+			Require.ArgNotNull(d, "d");
+			d.SetValue(DirtyProperty, value);
+		}
+
 		#endregion
 
 	}

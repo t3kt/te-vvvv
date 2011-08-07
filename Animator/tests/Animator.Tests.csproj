@@ -87,6 +87,7 @@
     <Compile Include="CommonUtilUnitTest.cs" />
     <Compile Include="CompositionUnitTest.cs" />
     <Compile Include="ModelUnitTest.cs" />
+    <Compile Include="ObjectStatesTest.cs" />
     <Compile Include="OscUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IOUnitTest.cs" />

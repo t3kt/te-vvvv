@@ -9,6 +9,7 @@ using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sequences
@@ -36,7 +37,7 @@ namespace Animator.Core.Model.Sequences
 		internal Interval Interval
 		{
 			get { return this._Interval; }
-			set { this.ChangeInterval(value); }
+			set { this.TryChangeInterval(value); }
 		}
 
 		[Category(TEShared.Names.Category_Transport)]
@@ -49,7 +50,7 @@ namespace Animator.Core.Model.Sequences
 				//    value = TimeSpan.Zero;
 				//Require.ArgNotNegative(value, "value");
 				if(value != this._Interval.Start)
-					this.ChangeInterval(new Interval(value, this._Interval.Duration));
+					this.TryChangeInterval(new Interval(value, this._Interval.Duration));
 			}
 		}
 
@@ -61,7 +62,7 @@ namespace Animator.Core.Model.Sequences
 			{
 				//Require.ArgNotNegative(value, "value");
 				if(value != this._Interval.Duration)
-					this.ChangeInterval(new Interval(this._Interval.Start, value));
+					this.TryChangeInterval(new Interval(this._Interval.Start, value));
 			}
 		}
 
@@ -76,10 +77,10 @@ namespace Animator.Core.Model.Sequences
 
 		internal event EventHandler<ValueChangedEventArgs<Interval>> IntervalChanged;
 
-		internal void OnIntervalChanged(Interval origInterval)
+		private void OnIntervalChanged(Interval origInterval)
 		{
 			var handler = this.IntervalChanged;
-			if (handler != null)
+			if(handler != null)
 				handler(this, new ValueChangedEventArgs<Interval>(origInterval, this._Interval));
 		}
 
@@ -94,7 +95,7 @@ namespace Animator.Core.Model.Sequences
 			: base(id) { }
 
 		internal SequenceClip(Interval interval)
-			:this()
+			: this()
 		{
 			this._Interval = interval;
 		}
@@ -129,14 +130,14 @@ namespace Animator.Core.Model.Sequences
 			return this.TryChangeInterval(new Interval(this._Interval.Start, value));
 		}
 
-		internal TryChangeValueDecision TryChangeInterval(Interval interval)
+		private TryChangeValueDecision TryChangeInterval(Interval interval, bool ignoreSameValue)
 		{
-			if(interval == this._Interval)
+			if(!ignoreSameValue && interval == this._Interval)
 				return TryChangeValueDecision.None;
 			var decision = TryChangeValueUtil.ApplyHandler(this._TryChangeIntervalHandler, this, this._Interval, ref interval);
-			if(decision != TryChangeValueDecision.Approved)
+			if(!TryChangeValueUtil.IsApproved(decision))
 				return decision;
-			if(interval == this._Interval)
+			if(!ignoreSameValue && interval == this._Interval)
 				return TryChangeValueDecision.None;
 			var origInterval = this._Interval;
 			this._Interval = interval;
@@ -146,6 +147,11 @@ namespace Animator.Core.Model.Sequences
 			this.OnPropertyChanged("End");
 			this.OnIntervalChanged(origInterval);
 			return decision;
+		}
+
+		internal TryChangeValueDecision TryChangeInterval(Interval interval)
+		{
+			return this.TryChangeInterval(interval, false);
 		}
 
 		internal bool ChangeInterval(Interval interval)
@@ -161,9 +167,10 @@ namespace Animator.Core.Model.Sequences
 				this.ApplyIntervalChangeHandler();
 		}
 
-		internal void ApplyIntervalChangeHandler()
+		internal bool ApplyIntervalChangeHandler()
 		{
-			this.ChangeInterval(this._Interval);
+			var decision = this.TryChangeInterval(this._Interval, true);
+			return TryChangeValueUtil.IsApproved(decision);
 		}
 
 		internal bool ContainsPosition(TimeSpan position)
@@ -172,22 +179,37 @@ namespace Animator.Core.Model.Sequences
 			return this._Interval.Contains(position);
 		}
 
-		internal bool Overlaps([NotNull] SequenceClip other)
+		internal bool IsActive(TimeSpan position)
 		{
-			Require.ArgNotNull(other, "other");
-			//return CommonUtil.IsOverlap(this.Start, this.End, other.Start, other.End);
-			return this._Interval.Overlaps(other._Interval);
+			return this.ContainsPosition(position);
+			//return !(position < this.Start) && position < this.End;
 		}
 
-		internal override bool IsActive(Transport.Transport transport)
+		internal double GetPosition(TimeSpan tPosition)
 		{
-			var pos = transport.Position;
-			return !(pos < this.Start) && pos < this.End;
+			if(tPosition <= this.Start)
+				return 0;
+			if(tPosition >= this.End)
+				return 1;
+			return CommonUtil.MapFloating(tPosition.TotalSeconds, this.Start.TotalSeconds, this.End.TotalSeconds, 0, 1);
 		}
 
-		protected override float GetPosition(Transport.Transport transport)
+		internal override void PushTargetValues(TargetObject target, ITransportController transport)
 		{
-			throw new NotImplementedException();
+			Require.DBG_ArgNotNull(target, "target");
+			Require.DBG_ArgNotNull(transport, "transport");
+			var tpos = transport.Position;
+			this.PushTargetValues(target, tpos);
+		}
+
+		internal void PushTargetValues(TargetObject target, TimeSpan tPosition)
+		{
+			Require.DBG_ArgNotNull(target, "target");
+			if(!this.IsActive(tPosition))
+				return;
+			var pos = this.GetPosition(tPosition);
+			foreach(var prop in this.Properties)
+				target.SetValue(prop.Name, prop.GetValue(pos));
 		}
 
 		public override XElement WriteXElement(XName name = null)

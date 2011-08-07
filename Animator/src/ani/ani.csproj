@@ -74,7 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppCore\AniAppModelUtil.cs" />
-    <Compile Include="AppCore\AniItemTypes.cs" />
+    <Compile Include="AppCore\TransportCommands.cs" />
     <Compile Include="AppCore\AniUIManager.cs" />
     <Compile Include="AppCore\AniAppCommands.cs" />
     <Compile Include="AppCore\Common\TreeUtil.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="UI\Common\SwitchConverter.cs" />
     <Compile Include="UI\Controls\AniPane.cs" />
     <Compile Include="UI\Controls\CustomUniformGrid.cs" />
+    <Compile Include="UI\Controls\ObjectStateEditor.cs" />
     <Compile Include="UI\Controls\RecentFilesMenuItem.xaml.cs">
       <DependentUpon>RecentFilesMenuItem.xaml</DependentUpon>
     </Compile>
@@ -130,6 +131,9 @@
     <Compile Include="UI\Controls\ObjectEditor.cs" />
     <Compile Include="UI\Editors\PropertyGridObjectEditor.xaml.cs">
       <DependentUpon>PropertyGridObjectEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Editors\PropertyGridObjectStateEditor.xaml.cs">
+      <DependentUpon>PropertyGridObjectStateEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -169,22 +173,18 @@
     <DesignData Include="Design\Data\SequenceClip.xaml">
       <SubType>Designer</SubType>
     </DesignData>
-    <Page Include="Design\Data\ConstData.xaml">
+    <DesignData Include="Design\Data\ConstData.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Design\Data\StepData.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+    <DesignData Include="Design\Data\StepData.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Design\Data\SequenceTrack.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+    <DesignData Include="Design\Data\SequenceTrack.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Design\Data\Sequence.xaml">
+    </DesignData>
+    <DesignData Include="Design\Data\Sequence.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </DesignData>
     <Page Include="Resources\AppShared.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Editors\PropertyGridObjectEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Editors\PropertyGridObjectStateEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

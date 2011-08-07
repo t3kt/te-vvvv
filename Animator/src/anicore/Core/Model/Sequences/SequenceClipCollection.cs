@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Runtime;
@@ -15,52 +16,9 @@ namespace Animator.Core.Model.Sequences
 
 	#region SequenceClipCollection
 
-	public sealed class SequenceClipCollection : ICollection<SequenceClip>, INotifyCollectionChanged
+	public sealed class SequenceClipCollection : IList<SequenceClip>, ICollection,
+		INotifyCollectionChanged, INotifyPropertyChanged
 	{
-
-		#region SeqClipOrderComparer
-
-		private sealed class SeqClipOrderComparer : Comparer<SequenceClip>
-		{
-
-			#region Static/Constant
-
-			public new static readonly SeqClipOrderComparer Default = new SeqClipOrderComparer();
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			private SeqClipOrderComparer() { }
-
-			#endregion
-
-			#region Methods
-
-			public override int Compare(SequenceClip x, SequenceClip y)
-			{
-				if(x == y)
-					return 0;
-				if(x == null)
-					return -1;
-				if(y == null)
-					return 1;
-				return x.Start.CompareTo(y.Start);
-			}
-
-			#endregion
-
-		}
-
-		#endregion
 
 		#region Static / Constant
 
@@ -74,10 +32,9 @@ namespace Animator.Core.Model.Sequences
 
 		#region Fields
 
+		private object _SyncRoot;
 		private readonly SequenceTrack _Track;
-		private readonly SortedList<TimeSpan, SequenceClip> _Clips;
-		private readonly EventHandler<TryChangeValueEventArgs<Interval>> _HandleClipTryChangeSpan;
-		private readonly EventHandler<ValueChangedEventArgs<Interval>> _HandleClipIntervalChanged; 
+		private readonly List<SequenceClip> _Clips;
 
 		#endregion
 
@@ -110,17 +67,27 @@ namespace Animator.Core.Model.Sequences
 				handler(this, e);
 		}
 
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChanged(string name)
+		{
+			var handler = this.PropertyChanged;
+			if(handler != null)
+				handler(this, new PropertyChangedEventArgs(name));
+		}
+
 		#endregion
 
 		#region Constructors
 
 		internal SequenceClipCollection([NotNull] SequenceTrack track)
+			: this(track, 0) { }
+
+		internal SequenceClipCollection([NotNull] SequenceTrack track, int capacity)
 		{
 			Require.ArgNotNull(track, "track");
 			this._Track = track;
-			this._Clips = new SortedList<TimeSpan, SequenceClip>();
-			this._HandleClipTryChangeSpan = this.Clip_HandleTryChangeSpan;
-			this._HandleClipIntervalChanged += this.Clip_HandleIntervalChanged;
+			this._Clips = new List<SequenceClip>(capacity);
 		}
 
 		#endregion
@@ -134,7 +101,7 @@ namespace Animator.Core.Model.Sequences
 
 		internal bool CheckIntervalOverlap(Interval interval, SequenceClip except = null)
 		{
-			foreach(var c in this._Clips.Values)
+			foreach(var c in this._Clips)
 			{
 				if(except == null || !ReferenceEquals(c, except))
 				{
@@ -143,16 +110,6 @@ namespace Animator.Core.Model.Sequences
 				}
 			}
 			return false;
-		}
-
-		private void Clip_HandleIntervalChanged(object sender, ValueChangedEventArgs<Interval> e)
-		{
-			var clip = (SequenceClip) sender;
-			var index = this._Clips.IndexOfKey(clip.Start);
-			if(index == -1)
-				return;
-			//Debug.Assert(ReferenceEquals(clip, this._Clips));
-			throw new NotImplementedException();
 		}
 
 		private void Clip_HandleTryChangeSpan(object sender, TryChangeValueEventArgs<Interval> e)
@@ -194,12 +151,11 @@ namespace Animator.Core.Model.Sequences
 			//}
 		}
 
-		private void Attach(SequenceClip clip, bool applyNow)
+		private void Attach(SequenceClip clip)
 		{
 			Require.DBG_ArgNotNull(clip, "clip");
 			clip.Parent = this._Track;
-			clip.SetIntervalChangeHandler(this._HandleClipTryChangeSpan, applyNow);
-			clip.IntervalChanged += this._HandleClipIntervalChanged;
+			clip.SetIntervalChangeHandler(this.Clip_HandleTryChangeSpan);
 		}
 
 		private void Detach(SequenceClip clip)
@@ -207,59 +163,75 @@ namespace Animator.Core.Model.Sequences
 			Require.DBG_ArgNotNull(clip, "clip");
 			clip.Parent = null;
 			clip.SetIntervalChangeHandler(null);
-			clip.IntervalChanged -= this._HandleClipIntervalChanged;
 		}
 
-		public int AddBatch([NotNull] IEnumerable<SequenceClip> items)
+		public bool Add([NotNull]SequenceClip clip)
 		{
-			Require.ArgNotNull(items, "items");
-			var added = 0;
-			foreach(var item in OrderByStart(items.NonNull()))
-			{
-				if(this.Add(item, true))
-					added++;
-			}
-			return added;
+			return this.SetOrAdd(-1, clip, false);
 		}
 
-		internal bool Add([NotNull]SequenceClip clip, bool applyNow)
+		private bool SetOrAdd(int index, [NotNull]SequenceClip clip, bool overwrite)
 		{
 			Require.ArgNotNull(clip, "clip");
 			if(this.CheckOverlap(clip))
 				return false;
-			this._Clips.Add(clip.Start, clip);
-			//if(!this._Clips.Add(clip))
-			//    throw new ArgumentException(String.Format(CoreStrings.DuplicateClipId, clip.Id), "clip");
-			this.Attach(clip, applyNow);
-			this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, clip));
+			if(this._Clips.Contains(clip))
+				throw new ArgumentException(String.Format(CoreStrings.DuplicateClipId, clip.Id), "clip");
+			this.Attach(clip);
+			if(index == -1)
+			{
+				this._Clips.Add(clip);
+				this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, clip, this._Clips.Count - 1));
+				this.OnPropertyChanged("Count");
+				this.OnPropertyChanged("Item[]");
+			}
+			else if(overwrite)
+			{
+				var oldClip = this._Clips[index];
+				this.Detach(oldClip);
+				this._Clips[index] = clip;
+				this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, oldClip, clip, index));
+				this.OnPropertyChanged("Item[]");
+			}
+			else
+			{
+				this._Clips.Insert(index, clip);
+				this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, clip, index));
+				this.OnPropertyChanged("Count");
+				this.OnPropertyChanged("Item[]");
+			}
 			return true;
-		}
-
-		public bool Add([NotNull] SequenceClip clip)
-		{
-			return this.Add(clip, true);
 		}
 
 		public void Clear()
 		{
-			foreach(var clip in this._Clips.Values)
+			foreach(var clip in this._Clips)
 				this.Detach(clip);
 			this._Clips.Clear();
 			this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			this.OnPropertyChanged("Count");
+			this.OnPropertyChanged("Item[]");
 		}
 
 		public bool Contains(SequenceClip clip)
 		{
-			if(clip == null) return false;
-			return this._Clips.ContainsKey(clip.Start) || this._Clips.ContainsValue(clip);
+			return clip != null && this._Clips.Contains(clip);
 		}
 
 		public bool Remove(SequenceClip clip)
 		{
-			if(clip == null || !this._Clips.Remove(clip.Start))
+			if(clip == null)
 				return false;
+			var index = this._Clips.IndexOf(clip);
+			if(index == -1)
+				return false;
+			this._Clips.RemoveAt(index);
+			//if(!this._Clips.Remove(clip))
+			//	return false;
 			this.Detach(clip);
-			this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, clip));
+			this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, clip, index));
+			this.OnPropertyChanged("Count");
+			this.OnPropertyChanged("Item[]");
 			return true;
 		}
 
@@ -274,7 +246,7 @@ namespace Animator.Core.Model.Sequences
 
 		void ICollection<SequenceClip>.CopyTo(SequenceClip[] array, int arrayIndex)
 		{
-			this._Clips.Values.CopyTo(array, arrayIndex);
+			this._Clips.CopyTo(array, arrayIndex);
 		}
 
 		bool ICollection<SequenceClip>.IsReadOnly
@@ -288,8 +260,7 @@ namespace Animator.Core.Model.Sequences
 
 		public IEnumerator<SequenceClip> GetEnumerator()
 		{
-			//return OrderByStart(this).GetEnumerator();
-			return this._Clips.Values.GetEnumerator();
+			return this._Clips.GetEnumerator();
 		}
 
 		#endregion
@@ -299,6 +270,63 @@ namespace Animator.Core.Model.Sequences
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return this.GetEnumerator();
+		}
+
+		#endregion
+
+		#region IList<SequenceClip> Members
+
+		int IList<SequenceClip>.IndexOf(SequenceClip clip)
+		{
+			if(clip == null)
+				return -1;
+			return this._Clips.IndexOf(clip);
+		}
+
+		void IList<SequenceClip>.Insert(int index, SequenceClip clip)
+		{
+			this.SetOrAdd(index, clip, false);
+		}
+
+		void IList<SequenceClip>.RemoveAt(int index)
+		{
+			var clip = this[index];
+			this.Remove(clip);
+		}
+
+		public SequenceClip this[int index]
+		{
+			get { return this._Clips[index]; }
+		}
+
+		SequenceClip IList<SequenceClip>.this[int index]
+		{
+			get { return this[index]; }
+			set { this.SetOrAdd(index, value, true); }
+		}
+
+		#endregion
+
+		#region ICollection Members
+
+		void ICollection.CopyTo(Array array, int index)
+		{
+			((ICollection)this._Clips).CopyTo(array, index);
+		}
+
+		bool ICollection.IsSynchronized
+		{
+			get { return false; }
+		}
+
+		object ICollection.SyncRoot
+		{
+			get
+			{
+				if(this._SyncRoot == null)
+					Interlocked.CompareExchange<object>(ref this._SyncRoot, new object(), null);
+				return this._SyncRoot;
+			}
 		}
 
 		#endregion

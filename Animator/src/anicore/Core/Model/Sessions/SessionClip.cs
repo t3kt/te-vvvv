@@ -102,14 +102,25 @@ namespace Animator.Core.Model.Sessions
 				this.WritePropertiesXElement());
 		}
 
-		internal override bool IsActive(Transport.Transport transport)
+		internal bool IsActive(ITransportController transport)
 		{
 			return this._State == ClipState.Playing;
 		}
 
-		protected override float GetPosition(Transport.Transport transport)
+		internal double GetPosition(ITransportController transport)
 		{
 			throw new NotImplementedException();
+		}
+
+		internal override void PushTargetValues(TargetObject target, ITransportController transport)
+		{
+			Require.DBG_ArgNotNull(target, "target");
+			Require.DBG_ArgNotNull(transport, "transport");
+			if(!this.IsActive(transport))
+				return;
+			var pos = this.GetPosition(transport);
+			foreach(var prop in this.Properties)
+				target.SetValue(prop.Name, prop.GetValue(pos));
 		}
 
 		#endregion

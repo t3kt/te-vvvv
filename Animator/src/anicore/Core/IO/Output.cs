@@ -11,7 +11,6 @@ using Animator.Common;
 using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model;
-using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.IO
@@ -75,8 +74,6 @@ namespace Animator.Core.IO
 
 		#region Static / Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Output));
-
 		internal const string Export_Key = "output";
 		internal const string Export_ElementName = "output";
 		internal const string Export_Description = "Generic Output";
@@ -90,11 +87,6 @@ namespace Animator.Core.IO
 		#endregion
 
 		#region Properties
-
-		public sealed override ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		public ObservableCollection<TargetObject> Targets
 		{
@@ -163,21 +155,6 @@ namespace Animator.Core.IO
 		public TargetObject GetTargetObject(Guid id)
 		{
 			return this._Targets.FindById(id);
-		}
-
-		internal override bool TryDeleteItem(IDocumentItem item)
-		{
-			return item is TargetObject && this._Targets.Remove((TargetObject)item);
-		}
-
-		public override bool TryDeleteChild(DocumentNode node)
-		{
-			if(node is TargetObject && this._Targets.Remove((TargetObject)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			return false;
 		}
 
 		public virtual void ReadXElement([NotNull] XElement element)

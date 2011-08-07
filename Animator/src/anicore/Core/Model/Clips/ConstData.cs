@@ -32,13 +32,13 @@ namespace Animator.Core.Model.Clips
 
 		#region Fields
 
-		private float _Value;
+		private double _Value;
 
 		#endregion
 
 		#region Properties
 
-		public float Value
+		public double Value
 		{
 			get { return this._Value; }
 			set
@@ -62,10 +62,10 @@ namespace Animator.Core.Model.Clips
 		public override void ReadXElement([NotNull] XElement element)
 		{
 			base.ReadXElement(element);
-			this._Value = (float)element.Attribute(Schema.constprop_value);
+			this._Value = (double)element.Attribute(Schema.constprop_value);
 		}
 
-		public override object GetValue(float position)
+		public override object GetValue(double position)
 		{
 			return this._Value;
 		}

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Linq;
 using Animator.Core.Model.Clips;
-using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -18,8 +18,6 @@ namespace Animator.Core.Model
 
 		#region Static/Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Track));
-
 		#endregion
 
 		#region Fields
@@ -31,11 +29,6 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
-
-		public sealed override ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		[Category(TEShared.Names.Category_Output)]
 		public Guid? TargetId
@@ -96,12 +89,12 @@ namespace Animator.Core.Model
 				.Concat(new[] { ModelUtil.WriteOptionalValueAttribute(Schema.track_target, this.TargetId) });
 		}
 
-		internal virtual void PushTargetChanges([NotNull] Transport.Transport transport)
+		internal virtual void PushTargetValues([NotNull] ITransportController transport)
 		{
 			if(this.Target != null)
 			{
 				foreach(var clip in this.ClipsInternal)
-					clip.PushTargetChanges(this.Target, transport);
+					clip.PushTargetValues(this.Target, transport);
 			}
 		}
 

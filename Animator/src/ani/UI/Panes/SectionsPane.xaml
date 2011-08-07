@@ -9,5 +9,9 @@
 			 mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="200"
 			 Style="{StaticResource HeaderedPaneStyle}"
 			 appCore:AniUI.PaneHeader="Sections">
-	<panes:DocItemNavList ItemsSource="{Binding Path=Sections}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=SelectedSection}" />
+	<panes:DocItemNavList ItemsSource="{Binding Path=Sections}" SelectedItem="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ui:MainWindow, AncestorLevel=1}, Path=SelectedSection}">
+		<panes:DocItemNavList.CommandBindings>
+			<CommandBinding Command="Delete" Executed="DeleteCommand_Executed" />
+		</panes:DocItemNavList.CommandBindings>
+	</panes:DocItemNavList>
 </UserControl>

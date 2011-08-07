@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Animator.Core.Transport;
 using Animator.Resources;
 using TESharedAnnotations;
 
@@ -12,6 +11,7 @@ namespace Animator.Common.Diagnostics
 
 	#region Require
 
+	[DebuggerNonUserCode]
 	public static class Require
 	{
 
@@ -50,7 +50,7 @@ namespace Animator.Common.Diagnostics
 				throw new ArgumentOutOfRangeException(name);
 		}
 
-		public static void ArgPositive(float value, [InvokerParameterName]string name)
+		public static void ArgPositive(double value, [InvokerParameterName]string name)
 		{
 			if(value <= 0)
 				throw new ArgumentOutOfRangeException(name);
@@ -74,7 +74,7 @@ namespace Animator.Common.Diagnostics
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgMustBeOfType, typeof(TExpected)), name);
 		}
 
-		public static void ArgNotZero(float value, [InvokerParameterName]string name)
+		public static void ArgNotZero(double value, [InvokerParameterName]string name)
 		{
 			if(value == 0)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
@@ -86,50 +86,50 @@ namespace Animator.Common.Diagnostics
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgNotZero, name), name);
 		}
 
-		public static void ArgGreaterThan(float value, [InvokerParameterName]string name, float comparand)
+		public static void ArgGreaterThan(double value, [InvokerParameterName]string name, double comparand)
 		{
 			if(value <= comparand)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgGreaterThan, name, value, comparand), name);
 		}
 
-		public static void ArgLessThan(float value, [InvokerParameterName]string name, float comparand)
+		public static void ArgLessThan(double value, [InvokerParameterName]string name, double comparand)
 		{
 			if(value >= comparand)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgLessThan, name, value, comparand), name);
 		}
 
-		public static void ArgGreaterThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		public static void ArgGreaterThanOrEqualTo(double value, [InvokerParameterName]string name, double comparand)
 		{
 			if(value < comparand)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgGreaterThanOrEqualTo, name, value, comparand), name);
 		}
 
-		public static void ArgLessThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		public static void ArgLessThanOrEqualTo(double value, [InvokerParameterName]string name, double comparand)
 		{
 			if(value > comparand)
 				throw new ArgumentException(String.Format(CoreStrings.Require_ArgLessThanOrEqualTo, name, value, comparand), name);
 		}
 
 		[Conditional("DEBUG")]
-		public static void DBG_ArgGreaterThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		public static void DBG_ArgGreaterThanOrEqualTo(double value, [InvokerParameterName]string name, double comparand)
 		{
 			ArgGreaterThanOrEqualTo(value, name, comparand);
 		}
 
 		[Conditional("DEBUG")]
-		public static void DBG_ArgLessThanOrEqualTo(float value, [InvokerParameterName]string name, float comparand)
+		public static void DBG_ArgLessThanOrEqualTo(double value, [InvokerParameterName]string name, double comparand)
 		{
 			ArgLessThanOrEqualTo(value, name, comparand);
 		}
 
 		[Conditional("DEBUG")]
-		public static void DBG_ArgGreaterThan(float value, [InvokerParameterName]string name, float comparand)
+		public static void DBG_ArgGreaterThan(double value, [InvokerParameterName]string name, double comparand)
 		{
 			ArgGreaterThan(value, name, comparand);
 		}
 
 		[Conditional("DEBUG")]
-		public static void DBG_ArgLessThan(float value, [InvokerParameterName]string name, float comparand)
+		public static void DBG_ArgLessThan(double value, [InvokerParameterName]string name, double comparand)
 		{
 			ArgLessThan(value, name, comparand);
 		}

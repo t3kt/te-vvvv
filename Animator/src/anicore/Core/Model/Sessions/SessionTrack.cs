@@ -64,22 +64,6 @@ namespace Animator.Core.Model.Sessions
 
 		#region Methods
 
-		internal override bool TryDeleteItem(IDocumentItem item)
-		{
-			var clip = item as SessionClip;
-			return clip != null && this._Clips.Remove(clip);
-		}
-
-		public override bool TryDeleteChild(DocumentNode node)
-		{
-			if(node is SessionClip && this._Clips.Remove((SessionClip)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			return false;
-		}
-
 		public override XElement WriteXElement(XName name = null)
 		{
 			return new XElement(name ?? Schema.sestrack,

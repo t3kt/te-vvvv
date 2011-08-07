@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml.Linq;
 using Animator.Common;
 using Animator.Core.Composition;
-using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model.Sessions
@@ -18,8 +17,6 @@ namespace Animator.Core.Model.Sessions
 
 		#region Static / Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Session));
-
 		#endregion
 
 		#region Fields
@@ -29,11 +26,6 @@ namespace Animator.Core.Model.Sessions
 		#endregion
 
 		#region Properties
-
-		public override ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		public int? Rows
 		{

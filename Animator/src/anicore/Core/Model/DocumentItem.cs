@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Text;
 using System.Xml.Linq;
 using Animator.Common.Diagnostics;
-using Animator.Core.Runtime;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -28,9 +27,6 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Properties
-
-		[Browsable(false)]
-		public abstract ItemTypeInfo ItemType { get; }
 
 		public Guid Id
 		{
@@ -90,11 +86,6 @@ namespace Animator.Core.Model
 					new XAttribute(Schema.common_id, this._Id),
 					ModelUtil.WriteOptionalAttribute(Schema.common_name, this._Name)
 				};
-		}
-
-		internal virtual bool TryDeleteItem(IDocumentItem item)
-		{
-			return false;
 		}
 
 		public override bool Equals(object obj)

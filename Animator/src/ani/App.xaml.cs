@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Animator.AppCore;
 using Animator.AppCore.Tasks;
 using Animator.Core.Composition;
+using Animator.Core.Transport;
 using Animator.Osc;
 using Animator.Properties;
 using Animator.UI;
@@ -38,7 +39,8 @@ namespace Animator
 			if(required)
 			{
 				//Debug.Assert(svc != null);
-				throw new NotSupportedException(String.Format("Service type not available: {0}", typeof(T)));
+				if(svc == null)
+					throw new NotSupportedException(String.Format("Service type not available: {0}", typeof(T)));
 			}
 			return svc;
 		}
@@ -55,6 +57,7 @@ namespace Animator
 		private readonly AniHost _Host;
 		private readonly TaskManager _TaskManager;
 		private readonly DocumentManager _DocumentManager;
+		private readonly ITransportController _Transport;
 
 		#endregion
 
@@ -66,11 +69,12 @@ namespace Animator
 
 		public AniApplication()
 		{
-			this.InitializeComponent();
 			//this._Host = new AniHost();
 			this._Host = AniHost.Current;
 			this._TaskManager = new TaskManager();
 			this._DocumentManager = new DocumentManager();
+			this._Transport = this._Host.CreateTransportByKey(Animator.Properties.Settings.Default.TransportType);
+			this.InitializeComponent();
 		}
 
 		#endregion
@@ -108,6 +112,8 @@ namespace Animator
 		{
 			if(serviceType == typeof(AniHost))
 				return this._Host;
+			if(serviceType == typeof(ITransportController))
+				return this._Transport;
 			if(serviceType == typeof(TaskManager))
 				return this._TaskManager;
 			if(serviceType == typeof(DocumentManager))

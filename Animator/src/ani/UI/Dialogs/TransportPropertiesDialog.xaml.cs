@@ -25,18 +25,10 @@ namespace Animator.UI.Dialogs
 		#region Static / Constant
 
 		public static readonly DependencyProperty TransportTypeProperty;
-		public static readonly DependencyProperty BeatsPerMinuteProperty;
 
 		static TransportPropertiesDialog()
 		{
 			TransportTypeProperty = DependencyProperty.Register("TransportType", typeof(string), typeof(TransportPropertiesDialog));
-			BeatsPerMinuteProperty = DependencyProperty.Register("BeatsPerMinute", typeof(float), typeof(TransportPropertiesDialog),
-				new PropertyMetadata(Transport.DefaultBeatsPerMinute), ValidateBeatsPerMinute);
-		}
-
-		private static bool ValidateBeatsPerMinute(object value)
-		{
-			return (float)value > 0;
 		}
 
 		#endregion
@@ -58,12 +50,6 @@ namespace Animator.UI.Dialogs
 		{
 			get { return (string)this.GetValue(TransportTypeProperty); }
 			set { this.SetValue(TransportTypeProperty, value); }
-		}
-
-		public float BeatsPerMinute
-		{
-			get { return (float)this.GetValue(BeatsPerMinuteProperty); }
-			set { this.SetValue(BeatsPerMinuteProperty, value); }
 		}
 
 		#endregion

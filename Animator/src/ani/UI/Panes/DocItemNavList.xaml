@@ -8,6 +8,9 @@
 		 mc:Ignorable="d" 
 		 d:DesignHeight="300" d:DesignWidth="300"
 		 HorizontalContentAlignment="Stretch" Style="{StaticResource CleanListBoxStyle}">
+	<ListBox.CommandBindings>
+		<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="EditDetailCommand_Executed"/>
+	</ListBox.CommandBindings>
 	<ListBox.ItemContainerStyle>
 		<Style TargetType="{x:Type ListBoxItem}">
 			<Setter Property="ContextMenu">

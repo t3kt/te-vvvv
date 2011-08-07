@@ -1,8 +1,12 @@
-<UserControl x:Class="Animator.UI.Panes.TransportPane"
-			   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:appCore="clr-namespace:Animator.AppCore" mc:Ignorable="d" x:Name="UserControl" Background="Transparent" Style="{StaticResource ResourceKey=PaneUserControlStyle}" appCore:AniUI.PaneHeader="Transport">
+﻿<UserControl x:Class="Animator.UI.Panes.TransportPane"
+						 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+						 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+						 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+						 xmlns:appCore="clr-namespace:Animator.AppCore" mc:Ignorable="d" x:Name="UserControl"
+						 Background="Transparent"
+						 appCore:AniUI.PaneHeader="Transport"
+						 DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=TransportController}">
 	<UserControl.Resources>
 		<Style x:Key="TransportButtonStyle" TargetType="{x:Type ButtonBase}">
 			<Setter Property="Width" Value="20"/>
@@ -23,42 +27,58 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+		<Style x:Key="TransportTextBoxStyle" TargetType="{x:Type TextBox}">
+			<Setter Property="Margin" Value="2,1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type TextBox}">
+						<Border BorderThickness="1" CornerRadius="2" BorderBrush="{StaticResource CellBorderBrush}">
+							<ContentPresenter/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</UserControl.Resources>
-	<StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
-		<Button Style="{StaticResource TransportButtonStyle}">
-			<Image>
-				<Image.Source>
-					<DrawingImage Drawing="{StaticResource PreviousButtonDrawing}"></DrawingImage>
-				</Image.Source>
-			</Image>
-		</Button>
-		<ToggleButton Style="{StaticResource TransportButtonStyle}">
-			<Image>
-				<Image.Source>
-					<DrawingImage Drawing="{StaticResource StopButtonDrawing}"></DrawingImage>
-				</Image.Source>
-			</Image>
-		</ToggleButton>
-		<ToggleButton Style="{StaticResource TransportButtonStyle}">
-			<Image>
-				<Image.Source>
-					<DrawingImage Drawing="{StaticResource PlayButtonDrawing}"></DrawingImage>
-				</Image.Source>
-			</Image>
-		</ToggleButton>
-		<ToggleButton Style="{StaticResource TransportButtonStyle}">
-			<Image>
-				<Image.Source>
-					<DrawingImage Drawing="{StaticResource PauseButtonDrawing}"></DrawingImage>
-				</Image.Source>
-			</Image>
-		</ToggleButton>
-		<Button Style="{StaticResource TransportButtonStyle}">
-			<Image>
-				<Image.Source>
-					<DrawingImage Drawing="{StaticResource NextButtonDrawing}"></DrawingImage>
-				</Image.Source>
-			</Image>
-		</Button>
-	</StackPanel>
+	<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+		<StackPanel x:Name="LayoutRoot" Orientation="Horizontal">
+			<TextBox Style="{StaticResource TransportTextBoxStyle}" MinWidth="60" IsReadOnly="True" Text="{Binding Path=State, Mode=OneWay}" />
+			<Button Style="{StaticResource TransportButtonStyle}">
+				<Image>
+					<Image.Source>
+						<DrawingImage Drawing="{StaticResource PreviousButtonDrawing}"></DrawingImage>
+					</Image.Source>
+				</Image>
+			</Button>
+			<Button Command="appCore:TransportCommands.Stop" Style="{StaticResource TransportButtonStyle}">
+				<Image>
+					<Image.Source>
+						<DrawingImage Drawing="{StaticResource StopButtonDrawing}"></DrawingImage>
+					</Image.Source>
+				</Image>
+			</Button>
+			<ToggleButton Command="appCore:TransportCommands.Play" Style="{StaticResource TransportButtonStyle}">
+				<Image>
+					<Image.Source>
+						<DrawingImage Drawing="{StaticResource PlayButtonDrawing}"></DrawingImage>
+					</Image.Source>
+				</Image>
+			</ToggleButton>
+			<ToggleButton Command="appCore:TransportCommands.Pause" Style="{StaticResource TransportButtonStyle}">
+				<Image>
+					<Image.Source>
+						<DrawingImage Drawing="{StaticResource PauseButtonDrawing}"></DrawingImage>
+					</Image.Source>
+				</Image>
+			</ToggleButton>
+			<Button Style="{StaticResource TransportButtonStyle}">
+				<Image>
+					<Image.Source>
+						<DrawingImage Drawing="{StaticResource NextButtonDrawing}"></DrawingImage>
+					</Image.Source>
+				</Image>
+			</Button>
+			<TextBox Style="{StaticResource TransportTextBoxStyle}" MinWidth="60" IsReadOnly="True" Text="{Binding Path=Position, Mode=OneWay}"/>
+		</StackPanel>
+	</Border>
 </UserControl>
