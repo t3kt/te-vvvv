@@ -57,11 +57,22 @@ namespace Animator.Core.Model
 		private sealed class ValueHandler : TypeHandler
 		{
 
-			public ValueHandler() : base(typeof(float)) { }
+			private static double PrepareValue(object x)
+			{
+				if(x is double)
+					return (double)x;
+				if(x is float)
+					return (float)x;
+				if(x is int)
+					return (int)x;
+				return Convert.ToDouble(x);
+			}
+
+			public ValueHandler() : base(typeof(double)) { }
 
 			public override object ParseValueAttribute(XAttribute attribute)
 			{
-				return (float?)attribute ?? 0f;
+				return (double?)attribute ?? 0f;
 			}
 
 			public override bool ValuesEqual(object x, object y)
@@ -70,7 +81,10 @@ namespace Animator.Core.Model
 					return true;
 				if(x == null || y == null)
 					return false;
-				return (float)x == (float)y;
+				//return (double)x == (double)y;
+				var vx = PrepareValue(x);
+				var vy = PrepareValue(y);
+				return vx == vy;
 			}
 
 		}

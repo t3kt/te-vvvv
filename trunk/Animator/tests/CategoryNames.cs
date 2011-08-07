@@ -21,6 +21,7 @@ namespace Animator.Tests
 		public const string OSC = "OSC";
 		public const string Transport = "Transport";
 		public const string ClipData = "ClipData";
+		public const string ObjectStates = "ObjectStates";
 
 		public const string App_Converters = "App.Converters";
 		public const string App_Tasks = "App.Tasks";

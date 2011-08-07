@@ -6,7 +6,6 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Animator.Common.Diagnostics;
 using Animator.Common.Threading;
 using Animator.Core.Composition;
 using TESharedAnnotations;
@@ -16,9 +15,9 @@ namespace Animator.Core.Transport
 
 	#region MediaTransport
 
-	[AniExport(typeof(Transport), Key = "media", Description = "Media Transport")]
+	[AniExport(typeof(ITransportController), Key = "media", Description = "Media Transport")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
-	public sealed class MediaTransport : Transport
+	public sealed class MediaTransport : TransportBase
 	{
 
 		#region Static / Constant
@@ -44,7 +43,6 @@ namespace Animator.Core.Transport
 		private TransportState _State;
 		private uint _LastUpdate;
 		private TimeSpan _Position;
-		private float _BeatsPerMinute = DefaultBeatsPerMinute;
 		private readonly ReaderWriterLockSlim _Lock;
 
 		#endregion
@@ -52,28 +50,12 @@ namespace Animator.Core.Transport
 		#region Properties
 
 		[Category(TEShared.Names.Category_Common)]
-		public override float BeatsPerMinute
-		{
-			get
-			{
-				using(this._Lock.ReadScope())
-					return this._BeatsPerMinute;
-			}
-			internal set
-			{
-				Require.ArgPositive(value, "value");
-				using(this._Lock.WriteScope())
-					this._BeatsPerMinute = value;
-			}
-		}
-
-		[Category(TEShared.Names.Category_Common)]
 		public override TransportState State
 		{
 			get
 			{
-				using(this._Lock.ReadScope())
-					return this._State;
+				//using(this._Lock.ReadScope())
+				return this._State;
 			}
 			protected set
 			{
@@ -88,8 +70,8 @@ namespace Animator.Core.Transport
 		{
 			get
 			{
-				using(this._Lock.ReadScope())
-					return this._Position;
+				//using(this._Lock.ReadScope())
+				return this._Position;
 			}
 			set
 			{

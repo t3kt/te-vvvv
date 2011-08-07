@@ -44,8 +44,6 @@
 		<CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AddOutput" Executed="AddOutputCommand_Executed" CanExecute="Command_CanExecuteWhenHasActiveDocument" />
 		<CommandBinding Command="appCore:AniAppCommands.AboutApplication" Executed="AboutApplicationCommand_Executed"/>
-		<CommandBinding Command="appCore:AniAppCommands.EditDetail" Executed="EditDetailCommand_Executed" CanExecute="EditDetailCommand_CanExecute"/>
-		<CommandBinding Command="ApplicationCommands.Delete" Executed="DeleteCommand_Executed" CanExecute="DeleteCommand_CanExecute"/>
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -60,81 +58,84 @@
 			<RowDefinition/>
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<Menu Grid.ColumnSpan="5">
-			<Menu.Style>
-				<Style TargetType="{x:Type Menu}">
-					<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
-					<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"/>
-					<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"/>
-					<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}"/>
-					<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type Menu}">
-								<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
-									<DockPanel IsItemsHost="True" LastChildFill="False" />
-								</Border>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-				</Style>
-			</Menu.Style>
-			<Menu.Resources>
-				<Style TargetType="{x:Type MenuItem}">
-					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
-				</Style>
-				<Style x:Key="SeparatorStyle" TargetType="{x:Type Separator}">
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type Separator}">
-								<Grid SnapsToDevicePixels="true" Background="{StaticResource PaneBackgroundBrush}">
-									<Rectangle Fill="{StaticResource MainMenuSeparatorBrush}" Height="2" Margin="10,2,10,2"/>
-								</Grid>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-					<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
-				</Style>
-			</Menu.Resources>
-			<MenuItem Header="_File">
-				<MenuItem Command="ApplicationCommands.New" />
-				<MenuItem Command="ApplicationCommands.Open" />
-				<MenuItem Command="ApplicationCommands.Save" />
-				<MenuItem Command="ApplicationCommands.SaveAs" />
-				<MenuItem Command="ApplicationCommands.Close" />
-				<Separator Style="{StaticResource SeparatorStyle}" />
-				<ctl:RecentFilesMenuItem Header="_Recent Files" Background="{StaticResource PaneBackgroundBrush}"/>
-				<Separator Style="{StaticResource SeparatorStyle}" />
-				<MenuItem Command="appCore:AniAppCommands.Exit" />
-			</MenuItem>
-			<MenuItem Header="_Edit">
-				<MenuItem Command="ApplicationCommands.Undo"/>
-				<MenuItem Command="ApplicationCommands.Redo"/>
-				<Separator Style="{StaticResource SeparatorStyle}" />
-				<MenuItem Command="ApplicationCommands.Cut"/>
-				<MenuItem Command="ApplicationCommands.Copy"/>
-				<MenuItem Command="ApplicationCommands.Paste"/>
-				<MenuItem Command="ApplicationCommands.Delete"/>
-				<Separator Style="{StaticResource SeparatorStyle}" />
-				<MenuItem Command="appCore:AniAppCommands.EditTransport" Header="Document _Transport" />
-			</MenuItem>
-			<MenuItem Header="_Add">
-				<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
-				<MenuItem Command="appCore:AniAppCommands.AddTrack" Header="_Track" />
-			</MenuItem>
-			<MenuItem Header="_View">
-				<MenuItem x:Name="sectionsVisibleMenuItem" Header="_Sections" IsCheckable="True" IsChecked="True"/>
-				<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
-				<Separator Style="{StaticResource SeparatorStyle}" />
-				<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
-			</MenuItem>
-			<MenuItem Header="_Debug">
-				<MenuItem Command="test:TestCommands.ShowTestWindow" />
-			</MenuItem>
-			<MenuItem Header="_Help">
-				<MenuItem Command="appCore:AniAppCommands.AboutApplication" Header="_About Animator" />
-			</MenuItem>
-		</Menu>
+		<DockPanel Grid.ColumnSpan="5">
+			<panes:TransportPane DockPanel.Dock="Right"/>
+			<Menu>
+				<Menu.Style>
+					<Style TargetType="{x:Type Menu}">
+						<Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
+						<Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"/>
+						<Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"/>
+						<Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}"/>
+						<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type Menu}">
+									<Border Background="{StaticResource PaneBackgroundBrush}" BorderBrush="{StaticResource PaneBorderBrush}" BorderThickness="2" CornerRadius="4" Padding="4">
+										<DockPanel IsItemsHost="True" LastChildFill="False" />
+									</Border>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</Menu.Style>
+				<Menu.Resources>
+					<Style TargetType="{x:Type MenuItem}">
+						<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}" />
+					</Style>
+					<Style x:Key="SeparatorStyle" TargetType="{x:Type Separator}">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type Separator}">
+									<Grid SnapsToDevicePixels="true" Background="{StaticResource PaneBackgroundBrush}">
+										<Rectangle Fill="{StaticResource MainMenuSeparatorBrush}" Height="2" Margin="10,2,10,2"/>
+									</Grid>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+						<Setter Property="Background" Value="{StaticResource PaneBackgroundBrush}"/>
+					</Style>
+				</Menu.Resources>
+				<MenuItem Header="_File">
+					<MenuItem Command="ApplicationCommands.New" />
+					<MenuItem Command="ApplicationCommands.Open" />
+					<MenuItem Command="ApplicationCommands.Save" />
+					<MenuItem Command="ApplicationCommands.SaveAs" />
+					<MenuItem Command="ApplicationCommands.Close" />
+					<Separator Style="{StaticResource SeparatorStyle}" />
+					<ctl:RecentFilesMenuItem Header="_Recent Files" Background="{StaticResource PaneBackgroundBrush}"/>
+					<Separator Style="{StaticResource SeparatorStyle}" />
+					<MenuItem Command="appCore:AniAppCommands.Exit" />
+				</MenuItem>
+				<MenuItem Header="_Edit">
+					<MenuItem Command="ApplicationCommands.Undo"/>
+					<MenuItem Command="ApplicationCommands.Redo"/>
+					<Separator Style="{StaticResource SeparatorStyle}" />
+					<MenuItem Command="ApplicationCommands.Cut"/>
+					<MenuItem Command="ApplicationCommands.Copy"/>
+					<MenuItem Command="ApplicationCommands.Paste"/>
+					<MenuItem Command="ApplicationCommands.Delete"/>
+					<Separator Style="{StaticResource SeparatorStyle}" />
+					<MenuItem Command="appCore:AniAppCommands.EditTransport" Header="Document _Transport" />
+				</MenuItem>
+				<MenuItem Header="_Add">
+					<MenuItem Command="appCore:AniAppCommands.AddOutput" Header="_Output" />
+					<MenuItem Command="appCore:AniAppCommands.AddTrack" Header="_Track" />
+				</MenuItem>
+				<MenuItem Header="_View">
+					<MenuItem x:Name="sectionsVisibleMenuItem" Header="_Sections" IsCheckable="True" IsChecked="True"/>
+					<MenuItem x:Name="outputsVisibleMenuItem" Header="_Outputs" IsCheckable="True" IsChecked="True"/>
+					<Separator Style="{StaticResource SeparatorStyle}" />
+					<MenuItem x:Name="statusBarVisibleMenuItem" Header="Status _Bar" IsCheckable="True" IsChecked="True" />
+				</MenuItem>
+				<MenuItem Header="_Debug">
+					<MenuItem Command="test:TestCommands.ShowTestWindow" />
+				</MenuItem>
+				<MenuItem Header="_Help">
+					<MenuItem Command="appCore:AniAppCommands.AboutApplication" Header="_About Animator" />
+				</MenuItem>
+			</Menu>
+		</DockPanel>
 		<panes:SectionsPane x:Name="sectionsPane" Grid.Row="1" MinWidth="150" Visibility="{Binding ElementName=sectionsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 		<GridSplitter Grid.Row="1" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"
 					  Visibility="{Binding ElementName=sectionsVisibleMenuItem, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />

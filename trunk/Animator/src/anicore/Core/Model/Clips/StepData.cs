@@ -37,13 +37,13 @@ namespace Animator.Core.Model.Clips
 
 		#region Fields
 
-		private readonly ObservableCollection<float> _Steps;
+		private readonly ObservableCollection<double> _Steps;
 
 		#endregion
 
 		#region Properties
 
-		public ObservableCollection<float> Steps
+		public ObservableCollection<double> Steps
 		{
 			get { return this._Steps; }
 		}
@@ -54,7 +54,7 @@ namespace Animator.Core.Model.Clips
 
 		public StepData()
 		{
-			this._Steps = new ObservableCollection<float>();
+			this._Steps = new ObservableCollection<double>();
 			this._Steps.CollectionChanged += this.Steps_CollectionChanged;
 		}
 
@@ -99,7 +99,7 @@ namespace Animator.Core.Model.Clips
 		{
 			base.ReadXElement(element);
 			this._Steps.Clear();
-			this._Steps.AddRange(element.Elements(Schema.stepprop_step).Select(e => (float)e));
+			this._Steps.AddRange(element.Elements(Schema.stepprop_step).Select(e => (double)e));
 		}
 
 		private void Steps_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -107,18 +107,18 @@ namespace Animator.Core.Model.Clips
 			this.OnPropertyChanged("Steps");
 		}
 
-		internal int GetIndex(float position)
+		internal int GetIndex(double position)
 		{
 			if(this._Steps.Count == 0)
 				return 0;
 			position = CommonUtil.Clamp(position, 0, 1);
 			var i = position * this._Steps.Count;
-			var j = (float)Math.Floor(i);
+			var j = (double)Math.Floor(i);
 			return (int)CommonUtil.Clamp(j, 0, this._Steps.Count - 1);
 			//return (int)Math.Floor(CommonUtil.MapClamped(position, 0f, 1f, 0f, this._Steps.Count - 1));
 		}
 
-		public override object GetValue(float position)
+		public override object GetValue(double position)
 		{
 			if(this._Steps.Count == 0)
 				return 0f;

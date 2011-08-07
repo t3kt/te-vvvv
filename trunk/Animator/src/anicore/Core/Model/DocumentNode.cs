@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -17,13 +16,6 @@ namespace Animator.Core.Model
 	{
 
 		#region Static / Constant
-
-		protected static void DisposeIfNeeded(object obj)
-		{
-			var d = obj as IDisposable;
-			if(d != null)
-				d.Dispose();
-		}
 
 		#endregion
 
@@ -55,11 +47,6 @@ namespace Animator.Core.Model
 		{
 			Require.DBG_ArgNotNull(children, "children");
 			children.CollectionChanged += (s, e) => this.OnPropertyChanged(name);
-		}
-
-		public virtual bool TryDeleteChild(DocumentNode node)
-		{
-			return false;
 		}
 
 		#endregion

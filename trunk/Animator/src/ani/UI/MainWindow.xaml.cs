@@ -238,26 +238,6 @@ namespace Animator.UI
 			this.ShowAboutAppDialog();
 		}
 
-		private void EditDetailCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-		{
-			AniItemTypes.ShowEditDetail(e.Parameter);
-		}
-
-		private void EditDetailCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			e.CanExecute = AniItemTypes.CanShowEditDetail(e.Parameter);
-		}
-
-		private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-		{
-			AniItemTypes.TryDeleteNode(e.Parameter as DocumentNode);
-		}
-
-		private void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-		{
-			e.CanExecute = AniItemTypes.CanDeleteNode(e.Parameter as DocumentNode);
-		}
-
 		#endregion
 
 	}

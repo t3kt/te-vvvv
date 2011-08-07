@@ -40,7 +40,7 @@ namespace Animator.Tests
 		public void StepDataGetIndex()
 		{
 			var data = new StepData();
-			data.Steps.AddRange(new[] { 0f, 1f, 2f, 3f });
+			data.Steps.AddRange(new[] { 0d, 1d, 2d, 3d });
 
 			Assert.AreEqual(4, data.Steps.Count);
 
@@ -62,15 +62,15 @@ namespace Animator.Tests
 		public void StepDataGetValueBasic()
 		{
 			var data = new StepData();
-			data.Steps.AddRange(new[] { 0f, 1f, 2f, 3f });
+			data.Steps.AddRange(new[] { 0d, 1d, 2d, 3d });
 
-			Assert.AreEqual(0f, data.GetValue(0f));
-			Assert.AreEqual(1f, data.GetValue(0.25f));
-			Assert.AreEqual(2f, data.GetValue(0.5f));
-			Assert.AreEqual(2f, data.GetValue(0.53f));
-			Assert.AreEqual(3f, data.GetValue(0.75f));
-			Assert.AreEqual(3f, data.GetValue(0.95f));
-			Assert.AreEqual(3f, data.GetValue(1f));
+			Assert.AreEqual(0d, data.GetValue(0d));
+			Assert.AreEqual(1d, data.GetValue(0.25d));
+			Assert.AreEqual(2d, data.GetValue(0.5d));
+			Assert.AreEqual(2d, data.GetValue(0.53d));
+			Assert.AreEqual(3d, data.GetValue(0.75d));
+			Assert.AreEqual(3d, data.GetValue(0.95d));
+			Assert.AreEqual(3d, data.GetValue(1d));
 		}
 
 	}

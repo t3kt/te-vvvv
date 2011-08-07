@@ -30,25 +30,25 @@ namespace Animator.Tests
 			object value;
 			const string propA_Name = "propA";
 			Assert.IsFalse(tgtObj.GetValue(propA_Name, out value));
-			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1d));
 			Assert.IsFalse(tgtObj.ClearValue(propA_Name));
 
-			var propA = tgtObj.Add(propA_Name, TargetPropertyType.Value, 12.3f);
+			var propA = tgtObj.Add(propA_Name, TargetPropertyType.Value, 12.3d);
 			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
 			Assert.IsTrue(tgtObj.ClearValue(propA_Name));
 			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
-			Assert.IsTrue(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsTrue(tgtObj.SetValue(propA_Name, 22.1d));
 			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
-			Assert.AreEqual(22.1f, value);
+			Assert.AreEqual(22.1d, value);
 			Assert.IsTrue(tgtObj.ClearValue(propA_Name));
 			Assert.IsTrue(tgtObj.GetValue(propA_Name, out value));
 			Assert.AreEqual(propA.DefaultValue, value);
 
 			Assert.IsTrue(tgtObj.Remove(propA_Name));
 			Assert.IsFalse(tgtObj.GetValue(propA_Name, out value));
-			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1f));
+			Assert.IsFalse(tgtObj.SetValue(propA_Name, 22.1d));
 			Assert.IsFalse(tgtObj.ClearValue(propA_Name));
 		}
 
@@ -131,7 +131,7 @@ namespace Animator.Tests
 		[TestCategory(CategoryNames.Runtime_Model)]
 		public void TargetObjectNotifyValueChanges_ValueProperty()
 		{
-			this.TargetObjectNotifyValueChangesHelper<float>(TargetPropertyType.Value, 3.2f, 252.3f);
+			this.TargetObjectNotifyValueChangesHelper<double>(TargetPropertyType.Value, 3.2f, 252.3f);
 		}
 
 		[TestMethod]

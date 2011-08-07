@@ -7,6 +7,8 @@ using System.Windows.Input;
 using Animator.AppCore;
 using Animator.Core.IO;
 using Animator.Core.Model;
+using Animator.UI.Dialogs;
+using Animator.UI.Editors;
 
 namespace Animator.UI.Panes
 {
@@ -43,9 +45,20 @@ namespace Animator.UI.Panes
 		{
 			var itemControl = e.Source as FrameworkElement;
 			if(itemControl != null)
+				AniAppCommands.EditDetail.Execute(itemControl.DataContext, itemControl);
+		}
+
+		private void EditDetailCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var item = e.Parameter as DocumentItem;
+			if(item != null)
 			{
-				if(AniItemTypes.ShowEditDetail(itemControl.DataContext))
-					e.Handled = true;
+				//if(ObjectEditorDialog.ShowPropertyGridForTarget(item, Window.GetWindow(this), "Edit " + item.GetType().Name))
+				//    e.Handled = true;
+
+				var stateEditor = new PropertyGridObjectStateEditor {Target = item};
+				var result = ObjectEditorDialog.ShowForEditor(stateEditor, Window.GetWindow(this));
+				e.Handled = result;
 			}
 		}
 

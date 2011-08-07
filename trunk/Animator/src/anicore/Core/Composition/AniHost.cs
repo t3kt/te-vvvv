@@ -12,6 +12,7 @@ using Animator.Core.IO;
 using Animator.Core.Model;
 using Animator.Core.Model.Clips;
 using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Composition
@@ -57,9 +58,9 @@ namespace Animator.Core.Composition
 			get { return this._Container.GetExports<ClipPropertyData, IAniExportMetadata>(); }
 		}
 
-		private IEnumerable<Lazy<Transport.Transport, IAniExportMetadata>> Transports
+		private IEnumerable<Lazy<ITransportController, IAniExportMetadata>> Transports
 		{
-			get { return this._Container.GetExports<Transport.Transport, IAniExportMetadata>(); }
+			get { return this._Container.GetExports<ITransportController, IAniExportMetadata>(); }
 		}
 
 		private IEnumerable<Lazy<Output, IAniExportMetadata>> Outputs
@@ -126,9 +127,9 @@ namespace Animator.Core.Composition
 		}
 
 		[NotNull]
-		public Transport.Transport CreateTransportByKey(string key)
+		public ITransportController CreateTransportByKey(string key)
 		{
-			return this.Transports.CreateByKey(key, () => new Transport.NullTransport());
+			return this.Transports.CreateByKey(key, () => new NullTransport());
 		}
 
 		[NotNull]
@@ -154,15 +155,6 @@ namespace Animator.Core.Composition
 			return this.Outputs.CreateByKey(key, () => new Output());
 		}
 
-		[NotNull]
-		internal Transport.Transport CreateTransport([CanBeNull] string transportType, [CanBeNull]IDictionary<string, string> parameters)
-		{
-			var transport = this.CreateTransportByKey(transportType);
-			Debug.Assert(transport != null);
-			transport.SetParameters(parameters);
-			return transport;
-		}
-
 		public IEnumerable<KeyValuePair<string, string>> GetOutputTypeDescriptionsByKey()
 		{
 			return this.Outputs.GetTypeDescriptionsByKey();
@@ -173,7 +165,7 @@ namespace Animator.Core.Composition
 			return this.Transports.GetTypeDescriptionsByKey();
 		}
 
-		public IEnumerable<KeyValuePair<string,string>> GetClipPropertyDataTypeDescriptionsByKey()
+		public IEnumerable<KeyValuePair<string, string>> GetClipPropertyDataTypeDescriptionsByKey()
 		{
 			return this.ClipPropertyDatas.GetTypeDescriptionsByKey();
 		}

@@ -9,21 +9,9 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Content="Transport Type:"/>
 		<ComboBox Grid.Column="1" x:Name="typeComboBox" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}, Path=TransportTypeDescriptions}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}, Path=TransportType}" />
-		<Label Grid.Row="2" Content="BPM:" />
-		<!--Text="{Binding Path=BeatsPerMinute, RelativeSource={RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}}"-->
-		<TextBox Grid.Row="2" Grid.Column="1" Name="bpmTextBox">
-			<TextBox.Text>
-				<Binding Path="BeatsPerMinute" RelativeSource="{RelativeSource FindAncestor, AncestorType=dlg:TransportPropertiesDialog, AncestorLevel=1}">
-					<Binding.ValidationRules>
-						<ExceptionValidationRule/>
-					</Binding.ValidationRules>
-				</Binding>
-			</TextBox.Text>
-		</TextBox>
 		<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,4,0,0">
 			<Button Content="_OK" Width="60" IsDefault="True" x:Name="okButton" Click="okButton_Click" Margin="2" />
 			<Button Content="_Cancel" Width="60" IsCancel="True" x:Name="cancelButton" Click="cancelButton_Click" Margin="2" />

@@ -11,9 +11,9 @@ namespace Animator.Tests.Utils
 
 	#region ManualTransport
 
-	[AniExport(typeof(Transport), Key = "manual", Description = "Manual Transport")]
+	[AniExport(typeof(ITransportController), Key = "manual", Description = "Manual Transport")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
-	public sealed class ManualTransport : Transport
+	public sealed class ManualTransport : TransportBase
 	{
 
 		#region Static / Constant

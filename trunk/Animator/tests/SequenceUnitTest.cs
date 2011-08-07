@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Animator.Common;
 using Animator.Core.Model;
+using Animator.Core.Model.Clips;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Runtime;
 using Animator.Tests.Utils;
@@ -129,90 +130,104 @@ namespace Animator.Tests
 		[TestCategory(CategoryNames.Sequences)]
 		public void SeqTrackPreventClipOverlap()
 		{
-			var host = CompositionUnitTest.CreateHost(test: true, core: true);
-			var doc = new Document(host);
-
-			var seq = new Sequence();
-			doc.Sections.Add(seq);
-
-			var track = new SequenceTrack(doc);
-			seq.Tracks.Add(track);
+			var track = new SequenceTrack();
 
 			// [1 -> 3]
-			var clipA_start = TimeSpan.FromSeconds(1);
-			var clipA_dur = TimeSpan.FromSeconds(2);
-			var clipA_end = clipA_start + clipA_dur;
-			var clipA = new SequenceClip
-						{
-							Start = clipA_start,
-							Duration = clipA_dur
-						};
-			Assert.AreEqual(clipA_start, clipA.Start);
-			Assert.AreEqual(clipA_dur, clipA.Duration);
-			Assert.AreEqual(clipA_end, clipA.End);
+			var clipA_interval = new Interval(1, 2);
+			var clipA = new SequenceClip(clipA_interval);
+			Assert.AreEqual(clipA_interval, clipA.Interval);
 
 			track.Clips.Add(clipA);
-			Assert.AreEqual(clipA_start, clipA.Start);
-			Assert.AreEqual(clipA_dur, clipA.Duration);
-			Assert.AreEqual(clipA_end, clipA.End);
+			CollectionAssert.AreEqual(new[] { clipA }, track.Clips.ToArray());
+			Assert.AreEqual(clipA_interval, clipA.Interval);
 
 			// [4 -> 6]
-			var clipB_start = TimeSpan.FromSeconds(4);
-			var clipB_dur = TimeSpan.FromSeconds(2);
-			var clipB_end = clipB_start + clipB_dur;
-			var clipB = new SequenceClip
-						{
-							Start = clipB_start,
-							Duration = clipB_dur
-						};
-			Assert.AreEqual(clipB_start, clipB.Start);
-			Assert.AreEqual(clipB_dur, clipB.Duration);
-			Assert.AreEqual(clipB_end, clipB.End);
+			var clipB_interval = new Interval(4, 2);
+			var clipB = new SequenceClip(clipB_interval);
+			Assert.AreEqual(clipB_interval, clipB.Interval);
 
 			track.Clips.Add(clipB);
+			CollectionAssert.AreEqual(new[] { clipA, clipB }, track.Clips.ToArray());
 
-			Assert.AreEqual(clipA_start, clipA.Start);
-			Assert.AreEqual(clipA_dur, clipA.Duration);
-			Assert.AreEqual(clipA_end, clipA.End);
+			Assert.AreEqual(clipA_interval, clipA.Interval);
 
-			Assert.AreEqual(clipB_start, clipB.Start);
-			Assert.AreEqual(clipB_dur, clipB.Duration);
-			Assert.AreEqual(clipB_end, clipB.End);
+			Assert.AreEqual(clipB_interval, clipB.Interval);
 
 			// [5 -> 10]
-			var clipC_start = TimeSpan.FromSeconds(5);
-			var clipC_dur = TimeSpan.FromSeconds(5);
-			var clipC_end = clipC_start + clipC_dur;
-			var clipC = new SequenceClip
-			{
-				Start = clipC_start,
-				Duration = clipC_dur
-			};
-			Assert.AreEqual(clipC_start, clipC.Start);
-			Assert.AreEqual(clipC_dur, clipC.Duration);
-			Assert.AreEqual(clipC_end, clipC.End);
+			var clipC_interval = new Interval(5, 5);
+			var clipC = new SequenceClip(clipC_interval);
+			Assert.AreEqual(clipC_interval, clipC.Interval);
 
-			// [6 -> 10]
+			// this won't be inserted....
 			track.Clips.Add(clipC);
 
-			Assert.AreEqual(clipA_start, clipA.Start);
-			Assert.AreEqual(clipA_dur, clipA.Duration);
-			Assert.AreEqual(clipA_end, clipA.End);
+			CollectionAssert.AreEqual(new[] { clipA, clipB }, track.Clips.ToArray());
 
-			Assert.AreEqual(clipB_start, clipB.Start);
-			Assert.AreEqual(clipB_dur, clipB.Duration);
-			Assert.AreEqual(clipB_end, clipB.End);
-
-			Assert.AreEqual(clipB_end, clipC.Start);
-			Assert.AreEqual(clipC_end - clipB_end, clipC.Duration);
-			Assert.AreEqual(clipC_end, clipC.End);
+			Assert.AreEqual(clipC_interval, clipC.Interval);
 		}
 
 		[TestMethod]
 		[TestCategory(CategoryNames.Sequences)]
 		public void SeqClipPushTargetValues()
 		{
-			Assert.Inconclusive();
+			var target = new TargetObject();
+			var tprop_x_default = 9292.452d;
+			var tprop_y_default = -3.000212d;
+			var tprop_x = target.Add("x", TargetPropertyType.Value, tprop_x_default);
+			var tprop_y = target.Add("y", TargetPropertyType.Value, tprop_y_default);
+			var clip_interval = new Interval(1, 3);
+			var clip = new SequenceClip(clip_interval);
+			var cprop_x = new ConstData { Name = tprop_x.Name };
+			var cprop_y = new ConstData { Name = tprop_y.Name };
+			clip.Properties.Add(cprop_x);
+			clip.Properties.Add(cprop_y);
+
+			var changeCount = 0;
+			var x_changeValues = new List<object>();
+			var y_changeValues = new List<object>();
+			target.PropertyValueChanged +=
+				(s, e) =>
+				{
+					changeCount++;
+					if(e.Name == tprop_x.Name)
+					{
+						x_changeValues.Add(e.Value);
+					}
+					else if(e.Name == tprop_y.Name)
+					{
+						y_changeValues.Add(e.Value);
+					}
+				};
+			Assert.AreEqual(tprop_x_default, tprop_x.Value);
+			Assert.AreEqual(tprop_x_default, target.GetValue(tprop_x.Name));
+			Assert.AreEqual(tprop_y_default, tprop_y.Value);
+			Assert.AreEqual(tprop_y_default, target.GetValue(tprop_y.Name));
+
+			var cprop_x_val_1 = 42.11d;
+			var cprop_y_val_1 = -990.42d;
+			cprop_x.Value = cprop_x_val_1;
+			cprop_y.Value = cprop_y_val_1;
+			clip.PushTargetValues(target, TimeSpan.FromSeconds(2));
+			Assert.AreEqual(cprop_x_val_1, tprop_x.Value);
+			Assert.AreEqual(cprop_x_val_1, target.GetValue(tprop_x.Name));
+			Assert.AreEqual(cprop_y_val_1, tprop_y.Value);
+			Assert.AreEqual(cprop_y_val_1, target.GetValue(tprop_y.Name));
+			Assert.AreEqual(2, changeCount);
+			CollectionAssert.AreEqual(new[] { cprop_x_val_1 }, x_changeValues);
+			CollectionAssert.AreEqual(new[] { cprop_y_val_1 }, y_changeValues);
+
+			var cprop_x_val_2 = 90909012.3124d;
+			var cprop_y_val_2 = 0.00021d;
+			cprop_x.Value = cprop_x_val_2;
+			cprop_y.Value = cprop_y_val_2;
+			clip.PushTargetValues(target, TimeSpan.FromSeconds(2));
+			Assert.AreEqual(cprop_x_val_2, tprop_x.Value);
+			Assert.AreEqual(cprop_x_val_2, target.GetValue(tprop_x.Name));
+			Assert.AreEqual(cprop_y_val_2, tprop_y.Value);
+			Assert.AreEqual(cprop_y_val_2, target.GetValue(tprop_y.Name));
+			Assert.AreEqual(4, changeCount);
+			CollectionAssert.AreEqual(new[] { cprop_x_val_1, cprop_x_val_2 }, x_changeValues);
+			CollectionAssert.AreEqual(new[] { cprop_y_val_1, cprop_y_val_2 }, y_changeValues);
 		}
 
 		[TestMethod]
@@ -249,7 +264,7 @@ namespace Animator.Tests
 			var a_dur = TimeSpan.FromSeconds(2);
 			var a_int = new Interval(a_start, a_dur);
 
-			clip.ChangeInterval(a_int);
+			Assert.AreEqual(TryChangeValueDecision.Approved, clip.TryChangeInterval(a_int));
 			Assert.AreEqual(a_start, clip.Start);
 			Assert.AreEqual(a_dur, clip.Duration);
 
@@ -262,7 +277,7 @@ namespace Animator.Tests
 			var b_start = TimeSpan.FromSeconds(3);
 			var b_dur = TimeSpan.FromSeconds(4);
 			var b_int = new Interval(b_start, b_dur);
-			clip.ChangeInterval(b_int);
+			Assert.AreEqual(TryChangeValueDecision.Approved, clip.TryChangeInterval(b_int));
 			Assert.AreEqual(b_start, clip.Start);
 			Assert.AreEqual(b_dur, clip.Duration);
 
@@ -275,6 +290,7 @@ namespace Animator.Tests
 			var c_dur = TimeSpan.FromSeconds(6);
 			var c_int = new Interval(c_start, c_dur);
 			clip.ChangeInterval(c_int);
+			Assert.AreEqual(TryChangeValueDecision.Denied, clip.TryChangeInterval(c_int));
 			Assert.AreEqual(b_start, clip.Start);
 			Assert.AreEqual(b_dur, clip.Duration);
 
@@ -282,7 +298,7 @@ namespace Animator.Tests
 				(s, e) =>
 				{
 				});
-			clip.ChangeInterval(c_int);
+			Assert.AreEqual(TryChangeValueDecision.Approved, clip.TryChangeInterval(c_int));
 			Assert.AreEqual(c_start, clip.Start);
 			Assert.AreEqual(c_dur, clip.Duration);
 
@@ -299,17 +315,9 @@ namespace Animator.Tests
 				{
 					e.ApproveModified(e_int);
 				});
-			clip.ChangeInterval(d_int);
+			Assert.AreEqual(TryChangeValueDecision.ModifiedApproved, clip.TryChangeInterval(d_int));
 			Assert.AreEqual(e_start, clip.Start);
 			Assert.AreEqual(e_dur, clip.Duration);
-		}
-
-		private static void AssertIntervalsEqual(Interval expected, Interval actual, string message = null)
-		{
-			Tracer.Line("Expected interval: {0}", expected);
-			Tracer.Line("Actual interval:   {0}", actual);
-			Assert.AreEqual(expected, actual, message);
-			Tracer.Line("... they're equal!");
 		}
 
 		[TestCategory(CategoryNames.Sequences)]

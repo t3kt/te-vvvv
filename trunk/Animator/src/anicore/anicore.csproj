@@ -75,6 +75,7 @@
     <Compile Include="Common\Threading\ReaderWriterLockSlimScope.cs" />
     <Compile Include="Core\Composition\AniExport.cs" />
     <Compile Include="Core\Composition\AniHost.cs" />
+    <Compile Include="Core\IO\DocumentOutputCollection.cs" />
     <Compile Include="Core\IO\TraceOutput.cs" />
     <Compile Include="Core\Model\Clips\ClipBase.cs" />
     <Compile Include="Core\Model\Clips\ClipPropertyData.cs" />
@@ -107,10 +108,13 @@
     <Compile Include="Core\Model\DocumentNode.cs" />
     <Compile Include="Core\Runtime\IGuidId.cs" />
     <Compile Include="Core\Runtime\IObjectEditor.cs" />
-    <Compile Include="Core\Runtime\ItemType.cs" />
-    <Compile Include="Core\Runtime\TargetPropertyChangedEvent.cs" />
+    <Compile Include="Core\Runtime\ObjectStates\ObjectState.cs" />
+    <Compile Include="Core\Runtime\ObjectStates\StatePropertyAttribute.cs" />
+    <Compile Include="Core\Runtime\ObjectStates\StatePropertyDescriptor.cs" />
+    <Compile Include="Core\Runtime\ObjectStates\StateType.cs" />
     <Compile Include="Core\Runtime\TryChangeValueEvent.cs" />
     <Compile Include="Core\Runtime\ValueChangeEvent.cs" />
+    <Compile Include="Core\Transport\ITransportController.cs" />
     <Compile Include="Core\Transport\MediaTransport.cs" />
     <Compile Include="Core\Transport\Transport.cs" />
     <Compile Include="Core\Transport\TransportState.cs" />

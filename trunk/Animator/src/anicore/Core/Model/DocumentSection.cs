@@ -9,6 +9,7 @@ using Animator.Common.Diagnostics;
 using Animator.Core.Composition;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Model.Sessions;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -59,11 +60,11 @@ namespace Animator.Core.Model
 
 		#region Methods
 
-		public virtual void PushTargetChanges([NotNull] Transport.Transport transport)
+		public virtual void PushTargetValues([NotNull] ITransportController transport)
 		{
 			Require.ArgNotNull(transport, "transport");
 			foreach(var track in this.TracksInternal)
-				track.PushTargetChanges(transport);
+				track.PushTargetValues(transport);
 		}
 
 		#endregion
@@ -122,30 +123,6 @@ namespace Animator.Core.Model
 		#endregion
 
 		#region Methods
-
-		internal override bool TryDeleteItem(IDocumentItem item)
-		{
-			if(item == null)
-				return false;
-			if(item is TTrack)
-				return this._Tracks.Remove((TTrack)item);
-			foreach(var track in this._Tracks)
-			{
-				if(track.TryDeleteItem(item))
-					return true;
-			}
-			return false;
-		}
-
-		public override bool TryDeleteChild(DocumentNode node)
-		{
-			if(node is TTrack && this._Tracks.Remove((TTrack)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			return false;
-		}
 
 		#endregion
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Markup;
 using System.Xml.Linq;
@@ -19,52 +18,21 @@ namespace Animator.Core.Model.Sequences
 	public sealed class SequenceTrack : Track
 	{
 
-		#region ClipCollection
-
-		private sealed class ClipCollection : DocumentNodeCollection<SequenceClip>
-		{
-
-			#region Static/Constant
-
-			#endregion
-
-			#region Fields
-
-			#endregion
-
-			#region Properties
-
-			#endregion
-
-			#region Constructors
-
-			public ClipCollection(SequenceTrack track)
-				: base(track) { }
-
-			#endregion
-
-			#region Methods
-
-			#endregion
-
-		}
-
-		#endregion
-
 		#region Static / Constant
 
 		#endregion
 
 		#region Fields
 
-		private readonly ClipCollection _Clips;
+		private readonly SequenceClipCollection _Clips;
 		private SequenceClip _ActiveClip;
+		private TimeSpan _Position;
 
 		#endregion
 
 		#region Properties
 
-		public ObservableCollection<SequenceClip> Clips
+		public SequenceClipCollection Clips
 		{
 			get { return this._Clips; }
 		}
@@ -86,7 +54,7 @@ namespace Animator.Core.Model.Sequences
 		public SequenceTrack(Guid id, Document document)
 			: base(id, document)
 		{
-			this._Clips = new ClipCollection(this);
+			this._Clips = new SequenceClipCollection(this);
 			this.ObserveChildCollection("Clips", this._Clips);
 		}
 
@@ -99,9 +67,10 @@ namespace Animator.Core.Model.Sequences
 		public SequenceTrack([NotNull] XElement element, Document document, [CanBeNull]AniHost host)
 			: base(element, document)
 		{
-			this._Clips = new ClipCollection(this);
+			var clips = element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? AniHost.Current)).ToList();
+			this._Clips = new SequenceClipCollection(this, clips.Count);
 			this.ObserveChildCollection("Clips", this._Clips);
-			this._Clips.AddRange(element.Elements(Schema.seqclip).Select(e => new SequenceClip(e, host ?? AniHost.Current)));
+			this._Clips.AddRange(clips);
 		}
 
 		#endregion
@@ -110,6 +79,7 @@ namespace Animator.Core.Model.Sequences
 
 		internal void UpdatePosition(TimeSpan position)
 		{
+			this._Position = position;
 			if(this._ActiveClip != null && this._ActiveClip.ContainsPosition(position))
 				return;
 			foreach(var clip in this._Clips)
@@ -125,23 +95,8 @@ namespace Animator.Core.Model.Sequences
 
 		internal void PushTargetValues()
 		{
-			throw new NotImplementedException();
-		}
-
-		internal override bool TryDeleteItem(IDocumentItem item)
-		{
-			var clip = item as SequenceClip;
-			return clip != null && this._Clips.Remove(clip);
-		}
-
-		public override bool TryDeleteChild(DocumentNode node)
-		{
-			if(node is SequenceClip && this._Clips.Remove((SequenceClip)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			return false;
+			if(this.Target != null && this._ActiveClip != null)
+				this._ActiveClip.PushTargetValues(this.Target, this._Position);
 		}
 
 		public override XElement WriteXElement(XName name = null)

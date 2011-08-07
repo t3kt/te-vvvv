@@ -56,7 +56,7 @@ namespace Animator.Core.Model.Clips
 			this._Name = (string)element.Attribute(Schema.common_name);
 		}
 
-		public abstract object GetValue(float position);
+		public abstract object GetValue(double position);
 
 		protected IEnumerable<XAttribute> WriteCommonXAttributes()
 		{

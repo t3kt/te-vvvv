@@ -14,5 +14,8 @@
     <Setting Name="FileDialogFilter" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Animator Documents|*.anx|XML Files|*.*|All Files|*.*</Value>
     </Setting>
+    <Setting Name="TransportType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">null</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

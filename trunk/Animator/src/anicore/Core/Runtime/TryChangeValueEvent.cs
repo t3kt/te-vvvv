@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Animator.Resources;
 using TESharedAnnotations;
 
 namespace Animator.Core.Runtime

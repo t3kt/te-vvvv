@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Animator.AppCore;
 using Animator.Core.Model;
+using Animator.UI.Dialogs;
+using Animator.UI.Editors;
 
 namespace Animator.UI.Panes
 {
@@ -32,5 +35,14 @@ namespace Animator.UI.Panes
 		{
 			InitializeComponent();
 		}
+
+		private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var doc = this.DataContext as Document;
+			var section = e.Parameter as DocumentSection;
+			if(doc != null && section != null && doc.Sections.Remove(section))
+				e.Handled = true;
+		}
+
 	}
 }

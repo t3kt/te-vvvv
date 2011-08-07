@@ -176,7 +176,7 @@ namespace Animator.Common
 			}
 		}
 
-		internal static float MapFloating(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		internal static double MapFloating(double input, double inMinimum, double inMaximum, double outMinimum, double outMaximum)
 		{
 			if(inMaximum - inMinimum == 0)
 				return 0f;
@@ -185,7 +185,7 @@ namespace Animator.Common
 			return outMinimum + normalized * (outMaximum - outMinimum);
 		}
 
-		internal static float MapClamped(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		internal static double MapClamped(double input, double inMinimum, double inMaximum, double outMinimum, double outMaximum)
 		{
 			if(inMaximum - inMinimum == 0)
 				return 0;
@@ -197,7 +197,7 @@ namespace Animator.Common
 			return Math.Min(Math.Max(output, min), max);
 		}
 
-		internal static float MapWrapping(float input, float inMinimum, float inMaximum, float outMinimum, float outMaximum)
+		internal static double MapWrapping(double input, double inMinimum, double inMaximum, double outMinimum, double outMaximum)
 		{
 			if(inMaximum - inMinimum == 0)
 				return 0;
@@ -209,7 +209,7 @@ namespace Animator.Common
 			return outMinimum + (normalized % 1) * (outMaximum - outMinimum);
 		}
 
-		internal static float Clamp(float input, float min, float max)
+		internal static double Clamp(double input, double min, double max)
 		{
 			var minTemp = Math.Min(min, max);
 			var maxTemp = Math.Max(min, max);
@@ -249,16 +249,18 @@ namespace Animator.Common
 			return true;
 		}
 
-		internal const float ValueComparisonEpsilon = 0.0001f;
+		internal const double ValueComparisonEpsilon = 0.0001f;
 
-		public static bool AreValuesClose(float x, float y)
+		public static bool AreValuesClose(double x, double y)
 		{
-			return Math.Abs(x - y) > ValueComparisonEpsilon;
+			return Math.Abs(x - y) < ValueComparisonEpsilon;
 		}
 
-		internal static IDisposable ActionBlock(Action start = null, Action success = null, Action error = null, Action end = null)
+		public static void DisposeIfNeeded(object obj)
 		{
-			throw new NotImplementedException();
+			var d = obj as IDisposable;
+			if(d != null)
+				d.Dispose();
 		}
 
 	}

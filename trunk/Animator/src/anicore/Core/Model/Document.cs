@@ -11,7 +11,7 @@ using Animator.Core.Composition;
 using Animator.Core.IO;
 using Animator.Core.Model.Sequences;
 using Animator.Core.Model.Sessions;
-using Animator.Core.Runtime;
+using Animator.Core.Transport;
 using TESharedAnnotations;
 
 namespace Animator.Core.Model
@@ -24,29 +24,22 @@ namespace Animator.Core.Model
 
 		#region Static / Constant
 
-		private static readonly ItemTypeInfo _ItemType = new ItemTypeInfo(typeof(Document), canEditDetail: false, canDelete: false);
-
 		#endregion
 
 		#region Fields
 
 		private readonly AniHost _Host;
 
-		private readonly DocumentNodeCollection<Output> _Outputs;
+		private readonly DocumentOutputCollection _Outputs;
 		private readonly DocumentNodeCollection<DocumentSection> _Sections;
 		private Guid _Id;
 		private string _Name;
 		private DocumentSection _ActiveSection;
-		private Transport.Transport _Transport;
+		private ITransportController _Transport;
 
 		#endregion
 
 		#region Properties
-
-		public ItemTypeInfo ItemType
-		{
-			get { return _ItemType; }
-		}
 
 		internal AniHost Host
 		{
@@ -125,7 +118,7 @@ namespace Animator.Core.Model
 		public Document([CanBeNull] AniHost host)
 		{
 			this._Host = host ?? AniHost.Current;
-			this._Outputs = new DocumentNodeCollection<Output>(this);
+			this._Outputs = new DocumentOutputCollection(this);
 			this.ObserveChildCollection("Outputs", this._Outputs);
 			this._Sections = new DocumentNodeCollection<DocumentSection>(this);
 			this.ObserveChildCollection("Sections", this._Sections);
@@ -173,56 +166,6 @@ namespace Animator.Core.Model
 					return target;
 			}
 			return null;
-		}
-
-		public bool TryDeleteItem(IDocumentItem item)
-		{
-			if(item == null)
-				return false;
-			if(item is Output && this._Outputs.Remove((Output)item))
-			{
-				DisposeIfNeeded(item);
-				return true;
-			}
-			if(item is DocumentSection && this._Sections.Remove((DocumentSection)item))
-			{
-				DisposeIfNeeded(item);
-				return true;
-			}
-			foreach(var output in this._Outputs)
-			{
-				if(output.TryDeleteItem(item))
-				{
-					DisposeIfNeeded(item);
-					return true;
-				}
-			}
-			foreach(var section in this._Sections)
-			{
-				if(section.TryDeleteItem(item))
-				{
-					DisposeIfNeeded(item);
-					return true;
-				}
-			}
-			return false;
-		}
-
-		public override bool TryDeleteChild(DocumentNode node)
-		{
-			if(node == null)
-				return false;
-			if(node is Output && this._Outputs.Remove((Output)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			if(node is DocumentSection && this._Sections.Remove((DocumentSection)node))
-			{
-				DisposeIfNeeded(node);
-				return true;
-			}
-			return false;
 		}
 
 		private void ReadXElement(XElement element, AniHost host)

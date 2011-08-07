@@ -6,35 +6,6 @@ using System.Linq;
 namespace Animator.Core.Runtime
 {
 
-	//#region ValueChangeEvent
-
-	//public class ValueChangeEvent
-	//{
-
-	//    #region Static / Constant
-
-	//    #endregion
-
-	//    #region Fields
-
-	//    #endregion
-
-	//    #region Properties
-
-	//    #endregion
-
-	//    #region Constructors
-
-	//    #endregion
-
-	//    #region Methods
-
-	//    #endregion
-
-	//}
-
-	//#endregion
-
 	#region ValueChangedEventArgs<T>
 
 	internal sealed class ValueChangedEventArgs<T> : EventArgs

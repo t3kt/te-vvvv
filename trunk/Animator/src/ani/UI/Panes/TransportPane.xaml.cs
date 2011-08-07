@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Animator.Core.Transport;
 
 namespace Animator.UI.Panes
 {
@@ -23,6 +24,11 @@ namespace Animator.UI.Panes
 		#endregion
 
 		#region Properties
+
+		public ITransportController TransportController
+		{
+			get { return AniApplication.GetAppService<ITransportController>(); }
+		}
 
 		#endregion
 

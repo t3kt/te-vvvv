@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Animator.AppCore;
 using Animator.Core.Runtime;
+using Animator.Core.Runtime.ObjectStates;
 
 namespace Animator.UI.Controls
 {
@@ -20,20 +22,15 @@ namespace Animator.UI.Controls
 		public static readonly DependencyProperty TargetProperty = DependencyProperty.Register("Target", typeof(object),
 			typeof(ObjectEditor), new FrameworkPropertyMetadata(null, OnTargetChanged));
 
+		private static readonly DependencyPropertyKey TargetStatePropertyKey = DependencyProperty.RegisterReadOnly("TargetState", typeof(ObjectState),
+			typeof(ObjectEditor), new FrameworkPropertyMetadata(null));
+
+		public static readonly DependencyProperty TargetStateProperty = TargetStatePropertyKey.DependencyProperty;
+
 		public static readonly DependencyProperty AutoCommitProperty = DependencyProperty.Register("AutoCommit", typeof(bool),
 			typeof(ObjectEditor), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits, OnAutoCommitChanged));
 
-		public static readonly DependencyProperty DirtyProperty = DependencyProperty.Register("Dirty", typeof(bool),
-			typeof(ObjectEditor), new FrameworkPropertyMetadata(false));
-
-		public static readonly DependencyProperty BasicsVisibilityProperty = DependencyProperty.Register("BasicsVisibility", typeof(Visibility),
-			typeof(ObjectEditor), new FrameworkPropertyMetadata(Visibility.Visible));
-
-		public static readonly DependencyProperty DetailsVisibilityProperty = DependencyProperty.Register("DetailsVisibility", typeof(Visibility),
-			typeof(ObjectEditor), new FrameworkPropertyMetadata(Visibility.Collapsed));
-
-		public static readonly RoutedEvent TargetPropertyChangedEvent = EventManager.RegisterRoutedEvent("TargetPropertyChanged", RoutingStrategy.Bubble,
-			typeof(TargetPropertyChangedEventHandler), typeof(ObjectEditor));
+		public static readonly DependencyProperty DirtyProperty = AniUI.DirtyProperty.AddOwner(typeof(ObjectEditor));
 
 		private static void OnTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
@@ -44,11 +41,7 @@ namespace Animator.UI.Controls
 		private static void OnAutoCommitChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
 			var editor = (ObjectEditor)d;
-			if((bool)e.NewValue)
-			{
-				editor.PerformCommit();
-				editor.Dirty = false;
-			}
+			editor.OnAutoCommitChanged(e);
 		}
 
 		#endregion
@@ -65,6 +58,12 @@ namespace Animator.UI.Controls
 			set { this.SetValue(TargetProperty, value); }
 		}
 
+		public ObjectState TargetState
+		{
+			get { return (ObjectState)this.GetValue(TargetStateProperty); }
+			set { this.SetValue(TargetStatePropertyKey, value); }
+		}
+
 		public bool AutoCommit
 		{
 			get { return (bool)this.GetValue(AutoCommitProperty); }
@@ -77,37 +76,9 @@ namespace Animator.UI.Controls
 			set { this.SetValue(DirtyProperty, value); }
 		}
 
-		public Visibility BasicsVisibility
-		{
-			get { return (Visibility)this.GetValue(BasicsVisibilityProperty); }
-			set { this.SetValue(BasicsVisibilityProperty, value); }
-		}
-
-		public Visibility DetailsVisibility
-		{
-			get { return (Visibility)this.GetValue(DetailsVisibilityProperty); }
-			set { this.SetValue(DetailsVisibilityProperty, value); }
-		}
-
 		#endregion
 
 		#region Events
-
-		public event TargetPropertyChangedEventHandler TargetPropertyChanged
-		{
-			add { this.AddHandler(TargetPropertyChangedEvent, value); }
-			remove { this.RemoveHandler(TargetPropertyChangedEvent, value); }
-		}
-
-		protected void OnTargetPropertyChanged(string propertyName)
-		{
-			OnTargetPropertyChanged(this.Target, propertyName);
-		}
-
-		protected virtual void OnTargetPropertyChanged(object target, string propertyName)
-		{
-			this.RaiseEvent(new TargetPropertyChangedEventArgs(TargetPropertyChangedEvent, this, target, propertyName));
-		}
 
 		#endregion
 
@@ -119,55 +90,80 @@ namespace Animator.UI.Controls
 
 		protected virtual void OnTargetChanged(DependencyPropertyChangedEventArgs e)
 		{
-			this.DetachChangeHandler(e.OldValue);
-			this.AttachChangeHandler(e.NewValue);
-			this.Dirty = false;
 			this.DataContext = e.NewValue;
-			this.PerformReset();
+			this.DetachTarget(e.OldValue);
+			if(this.AutoCommit || e.NewValue == null)
+				this.TargetState = null;
+			else
+				this.DataContext = this.TargetState = ObjectState.CreateState(e.NewValue.GetType(), e.NewValue);
+			this.AttachTarget(this.AutoCommit ? e.NewValue : this.TargetState);
+			this.Dirty = false;
+		}
+
+		protected virtual void OnAutoCommitChanged(DependencyPropertyChangedEventArgs e)
+		{
+			if(this.AutoCommit)
+			{
+				this.PerformCommit();
+				this.Dirty = false;
+				this.DetachTarget(this.TargetState);
+				this.TargetState = null;
+			}
+			else
+			{
+				this.Dirty = false;
+			}
+			throw new NotImplementedException();
+		}
+
+		private void AttachTarget(object target)
+		{
+			var notifier = target as INotifyPropertyChanged;
+			if(notifier != null)
+				notifier.PropertyChanged += this.Target_PropertyChanged;
+		}
+
+		private void DetachTarget(object target)
+		{
+			var notifier = target as INotifyPropertyChanged;
+			if(notifier != null)
+				notifier.PropertyChanged -= this.Target_PropertyChanged;
 		}
 
 		private void Target_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			this.OnTargetPropertyChanged(sender, e.PropertyName);
+			if(!this.AutoCommit)
+				this.Dirty = true;
 		}
 
-		protected void AttachChangeHandler(object target)
+		public virtual void Commit()
 		{
-			var x = target as INotifyPropertyChanged;
-			if(x != null)
-				x.PropertyChanged += this.Target_PropertyChanged;
-		}
-
-		protected void DetachChangeHandler(object target)
-		{
-			var x = target as INotifyPropertyChanged;
-			if(x != null)
-				x.PropertyChanged -= this.Target_PropertyChanged;
-		}
-
-		public void Commit()
-		{
-			if(this.Dirty && !this.AutoCommit)
-			{
-				this.PerformCommit();
-				this.Dirty = false;
-			}
+			if(!this.Dirty || this.AutoCommit)
+				return;
+			this.PerformCommit();
+			this.Dirty = false;
 		}
 
 		protected virtual void PerformCommit()
 		{
+			var state = this.TargetState;
+			if(state == null)
+				return;
+			state.Save();
 		}
 
 		public void Reset()
 		{
 			if(this.AutoCommit)
-				throw new NotSupportedException();
-			this.PerformReset();
+			{
+				return;
+				//throw new NotSupportedException();
+			}
+			var state = this.TargetState;
+			if(state == null)
+				return;
+			state.Load();
 			this.Dirty = false;
-		}
-
-		protected virtual void PerformReset()
-		{
 		}
 
 		#endregion

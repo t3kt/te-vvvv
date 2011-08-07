@@ -90,9 +90,9 @@ namespace Animator.Tests
 		{
 			var host = CompositionUnitTest.CreateHost(test: false, core: true);
 			var clipA = new SequenceClip { Name = "helloclip", Start = TimeSpan.FromSeconds(4.2), Duration = TimeSpan.FromSeconds(49) };
-			clipA.Properties.Add(new ConstData { Name = "fooo", Value = -23.421f });
+			clipA.Properties.Add(new ConstData { Name = "fooo", Value = -23.421d });
 			var stepProp = new StepData { Name = "etc" };
-			stepProp.Steps.AddRange(new[] { 9492f, -23.04f, 0.0001f });
+			stepProp.Steps.AddRange(new[] { 9492d, -23.04d, 0.0001d });
 			clipA.Properties.Add(stepProp);
 
 			var xmlA = clipA.WriteXElement();
@@ -132,7 +132,7 @@ namespace Animator.Tests
 			//                 UIColumn = 4,
 			//                 UIRow = 2
 			//             };
-			//clipA2.Steps.ReplaceContents(new[] { 25.25f, -234.3f, 0.0f });
+			//clipA2.Steps.ReplaceContents(new[] { 25.25d, -234.3d, 0.0d });
 			//docA.Clips.Add(clipA2);
 			var xmlA = docA.WriteXDocument();
 			ValidateDocumentSchema(xmlA);
@@ -157,10 +157,10 @@ namespace Animator.Tests
 			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
 			var tgt2 = new TargetObject(tgt1.Id) { Name = tgt1.Name, OutputKey = tgt1.OutputKey };
 			Assert.AreEqual(tgt1, tgt2);
-			var prop1A = tgt1.Add(propA_Name, TargetPropertyType.Value, 23.1f);
+			var prop1A = tgt1.Add(propA_Name, TargetPropertyType.Value, 23.1d);
 			var prop2A = tgt2.Add(prop1A.Name, prop1A.Type, prop1A.DefaultValue);
 			Assert.AreEqual(tgt1, tgt2);
-			Assert.IsTrue(tgt1.SetDefaultValue(prop1A.Name, 999.4f));
+			Assert.IsTrue(tgt1.SetDefaultValue(prop1A.Name, 999.4d));
 			Assert.AreNotEqual(tgt1, tgt2);
 			Assert.IsTrue(tgt2.SetDefaultValue(prop1A.Name, prop1A.DefaultValue));
 			Assert.AreEqual(tgt1, tgt2);
@@ -171,7 +171,7 @@ namespace Animator.Tests
 		public void TargetObjectReadWriteXElement()
 		{
 			var tgt1 = new TargetObject { Name = "tgt", OutputKey = "foo/tgt/" };
-			var prop1A = tgt1.Add("propA", TargetPropertyType.Value, 23.1f);
+			var prop1A = tgt1.Add("propA", TargetPropertyType.Value, 23.1d);
 			var prop1B = tgt1.Add("propB", TargetPropertyType.String, "foo");
 			var xml1 = tgt1.WriteXElement();
 			var tgt2 = new TargetObject(xml1);

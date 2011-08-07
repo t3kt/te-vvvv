@@ -11,9 +11,9 @@ namespace Animator.Tests.Utils
 
 	#region DummyTransport
 
-	[AniExport(typeof(Transport), Key = "dummy")]
+	[AniExport(typeof(ITransportController), Key = "dummy")]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
-	internal sealed class DummyTransport : Transport
+	internal sealed class DummyTransport : TransportBase
 	{
 
 		public bool IsPlaying { get; set; }

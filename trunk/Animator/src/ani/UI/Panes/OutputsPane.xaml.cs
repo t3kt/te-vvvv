@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Animator.Core.IO;
+using Animator.Core.Model;
+using Animator.UI.Dialogs;
 
 namespace Animator.UI.Panes
 {
@@ -23,5 +26,14 @@ namespace Animator.UI.Panes
 		{
 			InitializeComponent();
 		}
+
+		private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			var doc = this.DataContext as Document;
+			var output = e.Parameter as Output;
+			if(doc != null && output != null && doc.Outputs.Remove(output))
+				e.Handled = true;
+		}
+
 	}
 }

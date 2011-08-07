@@ -28,7 +28,6 @@ namespace Animator.AppCore
 
 		public static readonly RoutedUICommand EditDetail = new RoutedUICommand("Edit", "ShowEditDetail", typeof(AniAppCommands),
 			new InputGestureCollection(new[] { new KeyGesture(Key.Enter, ModifierKeys.Alt) }));
-
 	}
 
 	#endregion
