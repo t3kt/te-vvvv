@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.lfo2.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.lfo2.v4p" locked="0" systemname="qwhirl.lfo2">
    <BOUNDS height="11175" left="9345" top="3210" type="Window" width="14895">
    </BOUNDS>
-   <NODE componentmode="InABox" id="33" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="33" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="120" top="1050" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="120" top="1050" type="Box" width="795">
@@ -11,17 +11,17 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Period">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Period">
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0.03">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="32" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="32" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="930" top="2010" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="930" top="2010" type="Box" width="600">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Output">
    </PIN>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
@@ -35,7 +35,7 @@
    </BOUNDS>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Shape">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Shape">
    </PIN>
    <PIN pinname="Input Enum" slicecount="1" values="Sine">
    </PIN>
@@ -47,7 +47,7 @@
    </BOUNDS>
    <BOUNDS height="495" left="120" top="105" type="Box" width="885">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="LFO2">
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="LFO2">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -58,7 +58,7 @@
    <PIN pinname="Font" slicecount="1" values="Consolas">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="29" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="29" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="120" top="570" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="120" top="570" type="Box" width="465">
@@ -75,7 +75,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Active">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Active">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
@@ -86,19 +86,19 @@
    <PIN pinname="Show Background" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="28" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="28" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="120" top="2010" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="120" top="2010" type="Box" width="675">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Fixed">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Fixed">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="27" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="27" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="930" top="1050" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="930" top="1050" type="Box" width="525">
@@ -113,7 +113,7 @@
    </PIN>
    <PIN pinname="Show Connections" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Phase">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Phase">
    </PIN>
    <PIN pinname="Show Slider" slicecount="1" values="0">
    </PIN>
@@ -123,27 +123,27 @@
    </PIN>
    <PIN pinname="Sticky Slider" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Digits" slicecount="1" values="3">
+   <PIN pinname="Precision" slicecount="1" values="3">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" hiddenwhenlocked="0" id="26" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="26" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="120" top="1515" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="120" top="1515" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Min">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Min">
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" hiddenwhenlocked="0" id="25" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="25" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="930" top="1515" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="930" top="1515" type="Box" width="795">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Max">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Max">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -209,7 +209,7 @@
    </BOUNDS>
    <PIN pinname="Default" visible="1">
    </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.panel.bg">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.panel.bg">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -267,9 +267,9 @@
    </BOUNDS>
    <BOUNDS height="240" left="315" top="2535" type="Box" width="795">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|LFO Name|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|LFO Name|">
    </PIN>
-   <PIN pinname="Input String" slicecount="1" values="qw.lfo2">
+   <PIN encoded="0" pinname="Input String" slicecount="1" values="qw.lfo2">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -279,11 +279,11 @@
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="34" nodename="Add (String)" systemname="Add (String)">
    <BOUNDS height="100" left="3030" top="3735" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Input 2" slicecount="1" values=".out">
+   <PIN encoded="0" pinname="Input 2" slicecount="1" values=".out">
    </PIN>
    <PIN pinname="Intersperse" pintype="Input" slicecount="1" visible="-1" values="None">
    </PIN>
-   <PIN pinname="Intersperse String" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN encoded="0" pinname="Intersperse String" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -297,7 +297,7 @@
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="35" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="4965" top="5010" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw.lfo2.on">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.lfo2.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
