@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\lcloud2\_lc2.main.v4p" filename="C:\Users\thezer0ist\vvvv\lcloud2\_lc2.main.v4p" systemname="_lc2.main">
    <BOUNDS height="3750" left="510" top="390" type="Window" width="4065">
    </BOUNDS>
@@ -31,16 +31,16 @@
    </BOUNDS>
    <BOUNDS height="240" left="1545" top="225" type="Box" width="1590">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="|In From MIDI Yoke:  2|">
+   <PIN pinname="Input Enum" slicecount="1" values="|LoopBe Internal MIDI|">
    </PIN>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Midi Input Port|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Midi Input Port|" encoded="0">
    </PIN>
    </NODE>
    <LINK dstnodeid="1" dstpinname="Midi Input Port" srcnodeid="3" srcpinname="Output Enum">
    </LINK>
-   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="255" top="480" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="480" left="255" top="480" type="Box" width="480">
@@ -59,7 +59,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled" encoded="0">
    </PIN>
    <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -70,7 +70,7 @@
    </NODE>
    <LINK dstnodeid="0" dstpinname="Enabled" srcnodeid="4" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="570" top="1215" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="480" left="570" top="1215" type="Box" width="480">
@@ -89,7 +89,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Grid">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Grid" encoded="0">
    </PIN>
    <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -122,7 +122,7 @@
    <PIN pinname="Seed" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="2625" top="1890" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="480" left="2625" top="1890" type="Box" width="480">
@@ -141,7 +141,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="seed">
+   <PIN pinname="Descriptive Name" slicecount="1" values="seed" encoded="0">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
@@ -150,7 +150,7 @@
    </NODE>
    <LINK dstnodeid="10" dstpinname="Enabled" srcnodeid="11" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="1725" top="2085" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="240" left="1725" top="2085" type="Box" width="810">
@@ -159,7 +159,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Period">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Period" encoded="0">
    </PIN>
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>

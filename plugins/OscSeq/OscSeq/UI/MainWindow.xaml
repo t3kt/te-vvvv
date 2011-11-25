@@ -1,0 +1,13 @@
+﻿<Window x:Class="OscSeq.UI.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="OscSeq" Height="359" Width="549" xmlns:ui="clr-namespace:OscSeq.UI">
+	<DockPanel LastChildFill="False">
+		<Menu Name="MainMenu" DockPanel.Dock="Top">
+			<MenuItem Header="File">
+				<MenuItem Header="Exit" Click="ExitMenuItem_Click" />
+			</MenuItem>
+		</Menu>
+		<ui:TransmitterControl DockPanel.Dock="Right" VerticalContentAlignment="Top" Width="180" />
+	</DockPanel>
+</Window>

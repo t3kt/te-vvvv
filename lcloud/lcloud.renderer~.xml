@@ -7,7 +7,7 @@
    </BOUNDS>
    <BOUNDS height="1800" left="1065" top="3825" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="7080" left="0" top="8010" type="Window" width="6750">
+   <BOUNDS height="7080" left="-26025" top="525" type="Window" width="6750">
    </BOUNDS>
    <PIN pinname="Layers" slicecount="1" visible="1" values="||">
    </PIN>

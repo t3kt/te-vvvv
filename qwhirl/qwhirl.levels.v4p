@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.levels.v4p" bgcolor="16574688" filename="C:\Users\thezer0ist\vvvv\qwhirl\qwhirl.levels.v4p" locked="0" systemname="qwhirl.levels">
    <BOUNDS height="8610" left="10035" top="2475" type="Window" width="9000">
    </BOUNDS>
@@ -13,7 +13,7 @@
    </BOUNDS>
    <PIN pinname="Default" visible="1">
    </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.panel.bg">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.panel.bg">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -61,7 +61,7 @@
    </BOUNDS>
    <BOUNDS height="630" left="240" top="45" type="Box" width="2595">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Color Levels|">
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|Color Levels|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -77,10 +77,10 @@
    </BOUNDS>
    <PIN pinname="Output Node" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="7" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="7" nodename="Renderer (EX9)" systemname="RENDERER (EX9)">
    <BOUNDS height="100" left="4320" top="3525" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="1800" left="4320" top="3525" type="Box" width="2400">
@@ -93,7 +93,7 @@
    </PIN>
    <PIN pinname="Layers" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="View Transform" visible="1">
+   <PIN pinname="View" visible="1">
    </PIN>
    <PIN pinname="Backbuffer Width" pintype="Input" slicecount="1" visible="-1" values="900">
    </PIN>
@@ -107,9 +107,9 @@
    </PIN>
    <PIN pinname="Enabled" pintype="Input" visible="1">
    </PIN>
-   <PIN pinname="Projection Transform" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="Projection" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
-   <PIN pinname="Aspect Ratio Transform" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="Aspect Ratio" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
    <PIN pinname="Left Button" pintype="Output" visible="-1">
    </PIN>
@@ -136,7 +136,7 @@
    <PIN pinname="Transform In" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
    </NODE>
-   <LINK dstnodeid="7" dstpinname="View Transform" hiddenwhenlocked="1" srcnodeid="6" srcpinname="Transform Out">
+   <LINK dstnodeid="7" dstpinname="View" hiddenwhenlocked="1" srcnodeid="6" srcpinname="Transform Out">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="5" nodename="DX9Texture (EX9.Texture)" systemname="DX9Texture (EX9.Texture)">
    <BOUNDS height="100" left="4320" top="3885" type="Node" width="100">
@@ -157,7 +157,7 @@
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Layer">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Layer">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="3" nodename="Switch (Node Input)" systemname="Switch (Node Input)">
@@ -176,7 +176,7 @@
    </LINK>
    <LINK dstnodeid="4" dstpinname="Input Node" hiddenwhenlocked="1" srcnodeid="3" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="210" top="750" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="480" left="210" top="750" type="Box" width="480">
@@ -195,7 +195,7 @@
    </PIN>
    <PIN pinname="Y Input Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
    </NODE>
    <LINK dstnodeid="3" dstpinname="Switch" hiddenwhenlocked="1" srcnodeid="2" srcpinname="Y Output Value">
@@ -203,7 +203,7 @@
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="1" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="2220" top="1950" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw.levels.on">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.levels.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -244,7 +244,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="18" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="18" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="825" top="690" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="615" left="825" top="690" type="Box" width="1215">
@@ -255,7 +255,7 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="3" values="1,0.52,1">
    </PIN>
-   <PIN pinname="Digits" slicecount="1" values="2">
+   <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -263,7 +263,7 @@
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|RGB Levels|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|RGB Levels|">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="17" nodename="Stallone (Spreads)" systemname="Stallone (Spreads)">
@@ -323,7 +323,7 @@
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Receive String" slicecount="1" values="qw.render.on">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.render.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
