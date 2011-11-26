@@ -22,7 +22,7 @@ namespace VVVV.Nodes
 
 		#region Fields
 
-		protected readonly IDiffSpread<string> _PartTypesConfig;
+		private readonly IDiffSpread<string> _PartTypesConfig;
 		protected bool _NeedsUpdate;
 
 		#endregion
@@ -44,7 +44,7 @@ namespace VVVV.Nodes
 
 		#region Methods
 
-		protected virtual void PartTypes_Changed(IDiffSpread<string> partTypes)
+		private void PartTypes_Changed(IDiffSpread<string> partTypes)
 		{
 			CheckDisposed();
 			SetType(StructTypeDefinition.FilterPartTypesKey(partTypes[0]));

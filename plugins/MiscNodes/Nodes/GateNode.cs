@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils.VColor;
+using VVVV.Utils.VMath;
 
 namespace VVVV.Nodes
 {
@@ -93,6 +94,41 @@ namespace VVVV.Nodes
 		Category = TEShared.Names.Categories.Color,
 		Author = TEShared.Names.Author)]
 	public sealed class ColorGateNode : GateNode<RGBAColor>
+	{
+
+	}
+
+	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
+		Category = TEShared.Names.Categories.Transform,
+		Author = TEShared.Names.Author)]
+	public sealed class TransformGateNode : GateNode<Matrix4x4>
+	{
+
+	}
+
+	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
+		Category = TEShared.Names.Categories.Vector,
+		Version = TEShared.Names.Versions.TwoD,
+		Author = TEShared.Names.Author)]
+	public sealed class Vector2DGateNode : GateNode<Vector2D>
+	{
+
+	}
+
+	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
+		Category = TEShared.Names.Categories.Vector,
+		Version = TEShared.Names.Versions.ThreeD,
+		Author = TEShared.Names.Author)]
+	public sealed class Vector3DGateNode : GateNode<Vector3D>
+	{
+
+	}
+
+	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
+		Category = TEShared.Names.Categories.Vector,
+		Version = TEShared.Names.Versions.FourD,
+		Author = TEShared.Names.Author)]
+	public sealed class Vector4DGateNode : GateNode<Vector4D>
 	{
 
 	}

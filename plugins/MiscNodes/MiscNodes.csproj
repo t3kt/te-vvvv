@@ -39,8 +39,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,24 +50,24 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Hosting.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <Private>True</Private>
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -78,6 +78,7 @@
     <Compile Include="Lib\KeysUtil.cs" />
     <Compile Include="Nodes\DetectInputNode.cs" />
     <Compile Include="Nodes\GateNode.cs" />
+    <Compile Include="Nodes\GetCurrentTicksNode.cs" />
     <Compile Include="Nodes\JoinKeyGestureNode.cs" />
     <Compile Include="Nodes\KeyCodeToKeyNode.cs" />
     <Compile Include="Nodes\KeyGestureToStringNode.cs" />

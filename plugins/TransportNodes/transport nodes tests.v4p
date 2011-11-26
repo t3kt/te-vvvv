@@ -1,0 +1,221 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\plugins\TransportNodes\transport nodes tests.v4p" filename="C:\Users\thezer0ist\vvvv\plugins\TransportNodes\transport nodes tests.v4p" systemname="transport nodes tests">
+   <BOUNDS height="6675" left="3675" top="2160" type="Window" width="11520">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="0" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="210" top="75" type="Node" width="2040">
+   </BOUNDS>
+   <BOUNDS height="495" left="210" top="75" type="Box" width="3780">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|Transport Nodes Tests|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="16">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="bin\TransportNodes.dll" id="1" nodename="Transports (Transport)" systemname="Transports (Transport)">
+   <BOUNDS height="100" left="2100" top="1485" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Refresh">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="1260" top="615" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="480" left="1260" top="615" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Refresh">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Refresh" srcnodeid="2" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="Hidden" filename="bin\TransportNodes.dll" id="3" nodename="Status (Transport)" systemname="Status (Transport)">
+   <BOUNDS height="100" left="5160" top="630" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="TransportKey" slicecount="1" values="tntest.transport1">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="tntest.transport1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="0" left="315" top="2640" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="1155" left="315" top="2640" type="Box" width="1350">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN encoded="0" pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Keys" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="4" dstpinname="Input String" srcnodeid="1" srcpinname="Keys">
+   </LINK>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="0" left="2805" top="2715" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="1155" left="2805" top="2715" type="Box" width="1350">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN encoded="0" pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Guids" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="5" dstpinname="Input String" srcnodeid="1" srcpinname="Guids">
+   </LINK>
+   <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="5100" top="2580" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="1155" left="5100" top="2580" type="Box" width="1350">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Usages" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="6" dstpinname="Y Input Value" srcnodeid="1" srcpinname="Usages">
+   </LINK>
+   <NODE componentmode="InABox" id="7" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="0" left="5070" top="1620" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="255" left="5070" top="1620" type="Box" width="825">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="State" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="7" dstpinname="Input Enum" srcnodeid="3" srcpinname="State">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6015" top="1680" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6015" top="1680" width="780" height="240">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|State Name|" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="State Name" dstnodeid="8" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="7290" top="1725" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7290" top="1725" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Playing" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Playing" dstnodeid="9" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="8160" top="1635" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8160" top="1635" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Changed" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Changed" dstnodeid="10" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="11" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="9015" top="1200" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9015" top="1200" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Guid" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Guid" dstnodeid="11" dstpinname="Input String">
+   </LINK>
+   <NODE componentmode="Hidden" filename="bin\TransportNodes.dll" id="12" nodename="Status (Transport)" systemname="Status (Transport)">
+   <BOUNDS height="100" left="7695" top="2865" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="TransportKey" slicecount="1" values="tntest.transport2">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="tntest.transport2">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="bin\TransportNodes.dll" id="14" nodename="Status (Transport)" systemname="Status (Transport)">
+   <BOUNDS height="100" left="7485" top="510" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="TransportKey" slicecount="1" values="tntest.transport1">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="tntest.transport1">
+   </PIN>
+   </NODE>
+   </PATCH>

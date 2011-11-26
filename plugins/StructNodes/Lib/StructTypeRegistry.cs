@@ -9,19 +9,6 @@ using VVVV.Core.Logging;
 namespace VVVV.Lib
 {
 
-	#region IStructTypeRegistration
-
-	internal interface IStructTypeRegistration
-	{
-		Guid Id { get; }
-		string PartTypesKey { get; }
-		IList<StructPartType> PartTypes { get; }
-		string FriendlyTypeName { get; }
-		int UsageCount { get; }
-	}
-
-	#endregion
-
 	#region StructTypeRegistry
 
 	internal static class StructTypeRegistry
@@ -31,7 +18,7 @@ namespace VVVV.Lib
 
 		#region TypeReg
 
-		private sealed class TypeReg : IStructTypeRegistration
+		private sealed class TypeReg 
 		{
 
 			#region Fields
@@ -56,35 +43,6 @@ namespace VVVV.Lib
 			{
 				this.Usages--;
 				return this.Usages <= 0;
-			}
-
-			#endregion
-
-			#region IStructTypeRegistration Members
-
-			Guid IStructTypeRegistration.Id
-			{
-				get { return this.TypeDef.Id; }
-			}
-
-			string IStructTypeRegistration.PartTypesKey
-			{
-				get { return this.TypeDef.PartTypesKey; }
-			}
-
-			IList<StructPartType> IStructTypeRegistration.PartTypes
-			{
-				get { return this.TypeDef.PartTypes; }
-			}
-
-			string IStructTypeRegistration.FriendlyTypeName
-			{
-				get { return this.TypeDef.FriendlyTypeName; }
-			}
-
-			int IStructTypeRegistration.UsageCount
-			{
-				get { return this.Usages; }
 			}
 
 			#endregion
@@ -118,11 +76,6 @@ namespace VVVV.Lib
 					return from reg in this._RegByKey
 						   select reg.Value.TypeDef;
 				}
-			}
-
-			public IEnumerable<IStructTypeRegistration> Registrations
-			{
-				get { return _RegByKey.Values.Cast<IStructTypeRegistration>(); }
 			}
 
 			#endregion
@@ -180,7 +133,7 @@ namespace VVVV.Lib
 				this.OnTypeUnregistered(reg.TypeDef);
 			}
 
-			public StructTypeDefinition GetTypeDefinition(Guid id)
+			private StructTypeDefinition GetTypeDefinition(Guid id)
 			{
 				TypeReg reg;
 				return this._RegById.TryGetValue(id, out reg) ? reg.TypeDef : null;
@@ -287,16 +240,6 @@ namespace VVVV.Lib
 			get { return _Core.RegisteredTypes; }
 		}
 
-		internal static IEnumerable<IStructTypeRegistration> Registrations
-		{
-			get { return _Core.Registrations; }
-		}
-
-		internal static StructTypeDefinition GetTypeDefinition(Guid id)
-		{
-			return _Core.GetTypeDefinition(id);
-		}
-
 		internal static int GetTypeUsageCount(Guid id)
 		{
 			return _Core.GetTypeUsageCount(id);
@@ -312,14 +255,14 @@ namespace VVVV.Lib
 			return _Core.RequestTypeDefinition(partTypesKey);
 		}
 
-		internal static bool ReleaseTypeDefinition(Guid id)
+		internal static void ReleaseTypeDefinition(Guid id)
 		{
-			return _Core.ReleaseTypeDefinition(id);
+			_Core.ReleaseTypeDefinition(id);
 		}
 
-		internal static bool ReleaseTypeDefinition(StructTypeDefinition type)
+		internal static void ReleaseTypeDefinition(StructTypeDefinition type)
 		{
-			return type != null && ReleaseTypeDefinition(type.Id);
+			ReleaseTypeDefinition(type.Id);
 		}
 
 		#endregion
