@@ -39,6 +39,10 @@ namespace TEShared
 			public const string Count = "Count";
 			public const string Gate = "Gate";
 			public const string DetectInput = "DetectInput";
+			public const string Controller = "Controller";
+			public const string Status = "Status";
+			public const string Transports = "Transports";
+			public const string CurrentTicks = "CurrentTicks";
 		}
 
 		public static class Categories
@@ -49,10 +53,14 @@ namespace TEShared
 			public const string Value = "Value";
 			public const string String = "String";
 			public const string Color = "Color";
+			public const string Transform = "Transform";
 			public const string Struct = "Struct";
 			public const string Keys = "Keys";
 			public const string KeyGesture = "KeyGesture";
 			public const string Command = "Command";
+			public const string Vector = "Vector";
+			public const string Transport = "Transport";
+			public const string Animation = "Animation";
 		}
 
 		public static class Versions
@@ -70,6 +78,9 @@ namespace TEShared
 			public const string Add = "Add";
 			public const string Advanced = "Advanced";
 			public const string File = "File";
+			public const string TwoD = "2D";
+			public const string ThreeD = "3D";
+			public const string FourD = "4D";
 		}
 
 		public static class Warnings

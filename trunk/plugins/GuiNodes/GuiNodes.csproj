@@ -40,7 +40,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition">
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\System.ComponentModel.Composition.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -59,7 +59,8 @@
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
       <HintPath>C:\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>

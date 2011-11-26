@@ -91,9 +91,21 @@ namespace VVVV.Lib
 			get { return _Spread != null && _Spread.IsChanged; }
 		}
 
+		event SpreadChangedEventHander IDiffSpread.Changed
+		{
+			add { throw new NotImplementedException(); }
+			remove { throw new NotImplementedException(); }
+		}
+
 		#endregion
 
 		#region ISpread<T> Members
+
+		object ISpread.this[int index]
+		{
+			get { return this[index]; }
+			set { this[index] = (T)value; }
+		}
 
 		public int SliceCount
 		{
