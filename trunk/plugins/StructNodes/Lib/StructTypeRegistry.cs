@@ -18,7 +18,7 @@ namespace VVVV.Lib
 
 		#region TypeReg
 
-		private sealed class TypeReg 
+		private sealed class TypeReg
 		{
 
 			#region Fields
@@ -262,7 +262,8 @@ namespace VVVV.Lib
 
 		internal static void ReleaseTypeDefinition(StructTypeDefinition type)
 		{
-			ReleaseTypeDefinition(type.Id);
+			if(type != null)
+				ReleaseTypeDefinition(type.Id);
 		}
 
 		#endregion

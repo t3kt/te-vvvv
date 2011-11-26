@@ -61,8 +61,6 @@ namespace VVVV.Lib
 			}
 			else if(requiredCount > _Values.Count)
 			{
-				//while(_Values.Count < requiredCount)
-				//    _Values.Add(0);
 				_Values.AddRange(Enumerable.Repeat(default(T), requiredCount - _Values.Count));
 			}
 		}

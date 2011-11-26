@@ -34,7 +34,7 @@ namespace VVVV.Nodes
 		#region Constructors
 
 		[ImportingConstructor]
-		public LastChangedValueNode(IPluginHost host, [Config("Input Count", MinValue = 1, IsSingle = true)]IDiffSpread<int> inputCountConfig)
+		public LastChangedValueNode(IPluginHost host, [Config("Input Count", MinValue = 1, DefaultValue = 1, IsSingle = true)]IDiffSpread<int> inputCountConfig)
 			: base(host, inputCountConfig)
 		{
 		}
