@@ -13,7 +13,9 @@ namespace VVVV.Nodes
 
 	#region LastChangedNode<T>
 
-	public abstract class LastChangedNode<T> : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+	public abstract class LastChangedNode<T> : IPluginEvaluate,
+		//IPartImportsSatisfiedNotification,
+		IDisposable
 	{
 
 		#region Static / Constant
@@ -28,10 +30,10 @@ namespace VVVV.Nodes
 		#region Fields
 
 		//[Import]
-		private IPluginHost _Host;
+		private readonly IPluginHost _Host;
 
 		//[Config("Input Count", MinValue = 1, IsSingle = true)]
-		private IDiffSpread<int> _InputCountConfig;
+		private readonly IDiffSpread<int> _InputCountConfig;
 
 		private readonly Stack<DiffPin<T>> _Inputs = new Stack<DiffPin<T>>();
 
@@ -116,10 +118,10 @@ namespace VVVV.Nodes
 
 		#region IPartImportsSatisfiedNotification Members
 
-		public void OnImportsSatisfied()
-		{
-			//RebuildInputs(_InputCountConfig[0]);
-		}
+		//public void OnImportsSatisfied()
+		//{
+		//    //RebuildInputs(_InputCountConfig[0]);
+		//}
 
 		#endregion
 
