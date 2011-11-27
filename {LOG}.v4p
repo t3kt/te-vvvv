@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
-   <BOUNDS height="5970" left="17670" top="8430" type="Window" width="7380">
+   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="Renderer (TTY)" systemname="Renderer (TTY)">
    <BOUNDS height="100" left="135" top="675" type="Node" width="100">
@@ -55,7 +55,7 @@
    </BOUNDS>
    <BOUNDS height="255" left="165" top="0" type="Box" width="345">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="Log">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="Log" encoded="0">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -67,7 +67,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="570" top="0" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="Time">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="Time" encoded="0">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -79,7 +79,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="990" top="0" type="Box" width="630">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="Enabled">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="Enabled" encoded="0">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -102,7 +102,7 @@
    <PIN pinname="Output 4" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="10" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="10" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="135" top="285" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="315" left="135" top="285" type="Box" width="1395">
@@ -145,10 +145,10 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="input" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="input" pintype="Input" slicecount="1" visible="-1" values="||" encoded="0">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="17" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <NODE componentmode="InABox" id="17" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
    <BOUNDS height="100" left="1620" top="285" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="315" left="1620" top="285" type="Box" width="510">
@@ -177,7 +177,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="1665" top="0" type="Box" width="465">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="Clear">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="Clear" encoded="0">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>

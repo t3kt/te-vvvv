@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta25.1.dtd" >
-   <PATCH nodename="G:\vvvv\te_vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
-   <BOUNDS height="5970" left="17100" top="8430" type="Window" width="7950">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" filename="C:\Users\thezer0ist\vvvv\{LOG}.v4p" locked="1" systemname="{LOG}">
+   <BOUNDS height="5970" left="17670" top="8430" type="Window" width="7380">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="Renderer (TTY)" systemname="Renderer (TTY)">
    <BOUNDS height="100" left="135" top="675" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="4725" left="135" top="675" type="Box" width="13380">
+   <BOUNDS height="4710" left="135" top="675" type="Box" width="6900">
    </BOUNDS>
    <BOUNDS height="5010" left="3225" top="6195" type="Window" width="6240">
    </BOUNDS>
