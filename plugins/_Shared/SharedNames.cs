@@ -43,6 +43,7 @@ namespace TEShared
 			public const string Status = "Status";
 			public const string Transports = "Transports";
 			public const string CurrentTicks = "CurrentTicks";
+			public const string Switch = "Switch";
 		}
 
 		public static class Categories
@@ -61,6 +62,8 @@ namespace TEShared
 			public const string Vector = "Vector";
 			public const string Transport = "Transport";
 			public const string Animation = "Animation";
+			public const string Boolean = "Boolean";
+			public const string Enumerations = "Enumerations";
 		}
 
 		public static class Versions
@@ -81,6 +84,8 @@ namespace TEShared
 			public const string TwoD = "2D";
 			public const string ThreeD = "3D";
 			public const string FourD = "4D";
+			public const string Input = "Input";
+			public const string Output = "Output";
 		}
 
 		public static class Warnings
