@@ -61,7 +61,7 @@ namespace VVVV.Nodes
 				try
 				{
 					valueInstanceCounts = GetValueInstanceCounts();
-					FLogger.Log(LogType.Debug, "Success getting value instance counts. Count="+valueInstanceCounts.Count);
+					//FLogger.Log(LogType.Debug, "Success getting value instance counts. Count="+valueInstanceCounts.Count);
 				}
 				catch(Exception ex)
 				{

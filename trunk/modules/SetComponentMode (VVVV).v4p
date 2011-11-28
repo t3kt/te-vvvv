@@ -1,0 +1,223 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\SetComponentMode (VVVV).v4p" filename="C:\Users\thezer0ist\vvvv\modules\SetComponentMode (VVVV).v4p" systemname="SetComponentMode (VVVV)">
+   <BOUNDS height="7455" left="5280" top="3075" type="Window" width="8085">
+   </BOUNDS>
+   <NODE componentmode="Hidden" id="13" nodename="SetPatch (VVVV)" systemname="SetPatch (VVVV)">
+   <BOUNDS height="100" left="2145" top="6405" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   <PIN pinname="XML Input" visible="1">
+   </PIN>
+   <PIN pinname="Force Update" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="12" nodename="PatchAlias (VVVV)" systemname="PatchAlias (VVVV)">
+   <BOUNDS height="100" left="1395" top="4575" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Parent Level">
+   </PIN>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2460" top="1005" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="2460" top="1005" type="Box" width="840">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Target ID|">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="-1000">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="X Output Value" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="5" nodename="FormatValue (String)" systemname="FormatValue (String)">
+   <BOUNDS height="100" left="2595" top="1650" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Thousands Symbol" pintype="Input" slicecount="1" visible="-1" values="None">
+   </PIN>
+   <PIN pinname="Comma Symbol" pintype="Input" slicecount="1" visible="-1" values="Dot">
+   </PIN>
+   <PIN pinname="Leading Zeroes" pintype="Input" slicecount="1" visible="-1" values="1">
+   </PIN>
+   <PIN pinname="Characters after Comma" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Characters before Comma" pintype="Input" slicecount="1" visible="-1" values="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="5" dstpinname="Input" srcnodeid="11" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="Hidden" id="4" nodename="Switch (Node Input)" systemname="Switch (Node Input)">
+   <BOUNDS height="100" left="825" top="5565" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" pintype="Input" slicecount="1" visible="-1" values="||">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="4" dstpinname="Input 2" srcnodeid="12" srcpinname="Patch">
+   </LINK>
+   <NODE componentmode="Hidden" id="3" nodename="GE (Value)" systemname="GE (Value)">
+   <BOUNDS height="100" left="855" top="5115" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Epsilon" pintype="Input" visible="-1">
+   </PIN>
+   <PIN pinname="Input 2" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Inverse Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" pintype="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Input 1" srcnodeid="11" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="4" dstpinname="Switch" srcnodeid="3" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="2" managers="" nodename="IOBox (String)" systemname="IOBox (String)">
+   <PIN encoded="0" pinname="Input String" pintype="Input" slicecount="1" visible="1" values="|&lt;PATCH&gt;&cr;&lf;  &lt;NODE id=&quot;$ID$&quot; componentmode=&quot;$MODE$&quot;/&gt;&cr;&lf;&lt;/PATCH&gt;|">
+   </PIN>
+   <BOUNDS height="100" left="4035" top="1260" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="690" left="4035" top="1260" type="Box" width="3660">
+   </BOUNDS>
+   <PIN pinname="SliceOffset" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Output String" pintype="Output" visible="1">
+   </PIN>
+   <BOUNDS height="0" left="0" top="0" type="Window" width="0">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="SliceCount Mode" pintype="Configuration" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Columns" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Rows" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pages" pintype="Configuration" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Show SliceIndex" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Font" pintype="Configuration" slicecount="1" values="|Lucida Sans Unicode|">
+   </PIN>
+   <PIN pinname="Size" pintype="Configuration" slicecount="1" values="7">
+   </PIN>
+   <PIN pinname="Show Grid" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Character Encoding" pintype="Configuration" slicecount="1" values="ANSI">
+   </PIN>
+   <PIN pinname="Show Characters [#0..#32,#127]" pintype="Configuration" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="1" nodename="Substitute (String)" systemname="Substitute (String)">
+   <BOUNDS height="100" left="2775" top="3120" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="From" pintype="Input" slicecount="1" visible="-1" values="$ID$">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN encoded="0" pinname="To" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Input" srcnodeid="2" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="1" dstpinname="To" srcnodeid="5" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="14" nodename="Substitute (String)" systemname="Substitute (String)">
+   <BOUNDS height="100" left="2490" top="4245" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="From" pintype="Input" slicecount="1" visible="-1" values="$MODE$">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN encoded="0" pinname="To" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="16" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="0" left="300" top="420" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="300" top="420" type="Box" width="1590">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="InABox">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Component Mode|">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="17" nodename="Enum2String (Enumerations)" systemname="Enum2String (Enumerations)">
+   <BOUNDS height="100" left="510" top="1035" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="String Value" visible="1">
+   </PIN>
+   <PIN pinname="Enum Count" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Enum Name" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="17" dstpinname="Enum" srcnodeid="16" srcpinname="Output Enum">
+   </LINK>
+   <NODE componentmode="Hidden" id="18" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)">
+   <BOUNDS height="100" left="1605" top="1080" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Enum" slicecount="1" visible="1" values="ComponentMode">
+   </PIN>
+   <PIN pinname="Receive" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="18" dstpinname="Receive" srcnodeid="16" srcpinname="Output Enum">
+   </LINK>
+   <LINK dstnodeid="14" dstpinname="To" srcnodeid="17" srcpinname="String Value">
+   </LINK>
+   <LINK dstnodeid="14" dstpinname="Input" srcnodeid="1" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="13" dstpinname="XML Input" srcnodeid="14" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="13" dstpinname="Patch" srcnodeid="4" srcpinname="Output">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="4065" top="645" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4065" top="645" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Parent Level|" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Parent Level">
+   </LINK>
+   </PATCH>

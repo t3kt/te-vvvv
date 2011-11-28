@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" systemname="qw2.scene1.positions" locked="1">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" locked="1" systemname="qw2.scene1.positions">
    <BOUNDS height="8880" left="12345" top="3300" type="Window" width="4425">
    </BOUNDS>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="18" nodename="Random (Value)" systemname="Random (Value)">
@@ -54,7 +54,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="17" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="16" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="17" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="16" srcpinname="Y Output Value">
    <LINKPOINT x="315" y="3615">
    </LINKPOINT>
    <LINKPOINT x="300" y="3615">
@@ -116,31 +116,31 @@
    <PIN pinname="Output 4" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="13" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="15" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="13" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="15" srcpinname="Y Output Value">
    <LINKPOINT x="1155" y="2040">
    </LINKPOINT>
    <LINKPOINT x="1155" y="2040">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 0" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 1" linkstyle="Bezier">
+   <LINK dstnodeid="14" dstpinname="Input 0" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 1">
    <LINKPOINT x="1140" y="2700">
    </LINKPOINT>
    <LINKPOINT x="1005" y="2700">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 2" linkstyle="Bezier">
+   <LINK dstnodeid="14" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 2">
    <LINKPOINT x="1365" y="2700">
    </LINKPOINT>
    <LINKPOINT x="1335" y="2700">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 2" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 3" linkstyle="Bezier">
+   <LINK dstnodeid="14" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 3">
    <LINKPOINT x="1590" y="2700">
    </LINKPOINT>
    <LINKPOINT x="1635" y="2700">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 3" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 4" linkstyle="Bezier">
+   <LINK dstnodeid="14" dstpinname="Input 3" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 4">
    <LINKPOINT x="1830" y="2700">
    </LINKPOINT>
    <LINKPOINT x="1965" y="2700">
@@ -162,7 +162,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="12" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="14" srcpinname="Last Index" linkstyle="Bezier">
+   <LINK dstnodeid="12" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="14" srcpinname="Last Index">
    <LINKPOINT x="1020" y="3255">
    </LINKPOINT>
    <LINKPOINT x="1125" y="3255">
@@ -180,25 +180,25 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="11" dstpinname="Switch" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="11" dstpinname="Switch" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="12" srcpinname="Output">
    <LINKPOINT x="1140" y="4403">
    </LINKPOINT>
    <LINKPOINT x="630" y="4403">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="11" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="14" srcpinname="Last Index" linkstyle="Bezier">
+   <LINK dstnodeid="11" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="14" srcpinname="Last Index">
    <LINKPOINT x="990" y="4163">
    </LINKPOINT>
    <LINKPOINT x="915" y="4163">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="11" dstpinname="Input 2" hiddenwhenlocked="1" srcnodeid="18" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="11" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="18" srcpinname="Output">
    <LINKPOINT x="1185" y="5063">
    </LINKPOINT>
    <LINKPOINT x="1185" y="5063">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="17" dstpinname="Index" hiddenwhenlocked="1" srcnodeid="11" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="17" dstpinname="Index" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="11" srcpinname="Output">
    <LINKPOINT x="660" y="5595">
    </LINKPOINT>
    <LINKPOINT x="930" y="5595">
@@ -214,7 +214,7 @@
    <PIN pinname="Reset" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="10" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 4" linkstyle="Bezier">
+   <LINK dstnodeid="10" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 4">
    <LINKPOINT x="1845" y="2850">
    </LINKPOINT>
    <LINKPOINT x="2205" y="2850">
@@ -234,25 +234,25 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="9" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 1" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 1">
    <LINKPOINT x="1185" y="2580">
    </LINKPOINT>
    <LINKPOINT x="2190" y="2580">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="9" dstpinname="Input 2" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 2" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 2">
    <LINKPOINT x="1410" y="2580">
    </LINKPOINT>
    <LINKPOINT x="2385" y="2580">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="10" dstpinname="Reset" hiddenwhenlocked="1" srcnodeid="9" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="10" dstpinname="Reset" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="9" srcpinname="Output">
    <LINKPOINT x="2250" y="3045">
    </LINKPOINT>
    <LINKPOINT x="2790" y="3045">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="9" dstpinname="Input 3" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Output 3" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="Input 3" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 3">
    <LINKPOINT x="1620" y="2580">
    </LINKPOINT>
    <LINKPOINT x="2580" y="2580">
@@ -316,13 +316,13 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="5" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="11" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="11" srcpinname="Output">
    <LINKPOINT x="660" y="5520">
    </LINKPOINT>
    <LINKPOINT x="2310" y="5520">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="6" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="5" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Y Input Value" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="5" srcpinname="Output">
    <LINKPOINT x="2340" y="3218">
    </LINKPOINT>
    <LINKPOINT x="2775" y="3218">
@@ -356,13 +356,13 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="2" dstpinname="Input 2" hiddenwhenlocked="1" srcnodeid="10" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="2" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="10" srcpinname="Output">
    <LINKPOINT x="2190" y="3630">
    </LINKPOINT>
    <LINKPOINT x="1950" y="3630">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="2" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="2" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="12" srcpinname="Output">
    <LINKPOINT x="1185" y="3713">
    </LINKPOINT>
    <LINKPOINT x="1410" y="3713">
@@ -378,25 +378,25 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="1" dstpinname="Input 2" hiddenwhenlocked="1" srcnodeid="8" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="1" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="8" srcpinname="Output">
    <LINKPOINT x="2055" y="4193">
    </LINKPOINT>
    <LINKPOINT x="1995" y="4193">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="1" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="2" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="1" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="2" srcpinname="Output">
    <LINKPOINT x="1455" y="4200">
    </LINKPOINT>
    <LINKPOINT x="1515" y="4200">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="18" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="1" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="18" dstpinname="Enabled" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="1" srcpinname="Output">
    <LINKPOINT x="1500" y="4613">
    </LINKPOINT>
    <LINKPOINT x="1215" y="4613">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="3" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="2" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="3" dstpinname="Y Input Value" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="2" srcpinname="Output">
    <LINKPOINT x="1470" y="2783">
    </LINKPOINT>
    <LINKPOINT x="2760" y="2783">
@@ -425,13 +425,13 @@
    </PIN>
    <PIN pinname="Phase" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Alignment" slicecount="1" visible="-1" pintype="Input" values="Block">
+   <PIN pinname="Alignment" pintype="Input" slicecount="1" visible="-1" values="Block">
    </PIN>
    <PIN pinname="Spread Count" visible="1">
    </PIN>
    <PIN pinname="Width" visible="1">
    </PIN>
-   <PIN pinname="Input" slicecount="1" visible="1" pintype="Input" values="0">
+   <PIN pinname="Input" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="21" nodename="Cross (2d)" systemname="Cross (2d)">
@@ -452,7 +452,7 @@
    <PIN pinname="Y Out" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="21" dstpinname="X In" hiddenwhenlocked="1" srcnodeid="22" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="21" dstpinname="X In" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="22" srcpinname="Output">
    <LINKPOINT x="345" y="6638">
    </LINKPOINT>
    <LINKPOINT x="345" y="6638">
@@ -464,8 +464,8 @@
    <LINKPOINT x="1185" y="6623">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Vector (3d Join)" nodename="Vector (3d Join)" componentmode="Hidden" id="24" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="465" top="7140" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="24" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
+   <BOUNDS height="100" left="465" top="7140" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="X" visible="1">
    </PIN>
@@ -474,33 +474,33 @@
    <PIN pinname="XYZ" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="X Out" dstnodeid="24" dstpinname="X" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="24" dstpinname="X" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="21" srcpinname="X Out">
    <LINKPOINT x="390" y="7073">
    </LINKPOINT>
    <LINKPOINT x="465" y="7073">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="21" srcpinname="Y Out" dstnodeid="24" dstpinname="Y" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="24" dstpinname="Y" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="21" srcpinname="Y Out">
    <LINKPOINT x="1185" y="7065">
    </LINKPOINT>
    <LINKPOINT x="810" y="7065">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="26" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="495" top="7650" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="26" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="495" top="7650" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc1.pos.xyz" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.pos.xyz">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="XYZ" dstnodeid="26" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="26" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="24" srcpinname="XYZ">
    <LINKPOINT x="495" y="7530">
    </LINKPOINT>
    <LINKPOINT x="510" y="7530">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="27" nodename="R (Value Advanced)" systemname="R (Value Advanced)" hiddenwhenlocked="1">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="27" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="1245" top="5730" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.count">
@@ -512,13 +512,13 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="27" srcpinname="Output" dstnodeid="22" dstpinname="Spread Count" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="22" dstpinname="Spread Count" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="27" srcpinname="Output">
    <LINKPOINT x="1275" y="6128">
    </LINKPOINT>
    <LINKPOINT x="1290" y="6128">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="22" dstpinname="Width" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="22" dstpinname="Width" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="17" srcpinname="Output">
    <LINKPOINT x="330" y="6120">
    </LINKPOINT>
    <LINKPOINT x="795" y="6120">

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{898F87BA-FB40-4D78-880F-C31FFB622EC7}</ProjectGuid>
+    <ProjectGuid>{B423FCC3-94E5-4E47-989C-34E862050972}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VVVV</RootNamespace>
-    <AssemblyName>MiscNodes</AssemblyName>
+    <RootNamespace>SendReceiveNodes</RootNamespace>
+    <AssemblyName>SendReceiveNodes</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,15 +36,12 @@
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition">
       <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\System.ComponentModel.Composition.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -75,28 +72,15 @@
     <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib\KeysUtil.cs" />
-    <Compile Include="Nodes\DetectInputNode.cs" />
-    <Compile Include="Nodes\GateNode.cs" />
-    <Compile Include="Nodes\GetCurrentTicksNode.cs" />
-    <Compile Include="Nodes\JoinKeyGestureNode.cs" />
-    <Compile Include="Nodes\KeyCodeToKeyNode.cs" />
-    <Compile Include="Nodes\KeyGestureToStringNode.cs" />
-    <Compile Include="Nodes\KeyToStringNode.cs" />
-    <Compile Include="Nodes\KeyToValueNode.cs" />
-    <Compile Include="Nodes\LastChangedColorNode.cs" />
-    <Compile Include="Nodes\LastChangedNode.cs" />
-    <Compile Include="Nodes\LastChangedStringNode.cs" />
-    <Compile Include="Nodes\LastChangedValueNode.cs" />
-    <Compile Include="Nodes\SplitKeyGestureNode.cs" />
-    <Compile Include="Nodes\InputSwitchNode.cs" />
+    <Compile Include="Core\BusCore.cs" />
+    <Compile Include="Core\BusManager.cs" />
+    <Compile Include="Core\Events.cs" />
+    <Compile Include="Core\Port.cs" />
+    <Compile Include="Nodes\SendNode.cs" />
+    <Compile Include="Nodes\SingleSendNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="misc_nodes_test.v4p" />
-    <None Include="misc_nodes_test_root.v4p" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)_Shared\CleanBuildOutput\bin\CleanBuildOutput.exe $(ProjectDir) $(TargetName)</PostBuildEvent>

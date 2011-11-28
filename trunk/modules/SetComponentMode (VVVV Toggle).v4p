@@ -1,0 +1,207 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\SetComponentMode (VVVV Toggle).v4p" filename="C:\Users\thezer0ist\vvvv\modules\SetComponentMode (VVVV Toggle).v4p" systemname="SetComponentMode (VVVV Toggle)">
+   <BOUNDS height="2685" left="5805" top="2610" type="Window" width="4020">
+   </BOUNDS>
+   <NODE componentmode="Hidden" filename="SetComponentMode (VVVV).v4p" id="0" nodename="SetComponentMode (VVVV)" systemname="SetComponentMode (VVVV)">
+   <BOUNDS height="100" left="195" top="1695" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Target ID">
+   </PIN>
+   <PIN pinname="Component Mode" visible="1">
+   </PIN>
+   <BOUNDS left="195" top="1695" type="Box">
+   </BOUNDS>
+   <PIN pinname="Parent Level" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="5280" top="3075" width="10410" height="7455">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="1950" top="255" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="1950" top="255" type="Box" width="795">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="-1">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Target ID|">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Target ID" linkstyle="Bezier" srcnodeid="1" srcpinname="Y Output Value">
+   <LINKPOINT x="1935" y="1088">
+   </LINKPOINT>
+   <LINKPOINT x="1110" y="1088">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="195" top="165" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="480" left="195" top="165" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Show" encoded="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InAWindow" id="3" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
+   <BOUNDS height="100" left="195" top="855" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="23" nodename="Ord2Enum (Enumerations)" systemname="Ord2Enum (Enumerations)">
+   <BOUNDS height="100" left="195" top="1200" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="Ord Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Component Mode" linkstyle="Bezier" srcnodeid="23" srcpinname="Enum">
+   <LINKPOINT x="225" y="1583">
+   </LINKPOINT>
+   <LINKPOINT x="225" y="1583">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="23" dstpinname="Ord Value" linkstyle="Bezier" srcnodeid="3" srcpinname="Output">
+   <LINKPOINT x="225" y="1163">
+   </LINKPOINT>
+   <LINKPOINT x="225" y="1163">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="25" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="840" top="165" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="840" top="165" type="Box" width="345">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="25" srcpinname="Y Output Value">
+   <LINKPOINT x="825" y="623">
+   </LINKPOINT>
+   <LINKPOINT x="540" y="623">
+   </LINKPOINT>
+   </LINK>
+   <NODE componentmode="InABox" id="26" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="840" top="495" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="840" top="495" type="Box" width="345">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="3" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="26" srcpinname="Y Output Value">
+   <LINKPOINT x="840" y="795">
+   </LINKPOINT>
+   <LINKPOINT x="795" y="795">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="3" dstpinname="Switch" linkstyle="Bezier" srcnodeid="2" srcpinname="Y Output Value">
+   <LINKPOINT x="225" y="750">
+   </LINKPOINT>
+   <LINKPOINT x="225" y="750">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="1230" top="165" width="765" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1230" top="165" width="690" height="285">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="window" encoded="0">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="String">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="30" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="1215" top="495" type="Node" width="765">
+   </BOUNDS>
+   <BOUNDS height="285" left="1215" top="495" type="Box" width="690">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="hidden">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="String">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="31" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="2955" top="420" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="2955" top="420" type="Box" width="495">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Parent Level|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="32">
+   <BOUNDS type="Node" left="2205" top="1035" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Input 1" linkstyle="Bezier">
+   <LINKPOINT x="2955" y="833">
+   </LINKPOINT>
+   <LINKPOINT x="2265" y="833">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Output" dstnodeid="0" dstpinname="Parent Level" linkstyle="Bezier">
+   <LINKPOINT x="2190" y="1493">
+   </LINKPOINT>
+   <LINKPOINT x="1950" y="1493">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>
