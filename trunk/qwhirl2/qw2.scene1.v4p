@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" locked="0" systemname="qw2.scene1">
-   <BOUNDS height="9510" left="26940" top="6240" type="Window" width="15090">
+   <BOUNDS height="9510" left="4200" top="3615" type="Window" width="15090">
    </BOUNDS>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Node)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="3090" top="7650" type="Node" width="100">
@@ -61,7 +61,7 @@
    </PIN>
    <PIN pinname="Draw Mode" slicecount="1" values="Add">
    </PIN>
-   <PIN pinname="Render State In" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="Render State In" pintype="Input" visible="0">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -361,7 +361,7 @@
    </BOUNDS>
    <BOUNDS height="990" left="5595" top="240" type="Box" width="1110">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -371,14 +371,14 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="44" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="44" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="7635" top="2925" type="Node" width="0">
    </BOUNDS>
    <BOUNDS height="240" left="7635" top="2925" type="Box" width="795">
@@ -758,8 +758,8 @@
    </LINK>
    <LINK dstnodeid="51" dstpinname="Input" srcnodeid="34" srcpinname="Output">
    </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="6960" top="2775" width="100" height="100">
+   <NODE componentmode="Hidden" id="154" nodename="Multiply (Value)" systemname="Multiply (Value)">
+   <BOUNDS height="100" left="6960" top="2775" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="0.5">
    </PIN>
@@ -768,10 +768,22 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="154" dstpinname="Input 1">
+   <LINK dstnodeid="154" dstpinname="Input 1" srcnodeid="35" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Percentage">
+   <LINK dstnodeid="51" dstpinname="Percentage" srcnodeid="49" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="154" srcpinname="Output" dstnodeid="51" dstpinname="Period">
+   <LINK dstnodeid="51" dstpinname="Period" srcnodeid="154" srcpinname="Output">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="155" systemname="IOBox (Node)">
+   <BOUNDS type="Node" left="1455" top="6510" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1455" top="6510" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Render State In|" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="155" srcpinname="Output Node" dstnodeid="4" dstpinname="Render State In">
    </LINK>
    </PATCH>

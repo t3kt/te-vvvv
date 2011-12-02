@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" systemname="qw2.scenes.mixer">
-   <BOUNDS height="6000" left="4545" top="4770" type="Window" width="9000">
+   <BOUNDS height="6000" left="9780" top="4575" type="Window" width="9000">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="IOBox (Node)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="1575" top="465" type="Node" width="100">
@@ -23,9 +23,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="2" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="100" left="3075" top="4800" type="Node" width="100">
+   <BOUNDS height="100" left="360" top="4845" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="3075" top="4800" type="Box" width="795">
+   <BOUNDS height="240" left="360" top="4845" type="Box" width="795">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Layer Output|">
    </PIN>
@@ -67,7 +67,7 @@
    </PIN>
    <PIN pinname="Device" pintype="Configuration" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="Fullscreen Format" pintype="Configuration" slicecount="1" values="X8R8G8B8">
+   <PIN pinname="Fullscreen Format" pintype="Configuration" slicecount="1" values="A2R10G10B10">
    </PIN>
    <PIN pinname="Fullscreen Depthbuffer Format" pintype="Configuration" slicecount="1" values="NONE">
    </PIN>
@@ -271,11 +271,13 @@
    </PIN>
    <PIN pinname="Format" slicecount="1" values="A8B8G8R8">
    </PIN>
+   <PIN pinname="Repair" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK dstnodeid="14" dstpinname="Source" srcnodeid="7" srcpinname="EX9 Out">
    </LINK>
    <NODE componentmode="Hidden" id="15" nodename="Quad (DX9)" systemname="Quad (DX9)">
-   <BOUNDS height="100" left="1260" top="3420" type="Node" width="100">
+   <BOUNDS height="100" left="2115" top="4380" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
@@ -291,9 +293,9 @@
    <LINK dstnodeid="15" dstpinname="Texture" srcnodeid="14" srcpinname="Texture Out">
    </LINK>
    <NODE componentmode="Hidden" id="17" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
-   <BOUNDS height="100" left="4605" top="4440" type="Node" width="100">
+   <BOUNDS height="100" left="2340" top="5100" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1800" left="4605" top="4440" type="Box" width="2400">
+   <BOUNDS height="1800" left="2340" top="5100" type="Box" width="2400">
    </BOUNDS>
    <BOUNDS height="5010" left="13050" top="9690" type="Window" width="6240">
    </BOUNDS>
@@ -301,7 +303,7 @@
    </PIN>
    <PIN pinname="Fullscreen Format" slicecount="1" values="A2R10G10B10">
    </PIN>
-   <PIN pinname="Background Color" slicecount="1" values="|0.70067,0.40945,0.40945,1.00000|">
+   <PIN pinname="Background Color" slicecount="1" values="|0.46404,0.79409,0.48449,1.00000|">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|mix preview|">
    </PIN>
@@ -383,9 +385,9 @@
    <LINK dstnodeid="17" dstpinname="Layers" srcnodeid="15" srcpinname="Layer">
    </LINK>
    <NODE componentmode="InABox" id="28" nodename="IOBox (Color)" systemname="IOBox (Color)">
-   <BOUNDS height="0" left="6105" top="3945" type="Node" width="0">
+   <BOUNDS height="0" left="5610" top="1620" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="480" left="6105" top="3945" type="Box" width="2250">
+   <BOUNDS height="480" left="5610" top="1620" type="Box" width="2250">
    </BOUNDS>
    <PIN pinname="Color Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
    </PIN>
