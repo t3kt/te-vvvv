@@ -11,7 +11,7 @@
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.18">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.13">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="-0.09">
    </PIN>
@@ -88,13 +88,13 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Projection">
    </PIN>
    </NODE>
-   <LINK dstnodeid="48" dstpinname="Input Node" hiddenwhenlocked="1" srcnodeid="78" srcpinname="Transform Out" linkstyle="Bezier">
+   <LINK dstnodeid="48" dstpinname="Input Node" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="78" srcpinname="Transform Out">
    <LINKPOINT x="1530" y="2483">
    </LINKPOINT>
    <LINKPOINT x="1530" y="2483">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="78" dstpinname="FOV" hiddenwhenlocked="1" srcnodeid="79" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="78" dstpinname="FOV" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="79" srcpinname="Output">
    <LINKPOINT x="1785" y="2063">
    </LINKPOINT>
    <LINKPOINT x="1815" y="2063">
@@ -116,13 +116,13 @@
    <PIN pinname="Transform In 3" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="49" dstpinname="Input Node" hiddenwhenlocked="1" srcnodeid="33" srcpinname="Transform Out" linkstyle="Bezier">
+   <LINK dstnodeid="49" dstpinname="Input Node" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="33" srcpinname="Transform Out">
    <LINKPOINT x="405" y="2513">
    </LINKPOINT>
    <LINKPOINT x="405" y="2513">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="33" dstpinname="Transform In 2" hiddenwhenlocked="1" srcnodeid="76" srcpinname="Transform Out" linkstyle="Bezier">
+   <LINK dstnodeid="33" dstpinname="Transform In 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="76" srcpinname="Transform Out">
    <LINKPOINT x="825" y="2070">
    </LINKPOINT>
    <LINKPOINT x="690" y="2070">
@@ -142,13 +142,13 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="79" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="80" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="79" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="80" srcpinname="Y Output Value">
    <LINKPOINT x="180" y="1178">
    </LINKPOINT>
    <LINKPOINT x="1755" y="1178">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="76" dstpinname="Z" hiddenwhenlocked="1" srcnodeid="25" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="76" dstpinname="Z" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="25" srcpinname="Y Output Value">
    <LINKPOINT x="165" y="1425">
    </LINKPOINT>
    <LINKPOINT x="1575" y="1425">
@@ -162,7 +162,7 @@
    <PIN pinname="XYZ">
    </PIN>
    </NODE>
-   <LINK dstnodeid="33" dstpinname="Transform In 1" hiddenwhenlocked="1" srcnodeid="104" srcpinname="Transform Out" linkstyle="Bezier">
+   <LINK dstnodeid="33" dstpinname="Transform In 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="104" srcpinname="Transform Out">
    <LINKPOINT x="225" y="2025">
    </LINKPOINT>
    <LINKPOINT x="375" y="2025">
@@ -184,14 +184,14 @@
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="107" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="1110" top="225" width="0" height="0">
+   <NODE componentmode="InABox" id="107" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="1110" top="225" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="1110" top="225" width="795" height="720">
+   <BOUNDS height="720" left="1110" top="225" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" values="0,-0.03,0">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
@@ -199,12 +199,12 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="YawPitchRoll" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="YawPitchRoll">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="104" dstpinname="XYZ" hiddenwhenlocked="1" linkstyle="Bezier">
+   <LINK dstnodeid="104" dstpinname="XYZ" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="107" srcpinname="Y Output Value">
    <LINKPOINT x="1110" y="1275">
    </LINKPOINT>
    <LINKPOINT x="795" y="1275">
