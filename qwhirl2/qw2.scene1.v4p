@@ -61,7 +61,7 @@
    </PIN>
    <PIN pinname="Draw Mode" slicecount="1" values="Add">
    </PIN>
-   <PIN pinname="Render State In" pintype="Input" visible="0" slicecount="1" values="||">
+   <PIN pinname="Render State In" pintype="Input" slicecount="1" visible="0" values="||">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="6" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -225,11 +225,11 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.01390625">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.00796875">
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="3" values="0.0841666666666668,0.943396226415094,0.6">
+   <PIN pinname="X Input Value" slicecount="3" values="0.0810000000000001,0.943396226415094,0.6">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.005">
    </PIN>
@@ -527,7 +527,7 @@
    </BOUNDS>
    <BOUNDS height="930" left="1425" top="2100" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.454111405835544">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.450663129973475">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -541,7 +541,7 @@
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.4875">
+   <PIN pinname="X Input Value" slicecount="1" values="0.45625">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="FOV">
    </PIN>
@@ -784,6 +784,6 @@
    </NODE>
    <LINK dstnodeid="4" dstpinname="Render State In" srcnodeid="155" srcpinname="Output Node">
    </LINK>
-   <LINK srcnodeid="4" srcpinname="Render State Out" dstnodeid="2" dstpinname="Render State" hiddenwhenlocked="1">
+   <LINK dstnodeid="2" dstpinname="Render State" hiddenwhenlocked="1" srcnodeid="4" srcpinname="Render State Out">
    </LINK>
    </PATCH>
