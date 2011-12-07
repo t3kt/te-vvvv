@@ -67,11 +67,11 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.064375">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.03765625">
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="3" values="0.024,0.943396226415094,0.6">
+   <PIN pinname="X Input Value" slicecount="3" values="0.005,0.943396226415094,0.6">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.005">
    </PIN>
@@ -1366,6 +1366,6 @@
    </NODE>
    <LINK dstnodeid="61" dstpinname="Render State In" srcnodeid="123" srcpinname="Output Node">
    </LINK>
-   <LINK srcnodeid="61" srcpinname="Render State Out" dstnodeid="0" dstpinname="Render State" hiddenwhenlocked="1">
+   <LINK dstnodeid="0" dstpinname="Render State" hiddenwhenlocked="1" srcnodeid="61" srcpinname="Render State Out">
    </LINK>
    </PATCH>
