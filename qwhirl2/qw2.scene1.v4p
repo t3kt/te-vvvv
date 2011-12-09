@@ -599,11 +599,11 @@
    <LINK dstnodeid="3" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="123" srcpinname="Output">
    </LINK>
    <NODE componentmode="InABox" filename="qw2.scene1.positions.v4p" id="129" nodename="qw2.scene1.positions.v4p" systemname="qw2.scene1.positions" path="C:\Users\thezer0ist\vvvv\qwhirl2\">
-   <BOUNDS height="100" left="14265" top="7305" type="Node" width="100">
+   <BOUNDS height="100" left="14100" top="6690" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="8880" left="12345" top="3300" type="Window" width="4425">
+   <BOUNDS height="8880" left="9780" top="3300" type="Window" width="6990">
    </BOUNDS>
-   <BOUNDS height="2190" left="6795" top="5310" type="Box" width="3195">
+   <BOUNDS height="2190" left="6630" top="4695" type="Box" width="3195">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" hiddenwhenlocked="1" id="83" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
