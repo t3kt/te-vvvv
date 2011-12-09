@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportNodes", "Transport
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendReceiveNodes", "SendReceiveNodes\SendReceiveNodes.csproj", "{B423FCC3-94E5-4E47-989C-34E862050972}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncNodes", "FuncNodes\FuncNodes.csproj", "{F81EF762-75A8-4592-89A5-8C4514B6F00A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,16 @@ Global
 		{B423FCC3-94E5-4E47-989C-34E862050972}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B423FCC3-94E5-4E47-989C-34E862050972}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B423FCC3-94E5-4E47-989C-34E862050972}.Release|x86.ActiveCfg = Release|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F81EF762-75A8-4592-89A5-8C4514B6F00A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
