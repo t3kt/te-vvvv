@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FuncNodes</RootNamespace>
     <AssemblyName>FuncNodes</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,9 +38,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\System.ComponentModel.Composition.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.ComponentModel.Composition.Codeplex">
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,23 +47,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Core.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Hosting.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Hosting.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.PluginInterfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils3rdParty.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
