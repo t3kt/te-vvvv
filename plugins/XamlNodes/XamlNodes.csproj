@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XamlNodes</RootNamespace>
     <AssemblyName>XamlNodes</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -19,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,33 +40,36 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+    <Reference Include="System.ComponentModel.Composition.Codeplex">
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="VVVV.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="VVVV.HDE.Viewer.WinFormsViewer">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.HDE.Viewer.WinFormsViewer.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Hosting.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Hosting.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta26\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

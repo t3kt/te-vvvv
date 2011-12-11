@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VVVV.Nodes</RootNamespace>
     <AssemblyName>DummyNodes</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,13 +33,13 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649</NoWarn>
   </PropertyGroup>
-	<PropertyGroup>
-		<RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
-	</PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\System.ComponentModel.Composition.dll</HintPath>
+    <Reference Include="System.ComponentModel.Composition.Codeplex">
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,19 +47,24 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="VVVV.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Core.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Hosting">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Hosting.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Hosting.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>..\..\..\..\..\Program Files (x86)\vvvv_45beta25.1\bin\managed\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +76,9 @@
     <Compile Include="SimpleValueDummyNode2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-	<PropertyGroup>
-		<PostBuildEvent>sh.exe $(SolutionDir)_Shared\CleanUp.sh $(ProjectDir) $(TargetName)</PostBuildEvent>
-	</PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)_Shared\CleanBuildOutput\bin\CleanBuildOutput.exe $(ProjectDir) $(TargetName)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
