@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" locked="0" systemname="qw2.scene1">
    <BOUNDS height="9180" left="0" top="5970" type="Window" width="10440">
    </BOUNDS>
@@ -192,66 +192,6 @@
    </LINK>
    <LINK dstnodeid="13" dstpinname="TranslateZ" srcnodeid="12" srcpinname="Angle">
    </LINK>
-   <NODE componentmode="InABox" id="21" nodename="IOBox (Value Advanced)" systemname="IOBox (Color)">
-   <BOUNDS height="100" left="4875" top="6765" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="540" left="4875" top="6765" type="Box" width="630">
-   </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.41958,0.75232,0.94280,0.61538|">
-   </PIN>
-   <PIN pinname="Color Output" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Color">
-   </PIN>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="20" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
-   <BOUNDS height="270" left="4890" top="7620" type="Node" width="1050">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Alpha" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="InABox" id="19" nodename="IOBox (Value Advanced)" systemname="IOBOX (VALUE ADVANCED)">
-   <BOUNDS height="100" left="5520" top="6765" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="540" left="5520" top="6765" type="Box" width="450">
-   </BOUNDS>
-   <PIN pinname="Show Slider" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Show Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.00796875">
-   </PIN>
-   <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="3" values="0.0810000000000001,0.943396226415094,0.6">
-   </PIN>
-   <PIN pinname="Minimum" slicecount="1" values="0.005">
-   </PIN>
-   <PIN pinname="Maximum" slicecount="1" values="0.1">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Show Background" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Alpha">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="20" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="21" srcpinname="Color Output">
-   </LINK>
-   <LINK dstnodeid="20" dstpinname="Alpha" hiddenwhenlocked="1" srcnodeid="19" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="2" dstpinname="Color" hiddenwhenlocked="1" srcnodeid="20" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="22" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="1455" top="210" type="Node" width="0">
    </BOUNDS>
@@ -410,7 +350,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="qw2.util.stuttergate.v4p" id="51" nodename="qw2.util.stuttergate.v4p" systemname="qw2.util.stuttergate" path="C:\Users\thezer0ist\vvvv\qwhirl2\">
+   <NODE componentmode="Hidden" filename="qw2.util.stuttergate.v4p" id="51" nodename="qw2.util.stuttergate.v4p" systemname="qw2.util.stuttergate">
    <BOUNDS height="100" left="5790" top="3540" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="5655" left="13950" top="4290" type="Window" width="5205">
@@ -527,7 +467,7 @@
    </BOUNDS>
    <BOUNDS height="930" left="1425" top="2100" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.450663129973475">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.464456233421752">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -541,7 +481,7 @@
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.45625">
+   <PIN pinname="X Input Value" slicecount="1" values="0.31875">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="FOV">
    </PIN>
@@ -598,7 +538,7 @@
    </NODE>
    <LINK dstnodeid="3" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="123" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InABox" filename="qw2.scene1.positions.v4p" id="129" nodename="qw2.scene1.positions.v4p" systemname="qw2.scene1.positions" path="C:\Users\thezer0ist\vvvv\qwhirl2\">
+   <NODE componentmode="InABox" filename="qw2.scene1.positions.v4p" id="129" nodename="qw2.scene1.positions.v4p" systemname="qw2.scene1.positions">
    <BOUNDS height="100" left="14100" top="6690" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="8880" left="9780" top="3300" type="Window" width="6990">
@@ -785,5 +725,17 @@
    <LINK dstnodeid="4" dstpinname="Render State In" srcnodeid="155" srcpinname="Output Node">
    </LINK>
    <LINK dstnodeid="2" dstpinname="Render State" hiddenwhenlocked="1" srcnodeid="4" srcpinname="Render State Out">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="156" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
+   <BOUNDS height="100" left="3465" top="6765" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.color">
+   </PIN>
+   <PIN pinname="Default" slicecount="3" visible="1" values="|0.41958,0.75232,0.94280,0.00797|,|0.41958,0.75232,0.94280,0.00797|,|0.41958,0.75232,0.94280,0.00797|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="2" dstpinname="Color" hiddenwhenlocked="1" srcnodeid="156" srcpinname="Output">
    </LINK>
    </PATCH>

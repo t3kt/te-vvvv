@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" bgcolor="16777215" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" locked="1" systemname="qw2.camera">
    <BOUNDS height="4275" left="6765" top="4785" type="Window" width="2985">
    </BOUNDS>
