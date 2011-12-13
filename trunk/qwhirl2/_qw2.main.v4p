@@ -7,7 +7,7 @@
    </BOUNDS>
    <BOUNDS height="1800" left="390" top="6240" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="6165" left="9840" top="435" type="Window" width="10305">
+   <BOUNDS height="6165" left="9750" top="0" type="Window" width="10305">
    </BOUNDS>
    <PIN pinname="Fullscreen Dimensions" slicecount="1" values="|960 x 600|">
    </PIN>
@@ -67,7 +67,7 @@
    </BOUNDS>
    <BOUNDS height="705" left="150" top="150" type="Box" width="1050">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -83,7 +83,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
@@ -189,7 +189,7 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS height="10740" left="3000" top="2970" type="Window" width="10635">
+   <BOUNDS height="9990" left="3000" top="2970" type="Window" width="10635">
    </BOUNDS>
    <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.03765625">
    </PIN>
@@ -642,7 +642,7 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Layers" hiddenwhenlocked="1" srcnodeid="94" srcpinname="Layer">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.postproc.v4p" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
+   <NODE componentmode="InAWindow" filename="qw2.postproc.v4p" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
    <BOUNDS height="100" left="495" top="4920" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="4680" left="1830" top="6615" type="Window" width="9450">
@@ -711,7 +711,7 @@
    <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
    <BOUNDS height="100" left="2625" top="1950" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="3675" left="7485" top="4665" type="Window" width="6360">
+   <BOUNDS height="4530" left="495" top="7725" type="Window" width="6915">
    </BOUNDS>
    </NODE>
    </PATCH>

@@ -235,7 +235,7 @@
    </BOUNDS>
    <BOUNDS height="240" left="2745" top="4440" type="Box" width="1170">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="| Multiply|">
+   <PIN pinname="Input Enum" slicecount="1" values="| Subtract|">
    </PIN>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
@@ -293,6 +293,8 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="46" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="3885" top="1605" type="Node" width="0">
@@ -324,6 +326,8 @@
    <PIN pinname="Alpha" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="47" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -366,8 +370,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="49" dstpinname="Mode" srcnodeid="35" srcpinname="Output Enum">
-   </LINK>
    <LINK dstnodeid="49" dstpinname="Opacity" srcnodeid="36" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="49" dstpinname="Order" srcnodeid="42" srcpinname="Y Output Value">
@@ -623,9 +625,9 @@
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
    </PIN>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="76" dstpinname="Input Node" srcnodeid="74" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="77" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
    <BOUNDS height="100" left="5520" top="4350" type="Node" width="100">
    </BOUNDS>
@@ -647,5 +649,9 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="56" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="78" srcpinname="Output">
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="Output" dstnodeid="76" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="35" srcpinname="Output Enum" dstnodeid="49" dstpinname="Mode">
    </LINK>
    </PATCH>
