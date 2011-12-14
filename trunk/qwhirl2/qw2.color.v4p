@@ -65,7 +65,7 @@
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="3" values="0.0968333333333333,0.943396226415094,0.6">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.005">
    </PIN>
@@ -168,10 +168,10 @@
    </NODE>
    <LINK dstnodeid="11" dstpinname="Input" srcnodeid="12" srcpinname="Output">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
-   <BOUNDS type="Node" left="5715" top="600" width="100" height="100">
+   <NODE componentmode="InABox" id="20" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="5715" top="600" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="5715" top="600" width="480" height="480">
+   <BOUNDS height="480" left="5715" top="600" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Boolean">
    </PIN>
@@ -184,27 +184,27 @@
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="5730" top="1200" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="21" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="5730" top="1200" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.color.inv" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.color.inv">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="21" dstpinname="Input">
+   <LINK dstnodeid="21" dstpinname="Input" srcnodeid="20" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="qw2.color.inv" filename="qw2.color.inv.v4p" nodename="qw2.color.inv.v4p" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="2325" top="2250" width="100" height="100">
+   <NODE componentmode="Hidden" filename="qw2.color.inv.v4p" id="33" nodename="qw2.color.inv.v4p" systemname="qw2.color.inv">
+   <BOUNDS height="100" left="2325" top="2250" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="9" srcpinname="Color Output" dstnodeid="33" dstpinname="Input">
+   <LINK dstnodeid="33" dstpinname="Input" srcnodeid="9" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="8" dstpinname="Input">
+   <LINK dstnodeid="8" dstpinname="Input" srcnodeid="33" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="qw2.color.inv.v4p" id="34" nodename="qw2.color.inv.v4p" systemname="qw2.color.inv">
    <BOUNDS height="100" left="4080" top="1305" type="Node" width="100">
@@ -214,9 +214,9 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="10" srcpinname="Color Output" dstnodeid="34" dstpinname="Input">
+   <LINK dstnodeid="34" dstpinname="Input" srcnodeid="10" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="34" srcpinname="Output" dstnodeid="12" dstpinname="Input">
+   <LINK dstnodeid="12" dstpinname="Input" srcnodeid="34" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="qw2.color.inv.v4p" id="35" nodename="qw2.color.inv.v4p" systemname="qw2.color.inv">
    <BOUNDS height="100" left="555" top="1740" type="Node" width="100">
@@ -226,8 +226,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Color Output" dstnodeid="35" dstpinname="Input">
+   <LINK dstnodeid="35" dstpinname="Input" srcnodeid="1" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="35" srcpinname="Output" dstnodeid="0" dstpinname="Input">
+   <LINK dstnodeid="0" dstpinname="Input" srcnodeid="35" srcpinname="Output">
    </LINK>
    </PATCH>

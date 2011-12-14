@@ -99,9 +99,9 @@
    <LINK dstnodeid="0" dstpinname="Width" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="13" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="5130" top="3600" type="Node" width="0">
+   <BOUNDS height="0" left="4980" top="3510" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="5130" top="3600" type="Box" width="795">
+   <BOUNDS height="240" left="4980" top="3510" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="6.81">
    </PIN>
@@ -339,7 +339,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="2430" top="3825" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -349,7 +349,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
@@ -599,37 +599,15 @@
    <LINK dstnodeid="61" dstpinname="Draw Mode" hiddenwhenlocked="1" srcnodeid="64" srcpinname="Output Enum">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="65" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="6405" top="7065" type="Node" width="100">
+   <BOUNDS height="100" left="6045" top="7230" type="Node" width="100">
    </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw.sc2.on">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.on">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="on">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="6405" top="7395" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="765" left="6405" top="7395" type="Box" width="690">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Enabled">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="1" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="65" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="66" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="270" left="180" top="75" type="Node" width="555">
    </BOUNDS>
@@ -1294,8 +1272,6 @@
    </NODE>
    <LINK dstnodeid="0" dstpinname="Color" hiddenwhenlocked="1" srcnodeid="124" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="1" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="Hidden" id="126" nodename="Scale (Transform Vector)" systemname="Scale (Transform Vector)">
    <BOUNDS height="100" left="150" top="4230" type="Node" width="100">
    </BOUNDS>
@@ -1311,5 +1287,7 @@
    <LINK dstnodeid="126" dstpinname="Transform In" srcnodeid="116" srcpinname="Transform Out">
    </LINK>
    <LINK dstnodeid="43" dstpinname="Transform In" srcnodeid="126" srcpinname="Transform Out">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="65" srcpinname="Output">
    </LINK>
    </PATCH>
