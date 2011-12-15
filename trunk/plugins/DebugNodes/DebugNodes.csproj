@@ -70,21 +70,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\NodeVisitor.cs" />
     <Compile Include="Nodes\BasicUITestPanelNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Nodes\FooNode.cs" />
     <Compile Include="Nodes\GetAppDomainAssembliesNode.cs" />
     <Compile Include="Nodes\NodesTestNode.cs" />
+    <Compile Include="Nodes\NodeTreeLoggerNode.cs" />
     <Compile Include="Nodes\PartCatalogDebugNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup Label="__SHARED">
     <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="debug node tests.v4p" />
   </ItemGroup>
