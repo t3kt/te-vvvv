@@ -67,7 +67,7 @@
    </BOUNDS>
    <BOUNDS height="705" left="150" top="150" type="Box" width="1050">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -83,13 +83,13 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
    <BOUNDS height="100" left="555" top="2685" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="7830" left="0" top="6480" type="Window" width="7455">
+   <BOUNDS height="7830" left="0" top="6480" type="Window" width="7155">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -99,7 +99,7 @@
    </PIN>
    <PIN pinname="ScaleX - ScaleY" pintype="Input" slicecount="1" visible="-1" values="0.44">
    </PIN>
-   <PIN pinname="Pause" pintype="Input" slicecount="1" visible="-1" values="0">
+   <PIN pinname="Pause" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.00796875">
    </PIN>
@@ -207,17 +207,17 @@
    </PIN>
    <PIN pinname="Render State In" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="Filter Time" visible="-1" pintype="Input" slicecount="2" values="0.3,0">
+   <PIN pinname="Filter Time" pintype="Input" slicecount="2" visible="-1" values="0.3,0">
    </PIN>
-   <PIN pinname="Percentage" visible="-1" pintype="Input" slicecount="1" values="0.25">
+   <PIN pinname="Percentage" pintype="Input" slicecount="1" visible="-1" values="0.25">
    </PIN>
-   <PIN pinname="Period" visible="-1" pintype="Input" slicecount="1" values="0.86">
+   <PIN pinname="Period" pintype="Input" slicecount="1" visible="-1" values="0.86">
    </PIN>
-   <PIN pinname="Thickness" visible="-1" pintype="Input" slicecount="1" values="5.42">
+   <PIN pinname="Thickness" pintype="Input" slicecount="1" visible="-1" values="5.42">
    </PIN>
-   <PIN pinname="Pos Filters" visible="-1" pintype="Input" slicecount="1" values="1">
+   <PIN pinname="Pos Filters" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Pause" visible="-1" pintype="Input" slicecount="1" values="1">
+   <PIN pinname="Pause" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -407,11 +407,11 @@
    <NODE componentmode="InABox" id="44" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="100" left="2970" top="4485" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1755" left="2970" top="4485" type="Box" width="2385">
+   <BOUNDS height="1425" left="2970" top="4485" type="Box" width="2370">
    </BOUNDS>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
-   <PIN encoded="0" pinname="Input String" slicecount="1" values="|- make transport/lfo/stutter global&cr;&lf;- switch to using EX9 instead of DX9 primitives&cr;&lf;- make mouse control global&cr;&lf;- add better mouse control to scene 2&cr;&lf;- video processing&cr;&lf;- textures?|">
+   <PIN encoded="0" pinname="Input String" slicecount="1" values="|- make transport/lfo/stutter global&cr;&lf;- add better mouse control to scene 2&cr;&lf;- video processing&cr;&lf;- textures?|">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="43" nodename="IOBox (String)" systemname="IOBox (String)">
@@ -727,7 +727,7 @@
    <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
    <BOUNDS height="100" left="2625" top="1950" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="4530" left="495" top="7725" type="Window" width="6915">
+   <BOUNDS height="4530" left="3750" top="7575" type="Window" width="6600">
    </BOUNDS>
    </NODE>
    </PATCH>

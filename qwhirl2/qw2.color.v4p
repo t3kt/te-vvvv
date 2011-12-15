@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" systemname="qw2.color">
-   <BOUNDS height="4530" left="495" top="7725" type="Window" width="6915">
+   <BOUNDS height="4530" left="3750" top="7575" type="Window" width="6600">
    </BOUNDS>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Color)" systemname="IOBox (Color)">
    <BOUNDS height="0" left="555" top="690" type="Node" width="0">
