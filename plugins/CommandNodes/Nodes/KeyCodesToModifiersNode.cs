@@ -26,17 +26,17 @@ namespace CommandNodes.Nodes
 		[Input("KeyCode")]
 		private IDiffSpread<int> _KeyCodeInput;
 
-		[Output("Command Modifiers", IsSingle = true)]
+		[Output("Command Modifiers", IsSingle = true, Order = 0)]
 		private ISpread<CommandModifiers> _ModifiersOutput;
 
-		[Output("Alt")]
-		private ISpread<bool> _AltOutput;
-
-		[Output("Control", IsSingle = true)]
+		[Output("Control", IsSingle = true, Order = 1)]
 		private ISpread<bool> _ControlOutput;
 
-		[Output("Shift", IsSingle = true)]
+		[Output("Shift", IsSingle = true, Order = 2)]
 		private ISpread<bool> _ShiftOutput;
+
+		[Output("Alt", IsSingle = true, Order = 3)]
+		private ISpread<bool> _AltOutput;
 
 		#endregion
 
