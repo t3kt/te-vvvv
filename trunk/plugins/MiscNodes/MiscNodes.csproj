@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\KeysUtil.cs" />
+    <Compile Include="Nodes\CharAsAsciiValue.cs" />
     <Compile Include="Nodes\DetectInputNode.cs" />
     <Compile Include="Nodes\GateNode.cs" />
     <Compile Include="Nodes\GetCurrentTicksNode.cs" />

@@ -19,6 +19,8 @@
    </PIN>
    <PIN pinname="Color Output" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="0" nodename="S (Color Advanced)" systemname="S (Color Advanced)">
    <BOUNDS height="100" left="1395" top="2085" type="Node" width="100">
@@ -27,7 +29,7 @@
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1395" top="2085">
+   <BOUNDS left="1395" top="2085" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Color)">
@@ -42,6 +44,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Sc1 Color|">
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="8" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
@@ -83,6 +87,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Alpha">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="8" dstpinname="Alpha" hiddenwhenlocked="1" srcnodeid="7" srcpinname="Y Output Value">
    </LINK>
@@ -93,7 +99,7 @@
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2925" top="2085">
+   <BOUNDS left="2925" top="2085" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="6" dstpinname="Input" srcnodeid="8" srcpinname="Output">
@@ -126,6 +132,8 @@
    <PIN pinname="Show Background" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Alpha">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="12" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
@@ -167,6 +175,8 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="11" dstpinname="Input" srcnodeid="12" srcpinname="Output">
    </LINK>
@@ -185,7 +195,9 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Invert" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Invert">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="21" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
@@ -195,7 +207,7 @@
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="330" top="2085">
+   <BOUNDS left="330" top="2085" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="21" dstpinname="Input" srcnodeid="20" srcpinname="Y Output Value">
@@ -207,7 +219,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2925" top="1245">
+   <BOUNDS left="2925" top="1245" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="33" dstpinname="Input" srcnodeid="9" srcpinname="Color Output">
@@ -221,7 +233,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="4425" top="1245">
+   <BOUNDS left="4425" top="1245" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="34" dstpinname="Input" srcnodeid="10" srcpinname="Color Output">
@@ -235,7 +247,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1395" top="1245">
+   <BOUNDS left="1395" top="1245" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="35" dstpinname="Input" srcnodeid="1" srcpinname="Color Output">
@@ -273,6 +285,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Alpha">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="45" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
    <PIN pinname="Alpha" visible="1">
@@ -296,6 +310,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="MixSc1Bg">
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="45" dstpinname="Input" srcnodeid="44" srcpinname="Color Output">
@@ -343,6 +359,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Alpha">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="49" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
    <PIN pinname="Alpha" visible="1">
@@ -367,6 +385,8 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="49" dstpinname="Input" srcnodeid="48" srcpinname="Color Output">
    </LINK>
@@ -382,6 +402,6 @@
    </NODE>
    <LINK dstnodeid="47" dstpinname="Input" srcnodeid="49" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Alpha">
+   <LINK dstnodeid="12" dstpinname="Alpha" srcnodeid="13" srcpinname="Y Output Value">
    </LINK>
    </PATCH>
