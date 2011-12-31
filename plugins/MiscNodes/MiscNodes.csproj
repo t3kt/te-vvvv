@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.Codeplex">
       <HintPath>..\..\..\code\vvvv-sdk\vvvv45\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -85,12 +86,9 @@
     <Compile Include="Nodes\KeyGestureToStringNode.cs" />
     <Compile Include="Nodes\KeyToStringNode.cs" />
     <Compile Include="Nodes\KeyToValueNode.cs" />
-    <Compile Include="Nodes\LastChangedColorNode.cs" />
     <Compile Include="Nodes\LastChangedNode.cs" />
-    <Compile Include="Nodes\LastChangedStringNode.cs" />
-    <Compile Include="Nodes\LastChangedValueNode.cs" />
+    <Compile Include="Nodes\LastChangedSpectralNode.cs" />
     <Compile Include="Nodes\SplitKeyGestureNode.cs" />
-    <Compile Include="Nodes\InputSwitchNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -4,4 +4,4 @@
 #grep -R --exclude-dir=.svn --exclude-dir=bin --exclude-dir=obj --include="*.v4p" $@ ~/vvvv
 
 #echo foo "$1"
-find . -iname "*.v4p" -and -not -iwholename "*.svn/*" -print0 | xargs -0 grep --color $2 $3 $4 $5 $6 $7 $8 $9 "$1"
+find . -iname "*.v4p" -and -not -iwholename "*.svn/*" -print0 | xargs -0 grep -E --color $2 $3 $4 $5 $6 $7 $8 $9 "$1"

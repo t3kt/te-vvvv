@@ -70,12 +70,6 @@ namespace VVVV.Nodes
 					_Output.Append(IndentChar, _Indent);
 			}
 
-			private void WriteLine(string message, params object[] args)
-			{
-				this.WriteIndent();
-				_Output.AppendFormat(message, args).AppendLine();
-			}
-
 			private void WriteNode(INode2 node)
 			{
 				this.WriteIndent();

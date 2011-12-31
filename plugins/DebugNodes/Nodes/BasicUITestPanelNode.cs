@@ -12,8 +12,8 @@ using VVVV.PluginInterfaces.V2;
 namespace VVVV.Nodes
 {
 	[PluginInfo(Name = "BasicUITestPanel",
-		Category = "GUI",
-		Author = "te",
+		Category = TEShared.Names.Categories.Debug,
+		Author = TEShared.Names.Author,
 		//AutoEvaluate = true,
 		InitialBoxHeight = 150,
 		InitialWindowHeight = 150, 

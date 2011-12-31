@@ -1136,7 +1136,7 @@
    </LINK>
    <LINK dstnodeid="145" dstpinname="Input" srcnodeid="142" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InABox" filename="bin\StructNodes.dll" id="139" nodename="GetTypes (Struct test)" systemname="GetTypes (Struct test)">
+   <NODE componentmode="InABox" filename="bin\StructNodes.dll" id="139" nodename="GetTypes (Struct GUI)" systemname="GetTypes (Struct GUI)">
    <BOUNDS height="100" left="8610" top="5325" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="3015" left="8610" top="5325" type="Box" width="7560">
