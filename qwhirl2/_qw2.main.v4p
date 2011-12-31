@@ -766,7 +766,7 @@
    </NODE>
    <LINK dstnodeid="105" dstpinname="W" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="119" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="..\modules\S (2d Advanced).v4p" hiddenwhenlocked="1" id="121" nodename="S (2d Advanced)" systemname="S (2d Advanced)">
+   <NODE componentmode="Hidden" filename="..\modules\SVec (2d Advanced).v4p" hiddenwhenlocked="1" id="121" nodename="SVec (2d Advanced)" systemname="SVec (2d Advanced)">
    <BOUNDS height="100" left="4425" top="2475" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.render.size.">
