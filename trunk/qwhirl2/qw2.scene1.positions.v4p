@@ -87,13 +87,13 @@
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Input 0" visible="1">
-   </PIN>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="Input 4" visible="1">
    </PIN>
    <PIN pinname="Output" pintype="Output" visible="-1">
    </PIN>
@@ -122,25 +122,25 @@
    <LINKPOINT x="995" y="1560">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 0" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 1">
+   <LINK dstnodeid="14" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 1">
    <LINKPOINT x="1020" y="2220">
    </LINKPOINT>
    <LINKPOINT x="885" y="2220">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 2">
+   <LINK dstnodeid="14" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 2">
    <LINKPOINT x="1245" y="2220">
    </LINKPOINT>
    <LINKPOINT x="1215" y="2220">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 3">
+   <LINK dstnodeid="14" dstpinname="Input 3" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 3">
    <LINKPOINT x="1470" y="2220">
    </LINKPOINT>
    <LINKPOINT x="1515" y="2220">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Input 3" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 4">
+   <LINK dstnodeid="14" dstpinname="Input 4" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="13" srcpinname="Output 4">
    <LINKPOINT x="1710" y="2220">
    </LINKPOINT>
    <LINKPOINT x="1845" y="2220">

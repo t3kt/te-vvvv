@@ -106,33 +106,6 @@ namespace VVVV.Nodes
 
 	}
 
-	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
-		Category = TEShared.Names.Categories.Vector,
-		Version = TEShared.Names.Versions.TwoD,
-		Author = TEShared.Names.Author)]
-	public sealed class Vector2DGateNode : GateNode<Vector2D>
-	{
-
-	}
-
-	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
-		Category = TEShared.Names.Categories.Vector,
-		Version = TEShared.Names.Versions.ThreeD,
-		Author = TEShared.Names.Author)]
-	public sealed class Vector3DGateNode : GateNode<Vector3D>
-	{
-
-	}
-
-	[PluginInfo(Name = TEShared.Names.Nodes.Gate,
-		Category = TEShared.Names.Categories.Vector,
-		Version = TEShared.Names.Versions.FourD,
-		Author = TEShared.Names.Author)]
-	public sealed class Vector4DGateNode : GateNode<Vector4D>
-	{
-
-	}
-
 	#endregion
 
 }

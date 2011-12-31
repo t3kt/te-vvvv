@@ -275,9 +275,9 @@
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Input 0" visible="1">
-   </PIN>
    <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -366,8 +366,8 @@
    </LINK>
    <LINK dstnodeid="11" dstpinname="Input" srcnodeid="30" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="25" dstpinname="Input 0">
+   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="25" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="25" dstpinname="Input 1">
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="25" dstpinname="Input 2">
    </LINK>
    </PATCH>

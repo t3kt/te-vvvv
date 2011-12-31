@@ -14,7 +14,7 @@ namespace VVVV.UI
 {
 	[PluginInfo(Name = TEShared.Names.Nodes.GetTypes,
 		Category = TEShared.Names.Categories.Struct,
-		Version = TEShared.Names.Versions.Test,
+		Version = TEShared.Names.Versions.GUI,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		InitialComponentMode = TComponentMode.InABox,

@@ -13,8 +13,8 @@ namespace VVVV.Nodes
 	#region GetAppDomainAssembliesNode
 
 	[PluginInfo(Name = "Assemblies",
-		Category = "Debug",
-		Author = "te")]
+		Category = TEShared.Names.Categories.Debug,
+		Author = TEShared.Names.Author)]
 	public sealed class GetAppDomainAssembliesNode : IPluginEvaluate
 	{
 

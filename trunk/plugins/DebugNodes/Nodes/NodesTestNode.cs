@@ -16,8 +16,8 @@ namespace VVVV.Nodes
 	#region NodesTestNode
 
 	[PluginInfo(Name = "NodesTest",
-		Category = "Debug",
-		Author = "te")]
+		Category = TEShared.Names.Categories.Debug,
+		Author = TEShared.Names.Author)]
 	public sealed class NodesTestNode : IPluginEvaluate, IPartImportsSatisfiedNotification
 	{
 

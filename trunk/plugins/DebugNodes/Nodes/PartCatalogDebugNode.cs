@@ -17,9 +17,9 @@ namespace VVVV.Nodes
 	#region PartCatalogDebugNode
 
 	[PluginInfo(Name = "PartCatalog",
-		Category = "Debug",
-		Author = "te")]
-	public sealed class PartCatalogDebugNode : IPluginEvaluate, IDisposable
+		Category = TEShared.Names.Categories.Debug,
+		Author = TEShared.Names.Author)]
+	public sealed class PartCatalogDebugNode : IPluginEvaluate
 	{
 
 		#region Static / Constant
@@ -38,6 +38,8 @@ namespace VVVV.Nodes
 				var method = _ReflectionPartDefType.GetMethod("GetPartType", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 				_ReflectionPartDefGetPartType = (Func<object, Type>)Delegate.CreateDelegate(typeof(Func<object, Type>), method, true);
 			}
+			if(_ReflectionPartDefGetPartType == null)
+				return null;
 			return _ReflectionPartDefGetPartType(part);
 		}
 
@@ -108,15 +110,6 @@ namespace VVVV.Nodes
 				}
 				_NeedsUpdate = false;
 			}
-		}
-
-		#endregion
-
-		#region IDisposable Members
-
-		void IDisposable.Dispose()
-		{
-			GC.SuppressFinalize(this);
 		}
 
 		#endregion
