@@ -9,7 +9,7 @@
    </PIN>
    <BOUNDS height="100" left="3495" top="1680" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="660" left="3495" top="1680" type="Box" width="5340">
+   <BOUNDS height="750" left="3495" top="1680" type="Box" width="4170">
    </BOUNDS>
    <BOUNDS height="165" left="11445" top="7395" type="Window" width="210">
    </BOUNDS>
@@ -17,11 +17,11 @@
    </PIN>
    <PIN pinname="Content Type">
    </PIN>
-   <PIN encoded="0" pinname="Input String" slicecount="4" values="C:\Users\thezer0ist\vvvv,|C:\Program Files (x86)\vvFFPP\|,C:\Users\thezer0ist\code\vvvv-sdk\vvvv45\addonpack\lib\nodes,C:\Users\thezer0ist\code\vvvv-sdk\vvvv45\lib\nodes">
+   <PIN encoded="0" pinname="Input String" slicecount="3" values="%MYVVVV%,%VVVV45%\lib\nodes,%VVVV45%\addonpack\lib\nodes">
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="Directory">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="4">
+   <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
@@ -145,7 +145,7 @@
    </BOUNDS>
    <BOUNDS height="3195" left="1140" top="4470" type="Box" width="2595">
    </BOUNDS>
-   <BOUNDS height="6900" left="19005" top="945" type="Window" width="5100">
+   <BOUNDS height="9675" left="20100" top="0" type="Window" width="5100">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" id="-11" nodename="VVVV (VVVV)" systemname="VVVV (VVVV)">
@@ -286,10 +286,10 @@
    <PIN pinname="String Type" slicecount="1" values="String">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" filename="..\..\..\vvvv\{LOG}.v4p" id="63" nodename="..\..\..\vvvv\{LOG}.v4p" systemname="{LOG}">
+   <NODE componentmode="InAWindow" filename="..\..\..\vvvv\{LOG}.v4p" id="63" nodename="{LOG}.v4p" systemname="{LOG}" border="1">
    <BOUNDS height="100" left="1170" top="5550" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="6030" left="17685" top="7950" type="Window" width="7350">
+   <BOUNDS height="5340" left="16680" top="9810" type="Window" width="8520">
    </BOUNDS>
    </NODE>
    </PATCH>

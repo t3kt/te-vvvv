@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
    <BOUNDS height="7125" left="0" top="0" type="Window" width="7155">
    </BOUNDS>
    <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="RENDERER (EX9)">
@@ -43,9 +43,9 @@
    </PIN>
    <PIN pinname="Is Fullscreen" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Actual Backbuffer Width" pintype="Output" visible="-1">
+   <PIN pinname="Actual Backbuffer Width" pintype="Output" visible="0">
    </PIN>
-   <PIN pinname="Actual Backbuffer Height" pintype="Output" visible="-1">
+   <PIN pinname="Actual Backbuffer Height" pintype="Output" visible="0">
    </PIN>
    <PIN pinname="EX9 Out" pintype="Output" visible="0">
    </PIN>
@@ -86,7 +86,7 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
+   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
    <BOUNDS height="270" left="2430" top="2625" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="7830" left="765" top="4800" type="Window" width="7275">
@@ -193,7 +193,7 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS height="9990" left="3000" top="2970" type="Window" width="10635">
+   <BOUNDS height="9990" left="690" top="4020" type="Window" width="10635">
    </BOUNDS>
    <PIN pinname="Alpha" pintype="Input" slicecount="1" visible="-1" values="0.03765625">
    </PIN>
@@ -233,7 +233,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="675" top="1155" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -243,7 +243,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scn 2|">
    </PIN>
@@ -301,7 +301,7 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" visible="1" values="0">
    </PIN>
-   <BOUNDS height="7920" left="2340" top="5865" type="Window" width="9225">
+   <BOUNDS height="6120" left="585" top="4050" type="Window" width="6675">
    </BOUNDS>
    <PIN pinname="Background Color" visible="1">
    </PIN>
@@ -583,7 +583,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="1170" top="1155" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -597,7 +597,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="100" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
@@ -613,7 +613,7 @@
    <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
    <BOUNDS height="100" left="4875" top="1455" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="4530" left="3750" top="7575" type="Window" width="6600">
+   <BOUNDS height="3495" left="3750" top="6570" type="Window" width="9615">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="103" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
