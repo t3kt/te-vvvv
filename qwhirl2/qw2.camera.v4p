@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" bgcolor="16777215" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" locked="1" systemname="qw2.camera">
-   <BOUNDS height="4275" left="6765" top="4785" type="Window" width="2985">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.camera.v4p" locked="0" systemname="qw2.camera">
+   <BOUNDS height="4245" left="6765" top="4785" type="Window" width="3120">
    </BOUNDS>
    <NODE componentmode="InABox" id="80" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="120" top="435" type="Node" width="0">
@@ -71,7 +71,7 @@
    </PIN>
    <BOUNDS height="0" left="375" top="2580" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="585" left="375" top="2580" type="Box" width="600">
+   <BOUNDS height="255" left="375" top="2580" type="Box" width="1005">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="View">
    </PIN>
@@ -83,7 +83,7 @@
    </PIN>
    <BOUNDS height="0" left="1500" top="2550" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="585" left="1500" top="2550" type="Box" width="600">
+   <BOUNDS height="255" left="1500" top="2550" type="Box" width="1005">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Projection">
    </PIN>

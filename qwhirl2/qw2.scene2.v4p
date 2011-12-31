@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" locked="0" systemname="qw2.scene2">
    <BOUNDS height="9990" left="3000" top="2970" type="Window" width="10635">
    </BOUNDS>
@@ -63,7 +63,7 @@
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="11" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
@@ -97,7 +97,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Thickness">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Width" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Y Output Value">
@@ -114,6 +114,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Width">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="6" dstpinname="Width" srcnodeid="13" srcpinname="Y Output Value">
@@ -140,6 +142,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Period">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="14" dstpinname="Period" linkstyle="Bezier" srcnodeid="16" srcpinname="Y Output Value">
@@ -197,6 +201,8 @@
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="2">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="22" dstpinname=".. To [" linkstyle="Bezier" srcnodeid="23" srcpinname="Y Output Value">
    <LINKPOINT x="8895" y="7928">
@@ -225,7 +231,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Pos Filters|">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="33" nodename="RandomSpread (Spreads)" systemname="RandomSpread (Spreads)">
@@ -337,7 +343,7 @@
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="38" dstpinname="Period" srcnodeid="41" srcpinname="Y Output Value">
@@ -361,7 +367,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="38" dstpinname="Pause" srcnodeid="42" srcpinname="Y Output Value">
@@ -419,7 +425,7 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Pause" linkstyle="Bezier" srcnodeid="47" srcpinname="Y Output Value">
@@ -441,7 +447,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Period">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Period" linkstyle="Bezier" srcnodeid="49" srcpinname="Y Output Value">
@@ -463,7 +469,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Percentage">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Percentage" linkstyle="Bezier" srcnodeid="50" srcpinname="Y Output Value">
@@ -515,7 +521,7 @@
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="0.5">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="56" dstpinname="Input 2" srcnodeid="57" srcpinname="Y Output Value">
@@ -603,6 +609,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="64" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
    <BOUNDS height="0" left="3240" top="7530" type="Node" width="0">
@@ -612,6 +620,8 @@
    <PIN pinname="Input Enum" slicecount="1" values="Add">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Draw Mode|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="61" dstpinname="Draw Mode" hiddenwhenlocked="1" srcnodeid="64" srcpinname="Output Enum">
@@ -843,6 +853,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Width">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="33" dstpinname="Width" linkstyle="Bezier" srcnodeid="94" srcpinname="Y Output Value">
    <LINKPOINT x="7275" y="1493">
@@ -908,6 +920,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Filter Time|">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="100" dstpinname="XY" linkstyle="Bezier" srcnodeid="101" srcpinname="Y Output Value">
@@ -1065,7 +1079,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Width">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="115" dstpinname="Width" linkstyle="Bezier" srcnodeid="107" srcpinname="Y Output Value">
@@ -1120,6 +1134,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Filter Time|">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="105" dstpinname="XY" linkstyle="Bezier" srcnodeid="104" srcpinname="Y Output Value">
@@ -1223,9 +1239,9 @@
    <LINK dstnodeid="120" dstpinname="Input 1" srcnodeid="46" srcpinname="Output">
    </LINK>
    <NODE componentmode="InABox" id="121" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="9555" top="5190" type="Node" width="0">
+   <BOUNDS height="0" left="9525" top="4365" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="480" left="9555" top="5190" type="Box" width="480">
+   <BOUNDS height="480" left="9525" top="4365" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -1238,6 +1254,8 @@
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="120" dstpinname="Input 2" srcnodeid="121" srcpinname="Y Output Value">

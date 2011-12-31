@@ -1,0 +1,47 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.notes.v4p" systemname="qw2.notes" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.notes.v4p">
+   <BOUNDS type="Window" left="7350" top="5655" width="4995" height="6000">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="100" left="165" top="1155" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="2475" left="165" top="1155" type="Box" width="3420">
+   </BOUNDS>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN encoded="0" pinname="Input String" slicecount="1" values="|- make transport/lfo/stutter global&cr;&lf;- add better mouse control to scene 2&cr;&lf;- video processing&cr;&lf;- textures?|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="0" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="420" top="855" type="Node" width="240">
+   </BOUNDS>
+   <BOUNDS height="330" left="420" top="855" type="Box" width="690">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="TODO">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="String">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="10">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="135" top="150" type="Node" width="240">
+   </BOUNDS>
+   <BOUNDS height="585" left="135" top="150" type="Box" width="2295">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|QW2 Notes|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="String">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   </PATCH>
