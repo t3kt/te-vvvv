@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\S (2d Advanced).v4p" filename="C:\Users\thezer0ist\vvvv\modules\S (2d Vector Advanced).v4p" systemname="S (2d Vector Advanced)">
-   <BOUNDS height="2505" left="4770" top="4320" type="Window" width="2550">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\SVec (2d Advanced).v4p" filename="C:\Users\thezer0ist\vvvv\modules\SVec (2d Advanced).v4p" systemname="SVec (2d Advanced)">
+   <BOUNDS height="2505" left="2310" top="4290" type="Window" width="2550">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="0" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="180" top="1545" type="Node" width="100">

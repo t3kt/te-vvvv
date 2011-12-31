@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\R (2d Advanced).v4p" systemname="R (2d Advanced)" filename="C:\Users\thezer0ist\vvvv\modules\R (2d Advanced).v4p">
-   <BOUNDS type="Window" left="9780" top="5460" width="3060" height="3870">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\RVec (2d Advanced).v4p" filename="C:\Users\thezer0ist\vvvv\modules\RVec (2d Advanced).v4p" systemname="RVec (2d Advanced)">
+   <BOUNDS height="3870" left="9780" top="5460" type="Window" width="3060">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="0" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="480" top="1440" type="Node" width="100">
@@ -62,19 +62,19 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="3" dstpinname="Input 1" srcnodeid="1" srcpinname="Output String" linkstyle="Bezier">
+   <LINK dstnodeid="3" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="1" srcpinname="Output String">
    <LINKPOINT x="510" y="675">
    </LINKPOINT>
    <LINKPOINT x="510" y="675">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="2" dstpinname="Input 1" srcnodeid="1" srcpinname="Output String" linkstyle="Bezier">
+   <LINK dstnodeid="2" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="1" srcpinname="Output String">
    <LINKPOINT x="540" y="660">
    </LINKPOINT>
    <LINKPOINT x="1050" y="660">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="0" dstpinname="Receive String" srcnodeid="3" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="0" dstpinname="Receive String" linkstyle="Bezier" srcnodeid="3" srcpinname="Output">
    <LINKPOINT x="510" y="1320">
    </LINKPOINT>
    <LINKPOINT x="510" y="1320">
@@ -94,7 +94,7 @@
    <BOUNDS left="1065" top="1440" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="4" dstpinname="Receive String" srcnodeid="2" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="4" dstpinname="Receive String" linkstyle="Bezier" srcnodeid="2" srcpinname="Output">
    <LINKPOINT x="1095" y="1320">
    </LINKPOINT>
    <LINKPOINT x="1095" y="1320">
@@ -126,7 +126,7 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="XY">
    </PIN>
    </NODE>
-   <LINK dstnodeid="6" dstpinname="Y Input Value" srcnodeid="5" srcpinname="XY" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="5" srcpinname="XY">
    <LINKPOINT x="510" y="2273">
    </LINKPOINT>
    <LINKPOINT x="510" y="2273">
@@ -142,7 +142,7 @@
    <PIN pinname="Y" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="0" dstpinname="Default" srcnodeid="7" srcpinname="X" linkstyle="Bezier">
+   <LINK dstnodeid="0" dstpinname="Default" linkstyle="Bezier" srcnodeid="7" srcpinname="X">
    <LINKPOINT x="1725" y="1305">
    </LINKPOINT>
    <LINKPOINT x="795" y="1305">
@@ -166,19 +166,19 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Default">
    </PIN>
    </NODE>
-   <LINK dstnodeid="7" dstpinname="XY" srcnodeid="8" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="7" dstpinname="XY" linkstyle="Bezier" srcnodeid="8" srcpinname="Y Output Value">
    <LINKPOINT x="1755" y="795">
    </LINKPOINT>
    <LINKPOINT x="1755" y="795">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="5" dstpinname="X" srcnodeid="0" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="X" linkstyle="Bezier" srcnodeid="0" srcpinname="Output">
    <LINKPOINT x="510" y="1800">
    </LINKPOINT>
    <LINKPOINT x="510" y="1800">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="5" dstpinname="Y" srcnodeid="4" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Y" linkstyle="Bezier" srcnodeid="4" srcpinname="Output">
    <LINKPOINT x="1080" y="1800">
    </LINKPOINT>
    <LINKPOINT x="1080" y="1800">
@@ -214,25 +214,25 @@
    <PIN pinname="Columns" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <LINK dstnodeid="10" dstpinname="Y Input Value" srcnodeid="9" srcpinname="XY" linkstyle="Bezier">
+   <LINK dstnodeid="10" dstpinname="Y Input Value" linkstyle="Bezier" srcnodeid="9" srcpinname="XY">
    <LINKPOINT x="1530" y="2273">
    </LINKPOINT>
    <LINKPOINT x="1530" y="2273">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="9" dstpinname="X" srcnodeid="0" srcpinname="Found" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="X" linkstyle="Bezier" srcnodeid="0" srcpinname="Found">
    <LINKPOINT x="795" y="1785">
    </LINKPOINT>
    <LINKPOINT x="1500" y="1785">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="9" dstpinname="Y" srcnodeid="4" srcpinname="Found" linkstyle="Bezier">
+   <LINK dstnodeid="9" dstpinname="Y" linkstyle="Bezier" srcnodeid="4" srcpinname="Found">
    <LINKPOINT x="1380" y="1785">
    </LINKPOINT>
    <LINKPOINT x="2070" y="1785">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="7" srcpinname="Y" dstnodeid="4" dstpinname="Default" linkstyle="Bezier">
+   <LINK dstnodeid="4" dstpinname="Default" linkstyle="Bezier" srcnodeid="7" srcpinname="Y">
    <LINKPOINT x="2295" y="1305">
    </LINKPOINT>
    <LINKPOINT x="1380" y="1305">

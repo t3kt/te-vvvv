@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\S (3d Advanced).v4p" systemname="S (3d Advanced)" filename="C:\Users\thezer0ist\vvvv\modules\S (3d Advanced).v4p">
-   <BOUNDS type="Window" left="7590" top="4710" width="2985" height="2535">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\modules\SVec (3d Advanced).v4p" filename="C:\Users\thezer0ist\vvvv\modules\SVec (3d Advanced).v4p" systemname="SVec (3d Advanced)">
+   <BOUNDS height="2535" left="7590" top="4710" type="Window" width="2985">
    </BOUNDS>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="6" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="165" top="1530" type="Node" width="100">
@@ -148,26 +148,26 @@
    <LINKPOINT x="1620" y="1403">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="1" srcpinname="Z" dstnodeid="8" dstpinname="Input" linkstyle="Bezier">
+   <LINK dstnodeid="8" dstpinname="Input" linkstyle="Bezier" srcnodeid="1" srcpinname="Z">
    <LINKPOINT x="795" y="1403">
    </LINKPOINT>
    <LINKPOINT x="1320" y="1403">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="7" dstpinname="Input 1" linkstyle="Bezier">
+   <LINK dstnodeid="7" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="5" srcpinname="Output String">
    <LINKPOINT x="1125" y="698">
    </LINKPOINT>
    <LINKPOINT x="2235" y="698">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="165" top="75" width="0" height="0">
+   <NODE componentmode="InABox" id="9" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="165" top="75" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="165" top="75" width="795" height="720">
+   <BOUNDS height="720" left="165" top="75" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0,0">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
@@ -175,10 +175,10 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="XYZ" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="XYZ">
    </PIN>
    </NODE>
-   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="1" dstpinname="XYZ" linkstyle="Bezier">
+   <LINK dstnodeid="1" dstpinname="XYZ" linkstyle="Bezier" srcnodeid="9" srcpinname="Y Output Value">
    <LINKPOINT x="195" y="915">
    </LINKPOINT>
    <LINKPOINT x="195" y="915">
