@@ -1,9 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.transform.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.transform.v4p" systemname="qw2.scene1.transform">
-   <BOUNDS height="4200" left="3540" top="3015" type="Window" width="7095">
+   <BOUNDS height="4680" left="6555" top="7485" type="Window" width="10425">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="Rotate (Transform)" systemname="Rotate (Transform)">
-   <BOUNDS height="100" left="3075" top="2775" type="Node" width="100">
+   <BOUNDS height="100" left="6120" top="3810" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -17,7 +17,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="1" nodename="Scale (Transform)" systemname="Scale (Transform)">
-   <BOUNDS height="100" left="5685" top="2415" type="Node" width="100">
+   <BOUNDS height="100" left="8730" top="3450" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1">
    </PIN>
@@ -31,7 +31,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="2" nodename="Translate (Transform)" systemname="Translate (Transform)">
-   <BOUNDS height="100" left="360" top="2220" type="Node" width="100">
+   <BOUNDS height="100" left="3405" top="3255" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1">
    </PIN>
@@ -44,22 +44,10 @@
    <PIN pinname="Transform Out" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="3" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="0" left="300" top="615" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="240" left="300" top="615" type="Box" width="795">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" values="||">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Transform In|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
    <NODE componentmode="InABox" id="4" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="0" left="5685" top="2850" type="Node" width="0">
+   <BOUNDS height="0" left="8730" top="3885" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="5685" top="2850" type="Box" width="795">
+   <BOUNDS height="240" left="8730" top="3885" type="Box" width="795">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Transform Out|">
    </PIN>
@@ -67,9 +55,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="13" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="3360" top="345" type="Node" width="0">
+   <BOUNDS height="0" left="6525" top="1455" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="3360" top="345" type="Box" width="795">
+   <BOUNDS height="240" left="6525" top="1455" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="3.29">
    </PIN>
@@ -83,7 +71,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" debug="0" id="12" nodename="Damper (Animation)" systemname="Damper (Animation)">
-   <BOUNDS height="100" left="2715" top="870" type="Node" width="100">
+   <BOUNDS height="100" left="5880" top="1980" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Go To Position" visible="1">
    </PIN>
@@ -99,7 +87,7 @@
    <LINK dstnodeid="12" dstpinname="FilterTime" srcnodeid="13" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" id="14" nodename="Multiply (Value)" systemname="Multiply (Value)">
-   <BOUNDS height="100" left="3765" top="1470" type="Node" width="100">
+   <BOUNDS height="100" left="6810" top="2505" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -109,9 +97,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="18" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="5730" top="525" type="Node" width="0">
+   <BOUNDS height="0" left="8775" top="1560" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="5730" top="525" type="Box" width="795">
+   <BOUNDS height="240" left="8775" top="1560" type="Box" width="795">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="5.55">
    </PIN>
@@ -121,9 +109,11 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Roll FilterTime|">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="17" nodename="Multiply (Value Spectral)" systemname="Multiply (Value Spectral)">
-   <BOUNDS height="100" left="4890" top="1860" type="Node" width="100">
+   <BOUNDS height="100" left="7935" top="2895" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Bin Size" visible="1">
    </PIN>
@@ -132,26 +122,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="16" nodename="LinearFilter (Animation)" systemname="LinearFilter (Animation)">
-   <BOUNDS height="100" left="4890" top="1050" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Go To Position" visible="1">
-   </PIN>
-   <PIN pinname="Position Out" visible="1">
-   </PIN>
-   <PIN pinname="FilterTime" visible="1">
-   </PIN>
-   <PIN pinname="Acceleration Out" visible="1">
-   </PIN>
-   <PIN pinname="Cyclic" pintype="Input" slicecount="1" visible="-1" values="NotCyclic">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="16" dstpinname="FilterTime" srcnodeid="18" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="17" dstpinname="Input" srcnodeid="16" srcpinname="Position Out">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="15" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="5115" top="1425" type="Node" width="100">
+   <BOUNDS height="100" left="8190" top="2460" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.lfo.val">
    </PIN>
@@ -162,8 +134,6 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Z" srcnodeid="17" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="2" dstpinname="Transform In" srcnodeid="3" srcpinname="Output Node">
-   </LINK>
    <LINK dstnodeid="0" dstpinname="Transform In" srcnodeid="2" srcpinname="Transform Out">
    </LINK>
    <LINK dstnodeid="1" dstpinname="Transform In" srcnodeid="0" srcpinname="Transform Out">
@@ -171,41 +141,41 @@
    <LINK dstnodeid="4" dstpinname="Input Node" srcnodeid="1" srcpinname="Transform Out">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="26" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="930" top="1395" type="Node" width="100">
+   <BOUNDS height="100" left="3975" top="2430" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.x">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="930" top="1395" type="Box">
+   <BOUNDS left="3975" top="2430" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="27" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="525" top="1395" type="Node" width="100">
+   <BOUNDS height="100" left="3570" top="2430" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.y">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="525" top="1395" type="Box">
+   <BOUNDS left="3570" top="2430" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="2" dstpinname="X" srcnodeid="27" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="28" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="2715" top="345" type="Node" width="100">
+   <BOUNDS height="100" left="5880" top="1455" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.len">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="2715" top="345" type="Box">
+   <BOUNDS left="5880" top="1455" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="12" dstpinname="Go To Position" srcnodeid="28" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="29" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="5895" top="1875" type="Node" width="100">
+   <BOUNDS height="100" left="8940" top="2910" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.len">
    </PIN>
@@ -215,19 +185,17 @@
    <LINK dstnodeid="1" dstpinname="X" srcnodeid="29" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="31" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="4875" top="525" type="Node" width="100">
+   <BOUNDS height="100" left="7935" top="1560" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.ang">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="4875" top="525" type="Box">
+   <BOUNDS left="7935" top="1560" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="16" dstpinname="Go To Position" srcnodeid="31" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="32" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="3765" top="975" type="Node" width="100">
+   <BOUNDS height="100" left="6810" top="2010" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.ang">
    </PIN>
@@ -235,7 +203,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="33" nodename="Add (Value)" systemname="Add (Value)">
-   <BOUNDS height="100" left="3495" top="2085" type="Node" width="100">
+   <BOUNDS height="100" left="6540" top="3120" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -245,7 +213,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="34" nodename="Multiply (Value)" systemname="Multiply (Value)">
-   <BOUNDS height="100" left="3330" top="1650" type="Node" width="100">
+   <BOUNDS height="100" left="6375" top="2685" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -265,17 +233,17 @@
    <LINK dstnodeid="14" dstpinname="Input 1" srcnodeid="32" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="47" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1335" top="135" type="Node" width="100">
+   <BOUNDS height="100" left="4380" top="1170" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.ctl.ang">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="1335" top="135" type="Box">
+   <BOUNDS left="4380" top="1170" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" id="48" nodename="WaveShaper (Value)" systemname="WaveShaper (Value)">
-   <BOUNDS height="100" left="1335" top="990" type="Node" width="100">
+   <BOUNDS height="100" left="4380" top="2025" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Shape" slicecount="1" values="Triangle">
    </PIN>
@@ -285,7 +253,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="50" nodename="Add (Value)" systemname="Add (Value)">
-   <BOUNDS height="100" left="1335" top="480" type="Node" width="100">
+   <BOUNDS height="100" left="4380" top="1515" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Source Minimum">
    </PIN>
@@ -305,7 +273,7 @@
    <LINK dstnodeid="50" dstpinname="Input 1" srcnodeid="47" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="52" nodename="Subtract (Value)" systemname="Subtract (Value)">
-   <BOUNDS height="100" left="1335" top="1425" type="Node" width="100">
+   <BOUNDS height="100" left="4380" top="2460" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="0.5">
    </PIN>
@@ -316,10 +284,8 @@
    </NODE>
    <LINK dstnodeid="52" dstpinname="Input 1" srcnodeid="48" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="2" dstpinname="Z" srcnodeid="52" srcpinname="Output">
-   </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="53">
-   <BOUNDS type="Node" left="2760" top="1425" width="100" height="100">
+   <NODE componentmode="Hidden" id="53" nodename="Multiply (Value)" systemname="Multiply (Value)">
+   <BOUNDS height="100" left="5475" top="2655" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="1.07">
    </PIN>
@@ -328,8 +294,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="54">
-   <BOUNDS type="Node" left="2490" top="2070" width="100" height="100">
+   <NODE componentmode="Hidden" id="54" nodename="Add (Value)" systemname="Add (Value)">
+   <BOUNDS height="100" left="5730" top="3255" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -338,22 +304,134 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="12" srcpinname="Position Out" dstnodeid="54" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Output" dstnodeid="0" dstpinname="X">
+   <LINK dstnodeid="0" dstpinname="X" srcnodeid="54" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="55" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="2295" top="405" type="Node" width="100">
+   <BOUNDS height="100" left="5490" top="2250" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.lfo.val">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="55" srcpinname="Output" dstnodeid="53" dstpinname="Input 1">
+   <LINK dstnodeid="53" dstpinname="Input 1" srcnodeid="55" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="53" srcpinname="Output" dstnodeid="54" dstpinname="Input 2">
+   <LINK dstnodeid="2" dstpinname="Y" srcnodeid="26" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="2" dstpinname="Y">
+   <LINK dstnodeid="2" dstpinname="Z" srcnodeid="52" srcpinname="Output">
+   </LINK>
+   <NODE systemname="Damper (Animation)" nodename="Damper (Animation)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="7935" top="2130" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="FilterTime" visible="1">
+   </PIN>
+   <PIN pinname="Go To Position" visible="1">
+   </PIN>
+   <PIN pinname="Position Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="56" dstpinname="FilterTime">
+   </LINK>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="56" dstpinname="Go To Position">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Position Out" dstnodeid="17" dstpinname="Input">
+   </LINK>
+   <NODE componentmode="InABox" id="62" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2130" top="1815" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="240" left="2130" top="1815" type="Box" width="855">
+   </BOUNDS>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0.44">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Scale">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="61" nodename="Rotate (Transform)" systemname="Rotate (Transform)">
+   <BOUNDS height="100" left="1800" top="1455" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="X" visible="1">
+   </PIN>
+   <PIN pinname="Z" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Y" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="60" nodename="Scale (Transform)" systemname="Scale (Transform)">
+   <BOUNDS height="100" left="1845" top="2460" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="X" visible="1">
+   </PIN>
+   <PIN pinname="Y" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Z" slicecount="1" values="0.99">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="59" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2040" top="405" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.pos.xyz">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="58" nodename="Translate (Transform Vector)" systemname="Translate (Transform Vector)">
+   <BOUNDS height="100" left="1350" top="960" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="57" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2430" top="870" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.lfo.val">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="60" dstpinname="X" srcnodeid="62" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="60" dstpinname="Y" srcnodeid="62" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="60" dstpinname="Transform In" srcnodeid="61" srcpinname="Transform Out">
+   </LINK>
+   <LINK dstnodeid="58" dstpinname="XYZ" hiddenwhenlocked="1" srcnodeid="59" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="61" dstpinname="Transform In" srcnodeid="58" srcpinname="Transform Out">
+   </LINK>
+   <LINK dstnodeid="61" dstpinname="Z" srcnodeid="57" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="61" dstpinname="X" srcnodeid="57" srcpinname="Output">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="63" systemname="IOBox (Node)">
+   <BOUNDS type="Node" left="360" top="225" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="360" top="225" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform In|" encoded="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="58" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Transform Out" dstnodeid="2" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Position Out" dstnodeid="54" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Output" dstnodeid="54" dstpinname="Input 1">
    </LINK>
    </PATCH>

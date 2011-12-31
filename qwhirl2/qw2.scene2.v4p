@@ -63,6 +63,8 @@
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="11" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
    <BOUNDS height="100" left="5160" top="6735" type="Node" width="100">
@@ -94,6 +96,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Thickness">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
    </PIN>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Width" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Y Output Value">
@@ -221,6 +225,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Pos Filters|">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="33" nodename="RandomSpread (Spreads)" systemname="RandomSpread (Spreads)">
    <BOUNDS height="100" left="7440" top="1680" type="Node" width="100">
@@ -331,6 +337,8 @@
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   </PIN>
    </NODE>
    <LINK dstnodeid="38" dstpinname="Period" srcnodeid="41" srcpinname="Y Output Value">
    </LINK>
@@ -352,6 +360,8 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
    </PIN>
    </NODE>
    <LINK dstnodeid="38" dstpinname="Pause" srcnodeid="42" srcpinname="Y Output Value">
@@ -409,6 +419,8 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Pause" linkstyle="Bezier" srcnodeid="47" srcpinname="Y Output Value">
    <LINKPOINT x="8040" y="4785">
@@ -429,6 +441,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Period">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
+   </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Period" linkstyle="Bezier" srcnodeid="49" srcpinname="Y Output Value">
    <LINKPOINT x="8685" y="4725">
@@ -448,6 +462,8 @@
    <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Percentage">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
    </PIN>
    </NODE>
    <LINK dstnodeid="46" dstpinname="Percentage" linkstyle="Bezier" srcnodeid="50" srcpinname="Y Output Value">
@@ -498,6 +514,8 @@
    <PIN pinname="Minimum" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
    </PIN>
    </NODE>
    <LINK dstnodeid="56" dstpinname="Input 2" srcnodeid="57" srcpinname="Y Output Value">
@@ -1047,6 +1065,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Width">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="Hidden">
+   </PIN>
    </NODE>
    <LINK dstnodeid="115" dstpinname="Width" linkstyle="Bezier" srcnodeid="107" srcpinname="Y Output Value">
    <LINKPOINT x="3300" y="1478">
@@ -1178,6 +1198,8 @@
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Spread Count|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="False">
    </PIN>
    </NODE>
    <LINK dstnodeid="118" dstpinname="Spread Count" srcnodeid="119" srcpinname="Y Output Value">
