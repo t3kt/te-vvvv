@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" locked="0" systemname="qw2.scene2">
-   <BOUNDS height="9990" left="3000" top="2970" type="Window" width="10635">
+   <BOUNDS height="9990" left="690" top="4020" type="Window" width="10635">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
    <BOUNDS height="100" left="4545" top="7695" type="Node" width="100">
@@ -1243,7 +1243,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="9525" top="4365" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1253,7 +1253,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
@@ -1305,7 +1305,7 @@
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.color">
    </PIN>
-   <PIN pinname="Default" slicecount="3" visible="1" values="|1.00000,1.00000,1.00000,0.03766|,|1.00000,1.00000,1.00000,0.03766|,|1.00000,1.00000,1.00000,0.03766|">
+   <PIN pinname="Default" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,0.03766|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
