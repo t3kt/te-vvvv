@@ -89,7 +89,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
    <BOUNDS height="100" left="555" top="2685" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="7830" left="0" top="6480" type="Window" width="7155">
+   <BOUNDS height="7830" left="765" top="4800" type="Window" width="7275">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -183,7 +183,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
-   <BOUNDS height="100" left="525" top="3165" type="Node" width="100">
+   <BOUNDS height="270" left="525" top="3165" type="Node" width="1350">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>
