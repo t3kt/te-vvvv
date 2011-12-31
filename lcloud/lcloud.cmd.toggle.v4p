@@ -314,7 +314,7 @@
    <LINKPOINT x="1140" y="5273">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="..\te\TE.VVVV.Plugins\obj\Debug\TE.VVVV.Plugins.dll" id="27" nodename="AsciiChar (String)" systemname="AsciiChar (String)">
+   <NODE componentmode="Hidden" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" id="27" nodename="AsciiChar (String)" systemname="AsciiChar (String)">
    <BOUNDS height="100" left="1740" top="2370" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">

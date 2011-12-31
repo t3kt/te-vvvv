@@ -1,11 +1,11 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" locked="0" systemname="qw2.scenes.mixer">
-   <BOUNDS height="6120" left="585" top="4050" type="Window" width="6675">
+   <BOUNDS height="5415" left="585" top="4050" type="Window" width="6030">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="100" left="1245" top="240" type="Node" width="100">
+   <BOUNDS height="100" left="435" top="180" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="270" left="1245" top="240" type="Box" width="1080">
+   <BOUNDS height="270" left="435" top="180" type="Box" width="1080">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scene 1 Layer|">
    </PIN>
@@ -13,9 +13,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="100" left="2895" top="240" type="Node" width="100">
+   <BOUNDS height="100" left="1680" top="180" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="270" left="2895" top="240" type="Box" width="1080">
+   <BOUNDS height="270" left="1680" top="180" type="Box" width="1080">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scene 2 Layer|">
    </PIN>
@@ -23,9 +23,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="35" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
-   <BOUNDS height="0" left="4530" top="1365" type="Node" width="0">
+   <BOUNDS height="0" left="4125" top="1230" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="4530" top="1365" type="Box" width="1170">
+   <BOUNDS height="240" left="4125" top="1230" type="Box" width="1170">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" values="| Subtract|">
    </PIN>
@@ -37,9 +37,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="36" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="5175" top="315" type="Node" width="0">
+   <BOUNDS height="0" left="4770" top="180" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="675" left="5175" top="315" type="Box" width="345">
+   <BOUNDS height="675" left="4770" top="180" type="Box" width="345">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0.63">
    </PIN>
@@ -61,9 +61,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="42" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="4530" top="315" type="Node" width="0">
+   <BOUNDS height="0" left="4125" top="180" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="480" left="4530" top="315" type="Box" width="480">
+   <BOUNDS height="480" left="4125" top="180" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -85,7 +85,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="56" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="270" left="435" top="1830" type="Node" width="600">
+   <BOUNDS height="270" left="435" top="1245" type="Node" width="600">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
@@ -97,21 +97,21 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="56" dstpinname="Layer 2" linkstyle="Bezier" srcnodeid="1" srcpinname="Output Node">
-   <LINKPOINT x="2895" y="1155">
+   <LINKPOINT x="1665" y="840">
    </LINKPOINT>
-   <LINKPOINT x="1035" y="1155">
+   <LINKPOINT x="1035" y="840">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="56" dstpinname="Layer 1" linkstyle="Bezier" srcnodeid="0" srcpinname="Output Node">
-   <LINKPOINT x="1245" y="1170">
+   <LINKPOINT x="465" y="848">
    </LINKPOINT>
-   <LINKPOINT x="480" y="1170">
+   <LINKPOINT x="465" y="848">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="58" nodename="Renderer (EX9)" systemname="RENDERER (EX9)">
-   <BOUNDS height="270" left="420" top="2925" type="Node" width="2175">
+   <BOUNDS height="270" left="435" top="2535" type="Node" width="2175">
    </BOUNDS>
-   <BOUNDS height="1800" left="420" top="2925" type="Box" width="2400">
+   <BOUNDS height="1800" left="435" top="2535" type="Box" width="2400">
    </BOUNDS>
    <BOUNDS height="5010" left="3675" top="9120" type="Window" width="6240">
    </BOUNDS>
@@ -171,7 +171,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="68" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="960" top="2295" type="Node" width="100">
+   <BOUNDS height="100" left="960" top="1710" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.render.size.x">
    </PIN>
@@ -179,11 +179,11 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="960" top="2295" type="Box">
+   <BOUNDS left="960" top="1710" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="67" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1350" top="2295" type="Node" width="100">
+   <BOUNDS height="100" left="1350" top="1710" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.render.size.y">
    </PIN>
@@ -191,25 +191,25 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="1350" top="2295" type="Box">
+   <BOUNDS left="1350" top="1710" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="58" dstpinname="Backbuffer Width" linkstyle="Bezier" srcnodeid="68" srcpinname="Output">
-   <LINKPOINT x="1005" y="2745">
+   <LINKPOINT x="990" y="2258">
    </LINKPOINT>
-   <LINKPOINT x="1140" y="2745">
+   <LINKPOINT x="1155" y="2258">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="58" dstpinname="Backbuffer Height" linkstyle="Bezier" srcnodeid="67" srcpinname="Output">
-   <LINKPOINT x="1395" y="2745">
+   <LINKPOINT x="1380" y="2258">
    </LINKPOINT>
-   <LINKPOINT x="1500" y="2745">
+   <LINKPOINT x="1515" y="2258">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="70" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="0" left="2565" top="1830" type="Node" width="0">
+   <BOUNDS height="0" left="2565" top="1545" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="2565" top="1830" type="Box" width="555">
+   <BOUNDS height="240" left="2565" top="1545" type="Box" width="555">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
@@ -217,15 +217,15 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="58" dstpinname="View" linkstyle="Bezier" srcnodeid="70" srcpinname="Output Node">
-   <LINKPOINT x="2565" y="2498">
+   <LINKPOINT x="2565" y="2160">
    </LINKPOINT>
-   <LINKPOINT x="2205" y="2498">
+   <LINKPOINT x="2220" y="2160">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="71" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="0" left="2655" top="2295" type="Node" width="0">
+   <BOUNDS height="0" left="2655" top="2010" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="2655" top="2295" type="Box" width="555">
+   <BOUNDS height="240" left="2655" top="2010" type="Box" width="555">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
@@ -233,19 +233,19 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="58" dstpinname="Projection" linkstyle="Bezier" srcnodeid="71" srcpinname="Output Node">
-   <LINKPOINT x="2670" y="2730">
+   <LINKPOINT x="2670" y="2393">
    </LINKPOINT>
-   <LINKPOINT x="2565" y="2730">
+   <LINKPOINT x="2580" y="2393">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="58" dstpinname="Layers" linkstyle="Bezier" srcnodeid="56" srcpinname="Layer">
-   <LINKPOINT x="450" y="2513">
+   <LINKPOINT x="465" y="2025">
    </LINKPOINT>
-   <LINKPOINT x="450" y="2513">
+   <LINKPOINT x="465" y="2025">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="73" nodename="DX9Texture (EX9.Texture)" systemname="DX9Texture (EX9.Texture)">
-   <BOUNDS height="100" left="420" top="3330" type="Node" width="100">
+   <BOUNDS height="100" left="435" top="2940" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
@@ -253,13 +253,13 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="73" dstpinname="Source" linkstyle="Bezier" srcnodeid="58" srcpinname="EX9 Out">
-   <LINKPOINT x="450" y="3263">
+   <LINKPOINT x="465" y="2873">
    </LINKPOINT>
-   <LINKPOINT x="450" y="3263">
+   <LINKPOINT x="465" y="2873">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="74" nodename="Switch (Node Input)" systemname="Switch (Node Input)">
-   <BOUNDS height="270" left="765" top="4440" type="Node" width="1455">
+   <BOUNDS height="270" left="465" top="3855" type="Node" width="1455">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -271,7 +271,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="75" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="420" top="3960" type="Node" width="100">
+   <BOUNDS height="100" left="120" top="3375" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mix.on">
    </PIN>
@@ -279,21 +279,21 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="74" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="73" srcpinname="Texture Out">
-   <LINKPOINT x="480" y="4005">
+   <LINKPOINT x="495" y="3518">
    </LINKPOINT>
-   <LINKPOINT x="1455" y="4005">
+   <LINKPOINT x="1155" y="3518">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="74" dstpinname="Switch" linkstyle="Bezier" srcnodeid="75" srcpinname="Output">
-   <LINKPOINT x="480" y="4320">
+   <LINKPOINT x="180" y="3735">
    </LINKPOINT>
-   <LINKPOINT x="750" y="4320">
+   <LINKPOINT x="450" y="3735">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="InABox" id="76" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="0" left="765" top="4920" type="Node" width="0">
+   <BOUNDS height="0" left="465" top="4335" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="765" top="4920" type="Box" width="795">
+   <BOUNDS height="240" left="465" top="4335" type="Box" width="795">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
    </PIN>
@@ -301,7 +301,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="77" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
-   <BOUNDS height="100" left="555" top="2295" type="Node" width="100">
+   <BOUNDS height="100" left="555" top="1710" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.bg.color">
    </PIN>
@@ -309,23 +309,23 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="555" top="2295" type="Box">
+   <BOUNDS left="555" top="1710" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="58" dstpinname="Background Color" linkstyle="Bezier" srcnodeid="77" srcpinname="Output">
-   <LINKPOINT x="615" y="2745">
+   <LINKPOINT x="600" y="2258">
    </LINKPOINT>
-   <LINKPOINT x="765" y="2745">
+   <LINKPOINT x="795" y="2258">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="76" dstpinname="Input Node" linkstyle="Bezier" srcnodeid="74" srcpinname="Output">
-   <LINKPOINT x="795" y="4815">
+   <LINKPOINT x="495" y="4230">
    </LINKPOINT>
-   <LINKPOINT x="795" y="4815">
+   <LINKPOINT x="495" y="4230">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" id="97" nodename="NOT (Boolean)" systemname="NOT (Boolean)">
-   <BOUNDS height="100" left="1830" top="2295" type="Node" width="100">
+   <BOUNDS height="100" left="1725" top="1710" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -333,31 +333,31 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="98" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1830" top="1830" type="Node" width="100">
+   <BOUNDS height="100" left="1725" top="1245" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mix.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="1830" top="1830" type="Box">
+   <BOUNDS left="1725" top="1245" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="97" dstpinname="Input" linkstyle="Bezier" srcnodeid="98" srcpinname="Output">
-   <LINKPOINT x="1860" y="2198">
+   <LINKPOINT x="1755" y="1613">
    </LINKPOINT>
-   <LINKPOINT x="1860" y="2198">
+   <LINKPOINT x="1755" y="1613">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="58" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="97" srcpinname="Output">
-   <LINKPOINT x="1860" y="2745">
+   <LINKPOINT x="1755" y="2258">
    </LINKPOINT>
-   <LINKPOINT x="1860" y="2745">
+   <LINKPOINT x="1860" y="2258">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" filename="qw2.scenes.mixer.core.v4p" id="101" nodename="qw2.scenes.mixer.core.v4p" systemname="qw2.scenes.mixer.core">
-   <BOUNDS height="100" left="3840" top="2835" type="Node" width="100">
+   <BOUNDS height="100" left="3435" top="2250" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="3600" left="3840" top="2835" type="Box" width="4800">
+   <BOUNDS height="3600" left="3435" top="2250" type="Box" width="4800">
    </BOUNDS>
    <BOUNDS height="4320" left="7290" top="4575" type="Window" width="7530">
    </BOUNDS>
@@ -377,43 +377,43 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="101" dstpinname="Opacity" linkstyle="Bezier" srcnodeid="36" srcpinname="Y Output Value">
-   <LINKPOINT x="5175" y="1913">
+   <LINKPOINT x="4755" y="1545">
    </LINKPOINT>
-   <LINKPOINT x="4230" y="1913">
+   <LINKPOINT x="3840" y="1545">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="101" dstpinname="Mode" linkstyle="Bezier" srcnodeid="35" srcpinname="Output Enum">
-   <LINKPOINT x="4560" y="2220">
+   <LINKPOINT x="4155" y="1860">
    </LINKPOINT>
-   <LINKPOINT x="4560" y="2220">
+   <LINKPOINT x="4155" y="1860">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="101" dstpinname="Order" linkstyle="Bezier" srcnodeid="42" srcpinname="Y Output Value">
-   <LINKPOINT x="4545" y="1815">
+   <LINKPOINT x="4125" y="1455">
    </LINKPOINT>
-   <LINKPOINT x="3870" y="1815">
+   <LINKPOINT x="3465" y="1455">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="101" dstpinname="Scene 2 Layer" linkstyle="Bezier" srcnodeid="1" srcpinname="Output Node">
-   <LINKPOINT x="2955" y="1665">
+   <LINKPOINT x="1740" y="1335">
    </LINKPOINT>
-   <LINKPOINT x="5250" y="1665">
+   <LINKPOINT x="4845" y="1335">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="101" dstpinname="Scene 1 Layer" linkstyle="Bezier" srcnodeid="0" srcpinname="Output Node">
-   <LINKPOINT x="1305" y="1658">
+   <LINKPOINT x="495" y="1335">
    </LINKPOINT>
-   <LINKPOINT x="4890" y="1658">
+   <LINKPOINT x="4485" y="1335">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="74" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="101" srcpinname="Output">
-   <LINKPOINT x="3840" y="3758">
+   <LINKPOINT x="3435" y="3173">
    </LINKPOINT>
-   <LINKPOINT x="2220" y="3758">
+   <LINKPOINT x="1920" y="3173">
    </LINKPOINT>
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="102" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="5580" top="2310" type="Node" width="100">
+   <BOUNDS height="100" left="5205" top="1725" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mix.on">
    </PIN>
@@ -421,9 +421,9 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="101" dstpinname="Evaluate" linkstyle="Bezier" srcnodeid="102" srcpinname="Output">
-   <LINKPOINT x="5610" y="2708">
+   <LINKPOINT x="5220" y="2123">
    </LINKPOINT>
-   <LINKPOINT x="5610" y="2708">
+   <LINKPOINT x="5220" y="2123">
    </LINKPOINT>
    </LINK>
    </PATCH>

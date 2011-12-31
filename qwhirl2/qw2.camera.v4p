@@ -17,6 +17,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="FOV">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE hiddenwhenlocked="1" id="79" nodename="MapRange (Value)" systemname="MapRange (Value)">
    <BOUNDS height="0" left="1755" top="1710" type="Node" width="0">
@@ -141,6 +143,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="79" dstpinname="Input" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="80" srcpinname="Y Output Value">
    <LINKPOINT x="180" y="1178">
@@ -202,6 +206,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="YawPitchRoll">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK dstnodeid="104" dstpinname="XYZ" hiddenwhenlocked="1" linkstyle="Bezier" srcnodeid="107" srcpinname="Y Output Value">

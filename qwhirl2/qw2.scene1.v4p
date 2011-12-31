@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" locked="0" systemname="qw2.scene1">
    <BOUNDS height="7830" left="765" top="4800" type="Window" width="7275">
    </BOUNDS>
