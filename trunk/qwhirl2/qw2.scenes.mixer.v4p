@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha26.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" locked="0" systemname="qw2.scenes.mixer">
-   <BOUNDS height="7920" left="10485" top="6735" type="Window" width="9225">
+   <BOUNDS height="7920" left="2340" top="5865" type="Window" width="9225">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="IOBox (Node)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="300" top="225" type="Node" width="100">
@@ -13,9 +13,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Node)" systemname="IOBox (Node)">
-   <BOUNDS height="100" left="2835" top="495" type="Node" width="100">
+   <BOUNDS height="100" left="2835" top="300" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="270" left="2835" top="495" type="Box" width="1080">
+   <BOUNDS height="270" left="2835" top="300" type="Box" width="1080">
    </BOUNDS>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scene 2 Layer|">
    </PIN>
@@ -231,9 +231,9 @@
    <LINK dstnodeid="7" dstpinname="Layers" srcnodeid="0" srcpinname="Output Node">
    </LINK>
    <NODE componentmode="InABox" id="35" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
-   <BOUNDS height="0" left="2745" top="4440" type="Node" width="0">
+   <BOUNDS height="0" left="1920" top="3735" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="240" left="2745" top="4440" type="Box" width="1170">
+   <BOUNDS height="240" left="1920" top="3735" type="Box" width="1170">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" values="| Subtract|">
    </PIN>
@@ -241,11 +241,13 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Mode">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="36" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="4470" top="3615" type="Node" width="0">
+   <BOUNDS height="0" left="2070" top="2760" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="675" left="4470" top="3615" type="Box" width="345">
+   <BOUNDS height="675" left="2070" top="2760" type="Box" width="345">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0.63">
    </PIN>
@@ -263,11 +265,13 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Opacity">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="42" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="3225" top="3675" type="Node" width="0">
+   <BOUNDS height="0" left="1155" top="2835" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="480" left="3225" top="3675" type="Box" width="480">
+   <BOUNDS height="480" left="1155" top="2835" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -285,6 +289,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Order">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="45" nodename="SetAlpha (Color)" systemname="SetAlpha (Color)">
    <BOUNDS height="100" left="3045" top="1815" type="Node" width="100">
@@ -293,13 +299,13 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="46" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="3885" top="1605" type="Node" width="0">
+   <BOUNDS height="0" left="3405" top="1050" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="675" left="3885" top="1605" type="Box" width="345">
+   <BOUNDS height="675" left="3405" top="1050" type="Box" width="345">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -315,6 +321,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="45" dstpinname="Alpha" srcnodeid="46" srcpinname="Y Output Value">
    </LINK>
@@ -327,7 +335,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   <PIN pinname="Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="47" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -349,6 +357,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="48" dstpinname="Alpha" srcnodeid="47" srcpinname="Y Output Value">
    </LINK>
@@ -368,6 +378,8 @@
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="49" dstpinname="Opacity" srcnodeid="36" srcpinname="Y Output Value">
@@ -407,13 +419,13 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="56" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="270" left="5580" top="3075" type="Node" width="600">
+   <BOUNDS height="270" left="5415" top="3210" type="Node" width="600">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
    <PIN pinname="Layer 2" visible="1">
    </PIN>
-   <PIN pinname="Enabled" visible="1">
+   <PIN pinname="Enabled" visible="-1" slicecount="1" pintype="Input" values="1">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -583,7 +595,7 @@
    <LINK dstnodeid="58" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="57" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" id="73" nodename="DX9Texture (EX9.Texture)" systemname="DX9Texture (EX9.Texture)">
-   <BOUNDS height="100" left="6315" top="5475" type="Node" width="100">
+   <BOUNDS height="100" left="4740" top="5325" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Source" visible="1">
    </PIN>
@@ -605,7 +617,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="75" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="4410" top="5250" type="Node" width="100">
+   <BOUNDS height="100" left="2895" top="5505" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mix.on">
    </PIN>
@@ -640,18 +652,18 @@
    </NODE>
    <LINK dstnodeid="58" dstpinname="Background Color" srcnodeid="77" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="78" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="6150" top="2025" type="Node" width="100">
+   <LINK dstnodeid="76" dstpinname="Input Node" srcnodeid="74" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="49" dstpinname="Mode" srcnodeid="35" srcpinname="Output Enum">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="80" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2400" top="4305" type="Node" width="100">
    </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mix.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="56" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="78" srcpinname="Output">
-   </LINK>
-   <LINK srcnodeid="74" srcpinname="Output" dstnodeid="76" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="35" srcpinname="Output Enum" dstnodeid="49" dstpinname="Mode">
+   <LINK srcnodeid="80" srcpinname="Output" dstnodeid="49" dstpinname="Enabled">
    </LINK>
    </PATCH>
