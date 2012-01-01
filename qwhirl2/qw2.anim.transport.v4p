@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.transport.v4p" bgcolor="16777215" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.transport.v4p" locked="0" systemname="qw2.anim.transport">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.transport.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.transport.v4p" locked="0" systemname="qw2.anim.transport">
    <BOUNDS height="6225" left="7515" top="3885" type="Window" width="8625">
    </BOUNDS>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="10" nodename="LFO (Animation)" systemname="LFO (Animation)">
@@ -294,10 +294,4 @@
    </NODE>
    <LINK dstnodeid="6" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="9" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.anim.lfo.v4p" id="27" nodename="qw2.anim.lfo.v4p" systemname="qw2.anim.lfo" path="C:\Users\thezer0ist\vvvv\qwhirl2\">
-   <BOUNDS height="100" left="4290" top="2145" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="8280" left="495" top="825" type="Window" width="12990">
-   </BOUNDS>
-   </NODE>
    </PATCH>
