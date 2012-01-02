@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta26.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.util.toglfo.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.util.toglfo.v4p" systemname="qw2.util.toglfo">
    <BOUNDS height="4530" left="12555" top="2520" type="Window" width="3855">
    </BOUNDS>
@@ -13,7 +13,7 @@
    </PIN>
    <PIN pinname="Reverse" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Reset" pintype="Input" visible="1">
+   <PIN pinname="Reset" pintype="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Phase" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
@@ -69,7 +69,7 @@
    </PIN>
    <PIN pinname="Retriggerable" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Reset" pintype="Input" visible="1">
+   <PIN pinname="Reset" pintype="Input" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -127,47 +127,5 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="6" dstpinname="Y Input Value" srcnodeid="3" srcpinname="Output">
-   </LINK>
-   <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="2100" top="2865" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="2100" top="2865" type="Box" width="480">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Inverse Output|">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="8" dstpinname="Y Input Value" srcnodeid="3" srcpinname="Inverse Output">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="2985" top="270" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="2985" top="270" width="480" height="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Reset" encoded="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Reset">
-   </LINK>
-   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Reset">
    </LINK>
    </PATCH>

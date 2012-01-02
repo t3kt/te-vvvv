@@ -2,7 +2,7 @@
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.control.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.control.v4p" locked="0" systemname="qw2.control">
    <BOUNDS height="5400" left="5160" top="0" type="Window" width="4530">
    </BOUNDS>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="0" nodename="R (Value Advanced)" systemname="R (Value Advanced)" hiddenwhenlocked="0">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="0" id="0" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="735" top="2865" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.mouse.point">
@@ -14,7 +14,7 @@
    <BOUNDS left="735" top="2865" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="2" nodename="S (Value Advanced)" systemname="S (Value Advanced)" hiddenwhenlocked="0">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="0" id="2" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="300" top="4410" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.ctl.point">
@@ -48,7 +48,7 @@
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="7" nodename="R (Value Advanced)" systemname="R (Value Advanced)" hiddenwhenlocked="1">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="7" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="3495" top="2625" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.ctl.point">
@@ -58,7 +58,7 @@
    <BOUNDS left="3495" top="2625" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="3495" top="3000" type="Node" width="0">
    </BOUNDS>
    <BOUNDS height="465" left="3495" top="3000" type="Box" width="540">
@@ -80,9 +80,9 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|ctl xy|">
    </PIN>
    </NODE>
-   <LINK dstnodeid="8" dstpinname="Y Input Value" srcnodeid="7" srcpinname="Output" hiddenwhenlocked="1">
+   <LINK dstnodeid="8" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="7" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" id="11" nodename="NOT (Boolean)" systemname="NOT (Boolean)" hiddenwhenlocked="0">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="11" nodename="NOT (Boolean)" systemname="NOT (Boolean)">
    <BOUNDS height="100" left="300" top="1560" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
@@ -90,7 +90,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="11" dstpinname="Input" srcnodeid="5" srcpinname="Y Output Value" hiddenwhenlocked="0">
+   <LINK dstnodeid="11" dstpinname="Input" hiddenwhenlocked="0" srcnodeid="5" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="32" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="2355" top="285" type="Node" width="100">
@@ -157,7 +157,7 @@
    <NODE componentmode="Hidden" hiddenwhenlocked="0" id="14" nodename="SetSlice (Spreads)" systemname="SetSlice (Spreads)">
    <BOUNDS height="100" left="2415" top="1650" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Spread" visible="1" slicecount="2" values="0,0">
+   <PIN pinname="Spread" slicecount="2" visible="1" values="0,0">
    </PIN>
    <PIN pinname="Input" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
@@ -170,7 +170,7 @@
    </NODE>
    <LINK dstnodeid="23" dstpinname="Y Input Value" hiddenwhenlocked="0" linkstyle="PolyLine" srcnodeid="14" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" id="38" nodename="Gate (Value)" systemname="Gate (Value)" hiddenwhenlocked="0">
+   <NODE componentmode="Hidden" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" hiddenwhenlocked="0" id="38" nodename="Gate (Value)" systemname="Gate (Value)">
    <BOUNDS height="100" left="300" top="4005" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
@@ -182,9 +182,9 @@
    <BOUNDS left="300" top="4005" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="38" dstpinname="Gate" srcnodeid="11" srcpinname="Output" hiddenwhenlocked="0">
+   <LINK dstnodeid="38" dstpinname="Gate" hiddenwhenlocked="0" srcnodeid="11" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\VVVV.Nodes.AnimAdvanced.dll" id="39" nodename="MultiFlipFlop (Animation Advanced)" systemname="MultiFlipFlop (Animation Advanced)" hiddenwhenlocked="0">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\VVVV.Nodes.AnimAdvanced.dll" hiddenwhenlocked="0" id="39" nodename="MultiFlipFlop (Animation Advanced)" systemname="MultiFlipFlop (Animation Advanced)">
    <BOUNDS height="100" left="2355" top="1200" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
@@ -193,15 +193,15 @@
    </PIN>
    <PIN pinname="Set Bin Size" pintype="Input" slicecount="1" visible="-1" values="-1">
    </PIN>
-   <BOUNDS type="Box" left="2355" top="1200">
+   <BOUNDS left="2355" top="1200" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="39" dstpinname="Set" srcnodeid="32" srcpinname="Y Output Value" hiddenwhenlocked="0">
+   <LINK dstnodeid="39" dstpinname="Set" hiddenwhenlocked="0" srcnodeid="32" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="14" dstpinname="Index" srcnodeid="39" srcpinname="Output" hiddenwhenlocked="0">
+   <LINK dstnodeid="14" dstpinname="Index" hiddenwhenlocked="0" srcnodeid="39" srcpinname="Output">
    </LINK>
-   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="41" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="735" top="3540" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="41" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
+   <BOUNDS height="100" left="735" top="3540" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Select">
    </PIN>
@@ -218,80 +218,80 @@
    <PIN pinname="Input 3" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="39" srcpinname="Output" dstnodeid="41" dstpinname="Switch" hiddenwhenlocked="0">
+   <LINK dstnodeid="41" dstpinname="Switch" hiddenwhenlocked="0" srcnodeid="39" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="41" dstpinname="Input 1" hiddenwhenlocked="0">
+   <LINK dstnodeid="41" dstpinname="Input 1" hiddenwhenlocked="0" srcnodeid="0" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="41" srcpinname="Output" dstnodeid="38" dstpinname="Input" hiddenwhenlocked="0">
+   <LINK dstnodeid="38" dstpinname="Input" hiddenwhenlocked="0" srcnodeid="41" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="38" srcpinname="Output" dstnodeid="2" dstpinname="Input" hiddenwhenlocked="0">
+   <LINK dstnodeid="2" dstpinname="Input" hiddenwhenlocked="0" srcnodeid="38" srcpinname="Output">
    </LINK>
-   <NODE systemname="RandomSpread (Spreads)" nodename="RandomSpread (Spreads)" componentmode="Hidden" id="43" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1200" top="2715" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="43" nodename="RandomSpread (Spreads)" systemname="RandomSpread (Spreads)">
+   <BOUNDS height="100" left="1200" top="2715" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Input" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Width" visible="-1" pintype="Input" slicecount="1" values="2">
+   <PIN pinname="Width" pintype="Input" slicecount="1" visible="-1" values="2">
    </PIN>
-   <PIN pinname="Spread Count" slicecount="1" values="2" visible="-1" pintype="Input">
+   <PIN pinname="Spread Count" pintype="Input" slicecount="1" visible="-1" values="2">
    </PIN>
    <PIN pinname="Random Seed" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="46" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1200" top="2325" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="46" nodename="LFO (Animation)" systemname="LFO (Animation)">
+   <BOUNDS height="100" left="1200" top="2325" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Pause" visible="1">
    </PIN>
-   <PIN pinname="Phase" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Phase" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Reset" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Reset" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Reverse" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Reverse" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Output" visible="-1" pintype="Output">
+   <PIN pinname="Output" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Change" visible="-1" pintype="Output">
+   <PIN pinname="Change" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="Cycles" visible="1">
    </PIN>
    <PIN pinname="Period">
    </PIN>
    </NODE>
-   <LINK srcnodeid="46" srcpinname="Cycles" dstnodeid="43" dstpinname="Random Seed" hiddenwhenlocked="0">
+   <LINK dstnodeid="43" dstpinname="Random Seed" hiddenwhenlocked="0" srcnodeid="46" srcpinname="Cycles">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="47" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1185" top="285" width="0" height="0">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="47" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="1185" top="285" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="1185" top="285" width="585" height="240">
+   <BOUNDS height="240" left="1185" top="285" type="Box" width="585">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="2">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="s" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="s">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Period" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Period">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.2">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <LINK srcnodeid="47" srcpinname="Y Output Value" dstnodeid="46" dstpinname="Period" hiddenwhenlocked="0">
+   <LINK dstnodeid="46" dstpinname="Period" hiddenwhenlocked="0" srcnodeid="47" srcpinname="Y Output Value">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="48" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1785" top="285" width="0" height="0">
+   <NODE componentmode="InABox" hiddenwhenlocked="0" id="48" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="1785" top="285" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="1785" top="285" width="495" height="255">
+   <BOUNDS height="255" left="1785" top="285" type="Box" width="495">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
@@ -301,49 +301,49 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Pause" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE systemname="LinearFilter (Animation)" nodename="LinearFilter (Animation)" componentmode="Hidden" id="49" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1200" top="3150" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="49" nodename="LinearFilter (Animation)" systemname="LinearFilter (Animation)">
+   <BOUNDS height="100" left="1200" top="3150" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="FilterTime" visible="1">
    </PIN>
-   <PIN pinname="Velocity Out" visible="-1" pintype="Output">
+   <PIN pinname="Velocity Out" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Acceleration Out" visible="-1" pintype="Output">
+   <PIN pinname="Acceleration Out" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Cyclic" visible="-1" pintype="Input" slicecount="1" values="NotCyclic">
+   <PIN pinname="Cyclic" pintype="Input" slicecount="1" visible="-1" values="NotCyclic">
    </PIN>
    <PIN pinname="Go To Position" visible="1">
    </PIN>
    <PIN pinname="Position Out" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="47" srcpinname="Y Output Value" dstnodeid="49" dstpinname="FilterTime" hiddenwhenlocked="0">
+   <LINK dstnodeid="49" dstpinname="FilterTime" hiddenwhenlocked="0" srcnodeid="47" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="50" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1470" top="1485" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="50" nodename="EQ (Value)" systemname="EQ (Value)">
+   <BOUNDS height="100" left="1470" top="1485" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Epsilon" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Epsilon" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <PIN pinname="Input 2" visible="-1" pintype="Input" slicecount="1" values="1">
+   <PIN pinname="Input 2" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Inverse Output" visible="1">
    </PIN>
-   <PIN pinname="Output" visible="-1" pintype="Output">
+   <PIN pinname="Output" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="39" srcpinname="Output" dstnodeid="50" dstpinname="Input 1" hiddenwhenlocked="0">
+   <LINK dstnodeid="50" dstpinname="Input 1" hiddenwhenlocked="0" srcnodeid="39" srcpinname="Output">
    </LINK>
-   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="51" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="1470" top="1845" width="100" height="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="51" nodename="OR (Boolean)" systemname="OR (Boolean)">
+   <BOUNDS height="100" left="1470" top="1845" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -352,14 +352,14 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="48" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Input 2" hiddenwhenlocked="0">
+   <LINK dstnodeid="51" dstpinname="Input 2" hiddenwhenlocked="0" srcnodeid="48" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="50" srcpinname="Inverse Output" dstnodeid="51" dstpinname="Input 1" hiddenwhenlocked="0">
+   <LINK dstnodeid="51" dstpinname="Input 1" hiddenwhenlocked="0" srcnodeid="50" srcpinname="Inverse Output">
    </LINK>
-   <LINK srcnodeid="51" srcpinname="Output" dstnodeid="46" dstpinname="Pause" hiddenwhenlocked="0">
+   <LINK dstnodeid="46" dstpinname="Pause" hiddenwhenlocked="0" srcnodeid="51" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="49" srcpinname="Position Out" dstnodeid="41" dstpinname="Input 2">
+   <LINK dstnodeid="41" dstpinname="Input 2" srcnodeid="49" srcpinname="Position Out">
    </LINK>
-   <LINK srcnodeid="43" srcpinname="Output" dstnodeid="49" dstpinname="Go To Position">
+   <LINK dstnodeid="49" dstpinname="Go To Position" srcnodeid="43" srcpinname="Output">
    </LINK>
    </PATCH>
