@@ -239,7 +239,7 @@
    </BOUNDS>
    <BOUNDS height="705" left="1215" top="2835" type="Box" width="615">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -249,7 +249,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="vertigo">
    </PIN>
@@ -312,7 +312,7 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="qw2.scene1.positions.v4p" hiddenwhenlocked="1" id="129" nodename="qw2.scene1.positions.v4p" systemname="qw2.scene1.positions">
+   <NODE componentmode="Hidden" filename="qw2.scene1.positions.v4p" hiddenwhenlocked="0" id="129" nodename="qw2.scene1.positions.v4p" systemname="qw2.scene1.positions">
    <BOUNDS height="100" left="4860" top="3870" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="6660" left="6480" top="2460" type="Window" width="4170">
@@ -825,7 +825,7 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="3" values="0,0,0">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Set">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
@@ -849,7 +849,7 @@
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Sel">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Selected">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="201" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -914,15 +914,15 @@
    <PIN pinname="X Output Value" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="129" dstpinname="Width" hiddenwhenlocked="1" srcnodeid="204" srcpinname="Y Output Value">
+   <LINK dstnodeid="129" dstpinname="Width" hiddenwhenlocked="0" srcnodeid="204" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="129" dstpinname="Set" hiddenwhenlocked="1" srcnodeid="203" srcpinname="Y Output Value">
+   <LINK dstnodeid="129" dstpinname="Set" hiddenwhenlocked="0" srcnodeid="203" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="129" dstpinname="Crazy" hiddenwhenlocked="1" srcnodeid="199" srcpinname="Y Output Value">
+   <LINK dstnodeid="129" dstpinname="Crazy" hiddenwhenlocked="0" srcnodeid="199" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="129" dstpinname="Stutr" hiddenwhenlocked="1" srcnodeid="201" srcpinname="Y Output Value">
+   <LINK dstnodeid="129" dstpinname="Stutr" hiddenwhenlocked="0" srcnodeid="201" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="129" dstpinname="Invert" hiddenwhenlocked="1" srcnodeid="200" srcpinname="Y Output Value">
+   <LINK dstnodeid="129" dstpinname="Invert" hiddenwhenlocked="0" srcnodeid="200" srcpinname="Y Output Value">
    </LINK>
    <LINK dstnodeid="202" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="129" srcpinname="Sel">
    </LINK>

@@ -83,7 +83,7 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="-0.41">
    </PIN>
-   <PIN pinname="X Output Value" visible="0" pintype="Output">
+   <PIN pinname="X Output Value" pintype="Output" visible="0">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="..\plugins\MiscNodes\bin\MiscNodes.dll" id="6" nodename="Gate (Value)" systemname="Gate (Value)">
@@ -93,7 +93,7 @@
    </PIN>
    <PIN pinname="Gate" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="375" top="3420">
+   <BOUNDS left="375" top="3420" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -187,9 +187,9 @@
    </PIN>
    <PIN pinname="Down Edge" visible="1">
    </PIN>
-   <PIN pinname="Up Edge" visible="-1" pintype="Output">
+   <PIN pinname="Up Edge" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Bang On Create" visible="-1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Bang On Create" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
    </NODE>
    <LINK dstnodeid="15" dstpinname="Input" srcnodeid="10" srcpinname="Output">
