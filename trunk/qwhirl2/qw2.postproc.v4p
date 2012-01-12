@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.postproc.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.postproc.v4p" locked="0" systemname="qw2.postproc">
    <BOUNDS height="9990" left="1830" top="2385" type="Window" width="8460">
    </BOUNDS>
@@ -842,8 +842,6 @@
    </LINK>
    <LINK dstnodeid="61" dstpinname="Input Node" srcnodeid="53" srcpinname="Output Node">
    </LINK>
-   <LINK dstnodeid="2" dstpinname="Input Node" srcnodeid="0" srcpinname="Output Node">
-   </LINK>
    <NODE componentmode="InABox" id="63" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="270" left="4635" top="375" type="Node" width="555">
    </BOUNDS>
@@ -864,4 +862,6 @@
    <PIN pinname="Font" slicecount="1" values="|Lucida Sans Unicode|">
    </PIN>
    </NODE>
+   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="2" dstpinname="Input Node">
+   </LINK>
    </PATCH>

@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.control.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.control.v4p" locked="0" systemname="qw2.control">
    <BOUNDS height="5400" left="5160" top="0" type="Window" width="4530">
    </BOUNDS>
