@@ -27,7 +27,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="1080" top="165" type="Box" width="1710">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="|loopMIDI Port|">
+   <PIN pinname="Input Enum" slicecount="1" values="|LoopBe Internal MIDI|">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Midi Port|">
    </PIN>
@@ -39,7 +39,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="345" top="285" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -51,7 +51,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
