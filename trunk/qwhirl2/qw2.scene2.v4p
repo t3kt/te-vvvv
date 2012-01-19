@@ -883,7 +883,7 @@
    </PIN>
    <BOUNDS left="7320" top="7080" type="Box">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="rand" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="rand">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="191" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
@@ -1021,7 +1021,7 @@
    </PIN>
    <BOUNDS left="7320" top="4800" type="Box">
    </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="vertices" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="vertices">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="205" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
@@ -1354,157 +1354,157 @@
    </NODE>
    <LINK dstnodeid="213" dstpinname="Dolly &amp; Size" srcnodeid="237" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="121" srcpinname="Y Output Value" dstnodeid="46" dstpinname="Pause">
+   <LINK dstnodeid="46" dstpinname="Pause" srcnodeid="121" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="240">
-   <BOUNDS type="Node" left="255" top="1905" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="240" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="255" top="1905" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.on" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.on">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="255" top="1905">
+   <BOUNDS left="255" top="1905" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="215" srcpinname="Y Output Value" dstnodeid="240" dstpinname="Input">
+   <LINK dstnodeid="240" dstpinname="Input" srcnodeid="215" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="241">
-   <BOUNDS type="Node" left="705" top="5640" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="241" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="705" top="5640" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.on" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="241" srcpinname="Output" dstnodeid="214" dstpinname="Switch">
+   <LINK dstnodeid="214" dstpinname="Switch" srcnodeid="241" srcpinname="Output">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="242">
-   <BOUNDS type="Node" left="885" top="1845" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="242" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="885" top="1845" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.neg" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.neg">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="243">
-   <BOUNDS type="Node" left="825" top="4950" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="243" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="825" top="4950" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.neg" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.neg">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="235" srcpinname="Y Output Value" dstnodeid="242" dstpinname="Input">
+   <LINK dstnodeid="242" dstpinname="Input" srcnodeid="235" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="243" srcpinname="Output" dstnodeid="234" dstpinname="Switch">
+   <LINK dstnodeid="234" dstpinname="Switch" srcnodeid="243" srcpinname="Output">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="244">
-   <BOUNDS type="Node" left="1455" top="1695" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="244" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="1455" top="1695" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.pause" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.pause">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1455" top="1695">
+   <BOUNDS left="1455" top="1695" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="245">
-   <BOUNDS type="Node" left="1470" top="2460" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="245" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1470" top="2460" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.pause" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.pause">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="217" srcpinname="Y Output Value" dstnodeid="244" dstpinname="Input">
+   <LINK dstnodeid="244" dstpinname="Input" srcnodeid="217" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="245" srcpinname="Output" dstnodeid="216" dstpinname="Pause">
+   <LINK dstnodeid="216" dstpinname="Pause" srcnodeid="245" srcpinname="Output">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="246">
-   <BOUNDS type="Node" left="2100" top="1740" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="246" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="2100" top="1740" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.per" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.per">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="247">
-   <BOUNDS type="Node" left="1065" top="2460" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="247" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1065" top="2460" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.per" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.per">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="218" srcpinname="Y Output Value" dstnodeid="246" dstpinname="Input">
+   <LINK dstnodeid="246" dstpinname="Input" srcnodeid="218" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="247" srcpinname="Output" dstnodeid="216" dstpinname="Period">
+   <LINK dstnodeid="216" dstpinname="Period" srcnodeid="247" srcpinname="Output">
    </LINK>
-   <NODE systemname="IOBox (Enumerations)" nodename="IOBox (Enumerations)" componentmode="InABox" id="248">
-   <BOUNDS type="Node" left="2790" top="1065" width="100" height="100">
+   <NODE componentmode="InABox" id="248" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="100" left="2790" top="1065" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2790" top="1065" width="780" height="240">
+   <BOUNDS height="240" left="2790" top="1065" type="Box" width="780">
    </BOUNDS>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Shape" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Shape">
    </PIN>
    <PIN pinname="Input Enum" slicecount="1" values="Linear">
    </PIN>
    </NODE>
-   <NODE systemname="Ord2Enum (Enumerations)" nodename="Ord2Enum (Enumerations)" componentmode="Hidden" id="251">
-   <BOUNDS type="Node" left="1980" top="2790" width="100" height="100">
+   <NODE componentmode="Hidden" id="251" nodename="Ord2Enum (Enumerations)" systemname="Ord2Enum (Enumerations)">
+   <BOUNDS height="100" left="1980" top="2790" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enum" visible="1">
    </PIN>
    <PIN pinname="Ord Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="253">
-   <BOUNDS type="Node" left="2790" top="2100" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="253" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="2790" top="2100" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.lfo.shape" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.lfo.shape">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2790" top="2100">
+   <BOUNDS left="2790" top="2100" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="254">
-   <BOUNDS type="Node" left="1980" top="2415" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="254" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1980" top="2415" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.lfo.shape" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.vertigo.lfo.shape">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="255">
-   <BOUNDS type="Node" left="2790" top="1770" width="100" height="100">
+   <NODE componentmode="Hidden" id="255" nodename="Enum2Ord (Enumerations)" systemname="Enum2Ord (Enumerations)">
+   <BOUNDS height="100" left="2790" top="1770" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enum" visible="1">
    </PIN>
    <PIN pinname="Ord Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="256">
-   <BOUNDS type="Node" left="2910" top="1485" width="100" height="100">
+   <NODE componentmode="Hidden" id="256" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)">
+   <BOUNDS height="100" left="2910" top="1485" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Enum" slicecount="1" visible="-1" pintype="Input" values="WaveShape">
+   <PIN pinname="Enum" pintype="Input" slicecount="1" visible="-1" values="WaveShape">
    </PIN>
    <PIN pinname="Receive" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="248" srcpinname="Output Enum" dstnodeid="256" dstpinname="Receive">
+   <LINK dstnodeid="256" dstpinname="Receive" srcnodeid="248" srcpinname="Output Enum">
    </LINK>
-   <LINK srcnodeid="248" srcpinname="Output Enum" dstnodeid="255" dstpinname="Enum">
+   <LINK dstnodeid="255" dstpinname="Enum" srcnodeid="248" srcpinname="Output Enum">
    </LINK>
-   <LINK srcnodeid="255" srcpinname="Ord Value" dstnodeid="253" dstpinname="Input">
+   <LINK dstnodeid="253" dstpinname="Input" srcnodeid="255" srcpinname="Ord Value">
    </LINK>
-   <LINK srcnodeid="254" srcpinname="Output" dstnodeid="251" dstpinname="Ord Value">
+   <LINK dstnodeid="251" dstpinname="Ord Value" srcnodeid="254" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="251" srcpinname="Enum" dstnodeid="224" dstpinname="Shape">
+   <LINK dstnodeid="224" dstpinname="Shape" srcnodeid="251" srcpinname="Enum">
    </LINK>
    <NODE componentmode="InABox" id="257" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="270" left="60" top="45" type="Node" width="285">

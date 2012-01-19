@@ -1,9 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" locked="0" systemname="qw2.midi">
-   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5130">
+   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5640">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="MidiController (Devices)" systemname="MidiController (Devices)">
-   <BOUNDS height="100" left="1335" top="2580" type="Node" width="100">
+   <BOUNDS height="100" left="1335" top="2880" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Midi Input Port" visible="1">
    </PIN>
@@ -39,7 +39,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="345" top="285" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -51,7 +51,7 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -59,7 +59,7 @@
    <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="225" top="3780" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="870" left="225" top="3780" type="Box" width="645">
+   <BOUNDS height="1125" left="225" top="3780" type="Box" width="660">
    </BOUNDS>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -67,7 +67,7 @@
    </PIN>
    <PIN pinname="Columns" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="4">
+   <PIN pinname="Rows" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
@@ -145,7 +145,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="30" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="2130" top="2145" type="Node" width="100">
+   <BOUNDS height="100" left="2130" top="2445" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.midi.on">
    </PIN>
@@ -165,15 +165,15 @@
    <NODE componentmode="InABox" id="67" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="100" left="1380" top="975" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1005" left="1380" top="975" type="Box" width="1425">
+   <BOUNDS height="1185" left="1380" top="975" type="Box" width="1905">
    </BOUNDS>
-   <PIN pinname="Rows" slicecount="1" values="4">
+   <PIN pinname="Rows" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN encoded="0" pinname="Input String" slicecount="4" values="|qw2.ctl.point [X]|,|qw2.ctl.point [Y]|,qw2.sc1.crazy,qw2.sc1.vertigo.on">
+   <PIN encoded="0" pinname="Input String" slicecount="6" values="|qw2.ctl.point [X]|,|qw2.ctl.point [Y]|,qw2.sc1.crazy,qw2.sc1.vertigo.on,qw2.macro.scenes.mode,qw2.macro.sc2.vertmode">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -181,7 +181,7 @@
    <NODE componentmode="InABox" id="69" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="960" top="975" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="1005" left="960" top="975" type="Box" width="405">
+   <BOUNDS height="1185" left="960" top="975" type="Box" width="405">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -191,11 +191,11 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="4">
+   <PIN pinname="Rows" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="4" values="1,2,3,4">
+   <PIN pinname="Y Input Value" slicecount="6" values="1,2,3,4,5,6">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -321,7 +321,7 @@
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\InterleaveNodes.dll" id="82" nodename="Vector (Spreads Split)" systemname="Vector (Spreads Split)">
    <BOUNDS height="100" left="1425" top="3435" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Output Count" slicecount="1" values="4">
+   <PIN pinname="Output Count" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -332,6 +332,10 @@
    <PIN pinname="Output 3" visible="1">
    </PIN>
    <PIN pinname="Output 4" visible="1">
+   </PIN>
+   <PIN pinname="Output 5" visible="1">
+   </PIN>
+   <PIN pinname="Output 6" visible="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="82" dstpinname="Input" srcnodeid="0" srcpinname="Output">
@@ -461,5 +465,25 @@
    <LINK dstnodeid="85" dstpinname="Input" srcnodeid="87" srcpinname="Output">
    </LINK>
    <LINK dstnodeid="87" dstpinname="Input 1" srcnodeid="82" srcpinname="Output 4">
+   </LINK>
+   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="88">
+   <BOUNDS type="Node" left="3090" top="4890" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw2.macro.scenes.mode" encoded="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Output 5" dstnodeid="88" dstpinname="Input">
+   </LINK>
+   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="90">
+   <BOUNDS type="Node" left="3510" top="4905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode" encoded="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Output 6" dstnodeid="90" dstpinname="Input">
    </LINK>
    </PATCH>

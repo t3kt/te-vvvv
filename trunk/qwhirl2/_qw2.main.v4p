@@ -640,7 +640,7 @@
    </LINK>
    <LINK dstnodeid="132" dstpinname="Input Value" srcnodeid="29" srcpinname="Texture Out">
    </LINK>
-   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
+   <NODE componentmode="Hidden" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
    <BOUNDS height="270" left="2760" top="2115" type="Node" width="1140">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
@@ -730,12 +730,12 @@
    </NODE>
    <LINK dstnodeid="97" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="29" srcpinname="Texture Out">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.midi.v4p" id="134" nodename="qw2.midi.v4p" systemname="qw2.midi">
+   <NODE componentmode="InAWindow" filename="qw2.midi.v4p" id="134" nodename="qw2.midi.v4p" systemname="qw2.midi">
    <BOUNDS height="100" left="4440" top="675" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="3600" left="4440" top="675" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5130">
+   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5640">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InAWindow" filename="qw2.macros.v4p" id="135" nodename="qw2.macros.v4p" systemname="qw2.macros">
