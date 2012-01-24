@@ -13,8 +13,8 @@ namespace CommandNodes.Nodes
 	#region TriggerCommandNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Trigger,
-		Category = TEShared.Names.Categories.Command,
-		Version = TEShared.Names.Versions.Manual,
+		Category = CommandNames.Categories.Command,
+		Version = CommandNames.Versions.Manual,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		Help = "Manually trigger commands by name")]

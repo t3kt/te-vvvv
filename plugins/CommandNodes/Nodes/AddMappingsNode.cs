@@ -12,8 +12,8 @@ namespace CommandNodes.Nodes
 
 	#region AddMappingsNode
 
-	[PluginInfo(Name = TEShared.Names.Nodes.Mappings,
-		Category = TEShared.Names.Categories.Command,
+	[PluginInfo(Name = CommandNames.Nodes.Mappings,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Add,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,

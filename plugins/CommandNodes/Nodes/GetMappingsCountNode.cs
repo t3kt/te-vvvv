@@ -12,7 +12,7 @@ namespace CommandNodes.Nodes
 	#region GetMappingsCountNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Count,
-		Category = TEShared.Names.Categories.Command,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Global,
 		Author = TEShared.Names.Author)]
 	public sealed class GetMappingsCountNode : IPluginBase, IDisposable, IPartImportsSatisfiedNotification

@@ -12,8 +12,8 @@ namespace CommandNodes.Nodes
 	#region SplitKeyEventNode
 
 	[Obsolete]
-	[PluginInfo(Name = TEShared.Names.Nodes.KeyEvent,
-		Category = TEShared.Names.Categories.Command,
+	[PluginInfo(Name = CommandNames.Nodes.KeyEvent,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Split,
 		Author = TEShared.Names.Author,
 		Warnings = TEShared.Names.Warnings.Obsolete)]

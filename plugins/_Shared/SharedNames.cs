@@ -21,7 +21,6 @@ namespace TEShared
 			public const string AsKey = "AsKey";
 			public const string AsString = "AsString";
 			public const string AsValue = "AsValue";
-			public const string Command = "Command";
 			public const string Cons = "Cons";
 			public const string Controller = "Controller";
 			public const string Count = "Count";
@@ -31,11 +30,8 @@ namespace TEShared
 			public const string EnsureType = "EnsureType";
 			public const string Gate = "Gate";
 			public const string GetTypes = "GetTypes";
-			public const string KeyEvent = "KeyEvent";
 			public const string KeyGesture = "KeyGesture";
 			public const string LastChanged = "LastChanged";
-			public const string Listener = "Listener";
-			public const string Mappings = "Mappings";
 			public const string Modifiers = "Modifiers";
 			public const string OfType = "OfType";
 			public const string Parse = "Parse";
@@ -51,7 +47,6 @@ namespace TEShared
 			public const string Animation = "Animation";
 			public const string Boolean = "Boolean";
 			public const string Color = "Color";
-			/*COMMAND*/public const string Command = "Command";
 			public const string Debug = "Debug";
 			public const string Enumerations = "Enumerations";
 			public const string GUI = "GUI";
@@ -78,9 +73,6 @@ namespace TEShared
 			public const string Global = "Global";
 			public const string Input = "Input";
 			public const string Join = "Join";
-			/*COMMAND*/public const string KeyCode = "KeyCode";
-			/*COMMAND*/public const string Manual = "Manual";
-			/*COMMAND*/public const string Mouse = "Mouse";
 			public const string Output = "Output";
 			public const string Split = "Split";
 			public const string Test = "Test";

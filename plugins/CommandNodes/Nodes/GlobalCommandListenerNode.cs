@@ -12,8 +12,8 @@ namespace CommandNodes.Nodes
 
 	#region GlobalCommandListenerNode
 
-	[PluginInfo(Name = TEShared.Names.Nodes.Listener,
-		Category = TEShared.Names.Categories.Command,
+	[PluginInfo(Name = CommandNames.Nodes.Listener,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Global,
 		Author = TEShared.Names.Author,
 		Help = "Listen for all commands")]
