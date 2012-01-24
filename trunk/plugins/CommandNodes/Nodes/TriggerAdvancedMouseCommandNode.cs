@@ -10,8 +10,8 @@ namespace CommandNodes.Nodes
 	#region TriggerAdvancedMouseCommandNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Trigger,
-		Category = TEShared.Names.Categories.Command,
-		Version = TEShared.Names.Versions.Mouse + TEShared.Names.AND + TEShared.Names.Versions.Advanced,
+		Category = CommandNames.Categories.Command,
+		Version = CommandNames.Versions.Mouse + TEShared.Names.AND + TEShared.Names.Versions.Advanced,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		Help = "Trigger commands from mouse data (with modifier keys)")]

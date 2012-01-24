@@ -14,8 +14,8 @@ namespace CommandNodes.Nodes
 
 	#region LoadCommandMappingsFileNode
 
-	[PluginInfo(Name = TEShared.Names.Nodes.Mappings,
-		Category = TEShared.Names.Categories.Command,
+	[PluginInfo(Name = CommandNames.Nodes.Mappings,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Add + TEShared.Names.AND + TEShared.Names.Versions.File,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,

@@ -11,8 +11,8 @@ namespace CommandNodes.Nodes
 	#region KeyCodesToModifiersNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Modifiers,
-		Category = TEShared.Names.Categories.Command,
-		Version = TEShared.Names.Versions.Split + TEShared.Names.AND + TEShared.Names.Versions.KeyCode,
+		Category = CommandNames.Categories.Command,
+		Version = TEShared.Names.Versions.Split + TEShared.Names.AND + CommandNames.Versions.KeyCode,
 		Author = TEShared.Names.Author)]
 	public sealed class KeyCodesToModifiersNode : IPluginEvaluate
 	{

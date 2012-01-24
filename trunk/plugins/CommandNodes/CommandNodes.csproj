@@ -74,6 +74,7 @@
     <Compile Include="..\_Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandNames.cs" />
     <Compile Include="Lib\CommandEventArgs.cs" />
     <Compile Include="Lib\CommandMapping.cs" />
     <Compile Include="Lib\CommandMappingCollection.cs" />

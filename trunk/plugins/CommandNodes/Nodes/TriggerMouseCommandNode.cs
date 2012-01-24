@@ -11,8 +11,8 @@ namespace CommandNodes.Nodes
 	#region TriggerMouseCommandNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Trigger,
-		Category = TEShared.Names.Categories.Command,
-		Version = TEShared.Names.Versions.Mouse,
+		Category = CommandNames.Categories.Command,
+		Version = CommandNames.Versions.Mouse,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		Help = "Trigger commands from mouse data")]

@@ -10,8 +10,8 @@ namespace CommandNodes.Nodes
 
 	#region CommandListenerNode
 
-	[PluginInfo(Name = TEShared.Names.Nodes.Listener,
-		Category = TEShared.Names.Categories.Command,
+	[PluginInfo(Name = CommandNames.Nodes.Listener,
+		Category = CommandNames.Categories.Command,
 		Author = TEShared.Names.Author,
 		Help = "Listen for specific commands")]
 	public sealed class CommandListenerNode : IPluginEvaluate, IDisposable

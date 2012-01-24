@@ -11,8 +11,8 @@ namespace CommandNodes.Nodes
 	#region TriggerKeyboardCommandNode
 
 	[PluginInfo(Name = TEShared.Names.Nodes.Trigger,
-		Category = TEShared.Names.Categories.Command,
-		Version = TEShared.Names.Versions.KeyCode,
+		Category = CommandNames.Categories.Command,
+		Version = CommandNames.Versions.KeyCode,
 		Author = TEShared.Names.Author,
 		AutoEvaluate = true,
 		Help = "Trigger commands from keyboard data")]

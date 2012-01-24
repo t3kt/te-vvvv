@@ -12,7 +12,7 @@ namespace CommandNodes.Nodes
 
 	[Obsolete]
 	[PluginInfo(Name = TEShared.Names.Nodes.Modifiers,
-		Category = TEShared.Names.Categories.Command,
+		Category = CommandNames.Categories.Command,
 		Version = TEShared.Names.Versions.Join,
 		Author = TEShared.Names.Author,
 		Warnings = TEShared.Names.Warnings.Obsolete)]
