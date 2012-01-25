@@ -735,7 +735,7 @@
    </BOUNDS>
    <BOUNDS height="3600" left="4440" top="675" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5640">
+   <BOUNDS height="7860" left="5745" top="1275" type="Window" width="6180">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InAWindow" filename="qw2.macros.v4p" id="135" nodename="qw2.macros.v4p" systemname="qw2.macros">

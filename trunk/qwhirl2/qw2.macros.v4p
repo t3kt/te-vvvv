@@ -17,7 +17,7 @@
    </BOUNDS>
    <BOUNDS height="480" left="1680" top="6150" type="Box" width="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -29,7 +29,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK dstnodeid="3" dstpinname="Gate" srcnodeid="4" srcpinname="Y Output Value">
@@ -413,7 +413,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="-2">
+   <PIN pinname="Y Input Value" slicecount="1" values="2">
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="5">
    </PIN>
@@ -722,28 +722,28 @@
    </LINK>
    <LINK dstnodeid="78" dstpinname="Input 1" srcnodeid="30" srcpinname="Output">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="94">
-   <BOUNDS type="Node" left="4365" top="1590" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="94" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="4365" top="1590" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Input">
+   <LINK dstnodeid="94" dstpinname="Input" srcnodeid="53" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="95">
-   <BOUNDS type="Node" left="6195" top="1260" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="95" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="6195" top="1260" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.macro.sc2.vertmode" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.macro.sc2.vertmode">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="95" srcpinname="Output" dstnodeid="61" dstpinname="Input 1">
+   <LINK dstnodeid="61" dstpinname="Input 1" srcnodeid="95" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="95" srcpinname="Output" dstnodeid="62" dstpinname="Input 1">
+   <LINK dstnodeid="62" dstpinname="Input 1" srcnodeid="95" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="95" srcpinname="Output" dstnodeid="60" dstpinname="Input Real">
+   <LINK dstnodeid="60" dstpinname="Input Real" srcnodeid="95" srcpinname="Output">
    </LINK>
    </PATCH>
