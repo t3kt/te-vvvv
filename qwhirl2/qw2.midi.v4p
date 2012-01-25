@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" locked="0" systemname="qw2.midi">
-   <BOUNDS height="7860" left="2025" top="6735" type="Window" width="5640">
+   <BOUNDS height="7860" left="5745" top="1275" type="Window" width="6180">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="MidiController (Devices)" systemname="MidiController (Devices)">
    <BOUNDS height="100" left="1335" top="2880" type="Node" width="100">
@@ -466,24 +466,108 @@
    </LINK>
    <LINK dstnodeid="87" dstpinname="Input 1" srcnodeid="82" srcpinname="Output 4">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="88">
-   <BOUNDS type="Node" left="3090" top="4890" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="88" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="3090" top="4890" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.macro.scenes.mode" encoded="0">
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.macro.scenes.mode">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Output 5" dstnodeid="88" dstpinname="Input">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="90" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="3510" top="4905" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="90" dstpinname="Input" srcnodeid="82" srcpinname="Output 6">
    </LINK>
-   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="90">
-   <BOUNDS type="Node" left="3510" top="4905" width="100" height="100">
+   <NODE componentmode="Hidden" id="91" nodename="Multiply (Value)" systemname="Multiply (Value)">
+   <BOUNDS height="100" left="2625" top="4305" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode" encoded="0">
+   <PIN pinname="Input 2" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="91" dstpinname="Input 1" srcnodeid="82" srcpinname="Output 5">
+   </LINK>
+   <NODE componentmode="Hidden" id="92" nodename="Map (Value)" systemname="Map (Value)">
+   <BOUNDS height="100" left="3495" top="3435" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Destination Maximum" slicecount="1" values="5">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Mapping" slicecount="1" values="Clamp">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Output 6" dstnodeid="90" dstpinname="Input">
+   <LINK dstnodeid="92" dstpinname="Input" srcnodeid="82" srcpinname="Output 5">
+   </LINK>
+   <LINK dstnodeid="88" dstpinname="Input" srcnodeid="92" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" id="93" nodename="Frac (Value)" systemname="Frac (Value)">
+   <BOUNDS height="100" left="3705" top="1800" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="93" dstpinname="Input" srcnodeid="92" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" id="94" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="3945" top="4155" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="3945" top="4155" type="Box" width="795">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="94" dstpinname="Y Input Value" srcnodeid="92" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="InABox" id="95" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="4410" top="2895" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="4410" top="2895" type="Box" width="795">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="95" dstpinname="Y Input Value" srcnodeid="82" srcpinname="Output 5">
+   </LINK>
+   <NODE componentmode="InABox" id="96" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="3855" top="2490" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="3855" top="2490" type="Box" width="795">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="96" dstpinname="Y Input Value" srcnodeid="93" srcpinname="Whole Part">
+   </LINK>
+   <NODE componentmode="InABox" id="97" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="4410" top="1455" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="4410" top="1455" type="Box" width="795">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="97" dstpinname="Y Input Value" srcnodeid="93" srcpinname="Real Part">
    </LINK>
    </PATCH>
