@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.v4p" locked="0" systemname="qw2.midi">
-   <BOUNDS height="7860" left="1125" top="3150" type="Window" width="6255">
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.seq.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.midi.seq.v4p" locked="0" systemname="qw2.midi.seq">
+   <BOUNDS height="7860" left="1125" top="3150" type="Window" width="5655">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="MidiController (Devices)" systemname="MidiController (Devices)">
    <BOUNDS height="100" left="1335" top="2880" type="Node" width="100">

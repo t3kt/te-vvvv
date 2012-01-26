@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
-   <BOUNDS height="5880" left="0" top="0" type="Window" width="5850">
+   <BOUNDS height="5880" left="0" top="0" type="Window" width="6285">
    </BOUNDS>
    <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="RENDERER (EX9)">
    <BOUNDS height="270" left="240" top="3900" type="Node" width="1650">
@@ -730,12 +730,12 @@
    </NODE>
    <LINK dstnodeid="97" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="29" srcpinname="Texture Out">
    </LINK>
-   <NODE componentmode="InAWindow" filename="qw2.midi.v4p" id="134" nodename="qw2.midi.v4p" systemname="qw2.midi">
+   <NODE componentmode="Hidden" filename="qw2.midi.seq.v4p" id="134" nodename="qw2.midi.seq.v4p" systemname="qw2.midi.seq">
    <BOUNDS height="100" left="4440" top="675" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="3600" left="4440" top="675" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="7860" left="5745" top="1275" type="Window" width="6180">
+   <BOUNDS height="7860" left="1125" top="3150" type="Window" width="5655">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InAWindow" filename="qw2.macros.v4p" id="135" nodename="qw2.macros.v4p" systemname="qw2.macros">
@@ -744,6 +744,14 @@
    <BOUNDS height="3600" left="4215" top="1095" type="Box" width="4800">
    </BOUNDS>
    <BOUNDS height="9060" left="1035" top="3405" type="Window" width="9270">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="qw2.midi.zerosl" filename="qw2.midi.zerosl.v4p" componentmode="InAWindow" id="136" nodename="qw2.midi.zerosl.v4p">
+   <BOUNDS type="Node" left="4440" top="1395" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4440" top="1395" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="840" top="7035" width="9000" height="6000">
    </BOUNDS>
    </NODE>
    </PATCH>

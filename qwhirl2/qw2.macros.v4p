@@ -31,6 +31,8 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK dstnodeid="3" dstpinname="Gate" srcnodeid="4" srcpinname="Y Output Value">
    </LINK>
@@ -106,6 +108,8 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="9" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
@@ -419,6 +423,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|vertigo mode|">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="55" nodename="Ord2Enum (Enumerations)" systemname="Ord2Enum (Enumerations)">
    <BOUNDS height="100" left="7200" top="2670" type="Node" width="100">
@@ -590,6 +596,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|scene mode|">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" hiddenwhenlocked="0" id="71" managers="" nodename="IOBox (String)" systemname="IOBox (String)">
