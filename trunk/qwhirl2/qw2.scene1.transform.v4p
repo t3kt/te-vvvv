@@ -59,7 +59,7 @@
    </BOUNDS>
    <BOUNDS height="240" left="9015" top="900" type="Box" width="795">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="3.29">
+   <PIN pinname="Y Input Value" slicecount="1" values="3.27">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="s">
    </PIN>
@@ -68,6 +68,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Yaw Filter|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" debug="0" id="12" nodename="Damper (Animation)" systemname="Damper (Animation)">
@@ -110,6 +112,8 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Roll Filter|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="17" nodename="Multiply (Value Spectral)" systemname="Multiply (Value Spectral)">
@@ -754,26 +758,26 @@
    </LINK>
    <LINK dstnodeid="155" dstpinname="Input 1" srcnodeid="98" srcpinname="Absolute Part">
    </LINK>
-   <LINK dstnodeid="119" dstpinname="Y Input Value" srcnodeid="154" srcpinname="Output 1" hiddenwhenlocked="1">
+   <LINK dstnodeid="119" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="154" srcpinname="Output 1">
    </LINK>
-   <LINK dstnodeid="118" dstpinname="Y Input Value" srcnodeid="154" srcpinname="Output 2" hiddenwhenlocked="1">
+   <LINK dstnodeid="118" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="154" srcpinname="Output 2">
    </LINK>
-   <LINK dstnodeid="117" dstpinname="Y Input Value" srcnodeid="154" srcpinname="Output 3" hiddenwhenlocked="1">
+   <LINK dstnodeid="117" dstpinname="Y Input Value" hiddenwhenlocked="1" srcnodeid="154" srcpinname="Output 3">
    </LINK>
-   <LINK srcnodeid="154" srcpinname="Output 3" dstnodeid="135" dstpinname="Input 1">
+   <LINK dstnodeid="135" dstpinname="Input 1" srcnodeid="154" srcpinname="Output 3">
    </LINK>
-   <LINK srcnodeid="154" srcpinname="Output 2" dstnodeid="133" dstpinname="Input">
+   <LINK dstnodeid="133" dstpinname="Input" srcnodeid="154" srcpinname="Output 2">
    </LINK>
-   <LINK srcnodeid="154" srcpinname="Output 1" dstnodeid="132" dstpinname="Input 1">
+   <LINK dstnodeid="132" dstpinname="Input 1" srcnodeid="154" srcpinname="Output 1">
    </LINK>
-   <LINK srcnodeid="154" srcpinname="Output 1" dstnodeid="141" dstpinname="Input">
+   <LINK dstnodeid="141" dstpinname="Input" srcnodeid="154" srcpinname="Output 1">
    </LINK>
-   <NODE id="97" componentmode="InABox" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS type="Node" height="270" left="375" top="5055" width="240">
+   <NODE componentmode="InABox" id="97" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="375" top="5055" type="Node" width="240">
    </BOUNDS>
-   <BOUNDS type="Box" height="1230" left="375" top="5055" width="4695">
+   <BOUNDS height="1230" left="375" top="5055" type="Box" width="4695">
    </BOUNDS>
-   <PIN pinname="Input String" encoded="0" slicecount="1" visible="0" values="|VERTIGO MODE:   -4 -3 -2 -1  0  1  2  3  4&cr;&lf;on               X  X  X  X  .  X  X  X  X&cr;&lf;crazy            X  X  X  .  .  .  X  X  X&cr;&lf;stutter          X  X  .  .  .  .  .  X  X&cr;&lf;invert stutter   X  .  .  .  .  .  .  .  X&cr;&lf;negative fov     X  X  X  X  .  .  .  .  .|">
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|VERTIGO MODE:   -4 -3 -2 -1  0  1  2  3  4&cr;&lf;on               X  X  X  X  .  X  X  X  X&cr;&lf;crazy            X  X  X  .  .  .  X  X  X&cr;&lf;stutter          X  X  .  .  .  .  .  X  X&cr;&lf;invert stutter   X  .  .  .  .  .  .  .  X&cr;&lf;negative fov     X  X  X  X  .  .  .  .  .|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>

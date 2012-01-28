@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
-   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" systemname="qw2.color" locked="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
+   <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" locked="0" systemname="qw2.color">
    <BOUNDS height="3690" left="1635" top="7455" type="Window" width="8760">
    </BOUNDS>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Color)" systemname="IOBox (Color)">
@@ -317,11 +317,11 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.409999999999999">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.451860465116278">
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.505714285714286">
+   <PIN pinname="X Input Value" slicecount="1" values="0.745714285714286">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.2">
    </PIN>
@@ -340,22 +340,22 @@
    <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="7575" top="1200" width="100" height="100">
+   <NODE componentmode="Hidden" id="57" nodename="Subtract (Value)" systemname="Subtract (Value)">
+   <BOUNDS height="100" left="7575" top="1200" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Input 1" slicecount="1" visible="-1" pintype="Input" values="1">
+   <PIN pinname="Input 1" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="57" dstpinname="Input 2">
+   <LINK dstnodeid="57" dstpinname="Input 2" srcnodeid="56" srcpinname="Y Output Value">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="61">
-   <BOUNDS type="Node" left="7050" top="210" width="100" height="100">
+   <NODE componentmode="InABox" id="61" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="7050" top="210" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="7050" top="210" width="480" height="465">
+   <BOUNDS height="465" left="7050" top="210" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Boolean">
    </PIN>
@@ -367,15 +367,15 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Mix" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Mix">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="65">
-   <BOUNDS type="Node" left="7020" top="1605" width="100" height="100">
+   <NODE componentmode="Hidden" id="65" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
+   <BOUNDS height="100" left="7020" top="1605" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Switch" visible="1">
    </PIN>
@@ -386,12 +386,12 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Switch">
+   <LINK dstnodeid="65" dstpinname="Switch" srcnodeid="61" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="65" dstpinname="Input 2">
+   <LINK dstnodeid="65" dstpinname="Input 2" srcnodeid="57" srcpinname="Output">
    </LINK>
-   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="6285" top="1605" width="100" height="100">
+   <NODE componentmode="Hidden" id="69" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
+   <BOUNDS height="100" left="6285" top="1605" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Switch" visible="1">
    </PIN>
@@ -436,34 +436,34 @@
    <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Input 1">
+   <LINK dstnodeid="69" dstpinname="Input 1" srcnodeid="70" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Input 1">
+   <LINK dstnodeid="65" dstpinname="Input 1" srcnodeid="70" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Switch">
+   <LINK dstnodeid="69" dstpinname="Switch" srcnodeid="61" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Input 2">
+   <LINK dstnodeid="69" dstpinname="Input 2" srcnodeid="56" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="69" srcpinname="Output" dstnodeid="45" dstpinname="Alpha">
+   <LINK dstnodeid="45" dstpinname="Alpha" srcnodeid="69" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="65" srcpinname="Output" dstnodeid="49" dstpinname="Alpha">
+   <LINK dstnodeid="49" dstpinname="Alpha" srcnodeid="65" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="44" srcpinname="Color Output" dstnodeid="49" dstpinname="Input">
+   <LINK dstnodeid="49" dstpinname="Input" srcnodeid="44" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="33" dstpinname="Input">
+   <LINK dstnodeid="33" dstpinname="Input" srcnodeid="8" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="34" dstpinname="Input">
+   <LINK dstnodeid="34" dstpinname="Input" srcnodeid="12" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Alpha">
+   <LINK dstnodeid="12" dstpinname="Alpha" srcnodeid="13" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Alpha">
+   <LINK dstnodeid="8" dstpinname="Alpha" srcnodeid="7" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="10" srcpinname="Color Output" dstnodeid="12" dstpinname="Input">
+   <LINK dstnodeid="12" dstpinname="Input" srcnodeid="10" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="9" srcpinname="Color Output" dstnodeid="8" dstpinname="Input">
+   <LINK dstnodeid="8" dstpinname="Input" srcnodeid="9" srcpinname="Color Output">
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="6" dstpinname="Input">
+   <LINK dstnodeid="6" dstpinname="Input" srcnodeid="33" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="34" srcpinname="Output" dstnodeid="11" dstpinname="Input">
+   <LINK dstnodeid="11" dstpinname="Input" srcnodeid="34" srcpinname="Output">
    </LINK>
    </PATCH>
