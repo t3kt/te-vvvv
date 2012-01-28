@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" locked="0" systemname="qw2.scene2">
-   <BOUNDS height="9990" left="855" top="3660" type="Window" width="9795">
+   <BOUNDS height="9990" left="2025" top="2235" type="Window" width="9795">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
    <BOUNDS height="100" left="930" top="8175" type="Node" width="100">
@@ -551,7 +551,7 @@
    </BOUNDS>
    <BOUNDS height="405" left="6690" top="585" type="Box" width="555">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -561,7 +561,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
@@ -743,7 +743,7 @@
    </BOUNDS>
    <BOUNDS height="465" left="3420" top="3195" type="Box" width="345">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -753,7 +753,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="FiltOn">
    </PIN>
@@ -1167,7 +1167,7 @@
    </BOUNDS>
    <BOUNDS height="270" left="2100" top="1170" type="Box" width="555">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="s">
    </PIN>
@@ -1227,7 +1227,7 @@
    </BOUNDS>
    <BOUNDS height="660" left="1860" top="3570" type="Box" width="555">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.18">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.24">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>

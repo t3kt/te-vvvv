@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" locked="0" systemname="qw2.scenes.mixer">
    <BOUNDS height="3840" left="0" top="6210" type="Window" width="6150">
    </BOUNDS>
@@ -177,7 +177,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="450" top="1530">
+   <BOUNDS left="450" top="1530" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="74" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="73" srcpinname="Texture Out">
@@ -309,7 +309,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="5295" top="1110">
+   <BOUNDS left="5295" top="1110" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="101" dstpinname="Evaluate" linkstyle="Bezier" srcnodeid="102" srcpinname="Output">
@@ -340,19 +340,19 @@
    <PIN pinname="Y" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="105" dstpinname="XY" srcnodeid="106" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="105" dstpinname="XY" linkstyle="Bezier" srcnodeid="106" srcpinname="Output">
    <LINKPOINT x="1380" y="593">
    </LINKPOINT>
    <LINKPOINT x="1380" y="593">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="105" srcpinname="X" dstnodeid="58" dstpinname="Backbuffer Width" linkstyle="Bezier">
+   <LINK dstnodeid="58" dstpinname="Backbuffer Width" linkstyle="Bezier" srcnodeid="105" srcpinname="X">
    <LINKPOINT x="1410" y="1013">
    </LINKPOINT>
    <LINKPOINT x="1665" y="1013">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="105" srcpinname="Y" dstnodeid="58" dstpinname="Backbuffer Height" linkstyle="Bezier">
+   <LINK dstnodeid="58" dstpinname="Backbuffer Height" linkstyle="Bezier" srcnodeid="105" srcpinname="Y">
    <LINKPOINT x="1965" y="1028">
    </LINKPOINT>
    <LINKPOINT x="2040" y="1028">
@@ -374,13 +374,13 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="108" srcpinname="Input Value" dstnodeid="56" dstpinname="Layer 1" hiddenwhenlocked="0" linkstyle="Bezier">
+   <LINK dstnodeid="56" dstpinname="Layer 1" hiddenwhenlocked="0" linkstyle="Bezier" srcnodeid="108" srcpinname="Input Value">
    <LINKPOINT x="255" y="593">
    </LINKPOINT>
    <LINKPOINT x="255" y="593">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="107" srcpinname="Input Value" dstnodeid="56" dstpinname="Layer 2" hiddenwhenlocked="0" linkstyle="Bezier">
+   <LINK dstnodeid="56" dstpinname="Layer 2" hiddenwhenlocked="0" linkstyle="Bezier" srcnodeid="107" srcpinname="Input Value">
    <LINKPOINT x="780" y="593">
    </LINKPOINT>
    <LINKPOINT x="780" y="593">
@@ -402,13 +402,13 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="110" srcpinname="Input Value" dstnodeid="101" dstpinname="Scene 1 Layer" linkstyle="Bezier">
+   <LINK dstnodeid="101" dstpinname="Scene 1 Layer" linkstyle="Bezier" srcnodeid="110" srcpinname="Input Value">
    <LINKPOINT x="4590" y="1478">
    </LINKPOINT>
    <LINKPOINT x="4590" y="1478">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="109" srcpinname="Input Value" dstnodeid="101" dstpinname="Scene 2 Layer" linkstyle="Bezier">
+   <LINK dstnodeid="101" dstpinname="Scene 2 Layer" linkstyle="Bezier" srcnodeid="109" srcpinname="Input Value">
    <LINKPOINT x="4950" y="1478">
    </LINKPOINT>
    <LINKPOINT x="4950" y="1478">
@@ -430,13 +430,13 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="112" srcpinname="Input Value" dstnodeid="58" dstpinname="View" linkstyle="Bezier">
+   <LINK dstnodeid="58" dstpinname="View" linkstyle="Bezier" srcnodeid="112" srcpinname="Input Value">
    <LINKPOINT x="2760" y="1028">
    </LINKPOINT>
    <LINKPOINT x="2760" y="1028">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="111" srcpinname="Input Value" dstnodeid="58" dstpinname="Projection" linkstyle="Bezier">
+   <LINK dstnodeid="58" dstpinname="Projection" linkstyle="Bezier" srcnodeid="111" srcpinname="Input Value">
    <LINKPOINT x="3120" y="1028">
    </LINKPOINT>
    <LINKPOINT x="3120" y="1028">
