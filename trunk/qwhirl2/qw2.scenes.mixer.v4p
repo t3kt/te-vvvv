@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" locked="0" systemname="qw2.scenes.mixer">
-   <BOUNDS height="3840" left="0" top="6210" type="Window" width="6150">
+   <BOUNDS height="4455" left="0" top="6210" type="Window" width="6600">
    </BOUNDS>
    <NODE componentmode="InABox" id="35" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
    <BOUNDS height="0" left="4905" top="255" type="Node" width="0">
@@ -269,9 +269,9 @@
    </PIN>
    <PIN pinname="Order" visible="1">
    </PIN>
-   <PIN pinname="Scene 2 Layer" visible="1">
+   <PIN pinname="Scene 2 Layer" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="Scene 1 Layer" visible="1">
+   <PIN pinname="Scene 1 Layer" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -441,5 +441,121 @@
    </LINKPOINT>
    <LINKPOINT x="3120" y="1028">
    </LINKPOINT>
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="121" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="3210" top="2940" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.on">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <BOUNDS left="3210" top="2940" type="Box">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="120" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="3705" top="2940" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.on">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <BOUNDS left="3705" top="2940" type="Box">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="119" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="4095" top="2940" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mix.on">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <BOUNDS left="4095" top="2940" type="Box">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="118" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2745" top="2250" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.macro.scenes.mode">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="117" nodename="EQ (Value)" systemname="EQ (Value)">
+   <BOUNDS height="100" left="4095" top="2505" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Epsilon" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Inverse Output" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="116" nodename="GT (Value)" systemname="GT (Value)">
+   <BOUNDS height="100" left="3705" top="2505" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="115" nodename="GE (Value)" systemname="GE (Value)">
+   <BOUNDS height="100" left="3570" top="2115" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" pintype="Input" slicecount="1" visible="1" values="3">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="114" nodename="OR (Boolean)" systemname="OR (Boolean)">
+   <BOUNDS height="100" left="3210" top="2505" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="113" nodename="EQ (Value)" systemname="EQ (Value)">
+   <BOUNDS height="100" left="3210" top="2115" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Epsilon" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Inverse Output" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="114" dstpinname="Input 1" srcnodeid="113" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="114" dstpinname="Input 2" srcnodeid="115" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="121" dstpinname="Input" srcnodeid="114" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="120" dstpinname="Input" srcnodeid="116" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="119" dstpinname="Input" srcnodeid="117" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="113" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="115" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="116" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="117" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
    </LINK>
    </PATCH>
