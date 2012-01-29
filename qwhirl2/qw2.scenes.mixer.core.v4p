@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.core.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.core.v4p" systemname="qw2.scenes.mixer.core">
    <BOUNDS height="4050" left="7290" top="4575" type="Window" width="7080">
    </BOUNDS>
@@ -77,9 +77,9 @@
    </PIN>
    <PIN pinname="Enabled" pintype="Input" visible="1">
    </PIN>
-   <PIN pinname="View" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="View" pintype="Input" slicecount="1" visible="0" values="||">
    </PIN>
-   <PIN pinname="Projection" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="Projection" pintype="Input" slicecount="1" visible="0" values="||">
    </PIN>
    <PIN pinname="Aspect Ratio" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
@@ -432,20 +432,20 @@
    <LINKPOINT x="2155" y="2175">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="22">
-   <BOUNDS type="Node" left="3780" top="135" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="22" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="3780" top="135" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.render.size" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.render.size">
    </PIN>
    <PIN pinname="Default" slicecount="2" values="10,10">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3780" top="135">
+   <BOUNDS left="3780" top="135" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="3780" top="525" width="100" height="100">
+   <NODE componentmode="Hidden" id="24" nodename="Vector (2d Split)" systemname="Vector (2d Split)">
+   <BOUNDS height="100" left="3780" top="525" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="XY" visible="1">
    </PIN>
@@ -454,14 +454,14 @@
    <PIN pinname="Y" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="24" dstpinname="XY">
+   <LINK dstnodeid="24" dstpinname="XY" srcnodeid="22" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="X" dstnodeid="11" dstpinname="Backbuffer Width">
+   <LINK dstnodeid="11" dstpinname="Backbuffer Width" srcnodeid="24" srcpinname="X">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="Y" dstnodeid="11" dstpinname="Backbuffer Height">
+   <LINK dstnodeid="11" dstpinname="Backbuffer Height" srcnodeid="24" srcpinname="Y">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="X" dstnodeid="10" dstpinname="Backbuffer Width">
+   <LINK dstnodeid="10" dstpinname="Backbuffer Width" srcnodeid="24" srcpinname="X">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="Y" dstnodeid="10" dstpinname="Backbuffer Height">
+   <LINK dstnodeid="10" dstpinname="Backbuffer Height" srcnodeid="24" srcpinname="Y">
    </LINK>
    </PATCH>

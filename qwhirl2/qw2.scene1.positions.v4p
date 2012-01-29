@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.positions.v4p" locked="0" systemname="qw2.scene1.positions">
-   <BOUNDS height="6660" left="6480" top="2460" type="Window" width="4170">
+   <BOUNDS height="6510" left="2880" top="4575" type="Window" width="3945">
    </BOUNDS>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="18" nodename="Random (Value)" systemname="Random (Value)">
    <BOUNDS height="100" left="1785" top="2460" type="Node" width="100">
@@ -58,32 +58,6 @@
    </NODE>
    <LINK dstnodeid="17" dstpinname="Input" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="16" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="15" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="750" top="75" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="945" left="750" top="75" type="Box" width="375">
-   </BOUNDS>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="3" values="0,0,0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="3" values="0,0,0">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Set">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="True">
-   </PIN>
-   </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="11" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
    <BOUNDS height="100" left="1230" top="2955" type="Node" width="100">
    </BOUNDS>
@@ -133,7 +107,7 @@
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="True">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Sel" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Sel">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="2" nodename="AND (Boolean)" systemname="AND (Boolean)">
@@ -248,20 +222,6 @@
    </LINK>
    <LINK dstnodeid="6" dstpinname="Y Input Value" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="29" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\VVVV.Nodes.AnimAdvanced.dll" hiddenwhenlocked="1" id="30" nodename="MultiFlipFlop (Animation Advanced)" systemname="MultiFlipFlop (Animation Advanced)">
-   <BOUNDS height="270" left="750" top="1395" type="Node" width="1035">
-   </BOUNDS>
-   <PIN pinname="Set Bin Size" pintype="Input" slicecount="1" visible="-1" values="-1">
-   </PIN>
-   <PIN pinname="Set" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="30" dstpinname="Set" hiddenwhenlocked="1" srcnodeid="15" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="11" dstpinname="Input 1" hiddenwhenlocked="1" srcnodeid="30" srcpinname="Output">
-   </LINK>
    <LINK dstnodeid="18" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="2" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="41" nodename="OR (Boolean)" systemname="OR (Boolean)">
@@ -344,34 +304,46 @@
    </LINK>
    <LINK dstnodeid="47" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="8" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InABox" id="48" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1680" top="75" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="960" left="1680" top="75" type="Box" width="570">
-   </BOUNDS>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="X Input Value" pintype="Input" slicecount="1" visible="-1" values="0">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Crazy">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="True">
-   </PIN>
-   <PIN pinname="X Output Value" pintype="Output" visible="0">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="11" dstpinname="Switch" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="48" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="2" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="48" srcpinname="Y Output Value">
-   </LINK>
    <LINK dstnodeid="41" dstpinname="Input 2" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="47" srcpinname="Output">
    </LINK>
    <LINK dstnodeid="41" dstpinname="Input 1" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="42" srcpinname="Output">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="49">
+   <BOUNDS type="Node" left="1395" top="195" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1395" top="195" width="780" height="375">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Mode" encoded="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="50">
+   <BOUNDS type="Node" left="975" top="1350" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Epsilon" visible="-1" pintype="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="50" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Output" dstnodeid="2" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Output" dstnodeid="11" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Input 1">
    </LINK>
    </PATCH>
