@@ -757,9 +757,9 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Invert">
    </PIN>
@@ -814,14 +814,14 @@
    </NODE>
    <LINK dstnodeid="160" dstpinname="Vertigo Mode" srcnodeid="217" srcpinname="Output">
    </LINK>
-   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="223">
-   <BOUNDS type="Node" left="5535" top="3825" width="100" height="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="223" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="5535" top="3825" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="qw2.sc1.pos.mode" encoded="0">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc1.pos.mode">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="223" srcpinname="Output" dstnodeid="129" dstpinname="Mode">
+   <LINK dstnodeid="129" dstpinname="Mode" srcnodeid="223" srcpinname="Output">
    </LINK>
    </PATCH>
