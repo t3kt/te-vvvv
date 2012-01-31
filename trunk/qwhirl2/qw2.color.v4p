@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.color.v4p" locked="0" systemname="qw2.color">
    <BOUNDS height="3690" left="1635" top="7455" type="Window" width="8760">
    </BOUNDS>
@@ -113,11 +113,11 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.0346875">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.0465625">
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.005">
+   <PIN pinname="X Input Value" slicecount="1" values="0.00816666666666667">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0.005">
    </PIN>

@@ -1,21 +1,7 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.v4p" locked="0" systemname="qw2.scenes.mixer">
-   <BOUNDS height="4455" left="0" top="6210" type="Window" width="6600">
+   <BOUNDS height="4455" left="0" top="6210" type="Window" width="7815">
    </BOUNDS>
-   <NODE componentmode="InABox" id="35" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
-   <BOUNDS height="0" left="4905" top="255" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="240" left="4905" top="255" type="Box" width="855">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="| Subtract|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Mode">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
-   </PIN>
-   </NODE>
    <NODE componentmode="InABox" id="36" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="4275" top="255" type="Node" width="0">
    </BOUNDS>
@@ -282,12 +268,6 @@
    <LINKPOINT x="4275" y="1170">
    </LINKPOINT>
    <LINKPOINT x="3900" y="1170">
-   </LINKPOINT>
-   </LINK>
-   <LINK dstnodeid="101" dstpinname="Mode" linkstyle="Bezier" srcnodeid="35" srcpinname="Output Enum">
-   <LINKPOINT x="4905" y="1028">
-   </LINKPOINT>
-   <LINKPOINT x="4275" y="1028">
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="101" dstpinname="Order" linkstyle="Bezier" srcnodeid="42" srcpinname="Y Output Value">
@@ -557,5 +537,91 @@
    <LINK dstnodeid="116" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
    </LINK>
    <LINK dstnodeid="117" dstpinname="Input 1" srcnodeid="118" srcpinname="Output">
+   </LINK>
+   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="6270" top="1170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw2.mix.mode" encoded="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="126" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="0" left="6270" top="345" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="6270" top="345" type="Box" width="855">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="Subtract">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Blend Mode|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="131">
+   <BOUNDS type="Node" left="6675" top="1140" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive" visible="1">
+   </PIN>
+   <PIN pinname="Enum" slicecount="1" values="qw2blendmode">
+   </PIN>
+   </NODE>
+   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="132">
+   <BOUNDS type="Node" left="6300" top="2070" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Strings" visible="1">
+   </PIN>
+   <PIN pinname="Enum Name" slicecount="1" values="qw2blendmode" encoded="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Separate (String)" nodename="Separate (String)" componentmode="Hidden" id="133">
+   <BOUNDS type="Node" left="6285" top="1665" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Intersperse" slicecount="1" values="Space">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" values="|Normal Screen Multiply Add Subtract Darken Lighten Difference Exclusion Overlay Hardlight Softlight Dodge Burn Reflect Glow Freeze Heat|" encoded="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="133" srcpinname="Output" dstnodeid="132" dstpinname="Strings">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Output Enum" dstnodeid="131" dstpinname="Receive">
+   </LINK>
+   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="134">
+   <BOUNDS type="Node" left="6270" top="810" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="Ord Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="126" srcpinname="Output Enum" dstnodeid="134" dstpinname="Enum">
+   </LINK>
+   <NODE systemname="Ord2Enum (Enumerations)" nodename="Ord2Enum (Enumerations)" componentmode="Hidden" id="135">
+   <BOUNDS type="Node" left="4770" top="585" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Ord Value" visible="1">
+   </PIN>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="134" srcpinname="Ord Value" dstnodeid="123" dstpinname="Input">
+   </LINK>
+   <NODE systemname="R (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" componentmode="Hidden" id="137">
+   <BOUNDS type="Node" left="4755" top="210" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="qw2.mix.mode" encoded="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="137" srcpinname="Output" dstnodeid="135" dstpinname="Ord Value">
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Enum" dstnodeid="101" dstpinname="Mode">
    </LINK>
    </PATCH>
