@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.util.stuttergate.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.util.stuttergate.v4p" systemname="qw2.util.stuttergate">
    <BOUNDS height="5310" left="13950" top="4290" type="Window" width="4680">
    </BOUNDS>
@@ -239,11 +239,15 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
    </NODE>
    <LINK dstnodeid="22" dstpinname="Input 1" srcnodeid="10" srcpinname="Output">
    </LINK>
    <LINK dstnodeid="0" dstpinname="Pause" srcnodeid="22" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="22" dstpinname="Input 2" srcnodeid="20" srcpinname="Y Output Value">
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Input 2">
    </LINK>
    </PATCH>

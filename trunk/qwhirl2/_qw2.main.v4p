@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
-   <BOUNDS height="5880" left="0" top="0" type="Window" width="6285">
+   <BOUNDS height="5490" left="0" top="0" type="Window" width="4215">
    </BOUNDS>
-   <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="RENDERER (EX9)">
-   <BOUNDS height="270" left="240" top="3900" type="Node" width="1650">
+   <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
+   <BOUNDS height="270" left="150" top="3780" type="Node" width="1650">
    </BOUNDS>
-   <BOUNDS height="1800" left="240" top="3900" type="Box" width="2400">
+   <BOUNDS height="1800" left="150" top="3780" type="Box" width="2400">
    </BOUNDS>
    <BOUNDS height="6165" left="9765" top="0" type="Window" width="10305">
    </BOUNDS>
@@ -47,7 +47,7 @@
    </PIN>
    <PIN pinname="Actual Backbuffer Height" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="EX9 Out" pintype="Output" visible="-1">
+   <PIN pinname="EX9 Out" pintype="Output" visible="1">
    </PIN>
    <PIN pinname="Aspect Ratio" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
@@ -86,10 +86,10 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
-   <BOUNDS height="270" left="2760" top="1590" type="Node" width="1140">
+   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
+   <BOUNDS height="270" left="555" top="1770" type="Node" width="1140">
    </BOUNDS>
-   <BOUNDS height="7050" left="555" top="6750" type="Window" width="8235">
+   <BOUNDS height="7275" left="150" top="5835" type="Window" width="5430">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -125,11 +125,11 @@
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
-   <BOUNDS left="2760" top="1590" type="Box">
+   <BOUNDS left="555" top="1770" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="5" nodename="Vector (2d Join)" systemname="Vector (2d Join)">
-   <BOUNDS height="270" left="240" top="4350" type="Node" width="630">
+   <BOUNDS height="270" left="150" top="4230" type="Node" width="630">
    </BOUNDS>
    <PIN pinname="X" slicecount="1" visible="1" values="0">
    </PIN>
@@ -142,52 +142,8 @@
    </LINK>
    <LINK dstnodeid="5" dstpinname="Y" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="0" srcpinname="Y">
    </LINK>
-   <NODE componentmode="InABox" id="12" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="180" top="1275" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="180" top="1275" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scn 1|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="675" top="1275" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="675" top="1275" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Scn 2|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE border="1" componentmode="Hidden" filename="qw2.camera.v4p" id="15" nodename="qw2.camera.v4p" systemname="qw2.camera">
-   <BOUNDS height="270" left="2760" top="4845" type="Node" width="1155">
+   <BOUNDS height="270" left="1890" top="4590" type="Node" width="1155">
    </BOUNDS>
    <PIN pinname="Inital Distance" visible="1">
    </PIN>
@@ -209,11 +165,11 @@
    </PIN>
    <PIN pinname="FOV" slicecount="1" visible="1" values="0.13">
    </PIN>
-   <BOUNDS height="1620" left="2760" top="4845" type="Box" width="2055">
+   <BOUNDS height="1620" left="1890" top="4590" type="Box" width="2055">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="19" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="150" top="870" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="19" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="165" top="870" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.on">
    </PIN>
@@ -222,30 +178,10 @@
    </NODE>
    <LINK dstnodeid="19" dstpinname="Input" hiddenwhenlocked="1" linkstyle="PolyLine" srcnodeid="2" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="32" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="180" top="2010" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.on">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="180" top="2010" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="34" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="675" top="2010" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.on">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="675" top="2010" type="Box">
-   </BOUNDS>
-   </NODE>
    <NODE componentmode="InABox" id="42" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="2760" top="45" type="Node" width="555">
+   <BOUNDS height="270" left="2355" top="45" type="Node" width="555">
    </BOUNDS>
-   <BOUNDS height="855" left="2760" top="45" type="Box" width="1440">
+   <BOUNDS height="720" left="2355" top="45" type="Box" width="1380">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="QW2">
    </PIN>
@@ -255,7 +191,7 @@
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="String">
    </PIN>
-   <PIN pinname="Size" slicecount="1" values="30">
+   <PIN pinname="Size" slicecount="1" values="28">
    </PIN>
    <PIN pinname="Show Characters [#0..#32,#127]" slicecount="1" values="0">
    </PIN>
@@ -263,9 +199,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="70" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="1320" top="150" type="Node" width="100">
+   <BOUNDS height="100" left="1260" top="75" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="255" left="1320" top="150" type="Box" width="975">
+   <BOUNDS height="255" left="1260" top="75" type="Box" width="975">
    </BOUNDS>
    <PIN pinname="Rows" slicecount="1" values="1">
    </PIN>
@@ -288,26 +224,8 @@
    <PIN pinname="Columns" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="77" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="2430" top="1590" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.out.layer">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="77" dstpinname="Input Value" hiddenwhenlocked="1" srcnodeid="3" srcpinname="Layer">
-   </LINK>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="80" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="2430" top="2115" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.out.layer">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="87" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="2430" top="4845" type="Node" width="100">
+   <BOUNDS height="100" left="3435" top="4575" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.cam.view">
    </PIN>
@@ -317,7 +235,7 @@
    <LINK dstnodeid="87" dstpinname="Input Value" hiddenwhenlocked="1" srcnodeid="15" srcpinname="View">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="89" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="3930" top="4845" type="Node" width="100">
+   <BOUNDS height="100" left="3060" top="4590" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.cam.proj">
    </PIN>
@@ -327,7 +245,7 @@
    <LINK dstnodeid="89" dstpinname="Input Value" hiddenwhenlocked="1" srcnodeid="15" srcpinname="Projection">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="94" nodename="Quad (DX9)" systemname="Quad (DX9)">
-   <BOUNDS height="100" left="240" top="3465" type="Node" width="100">
+   <BOUNDS height="100" left="150" top="3345" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Color" pintype="Input" slicecount="1" visible="-1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
@@ -351,7 +269,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="93" nodename="Scale (Transform)" systemname="Scale (Transform)">
-   <BOUNDS height="270" left="240" top="3030" type="Node" width="555">
+   <BOUNDS height="270" left="150" top="2910" type="Node" width="555">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -368,150 +286,66 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Layers" hiddenwhenlocked="1" srcnodeid="94" srcpinname="Layer">
    </LINK>
-   <NODE componentmode="InABox" hiddenwhenlocked="0" id="101" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="1170" top="1275" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="1170" top="1275" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="MIx">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="100" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="1170" top="2010" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mix.on">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="1170" top="2010" type="Box">
-   </BOUNDS>
-   </NODE>
    <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
-   <BOUNDS height="270" left="2760" top="4020" type="Node" width="1020">
+   <BOUNDS height="270" left="2670" top="1950" type="Node" width="1020">
    </BOUNDS>
-   <BOUNDS height="3690" left="1635" top="7455" type="Window" width="8760">
+   <BOUNDS height="4065" left="1065" top="5850" type="Window" width="8460">
    </BOUNDS>
-   <BOUNDS left="2760" top="4020" type="Box">
+   <BOUNDS left="2670" top="1950" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="103" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="3930" top="1590" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="103" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1800" top="1320" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="3930" top="1590" type="Box">
+   <BOUNDS left="1800" top="1320" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="3" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="103" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="104" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="4350" top="2910" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="qw2.notes.v4p" hiddenwhenlocked="0" id="116" nodename="qw2.notes.v4p" systemname="qw2.notes">
+   <BOUNDS height="100" left="2310" top="4095" type="Node" width="100">
    </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <BOUNDS left="4350" top="2910" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="115" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="3930" top="2115" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <BOUNDS left="3930" top="2115" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" filename="qw2.notes.v4p" hiddenwhenlocked="1" id="116" nodename="qw2.notes.v4p" systemname="qw2.notes">
-   <BOUNDS height="100" left="2760" top="915" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="3600" left="2760" top="915" type="Box" width="4800">
+   <BOUNDS height="3600" left="2310" top="4095" type="Box" width="4800">
    </BOUNDS>
    <BOUNDS height="6000" left="7350" top="5655" type="Window" width="4995">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="117" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="1680" top="2010" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.post.on">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="1680" top="2010" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="InABox" hiddenwhenlocked="0" id="119" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="1680" top="1275" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="1680" top="1275" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Post">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="123" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="2430" top="2625" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="123" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1275" top="2565" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="2430" top="2625" type="Box">
+   <BOUNDS left="1275" top="2565" type="Box">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="qw2.control.v4p" id="124" nodename="qw2.control.v4p" systemname="qw2.control">
-   <BOUNDS height="100" left="2760" top="4350" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="qw2.control.v4p" id="124" nodename="qw2.control.v4p" systemname="qw2.control" debug="0">
+   <BOUNDS height="100" left="540" top="1260" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="3600" left="2760" top="4350" type="Box" width="4800">
+   <BOUNDS height="3600" left="540" top="1260" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="7635" left="2220" top="4005" type="Window" width="5475">
+   <BOUNDS height="6840" left="4095" top="540" type="Window" width="4560">
    </BOUNDS>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="126" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="240" top="4740" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="126" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="150" top="4620" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.point">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="240" top="4740" type="Box">
+   <BOUNDS left="150" top="4620" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="126" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="5" srcpinname="XY">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="127" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
-   <BOUNDS height="100" left="1185" top="4350" type="Node" width="100">
+   <BOUNDS height="100" left="825" top="4230" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="X" slicecount="1" visible="1" values="0">
    </PIN>
@@ -528,40 +362,32 @@
    </LINK>
    <LINK dstnodeid="127" dstpinname="Z" hiddenwhenlocked="1" srcnodeid="0" srcpinname="Right Button">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="128" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="1185" top="4740" type="Node" width="100">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="128" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
+   <BOUNDS height="100" left="825" top="4620" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.buttons">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="1185" top="4740" type="Box">
+   <BOUNDS left="825" top="4620" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="128" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="127" srcpinname="XYZ">
    </LINK>
-   <LINK dstnodeid="117" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="119" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="100" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="101" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="34" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="14" srcpinname="Y Output Value">
-   </LINK>
-   <LINK dstnodeid="32" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="12" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="129" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="1320" top="480" type="Node" width="100">
+   <BOUNDS height="100" left="1260" top="390" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.render.size">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="1320" top="480" type="Box">
+   <BOUNDS left="1260" top="390" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="129" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="70" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="132" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="2460" top="3630" type="Node" width="100">
+   <BOUNDS height="100" left="1260" top="2940" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.post.out.tex">
    </PIN>
@@ -569,7 +395,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="133" nodename="R (Node)" systemname="R (Node)">
-   <BOUNDS height="100" left="840" top="3030" type="Node" width="100">
+   <BOUNDS height="100" left="750" top="2910" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="qw2.post.out.tex">
    </PIN>
@@ -581,7 +407,7 @@
    <NODE componentmode="Hidden" filename="qw2.scenes.mixer.v4p" hiddenwhenlocked="0" id="29" nodename="qw2.scenes.mixer.v4p" stayontop="0" systemname="qw2.scenes.mixer">
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
-   <BOUNDS height="270" left="2760" top="2625" type="Node" width="1500">
+   <BOUNDS height="270" left="1605" top="2565" type="Node" width="1500">
    </BOUNDS>
    <PIN pinname="Scene 1 Layer" visible="1">
    </PIN>
@@ -591,7 +417,7 @@
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
-   <BOUNDS height="4455" left="0" top="6210" type="Window" width="7815">
+   <BOUNDS height="6300" left="0" top="6210" type="Window" width="7815">
    </BOUNDS>
    <PIN pinname="Background Color" visible="1">
    </PIN>
@@ -607,19 +433,23 @@
    </PIN>
    <PIN pinname="Mode" pintype="Input" slicecount="1" visible="-1" values="Subtract">
    </PIN>
-   <BOUNDS left="2760" top="2625" type="Box">
+   <BOUNDS left="1605" top="2565" type="Box">
    </BOUNDS>
+   <PIN pinname="sc1 layer" visible="1">
+   </PIN>
+   <PIN pinname="sc2 layer" visible="1">
+   </PIN>
    </NODE>
    <LINK dstnodeid="29" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="123" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
-   <BOUNDS height="270" left="2760" top="2115" type="Node" width="1140">
+   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
+   <BOUNDS height="270" left="555" top="2160" type="Node" width="1140">
    </BOUNDS>
    <PIN pinname="Enabled" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS height="10890" left="150" top="240" type="Window" width="9795">
+   <BOUNDS height="7860" left="5670" top="5880" type="Window" width="6270">
    </BOUNDS>
    <PIN pinname="Alpha" pintype="Input" visible="-1">
    </PIN>
@@ -651,19 +481,69 @@
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
-   <BOUNDS left="2760" top="2115" type="Box">
+   <BOUNDS left="555" top="2160" type="Box">
+   </BOUNDS>
+   <PIN pinname="Neg" visible="1" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="qw2.midi.seq.v4p" id="134" nodename="qw2.midi.seq.v4p" systemname="qw2.midi.seq">
+   <BOUNDS height="100" left="2505" top="3630" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="3600" left="2505" top="3630" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="7860" left="1125" top="3150" type="Window" width="5655">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="80" dstpinname="Input Value" hiddenwhenlocked="1" srcnodeid="13" srcpinname="Layer">
+   <NODE componentmode="InAWindow" filename="qw2.macros.v4p" id="135" nodename="qw2.macros.v4p" systemname="qw2.macros">
+   <BOUNDS height="270" left="1860" top="870" type="Node" width="1170">
+   </BOUNDS>
+   <BOUNDS height="3600" left="1860" top="870" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="4440" left="4200" top="0" type="Window" width="4035">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
+   <BOUNDS height="270" left="2520" top="3315" type="Node" width="1350">
+   </BOUNDS>
+   <BOUNDS height="3600" left="2520" top="3315" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="6000" left="840" top="7035" type="Window" width="9000">
+   </BOUNDS>
+   </NODE>
+   <LINK dstnodeid="132" dstpinname="Input Value" srcnodeid="29" srcpinname="Texture Out">
    </LINK>
-   <LINK dstnodeid="13" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="115" srcpinname="Output">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="138" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
+   <BOUNDS height="100" left="945" top="3405" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.bg.color">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" visible="1" values="|0.20331,0.25767,0.35172,1.00000|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS left="945" top="3405" type="Box">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="137" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="1560" top="3390" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS left="1560" top="3390" type="Box">
+   </BOUNDS>
+   </NODE>
+   <LINK dstnodeid="0" dstpinname="Background Color" hiddenwhenlocked="1" srcnodeid="138" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.postproc.v4p" hiddenwhenlocked="0" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
+   <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="137" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" filename="qw2.postproc.v4p" hiddenwhenlocked="1" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
-   <BOUNDS height="100" left="3150" top="3330" type="Node" width="100">
+   <BOUNDS height="100" left="1635" top="2955" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="9990" left="5325" top="4305" type="Window" width="8460">
    </BOUNDS>
@@ -697,61 +577,177 @@
    </PIN>
    <PIN pinname="HSCB" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <BOUNDS left="3150" top="3330" type="Box">
+   <BOUNDS left="1635" top="2955" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="97" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="29" srcpinname="Texture Out">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.midi.seq.v4p" id="134" nodename="qw2.midi.seq.v4p" systemname="qw2.midi.seq">
-   <BOUNDS height="100" left="4440" top="675" type="Node" width="100">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="143" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="1245" top="645" width="240" height="270">
    </BOUNDS>
-   <BOUNDS height="3600" left="4440" top="675" type="Box" width="4800">
+   <BOUNDS type="Box" left="1245" top="645" width="585" height="555">
    </BOUNDS>
-   <BOUNDS height="7860" left="1125" top="3150" type="Window" width="5655">
-   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" encoded="0" values="a">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="|Wingdings 3|">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="30">
+   </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" filename="qw2.macros.v4p" id="135" nodename="qw2.macros.v4p" systemname="qw2.macros">
-   <BOUNDS height="100" left="4215" top="1095" type="Node" width="100">
+   <NODE componentmode="InABox" id="145" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="165" top="2100" type="Node" width="285">
    </BOUNDS>
-   <BOUNDS height="3600" left="4215" top="1095" type="Box" width="4800">
+   <BOUNDS height="420" left="165" top="2100" type="Box" width="375">
    </BOUNDS>
-   <BOUNDS height="7140" left="690" top="4335" type="Window" width="9270">
-   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="v">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="|Wingdings 2|">
+   </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
-   <BOUNDS height="100" left="4440" top="1395" type="Node" width="100">
+   <NODE componentmode="InABox" id="146" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="165" top="1710" type="Node" width="285">
    </BOUNDS>
-   <BOUNDS height="3600" left="4440" top="1395" type="Box" width="4800">
+   <BOUNDS height="420" left="165" top="1710" type="Box" width="375">
    </BOUNDS>
-   <BOUNDS height="6000" left="840" top="7035" type="Window" width="9000">
-   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="u">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="|Wingdings 2|">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="132" dstpinname="Input Value" srcnodeid="29" srcpinname="Texture Out">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="147" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="2010" top="3330" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2010" top="3330" width="480" height="480">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="°" encoded="0">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Webdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="150" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="2310" top="1905" type="Node" width="285">
+   </BOUNDS>
+   <BOUNDS height="420" left="2310" top="1905" type="Box" width="375">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="#">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="|Wingdings 2|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="152" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="150" top="1260" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="150" top="1260" width="375" height="390">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="8" encoded="0">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Wingdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="16">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="153" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3120" top="765" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3120" top="765" width="615" height="630">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="R" encoded="0">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Wingdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="30">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="155" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="1935" top="4035" type="Node" width="240">
+   </BOUNDS>
+   <BOUNDS height="390" left="1935" top="4035" type="Box" width="345">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="2">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Wingdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="16">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Layer" dstnodeid="29" dstpinname="sc1 layer" hiddenwhenlocked="1">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="138" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
-   <BOUNDS height="100" left="1140" top="3315" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.bg.color">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" visible="1" values="|0.20331,0.25767,0.35172,1.00000|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <BOUNDS left="1140" top="3315" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="1" id="137" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1935" top="3315" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <BOUNDS left="1935" top="3315" type="Box">
-   </BOUNDS>
-   </NODE>
-   <LINK dstnodeid="0" dstpinname="Background Color" hiddenwhenlocked="1" srcnodeid="138" srcpinname="Output">
+   <LINK srcnodeid="13" srcpinname="Layer" dstnodeid="29" dstpinname="sc2 layer" hiddenwhenlocked="1">
    </LINK>
-   <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="137" srcpinname="Output">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="156" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="1440" top="4410" width="240" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1440" top="4410" width="420" height="465">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="¹" encoded="0">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Webdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="18">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="103" srcpinname="Output" dstnodeid="13" dstpinname="Evaluate" hiddenwhenlocked="1">
    </LINK>
    </PATCH>
