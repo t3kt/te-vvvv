@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.macros.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.macros.v4p" locked="0" systemname="qw2.macros">
-   <BOUNDS height="7140" left="690" top="4335" type="Window" width="9270">
+   <BOUNDS height="4440" left="4890" top="0" type="Window" width="4035">
    </BOUNDS>
    <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="1545" top="3465" type="Node" width="0">
+   <BOUNDS height="0" left="930" top="2745" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="735" left="1545" top="3465" type="Box" width="375">
+   <BOUNDS height="525" left="930" top="2745" type="Box" width="375">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0.455567344532863">
    </PIN>
@@ -31,53 +31,29 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="8" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="1605" top="4440" type="Node" width="100">
+   <BOUNDS height="100" left="930" top="3540" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.vertigo.fov">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="1605" top="4440" type="Box">
+   <BOUNDS left="930" top="3540" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="29" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="615" top="870" type="Node" width="100">
+   <BOUNDS height="100" left="150" top="915" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.macro.scenes.mode">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="615" top="870" type="Box">
+   <BOUNDS left="150" top="915" type="Box">
    </BOUNDS>
-   </NODE>
-   <NODE componentmode="InABox" id="52" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="6075" top="3390" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="480" left="6075" top="3390" type="Box" width="480">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Vertigo">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="50" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="4725" top="2325" type="Node" width="0">
+   <BOUNDS height="0" left="2130" top="2790" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="270" left="4725" top="2325" type="Box" width="555">
+   <BOUNDS height="270" left="2130" top="2790" type="Box" width="555">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="2">
    </PIN>
@@ -92,52 +68,8 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="49" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="6690" top="3315" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="465" left="6690" top="3315" type="Box" width="345">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Neg">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="48" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="6075" top="4140" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.on">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="6075" top="4140" type="Box">
-   </BOUNDS>
-   </NODE>
-   <LINK dstnodeid="48" dstpinname="Input" srcnodeid="52" srcpinname="Y Output Value">
-   </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="47" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="6705" top="4080" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.neg">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="47" dstpinname="Input" srcnodeid="49" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="45" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="4725" top="2895" type="Node" width="100">
+   <BOUNDS height="100" left="2130" top="3360" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.per">
    </PIN>
@@ -146,42 +78,10 @@
    </NODE>
    <LINK dstnodeid="45" dstpinname="Input" srcnodeid="50" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InABox" id="44" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
-   <BOUNDS height="100" left="7515" top="3075" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="240" left="7515" top="3075" type="Box" width="1140">
-   </BOUNDS>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Shape">
-   </PIN>
-   <PIN pinname="Input Enum" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="43" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="7245" top="4140" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.vertigo.lfo.shape">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="7245" top="4140" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" id="41" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)">
-   <BOUNDS height="100" left="7635" top="3495" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Enum" pintype="Input" slicecount="1" visible="-1" values="WaveShape">
-   </PIN>
-   <PIN pinname="Receive" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="41" dstpinname="Receive" srcnodeid="44" srcpinname="Output Enum">
-   </LINK>
    <NODE componentmode="InABox" id="53" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="5295" top="1200" type="Node" width="100">
+   <BOUNDS height="100" left="2805" top="2775" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="420" left="5295" top="1200" type="Box" width="735">
+   <BOUNDS height="300" left="2805" top="2775" type="Box" width="510">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -195,85 +95,15 @@
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="5">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|vertigo mode|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="vertigo">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="55" nodename="Ord2Enum (Enumerations)" systemname="Ord2Enum (Enumerations)">
-   <BOUNDS height="100" left="7515" top="2685" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Enum" visible="1">
-   </PIN>
-   <PIN pinname="Ord Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" id="56" nodename="Subtract (Value)" systemname="Subtract (Value)">
-   <BOUNDS height="100" left="7200" top="1875" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="44" dstpinname="Input Enum" srcnodeid="55" srcpinname="Enum">
-   </LINK>
-   <NODE componentmode="Hidden" id="60" nodename="Abs (Complex)" systemname="Abs (Complex)">
-   <BOUNDS height="100" left="7200" top="1500" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input Real" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" id="61" nodename="EQ (Value)" systemname="EQ (Value)">
-   <BOUNDS height="100" left="6180" top="2370" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" pintype="Input" slicecount="1" visible="-1" values="0">
-   </PIN>
-   <PIN pinname="Epsilon" pintype="Input" slicecount="1" visible="-1" values="0">
-   </PIN>
-   <PIN pinname="Output" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Inverse Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="52" dstpinname="Y Input Value" srcnodeid="61" srcpinname="Inverse Output">
-   </LINK>
-   <LINK dstnodeid="56" dstpinname="Input 1" srcnodeid="60" srcpinname="Output">
-   </LINK>
-   <NODE componentmode="Hidden" id="62" nodename="LT (Value)" systemname="LT (Value)">
-   <BOUNDS height="100" left="6750" top="2505" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="49" dstpinname="Y Input Value" srcnodeid="62" srcpinname="Output">
-   </LINK>
-   <NODE componentmode="Hidden" id="63" nodename="Mod (Value)" systemname="Mod (Value)">
-   <BOUNDS height="100" left="7200" top="2265" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" slicecount="1" values="5">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="63" dstpinname="Input 1" srcnodeid="56" srcpinname="Output">
-   </LINK>
-   <LINK dstnodeid="55" dstpinname="Ord Value" srcnodeid="63" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="66" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="720" top="2940" type="Node" width="810">
+   <BOUNDS height="270" left="360" top="2265" type="Node" width="810">
    </BOUNDS>
-   <BOUNDS height="405" left="720" top="2940" type="Box" width="1395">
+   <BOUNDS height="405" left="360" top="2265" type="Box" width="1185">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|scene 1|">
    </PIN>
@@ -287,9 +117,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="67" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="5805" top="540" type="Node" width="810">
+   <BOUNDS height="270" left="2175" top="2235" type="Node" width="810">
    </BOUNDS>
-   <BOUNDS height="405" left="5805" top="540" type="Box" width="1395">
+   <BOUNDS height="405" left="2175" top="2235" type="Box" width="1230">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|scene 2|">
    </PIN>
@@ -305,7 +135,7 @@
    <NODE componentmode="InABox" id="83" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="135" top="270" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="375" left="135" top="270" type="Box" width="900">
+   <BOUNDS height="390" left="135" top="270" type="Box" width="555">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -317,35 +147,17 @@
    </PIN>
    <PIN pinname="Y Input Value" slicecount="1" values="4">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|scene mode|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="scenes">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="12">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="90" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="1080" top="360" type="Node" width="240">
-   </BOUNDS>
-   <BOUNDS height="765" left="1080" top="360" type="Box" width="1485">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|    0 1 2 3 4&cr;&lf;sc1 - + - + +&cr;&lf;sc2 - - + + +&cr;&lf;mix - - - - +|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Font" slicecount="1" values="|Lucida Console|">
-   </PIN>
-   <PIN pinname="Size" slicecount="1" values="9">
-   </PIN>
-   </NODE>
    <LINK dstnodeid="29" dstpinname="Input" srcnodeid="83" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="94" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="5535" top="2010" type="Node" width="100">
+   <BOUNDS height="100" left="2790" top="3345" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.macro.sc2.vertmode">
    </PIN>
@@ -354,36 +166,22 @@
    </NODE>
    <LINK dstnodeid="94" dstpinname="Input" srcnodeid="53" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="95" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="6810" top="1005" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.macro.sc2.vertmode">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="61" dstpinname="Input 1" srcnodeid="95" srcpinname="Output">
-   </LINK>
-   <LINK dstnodeid="62" dstpinname="Input 1" srcnodeid="95" srcpinname="Output">
-   </LINK>
-   <LINK dstnodeid="60" dstpinname="Input Real" srcnodeid="95" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="97" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="840" top="4440" type="Node" width="100">
+   <BOUNDS height="100" left="165" top="3540" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.vertigo.mode">
    </PIN>
    <PIN pinname="Input">
    </PIN>
-   <BOUNDS type="Box" left="840" top="4440">
+   <BOUNDS left="165" top="3540" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" id="96" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="840" top="3765" type="Node" width="0">
+   <BOUNDS height="0" left="165" top="2775" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="390" left="840" top="3765" type="Box" width="585">
+   <BOUNDS height="390" left="165" top="2775" type="Box" width="585">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -397,7 +195,7 @@
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Vertigo Mode|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Vertigo">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="12">
    </PIN>
@@ -407,9 +205,9 @@
    <LINK dstnodeid="8" dstpinname="Input" srcnodeid="11" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="99" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="100" left="2265" top="3765" type="Node" width="100">
+   <BOUNDS height="100" left="1425" top="2775" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="345" left="2265" top="3765" type="Box" width="630">
+   <BOUNDS height="330" left="1425" top="2775" type="Box" width="465">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -421,7 +219,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Pos Mode|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pos">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
@@ -429,27 +227,25 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="98" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="2265" top="4440" type="Node" width="100">
+   <BOUNDS height="100" left="1425" top="3540" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc1.pos.mode">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2265" top="4440">
+   <BOUNDS left="1425" top="3540" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="98" dstpinname="Input" srcnodeid="99" srcpinname="Y Output Value">
    </LINK>
-   <LINK dstnodeid="43" dstpinname="Input" srcnodeid="63" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="102" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="100" left="360" top="1260" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="300" left="360" top="1260" type="Box" width="450">
+   <BOUNDS height="300" left="360" top="1260" type="Box" width="360">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Ctl Mode|">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Ctrl">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0">
    </PIN>
@@ -461,11 +257,13 @@
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE componentmode="InABox" id="101" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="870" top="1275" type="Node" width="240">
+   <BOUNDS height="270" left="795" top="1260" type="Node" width="240">
    </BOUNDS>
-   <BOUNDS height="750" left="870" top="1275" type="Box" width="1530">
+   <BOUNDS height="750" left="795" top="1260" type="Box" width="1530">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|mode 0: fixed&cr;&lf;mode 1: waves&cr;&lf;mode 2: rand&cr;&lf;mode 3: mouse|">
    </PIN>
@@ -481,7 +279,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="100" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="465" top="1770" type="Node" width="100">
+   <BOUNDS height="100" left="375" top="1860" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.ctl.mode">
    </PIN>
@@ -491,47 +289,91 @@
    <LINK dstnodeid="100" dstpinname="Input" srcnodeid="102" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="106" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="2760" top="990" type="Node" width="100">
+   <BOUNDS height="100" left="2310" top="735" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mix.mode">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InABox" id="105" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
-   <BOUNDS height="0" left="2760" top="165" type="Node" width="0">
+   <NODE componentmode="InABox" id="109" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="2295" top="150" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="240" left="2760" top="165" type="Box" width="1200">
+   <BOUNDS height="315" left="2295" top="150" type="Box" width="555">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="Subtract">
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Output Enum" visible="1">
+   <PIN pinname="Minimum" slicecount="1" values="0">
    </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Blend Mode|">
+   <PIN pinname="Maximum" slicecount="1" values="18">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="4">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="blend">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="104" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)">
-   <BOUNDS height="100" left="3165" top="960" type="Node" width="100">
+   <LINK dstnodeid="106" dstpinname="Input" srcnodeid="109" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="120" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="765" top="270" type="Node" width="240">
    </BOUNDS>
-   <PIN pinname="Receive" visible="1">
+   <BOUNDS height="885" left="765" top="270" type="Box" width="1455">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="|mode 0: off&cr;&lf;mode 1: sc1&cr;&lf;mode 2: sc2&cr;&lf;mode 3: sc1+2&cr;&lf;mode 4: mix|">
    </PIN>
-   <PIN pinname="Enum" slicecount="1" values="qw2blendmode">
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="|Lucida Console|">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="8">
    </PIN>
    </NODE>
-   <LINK dstnodeid="104" dstpinname="Receive" srcnodeid="105" srcpinname="Output Enum">
-   </LINK>
-   <NODE componentmode="Hidden" id="103" nodename="Enum2Ord (Enumerations)" systemname="Enum2Ord (Enumerations)">
-   <BOUNDS height="100" left="2760" top="630" type="Node" width="100">
+   <NODE componentmode="InABox" id="122" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="2685" top="975" type="Node" width="0">
    </BOUNDS>
-   <PIN pinname="Enum" visible="1">
+   <BOUNDS height="690" left="2685" top="975" type="Box" width="870">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Ord Value" visible="1">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="103" dstpinname="Enum" srcnodeid="105" srcpinname="Output Enum">
-   </LINK>
-   <LINK dstnodeid="106" dstpinname="Input" srcnodeid="103" srcpinname="Ord Value">
+   <NODE componentmode="Hidden" filename="" hiddenwhenlocked="0" id="121" nodename="S (Value)" systemname="S (Value)">
+   <BOUNDS height="100" left="2685" top="1785" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.pause">
+   </PIN>
+   <PIN pinname="Input">
+   </PIN>
+   <BOUNDS left="2670" top="1785" type="Box">
+   </BOUNDS>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="121" dstpinname="Input Value" hiddenwhenlocked="0" srcnodeid="122" srcpinname="Y Output Value">
    </LINK>
    </PATCH>
