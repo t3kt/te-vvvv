@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.notes.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.notes.v4p" systemname="qw2.notes">
    <BOUNDS height="6000" left="7350" top="5655" type="Window" width="4995">
    </BOUNDS>
@@ -9,7 +9,7 @@
    </BOUNDS>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
-   <PIN encoded="0" pinname="Input String" slicecount="1" values="|- make transport/lfo/stutter global&cr;&lf;- add better mouse control to scene 2&cr;&lf;- video processing&cr;&lf;- textures?|">
+   <PIN encoded="0" pinname="Input String" slicecount="1" values="|- make transport/lfo/stutter global|">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="0" nodename="IOBox (String)" systemname="IOBox (String)">

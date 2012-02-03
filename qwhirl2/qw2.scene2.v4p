@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene2.v4p" locked="0" systemname="qw2.scene2">
-   <BOUNDS height="7860" left="0" top="5460" type="Window" width="7890">
+   <BOUNDS height="7860" left="5610" top="5865" type="Window" width="7890">
    </BOUNDS>
    <NODE componentmode="Hidden" id="0" nodename="Line (EX9.Geometry)" systemname="Line (EX9.Geometry)">
    <BOUNDS height="100" left="930" top="6390" type="Node" width="100">
@@ -332,30 +332,6 @@
    </LINK>
    <LINK dstnodeid="44" dstpinname="Input 1" hiddenwhenlocked="0" srcnodeid="70" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="85" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="2115" top="1785" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.sc2.seed.pause">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|seed pause|">
-   </PIN>
-   <BOUNDS left="2115" top="1785" type="Box">
-   </BOUNDS>
-   </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" id="87" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="5700" top="660" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc2.seed.pause">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="14" dstpinname="Pause" linkstyle="PolyLine" srcnodeid="87" srcpinname="Output">
-   </LINK>
    <NODE componentmode="InABox" id="119" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="4080" top="3090" type="Node" width="0">
    </BOUNDS>
@@ -685,31 +661,9 @@
    </PIN>
    <PIN pinname="Vert Range" visible="1">
    </PIN>
-   <PIN pinname="Vertigo Mode" visible="1" pintype="Input">
+   <PIN pinname="Vertigo Mode" pintype="Input" visible="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="260" managers="" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="3585" top="4470" type="Node" width="100">
-   </BOUNDS>
-   <BOUNDS height="1800" left="3585" top="4470" type="Box" width="2400">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Receive String" pintype="Input" slicecount="1" visible="1" values="qw2.sc2.seed.pause">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Output" pintype="Output" visible="1">
-   </PIN>
-   <BOUNDS height="5010" left="0" top="0" type="Window" width="6240">
-   </BOUNDS>
-   <PIN pinname="Default" pintype="Input" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Found" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="ID" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="259" dstpinname="Seed Pause" linkstyle="PolyLine" srcnodeid="260" srcpinname="Output">
-   </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="261" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="2295" top="4395" type="Node" width="100">
    </BOUNDS>
@@ -896,8 +850,6 @@
    </LINK>
    <LINK dstnodeid="274" dstpinname="Input 1" srcnodeid="272" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="85" dstpinname="Input" srcnodeid="274" srcpinname="Output">
-   </LINK>
    <LINK dstnodeid="0" dstpinname="VerticesXYZ" hiddenwhenlocked="0" linkstyle="Bezier" srcnodeid="170" srcpinname="Position Out">
    <LINKPOINT x="4305" y="7185">
    </LINKPOINT>
@@ -932,32 +884,36 @@
    </NODE>
    <LINK dstnodeid="246" dstpinname="Input" srcnodeid="218" srcpinname="Y Output Value">
    </LINK>
-   <NODE id="277" componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="277" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Node" height="100" left="360" top="4275" width="100">
+   <BOUNDS height="100" left="360" top="4275" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Receive String" encoded="0" slicecount="1" values="qw2.macro.sc2.vertmode">
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.macro.sc2.vertmode">
    </PIN>
-   <BOUNDS type="Box" left="360" top="4275">
+   <BOUNDS left="360" top="4275" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="277" srcpinname="Output" dstnodeid="259" dstpinname="Vertigo Mode" linkstyle="PolyLine">
+   <LINK dstnodeid="259" dstpinname="Vertigo Mode" linkstyle="PolyLine" srcnodeid="277" srcpinname="Output">
    </LINK>
-   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="284">
-   <BOUNDS type="Node" left="5025" top="5625" width="100" height="100">
+   <NODE componentmode="InABox" id="284" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="100" left="5025" top="5625" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="5025" top="5625" width="540" height="240">
+   <BOUNDS height="240" left="5025" top="5625" type="Box" width="540">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Filter" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Filter">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="2">
    </PIN>
    </NODE>
-   <LINK srcnodeid="284" srcpinname="Y Output Value" dstnodeid="170" dstpinname="FilterTime">
+   <LINK dstnodeid="170" dstpinname="FilterTime" srcnodeid="284" srcpinname="Y Output Value">
+   </LINK>
+   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="259" dstpinname="Seed Pause" hiddenwhenlocked="0">
+   </LINK>
+   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="14" dstpinname="Pause" hiddenwhenlocked="0">
    </LINK>
    </PATCH>
