@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.blend.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.blend.v4p" systemname="qw2.blend">
    <BOUNDS height="4335" left="1965" top="4080" type="Window" width="4785">
    </BOUNDS>
@@ -48,7 +48,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="4" dstpinname="Switch" srcnodeid="3" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="4" dstpinname="Switch" linkstyle="Bezier" srcnodeid="3" srcpinname="Y Output Value">
    <LINKPOINT x="270" y="1410">
    </LINKPOINT>
    <LINKPOINT x="330" y="1410">
@@ -66,19 +66,19 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="5" dstpinname="Switch" srcnodeid="3" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Switch" linkstyle="Bezier" srcnodeid="3" srcpinname="Y Output Value">
    <LINKPOINT x="285" y="1410">
    </LINKPOINT>
    <LINKPOINT x="1020" y="1410">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="4" dstpinname="Input 2" srcnodeid="2" srcpinname="Output Node" linkstyle="Bezier">
+   <LINK dstnodeid="4" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="2" srcpinname="Output Node">
    <LINKPOINT x="3285" y="1560">
    </LINKPOINT>
    <LINKPOINT x="930" y="1560">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\modules\common\TextureFX\Mixer\Blend\Blend (EX9.Texture Mixer).v4p" id="6" nodename="Blend (EX9.Texture Mixer)" systemname="Blend (EX9.Texture Mixer)">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\modules\common\TextureFX\Mixer\Blend\Blend (EX9.Texture Mixer).v4p" id="6" nodename="Blend (EX9.Texture Mixer)" systemname="Blend (EX9.Texture Mixer)" debug="0">
    <BOUNDS height="100" left="1755" top="2760" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 1" slicecount="1" visible="1" values="||">
@@ -91,34 +91,36 @@
    </PIN>
    <PIN pinname="Enabled">
    </PIN>
-   <BOUNDS type="Box" left="1755" top="2760">
+   <BOUNDS left="1755" top="2760" type="Box">
+   </BOUNDS>
+   <BOUNDS type="Window" left="8805" top="2535" width="12435" height="7800">
    </BOUNDS>
    </NODE>
-   <LINK dstnodeid="4" dstpinname="Input 1" srcnodeid="1" srcpinname="Output Node" linkstyle="Bezier">
+   <LINK dstnodeid="4" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="1" srcpinname="Output Node">
    <LINKPOINT x="3090" y="1275">
    </LINKPOINT>
    <LINKPOINT x="660" y="1275">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="5" dstpinname="Input 2" srcnodeid="1" srcpinname="Output Node" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="1" srcpinname="Output Node">
    <LINKPOINT x="3075" y="1283">
    </LINKPOINT>
    <LINKPOINT x="1635" y="1283">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="5" dstpinname="Input 1" srcnodeid="2" srcpinname="Output Node" linkstyle="Bezier">
+   <LINK dstnodeid="5" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="2" srcpinname="Output Node">
    <LINKPOINT x="3285" y="1560">
    </LINKPOINT>
    <LINKPOINT x="1365" y="1560">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="6" dstpinname="Input 1" srcnodeid="4" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="4" srcpinname="Output">
    <LINKPOINT x="375" y="2573">
    </LINKPOINT>
    <LINKPOINT x="1755" y="2573">
    </LINKPOINT>
    </LINK>
-   <LINK dstnodeid="6" dstpinname="Input 2" srcnodeid="5" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="5" srcpinname="Output">
    <LINKPOINT x="1080" y="2573">
    </LINKPOINT>
    <LINKPOINT x="1935" y="2573">
@@ -138,7 +140,7 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Opacity">
    </PIN>
    </NODE>
-   <LINK dstnodeid="6" dstpinname="Opacity" srcnodeid="7" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Opacity" linkstyle="Bezier" srcnodeid="7" srcpinname="Y Output Value">
    <LINKPOINT x="915" y="1598">
    </LINKPOINT>
    <LINKPOINT x="2115" y="1598">
@@ -154,7 +156,7 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Mode">
    </PIN>
    </NODE>
-   <LINK dstnodeid="6" dstpinname="Mode" srcnodeid="8" srcpinname="Output Enum" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Mode" linkstyle="Bezier" srcnodeid="8" srcpinname="Output Enum">
    <LINKPOINT x="1860" y="1598">
    </LINKPOINT>
    <LINKPOINT x="2310" y="1598">
@@ -180,7 +182,7 @@
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <LINK dstnodeid="6" dstpinname="Enabled" srcnodeid="9" srcpinname="Y Output Value" linkstyle="Bezier">
+   <LINK dstnodeid="6" dstpinname="Enabled" linkstyle="Bezier" srcnodeid="9" srcpinname="Y Output Value">
    <LINKPOINT x="3630" y="2325">
    </LINKPOINT>
    <LINKPOINT x="2535" y="2325">
@@ -194,7 +196,7 @@
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Output">
    </PIN>
    </NODE>
-   <LINK dstnodeid="10" dstpinname="Input Node" srcnodeid="6" srcpinname="Output" linkstyle="Bezier">
+   <LINK dstnodeid="10" dstpinname="Input Node" linkstyle="Bezier" srcnodeid="6" srcpinname="Output">
    <LINKPOINT x="1785" y="3083">
    </LINKPOINT>
    <LINKPOINT x="1785" y="3083">
