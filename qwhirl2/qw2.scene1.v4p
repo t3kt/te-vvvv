@@ -742,13 +742,13 @@
    </NODE>
    <LINK dstnodeid="129" dstpinname="Mode" srcnodeid="223" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="Angle" dstnodeid="160" dstpinname="ctl ang">
+   <LINK dstnodeid="160" dstpinname="ctl ang" srcnodeid="181" srcpinname="Angle">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="Length" dstnodeid="160" dstpinname="ctl len">
+   <LINK dstnodeid="160" dstpinname="ctl len" srcnodeid="181" srcpinname="Length">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="Y" dstnodeid="160" dstpinname="ctl y">
+   <LINK dstnodeid="160" dstpinname="ctl y" srcnodeid="181" srcpinname="Y">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="X" dstnodeid="160" dstpinname="ctl x">
+   <LINK dstnodeid="160" dstpinname="ctl x" srcnodeid="181" srcpinname="X">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="238" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="3285" top="3900" type="Node" width="100">
@@ -758,7 +758,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="238" srcpinname="Output" dstnodeid="160" dstpinname="lfo val">
+   <LINK dstnodeid="160" dstpinname="lfo val" srcnodeid="238" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="239" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="1380" top="2895" type="Node" width="100">
@@ -772,7 +772,7 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="239" srcpinname="Output" dstnodeid="129" dstpinname="count">
+   <LINK dstnodeid="129" dstpinname="count" srcnodeid="239" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="240" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="2310" top="3585" type="Node" width="100">
@@ -786,7 +786,7 @@
    <BOUNDS left="2310" top="3585" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="240" srcpinname="Output" dstnodeid="129" dstpinname="stutter open">
+   <LINK dstnodeid="129" dstpinname="stutter open" srcnodeid="240" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="241" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
    <BOUNDS height="100" left="2895" top="3945" type="Node" width="100">
@@ -800,14 +800,14 @@
    <BOUNDS left="2895" top="3945" type="Box">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="241" srcpinname="Output" dstnodeid="160" dstpinname="stutter open">
+   <LINK dstnodeid="160" dstpinname="stutter open" srcnodeid="241" srcpinname="Output">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="242" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="3735" top="3420" width="0" height="0">
+   <NODE componentmode="InABox" id="242" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="3735" top="3420" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="3735" top="3420" width="345" height="240">
+   <BOUNDS height="240" left="3735" top="3420" type="Box" width="345">
    </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
@@ -820,11 +820,11 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="129" srcpinname="pos xyz" dstnodeid="242" dstpinname="Y Input Value">
+   <LINK dstnodeid="242" dstpinname="Y Input Value" srcnodeid="129" srcpinname="pos xyz">
    </LINK>
-   <LINK srcnodeid="242" srcpinname="Y Output Value" dstnodeid="178" dstpinname="XYZ">
+   <LINK dstnodeid="178" dstpinname="XYZ" srcnodeid="242" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="242" srcpinname="Y Output Value" dstnodeid="160" dstpinname="pos xyz">
+   <LINK dstnodeid="160" dstpinname="pos xyz" srcnodeid="242" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" id="244" nodename="OR (Boolean)" systemname="OR (Boolean)">
    <BOUNDS height="100" left="3285" top="1020" type="Node" width="100">
@@ -846,8 +846,8 @@
    </NODE>
    <LINK dstnodeid="244" dstpinname="Input 2" srcnodeid="243" srcpinname="Input Value">
    </LINK>
-   <LINK srcnodeid="192" srcpinname="Output" dstnodeid="244" dstpinname="Input 1">
+   <LINK dstnodeid="244" dstpinname="Input 1" srcnodeid="192" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="244" srcpinname="Output" dstnodeid="34" dstpinname="Pause">
+   <LINK dstnodeid="34" dstpinname="Pause" srcnodeid="244" srcpinname="Output">
    </LINK>
    </PATCH>
