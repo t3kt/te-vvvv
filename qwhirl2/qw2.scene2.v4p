@@ -17,7 +17,7 @@
    </PIN>
    <PIN pinname="Antialias" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
-   <PIN pinname="Pattern" pintype="Input" slicecount="32" visible="-1" values="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1">
+   <PIN pinname="Pattern" pintype="Input" slicecount="1" visible="-1" values="1">
    </PIN>
    <PIN pinname="Render State" visible="1">
    </PIN>
@@ -912,8 +912,8 @@
    </NODE>
    <LINK dstnodeid="170" dstpinname="FilterTime" srcnodeid="284" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="259" dstpinname="Seed Pause" hiddenwhenlocked="0">
+   <LINK dstnodeid="259" dstpinname="Seed Pause" hiddenwhenlocked="0" srcnodeid="274" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="274" srcpinname="Output" dstnodeid="14" dstpinname="Pause" hiddenwhenlocked="0">
+   <LINK dstnodeid="14" dstpinname="Pause" hiddenwhenlocked="0" srcnodeid="274" srcpinname="Output">
    </LINK>
    </PATCH>
