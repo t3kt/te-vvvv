@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.core.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scenes.mixer.core.v4p" systemname="qw2.scenes.mixer.core">
-   <BOUNDS height="4605" left="7290" top="4575" type="Window" width="6735">
+   <BOUNDS height="9495" left="7290" top="4575" type="Window" width="6735">
    </BOUNDS>
    <NODE componentmode="InABox" id="13" nodename="IOBox (Node)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="2565" top="375" type="Node" width="100">
@@ -357,6 +357,8 @@
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Opacity">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <LINK dstnodeid="16" dstpinname="Opacity" linkstyle="Bezier" srcnodeid="21" srcpinname="Y Output Value">
    <LINKPOINT x="785" y="2175">
@@ -435,5 +437,53 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="10" dstpinname="Background Color" srcnodeid="31" srcpinname="Color Output">
+   </LINK>
+   <NODE componentmode="InABox" id="33" nodename="IOBox (Enumerations)" systemname="IOBox (Enumerations)">
+   <BOUNDS height="0" left="4245" top="2940" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="255" left="4245" top="2940" type="Box" width="1590">
+   </BOUNDS>
+   <PIN pinname="Input Enum" visible="1" slicecount="1" values="| Normal_Normal|">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" filename="effects\qw2.mixer.blend.fx" id="32" nodename="qw2.mixer.blend (EX9.Effect)" systemname="qw2.mixer.blend (EX9.Effect)">
+   <BOUNDS height="100" left="2595" top="3915" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <PIN pinname="Technique Pass" pintype="Input" slicecount="1" visible="-1" values="-1">
+   </PIN>
+   <PIN pinname="Compiled" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Technique Valid" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Description" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="tex0" visible="1">
+   </PIN>
+   <PIN pinname="tex1" visible="1">
+   </PIN>
+   <PIN pinname="Opacity1" visible="1">
+   </PIN>
+   <PIN pinname="Opacity2" visible="1">
+   </PIN>
+   <PIN pinname="R XY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="32" dstpinname="Technique" srcnodeid="33" srcpinname="Output Enum">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Texture Out" dstnodeid="32" dstpinname="tex0">
+   <LINKPOINT x="2640" y="2070">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Texture Out" dstnodeid="32" dstpinname="tex1">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Opacity1">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Opacity2">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="32" dstpinname="R XY">
    </LINK>
    </PATCH>

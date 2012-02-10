@@ -78,7 +78,7 @@
    <LINKPOINT x="930" y="1560">
    </LINKPOINT>
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\modules\common\TextureFX\Mixer\Blend\Blend (EX9.Texture Mixer).v4p" id="6" nodename="Blend (EX9.Texture Mixer)" systemname="Blend (EX9.Texture Mixer)" debug="0">
+   <NODE componentmode="Hidden" debug="0" filename="%VVVV%\addonpack\modules\common\TextureFX\Mixer\Blend\Blend (EX9.Texture Mixer).v4p" id="6" nodename="Blend (EX9.Texture Mixer)" systemname="Blend (EX9.Texture Mixer)">
    <BOUNDS height="100" left="1755" top="2760" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Input 1" slicecount="1" visible="1" values="||">
@@ -93,7 +93,7 @@
    </PIN>
    <BOUNDS left="1755" top="2760" type="Box">
    </BOUNDS>
-   <BOUNDS type="Window" left="8805" top="2535" width="12435" height="7800">
+   <BOUNDS height="7800" left="8805" top="2535" type="Window" width="12435">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="4" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="1" srcpinname="Output Node">

@@ -1,0 +1,74 @@
+<project>
+  <current_configuration value="Debug" />
+  <configurations>
+    <configuration name="Debug">
+      <settings category="Project\Direct3D\HLSL Compiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\Direct3D10\HLSL Compiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\OpenGL\CgCompiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\Paths">
+        <Includes value="" />
+        <Models value="" />
+        <Scripts value="" />
+        <Shaders value="" />
+        <Textures value="" />
+      </settings>
+      <settings category="Project\Settings">
+        <BindLightToUnboundMaterials value="False" />
+      </settings>
+      <settings category="Project\COLLADA Common Profile">
+        <EnvironmentMap value="" />
+        <DisableCommonProfileTransparency value="False" />
+      </settings>
+    </configuration>
+    <configuration name="Release">
+      <settings category="Project\Direct3D\HLSL Compiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\Direct3D10\HLSL Compiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\OpenGL\CgCompiler">
+        <CompilerOptions value="" />
+      </settings>
+      <settings category="Project\Paths">
+        <Includes value="" />
+        <Models value="" />
+        <Scripts value="" />
+        <Shaders value="" />
+        <Textures value="" />
+      </settings>
+      <settings category="Project\Settings">
+        <BindLightToUnboundMaterials value="False" />
+      </settings>
+      <settings category="Project\COLLADA Common Profile">
+        <EnvironmentMap value="" />
+        <DisableCommonProfileTransparency value="False" />
+      </settings>
+    </configuration>
+  </configurations>
+  <assetFile uri="Document1.dae" referenced="False" />
+  <activeAssetCollection uri="Document1.dae" />
+  <customConfigurations>
+    <FXComposer.Scene.Services.FXRenderPortService>
+      <renderPort name="Render" />
+    </FXComposer.Scene.Services.FXRenderPortService>
+    <FXComposer.Scene.Services.FXSceneService>
+      <background_color color="0.5 0.5 0.5 0" />
+    </FXComposer.Scene.Services.FXSceneService>
+    <FXComposer.Debugger.DebuggerService>
+      <settings>
+        <fragkill mode="Off" color="1, 0, 1, 1" />
+        <enablealpha value="False" />
+        <singlepixelmode enabled="False" pixelID="0, 0" />
+      </settings>
+      <profiles />
+      <files />
+    </FXComposer.Debugger.DebuggerService>
+  </customConfigurations>
+</project>

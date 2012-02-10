@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+	<asset>
+		<contributor>
+			<author>thezer0ist</author>
+			<authoring_tool>NVIDIA FX Composer 2.5</authoring_tool>
+			<comments/>
+			<copyright/>
+		</contributor>
+		<created>2012-02-08T23:58:59Z</created>
+		<keywords>FXComposer, NVIDIA</keywords>
+		<modified>2012-02-08T23:58:59Z</modified>
+		<subject/>
+		<title/>
+		<unit/>
+		<up_axis>Y_UP</up_axis>
+	</asset>
+	<library_effects>
+		<effect id="Effect1" name="qw2.mixer.blend">
+			<profile_COMMON>
+				<technique sid="__fxc_remove_profile_COMMON">
+					<constant/>
+				</technique>
+			</profile_COMMON>
+			<extra type="import">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<import url="qw2.mixer.blend.fx" compiler_options="" profile="fx"/>
+				</technique>
+			</extra>
+		</effect>
+		<effect id="Effect2" name="Blend">
+			<profile_COMMON>
+				<technique sid="__fxc_remove_profile_COMMON">
+					<constant/>
+				</technique>
+			</profile_COMMON>
+			<extra type="import">
+				<technique profile="NVIDIA_FXCOMPOSER">
+					<import url="../../../code/vvvv-sdk/vvvv45/addonpack/lib/nodes/modules/TextureFX/Mixer/Blend/Blend.fx" compiler_options="" profile="fx"/>
+				</technique>
+			</extra>
+		</effect>
+	</library_effects>
+</COLLADA>
