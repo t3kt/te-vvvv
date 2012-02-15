@@ -6,7 +6,11 @@ Includes modified version of some code from VVVV's "Blend.fx" effect.
 
 */
 
-float4x4 WorldViewProj : WorldViewProjection;
+//Normal	Add	Subtract	Screen	Multiply	Darken	Lighten	Difference	Exclusion	Overlay
+//HardLight	SoftLight	Dodge	Burn	Reflect	Glow	Freeze	Heat
+// .. there are 18
+
+//float4x4 WorldViewProj : WorldViewProjection;
 
 float2 R; // texture dimensions... of larger texture
 float Opacity1 <float uimin=0.0; float uimax=1.0;> = 1.0;
@@ -45,23 +49,23 @@ sampler s2 = sampler_state {
 #define applyOpacity1(c) float4(c * float4(1,1,1,Opacity1))
 #define applyOpacity2(c) float4(c * float4(1,1,1,Opacity2))
 
-float4 calcNormal(float4 c0, float4 c1) : color {	return bld(c1, c1, c0);	}
-float4 calcAdd(float4 c0, float4 c1) : color {		return bld(c0+c1,c0,c1);	}
-float4 calcSubtract(float4 c0, float4 c1) : color {	return bld(c0-c1,c0,c1);	}
-float4 calcScreen(float4 c0, float4 c1) : color {	return bld(c0+c1*saturate(1-c0),c0,c1);	}
-float4 calcMultiply(float4 c0, float4 c1) : color {	return bld(c0*c1,c0,c1);	}
-float4 calcDarken(float4 c0, float4 c1) : color {	return bld(min(c0,c1),c0,c1);	}
-float4 calcLighten(float4 c0, float4 c1) : color {	return bld(max(c0,c1),c0,c1);	}
-float4 calcDifference(float4 c0, float4 c1) : color {	return bld(abs(c0-c1),c0,c1);	}
-float4 calcExclusion(float4 c0, float4 c1) : color {	return bld(c0+c1-2*c0*c1,c0,c1);	}
-float4 calcOverlay(float4 c0, float4 c1) : color {	return bld((c0<.5)?(2*c0*c1):1-2*(1-c0)*(1-c1),c0,c1);	}
-float4 calcHardLight(float4 c0, float4 c1) : color {	return bld((c1<.5)?(2*c0*c1):1-2*(1-c0)*(1-c1),c0,c1);	}
-float4 calcSoftLight(float4 c0, float4 c1) : color {	return bld(2*c0*c1+c0*c0-2*c0*c0*c1,c0,c1);	}
-float4 calcDodge(float4 c0, float4 c1) : color {	return bld((c1==1)?1:c0/(1-c1),c0,c1);	}
-float4 calcBurn(float4 c0, float4 c1) : color {	return bld((c1==0)?0:1-(1-c0)/c1,c0,c1);	}
-float4 calcReflect(float4 c0, float4 c1) : color {	return bld((c1==1)?1:c0*c0/(1-c1),c0,c1);	}
-float4 calcGlow(float4 c0, float4 c1) : color {	return bld((c0==1)?1:c1*c1/(1-c0),c0,c1);	}
-float4 calcFreeze(float4 c0, float4 c1) : color {	return bld((c1==0)?0:1-pow(1-c0,2)/c1,c0,c1);	}
+float4 calcNormal(float4 c0, float4 c1) : color		{	return bld(c1, c1, c0);	}
+float4 calcAdd(float4 c0, float4 c1) : color		{		return bld(c0+c1,c0,c1);	}
+float4 calcSubtract(float4 c0, float4 c1) : color	{	return bld(c0-c1,c0,c1);	}
+float4 calcScreen(float4 c0, float4 c1) : color		{	return bld(c0+c1*saturate(1-c0),c0,c1);	}
+float4 calcMultiply(float4 c0, float4 c1) : color	{	return bld(c0*c1,c0,c1);	}
+float4 calcDarken(float4 c0, float4 c1) : color		{	return bld(min(c0,c1),c0,c1);	}
+float4 calcLighten(float4 c0, float4 c1) : color	{	return bld(max(c0,c1),c0,c1);	}
+float4 calcDifference(float4 c0, float4 c1) : color	{	return bld(abs(c0-c1),c0,c1);	}
+float4 calcExclusion(float4 c0, float4 c1) : color	{	return bld(c0+c1-2*c0*c1,c0,c1);	}
+float4 calcOverlay(float4 c0, float4 c1) : color	{	return bld((c0<.5)?(2*c0*c1):1-2*(1-c0)*(1-c1),c0,c1);	}
+float4 calcHardLight(float4 c0, float4 c1) : color	{	return bld((c1<.5)?(2*c0*c1):1-2*(1-c0)*(1-c1),c0,c1);	}
+float4 calcSoftLight(float4 c0, float4 c1) : color	{	return bld(2*c0*c1+c0*c0-2*c0*c0*c1,c0,c1);	}
+float4 calcDodge(float4 c0, float4 c1) : color		{	return bld((c1==1)?1:c0/(1-c1),c0,c1);	}
+float4 calcBurn(float4 c0, float4 c1) : color		{	return bld((c1==0)?0:1-(1-c0)/c1,c0,c1);	}
+float4 calcReflect(float4 c0, float4 c1) : color	{	return bld((c1==1)?1:c0*c0/(1-c1),c0,c1);	}
+float4 calcGlow(float4 c0, float4 c1) : color		{	return bld((c0==1)?1:c1*c1/(1-c0),c0,c1);	}
+float4 calcFreeze(float4 c0, float4 c1) : color		{	return bld((c1==0)?0:1-pow(1-c0,2)/c1,c0,c1);	}
 float4 calcHeat(float4 c0, float4 c1) : color {	return bld((c0==0)?0:1-pow(1-c1,2)/c0,c0,c1);	}
 
 
@@ -81,16 +85,25 @@ float4 calcHeat(float4 c0, float4 c1) : color {	return bld((c0==0)?0:1-pow(1-c1,
 		float4 c0and1 = op1(c0, c1);\
 		return op2(c0and1, c2);\
 	}*/
-#define process(op1, op2, pos)  float4( op2(op1(tex2D(s0, pos),applyOpacity1(tex2D(s1, pos))), applyOpacity2(tex2D(s2, pos))) )
+#define process(op1, op2, pos)\
+	float4(\
+		op2(\
+			op1(\
+				tex2D(s0, pos),\
+				applyOpacity1(\
+					tex2D(s1, pos)\
+				)\
+			),\
+			applyOpacity2(\
+				tex2D(s2, pos)\
+			)\
+		)\
+	)
 
 /*float4 zz__processAddSubtract(float2 pos : TEXCOORD) : color {
 	return process(calcAdd, calcSubtract, pos);
 }*/
-//#define defProc(name, op1, op2)  float4 name(float2 pos : TEXCOORD) : color { return process(op1, op2, pos); }
 #define defProc(op1, op2)  float4 process##op1##op2(float2 pos : TEXCOORD) : color { return process(calc##op1, calc##op2, pos); }
-//Normal	Add	Subtract	Screen	Multiply	Darken	Lighten	Difference	Exclusion	Overlay
-//HardLight	SoftLight	Dodge	Burn	Reflect	Glow	Freeze	Heat
-// .. there are 18
 
 #define runForAllModes(macro)	\
 	macro(Normal)\
@@ -136,7 +149,7 @@ float4 calcHeat(float4 c0, float4 c1) : color {	return bld((c0==0)?0:1-pow(1-c1,
 //defProc(Add, Add)
 //...
 //defProcSet(Normal)	defProcSet(Add)	defProcSet(Subtract)	defProcSet(Screen)	defProcSet(Multiply)	defProcSet(Darken)	defProcSet(Lighten)	defProcSet(Difference)	defProcSet(Exclusion)	defProcSet(Overlay)	defProcSet(HardLight)	defProcSet(SoftLight)	defProcSet(Dodge)	defProcSet(Burn)	defProcSet(Reflect)	defProcSet(Glow)	defProcSet(Freeze)	defProcSet(Heat)
-runForAllModes(defProcSet)
+//runForAllModes(defProcSet)
 
 void vs2d(inout float4 vp:POSITION0,inout float2 uv:TEXCOORD0)
 {
@@ -170,8 +183,41 @@ void vs2d(inout float4 vp:POSITION0,inout float2 uv:TEXCOORD0)
 	defTechnique(op1, Glow)\
 	defTechnique(op1, Freeze)\
 	defTechnique(op1, Heat)
+#define defProcAndTechniqueSet(op1)	\
+	defProcAndTechnique(op1, Normal)\
+	defProcAndTechnique(op1, Screen)\
+	defProcAndTechnique(op1, Multiply)\
+	defProcAndTechnique(op1, Add)\
+	defProcAndTechnique(op1, Subtract)\
+	defProcAndTechnique(op1, Darken)\
+	defProcAndTechnique(op1, Lighten)\
+	defProcAndTechnique(op1, Difference)\
+	defProcAndTechnique(op1, Exclusion)\
+	defProcAndTechnique(op1, Overlay)\
+	defProcAndTechnique(op1, HardLight)\
+	defProcAndTechnique(op1, SoftLight)\
+	defProcAndTechnique(op1, Dodge)\
+	defProcAndTechnique(op1, Burn)\
+	defProcAndTechnique(op1, Reflect)\
+	defProcAndTechnique(op1, Glow)\
+	defProcAndTechnique(op1, Freeze)\
+	defProcAndTechnique(op1, Heat)
 
-runForAllModes(defTechniqueSet)
+#define defProcAndTechnique(op1, op2)\
+	defProc(op1, op2)\
+	defTechnique(op1, op2)
+
+//runForAllModes(defTechniqueSet)
+runForAllModes(defProcAndTechniqueSet)
+
+
+/*float4 dbgPassThruPS(float2 pos : TEXCOORD) : color { return tex2D(s0, pos); }
+technique dbgPassThru {
+	pass p0 {
+		vertexshader=compile vs_2_0 vs2d();
+		pixelshader=compile ps_2_0 dbgPassThruPS();
+	}
+}*/
 /*
 float4 pNORMAL(float2 x):color
 {
