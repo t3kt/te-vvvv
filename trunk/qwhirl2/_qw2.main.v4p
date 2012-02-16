@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
-   <BOUNDS height="6330" left="0" top="0" type="Window" width="4650">
+   <BOUNDS height="5880" left="0" top="0" type="Window" width="4650">
    </BOUNDS>
    <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
    <BOUNDS height="270" left="150" top="4635" type="Node" width="1650">
@@ -35,11 +35,11 @@
    </PIN>
    <PIN pinname="Projection" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
-   <PIN pinname="Left Button" pintype="Output" visible="1">
+   <PIN pinname="Left Button" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Middle Button" pintype="Output" visible="1">
+   <PIN pinname="Middle Button" pintype="Output" visible="-1">
    </PIN>
-   <PIN pinname="Right Button" pintype="Output" visible="1">
+   <PIN pinname="Right Button" pintype="Output" visible="-1">
    </PIN>
    <PIN pinname="Is Fullscreen" pintype="Output" visible="-1">
    </PIN>
@@ -321,46 +321,16 @@
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="126" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="150" top="5415" type="Node" width="100">
+   <BOUNDS height="100" left="1035" top="5010" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.point">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="150" top="5415" type="Box">
+   <BOUNDS left="1035" top="5010" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="126" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="5" srcpinname="XY">
-   </LINK>
-   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="127" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
-   <BOUNDS height="100" left="825" top="5025" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="X" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Y" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Z" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="XYZ" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="127" dstpinname="X" hiddenwhenlocked="1" srcnodeid="0" srcpinname="Left Button">
-   </LINK>
-   <LINK dstnodeid="127" dstpinname="Y" hiddenwhenlocked="1" srcnodeid="0" srcpinname="Middle Button">
-   </LINK>
-   <LINK dstnodeid="127" dstpinname="Z" hiddenwhenlocked="1" srcnodeid="0" srcpinname="Right Button">
-   </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="128" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="825" top="5415" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.buttons">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <BOUNDS left="825" top="5415" type="Box">
-   </BOUNDS>
-   </NODE>
-   <LINK dstnodeid="128" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="127" srcpinname="XYZ">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="129" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="1560" top="390" type="Node" width="100">
@@ -374,7 +344,7 @@
    </NODE>
    <LINK dstnodeid="129" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="70" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InAWindow" debug="0" filename="qw2.scenes.mixer.v4p" hiddenwhenlocked="0" id="29" nodename="qw2.scenes.mixer.v4p" stayontop="0" systemname="qw2.scenes.mixer">
+   <NODE componentmode="Hidden" debug="0" filename="qw2.scenes.mixer.v4p" hiddenwhenlocked="0" id="29" nodename="qw2.scenes.mixer.v4p" stayontop="0" systemname="qw2.scenes.mixer">
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
    <BOUNDS height="270" left="210" top="2520" type="Node" width="1500">
@@ -461,7 +431,7 @@
    </BOUNDS>
    <BOUNDS height="3600" left="2415" top="840" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="7410" left="4380" top="0" type="Window" width="5355">
+   <BOUNDS height="5055" left="4380" top="0" type="Window" width="5355">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
@@ -471,7 +441,7 @@
    </BOUNDS>
    <BOUNDS height="5580" left="840" top="7035" type="Window" width="6675">
    </BOUNDS>
-   <PIN pinname="Evaluate" pintype="Input" slicecount="1" visible="0" values="1">
+   <PIN pinname="Evaluate" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="138" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
@@ -784,12 +754,12 @@
    </NODE>
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
+   <NODE componentmode="InAWindow" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
    <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="13140" left="1020" top="1500" type="Window" width="15075">
+   <BOUNDS height="10890" left="225" top="4095" type="Window" width="15075">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -818,7 +788,7 @@
    </NODE>
    <LINK dstnodeid="166" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="103" srcpinname="Output">
    </LINK>
-   <LINK dstnodeid="29" dstpinname="sc3 layer" srcnodeid="166" srcpinname="Layer" hiddenwhenlocked="1">
+   <LINK dstnodeid="29" dstpinname="sc3 layer" hiddenwhenlocked="1" srcnodeid="166" srcpinname="Layer">
    </LINK>
    <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="164" srcpinname="Layer">
    </LINK>

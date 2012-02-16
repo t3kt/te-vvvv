@@ -537,11 +537,11 @@
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.67">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.57625">
    </PIN>
    <PIN pinname="Slider Behavior" slicecount="1" values="Slider">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.00816666666666667">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0">
    </PIN>
@@ -638,7 +638,7 @@
    </LINK>
    <LINK dstnodeid="85" dstpinname="Input" srcnodeid="83" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Switch" linkstyle="Bezier">
+   <LINK dstnodeid="83" dstpinname="Switch" linkstyle="Bezier" srcnodeid="20" srcpinname="Y Output Value">
    <LINKPOINT x="345" y="1470">
    </LINKPOINT>
    <LINKPOINT x="5310" y="1470">
@@ -666,22 +666,22 @@
    </NODE>
    <LINK dstnodeid="90" dstpinname="Input" srcnodeid="91" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="91" dstpinname="Alpha">
+   <LINK dstnodeid="91" dstpinname="Alpha" srcnodeid="70" srcpinname="Y Output Value">
    </LINK>
-   <LINK srcnodeid="44" srcpinname="Color Output" dstnodeid="91" dstpinname="Input">
+   <LINK dstnodeid="91" dstpinname="Input" srcnodeid="44" srcpinname="Color Output">
    </LINK>
-   <NODE id="92" componentmode="Hidden" nodename="Switch (Value Input)" systemname="Switch (Value Input)" hiddenwhenlocked="0" managers="">
-   <BOUNDS type="Node" height="100" left="9915" top="1590" width="100">
+   <NODE componentmode="Hidden" hiddenwhenlocked="0" id="92" managers="" nodename="Switch (Value Input)" systemname="Switch (Value Input)">
+   <BOUNDS height="100" left="9915" top="1590" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Switch" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="Input 2" visible="1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Input 2" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="Input 1" visible="1" pintype="Input" slicecount="1" values="0">
+   <PIN pinname="Input 1" pintype="Input" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="Output" visible="1" pintype="Output">
+   <PIN pinname="Output" pintype="Output" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" encoded="0" values="||">
+   <PIN encoded="0" pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input Count" pintype="Configuration" slicecount="1" values="2">
    </PIN>

@@ -754,29 +754,31 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="208" srcpinname="Output" dstnodeid="101" dstpinname="Opacity 123">
+   <LINK dstnodeid="101" dstpinname="Opacity 123" srcnodeid="208" srcpinname="Output">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="209" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="720" top="7395" width="0" height="0">
+   <NODE componentmode="InABox" id="209" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="720" top="7395" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="720" top="7395" width="570" height="300">
+   <BOUNDS height="300" left="720" top="7395" type="Box" width="570">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="||" encoded="0">
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Mix Order|" encoded="0">
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="|Mix Order|">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Maximum" slicecount="1" values="5">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="209" srcpinname="Y Output Value" dstnodeid="101" dstpinname="Mix Order">
+   <LINK dstnodeid="101" dstpinname="Mix Order" srcnodeid="209" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="InABox" id="211" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="270" left="210" top="6225" type="Node" width="240">
@@ -812,6 +814,6 @@
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
    </NODE>
-   <LINK srcnodeid="102" srcpinname="Output" dstnodeid="101" dstpinname="Evaluate">
+   <LINK dstnodeid="101" dstpinname="Evaluate" srcnodeid="102" srcpinname="Output">
    </LINK>
    </PATCH>
