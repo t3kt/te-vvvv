@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene3.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene3.v4p" systemname="qw2.scene3">
-   <BOUNDS height="9090" left="1020" top="5550" type="Window" width="15075">
+   <BOUNDS height="13140" left="1020" top="1500" type="Window" width="15075">
    </BOUNDS>
    <NODE componentmode="InABox" id="0" nodename="IOBox (String)" systemname="IOBox (String)">
    <BOUNDS height="270" left="195" top="75" type="Node" width="285">
@@ -59,9 +59,9 @@
    <LINK dstnodeid="1" dstpinname="Input Node" srcnodeid="2" srcpinname="Layer">
    </LINK>
    <NODE componentmode="InABox" id="3" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="195" top="5475" type="Node" width="0">
+   <BOUNDS height="0" left="8760" top="675" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="1035" left="195" top="5475" type="Box" width="990">
+   <BOUNDS height="1035" left="8760" top="675" type="Box" width="990">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -77,9 +77,9 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK dstnodeid="2" dstpinname="Enabled" srcnodeid="3" srcpinname="Y Output Value">
-   </LINK>
    <NODE componentmode="InABox" id="5" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="3585" top="10275" type="Node" width="0">
    </BOUNDS>
@@ -97,22 +97,6 @@
    </PIN>
    </NODE>
    <LINK dstnodeid="2" dstpinname="Width" srcnodeid="5" srcpinname="Y Output Value">
-   </LINK>
-   <NODE componentmode="InABox" id="6" nodename="IOBox (Color)" systemname="IOBox (Color)">
-   <BOUNDS height="0" left="2850" top="10830" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="450" left="2850" top="10830" type="Box" width="1650">
-   </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" values="|0.26714,0.69494,0.67887,0.66636|">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Color">
-   </PIN>
-   <PIN pinname="Chooser Style" slicecount="1" values="HSVASlider">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="2" dstpinname="Color" srcnodeid="6" srcpinname="Color Output">
    </LINK>
    <NODE componentmode="InABox" id="8" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="3630" top="645" type="Node" width="0">
@@ -1363,5 +1347,39 @@
    <LINK dstnodeid="119" dstpinname="X" srcnodeid="110" srcpinname="Output">
    </LINK>
    <LINK dstnodeid="12" dstpinname="Yaw" srcnodeid="110" srcpinname="Output">
+   </LINK>
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\plugins\RSNodes.dll" hiddenwhenlocked="0" id="120" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
+   <BOUNDS height="100" left="2580" top="10125" type="Node" width="100">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.sc3.on">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="S (Value Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="S (Value Advanced)" componentmode="Hidden" id="121">
+   <BOUNDS type="Node" left="8760" top="1920" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Send String" slicecount="1" values="qw2.sc3.on" encoded="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="120" srcpinname="Output" dstnodeid="2" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="121" dstpinname="Input">
+   </LINK>
+   <NODE systemname="R (Color Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" nodename="R (Color Advanced)" componentmode="Hidden" id="122">
+   <BOUNDS type="Node" left="2220" top="10395" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="qw2.sc3.color" encoded="0">
+   </PIN>
+   <PIN pinname="Default" visible="1" slicecount="1" values="|0.26714,0.69494,0.67887,0.66636|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="122" srcpinname="Output" dstnodeid="2" dstpinname="Color">
    </LINK>
    </PATCH>
