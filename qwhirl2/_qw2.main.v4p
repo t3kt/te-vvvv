@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
-   <BOUNDS height="5850" left="0" top="0" type="Window" width="4650">
+   <BOUNDS height="6330" left="0" top="0" type="Window" width="4650">
    </BOUNDS>
    <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
-   <BOUNDS height="270" left="150" top="4185" type="Node" width="1650">
+   <BOUNDS height="270" left="150" top="4635" type="Node" width="1650">
    </BOUNDS>
-   <BOUNDS height="1800" left="150" top="4185" type="Box" width="2400">
+   <BOUNDS height="1800" left="150" top="4635" type="Box" width="2400">
    </BOUNDS>
    <BOUNDS height="6165" left="9765" top="0" type="Window" width="10305">
    </BOUNDS>
@@ -129,7 +129,7 @@
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="5" nodename="Vector (2d Join)" systemname="Vector (2d Join)">
-   <BOUNDS height="270" left="150" top="4575" type="Node" width="630">
+   <BOUNDS height="270" left="150" top="5025" type="Node" width="630">
    </BOUNDS>
    <PIN pinname="X" slicecount="1" visible="1" values="0">
    </PIN>
@@ -245,7 +245,7 @@
    <LINK dstnodeid="89" dstpinname="Input Value" hiddenwhenlocked="1" srcnodeid="15" srcpinname="Projection">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="94" nodename="Quad (DX9)" systemname="Quad (DX9)">
-   <BOUNDS height="100" left="150" top="3375" type="Node" width="100">
+   <BOUNDS height="100" left="150" top="3825" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Color" pintype="Input" slicecount="1" visible="-1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
@@ -269,7 +269,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="93" nodename="Scale (Transform)" systemname="Scale (Transform)">
-   <BOUNDS height="270" left="150" top="2940" type="Node" width="555">
+   <BOUNDS height="270" left="150" top="3390" type="Node" width="555">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -287,7 +287,7 @@
    <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
    <BOUNDS height="270" left="2415" top="1245" type="Node" width="1020">
    </BOUNDS>
-   <BOUNDS height="4065" left="1065" top="5850" type="Window" width="8460">
+   <BOUNDS height="4065" left="270" top="6300" type="Window" width="11070">
    </BOUNDS>
    <BOUNDS left="2415" top="1245" type="Box">
    </BOUNDS>
@@ -321,19 +321,19 @@
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="126" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="150" top="4965" type="Node" width="100">
+   <BOUNDS height="100" left="150" top="5415" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.point">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="150" top="4965" type="Box">
+   <BOUNDS left="150" top="5415" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="126" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="5" srcpinname="XY">
    </LINK>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="127" nodename="Vector (3d Join)" systemname="Vector (3d Join)">
-   <BOUNDS height="100" left="825" top="4575" type="Node" width="100">
+   <BOUNDS height="100" left="825" top="5025" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="X" slicecount="1" visible="1" values="0">
    </PIN>
@@ -351,13 +351,13 @@
    <LINK dstnodeid="127" dstpinname="Z" hiddenwhenlocked="1" srcnodeid="0" srcpinname="Right Button">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="128" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
-   <BOUNDS height="100" left="825" top="4965" type="Node" width="100">
+   <BOUNDS height="100" left="825" top="5415" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mouse.buttons">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
-   <BOUNDS left="825" top="4965" type="Box">
+   <BOUNDS left="825" top="5415" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="128" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="127" srcpinname="XYZ">
@@ -377,7 +377,7 @@
    <NODE componentmode="InAWindow" debug="0" filename="qw2.scenes.mixer.v4p" hiddenwhenlocked="0" id="29" nodename="qw2.scenes.mixer.v4p" stayontop="0" systemname="qw2.scenes.mixer">
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
-   <BOUNDS height="270" left="210" top="2070" type="Node" width="1500">
+   <BOUNDS height="270" left="210" top="2520" type="Node" width="1500">
    </BOUNDS>
    <PIN pinname="Scene 1 Layer" visible="1">
    </PIN>
@@ -387,7 +387,7 @@
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
-   <BOUNDS height="9165" left="1125" top="5025" type="Window" width="16455">
+   <BOUNDS height="10200" left="945" top="3720" type="Window" width="9090">
    </BOUNDS>
    <PIN pinname="Background Color" visible="1">
    </PIN>
@@ -403,11 +403,13 @@
    </PIN>
    <PIN pinname="Mode" pintype="Input" slicecount="1" visible="-1" values="Subtract">
    </PIN>
-   <BOUNDS left="210" top="2070" type="Box">
+   <BOUNDS left="210" top="2520" type="Box">
    </BOUNDS>
    <PIN pinname="sc1 layer" visible="1">
    </PIN>
    <PIN pinname="sc2 layer" visible="1">
+   </PIN>
+   <PIN pinname="sc3 layer" visible="1">
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" debug="0" filename="qw2.scene2.v4p" hiddenwhenlocked="0" id="13" nodename="qw2.scene2.v4p" systemname="qw2.scene2">
@@ -459,7 +461,7 @@
    </BOUNDS>
    <BOUNDS height="3600" left="2415" top="840" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="6150" left="4380" top="0" type="Window" width="5295">
+   <BOUNDS height="7410" left="4380" top="0" type="Window" width="5355">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
@@ -473,7 +475,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="138" nodename="R (Color Advanced)" systemname="R (Color Advanced)">
-   <BOUNDS height="100" left="945" top="3780" type="Node" width="100">
+   <BOUNDS height="100" left="945" top="4230" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.bg.color">
    </PIN>
@@ -481,17 +483,17 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="945" top="3780" type="Box">
+   <BOUNDS left="945" top="4230" type="Box">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="137" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="1560" top="3780" type="Node" width="100">
+   <BOUNDS height="100" left="1560" top="4230" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.on">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS left="1560" top="3780" type="Box">
+   <BOUNDS left="1560" top="4230" type="Box">
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="0" dstpinname="Background Color" hiddenwhenlocked="1" srcnodeid="138" srcpinname="Output">
@@ -503,7 +505,7 @@
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
-   <BOUNDS height="270" left="210" top="2535" type="Node" width="1260">
+   <BOUNDS height="270" left="210" top="2985" type="Node" width="1260">
    </BOUNDS>
    <BOUNDS height="9990" left="1980" top="4365" type="Window" width="7755">
    </BOUNDS>
@@ -537,7 +539,7 @@
    </PIN>
    <PIN pinname="HSCB" pintype="Input" slicecount="1" visible="-1" values="0">
    </PIN>
-   <BOUNDS left="210" top="2535" type="Box">
+   <BOUNDS left="210" top="2985" type="Box">
    </BOUNDS>
    <PIN pinname="PostProc On" visible="1">
    </PIN>
@@ -719,7 +721,7 @@
    <LINK dstnodeid="97" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="103" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="161" nodename="R (Value Advanced)" systemname="R (Value Advanced)">
-   <BOUNDS height="100" left="840" top="2970" type="Node" width="100">
+   <BOUNDS height="100" left="840" top="3420" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Receive String" slicecount="1" values="qw2.post.on">
    </PIN>
@@ -729,7 +731,7 @@
    <LINK dstnodeid="97" dstpinname="PostProc On" hiddenwhenlocked="1" srcnodeid="161" srcpinname="Output">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\lib\nodes\modules\Debug\PerfMeter (Debug).v4p" hiddenwhenlocked="1" id="163" nodename="PerfMeter (Debug)" systemname="PerfMeter (Debug)">
-   <BOUNDS height="270" left="840" top="3405" type="Node" width="1065">
+   <BOUNDS height="270" left="840" top="3855" type="Node" width="1065">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -743,7 +745,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="164" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="100" left="150" top="3780" type="Node" width="100">
+   <BOUNDS height="100" left="150" top="4230" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Layer 2" visible="1">
    </PIN>
@@ -783,37 +785,23 @@
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
-   <BOUNDS height="270" left="2670" top="4230" type="Node" width="1140">
+   <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
-   <BOUNDS height="3600" left="2670" top="4230" type="Box" width="4800">
+   <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="9090" left="1020" top="5550" type="Window" width="15075">
+   <BOUNDS height="13140" left="1020" top="1500" type="Window" width="15075">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="0">
    </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" id="167" nodename="Group (EX9)" systemname="Group (EX9)">
-   <BOUNDS height="100" left="2040" top="4575" type="Node" width="100">
-   </BOUNDS>
-   <PIN pinname="Layer 2" visible="1">
-   </PIN>
-   <PIN pinname="Layer 1" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
+   <PIN pinname="Evaluate" pintype="Input" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="167" dstpinname="Layer 2" srcnodeid="166" srcpinname="Layer">
-   </LINK>
-   <LINK dstnodeid="167" dstpinname="Layer 1" srcnodeid="164" srcpinname="Layer">
-   </LINK>
-   <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="167" srcpinname="Layer">
-   </LINK>
    <NODE componentmode="InABox" id="168" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="2190" top="4080" type="Node" width="285">
+   <BOUNDS height="270" left="150" top="1950" type="Node" width="285">
    </BOUNDS>
-   <BOUNDS height="420" left="2190" top="4080" type="Box" width="375">
+   <BOUNDS height="420" left="150" top="1950" type="Box" width="375">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="w">
    </PIN>
@@ -828,4 +816,10 @@
    <PIN pinname="Font" slicecount="1" values="|Wingdings 2|">
    </PIN>
    </NODE>
+   <LINK dstnodeid="166" dstpinname="Evaluate" hiddenwhenlocked="1" srcnodeid="103" srcpinname="Output">
+   </LINK>
+   <LINK dstnodeid="29" dstpinname="sc3 layer" srcnodeid="166" srcpinname="Layer" hiddenwhenlocked="1">
+   </LINK>
+   <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="164" srcpinname="Layer">
+   </LINK>
    </PATCH>
