@@ -470,7 +470,7 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="137" srcpinname="Output">
    </LINK>
-   <NODE componentmode="Hidden" debug="0" filename="qw2.postproc.v4p" hiddenwhenlocked="0" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
+   <NODE componentmode="InAWindow" debug="0" filename="qw2.postproc.v4p" hiddenwhenlocked="0" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" visible="1">
@@ -754,7 +754,7 @@
    </NODE>
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InAWindow" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
+   <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
    <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">

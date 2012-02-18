@@ -145,7 +145,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="3">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="11">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="scenes">
    </PIN>
@@ -255,7 +255,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
@@ -704,7 +704,7 @@
    </LINK>
    <LINK dstnodeid="126" dstpinname="Set 11" hiddenwhenlocked="1" srcnodeid="130" srcpinname="Output 12">
    </LINK>
-   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="163" nodename="S (Value Advanced)" systemname="S (Value Advanced)" hiddenwhenlocked="1">
+   <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" hiddenwhenlocked="1" id="163" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="1125" top="1440" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.mix.mode">
@@ -719,7 +719,7 @@
    </BOUNDS>
    <BOUNDS height="585" left="1020" top="150" type="Box" width="1275">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Subtract,Dodge">
+   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Overlay,Dodge">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
@@ -732,7 +732,7 @@
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" id="164" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)" hiddenwhenlocked="1">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="164" nodename="NULL (Enumerations)" systemname="NULL (Enumerations)">
    <BOUNDS height="100" left="1530" top="1410" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enum" pintype="Input" slicecount="1" visible="-1" values="qw2blendmode">
@@ -740,9 +740,9 @@
    <PIN pinname="Receive" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="164" dstpinname="Receive" srcnodeid="165" srcpinname="Output Enum" hiddenwhenlocked="1">
+   <LINK dstnodeid="164" dstpinname="Receive" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Output Enum">
    </LINK>
-   <NODE componentmode="Hidden" id="166" nodename="Enum2Ord (Enumerations)" systemname="Enum2Ord (Enumerations)" hiddenwhenlocked="1">
+   <NODE componentmode="Hidden" hiddenwhenlocked="1" id="166" nodename="Enum2Ord (Enumerations)" systemname="Enum2Ord (Enumerations)">
    <BOUNDS height="100" left="1125" top="990" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Enum" visible="1">
@@ -750,9 +750,9 @@
    <PIN pinname="Ord Value" visible="1">
    </PIN>
    </NODE>
-   <LINK dstnodeid="166" dstpinname="Enum" srcnodeid="165" srcpinname="Output Enum" hiddenwhenlocked="1">
+   <LINK dstnodeid="166" dstpinname="Enum" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Output Enum">
    </LINK>
-   <LINK dstnodeid="163" dstpinname="Input" srcnodeid="166" srcpinname="Ord Value" hiddenwhenlocked="1">
+   <LINK dstnodeid="163" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="166" srcpinname="Ord Value">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="167" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="2400" top="1140" type="Node" width="100">
