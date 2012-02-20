@@ -183,7 +183,7 @@
    </BOUNDS>
    <BOUNDS height="390" left="3240" top="570" type="Box" width="585">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="3">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -255,7 +255,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
@@ -335,9 +335,9 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
@@ -719,7 +719,7 @@
    </BOUNDS>
    <BOUNDS height="585" left="1020" top="150" type="Box" width="1275">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Overlay,Dodge">
+   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Multiply,Dodge">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>

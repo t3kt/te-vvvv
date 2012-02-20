@@ -7,9 +7,9 @@
    </BOUNDS>
    <BOUNDS height="1800" left="150" top="4635" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="6165" left="9765" top="0" type="Window" width="10305">
+   <BOUNDS height="6165" left="9225" top="1590" type="Window" width="10305">
    </BOUNDS>
-   <PIN pinname="Fullscreen Dimensions" slicecount="1" values="|960 x 600|">
+   <PIN pinname="Fullscreen Dimensions" slicecount="1" values="|640 x 480|">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="qw2out">
    </PIN>
@@ -60,6 +60,8 @@
    <PIN pinname="Fullscreen Depthbuffer Format" slicecount="1" values="NONE">
    </PIN>
    <PIN pinname="Fullscreen Antialiasing Quality Level" slicecount="1" values="NONE">
+   </PIN>
+   <PIN pinname="Device" slicecount="1" values="-1">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="2" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
@@ -263,7 +265,7 @@
    </PIN>
    <PIN pinname="Sampler State" pintype="Input" slicecount="1" visible="-1" values="||">
    </PIN>
-   <PIN pinname="Texture Transform" pintype="Input" slicecount="1" visible="-1" values="||">
+   <PIN pinname="Texture Transform" pintype="Input" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Texture Coord Mapping" pintype="Input" slicecount="1" visible="-1" values="OnShape_UV">
    </PIN>
@@ -470,7 +472,7 @@
    </LINK>
    <LINK dstnodeid="0" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="137" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InAWindow" debug="0" filename="qw2.postproc.v4p" hiddenwhenlocked="0" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
+   <NODE componentmode="Hidden" debug="0" filename="qw2.postproc.v4p" hiddenwhenlocked="0" id="97" nodename="qw2.postproc.v4p" systemname="qw2.postproc">
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Evaluate" pintype="Input" visible="1">
@@ -754,7 +756,7 @@
    </NODE>
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
+   <NODE componentmode="InAWindow" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
    <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">
@@ -791,5 +793,51 @@
    <LINK dstnodeid="29" dstpinname="sc3 layer" hiddenwhenlocked="1" srcnodeid="166" srcpinname="Layer">
    </LINK>
    <LINK dstnodeid="0" dstpinname="Layers" srcnodeid="164" srcpinname="Layer">
+   </LINK>
+   <NODE componentmode="Hidden" id="169" nodename="Vertigo (Transform)" systemname="Vertigo (Transform)">
+   <BOUNDS height="100" left="2655" top="4215" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="FOV" slicecount="1" values="0.15">
+   </PIN>
+   <PIN pinname="Dolly &amp; Size" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Depth" slicecount="1" values="100">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="170" nodename="Switch (Node Input)" systemname="Switch (Node Input)">
+   <BOUNDS height="100" left="2970" top="3540" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Switch">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="171" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="2460" top="3540" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="480" left="2460" top="3540" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="170" dstpinname="Switch" srcnodeid="171" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="170" dstpinname="Input 2" srcnodeid="169" srcpinname="Transform Out">
+   </LINK>
+   <LINK dstnodeid="94" dstpinname="Texture Transform" srcnodeid="170" srcpinname="Output">
    </LINK>
    </PATCH>
