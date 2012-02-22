@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.scene1.v4p" locked="0" systemname="qw2.scene1">
-   <BOUNDS height="7275" left="150" top="5835" type="Window" width="5430">
+   <BOUNDS height="7275" left="150" top="5835" type="Window" width="7965">
    </BOUNDS>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Node)" systemname="IOBox (Node)">
    <BOUNDS height="100" left="2520" top="6210" type="Node" width="100">
@@ -848,16 +848,90 @@
    </NODE>
    <LINK dstnodeid="34" dstpinname="Pause" srcnodeid="244" srcpinname="Output">
    </LINK>
-   <LINK srcnodeid="192" srcpinname="Output" dstnodeid="244" dstpinname="Input 2" linkstyle="Bezier">
+   <LINK dstnodeid="244" dstpinname="Input 2" linkstyle="Bezier" srcnodeid="192" srcpinname="Output">
    <LINKPOINT x="3945" y="765">
    </LINKPOINT>
    <LINKPOINT x="3690" y="765">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="243" srcpinname="Input Value" dstnodeid="244" dstpinname="Input 1" linkstyle="Bezier">
+   <LINK dstnodeid="244" dstpinname="Input 1" linkstyle="Bezier" srcnodeid="243" srcpinname="Input Value">
    <LINKPOINT x="3495" y="765">
    </LINKPOINT>
    <LINKPOINT x="3315" y="765">
    </LINKPOINT>
+   </LINK>
+   <NODE componentmode="Hidden" filename="qw2.lfo.v4p" id="248" nodename="qw2.lfo.v4p" systemname="qw2.lfo">
+   <BOUNDS height="100" left="6150" top="3105" type="Node" width="100">
+   </BOUNDS>
+   <PIN pinname="Period" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="Rate">
+   </PIN>
+   <PIN pinname="Pause">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Cycles" visible="1">
+   </PIN>
+   <PIN pinname="Reverse" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   <PIN pinname="Phase" pintype="Input" slicecount="1" visible="-1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="247" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="6465" top="2205" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="480" left="6465" top="2205" type="Box" width="480">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="248" dstpinname="Pause" srcnodeid="247" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="246" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="5880" top="2400" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="5880" top="2400" type="Box" width="495">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="2">
+   </PIN>
+   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Rate">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="248" dstpinname="Rate" srcnodeid="246" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="245" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="6780" top="3705" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="6780" top="3705" type="Box" width="795">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Units" slicecount="1" values="s">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="245" dstpinname="Y Input Value" srcnodeid="248" srcpinname="Period">
    </LINK>
    </PATCH>

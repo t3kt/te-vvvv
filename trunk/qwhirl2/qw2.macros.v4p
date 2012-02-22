@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.macros.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.macros.v4p" locked="0" systemname="qw2.macros">
-   <BOUNDS height="5055" left="4380" top="0" type="Window" width="5355">
+   <BOUNDS height="5295" left="4380" top="0" type="Window" width="5355">
    </BOUNDS>
    <NODE componentmode="InABox" id="11" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="4005" top="540" type="Node" width="0">
@@ -183,7 +183,7 @@
    </BOUNDS>
    <BOUNDS height="390" left="3240" top="570" type="Box" width="585">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="3">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -255,7 +255,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Size" slicecount="1" values="10">
    </PIN>
@@ -275,44 +275,6 @@
    </BOUNDS>
    </NODE>
    <LINK dstnodeid="100" dstpinname="Input" hiddenwhenlocked="1" srcnodeid="102" srcpinname="Y Output Value">
-   </LINK>
-   <NODE componentmode="InABox" id="122" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="90" top="105" type="Node" width="0">
-   </BOUNDS>
-   <BOUNDS height="690" left="90" top="105" type="Box" width="870">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN encoded="0" pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Pause">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE componentmode="Hidden" filename="" hiddenwhenlocked="0" id="121" nodename="S (Value)" systemname="S (Value)">
-   <BOUNDS height="100" left="90" top="915" type="Node" width="100">
-   </BOUNDS>
-   <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.pause">
-   </PIN>
-   <PIN pinname="Input">
-   </PIN>
-   <BOUNDS left="75" top="915" type="Box">
-   </BOUNDS>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK dstnodeid="121" dstpinname="Input Value" hiddenwhenlocked="0" srcnodeid="122" srcpinname="Y Output Value">
    </LINK>
    <NODE componentmode="Hidden" filename="%VVVV%\addonpack\lib\nodes\plugins\RSNodes.dll" id="123" nodename="S (Value Advanced)" systemname="S (Value Advanced)">
    <BOUNDS height="100" left="165" top="1905" type="Node" width="100">
@@ -719,7 +681,7 @@
    </BOUNDS>
    <BOUNDS height="585" left="1020" top="150" type="Box" width="1275">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Multiply,Dodge">
+   <PIN pinname="Input Enum" slicecount="3" values="Multiply,Subtract,Dodge">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
