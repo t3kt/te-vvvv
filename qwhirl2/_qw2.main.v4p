@@ -1,13 +1,13 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\_qw2.main.v4p" filename="%MYVVVV%\qwhirl2\_qw2.main.v4p" locked="0" systemname="_qw2.main">
-   <BOUNDS height="5880" left="0" top="0" type="Window" width="4650">
+   <BOUNDS height="5880" left="0" top="0" type="Window" width="4395">
    </BOUNDS>
    <NODE componentmode="InAWindow" debug="0" id="0" nodename="Renderer (EX9)" systemname="Renderer (EX9)">
    <BOUNDS height="270" left="150" top="4635" type="Node" width="1650">
    </BOUNDS>
    <BOUNDS height="1800" left="150" top="4635" type="Box" width="2400">
    </BOUNDS>
-   <BOUNDS height="6165" left="9225" top="1590" type="Window" width="10305">
+   <BOUNDS height="6165" left="10275" top="0" type="Window" width="9780">
    </BOUNDS>
    <PIN pinname="Fullscreen Dimensions" slicecount="1" values="|640 x 480|">
    </PIN>
@@ -88,10 +88,10 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE componentmode="Hidden" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
+   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
    <BOUNDS height="270" left="540" top="1230" type="Node" width="1140">
    </BOUNDS>
-   <BOUNDS height="7275" left="150" top="5835" type="Window" width="5430">
+   <BOUNDS height="7275" left="150" top="5835" type="Window" width="7965">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -227,7 +227,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" hiddenwhenlocked="1" id="87" nodename="S (Node)" systemname="S (Node)">
-   <BOUNDS height="100" left="3750" top="2670" type="Node" width="100">
+   <BOUNDS height="100" left="3495" top="2355" type="Node" width="100">
    </BOUNDS>
    <PIN encoded="0" pinname="Send String" slicecount="1" values="qw2.cam.view">
    </PIN>
@@ -433,13 +433,13 @@
    </BOUNDS>
    <BOUNDS height="3600" left="2415" top="840" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="5055" left="4380" top="0" type="Window" width="5355">
+   <BOUNDS height="5295" left="4380" top="0" type="Window" width="5355">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
-   <BOUNDS height="270" left="2460" top="3150" type="Node" width="1350">
+   <BOUNDS height="270" left="2310" top="3150" type="Node" width="1350">
    </BOUNDS>
-   <BOUNDS height="3600" left="2460" top="3150" type="Box" width="4800">
+   <BOUNDS height="3600" left="2310" top="3150" type="Box" width="4800">
    </BOUNDS>
    <BOUNDS height="5580" left="840" top="7035" type="Window" width="6675">
    </BOUNDS>
@@ -573,9 +573,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="147" nodename="IOBox (String)" systemname="IOBox (String)">
-   <BOUNDS height="270" left="1965" top="3045" type="Node" width="240">
+   <BOUNDS height="270" left="1815" top="3045" type="Node" width="240">
    </BOUNDS>
-   <BOUNDS height="480" left="1965" top="3045" type="Box" width="480">
+   <BOUNDS height="480" left="1815" top="3045" type="Box" width="480">
    </BOUNDS>
    <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="°">
    </PIN>
@@ -756,7 +756,7 @@
    </NODE>
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="InAWindow" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
+   <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
    <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">
@@ -807,7 +807,7 @@
    </PIN>
    </NODE>
    <NODE componentmode="Hidden" id="170" nodename="Switch (Node Input)" systemname="Switch (Node Input)">
-   <BOUNDS height="100" left="2970" top="3540" type="Node" width="100">
+   <BOUNDS height="100" left="2820" top="3540" type="Node" width="100">
    </BOUNDS>
    <PIN pinname="Switch">
    </PIN>
@@ -817,9 +817,9 @@
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="171" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
-   <BOUNDS height="0" left="2460" top="3540" type="Node" width="0">
+   <BOUNDS height="0" left="2310" top="3540" type="Node" width="0">
    </BOUNDS>
-   <BOUNDS height="480" left="2460" top="3540" type="Box" width="480">
+   <BOUNDS height="480" left="2310" top="3540" type="Box" width="480">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -840,4 +840,30 @@
    </LINK>
    <LINK dstnodeid="94" dstpinname="Texture Transform" srcnodeid="170" srcpinname="Output">
    </LINK>
+   <NODE componentmode="InAWindow" filename="qw2.anim.master.v4p" id="173" nodename="qw2.anim.master.v4p" systemname="qw2.anim.master">
+   <BOUNDS height="100" left="2430" top="4875" type="Node" width="100">
+   </BOUNDS>
+   <BOUNDS height="3600" left="2430" top="4875" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="4110" left="6825" top="1320" type="Window" width="3690">
+   </BOUNDS>
+   </NODE>
+   <NODE componentmode="InABox" id="174" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS height="270" left="1995" top="4800" type="Node" width="240">
+   </BOUNDS>
+   <BOUNDS height="390" left="1995" top="4800" type="Box" width="405">
+   </BOUNDS>
+   <PIN encoded="0" pinname="Input String" slicecount="1" visible="0" values="º">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Font" slicecount="1" values="Wingdings">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="18">
+   </PIN>
+   </NODE>
    </PATCH>
