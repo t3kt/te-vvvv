@@ -88,10 +88,10 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
+   <NODE componentmode="Hidden" debug="0" filename="qw2.scene1.v4p" hiddenwhenlocked="0" id="3" nodename="qw2.scene1.v4p" systemname="qw2.scene1">
    <BOUNDS height="270" left="540" top="1230" type="Node" width="1140">
    </BOUNDS>
-   <BOUNDS height="7275" left="150" top="5835" type="Window" width="7965">
+   <BOUNDS height="7800" left="150" top="5835" type="Window" width="13905">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -845,7 +845,7 @@
    </BOUNDS>
    <BOUNDS height="3600" left="2430" top="4875" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="4110" left="6825" top="1320" type="Window" width="3690">
+   <BOUNDS height="10635" left="330" top="2490" type="Window" width="14355">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" id="174" nodename="IOBox (String)" systemname="IOBox (String)">

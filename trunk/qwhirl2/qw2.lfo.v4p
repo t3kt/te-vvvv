@@ -205,7 +205,7 @@
    </PIN>
    <PIN encoded="0" pinname="Units" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Precision" slicecount="1" values="1">
+   <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN encoded="0" pinname="Descriptive Name" slicecount="1" values="Rate">
    </PIN>
