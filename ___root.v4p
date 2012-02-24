@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta27.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\___root.v4p" componentmode="Hidden" filename="A:\vvvv\vvvv45\root.v4p" systemname="root">
    <BOUNDS height="7950" left="2070" top="3060" type="Window" width="10170">
    </BOUNDS>
@@ -151,9 +151,9 @@
    <NODE componentmode="Hidden" id="-11" nodename="VVVV (VVVV)" systemname="VVVV (VVVV)">
    <BOUNDS height="100" left="795" top="2475" type="Node" width="100">
    </BOUNDS>
-   <PIN pinname="Show in Tray" slicecount="1" values="1">
+   <PIN pinname="Show in Tray" slicecount="1" values="0">
    </PIN>
-   <PIN encoded="0" pinname="Application Title" slicecount="1" values="VVVV">
+   <PIN encoded="0" pinname="Application Title" slicecount="1" values="[vvvv]">
    </PIN>
    </NODE>
    <NODE componentmode="InABox" id="46" nodename="IOBox (String)" systemname="IOBox (String)">
@@ -286,10 +286,10 @@
    <PIN pinname="String Type" slicecount="1" values="String">
    </PIN>
    </NODE>
-   <NODE componentmode="InAWindow" filename="..\..\..\vvvv\{LOG}.v4p" id="63" nodename="{LOG}.v4p" systemname="{LOG}" border="1">
+   <NODE border="1" componentmode="Hidden" filename="..\..\..\vvvv\{LOG}.v4p" id="63" nodename="{LOG}.v4p" systemname="{LOG}">
    <BOUNDS height="100" left="1170" top="5550" type="Node" width="100">
    </BOUNDS>
-   <BOUNDS height="5340" left="16680" top="9810" type="Window" width="8520">
+   <BOUNDS height="5370" left="13530" top="6105" type="Window" width="8520">
    </BOUNDS>
    </NODE>
    </PATCH>
