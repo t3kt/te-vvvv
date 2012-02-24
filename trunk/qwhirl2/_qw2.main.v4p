@@ -286,10 +286,10 @@
    </NODE>
    <LINK dstnodeid="94" dstpinname="Transform" hiddenwhenlocked="1" srcnodeid="93" srcpinname="Transform Out">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color">
+   <NODE componentmode="InAWindow" filename="qw2.color.v4p" id="102" nodename="qw2.color.v4p" systemname="qw2.color" debug="0">
    <BOUNDS height="270" left="2415" top="1245" type="Node" width="1020">
    </BOUNDS>
-   <BOUNDS height="4065" left="270" top="6300" type="Window" width="11070">
+   <BOUNDS height="7155" left="270" top="3525" type="Window" width="9540">
    </BOUNDS>
    <BOUNDS left="2415" top="1245" type="Box">
    </BOUNDS>
@@ -433,7 +433,7 @@
    </BOUNDS>
    <BOUNDS height="3600" left="2415" top="840" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="5295" left="4380" top="0" type="Window" width="5355">
+   <BOUNDS height="5295" left="4905" top="0" type="Window" width="5355">
    </BOUNDS>
    </NODE>
    <NODE componentmode="Hidden" filename="qw2.midi.zerosl.v4p" id="136" nodename="qw2.midi.zerosl.v4p" systemname="qw2.midi.zerosl">
@@ -756,12 +756,12 @@
    </NODE>
    <LINK dstnodeid="163" dstpinname="Enabled" hiddenwhenlocked="1" srcnodeid="165" srcpinname="Y Output Value">
    </LINK>
-   <NODE componentmode="Hidden" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
+   <NODE componentmode="InAWindow" filename="qw2.scene3.v4p" id="166" nodename="qw2.scene3.v4p" systemname="qw2.scene3">
    <BOUNDS height="270" left="540" top="2010" type="Node" width="1140">
    </BOUNDS>
    <BOUNDS height="3600" left="540" top="2010" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="10890" left="225" top="4095" type="Window" width="15075">
+   <BOUNDS height="10890" left="225" top="4095" type="Window" width="14835">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -840,12 +840,12 @@
    </LINK>
    <LINK dstnodeid="94" dstpinname="Texture Transform" srcnodeid="170" srcpinname="Output">
    </LINK>
-   <NODE componentmode="InAWindow" filename="qw2.anim.master.v4p" id="173" nodename="qw2.anim.master.v4p" systemname="qw2.anim.master">
+   <NODE componentmode="InAWindow" filename="qw2.anim.master.v4p" id="173" nodename="qw2.anim.master.v4p" systemname="qw2.anim.master" debug="0">
    <BOUNDS height="100" left="2430" top="4875" type="Node" width="100">
    </BOUNDS>
    <BOUNDS height="3600" left="2430" top="4875" type="Box" width="4800">
    </BOUNDS>
-   <BOUNDS height="10635" left="330" top="2490" type="Window" width="14355">
+   <BOUNDS height="4140" left="4170" top="345" type="Window" width="4260">
    </BOUNDS>
    </NODE>
    <NODE componentmode="InABox" id="174" nodename="IOBox (String)" systemname="IOBox (String)">
