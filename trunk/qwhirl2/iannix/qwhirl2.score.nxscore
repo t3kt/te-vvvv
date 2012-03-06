@@ -1,0 +1,145 @@
+zoom 52
+speed 1
+center -0.361348 1.40846
+add curve 4
+setpos current -4.01716 2.27769 0
+setactive current 1
+setgroup current 
+setcoloractive current curve_active
+setcolorinactive current curve_inactive
+setsize current 1.2
+setmessage current 20, 
+setlabel current 
+setpointat current  0  0 0 0  0 0 0  0 0 0
+setpointat current  1  2.16849 -0.234009 0  0 0 0  0 0 0
+setpointat current  2  4.57098 -0.74883 0  0 0 0  0 0 0
+setpointat current  3  1.29485 -1.68487 0  0 0 0  0 0 0
+setpointat current  4  2.71451 -1.85647 0  0 0 0  0 0 0
+setpointat current  5  1.40406 -1.32605 0  0 0 0  0 0 0
+setpointat current  6  5.1014 -0.358814 0  0 0 0  0 0 0
+setpointat current  7  4.05616 -0.156006 0  0 0 0  0 0 0
+setpointat current  8  4.18097 -1.15445 0  0 0 0  0 0 0
+setpointat current  9  0.0312014 -0.0312014 0  0 0 0  0 0 0
+setline current 65535 1
+add cursor 5
+setpos current 0.886739 -0.507332 0
+setactive current 1
+setgroup current 
+setcoloractive current cursor_active
+setcolorinactive current cursor_inactive
+setsize current 4
+setmessage current 20, 
+setlabel current 
+setcurve current lastCurve
+setline current 65535 1
+setoffset current 0 0 -1
+setboundssource current -4.01716 2.27769 1.08424 0.42122
+setboundstarget current 0 1 1 0
+setspeed current 1
+setspeedf current 1
+setwidth current 1
+setpattern current 0 0 1
+settime current 95.575
+
+add trigger 1
+setpos current -3.68892 2.22278 0
+setactive current 1
+setgroup current 
+setcoloractive current object_selection
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.macro.scenes.mode 3 ,
+setlabel current scene mode = 3
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current object_selection
+setcolorinactivemessage current trigger_inactive_message
+
+add trigger 7
+setpos current -2.14509 1.70047 0
+setactive current 1
+setgroup current 
+setcoloractive current trigger_active
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.ctl.mode 2 ,
+setlabel current 
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current trigger_active_message
+setcolorinactivemessage current trigger_inactive_message
+
+add trigger 8
+setpos current -0.397816 1.24805 0
+setactive current 1
+setgroup current 
+setcoloractive current trigger_active
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.ctl.mode 3 ,
+setlabel current 
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current trigger_active_message
+setcolorinactivemessage current trigger_inactive_message
+
+add trigger 9
+setpos current -1.52717 1.96558 0
+setactive current 1
+setgroup current 
+setcoloractive current object_selection
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.macro.scenes.mode 6 ,
+setlabel current scene mode = 6
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current object_selection
+setcolorinactivemessage current trigger_inactive_message
+
+add trigger 10
+setpos current 0.0842185 1.61971 0
+setactive current 1
+setgroup current 
+setcoloractive current object_selection
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.macro.scenes.mode 8 ,
+setlabel current scene mode = 8
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current object_selection
+setcolorinactivemessage current trigger_inactive_message
+
+add trigger 11
+setpos current -2.11422 0.743583 0
+setactive current 1
+setgroup current 
+setcoloractive current object_selection
+setcolorinactive current trigger_inactive
+setsize current 1
+setmessage current 1, osc://127.0.0.1:57120/qw2.macro.scenes.mode 10 ,
+setlabel current scene mode = 10
+settriggeroff current 0
+settextureactive current trigger_active
+settextureinactive current trigger_inactive
+settextureactivemessage current trigger_active_message
+settextureinactivemessage current trigger_inactive_message
+setcoloractivemessage current object_selection
+setcolorinactivemessage current trigger_inactive_message
+
