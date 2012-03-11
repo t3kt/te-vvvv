@@ -1,6 +1,6 @@
-zoom 52
-speed 1
-center -0.361348 1.40846
+zoom 140
+speed 1.87
+center 0.479196 -0.310073
 add curve 4
 setpos current -4.01716 2.27769 0
 setactive current 1
@@ -39,7 +39,7 @@ setspeed current 1
 setspeedf current 1
 setwidth current 1
 setpattern current 0 0 1
-settime current 95.575
+settime current 0
 
 add trigger 1
 setpos current -3.68892 2.22278 0

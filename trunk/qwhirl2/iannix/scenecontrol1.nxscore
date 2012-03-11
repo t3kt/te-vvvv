@@ -1,0 +1,111 @@
+zoom 140
+speed 0.23
+center 0.497896 -0.310073
+add curve 7
+setpos current -3.68149 1.61192 0
+setactive current 1
+setgroup current 
+setcoloractive current curve_active
+setcolorinactive current curve_inactive
+setsize current 1.2
+setmessage current 20, 
+setlabel current 
+setpointat current  0  0 0 0  0 0 0  0 0 0
+setpointat current  1  6.04992 0.0655227 0  0 0 0  0 0 0
+setpointat current  2  3.64743 -4.19345 0  0 0 0  0 0 0
+setpointat current  3  1.00468 -0.458658 0  0 0 0  0 0 0
+setpointat current  4  5.21997 -2.42434 0  0 0 0  0 0 0
+setpointat current  5  2.20593 0.393136 0  0 0 0  0 0 0
+setline current 65535 1
+add cursor 8
+setpos current 0 0 0
+setactive current 1
+setgroup current 
+setcoloractive current cursor_active
+setcolorinactive current cursor_inactive
+setsize current 2
+setmessage current 20, osc://127.0.0.1:57120/sceneon {(collision_curve_id == "no")?"suppress": (floor(collision_curve_id/2)+1) } { (collision_curve_id % 2)?0:1 } ,
+setlabel current 
+setcurve current lastCurve
+setline current 65535 1
+setoffset current 0 0 -1
+setboundssource current -3.68149 2.00506 2.36843 -2.58153
+setboundstarget current 0 1 1 0
+setspeed current 1
+setspeedf current 1
+setwidth current 0.4
+setpattern current 0 0 1
+settime current 1.2098
+
+add curve 3
+setpos current -1.22581 0.552481 0
+setactive current 1
+setgroup current sc1
+setcoloractive current 85 255 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC1 ON
+setpointsellipse current 4 4
+setresize current 4 4
+
+add curve 4
+setpos current -1.22581 0.556818 0
+setactive current 1
+setgroup current sc1
+setcoloractive current 170 170 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC1 OFF
+setpointsellipse current 4.4 4.4
+setresize current 4.4 4.4
+
+add curve 1
+setpos current 1.0043 0.615663 0
+setactive current 1
+setgroup current sc2
+setcoloractive current 85 255 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC2 ON
+setpointsellipse current 4 4
+setresize current 4 4
+
+add curve 2
+setpos current 1.0043 0.62 0
+setactive current 1
+setgroup current sc2
+setcoloractive current 170 170 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC2 OFF
+setpointsellipse current 4.4 4.4
+setresize current 4.4 4.4
+
+add curve 5
+setpos current -0.00272024 -1.30399 0
+setactive current 1
+setgroup current sc3
+setcoloractive current 85 255 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC3 ON
+setpointsellipse current 4 4
+setresize current 4 4
+
+add curve 6
+setpos current -0.00272024 -1.29966 0
+setactive current 1
+setgroup current sc3
+setcoloractive current 170 170 0 255
+setcolorinactive current curve_inactive
+setsize current 2
+setmessage current 20, 
+setlabel current SC3 OFF
+setpointsellipse current 4.4 4.4
+setresize current 4.4 4.4
+
