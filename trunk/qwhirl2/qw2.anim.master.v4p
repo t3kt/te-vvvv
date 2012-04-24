@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.1.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha27.2.dtd" >
    <PATCH nodename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.master.v4p" filename="C:\Users\thezer0ist\vvvv\qwhirl2\qw2.anim.master.v4p" systemname="qw2.anim.master">
-   <BOUNDS height="4140" left="4170" top="345" type="Window" width="4260">
+   <BOUNDS height="4035" left="4170" top="345" type="Window" width="3690">
    </BOUNDS>
    <NODE componentmode="InABox" id="1" nodename="IOBox (Value Advanced)" systemname="IOBox (Value Advanced)">
    <BOUNDS height="0" left="885" top="90" type="Node" width="0">
