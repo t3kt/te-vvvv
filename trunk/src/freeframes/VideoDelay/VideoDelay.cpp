@@ -3,198 +3,135 @@
 
 #include "VideoDelay.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-// Plugin Globals
-PlugInfoStruct GPlugInfo;
-PlugExtendedInfoStruct GPlugExtInfo;
-ParamConstsStruct GParamConstants[NUM_PARAMS];
-OutputConstsStruct GOutputConstants[NUM_OUTPUTS];
-
-PlugInfoStruct *getInfo()
+DWORD VideoDelay::init( VideoInfoStruct* pVideoInfo )
 {
-	//TODO: implement this
-	GPlugInfo.APIMajorVersion = 1;		// number before decimal point in version nums
-	GPlugInfo.APIMinorVersion = 1;		// this is the number after the decimal point
-										// so version 0.511 has major num 0, minor num 501
-	char ID[FF_INFO_ID_LENGTH+1] = "zDEL";		 // this *must* be unique to your plugin
-								 // see www.freeframe.org for a list of ID's already taken
-	char name[FF_INFO_NAME_LENGTH+1] = "VideoDelay";
+	VideoInfo.frameWidth		= pVideoInfo->frameWidth;
+	VideoInfo.frameHeight	= pVideoInfo->frameHeight;
+	VideoInfo.bitDepth		= pVideoInfo->bitDepth;
+	FrameSize = getBitsForDepth( pVideoInfo->bitDepth );
 
-	memcpy(GPlugInfo.uniqueID, ID, FF_INFO_ID_LENGTH);
-	memcpy(GPlugInfo.pluginName, name, FF_INFO_NAME_LENGTH);
-	GPlugInfo.pluginType = FF_EFFECT;
-
-	return &GPlugInfo;
-}
-
-LPVOID getExtendedInfo()
-{
-	//TODO: implement this
-
-	GPlugExtInfo.PluginMajorVersion = 1;
-	GPlugExtInfo.PluginMinorVersion = 1;
-
-	// I'm just passing null for description etc for now
-	// todo: send through description and about
-	GPlugExtInfo.Description = NULL;
-	GPlugExtInfo.About = NULL;
-
-	// FF extended data block is not in use by the API yet
-	// we will define this later if we want to
-	GPlugExtInfo.FreeFrameExtendedDataSize = 0;
-	GPlugExtInfo.FreeFrameExtendedDataBlock = NULL;
-
-	return (LPVOID) &GPlugExtInfo;
-}
-
-DWORD initialise()
-{
-	GParamConstants[PARAM_BUFFER_LENGTH].Type = FF_TYPE_STANDARD;
-	GParamConstants[PARAM_BUFFER_LENGTH].Default = 100;
-	char bufLenName[FF_PARAM_NAME_LENGTH + 1] = "Buffer Length";
-	memcpy(GParamConstants[PARAM_BUFFER_LENGTH].Name, bufLenName, FF_PARAM_NAME_LENGTH);
-
-	GParamConstants[PARAM_FRAME_OFFSET].Type = FF_TYPE_STANDARD;
-	GParamConstants[PARAM_FRAME_OFFSET].Default = 10;
-	char offsetName[FF_PARAM_NAME_LENGTH + 1] = "Frame Offset";
-	memcpy(GParamConstants[PARAM_FRAME_OFFSET].Name, offsetName, FF_PARAM_NAME_LENGTH);
-	
-	return FF_SUCCESS;
-}
-
-DWORD deInitialise()
-{
-	//TODO: implement this
-	return FF_SUCCESS;
-}
-
-DWORD getNumParameters() { return NUM_PARAMS; }
-
-ParamConstsStruct *getParameterInfo( DWORD index )
-{
-	if( index > 0 && index < NUM_PARAMS )
-		return &GParamConstants[index];
-	return NULL;
-}
-
-DWORD	getNumOutputs() { return NUM_OUTPUTS; }
-
-OutputConstsStruct* getOutputInfo( DWORD index )
-{
-	if( index > 0 && index < NUM_OUTPUTS )
-		return &GOutputConstants[index];
-	return NULL;
-}
-
-DWORD	getPluginCaps(DWORD index)
-{
-	//TODO: implement this
-	return NULL;
-}
-
-LPVOID instantiate( VideoInfoStruct* pVideoInfo )
-{
-	VideoDelayInstance *pInstance;
-
-	pInstance = (VideoDelayInstance*)malloc( sizeof(VideoDelayInstance) );
-
-	for(int i = 0; i < NUM_PARAMS; i++)
+	// this shouldn't happen if the host is checking the capabilities properly
+	if (VideoInfo.bitDepth > FF_CAP_32BITVIDEO ||
+		VideoInfo.bitDepth < FF_CAP_16BITVIDEO)
 	{
-		pInstance->Params[i].Value = GParamConstants[i].Default;
+		return FALSE;
 	}
 
-	InitializeCriticalSection(&pInstance->CriticalSection);
+	InitializeCriticalSection(&CriticalSection);
 
-	//TODO: implement this
+	FrameOffset = 0;
+	FrameBuffer = NULL;
+	Cursor = 0;
 
-	return NULL;
+	setBufferLength( DEFAULT_BUFFER_LENGTH );
+	setFrameOffset( DEFAULT_FRAME_OFFSET );
+
+	return TRUE;
 }
 
-DWORD deInstantiate(LPVOID instanceID)
+void VideoDelay::dispose( )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-
-	//TODO: implement this
-
-	DeleteCriticalSection(&pInstance->CriticalSection);
-
-	free( pInstance );
-
-	return FF_SUCCESS;
+	resizeFrameBuffer( 0 );
+	DeleteCriticalSection(&CriticalSection);
 }
 
-char* getParameterDisplay(LPVOID instanceID, DWORD param)
+inline DWORD VideoDelay::setBufferLength( UINT32 length )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-	//TODO: implement this
-	return NULL;
+	if( length < 1 )
+		length = 1;
+	return resizeFrameBuffer( length );
 }
 
-DWORD setParameter(LPVOID instanceID, SetParameterStruct* setParam)
+DWORD VideoDelay::setFrameOffset( UINT32 offset )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-	//TODO: implement this
-	return NULL;
-}
-
-float getParameter(LPVOID instanceID, DWORD param)
-{
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
+	if( offset > BufferLength )
+		offset = BufferLength - 1;
 	//TODO: implement this
 	return NULL;
 }
 
-DWORD getOutputSliceCount(LPVOID instanceID, DWORD index)
+DWORD VideoDelay::setParameter( DWORD param, double value )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-	//TODO: implement this
-	return NULL;
+	switch( param )
+	{
+	case PARAM_BUFFER_LENGTH:
+		return setBufferLength( (UINT32)value );
+	case PARAM_FRAME_OFFSET:
+		return setFrameOffset( (UINT32)value );
+	}
+	return FF_FAIL;
 }
 
-float* getOutput(LPVOID instanceID, DWORD index)
+float VideoDelay::getParameter( DWORD param )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-	//TODO: implement this
-	return NULL;
+
+	switch( param )
+	{
+	case PARAM_BUFFER_LENGTH:	return (float)BufferLength;
+	case PARAM_FRAME_OFFSET:	return (float)FrameOffset;
+	default:					return NULL;
+	}
 }
 
-DWORD setInput(LPVOID instanceID, InputStruct* pInput)
+char* VideoDelay::getParameterDisplay( DWORD param )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
-	//TODO: implement this
-	return NULL;
+	char displayValue[FF_PARAM_DISPLAY_LENGTH];
+	memset( displayValue, ' ', FF_PARAM_DISPLAY_LENGTH );
+	switch( param )
+	{
+	case PARAM_BUFFER_LENGTH:
+		sprintf_s( displayValue, FF_PARAM_DISPLAY_LENGTH, "%i", BufferLength );
+		break;
+	case PARAM_FRAME_OFFSET:
+		sprintf_s( displayValue, FF_PARAM_DISPLAY_LENGTH, "%i", FrameOffset );
+		break;
+	}
+	return displayValue;
 }
 
-DWORD processFrame(LPVOID instanceID, LPVOID pFrame)
+DWORD VideoDelay::resizeFrameBuffer( UINT32 bufferLength )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
+	//UINT32 oldLength = getBufferLength( pInstance );
+	//UINT32 oldOffset = getFrameOffset( pInstance );
 
-	EnterCriticalSection(&pInstance->CriticalSection);
+	////....
+	//pInstance->FrameBuffer = (VideoPixel24bit*)realloc(
+	//	pInstance->FrameBuffer, pInstance->FrameSize * bufferLength );
 
-	//TODO: implement this
-
-	LeaveCriticalSection(&pInstance->CriticalSection);
-
-	return FF_SUCCESS;
-}
-
-DWORD processFrameCopy(LPVOID instanceID, ProcessFrameCopyStruct* pFrameData)
-{
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
 	//TODO: implement this
 	return FF_FAIL;
 }
 
-DWORD setThreadLock(LPVOID instanceID, DWORD enter)
+bool VideoDelay::pushFrame( IN VideoPixel24bit* pFrame )
 {
-	VideoDelayInstance* pInstance = (VideoDelayInstance*)instanceID;
+	//TODO: implement this
+	return false;
+}
 
-	if(*(bool*)enter)
-		EnterCriticalSection(&pInstance->CriticalSection);
+bool VideoDelay::getNextFrame( OUT VideoPixel24bit* pFrameOutput )
+{
+	//TODO: implement this
+	return false;
+}
+
+DWORD VideoDelay::processFrame( IN OUT VideoPixel24bit* pFrame )
+{
+	DWORD result;
+
+	enterLock();
+
+	if(!pushFrame( pFrame ))
+		result = FF_FAIL;
+	else if(!getNextFrame( pFrame ))
+		result = FF_FAIL;
 	else
-		LeaveCriticalSection(&pInstance->CriticalSection);
+		result = FF_SUCCESS;
 
-	return FF_SUCCESS;
+	leaveLock();
+
+	return result;
 }
 
 

@@ -11,6 +11,11 @@
 
 #define VIDEODELAY_API __declspec(dllexport)
 
+#define NUM_INPUTS 1  //number of video inputs
+
+const UINT32 DEFAULT_BUFFER_LENGTH = 100;
+const UINT32 DEFAULT_FRAME_OFFSET  = 0;
+
 enum
 {
 	PARAM_BUFFER_LENGTH,
@@ -26,16 +31,54 @@ enum
 	NUM_OUTPUTS
 };
 
-typedef struct VideoDelayInstanceTag {
-	//unsigned int bufferLength;
-	//unsigned int frameOffset;
+class VideoDelay
+{
+public:
 
-	ParamStruct Params[NUM_PARAMS];
-	OutputStruct Outputs[NUM_OUTPUTS];
+	DWORD init( VideoInfoStruct* pVideoInfo );
+	void dispose( );
+
+	DWORD setBufferLength( UINT32 length );
+	DWORD setFrameOffset( UINT32 offset );
+
+	DWORD setParameter( DWORD param, double value );
+
+	float getParameter( DWORD param );
+
+	char* getParameterDisplay( DWORD param );
+
+	inline void enterLock( )
+	{
+		EnterCriticalSection( &CriticalSection );
+	}
+
+	inline void leaveLock( )
+	{
+		LeaveCriticalSection( &CriticalSection );
+	}
+
+	DWORD processFrame( IN OUT VideoPixel24bit *pFrame );
+
+private:
+
+	DWORD resizeFrameBuffer( UINT32 bufferLength );
+
+	bool pushFrame( IN VideoPixel24bit *pFrame );
+
+	bool getNextFrame( OUT VideoPixel24bit *pFrameOutput );
 
 	VideoInfoStruct VideoInfo;
+	DWORD FrameSize;
+
+	UINT32 BufferLength;
+	UINT32 FrameOffset;
+
+	UINT32 Cursor;
+
+	VideoPixel24bit *FrameBuffer;
 
 	CRITICAL_SECTION CriticalSection;
-} VideoDelayInstance;
+
+};
 
 #endif
