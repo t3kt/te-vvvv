@@ -182,6 +182,7 @@ typedef struct VideoInfoStructTag {
 	DWORD frameHeight;				// height of frame in pixels
 	DWORD bitDepth;					// enumerated indicator of bit depth of video
 									// 0 = 16 bit 5-6-5   1 = 24bit packed   2 = 32bit
+	//DWORD Orientation; //...???
 } VideoInfoStruct;
 
 typedef struct ProcessFrameCopyStructTag {

@@ -8,6 +8,7 @@
 #define FF_PARAM_NAME_LENGTH	16
 #define FF_INFO_ID_LENGTH		4
 #define FF_INFO_NAME_LENGTH		16
+#define FF_PARAM_DISPLAY_LENGTH	16
 
 //#ifndef PLUGIN_INSTANCE_POINTER
 //#define PLUGIN_INSTANCE_POINTER LPVOID
@@ -94,6 +95,17 @@ float* getOutput(LPVOID pInstance, DWORD index);
 DWORD setThreadLock(LPVOID pInstance, DWORD index);
 
 DWORD setInput(LPVOID pInstance, InputStruct* pInput);
+
+inline DWORD getBitsForDepth( DWORD bitDepth )
+{
+	switch( bitDepth )
+	{
+	case FF_CAP_16BITVIDEO: return 16;
+	case FF_CAP_24BITVIDEO: return 24;
+	case FF_CAP_32BITVIDEO: return 32;
+	default: return 0;
+	}
+}
 
 
 #endif
