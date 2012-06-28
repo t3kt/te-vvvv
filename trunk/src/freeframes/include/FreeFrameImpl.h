@@ -14,6 +14,62 @@
 //#define PLUGIN_INSTANCE_POINTER LPVOID
 //#endif
 
+inline plugMainUnion createRetVal( DWORD ivalue )
+{
+	plugMainUnion retval;
+	retval.ivalue = ivalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal(float fvalue )
+{
+	plugMainUnion retval;
+	retval.fvalue = fvalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( VideoInfoStruct* VISvalue )
+{
+	plugMainUnion retval;
+	retval.VISvalue = VISvalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( PlugInfoStruct *PISvalue )
+{
+	plugMainUnion retval;
+	retval.PISvalue = PISvalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( char *svalue )
+{
+	plugMainUnion retval;
+	retval.svalue = svalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( float *pvalues )
+{
+	plugMainUnion retval;
+	retval.svalue= (char*)pvalues;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( LPVOID pvalue )
+{
+	plugMainUnion retval;
+	retval.ivalue = (DWORD)pvalue;
+	return retval;
+};
+
+inline plugMainUnion createRetVal( unsigned int ivalue )
+{
+	plugMainUnion retval;
+	retval.ivalue = ivalue;
+	return retval;
+};
+
 PlugInfoStruct*	getInfo();
 
 DWORD	initialise();

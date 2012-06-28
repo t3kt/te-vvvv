@@ -8,6 +8,7 @@
 #include <FreeFrame.h>
 #include <FreeFrameExt.h>
 #include <FreeFrameImpl.h>
+#include <FrameBuffer.h>
 
 #define VIDEODELAY_API __declspec(dllexport)
 
@@ -35,8 +36,13 @@ class VideoDelay
 {
 public:
 
-	DWORD init( VideoInfoStruct* pVideoInfo );
-	void dispose( );
+	VideoDelay( VideoInfoStruct* pVideoInfo );
+	~VideoDelay( );
+
+
+	//extern "C"  __declspec(dllexport) /*__stdcall*/ plugMainUnion plugMain(DWORD functionCode, LPVOID pParam, LPVOID instanceID)
+
+	plugMainUnion execFunction( DWORD functionCode, LPVOID pParam );
 
 	DWORD setBufferLength( UINT32 length );
 	DWORD setFrameOffset( UINT32 offset );
@@ -61,21 +67,28 @@ public:
 
 private:
 
-	DWORD resizeFrameBuffer( UINT32 bufferLength );
-
-	bool pushFrame( IN VideoPixel24bit *pFrame );
-
-	bool getNextFrame( OUT VideoPixel24bit *pFrameOutput );
+	inline char* getParamDisplayBuffer( DWORD param )
+	{
+		switch( param )
+		{
+		case PARAM_BUFFER_LENGTH:
+			return BufferLengthDisplay;
+		case PARAM_FRAME_OFFSET:
+			return FrameOffsetDisplay;
+		default:
+			return NULL;
+		}
+	}
 
 	VideoInfoStruct VideoInfo;
-	DWORD FrameSize;
 
 	UINT32 BufferLength;
 	UINT32 FrameOffset;
 
-	UINT32 Cursor;
+	char BufferLengthDisplay[ FF_PARAM_DISPLAY_LENGTH ];
+	char FrameOffsetDisplay[ FF_PARAM_DISPLAY_LENGTH ];
 
-	VideoPixel24bit *FrameBuffer;
+	FrameBuffer Buffer;
 
 	CRITICAL_SECTION CriticalSection;
 

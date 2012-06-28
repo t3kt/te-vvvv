@@ -73,12 +73,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\FrameBuffer.h" />
     <ClInclude Include="..\include\FreeFrame.h" />
     <ClInclude Include="..\include\FreeFrameExt.h" />
     <ClInclude Include="..\include\FreeFrameImpl.h" />
     <ClInclude Include="VideoDelay.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\FrameBuffer.cpp" />
     <ClCompile Include="..\include\main.cpp" />
     <ClCompile Include="VideoDelay.cpp" />
     <ClCompile Include="statics.cpp" />

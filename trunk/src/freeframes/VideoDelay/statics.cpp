@@ -32,6 +32,7 @@ LPVOID getExtendedInfo()
 	GPlugExtInfo.PluginMajorVersion = 1;
 	GPlugExtInfo.PluginMinorVersion = 1;
 
+
 	// I'm just passing null for description etc for now
 	// todo: send through description and about
 	GPlugExtInfo.Description = NULL;
@@ -103,19 +104,23 @@ LPVOID instantiate( VideoInfoStruct* pVideoInfo )
 {
 	LPINST pInstance;
 
-	pInstance = (LPINST)malloc( sizeof(VideoDelay) );
-	if( pInstance->init( pVideoInfo ) )
-		return pInstance;
-	return NULL;
+	// this shouldn't happen if the host is checking the capabilities properly
+	/*if (VideoInfo.bitDepth > FF_CAP_32BITVIDEO ||
+		VideoInfo.bitDepth < FF_CAP_16BITVIDEO)
+	{
+		return FALSE;
+	}*/
+
+	pInstance = new VideoDelay( pVideoInfo );
+	return pInstance;
 }
 
 DWORD deInstantiate(LPVOID instanceID)
 {
 	LPINST pInstance = (LPINST)instanceID;
 
-	pInstance->dispose();
-
-	free( pInstance );
+	if( pInstance )
+		delete pInstance;
 
 	return FF_SUCCESS;
 }
