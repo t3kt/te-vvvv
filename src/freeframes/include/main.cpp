@@ -33,8 +33,6 @@ extern "C" {
    plugMainUnion plugMain( DWORD functionCode, LPVOID pParam, LPVOID instanceID)
 #endif
 {
-	plugMainUnion retval;
-
 	//// declare pPlugObj - pointer to this instance
 	//plugClass *pPlugObj;
 
@@ -44,93 +42,68 @@ extern "C" {
 	switch(functionCode) {
 
 	case FF_GETINFO:
-		retval.PISvalue = getInfo();
-		break;
+		return createRetVal( getInfo() );
 	case FF_INITIALISE:
-		retval.ivalue = initialise();
-		break;
+		return createRetVal( initialise() );
 	case FF_DEINITIALISE:
-		retval.ivalue = deInitialise();			// todo: pass on instance IDs etc
-		break;
+		return createRetVal( deInitialise() );			// todo: pass on instance IDs etc
 	case FF_GETNUMPARAMETERS:
-		retval.ivalue = getNumParameters();
-		break;
+		return createRetVal( getNumParameters() );
 	case FF_GETPARAMETERNAME:
-		retval.svalue =  getParameterName( (DWORD) pParam );
-		break;
+		return createRetVal( getParameterName( (DWORD) pParam ) );
 	case FF_GETPARAMETERDEFAULT:
-		retval.fvalue =  getParameterDefault( (DWORD) pParam );
-		break;
+		return createRetVal( getParameterDefault( (DWORD) pParam ) );
 	case FF_GETPARAMETERDISPLAY:
-		retval.svalue = getParameterDisplay( instanceID, (DWORD) pParam );
-		break;
+		return createRetVal( getParameterDisplay( instanceID, (DWORD) pParam ) );
 	// parameters are passed in here as a packed struct of two DWORDS:
 	// index and value
 	case FF_SETPARAMETER:
-		retval.ivalue = setParameter( instanceID, (SetParameterStruct*) pParam );
-		break;
+		return createRetVal( setParameter( instanceID, (SetParameterStruct*) pParam ) );
 	case FF_PROCESSFRAME:
-		retval.ivalue = processFrame( instanceID, pParam );
-		break;
+		return createRetVal( processFrame( instanceID, pParam ) );
 	case FF_GETPARAMETER:
-		retval.fvalue = getParameter( instanceID, (DWORD) pParam );
-		break;
+		return createRetVal( getParameter( instanceID, (DWORD) pParam ) );
 	case FF_GETPLUGINCAPS:
-		retval.ivalue = getPluginCaps( (DWORD) pParam);
-		break;
+		return createRetVal( getPluginCaps( (DWORD) pParam) );
 
 // Russell - FF 1.0 upgrade in progress ...
 
 	case FF_INSTANTIATE:
-		retval.ivalue = (DWORD) instantiate( (VideoInfoStruct*) pParam);
-		break;
+		return createRetVal( instantiate( (VideoInfoStruct*) pParam ));
 	case FF_DEINSTANTIATE:
-		retval.ivalue = deInstantiate(instanceID);
-		break;
+		return createRetVal(deInstantiate(instanceID));
 	case FF_GETEXTENDEDINFO:
-		retval.ivalue = (DWORD) getExtendedInfo();
-		break;
+		return createRetVal(getExtendedInfo());
 	case FF_PROCESSFRAMECOPY:
-		retval.ivalue = processFrameCopy( instanceID, (ProcessFrameCopyStruct*)pParam);
-		break;
+		return createRetVal( processFrameCopy( instanceID, (ProcessFrameCopyStruct*)pParam) );
 	case FF_GETPARAMETERTYPE:
-		retval.ivalue = getParameterType( (DWORD) pParam );
-		break;
+		return createRetVal( getParameterType( (DWORD) pParam ) );
 
 //freeframe 1.0 extended. see: http://vvvv.org/tiki-index.php?page=FreeFrameExtendedSpecification
 //outputs
 	case FF_GETNUMOUTPUTS:
-		retval.ivalue = getNumOutputs();
-		break;
+		return createRetVal( getNumOutputs() );
 	case FF_GETOUTPUTNAME:
-		retval.svalue = getOutputName((DWORD) pParam);
-		break;
+		return createRetVal( getOutputName((DWORD) pParam) );
 	case FF_GETOUTPUTTYPE:
-		retval.ivalue = getOutputType((DWORD) pParam);
-		break;
+		return createRetVal( getOutputType((DWORD) pParam) );
 	case FF_GETOUTPUTSLICECOUNT:
-		retval.ivalue = getOutputSliceCount(instanceID, (DWORD) pParam);
-		break;
+		return createRetVal( getOutputSliceCount(instanceID, (DWORD) pParam) );
 	case FF_GETOUTPUT:
 		//retval.svalue = (char*)pPlugObj->getOutput((DWORD) pParam);
-		retval.svalue = (char*)getOutput( instanceID, (DWORD) pParam);
-		break;
+		return createRetVal( getOutput( instanceID, (DWORD) pParam) );
 	case FF_SETTHREADLOCK:
-		 retval.ivalue = setThreadLock(instanceID, (DWORD) pParam);
-		 break;
+		 return createRetVal( setThreadLock(instanceID, (DWORD) pParam) );
 
 //spreaded inputs
 	case FF_SETINPUT:
-		retval.ivalue =  setInput(instanceID,  (InputStruct*) pParam );
-		break;
+		return createRetVal( setInput(instanceID,  (InputStruct*) pParam ) );
 
 // ....................................
 
 	default:
-		retval.ivalue = FF_FAIL;
-		break;
+		return createRetVal( FF_FAIL );
 	}
-	return retval;
 }
 #ifdef linux
 

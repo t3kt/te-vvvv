@@ -1,0 +1,8 @@
+many of these patches require the following system environment variables:
+
+
+VVVV : path to folder containing vvvv.exe (this one is automatically set up)
+
+
+MYVVVV : path to the root folder of vvvv work (containing this file)
+
